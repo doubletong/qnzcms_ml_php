@@ -1,5 +1,5 @@
 <?php
-define('SITEPATH', 'https://localhost/bbhome/');
+define('SITEPATH', 'http://www.tzgcms.com:81');
 define('SITENAME', '黑鸟志 | Black Bird Ideal');
 function do_html_URL($url, $name) {
 	// output URL as link and br

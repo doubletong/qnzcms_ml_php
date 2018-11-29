@@ -1,25 +1,3 @@
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
-RewriteBase /bbhome
 
-RewriteRule ^web/$ case/index.php [L]
-RewriteRule ^web/site_([0-9]+)/$ case/show_case.php?caseid=$1 [L]
-RewriteRule ^graphic/$ design/index.php [L]
-RewriteRule ^graphic/work_([0-9]+)/$ design/show_design.php?designid=$1 [L]
-RewriteRule ^blog/$ blog/index.php [L]
-RewriteRule ^blog/list_page_([0-9]+)/$ blog/index.php?page=$1 [L]
-RewriteRule ^blog/list_([0-9]+)/$ blog/list.php?catid=$1 [L]
-RewriteRule ^blog/list_([0-9]+)_page_([0-9]+)/$ blog/list.php?catid=$1&page=$2 [L]
-RewriteRule ^blog/article_([0-9]+)/$ blog/show_article.php?artid=$1 [L]
-RewriteRule ^logos/$ logos.php [L]
-RewriteRule ^about/$ about.php [L]
-RewriteRule ^business-scope/$ business-scope.php [L]
-RewriteRule ^contact/$ contact.php [L]
-RewriteRule ^process/$ process.php [L]
-
-RewriteRule ^/?([a-zA-Z0-9]+)/index$ $1/index.php [L]
-
-RewriteCond %{REQUEST_FILENAME}.php -f 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-define('SITEPATH', 'http://localhost');
+define('SITEPATH', 'http://www.tzgcms.com:81');
 define('SITENAME', '洁碧官网');
 
 // Set default timezone
