@@ -117,8 +117,8 @@ class PDO_Pagination
 
         if($this->item >= 1)
         {
-            echo "<li><a href='?previous=1".$this->param."'>$this->btn_first_page</a></li>";
-            echo "<li><a href='?back_page=$this->page&item=$this->item&max=$this->max_pages".$this->param."'>$this->btn_back_page</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='?previous=1".$this->param."'>$this->btn_first_page</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='?back_page=$this->page&item=$this->item&max=$this->max_pages".$this->param."'>$this->btn_back_page</a></li>";
         }
         for($x = $this->item; $x < $this->max_pages; $x++)
         {
@@ -126,21 +126,21 @@ class PDO_Pagination
             {
                 $p = $x+1;
                 $this->page == $p-1 ? $active = ' ' . $this->btn_active : $active = null;
-                echo "<li class='$active'><a  href='?page=$x&item=$this->item&max=$this->max_pages".$this->param."'>$p</a></li>";
+                echo "<li class='page-item $active'><a class='page-link' href='?page=$x&item=$this->item&max=$this->max_pages".$this->param."'>$p</a></li>";
                 break;
             }
         }
         $numbers = $this->page+1;
-        echo "<li class='disabled'><a href='#'>$this->btn_page <b>$numbers</b></a></li>";
+        echo "<li class='page-item disabled'><a class='page-link' href='#'>$this->btn_page <b>$numbers</b></a></li>";
         if ($this->max_pages * $this->max_rows < $this->total)
         {
             $this->page = $this->page+1;
             $this->item = $this->item + 1;
-            echo "<li><a  href='?next_page=$this->page&item=$this->item&max=$this->max_pages".$this->param."'>$this->btn_next_page</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='?next_page=$this->page&item=$this->item&max=$this->max_pages".$this->param."'>$this->btn_next_page</a></li>";
             $this->page = round($this->total_page - 1);
             $this->item = round($this->total_page - $this->max_pages);
             $this->max = round($this->total_page);
-            echo "<li><a  href='?page=$this->page&item=$this->item&max=$this->max".$this->param."'>$this->btn_last_page</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='?page=$this->page&item=$this->item&max=$this->max".$this->param."'>$this->btn_last_page</a></li>";
         }
     }
 }

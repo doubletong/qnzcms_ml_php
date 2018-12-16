@@ -2,146 +2,137 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
 require_once('data/article.php');
 
-
-do_html_doctype("添加产品_后台管理".SITENAME);
 ?>
-<link href="assets/css/toastr.min.css" rel="stylesheet"/>
-<script src="<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckeditor/ckeditor.js"></script>
-<script src="<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/ckfinder.js"></script>
-<link href="<?php echo SITEPATH; ?>/plugin/elFinder/css/elfinder.min.css"  rel="stylesheet"/>
-<link href="<?php echo SITEPATH; ?>/js/lib/jquery-ui/jquery-ui.min.css"  rel="stylesheet"/>
-<?php
-do_html_header();
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo "发布新闻_新闻资讯_后台管理_".SITENAME;?></title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+    <script src="../js/vendor/ckeditor/ckeditor.js"></script>
+</head>
 
-?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li><a href="news.php">新闻资讯</a></li>
-        <li class="active">添加新闻</li>
+<body>
+<div class="wrapper">
+    <!-- nav start -->
+    <?php require_once('includes/nav.php'); ?>
+    <!-- /nav end -->
+    <section class="rightcol">            
+        <?php require_once('includes/header.php'); ?>
 
-    </ol>
-</div>
-<div class="main-content">
+        <div class="container-fluid maincontent">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            添加新闻
-        </div>
-        <div class="panel-body">
-            <form class="form-horizontal" style="position: relative;" novalidate="novalidate">
-                <input id="articleId" type="hidden" name="articleId" value="0" />
-                <div style="width:180px; position:absolute;right:0;top:0;z-index:100; text-align:center;">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img ID="iLogo" src="holder.js/150x100/text:433X289像素" class="img-responsive img-rounded" />
-                        </div>
-                        <div class="panel-footer">
-                            <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 缩略图...</button>
-                            <input id="thumbnail" type="hidden" name="thumbnail" />
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">主题</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">分类</label>
-                    <div class="col-sm-7">
-                        <select class="form-control"  id="categoryId" name="categoryId" >
-                            <option value="0">--选择分类--</option>
-                            <option value="1">新闻资讯</option>
-                            <option value="2">口腔护理知识</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        大图</label>
-                    <div class="col-sm-7">
-                        <div class="input-group">
-                            <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="大图">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default" id="setImageUrl" type="button">浏览…</button>
-                                  </span>
-                        </div><!-- /input-group -->
-                        <span class="help-block">图片尺寸：500*500像素</span>
-                        <div id="elFinder1"></div>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="txtBody" class="col-sm-2 control-label">新闻内容</label>
-                    <div class="col-sm-7">
-                        <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
-                        <script>
-                        var elFinder = '<?php echo SITEPATH; ?>/plugin/elFinder/elfinder-cke.html'; 
-                            CKEDITOR.replace( 'content', {
-                                filebrowserBrowseUrl: elFinder,
-                                filebrowserImageBrowseUrl: elFinder                                                   
-                            });
-
-                        </script>
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="description" class="col-sm-2 control-label">SEO描述</label>
-                    <div class="col-sm-7">
-                        <textarea class="form-control" id="description" name="description" placeholder=""></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="keywords" class="col-sm-2 control-label">关键字</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" checked name="active"> 发布
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">保存</button>
-                        <a href="news.php" class="btn btn-default">返回</a>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-
+        <form novalidate="novalidate" id="editform">
+    <div class="card">
+        <div class="card-header">
+        添加新闻
     </div>
+      
+        <div class="card-body">
+                <input id="articleId" type="hidden" name="articleId" value="0" />
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">                          
+                            <label for="title">主题</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="">                         
+                        </div>
+
+                        <div class="form-group">
+                            <label for="categoryId">分类</label>                           
+                            <select class="form-control"  id="categoryId" name="categoryId" >
+                                <option value="0">--选择分类--</option>
+                                <option value="1">新闻资讯</option>
+                                <option value="2">口腔护理知识</option>
+                            </select>                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="imageUrl">
+                                大图</label>
+                                <div class="input-group">
+                                    <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="大图" aria-describedby="setImageUrl">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
+                                    </div>
+                                </div><!-- /input-group -->
+                                <small id="emailHelp" class="form-text text-muted">图片尺寸：500*500像素</small>
+                              
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="content">新闻内容</label>                            
+                                <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
+                                <script>
+                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
+                                    CKEDITOR.replace( 'content', {
+                                        filebrowserBrowseUrl: elFinder,
+                                        filebrowserImageBrowseUrl: elFinder                                                   
+                                    });
+                                </script>                        
+                        </div>
+                        <div class="form-group">
+                            <label for="description">SEO描述</label>
+                            <textarea class="form-control" id="description" name="description" placeholder=""></textarea>                          
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">关键字</label>                           
+                            <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">                         
+                        </div>
+                     
+                        <div class="form-group">
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" checked id="chkActive" name="active">                          
+                            <label class="form-check-label" for="chkActive">发布</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div style="width:300px; text-align:center;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img ID="iLogo" src="holder.js/240x180/text:433X289像素" class="img-responsive img-rounded" />
+                                </div>
+                                <div class="card-footer">
+                                    <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 缩略图...</button>
+                                    <input id="thumbnail" type="hidden" name="thumbnail" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
+            <a href="news.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
+        </div>
+    </div>
+    </form>
+</div>
+<?php require_once('includes/footer.php'); ?> 
+</section>
 
 </div>
+<!-- Large modal 大图加载-->
+<div class="modal fade modal-image" id="modalSetImage" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div id="elFinder1"></div>
+    </div>
+  </div>
 </div>
 
-<?php
-do_html_footer();
-?>
-<script src="assets/js/holder.min.js"></script>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="/js/lib/jquery-ui/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/plugin/elFinder/js/elfinder.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/plugin/elFinder/js/i18n/elfinder.zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<?php require_once('includes/scripts.php'); ?> 
+
+<script src="../js/vendor/holderjs/holder.min.js"></script>
+<script src="../js/vendor/toastr/toastr.min.js"></script>
+<script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+
+
 
 <script type="text/javascript">
     function SetThumbnail(fileUrl) {
@@ -152,85 +143,26 @@ do_html_footer();
     function SetBackground(fileUrl) {
         $('#imageUrl').val(fileUrl);
     }
+
     $(document).ready(function () {
         //当前菜单
         $(".mainmenu li.liitem:nth-of-type(4)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
 
-        $("#btnBrowser").on("click", function () {
-            //var finder = new CKFinder();
-            ////   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
-            //finder.selectActionFunction = SetThumbnail;
-            //finder.popup();
+        $("#btnBrowser").on("click", function () {         
+            singleEelFinder.selectActionFunction = SetThumbnail;
+            singleEelFinder.open();        
           
         });
 
-        $("#setImageUrl").on("click", function () {
-            // var finder = new CKFinder();
-            // //   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
-            // finder.selectActionFunction = SetBackground;
-            // finder.popup();
-var opts = {
-                url: '/plugin/elFinder/php/connector.minimal.php' // connector URL (REQUIRED)
-                    ,
-                commandsOptions: {
-                    edit: {
-                        extraOptions: {
-                            // set API key to enable Creative Cloud image editor
-                            // see https://console.adobe.io/
-                            creativeCloudApiKey: '',
-                            // browsing manager URL for CKEditor, TinyMCE
-                            // uses self location with the empty value
-                            managerUrl: ''
-                        }
-                    },
-                    quicklook: {
-                        // to enable CAD-Files and 3D-Models preview with sharecad.org
-                        sharecadMimes: ['image/vnd.dwg', 'image/vnd.dxf', 'model/vnd.dwf', 'application/vnd.hp-hpgl', 'application/plt', 'application/step', 'model/iges', 'application/vnd.ms-pki.stl', 'application/sat', 'image/cgm', 'application/x-msmetafile'],
-                        // to enable preview with Google Docs Viewer
-                        googleDocsMimes: ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/postscript', 'application/rtf'],
-                        // to enable preview with Microsoft Office Online Viewer
-                        // these MIME types override "googleDocsMimes"
-                        officeOnlineMimes: ['application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.oasis.opendocument.presentation']
-                    }
-                }
-                // bootCalback calls at before elFinder boot up 
-                ,
-                bootCallback: function(fm, extraObj) {
-                    /* any bind functions etc. */
-                    fm.bind('init', function() {
-                        // any your code
-                    });
-                    // for example set document.title dynamically.
-                    var title = document.title;
-                    fm.bind('open', function() {
-                        var path = '',
-                            cwd = fm.cwd();
-                        if (cwd) {
-                            path = fm.path(cwd.hash) || null;
-                        }
-                        document.title = path ? path + ':' + title : title;
-                    }).bind('destroy', function() {
-                        document.title = title;
-                    });
-                },
-                getFileCallback: function(file, fm) {
-                        // window.opener.CKEDITOR.tools.callFunction((function() {
-                        //     var reParam = new RegExp('(?:[\?&]|&amp;)CKEditorFuncNum=([^&]+)', 'i');
-                        //     var match = window.location.search.match(reParam);
-                        //     return (match && match.length > 1) ? match[1] : '';
-                        // })(), fm.convAbsUrl(file.url));
-                        // fm.destroy();
-                        // window.close();
-                        $("#imageUrl").val(fm.convAbsUrl(file.url));
-                       
-                        fm.destroy();
-                    }
-            };
-            var fm = $('#elFinder1').elfinder(opts).elfinder('instance');
+       
+
+        $("#setImageUrl").on("click", function () {  
+            singleEelFinder.selectActionFunction = SetBackground;
+            singleEelFinder.open();            
         });
 
 
-        $("form").validate({
+        $("#editform").validate({
 
             rules: {
                 title: {
@@ -251,15 +183,15 @@ var opts = {
 
             },
 
-            errorClass: "help-block",
-            errorElement: "span",
+            errorClass: "invalid-feedback",
+            errorElement: "div",
             highlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass('has-success');
-                $(element).parents('.form-group').addClass(' has-error');
+                $(element).removeClass('is-valid');
+                $(element).addClass('is-invalid');
             },
             unhighlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass(' has-error');
-                $(element).parents('.form-group').addClass('has-success');
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
             },
             submitHandler: function(form) {
                 //form.submit();
@@ -272,17 +204,17 @@ var opts = {
                 $.each($(form).serializeArray(), function(i, field) {
                     values[field.name] = field.value;
                 });
-
+               
                 $.ajax({
                     url : 'news_post.php',
                     type : 'POST',
                     data : values,
                     success : function(res) {
                         //  $('#resultreturn').prepend(res);
-
                         if (res) {
                             toastr.success('新闻已添加成功！', '添加新闻')
                         } else {
+
                             toastr.error('新闻添加失败！', '添加新闻')
                         }
                     }
@@ -292,6 +224,8 @@ var opts = {
             }
         });
     });
+
+
 </script>
 
 </body>

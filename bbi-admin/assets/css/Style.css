@@ -84,8 +84,8 @@
   margin-bottom: 15px;
 }
 body {
-  background: #000000 url(../img/mosaic_noise.gif);
-  color: #666666;
+  background: #000 url(../img/mosaic_noise.gif);
+  color: #666;
   font-family: "Microsoft YaHei", 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
   padding-top: 50px;
   font-size: 14px;
@@ -96,7 +96,7 @@ a {
 }
 a:hover {
   text-decoration: none;
-  color: #0099ff;
+  color: #09f;
 }
 .btn-action {
   padding: 2px 6px;
@@ -212,7 +212,7 @@ nav#menu .mainmenu li.down-nav ul.submenu {
   overflow: hidden;
 }
 nav#menu .mainmenu li.down-nav ul.submenu li {
-  border-left: 1px dotted #666666;
+  border-left: 1px dotted #666;
   padding-left: 6px;
 }
 nav#menu .mainmenu li.down-nav ul.submenu li a {

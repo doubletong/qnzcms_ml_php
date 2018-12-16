@@ -180,7 +180,6 @@ function do_html_footer() {
 </div>
 
     <script src="assets/js/jquery-2.0.0.min.js"></script>
-
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/App.js"></script>
 

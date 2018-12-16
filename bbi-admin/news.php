@@ -2,7 +2,6 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
 require_once('data/article.php');
 require_once('../includes/PDO_Pagination.php');
 
@@ -38,97 +37,101 @@ else
     }
 }
 
-do_html_doctype("新闻资讯_后台管理".SITENAME);
-?>
-<link href="assets/css/toastr.min.css" rel="stylesheet" />
-
-<?php
-do_html_header();
 
 ?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li class="active">新闻管理</li>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo "新闻资讯_后台管理_".SITENAME;?></title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="wrapper">
+    <!-- nav start -->
+    <?php require_once('includes/nav.php'); ?>
+    <!-- /nav end -->
+    <section class="rightcol">            
+        <?php require_once('includes/header.php'); ?>
 
-    </ol>
+        <div class="container-fluid maincontent">
+            <div class="row">
+                <div class="col">
+                    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInput">搜索</label>
+                            <input type="text" name="search" class="form-control mb-2" id="inlineFormInput" value="<?php echo $search ?>" placeholder="关键字">
+                            </div>
+
+                            <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-auto">
+                        <a href="news_add.php" class="btn btn-primary">
+                            <i class="iconfont icon-plus"></i>  添加新闻
+                        </a>
+                </div>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>缩略图</th>
+                    <th>标题</th>
+                    <th>分类</th>
+                    <th>显示</th>
+                    <th>创建日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach($model as $row)
+                {
+                    echo "<tr>";
+                ?>
+                    <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
+                    <?php
+                    echo "<td>".$row['title']."</td>";
+                    $categoryTitle = $row['categoryId']==1?'新闻资讯':'口腔护理知识';
+                    echo "<td>".$categoryTitle."</td>";
+                    echo "<td>".$row['view_count']."</td>";
+                    ?>
+                    <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
+                    <td><a href='news_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                            <i class="iconfont icon-edit"></i>
+                        </a>
+                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                            <i class="iconfont icon-delete"></i>
+                        </button>
+                    </td>
+                    <?php
+
+                    echo "</tr>";
+                }
+                ?>
+                </tbody>
+            </table>
+
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <?php
+                    $pagination->pages("btn");
+                    ?>
+                </ul>
+            </nav>
+        </div>
+        <?php require_once('includes/footer.php'); ?> 
+            </section>
 </div>
-<div class="main-content">
-    <div class="well well-sm">
-        <a href="news_add.php" class="btn btn-primary pull-right">
-            <span class="glyphicon glyphicon-plus"></span>  添加新闻
-        </a>
+<?php require_once('includes/scripts.php'); ?> 
 
-        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>" class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search for..." value="<?php echo $search ?>">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">搜索</button>
-                      </span>
-            </div><!-- /input-group -->
-        </form>
-
-    </div>
-    <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-            <th>缩略图</th>
-            <th>标题</th>
-            <th>分类</th>
-            <th>显示</th>
-            <th>创建日期</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        foreach($model as $row)
-        {
-            echo "<tr>";
-          ?>
-            <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
-            <?php
-            echo "<td>".$row['title']."</td>";
-            $categoryTitle = $row['categoryId']==1?'新闻资讯':'口腔护理知识';
-            echo "<td>".$categoryTitle."</td>";
-            echo "<td>".$row['view_count']."</td>";
-            ?>
-            <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
-            <td><a href='news_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-xs'>
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
-                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-xs btn-delete'>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
-            </td>
-            <?php
-
-            echo "</tr>";
-        }
-        ?>
-        </tbody>
-    </table>
-
-
-    <nav>
-        <ul class="pagination">
-            <?php
-            $pagination->pages("btn");
-            ?>
-        </ul>
-    </nav>
-</div>
-
-
-
-</div>
-
-<?php
-do_html_footer();
-?>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/js/bootbox.js"></script>
+<script src="../js/vendor/toastr/toastr.min.js"></script>
+<script src="../js/vendor/bootbox.js/bootbox.js"></script>
 <script>
     $(document).ready(function () {
         //当前菜单
@@ -159,12 +162,9 @@ do_html_footer();
                             }
                         }
                     });
-
                 }
 
-
             });
-
 
         });
 

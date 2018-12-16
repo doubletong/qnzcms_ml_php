@@ -1,0 +1,30 @@
+.page-item{
+  a{
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+  }
+  &.active{
+    a{
+      z-index: 1;
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+  }
+}
+
+.img-circle{
+  border-radius: 50%; object-fit: cover;
+}
+.hidden{
+  display: none;
+}
+.field-validation-error{
+    color:#FF0000;
+}
