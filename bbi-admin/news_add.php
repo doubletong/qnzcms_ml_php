@@ -11,7 +11,8 @@ do_html_doctype("添加产品_后台管理".SITENAME);
 <link href="assets/css/toastr.min.css" rel="stylesheet"/>
 <script src="<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckeditor/ckeditor.js"></script>
 <script src="<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/ckfinder.js"></script>
-
+<link href="<?php echo SITEPATH; ?>/plugin/elFinder/css/elfinder.min.css"  rel="stylesheet"/>
+<link href="<?php echo SITEPATH; ?>/js/lib/jquery-ui/jquery-ui.min.css"  rel="stylesheet"/>
 <?php
 do_html_header();
 
@@ -70,12 +71,13 @@ do_html_header();
                         大图</label>
                     <div class="col-sm-7">
                         <div class="input-group">
-                            <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="大图"></asp:TextBox>
+                            <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="大图">
                                   <span class="input-group-btn">
                                     <button class="btn btn-default" id="setImageUrl" type="button">浏览…</button>
                                   </span>
                         </div><!-- /input-group -->
                         <span class="help-block">图片尺寸：500*500像素</span>
+                        <div id="elFinder1"></div>
                     </div>
                 </div>
 
@@ -85,13 +87,10 @@ do_html_header();
                     <div class="col-sm-7">
                         <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                         <script>
+                        var elFinder = '<?php echo SITEPATH; ?>/plugin/elFinder/elfinder-cke.html'; 
                             CKEDITOR.replace( 'content', {
-                                filebrowserBrowseUrl: '<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/ckfinder.html',
-                                filebrowserImageBrowseUrl: '<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/ckfinder.html?Type=Images',
-                                filebrowserFlashBrowseUrl: '<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/ckfinder.html?Type=Flash',
-                                filebrowserUploadUrl: '<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                                filebrowserImageUploadUrl: '<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                                filebrowserFlashUploadUrl: '<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+                                filebrowserBrowseUrl: elFinder,
+                                filebrowserImageBrowseUrl: elFinder                                                   
                             });
 
                         </script>
@@ -140,6 +139,10 @@ do_html_footer();
 <script src="assets/js/holder.min.js"></script>
 <script src="assets/js/toastr.min.js"></script>
 <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/js/lib/jquery-ui/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/plugin/elFinder/js/elfinder.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/plugin/elFinder/js/i18n/elfinder.zh_CN.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
     function SetThumbnail(fileUrl) {
         $('#thumbnail').val(fileUrl);
@@ -154,17 +157,76 @@ do_html_footer();
         $(".mainmenu li.liitem:nth-of-type(4)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
 
         $("#btnBrowser").on("click", function () {
-            var finder = new CKFinder();
-            //   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
-            finder.selectActionFunction = SetThumbnail;
-            finder.popup();
+            //var finder = new CKFinder();
+            ////   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
+            //finder.selectActionFunction = SetThumbnail;
+            //finder.popup();
+          
         });
 
         $("#setImageUrl").on("click", function () {
-            var finder = new CKFinder();
-            //   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
-            finder.selectActionFunction = SetBackground;
-            finder.popup();
+            // var finder = new CKFinder();
+            // //   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
+            // finder.selectActionFunction = SetBackground;
+            // finder.popup();
+var opts = {
+                url: '/plugin/elFinder/php/connector.minimal.php' // connector URL (REQUIRED)
+                    ,
+                commandsOptions: {
+                    edit: {
+                        extraOptions: {
+                            // set API key to enable Creative Cloud image editor
+                            // see https://console.adobe.io/
+                            creativeCloudApiKey: '',
+                            // browsing manager URL for CKEditor, TinyMCE
+                            // uses self location with the empty value
+                            managerUrl: ''
+                        }
+                    },
+                    quicklook: {
+                        // to enable CAD-Files and 3D-Models preview with sharecad.org
+                        sharecadMimes: ['image/vnd.dwg', 'image/vnd.dxf', 'model/vnd.dwf', 'application/vnd.hp-hpgl', 'application/plt', 'application/step', 'model/iges', 'application/vnd.ms-pki.stl', 'application/sat', 'image/cgm', 'application/x-msmetafile'],
+                        // to enable preview with Google Docs Viewer
+                        googleDocsMimes: ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/postscript', 'application/rtf'],
+                        // to enable preview with Microsoft Office Online Viewer
+                        // these MIME types override "googleDocsMimes"
+                        officeOnlineMimes: ['application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.oasis.opendocument.presentation']
+                    }
+                }
+                // bootCalback calls at before elFinder boot up 
+                ,
+                bootCallback: function(fm, extraObj) {
+                    /* any bind functions etc. */
+                    fm.bind('init', function() {
+                        // any your code
+                    });
+                    // for example set document.title dynamically.
+                    var title = document.title;
+                    fm.bind('open', function() {
+                        var path = '',
+                            cwd = fm.cwd();
+                        if (cwd) {
+                            path = fm.path(cwd.hash) || null;
+                        }
+                        document.title = path ? path + ':' + title : title;
+                    }).bind('destroy', function() {
+                        document.title = title;
+                    });
+                },
+                getFileCallback: function(file, fm) {
+                        // window.opener.CKEDITOR.tools.callFunction((function() {
+                        //     var reParam = new RegExp('(?:[\?&]|&amp;)CKEditorFuncNum=([^&]+)', 'i');
+                        //     var match = window.location.search.match(reParam);
+                        //     return (match && match.length > 1) ? match[1] : '';
+                        // })(), fm.convAbsUrl(file.url));
+                        // fm.destroy();
+                        // window.close();
+                        $("#imageUrl").val(fm.convAbsUrl(file.url));
+                       
+                        fm.destroy();
+                    }
+            };
+            var fm = $('#elFinder1').elfinder(opts).elfinder('instance');
         });
 
 

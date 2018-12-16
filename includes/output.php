@@ -75,38 +75,38 @@ function do_html_header() {
         <nav>
             <ul class="mainmenu">
                 <li>
-                    <a href="<?php echo SITEPATH; ?>/about/">
-                        了解洁碧
+                    <a href="<?php echo SITEPATH; ?>/about">
+                        了解尚橙
                     </a>
                     <span>About</span>
                 </li>
                 <li>
-                    <a href="<?php echo SITEPATH; ?>/products/">
-                        口腔护理产品
+                    <a href="<?php echo SITEPATH; ?>/products">
+                        产品展示
                     </a>
-                    <span>Oral Products</span>
+                    <span>Products</span>
                 </li>
                 <li>
-                    <a href="<?php echo SITEPATH; ?>/news/">
+                    <a href="<?php echo SITEPATH; ?>/news">
                         新闻中心
                     </a>
                     <span>News</span>
                 </li>
                 <li>
-                    <a href="<?php echo SITEPATH; ?>/service/">
+                    <a href="<?php echo SITEPATH; ?>/service">
                         服务与支持
                     </a>
                     <span>Service and Support</span>
                 </li>
                 <li>
-                    <a href="<?php echo SITEPATH; ?>/marketing/">
+                    <a href="<?php echo SITEPATH; ?>/marketing">
                         销售网络
                     </a>
                     <span>Sales Network</span>
                 </li>
                 <li>
-                    <a href="<?php echo SITEPATH; ?>/knowledge/">
-                        口腔护理知识
+                    <a href="<?php echo SITEPATH; ?>/knowledge">
+                        护理知识
                     </a>
                     <span>Mouth Care</span>
                 </li>
