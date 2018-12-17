@@ -2,109 +2,93 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
-require_once('data/product.php');
-
-
-do_html_doctype("添加轮播图_后台管理".SITENAME);
-?>
-<link href="assets/css/toastr.min.css" rel="stylesheet"/>
-<script src="<?php echo SITEPATH; ?>/bbi-admin/assets/plugins/ckfinder/ckfinder.js"></script>
-
-<?php
-do_html_header();
 
 ?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li><a href="carousels.php">轮播图管理</a></li>
-        <li class="active">添加轮播图</li>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo "添加_轮播图_组件_后台管理_".SITENAME;?></title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+</head>
 
-    </ol>
-</div>
-<div class="main-content">
+<body>
+<div class="wrapper">
+    <!-- nav start -->
+    <?php require_once('includes/nav.php'); ?>
+    <!-- /nav end -->
+    <section class="rightcol">            
+        <?php require_once('includes/header.php'); ?>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="container-fluid maincontent">
+
+        <form novalidate="novalidate">
+
+    <div class="card">
+        <div class="card-header">
             添加轮播图
         </div>
-        <div class="panel-body">
-            <form class="form-horizontal" style="position: relative;" novalidate="novalidate">
-
+        <div class="card-body">
+       
 
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">主题</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="主题">
-                    </div>
+                    <label for="title">主题</label>                 
+                    <input type="text" class="form-control" id="title" name="title" placeholder="主题">                  
                 </div>
                 <div class="form-group">
-                    <label for="link" class="col-sm-2 control-label">链接</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="link" name="link" placeholder="链接">
-                    </div>
+                    <label for="link" >链接</label>                 
+                    <input type="text" class="form-control" id="link" name="link" placeholder="链接">                  
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        轮播图</label>
-                    <div class="col-sm-7">
+                    <label for="imageUrl">轮播图</label>                  
                         <div class="input-group">
-                            <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="轮播图"></asp:TextBox>
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default" id="setImageUrl" type="button">浏览…</button>
-                                  </span>
-                        </div><!-- /input-group -->
-                        <span class="help-block">图片尺寸：1300*528像素</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="importance" class="col-sm-2 control-label">排序</label>
-                    <div class="col-sm-7">
-                        <input type="number" class="form-control" id="importance" name="importance" value="0" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="description" class="col-sm-2 control-label">描述</label>
-                    <div class="col-sm-7">
-                        <textarea class="form-control" id="description" name="description" placeholder=""></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" checked name="active"> 发布
-                            </label>
+                            <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="轮播图" aria-describedby="setImageUrl">                                
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
+                            </div>
                         </div>
-                    </div>
+                        <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*500像素</small>                   
                 </div>
+
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">保存</button>
-                        <a href="carousels.php" class="btn btn-default">返回</a>
+                    <label for="importance">排序</label>                 
+                    <input type="number" class="form-control" id="importance" name="importance" value="0" placeholder="值越大越排前">                  
+                </div>
+
+                <div class="form-group">
+                    <label for="description">描述</label>
+                    <textarea class="form-control" id="description" name="description" placeholder="描述"></textarea>                  
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                    <input type="checkbox" class="form-check-input" checked id="chkActive" name="active">                          
+                    <label class="form-check-label" for="chkActive">发布</label>
                     </div>
                 </div>
-            </form>
+
+                
+           
 
         </div>
-
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
+            <a href="carousels.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>                       
+        </div>
     </div>
+    </form>
+</div>
+<?php require_once('includes/footer.php'); ?> 
+</section>
 
 </div>
-</div>
 
-<?php
-do_html_footer();
-?>
-<script src="assets/js/holder.min.js"></script>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+<?php require_once('includes/scripts.php'); ?> 
+
+<script src="../js/vendor/holderjs/holder.min.js"></script>
+<script src="../js/vendor/toastr/toastr.min.js"></script>
+<script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
 
@@ -113,15 +97,13 @@ do_html_footer();
     }
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu li.liitem:nth-of-type(6)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
 
 
 
         $("#setImageUrl").on("click", function () {
-            var finder = new CKFinder();
-            //   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
-            finder.selectActionFunction = SetBackground;
-            finder.popup();
+            singleEelFinder.selectActionFunction = SetBackground;
+            singleEelFinder.open();         
         });
 
 
@@ -153,15 +135,15 @@ do_html_footer();
 
             },
 
-            errorClass: "help-block",
-            errorElement: "span",
+            errorClass: "invalid-feedback",
+            errorElement: "div",
             highlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass('has-success');
-                $(element).parents('.form-group').addClass(' has-error');
+                $(element).removeClass('is-valid');
+                $(element).addClass('is-invalid');
             },
             unhighlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass(' has-error');
-                $(element).parents('.form-group').addClass('has-success');
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
             },
             submitHandler: function(form) {
                 //form.submit();

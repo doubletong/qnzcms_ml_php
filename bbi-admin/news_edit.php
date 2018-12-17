@@ -186,15 +186,15 @@ if(isset($_GET['id'])){
 
             },
 
-            errorClass: "help-block",
-            errorElement: "span",
+            errorClass: "invalid-feedback",
+            errorElement: "div",
             highlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass('has-success');
-                $(element).parents('.form-group').addClass(' has-error');
+                $(element).removeClass('is-valid');
+                $(element).addClass('is-invalid');
             },
             unhighlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass(' has-error');
-                $(element).parents('.form-group').addClass('has-success');
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
             },
             submitHandler: function(form) {
                 //form.submit();

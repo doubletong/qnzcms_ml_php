@@ -2,7 +2,6 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('data/article.php');
 require_once('../includes/PDO_Pagination.php');
 
 $pagination = new PDO_Pagination(db::getInstance());
@@ -76,7 +75,7 @@ else
                         </a>
                 </div>
             </div>
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>缩略图</th>
