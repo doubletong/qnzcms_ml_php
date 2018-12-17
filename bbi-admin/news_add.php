@@ -25,10 +25,10 @@ require_once('data/article.php');
         <div class="container-fluid maincontent">
 
         <form novalidate="novalidate" id="editform">
-    <div class="card">
-        <div class="card-header">
-        添加新闻
-    </div>
+            <div class="card">
+                <div class="card-header">
+                添加新闻
+            </div>
       
         <div class="card-body">
                 <input id="articleId" type="hidden" name="articleId" value="0" />
@@ -56,7 +56,7 @@ require_once('data/article.php');
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                                     </div>
-                                </div><!-- /input-group -->
+                                </div>
                                 <small id="emailHelp" class="form-text text-muted">图片尺寸：500*500像素</small>
                               
                         </div>
@@ -118,14 +118,6 @@ require_once('data/article.php');
 </section>
 
 </div>
-<!-- Large modal 大图加载-->
-<div class="modal fade modal-image" id="modalSetImage" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div id="elFinder1"></div>
-    </div>
-  </div>
-</div>
 
 <?php require_once('includes/scripts.php'); ?> 
 
@@ -147,7 +139,7 @@ require_once('data/article.php');
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu li.liitem:nth-of-type(4)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;
