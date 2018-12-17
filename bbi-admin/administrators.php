@@ -2,8 +2,7 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
-require_once('data/product.php');
+
 require_once('../includes/PDO_Pagination.php');
 
 $pagination = new PDO_Pagination(db::getInstance());
@@ -38,125 +37,143 @@ else
     }
 }
 
-do_html_doctype("管理员_后台管理".SITENAME);
-?>
-<link href="assets/css/toastr.min.css" rel="stylesheet" />
-
-<?php
-do_html_header();
 
 ?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li class="active">管理员管理</li>
+<!DOCTYPE html>
+<html>
 
-    </ol>
-</div>
-<div class="main-content">
-    <div class="well well-sm">
-        <a href="admin_add.php" class="btn btn-primary pull-right">
-            <span class="glyphicon glyphicon-plus"></span>  添加管理员
-        </a>
+<head>
+    <title>
+        <?php echo "管理员_系统_后台管理_".SITENAME;?>
+    </title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+</head>
 
-        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>" class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search for..." value="<?php echo $search ?>">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">搜索</button>
-                      </span>
-            </div><!-- /input-group -->
-        </form>
+<body>
+    <div class="wrapper">
+        <!-- nav start -->
+        <?php require_once('includes/nav.php'); ?>
+        <!-- /nav end -->
+        <section class="rightcol">
+            <?php require_once('includes/header.php'); ?>
+            <div class="container-fluid maincontent">
 
-    </div>
-    <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-            <th>帐号</th>
-            <th>创建日期</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+                <div class="row">
+                    <div class="col">
+                        <form method="POST" action="<?php echo $_SERVER[" PHP_SELF"] ?>">
+                            <div class="form-row align-items-center">
+                                <div class="col-auto">
+                                    <label class="sr-only" for="inlineFormInput">搜索</label>
+                                    <input type="text" name="search" class="form-control mb-2" id="inlineFormInput"
+                                        value="<?php echo $search ?>" placeholder="关键字">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <a href="admin_add.php" class="btn btn-primary">
+                            <i class="iconfont icon-plus"></i> 添加链接
+                        </a>
+                    </div>
+                </div>
+
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>帐号</th>
+                            <th>创建日期</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
         foreach($model as $row)
         {
             echo "<tr>";
             echo "<td>".$row['username']."</td>";
             ?>
-            <td><?php echo $row['created_date'];?></td>
-            <td><!--<a href='admin_edit.php?id=<?php /*echo $row['id'];*/?>' class='btn btn-primary btn-xs'>
+                        <td>
+                            <?php echo $row['created_date'];?>
+                        </td>
+                        <td>
+                            <!--<a href='admin_edit.php?id=<?php /*echo $row['id'];*/?>' class='btn btn-primary btn-xs'>
                     <span class="glyphicon glyphicon-edit"></span>
                 </a>-->
-                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-xs btn-delete'>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
-            </td>
-            <?php
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                                <i class="iconfont icon-delete"></i>
+                            </button>
+                        </td>
+                        <?php
 
             echo "</tr>";
         }
         ?>
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
 
 
-    <nav>
-        <ul class="pagination">
-            <?php
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <?php
             $pagination->pages("btn");
             ?>
-        </ul>
-    </nav>
-</div>
+                    </ul>
+                </nav>
+            </div>
 
+            <?php require_once('includes/footer.php'); ?>
+        </section>
+    </div>
 
+    <?php require_once('includes/scripts.php'); ?>
 
-</div>
+    <script src="../js/vendor/toastr/toastr.min.js"></script>
+    <script src="../js/vendor/bootbox.js/bootbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            //当前菜单
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
 
-<?php
-do_html_footer();
-?>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/js/bootbox.js"></script>
-<script>
-    $(document).ready(function () {
-        //当前菜单
-        $(".mainmenu li.liitem:nth-of-type(7)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
-        //确认框默认语言
-        bootbox.setDefaults({
-            locale: "zh_CN"
-        });
-
-        $(".btn-delete").click(function(){
-            var $that = $(this);
-            bootbox.confirm("删除后管理员将无法恢复，您确定要删除吗？", function (result) {
-                if (result) {
-                    var productId = $that.attr("data-id");
-
-                    $.ajax({
-                        url : 'admin_delete.php',
-                        type : 'POST',
-                        data : {id:productId},
-                        success : function(res) {
-
-                            //  $('#resultreturn').prepend(res);
-                            if (res) {
-                                toastr.success('管理员已删除成功！', '删除管理员')
-                                $that.closest("tr").remove();
-                            } else {
-                                toastr.error('管理员删除失败！', '删除管理员')
-                            }
-                        }
-                    });
-                }
+            //确认框默认语言
+            bootbox.setDefaults({
+                locale: "zh_CN"
             });
 
+            $(".btn-delete").click(function () {
+                var $that = $(this);
+                bootbox.confirm("删除后管理员将无法恢复，您确定要删除吗？", function (result) {
+                    if (result) {
+                        var productId = $that.attr("data-id");
+
+                        $.ajax({
+                            url: 'admin_delete.php',
+                            type: 'POST',
+                            data: {
+                                id: productId
+                            },
+                            success: function (res) {
+
+                                //  $('#resultreturn').prepend(res);
+                                if (res) {
+                                    toastr.success('管理员已删除成功！', '删除管理员')
+                                    $that.closest("tr").remove();
+                                } else {
+                                    toastr.error('管理员删除失败！', '删除管理员')
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            });
 
         });
-
-    });
-</script>
+    </script>
 </body>
+
 </html>

@@ -19,8 +19,9 @@
             i.icon-left {
                 position: absolute;
                 right: .6rem;
-                top: .9rem;
+                top: 1rem;
                 z-index: 100;
+                font-size: 12px;
             }
             &:hover {
                 color: #fff;
@@ -101,11 +102,13 @@
         &>li {
             position: relative;
             &>a {
-                i.fa-fw {
-                    font-size: 1rem;
+                i.iconfont {
+                    font-size: 1.675rem;
                 }
                 i.icon-left {
                     right: .3rem;
+                    top: 1.425rem;
+                    font-size: 12px;
                 }
             }
             ul.subnav {
@@ -137,7 +140,7 @@
             &.nav-open {
                 &>a {
                     i.icon-left {
-                        top: .8rem;
+                        top: 1.425rem;
                         transform: rotate(-180deg);
                         transition: all .25s;
                     }

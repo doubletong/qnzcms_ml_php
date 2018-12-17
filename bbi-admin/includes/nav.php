@@ -67,7 +67,7 @@
                         </ul>
                     </li>
 
-                    <li class="liitem down-nav">
+                    <li class="down-nav">
                         <a href="#">
                         <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-setting"></i>  <span class="nav-text">系统安全</span> </a>

@@ -2,146 +2,144 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
 require_once('data/user.php');
 
-
-do_html_doctype("添加管理员_后台管理".SITENAME);
 ?>
-<link href="assets/css/toastr.min.css" rel="stylesheet"/>
-<?php
-do_html_header();
+<!DOCTYPE html>
+<html>
 
-?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li><a href="administrators.php">管理员管理</a></li>
-        <li class="active">添加管理员</li>
+<head>
+    <title>
+        <?php echo "添加_链接_组件_后台管理_".SITENAME;?>
+    </title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+</head>
 
-    </ol>
-</div>
-<div class="main-content">
+<body>
+    <div class="wrapper">
+        <!-- nav start -->
+        <?php require_once('includes/nav.php'); ?>
+        <!-- /nav end -->
+        <section class="rightcol">
+            <?php require_once('includes/header.php'); ?>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            添加管理员
-        </div>
-        <div class="panel-body">
-            <form class="form-horizontal" style="position: relative;" novalidate="novalidate">
+            <div class="container-fluid maincontent">
+
+                <form novalidate="novalidate">
+                    <div class="card">
+                        <div class="card-header">
+                            添加管理员
+                        </div>
+                        <div class="card-body">
 
 
-                <div class="form-group">
-                    <label for="username" class="col-sm-2 control-label">帐号</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="">
+
+                            <div class="form-group">
+                                <label for="username">帐号</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">密码</label>
+
+                                <input type="password" class="form-control" id="password" name="password" placeholder="">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="repwd">确认密码</label>
+
+                                <input type="password" class="form-control" id="repwd" name="repwd" placeholder="">
+
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
+                            <a href="administrators.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i>
+                                返回</a>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-7">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="repwd" class="col-sm-2 control-label">确认密码</label>
-                    <div class="col-sm-7">
-                        <input type="password" class="form-control" id="repwd" name="repwd" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">保存</button>
-                        <a href="administrators.php" class="btn btn-default">返回</a>
-                    </div>
-                </div>
-            </form>
-
-        </div>
+                </form>
+            </div>
+            <?php require_once('includes/footer.php'); ?>
+        </section>
 
     </div>
 
-</div>
-</div>
+    <?php require_once('includes/scripts.php'); ?>
 
-<?php
-do_html_footer();
-?>
-<script src="assets/js/holder.min.js"></script>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script type="text/javascript">
-
-
-
-    $(document).ready(function () {
-        //当前菜单
-        $(".mainmenu li.liitem:nth-of-type(7)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
+    <script src="../js/vendor/holderjs/holder.min.js"></script>
+    <script src="../js/vendor/toastr/toastr.min.js"></script>
+    <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //当前菜单
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass(
+                "active");
 
 
-        $("form").validate({
+            $("form").validate({
 
-            rules: {
-                username: {
-                    required: true
+                rules: {
+                    username: {
+                        required: true
+                    },
+                    password: {
+                        required: true
+                    },
+                    repwd: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+
                 },
-                password: {
-                    required: true
-                },
-                repwd: {
-                    required: true,
-                    equalTo: "#password"
-                }
+                messages: {
+                    username: {
+                        required: "请输入帐号"
+                    },
+                    password: {
+                        required: "请输入密码"
+                    },
+                    repwd: {
+                        required: "请输入确认密码",
+                        equalTo: "两次输入的密码不匹配"
+                    }
 
-            },
-            messages:{
-                username: {
-                    required:"请输入帐号"
                 },
-                password: {
-                    required: "请输入密码"
-                },
-                repwd: {
-                    required: "请输入确认密码",
-                    equalTo:"两次输入的密码不匹配"
-                }
 
-            },
-
-            errorClass: "help-block",
-            errorElement: "span",
+                errorClass: "invalid-feedback",
+            errorElement: "div",
             highlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass('has-success');
-                $(element).parents('.form-group').addClass(' has-error');
+                $(element).removeClass('is-valid');
+                $(element).addClass('is-invalid');
             },
             unhighlight: function (element, errorClass, validClass) {
-                $(element).parents('.form-group').removeClass(' has-error');
-                $(element).parents('.form-group').addClass('has-success');
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
             },
-            submitHandler: function(form) {
-                //form.submit();
+                submitHandler: function (form) {
+                    //form.submit();
 
-                $.ajax({
-                    url : 'admin_post.php',
-                    type : 'POST',
-                    data : $(form).serialize(),
-                    success : function(res) {
-                        //  $('#resultreturn').prepend(res);
-                        if (res) {
-                            toastr.success('管理员已添加成功！', '添加管理员')
-                        } else {
-                            toastr.error('管理员添加失败！', '添加管理员')
+                    $.ajax({
+                        url: 'admin_post.php',
+                        type: 'POST',
+                        data: $(form).serialize(),
+                        success: function (res) {
+                            //  $('#resultreturn').prepend(res);
+                            if (res) {
+                                toastr.success('管理员已添加成功！', '添加管理员')
+                            } else {
+                                toastr.error('管理员添加失败！', '添加管理员')
+                            }
                         }
-                    }
-                });
+                    });
 
 
-            }
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

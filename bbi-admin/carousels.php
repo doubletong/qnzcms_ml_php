@@ -76,7 +76,7 @@ else
         </a>
         </div>
     </div>
-    
+
     <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr>
@@ -125,7 +125,8 @@ else
     </nav>
 </div>
 
-
+ <?php require_once('includes/footer.php'); ?> 
+            </section>
 
 </div>
 
