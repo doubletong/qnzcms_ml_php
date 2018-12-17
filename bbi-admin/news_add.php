@@ -68,6 +68,7 @@ require_once('data/article.php');
                                 <script>
                                 var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
+                                      
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder                                                   
                                     });
