@@ -29,7 +29,15 @@ class Product{
         }
     }
 
-//更新产品
+    //获取总数
+    public function product_count(){
+        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_products`");    
+        $query->execute();        
+        $rows = $query->fetchColumn(); 
+        return $rows;
+    }
+
+//更新
    public function update_product($id, $product_no, $title,$sub_title,$slogan,$price,$link,$importance,$thumbnail,$background,$keywords,$recommend,$active,$summary, $description, $content, $brand,$category,$company) {
 
         $sql = "update wp_products

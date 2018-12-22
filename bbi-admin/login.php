@@ -1,7 +1,6 @@
 <?php
 require_once('../includes/common.php');
 require_once('../config/db.php');
-
 session_start();
 
 if(isset($_POST['username'],$_POST['password'])){
@@ -39,61 +38,70 @@ if(isset($_POST['username'],$_POST['password'])){
 
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width">
     <title>
         后台管理
     </title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/Style.min.css" rel="stylesheet" />
-    <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.min.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-
+    <link href="/js/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="content/iconfonts/iconfont.css" rel="stylesheet" />
+ <style>
+     body{
+         background:#333 url(content/img/mosaic_noise.gif);
+     }
+.loginbox{
+    max-width:360px;
+    margin:0 auto;
+}
+     </style>
 </head>
 <body class="loginPage">
-<div class="loginbox">
-    <header>
-        <h2>后台管理</h2>
-    </header>
-    <form method="post" class="loginForm">
+<form method="post" class="loginForm">
+<div class="loginbox card">
+    <h5 class="card-header text-center">
+       后台管理
+</h5>
+<div class="card-body">
+
+   
         <div class="form-group">
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-                <input class="form-control"  type="text" name="username" placeholder="用户名">
+            <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1"><i class="iconfont icon-user"></i></span>
+  </div>
+                <input class="form-control"  type="text" name="username" placeholder="用户名" aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-desktop fa-fw"></i></div>
-                <input class="form-control" type="password" name="password" placeholder="密码">
+            <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon2"><i class="iconfont icon-lock"></i></span>
+  </div>
+                <input class="form-control" type="password" name="password" placeholder="密码" aria-describedby="basic-addon2">
             </div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> 记住我
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary">登录系统</button>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">记住我</label>
+        </div>      
+       
         <?php if(isset($error)){?>
             <div class="alert alert-danger"><?php echo $error;?></div>
         <?php  } ?>
-    </form>
+    
+        </div>
+        <div class="card-footer text-center">
+        <button type="submit" class="btn btn-primary"><i class="iconfont icon-login"></i> 登录</button>
+        </div>
+       
 </div>
+</form>
 
-
-
-<script src="assets/js/jquery-2.0.0.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="../js/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
 <script>

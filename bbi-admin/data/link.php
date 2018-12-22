@@ -28,6 +28,14 @@ class Link{
         }
     }
 
+        //获取总数
+        public function link_count(){
+            $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_links`");    
+            $query->execute();        
+            $rows = $query->fetchColumn(); 
+            return $rows;
+        }
+
 //更新产品
     public function update_link($id,$title,$importance,$imageUrl,$active, $link) {
 

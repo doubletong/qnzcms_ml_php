@@ -29,7 +29,16 @@ class Article{
         }
     }
 
-//更新产品
+    
+    //获取总数
+    public function article_count(){
+        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_articles`");    
+        $query->execute();        
+        $rows = $query->fetchColumn(); 
+        return $rows;
+    }
+
+//更新
    public function update_article($id, $title,$categoryId,$thumbnail,$imageUrl,$keywords,$active, $description, $content) {
 
         $sql = "UPDATE wp_articles SET title= :title,

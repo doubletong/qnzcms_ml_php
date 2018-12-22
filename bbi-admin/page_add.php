@@ -8,7 +8,7 @@ require_once('../config/db.php');
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "发布新闻_新闻资讯_后台管理_".SITENAME;?></title>
+    <title><?php echo "添加_页面_后台管理_".SITENAME;?></title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
     <script src="../js/vendor/ckeditor/ckeditor.js"></script>
@@ -27,43 +27,26 @@ require_once('../config/db.php');
         <form novalidate="novalidate" id="editform">
             <div class="card">
                 <div class="card-header">
-                添加新闻
+                添加页面
             </div>
       
         <div class="card-body">
-                <input id="articleId" type="hidden" name="articleId" value="0" />
-                <div class="row">
-                    <div class="col">
+                <input id="pageId" type="hidden" name="pageId" value="0" />
+               
                         <div class="form-group">                          
                             <label for="title">主题</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="">                         
+                            <input type="text" class="form-control" id="title" name="title" placeholder="必填">                         
                         </div>
 
-                        <div class="form-group">
-                            <label for="categoryId">分类</label>                           
-                            <select class="form-control"  id="categoryId" name="categoryId" >
-                                <option value="0">--选择分类--</option>
-                                <option value="1">新闻资讯</option>
-                                <option value="2">口腔护理知识</option>
-                            </select>                            
+                        <div class="form-group">                          
+                            <label for="title">别名</label>
+                            <input type="text" class="form-control" id="alias" name="alias" placeholder="必填">                         
                         </div>
 
-                        <div class="form-group">
-                            <label for="imageUrl">
-                                大图</label>
-                                <div class="input-group">
-                                    <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="大图" aria-describedby="setImageUrl">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
-                                    </div>
-                                </div>
-                                <small id="emailHelp" class="form-text text-muted">图片尺寸：500*500像素</small>
-                              
-                        </div>
-
+                 
 
                         <div class="form-group">
-                            <label for="content">新闻内容</label>                            
+                            <label for="content">页面内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
                                 var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
@@ -89,27 +72,12 @@ require_once('../config/db.php');
                             <label class="form-check-label" for="chkActive">发布</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <div style="width:300px; text-align:center;">
-                            <div class="card">
-                                <div class="card-body">
-                                    <img ID="iLogo" src="holder.js/240x180/text:433X289像素" class="img-responsive img-rounded" />
-                                </div>
-                                <div class="card-footer">
-                                    <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
-                                    <input id="thumbnail" type="hidden" name="thumbnail" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                  
 
         </div>
         <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
-            <a href="news.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
+            <a href="pages.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
         </div>
     </div>
     </form>
@@ -124,7 +92,7 @@ require_once('../config/db.php');
 <script src="../js/vendor/holderjs/holder.min.js"></script>
 <script src="../js/vendor/toastr/toastr.min.js"></script>
 <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-
+<script src="../js/vendor/jquery-validation/dist/additional-methods.min.js"></script>
 
 
 <script type="text/javascript">
@@ -137,9 +105,18 @@ require_once('../config/db.php');
         $('#imageUrl').val(fileUrl);
     }
 
+    $.validator.addMethod(
+        "regex",
+        function(value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        },
+        "输入的格式不正确，只支持小写英文与下划线输入！"
+    );
+
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;
@@ -161,17 +138,43 @@ require_once('../config/db.php');
                 title: {
                     required: true
                 },
-                categoryId: {
-                    range:[1,2]
+                alias: {
+                    required: true,
+                    regex:"^[a-z0-9_-]+$",
+                    remote: {
+                        url: "page_check_alias.php",
+                        type: "post",
+                        dataType:"JSON",
+                        data: {
+                            id: function() {
+                                return $( "#pageId" ).val();
+                            },
+                            alias: function(){
+                                return $( "#alias" ).val();
+                            }
+                        },
+                        dataFilter: function(data) {                       
+                            if(!data) {
+                                // jquery validate remote method
+                                // accepts only "true" value
+                                // to successfully validate field 
+                                return '"true"';
+                            } else {
+                                // error message, everything that isn't "true"
+                                // is understood as failure message
+                                return '"别名已存在！"';
+                            }
+                        }
+                    }
                 }
-
             },
             messages:{
                 title: {
                     required:"请输入主标题"
                 },
-                categoryId: {
-                    range:"请选择分类"
+                alias: {
+                   required:"请输入别名"
+                 
                 }
 
             },
@@ -199,16 +202,16 @@ require_once('../config/db.php');
                 });
                
                 $.ajax({
-                    url : 'news_post.php',
+                    url : 'page_post.php',
                     type : 'POST',
                     data : values,
                     success : function(res) {
                         //  $('#resultreturn').prepend(res);
                         if (res) {
-                            toastr.success('新闻已添加成功！', '添加新闻')
+                            toastr.success('页面已添加成功！', '添加页面')
                         } else {
 
-                            toastr.error('新闻添加失败！', '添加新闻')
+                            toastr.error('页面添加失败！', '添加页面')
                         }
                     }
                 });

@@ -21,7 +21,7 @@ class Carousel{
         $query->bindValue(1,$id);
         $query->execute();
 
-        $result = $query->rowCount();;
+        $result = $query->rowCount();
         if ($result>0) {
             return true;
         } else {
@@ -29,7 +29,16 @@ class Carousel{
         }
     }
 
-//更新产品
+    //获取总数
+    public function carousel_count(){
+        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_carousels`");    
+        $query->execute();        
+        $rows = $query->fetchColumn(); 
+        return $rows;
+    }
+
+
+    //更新产品
     public function update_carousel($id,$title,$importance,$imageUrl,$active, $description, $link) {
 
         $sql = "update wp_carousels

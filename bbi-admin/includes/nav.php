@@ -1,6 +1,6 @@
 <aside id="sidebar-nav" class="leftcol bg-dark">
     <div class="logo">
-        <img src="@SettingsManager.Site.DashboardLogo" alt="logo" />
+        <img src="/bbi-admin/content/img/logo.png" alt="logo" />
     </div>
 
         <nav id="menu"> 
@@ -28,7 +28,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li hidden>
                         <a href="orders.php">
                             <i class="iconfont icon-reconciliation"></i> <span class="nav-text">订单管理</span>                    
                         </a>
@@ -46,6 +46,16 @@
                     </li>
                     <li class="down-nav">
                         <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-file"></i> <span class="nav-text">页面</span>  
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="pages.php">页面列表</a></li>
+                            <li><a href="page_add.php">添加添加</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li class="down-nav">
+                        <a href="#">
                             <i class="iconfont icon-left   float-right"></i>   
                             <i class="iconfont icon-video"></i> <span class="nav-text">视频</span>  
                         </a>
@@ -53,7 +63,7 @@
                             <li><a href="videos.php">视频列表</a></li>
                             <li><a href="video_add.php">添加视频</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>   
@@ -62,8 +72,8 @@
                         <ul class="subnav">
                             <li><a href="carousels.php"><i class="iconfont icon-image"></i> 轮播图</a></li>
                             <li><a href="links.php"><i class="iconfont icon-link"></i> 链接</a></li>
-                            <li><a href="distributors.php"><i class="iconfont icon-team"></i> 经销商</a></li>
-                            <li><a href="shopes.php"><i class="iconfont icon-shop"></i> 专卖店</a></li>
+                            <li hidden><a href="distributors.php"><i class="iconfont icon-team"></i> 经销商</a></li>
+                            <li hidden><a href="shopes.php"><i class="iconfont icon-shop"></i> 专卖店</a></li>
                         </ul>
                     </li>
 

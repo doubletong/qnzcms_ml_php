@@ -6,30 +6,30 @@
 @import "table";
 @import "tree";
 @import "colors";
-
-html{
-  height: 100%;
+html {
+    height: 100%;
 }
+
 body {
     background-color: #fff;
     min-height: 100%;
     height: 100%;
     color: $color_text;
-    font-family: "Microsoft YaHei",'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+    font-family: "Microsoft YaHei", 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
 }
 
-.pageSize{
-  text-align: right;
-  label{
-    margin-left: .8rem;
-  }
-  .pagination{
-    display: inline-block;width: auto;
-  }
+.pageSize {
+    text-align: right;
+    label {
+        margin-left: .8rem;
+    }
+    .pagination {
+        display: inline-block;
+        width: auto;
+    }
 }
 
-.button_toolbar{
-  text-align: right;
-  margin-bottom: .6rem;
+.button_toolbar {
+    text-align: right;
+    margin-bottom: .6rem;
 }
-
