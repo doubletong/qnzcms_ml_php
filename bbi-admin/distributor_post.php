@@ -5,10 +5,10 @@ require_once('data/distributor.php');
 
 $distributorClass = new Distributor();
 
-if (isset($_POST['title'], $_POST['importance'])) {
+if (isset($_POST['city'], $_POST['importance'])) {
     $distributorId = $_POST['distributorId'];
-    $title = $_POST['title'];
-    $category_id = $_POST['category_id'];
+    $coordinate = $_POST['coordinate'];
+    $email = $_POST['email'];
     $phone = $_POST['phone'];
     $city = $_POST['city'];
     $address = $_POST['address'];
@@ -17,10 +17,10 @@ if (isset($_POST['title'], $_POST['importance'])) {
 
     //   echo $content.$productId;
     if($distributorId>0){
-        echo $distributorClass->update_distributor($distributorId, $title, $category_id, $phone, $city,$address, $active, $importance);
+        echo $distributorClass->update_distributor($distributorId, $coordinate, $email, $phone, $city,$address, $active, $importance);
 
     }else{
-        echo $distributorClass->insert_distributor($title, $category_id, $phone, $city,$address, $active, $importance);
+        echo $distributorClass->insert_distributor($coordinate, $email, $phone, $city,$address, $active, $importance);
 
     }
 

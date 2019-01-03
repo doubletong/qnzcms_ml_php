@@ -1,8 +1,10 @@
 <?php
 require_once("includes/common.php");
-require_once("includes/output.php");
 require_once("config/db.php");
+require_once("data/distributor.php");
 
+$disClass = new Distributor();
+$dis = $disClass->fetch_all();
 
 ?>
 <!DOCTYPE html>
@@ -13,7 +15,7 @@ require_once("config/db.php");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "加入我们-".SITENAME; ?></title>    
+    <title><?php echo "联系我们-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -29,127 +31,30 @@ require_once("config/db.php");
 
         <div class="container s1">
             <div class="address">
+            <?php   foreach($dis as $data){ ?>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div id="map1" class="baidumap">
+                        <div id="map<?php echo $data["id"];?>" data-id="map<?php echo $data["id"];?>" data-coordinate="<?php echo $data["coordinate"];?>"
+                        data-add="<?php echo $data["address"];?>" data-city="<?php echo $data["city"];?>" class="baidumap" >
 
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="contact">
-                            <h3>南京(总部）</h3>
+                            <h3><?php echo $data["city"];?></h3>
                             <ul>
-                                <li>地址：南京市江宁区菲尼克斯路99号
+                                <li>地址：<?php echo $data["address"];?>
                                 </li>
-                                <li>电话：+86-25-58707829
+                                <li>电话：<?php echo $data["phone"];?>
                                 </li>
-                                <li>邮箱：info@crmedicon.com</li>
+                                <li>邮箱：<?php echo $data["email"];?></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="map2" class="baidumap">
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="contact">
-                            <h3>北京</h3>
-                            <ul>
-                                <li>地址：北京市朝阳区广渠路11号院1号楼金泰国际大厦A座1507-1508室
-                                </li>
-                                <li>电话：+86-10-52345921-811
-
-                                </li>
-                                <li> 邮箱：info@crmedicon.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="map3" class="baidumap">
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="contact">
-                            <h3>上海</h3>
-                            <ul>
-                                <li>地址：上海市长宁区仙霞路137号盛高国际大厦2301室
-                                </li>
-                                <li>电话：+86-21-62556153
-                                </li>
-                                <li>邮箱：info@crmedicon.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="map4" class="baidumap">
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="contact">
-                            <h3>广州</h3>
-                            <ul>
-                                <li>地址：广州市越秀区中山三路33号中华国际中心B塔1407室
-
-                                </li>
-                                <li>电话：+86-20-83526606
-                                </li>
-                                <li>邮箱：info@crmedicon.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="map5" class="baidumap">
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="contact">
-                            <h3>武汉</h3>
-                            <ul>
-                                <li>地址：武汉市武昌区中南路7号中商广场写字楼B3108室
-                                </li>
-                                <li>电话：+86-27-59352192
-                                </li>
-                                <li>邮箱：info@crmedicon.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="map6" class="baidumap">
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="contact">
-                            <h3>美国新泽西</h3>
-                            <ul>
-                                <li>地址：美国新泽西州皮斯卡塔韦市威尔路35号
-                                </li>
-                                <li>电话：+1 (732) 624-9050
-                                </li>
-                                <li>邮箱：info@crmedicon.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <?php } ?>
+                
+               
             </div>
         </div>
     </div>
@@ -181,13 +86,17 @@ require_once("config/db.php");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(6) a").addClass("active");
            $(".mainav li:nth-of-type(7) a").addClass("active");
-          
-           loadmap("map1", "南京(总部）", "南京市江宁区菲尼克斯路99号", 118.839437, 31.939679);
-            loadmap("map2", "北京", "北京市朝阳区广渠路11号院1号楼金泰国际大厦A座1507-1508", 116.506823, 39.899829);
-            loadmap("map3", "上海", "上海市长宁区仙霞路137号盛高国际大厦2301室", 121.410713, 31.212312);
-            loadmap("map4", "广州", "广州市越秀区中山三路33号中华国际中心B塔1407室", 113.289128, 23.131697);
-            loadmap("map5", "武汉", "武汉市武昌区中南路7号中商广场写字楼B3108室", 114.338005, 30.542371);
-            loadmap("map6", "美国新泽西", "美国新泽西州皮斯卡塔韦市威尔路35号", 116.506823, 39.899829);
+
+           $(".baidumap").each(function(){
+               var divId = $(this).attr("data-id");
+               var city = $(this).attr("data-city");
+               var add = $(this).attr("data-add");
+               var coordinate = $(this).attr("data-coordinate");
+               var xandy = coordinate.split(',');
+               loadmap(divId, city, add, xandy[0], xandy[1]);
+            });
+
+        
         });
     </script>
 </body>

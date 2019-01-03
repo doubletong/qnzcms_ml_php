@@ -59,6 +59,11 @@
                             <i class="iconfont icon-user"></i> <span class="nav-text">加入我们</span>                    
                         </a>
                     </li>
+                    <li>
+                        <a href="distributors.php">
+                            <i class="iconfont icon-heatmap"></i> <span class="nav-text">公司分部</span>                    
+                        </a>
+                    </li>
                     <!-- <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>   

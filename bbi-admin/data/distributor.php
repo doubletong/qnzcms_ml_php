@@ -28,11 +28,11 @@ class Distributor{
     }
 
 //更新产品
-    public function update_distributor($id, $title, $category_id,$phone,$city,$address,$active,$importance) {
+    public function update_distributor($id, $coordinate, $email,$phone,$city,$address,$active,$importance) {
 
         $sql = "UPDATE wp_distributors
-        SET title= :title,
-             category_id = :category_id,
+        SET coordinate= :coordinate,
+        email = :email,
              phone =:phone,
              city = :city,
              address = :address,
@@ -42,8 +42,8 @@ class Distributor{
 
         $query = db::getInstance()->prepare($sql);
 
-        $query->bindValue(":title",$title);
-        $query->bindValue(":category_id",$category_id);
+        $query->bindValue(":coordinate",$coordinate);
+        $query->bindValue(":email",$email);
         $query->bindValue(":phone",$phone);
         $query->bindValue(":city",$city);
         $query->bindValue(":address",$address);
@@ -61,16 +61,16 @@ class Distributor{
     }
 
 
-    public function insert_distributor($title, $category_id,$phone,$city,$address,$active,$importance) {
+    public function insert_distributor($coordinate, $email,$phone,$city,$address,$active,$importance) {
 
-        $sql="INSERT INTO wp_distributors (title,category_id,phone,city,address,importance,active,added_by,added_date)
-                VALUES (:title,:category_id,:phone,:city,:address, :importance, :active,:added_by,:added_date)";
+        $sql="INSERT INTO wp_distributors (coordinate,email,phone,city,address,importance,active,added_by,added_date)
+                VALUES (:coordinate,:email,:phone,:city,:address, :importance, :active,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
-        $query->bindValue(":title",$title);
-        $query->bindValue(":category_id",$category_id);
+        $query->bindValue(":coordinate",$coordinate);
+        $query->bindValue(":email",$email);
         $query->bindValue(":phone",$phone);
         $query->bindValue(":city",$city);
         $query->bindValue(":address",$address);

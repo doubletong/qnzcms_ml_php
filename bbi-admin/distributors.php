@@ -2,8 +2,6 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
-require_once('data/article.php');
 require_once('../includes/PDO_Pagination.php');
 
 $pagination = new PDO_Pagination(db::getInstance());
@@ -13,9 +11,9 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_distributors WHERE title LIKE '%$search%' OR address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY importance,  id DESC ");
+    $pagination->rowCount("SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY importance,  id DESC ");
     $pagination->config(3, 5);
-    $sql = "SELECT * FROM wp_distributors WHERE title LIKE '%$search%' OR address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -38,48 +36,59 @@ else
     }
 }
 
-do_html_doctype("经销商_后台管理".SITENAME);
 ?>
-<link href="assets/css/toastr.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html>
 
-<?php
-do_html_header();
+<head>
+    <title>
+        <?php echo "加入我们_后台管理_".SITENAME;?>
+    </title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+</head>
 
-?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li class="active">经销商</li>
+<body>
+    <div class="wrapper">
+        <!-- nav start -->
+        <?php require_once('includes/nav.php'); ?>
+        <!-- /nav end -->
+        <section class="rightcol">
+            <?php require_once('includes/header.php'); ?>
 
-    </ol>
-</div>
-<div class="main-content">
-    <div class="well well-sm">
-        <a href="distributor_add.php" class="btn btn-primary pull-right">
-            <span class="glyphicon glyphicon-plus"></span>  添加经销商
-        </a>
+            <div class="container-fluid maincontent">
 
-        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>" class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search for..." value="<?php echo $search ?>">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">搜索</button>
-                      </span>
-            </div><!-- /input-group -->
+<div class="row">
+    <div class="col">
+        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput">搜索</label>
+                    <input type="text" name="search" class="form-control mb-2" id="inlineFormInput"
+                        value="<?php echo $search ?>" placeholder="关键字">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                </div>
+            </div>
         </form>
-
     </div>
-    <table class="table table-hover table-bordered">
+    <div class="col-auto">
+        <a href="distributor_add.php" class="btn btn-primary">
+            <i class="iconfont icon-plus"></i> 添加公司分部
+        </a>
+    </div>
+</div>
+
+<table class="table table-hover table-bordered">
         <thead>
         <tr>
 
-            <th>标题</th>
-            <th>分类</th>
-            <th>电话</th>
             <th>城市</th>
-            <th>地址</th>
-
+            <th>地址</th>           
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>坐标</th>
             <th>创建日期</th>
             <th>操作</th>
         </tr>
@@ -88,70 +97,52 @@ do_html_header();
         <?php
         foreach($model as $row)
         {
-            echo "<tr>";
+           
             ?>
-            <td><?php echo $row['title'];?></td>
-            <td><?php echo getCategoryTitle($row['category_id']);?></td>
-            <td><?php echo $row['phone'];?></td>
+            <tr>
             <td><?php echo $row['city'];?></td>
             <td><?php echo $row['address'];?></td>
+            <td><?php echo $row['phone'];?></td>
+            <td><?php echo $row['email'];?></td>
+            <td><?php echo $row['coordinate'];?></td>
+           
+           
             <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
-            <td><a href='distributor_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-xs'>
-                    <span class="glyphicon glyphicon-edit"></span>
+            <td><a href='distributor_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                    <span class="iconfont icon-edit"></span>
                 </a>
-                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-xs btn-delete'>
-                    <span class="glyphicon glyphicon-trash"></span>
+                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                    <span class="iconfont icon-delete"></span>
                 </button>
             </td>
-            <?php
-
-            echo "</tr>";
-        }
-
-        function getCategoryTitle($category_id){
-            switch ($category_id) {
-                case 1:
-                    return '洁碧中国地区经销商';
-                    break;
-                case 2:
-                    return '洁碧3S旗舰店';
-                    break;
-                case 3:
-                    return '经销网店';
-                    break;
-                default:
-                    return '';
-                    break;
-            }
-        }
-
-        ?>
+        </tr>
+            <?php     }    ?>
         </tbody>
     </table>
 
 
-    <nav>
-        <ul class="pagination">
-            <?php
+    <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <?php
             $pagination->pages("btn");
             ?>
-        </ul>
-    </nav>
+                    </ul>
+                </nav>
 </div>
 
 
+<?php require_once('includes/footer.php'); ?>
+        </section>
+    </div>
+<?php require_once('includes/scripts.php'); ?>
 
-</div>
+<script src="../js/vendor/toastr/toastr.min.js"></script>
+<script src="../js/vendor/bootbox.js/bootbox.js"></script>
 
-<?php
-do_html_footer();
-?>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/js/bootbox.js"></script>
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu li.liitem:nth-of-type(6)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"
@@ -159,7 +150,7 @@ do_html_footer();
 
         $(".btn-delete").click(function(){
             var $that = $(this);
-            bootbox.confirm("删除后经销商将无法恢复，您确定要删除吗？", function (result) {
+            bootbox.confirm("删除后公司分部将无法恢复，您确定要删除吗？", function (result) {
                 if (result) {
                     var articleId = $that.attr("data-id");
 
@@ -171,10 +162,10 @@ do_html_footer();
 
                             //  $('#resultreturn').prepend(res);
                             if (res) {
-                                toastr.success('经销商已删除成功！', '删除经销商')
+                                toastr.success('公司分部已删除成功！', '删除公司分部')
                                 $that.closest("tr").remove();
                             } else {
-                                toastr.error('经销商删除失败！', '删除经销商')
+                                toastr.error('公司分部删除失败！', '删除公司分部')
                             }
                         }
                     });
@@ -190,4 +181,5 @@ do_html_footer();
     });
 </script>
 </body>
+
 </html>

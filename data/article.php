@@ -34,5 +34,20 @@ class Article{
 
         return $query->fetch();
     }
+  //获取前一条记录
+    public function fetch_prev_data($id){
+        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE id = (SELECT MAX(id) FROM wp_articles WHERE id < :id);");
+        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query->execute();
 
+        return $query->fetch();
+    }
+   //获取下一条记录
+    public function fetch_next_data($id){
+        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE id = (SELECT MIN(id) FROM wp_articles WHERE id > :id);");
+        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->fetch();
+    }
 }

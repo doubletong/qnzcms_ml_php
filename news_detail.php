@@ -10,6 +10,8 @@ $articleClass = new Article();
 if(isset($_GET['id'])){
     $id = $_GET['id'];
     $data = $articleClass->fetch_data($id);
+    $prev = $articleClass->fetch_prev_data($id);
+    $next = $articleClass->fetch_next_data($id);
 }else{
     header('Location: /news');
     exit;
@@ -47,12 +49,17 @@ if(isset($_GET['id'])){
             <?php echo $data['content'];?>
             </article>
             <footer class="text-center">
-                <div class="nav">
-                    <a href="javascript:void(0);" class="more">上一篇：2018 Medidata Next: 希麦迪展位吸引众多与会者聚焦 </a>
-                </div>
-                <div class="nav">
-                    <a href="javascript:void(0);" class="more">下一篇：2018 Medidata Next: 希麦迪展位吸引众多与会者聚焦 </a>
-                </div>
+                <?php if(!empty($prev)){?>
+                    <div class="nav">
+                        <a href="/news/detail-<?php echo $prev["id"];?>" class="more">上一篇：<?php echo $prev["title"];?> </a>
+                    </div>
+                <?php } ?>
+                <?php if(!empty($next)){?>
+                    <div class="nav">
+                        <a href="/news/detail-<?php echo $next["id"];?>" class="more">下一篇：<?php echo $next["title"];?> </a>
+                    </div>
+                <?php } ?>
+              
             </footer>
         </div>
 
