@@ -11,9 +11,9 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
+    $pagination->rowCount("SELECT id FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
     $pagination->config(3, 5);
-    $sql = "SELECT * FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id, title, categoryId, thumbnail,view_count, active, pubdate, added_by FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -24,9 +24,9 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 }
 else
 {
-    $pagination->rowCount("SELECT * FROM wp_articles");
+    $pagination->rowCount("SELECT id FROM wp_articles");
     $pagination->config(6,15);
-    $sql = "SELECT * FROM wp_articles ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id, title, categoryId, thumbnail,view_count, active, pubdate, added_by FROM wp_articles ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -82,7 +82,7 @@ else
                     <th>标题</th>
                     <th>分类</th>
                     <th>显示</th>
-                    <th>创建日期</th>
+                    <th>发布日期</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -99,7 +99,7 @@ else
                     echo "<td>".$categoryTitle."</td>";
                     echo "<td>".$row['view_count']."</td>";
                     ?>
-                    <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
+                    <td><?php echo date('Y-m-d',$row['pubdate']) ;?></td>
                     <td><a href='news_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>

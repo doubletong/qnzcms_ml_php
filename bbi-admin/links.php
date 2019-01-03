@@ -60,7 +60,7 @@ else
 
                 <div class="row">
                     <div class="col">
-                        <form method="POST" action="<?php echo $_SERVER[" PHP_SELF"] ?>">
+                        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">搜索</label>
@@ -109,7 +109,7 @@ else
                         <td>
                             <?php echo date('Y-m-d',$row['added_date']) ;?>
                         </td>
-                        <td><a href='link_edit.php?id=<?php echo $row[' id'];?>' class='btn btn-primary btn-sm'>
+                        <td><a href='link_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                                 <i class="iconfont icon-edit"></i>
                             </a>
                             <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>

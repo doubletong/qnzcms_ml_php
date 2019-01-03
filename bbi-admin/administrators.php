@@ -61,7 +61,7 @@ else
 
                 <div class="row">
                     <div class="col">
-                        <form method="POST" action="<?php echo $_SERVER[" PHP_SELF"] ?>">
+                        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">搜索</label>

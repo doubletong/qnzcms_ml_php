@@ -16,7 +16,7 @@ class Article{
     }
 
     public function lasterKnowledge(){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE categoryId = 2 ORDER BY added_date DESC limit 10");
+        $query = db::getInstance()->prepare("SELECT * FROM wp_articles ORDER BY added_date DESC limit 3");
         $query->execute();
         return $query->fetchAll();
     }

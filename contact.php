@@ -1,175 +1,194 @@
 <?php
-
-require_once('code/db_fns.php');
-require_once('code/common_fns.php');
-require_once('code/user_auth_fns.php');
-require_once('code/output_fns.php');
-require_once('code/url_fns.php');
+require_once("includes/common.php");
+require_once("includes/output.php");
+require_once("config/db.php");
 
 
-do_html_doctype("联系_".SITENAME);
 ?>
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js gt-ie9 ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js gt-ie9">
+<!--<![endif]-->
 
-<?php 
-do_html_header();
-?>
+<head>
+    <title><?php echo "加入我们-".SITENAME; ?></title>    
+    <?php require_once('includes/meta.php') ?>
+  
+</head>
+<body>
+<?php require_once('includes/header.php') ?>
+<div class="page-contact">
+        <div class="banner">
+            <div class="page-title">
+                <h1>联系我们</h1>
+                <h3>CONTACT US</h3>
+            </div>
+        </div>
 
-<!-- start: Page Title -->
-	<div id="page-title">
+        <div class="container s1">
+            <div class="address">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="map1" class="baidumap">
 
-		<div id="page-title-inner">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact">
+                            <h3>南京(总部）</h3>
+                            <ul>
+                                <li>地址：南京市江宁区菲尼克斯路99号
+                                </li>
+                                <li>电话：+86-25-58707829
+                                </li>
+                                <li>邮箱：info@crmedicon.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-			<!-- start: Container -->
-			<div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="map2" class="baidumap">
 
-				<h2><i class="icon-envelope-alt"></i> 联系我</h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact">
+                            <h3>北京</h3>
+                            <ul>
+                                <li>地址：北京市朝阳区广渠路11号院1号楼金泰国际大厦A座1507-1508室
+                                </li>
+                                <li>电话：+86-10-52345921-811
 
-			</div>
-			<!-- end: Container  -->
+                                </li>
+                                <li> 邮箱：info@crmedicon.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-		</div>	
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="map3" class="baidumap">
 
-	</div>
-	<!-- end: Page Title -->
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact">
+                            <h3>上海</h3>
+                            <ul>
+                                <li>地址：上海市长宁区仙霞路137号盛高国际大厦2301室
+                                </li>
+                                <li>电话：+86-21-62556153
+                                </li>
+                                <li>邮箱：info@crmedicon.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-<!-- start: Wrapper -->	
-	<div id="wrapper">		
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="map4" class="baidumap">
 
-		<!-- start: Container -->	
-		<div class="container">
-			
-			<!-- start: Row -->
-			<div class="row">
-			
-				<!-- start: Contact Info -->
-				<div class="span4">
-					<div class="title"><h3><i class="icon-info-sign"></i> 联系信息</h3></div>
-					<p>
-						<b>黑鸟志</b>
-					</p>
-					<p>
-						深圳市龙岗区坂田街道雪象社区园东工业园A栋5楼
-					</p>
-					<p>联系人：童柱港</p>
-					<p>	
-						手机：15361828193
-					</p>
-					<p>	
-						QQ：13212847
-					</p>
-					<p>
-						Email：twotong@gmail.com
-					</p>
-					<p>
-						主页：<a href="//heiniaozhi.cn">heiniaozhi.cn</a>
-					</p>
-				</div>
-				<!-- end: Contact Info -->		
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact">
+                            <h3>广州</h3>
+                            <ul>
+                                <li>地址：广州市越秀区中山三路33号中华国际中心B塔1407室
 
-				<!-- start: Contact Form -->
-				<div class="span4">
-					<div class="title"><h3><i class="icon-envelope"></i> 欢迎您联系我</h3></div>
+                                </li>
+                                <li>电话：+86-20-83526606
+                                </li>
+                                <li>邮箱：info@crmedicon.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-					<!-- start: Contact Form -->
-					<div id="contact-form">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="map5" class="baidumap">
 
-						<form action="sendmail.php" method="post">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact">
+                            <h3>武汉</h3>
+                            <ul>
+                                <li>地址：武汉市武昌区中南路7号中商广场写字楼B3108室
+                                </li>
+                                <li>电话：+86-27-59352192
+                                </li>
+                                <li>邮箱：info@crmedicon.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-							<fieldset>
-								<p>
-										<input type="text" name="yourname" id="yourname" placeholder="姓名" size="60" />
-									</p>
-								<p>
-										<input type="text" name="title" size="60" placeholder="主题"  />
-									</P>
-								<P>
-										<input type="email" name="email" size="60" placeholder="你的邮箱" />
-									</P>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="map6" class="baidumap">
 
-								<P>
-										<textarea rows="8" cols="65" placeholder="内容" name="mailcontent"></textarea>
-									</P>
-
-								<div class="actions">
-									<button tabindex="3" type="submit" class="btn btn-primary btn-large">发送消息</button>
-                                    
-								</div>
-							</fieldset>
-
-						</form>
-
-					</div>
-					<!-- end: Contact Form -->
-
-				</div>
-				<!-- end: Contact Form -->
-
-				<!-- start: Social Sites -->
-				<div class="span4">
-					<div class="title"><h3><i class="icon-map-marker"></i> 我的坐标</h3></div>
-					<div id="map_canvas"></div>
-				</div>
-				<!-- end: Social Sites -->
-			
-			</div>
-			<!-- end: Row -->
-
-		</div>
-		<!-- end: Container -->
-				
-  	</div>
-	<!-- end: Wrapper  -->		
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact">
+                            <h3>美国新泽西</h3>
+                            <ul>
+                                <li>地址：美国新泽西州皮斯卡塔韦市威尔路35号
+                                </li>
+                                <li>电话：+1 (732) 624-9050
+                                </li>
+                                <li>邮箱：info@crmedicon.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <?php require_once('includes/footer.php') ?>
 
-<?php
-do_html_footer();
-?>
-
-<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
-
-$(document).ready(function () {
-	$(".nav>li").eq(5).addClass("active");	    
-
-	initialize(); //载入地图
-});
-
-    function initialize() {
-        var myLatlng = new google.maps.LatLng(22.651578, 114.078946);
-        var myOptions = {
-            zoom: 16,
-            center: myLatlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+<?php require_once('includes/scripts.php') ?>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=omKoELLZ6xvnS3LjGlg2jnvcGRfcb4dV"></script>
+<script>
+    function loadmap(mapdiv, title, address, x, y) {
+            // 百度地图API功能
+            var map = new BMap.Map(mapdiv);
+            var point = new BMap.Point(x, y);
+            var marker = new BMap.Marker(point); // 创建标注    
+            map.addOverlay(marker); // 将标注添加到地图中 
+            map.centerAndZoom(point, 12);
+            var opts = {
+                width: 200, // 信息窗口宽度
+                height: 100, // 信息窗口高度
+                title: title // 信息窗口标题                
+            }
+            var infoWindow = new BMap.InfoWindow(address, opts); // 创建信息窗口对象 
+            marker.addEventListener("click", function() {
+                map.openInfoWindow(infoWindow, point); //开启信息窗口
+            });
         }
 
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-        var contentString = '<div id="siteNotice">' +
-        '<h4>黑鸟设计</h4>' +
-        '<div id="bodyContent">' +
-        '<p>地址：<span>深圳市龙岗区坂田街道雪象社区园东工业园A栋5楼</span><br />' +
-		'手机：<span>15361828193 </span></p>' +
-
-        '</div>' +
-        '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
+        $(document).ready(function() {
+            $(".leftnav li:nth-of-type(6) a").addClass("active");
+           $(".mainav li:nth-of-type(7) a").addClass("active");
+          
+           loadmap("map1", "南京(总部）", "南京市江宁区菲尼克斯路99号", 118.839437, 31.939679);
+            loadmap("map2", "北京", "北京市朝阳区广渠路11号院1号楼金泰国际大厦A座1507-1508", 116.506823, 39.899829);
+            loadmap("map3", "上海", "上海市长宁区仙霞路137号盛高国际大厦2301室", 121.410713, 31.212312);
+            loadmap("map4", "广州", "广州市越秀区中山三路33号中华国际中心B塔1407室", 113.289128, 23.131697);
+            loadmap("map5", "武汉", "武汉市武昌区中南路7号中商广场写字楼B3108室", 114.338005, 30.542371);
+            loadmap("map6", "美国新泽西", "美国新泽西州皮斯卡塔韦市威尔路35号", 116.506823, 39.899829);
         });
-
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: '黑鸟设计'
-        });
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.open(map, marker);
-        });
-    }
-
-</script>
-
-<?php
-do_html_analytics();
-?>
+    </script>
+</body>
+</html>

@@ -24,12 +24,12 @@ if(isset($_POST['username'],$_POST['password'])){
 
         $query->execute($array);
         $num= $query->rowCount();
-        echo  $num;
+       // echo  $num;
         if($num == 1){
             $_SESSION['logged_in'] = true;
             $_SESSION['valid_user'] = $username;
             header('Location: index.php');
-            exit;
+            exit();
         }else{
             $error = '无效的帐号！';
         }

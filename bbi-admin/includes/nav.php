@@ -54,6 +54,11 @@
                             <li><a href="page_add.php">添加添加</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="jobs.php">
+                            <i class="iconfont icon-user"></i> <span class="nav-text">加入我们</span>                    
+                        </a>
+                    </li>
                     <!-- <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>   

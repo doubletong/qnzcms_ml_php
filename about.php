@@ -2,107 +2,111 @@
 require_once("includes/common.php");
 require_once("includes/output.php");
 require_once("config/db.php");
-require_once("data/video.php");
 
-$videoClass = new Video();
-$videos = $videoClass->fetch_all();
 
-do_html_doctype("waterpik洁碧介绍_全球冲牙器领导品牌-".SITENAME)
 ?>
-    <meta name=keywords content="waterpik洁碧介绍,全球冲牙器领导品牌">
-    <meta name=description content="waterpik洁碧冲牙器发明者，自世界上第一台冲牙器发明以来，50多年一直引领全球亿万人口腔护理风潮，waterpik洁碧不断在创新研究，为的是改善人们的口腔健康！">
-<?php
-do_html_header();
-?>
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js gt-ie9 ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js gt-ie9">
+<!--<![endif]-->
 
-    <div class="container hidden-xs">
-        <div class="breadcrumb">
-            <a href="/">首页</a> &gt; <h1>关于我们</h1>
-        </div>
-    </div>
-    <div class="container about-page">
-        <div class="row">
-            <div class="banner1">
-                <img src="/assets/img/woman.png" class="woman animated fadeInLeft" alt="洁碧形象广告"/>
-                <img src="/assets/img/products.png" class="products animated fadeInRight" alt="洁碧产品"/>
-            </div>
-            <div class="banner2">
+<head>
+    <title><?php echo "关于我们-".SITENAME; ?></title>    
+    <?php require_once('includes/meta.php') ?>
+  
+</head>
+<body>
+<?php require_once('includes/header.php') ?>
 
-            </div>
+<div class="page-about">
+    <?php require_once('includes/header_about.php') ?>
+        <div class="container s1">
+            <h2 class="s-title">
+                服务与规模
+            </h2>
+            <p>南京希麦迪医药科技有限公司（希麦迪）为客户提供包括药品注册、医学事务、临床运营、数据管理 和统计分析、生物样品分析在内的全方位临床开发服务, 是众多国内外知名申办方在中国最为得力的临 床 CRO 伙伴。希麦迪凝聚业内精英, 高速健康成长。目前公司全职人员近 200，核心成员人均有 15 年 以上行业经验，全员平均行业经验超过 5 年。 </p>
 
-            <div class="col-md-4">
-                <aside class="ya">
-
-                </aside>
-            </div>
-            <div class="col-md-8">
-            <div class="aboutslider" id="aboutslider">
-                <ul class="slider-list">
-                    <li data-pc-img="/assets/img/about/slider1.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider2.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider3.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider4.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider5.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider6.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider7.jpg"></li>
-                    <li data-pc-img="/assets/img/about/slider8.jpg"></li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="banner3">
-
-            </div>
-            <div class="banner4" aria-hidden="true">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <aside class="sidelogo">
-                    <h2>洁碧中国总经销商：</h2>
-                    <div class="logo">
-                        <img src="/assets/img/wp_about_14.jpg" alt="caroplus健标" />
-                    </div>
-                </aside>
-            </div>
-            <div class="col-md-8">
-                <div class="intro">
-                    <h2>健标企业简介</h2>
-                    <p>1992年，健标企业在上海创立了第一家口腔诊所，目的是让更多患有口腔疾病的人士获得优质的口腔专业呵护。随后的20年时间里，健标一直根植于国人的口腔健康事业，更多与世界齿科领域同步的优质服务和产品被引进到中国。深圳健标医疗器械有限公司、香港医疗齿科(国际)有限公司及上海健标实业有限公司的相继成立，从医疗服务到项目投资、进出口贸易，使健标企业颇具市场竞争力的优势品牌在行业内被广泛认知。立足于“传播口腔健康标准”的企业信念，让更多人的口腔--健康、自信。</p>
-                    <h2>企业大记事</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>1992年成立第一间齿科诊所-胡昕远口腔诊所    </li>
-                                <li>2008年成立深圳健标医疗器械有限公司</li>
-                                <li>2008年开始经销美国洁碧(WaterPik)水牙线产品</li>
-                                <li>2009年成立香港医疗齿科(国际)有限公司</li>
-                                <li>2009年成立洁碧健康体验中心   </li>
-                                <li>2010年成立上海健标实业有限公司</li>
-                                <li>2010年代理加拿大"三鹰"(TriHawk)车针</li>
-                            </ul>
-
-                        </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li>2011年代理美国"南方植牙"(Southern Implants)种植体</li>
-                                <li>2011年成功主办了上海民营口腔沙龙，邀请到美国美国种植协会主席、世界级种植大师Mr. Peter Moy来华讲课</li>
-                                <li>2011年创立齿科专业网站--优齿网(www.unioral.com)</li>
-                                <li>2011年并购第二间齿科诊所-朱铭口腔诊所</li>
-                                <li>2012年成为美国凯斯博士(TheraBreath)品牌产品中国区总经销商</li>
-                                <li>2013年成立美国加利福尼亚口气治疗中心上海连锁口气优护中心</li>
-
-                            </ul>
-
+            <div class="tongji">
+                <div class="row">
+                    <div class="col">
+                        <div class="item">
+                            <div class="sum">
+                                200<small>人</small>
+                            </div>
+                            <p>公司规模</p>
                         </div>
                     </div>
-                    <p>健标企业过去的20年，为中国齿科领域不断呈现靓丽缤纷的恒久辉煌，凝聚了团队的智慧和勤奋，未来我们将继续在健康事业的道路上策马扬鞭，再铸功成。</p>
+                    <div class="col">
+                        <div class="item">
+                            <div class="sum">
+                                <span>></span>15<small>年</small>
+                            </div>
+                            <p>核心成员经验</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item last">
+                            <div class="sum">
+                                <span>></span>5<small>年</small>
+                            </div>
+                            <p>平均行业经验</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <h3 class="s-title1">
+                注册部门
+            </h3>
+            <p>希麦迪注册部门。精通药政法规，项目经验丰富，配套资源充足，熟练把握全球不同监管体系下的政 策和法规，为以药品为主的大健康产业，提供便捷高效，加速医药产品上市的申报服务，其中包括 NMPA（国家药品监督管理局）、独立的 FDA（美国食品药品监督管理局）申报，以及中美双报等。</p>
+
+            <h3 class="s-title1">
+                医学事务部门
+            </h3>
+            <p>希麦迪医学事务部门。深耕医学领域，提供全方位的医学研究策略。成员均具有博士或硕士学位和多 年的医学事务经验，保证优质的医学设计和撰写，善于配合客户，提升研发速度，降低各项成本。医 学事务部门下辖医学监察团队，严格遵循 ICH-GCP 标准进行临床研究监察，保证监察的最高质量；药 物警戒团队善于全面整合数据资源，针对客户的需求制定专业化的药物警戒和药物安全解决方案。
+            </p>
+
+            <h3 class="s-title1">
+                临床监查和项目管理部门
+            </h3>
+            <p>希麦迪临床监查和项目管理部门。部门人员近 50，发展极为迅速，成员具备丰富的一线经验，从新药 I-III 期临床到 BE 试验，为很多创新产品和行业前沿项目，提供着高质量的服务。 </p>
+
+            <h3 class="s-title1">
+                数据统计部门
+            </h3>
+            <p>希麦迪数据统计部门。全球成员近 90, 在 CDISC 执行、FDA 申报、Medidata Rave/Balance 系统建库和 使用上，经验极其丰富，具有国际一流的人才储备和执行标准。获得 Medidata Rave 和 Balance 系统的 官方认证，并与 Medidata 在中国和美国，均签订了战略合作协议。
+            </p>
+
+            <h3 class="s-title1">
+                生物样本分析部门
+            </h3>
+            <p>希麦迪生物样本分析部门。位于南京市江宁区，面积超过 1000 平方米，设施完善、设备先进，有全新 液相质谱联用（ LC-MS/MS）系统 8 套。其中质谱仪 AB Sciex 5500 六台、6500 两台；高效液相系统 （HPLC）用 Watson LIMS 系统管理，其中 Waters UPLC I Class 四台，Shimadzu LC-30A 四台。
+            </p>
+
+
+
+
+            <h2 class="s-title">
+                一站式优质模式
+            </h2>
+            <p>在药物临床开发的每个环节，希麦迪都在为客户提供着业内最为优质的服务，让一站式的服务平台， 为客户的产品开发提升质量、节约时间、降低成本。希麦迪已成为众多优秀企业临床研发与合作的最 佳伙伴和理性选择。 </p>
+
+
         </div>
     </div>
-<?php
-do_html_footer();
-do_html_analytics();
+
+    <?php require_once('includes/footer.php') ?>
+
+<?php require_once('includes/scripts.php') ?>
+
+<script>
+        $(document).ready(function() {
+           $(".leftnav li:nth-of-type(2) a").addClass("active");
+           $(".mainav li:nth-of-type(2) a").addClass("active");
+           $(".subnav li:nth-of-type(1) a").addClass("active");
+        });
+    </script>
+</body>
+</html>

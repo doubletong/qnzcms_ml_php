@@ -44,7 +44,7 @@ require_once('../config/db.php');
                             <select class="form-control"  id="categoryId" name="categoryId" >
                                 <option value="0">--选择分类--</option>
                                 <option value="1">新闻资讯</option>
-                                <option value="2">口腔护理知识</option>
+                                <!-- <option value="2">口腔护理知识</option> -->
                             </select>                            
                         </div>
 
@@ -61,7 +61,8 @@ require_once('../config/db.php');
                               
                         </div>
 
-
+                       
+                        
                         <div class="form-group">
                             <label for="content">新闻内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
@@ -74,15 +75,15 @@ require_once('../config/db.php');
                                     });
                                 </script>                        
                         </div>
+
                         <div class="form-group">
-                            <label for="description">SEO描述</label>
-                            <textarea class="form-control" id="description" name="description" placeholder=""></textarea>                          
+                            <label for="summary">摘要</label>
+                            <textarea class="form-control" id="summary" name="summary" placeholder=""></textarea>                          
                         </div>
                         <div class="form-group">
-                            <label for="keywords">关键字</label>                           
-                            <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">                         
+                            <label for="pubdate">发布日期</label>
+                            <input class="form-control" id="pubdate" name="pubdate" value="<?php echo date("Y-m-d");?>" placeholder="" type="date" />                        
                         </div>
-                     
                         <div class="form-group">
                             <div class="form-check">
                             <input type="checkbox" class="form-check-input" checked id="chkActive" name="active">                          
@@ -91,7 +92,7 @@ require_once('../config/db.php');
                         </div>
                     </div>
                     <div class="col-auto">
-                        <div style="width:300px; text-align:center;">
+                        <div style="width:300px; text-align:center;" class="mb-3">
                             <div class="card">
                                 <div class="card-body">
                                     <img ID="iLogo" src="holder.js/240x180/text:433X289像素" class="img-responsive img-rounded" />
@@ -102,6 +103,21 @@ require_once('../config/db.php');
                                 </div>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-header">SEO</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="description">SEO描述</label>
+                                    <textarea class="form-control" id="description" rows="6" name="description" placeholder=""></textarea>                          
+                                </div>
+                                <div class="form-group">
+                                    <label for="keywords">关键字</label>                           
+                                    <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">                         
+                                </div>
+                            </div>
+                        
+                        </div>
+                     
                     </div>
                 </div>
 
@@ -163,6 +179,10 @@ require_once('../config/db.php');
                 },
                 categoryId: {
                     range:[1,2]
+                },
+                pubdate: {
+                    required: true,
+                    date: true
                 }
 
             },
@@ -172,6 +192,10 @@ require_once('../config/db.php');
                 },
                 categoryId: {
                     range:"请选择分类"
+                },
+                pubdate: {
+                    required: "请选择发布日期",
+                    date: "日期格式不正确"
                 }
 
             },

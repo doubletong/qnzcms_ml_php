@@ -52,8 +52,8 @@ if(isset($_GET['id'])){
                             <label for="categoryId">分类</label>                          
                                 <select class="form-control"  id="categoryId" name="categoryId" >
                                     <option value="0">--选择分类--</option>
-                                    <option value="1" <?php if($data[categoryId]==1) echo("selected");?>>新闻资讯</option>
-                                    <option value="2" <?php if($data[categoryId]==2) echo("selected");?>>口腔护理知识</option>
+                                    <option value="1" <?php if($data['categoryId']==1) echo("selected");?>>新闻资讯</option>
+                                 
                                 </select>                          
                         </div>
 
@@ -85,18 +85,16 @@ if(isset($_GET['id'])){
 
                                 </script>
                         </div>
+
                         <div class="form-group">
-                            <label for="description">SEO描述</label>
-                        
-                                <textarea class="form-control" id="description" name="description" placeholder=""><?php echo $data['description'];?></textarea>
-                           
+                            <label for="summary">摘要</label>
+                            <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo $data['summary'];?></textarea>                          
                         </div>
                         <div class="form-group">
-                            <label for="keywords">关键字</label>
-                           
-                                <input type="text" class="form-control" id="keywords" name="keywords" placeholder="" value="<?php echo $data['keywords'];?>">
-                         
+                            <label for="pubdate">发布日期</label>
+                            <input class="form-control" id="pubdate" name="pubdate" value="<?php echo date('Y-m-d',$data['pubdate']);?>" placeholder="" type="date" />                        
                         </div>
+                       
                         <div class="form-group">
                             <div class="form-check">
                             <input type="checkbox" class="form-check-input" <?php echo $data['active']?"checked":"";?> id="chkActive" name="active">                          
@@ -108,7 +106,7 @@ if(isset($_GET['id'])){
 
                           </div>
                         <div class="col-auto">
-                        <div style="width:300px;  text-align:center;">
+                        <div style="width:300px;  text-align:center;" class="mb-3">
                             <div class="card">
                                 <div class="card-body">
                                     <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180/text:433X289像素":$data['thumbnail'];?>" class="img-fluid" />
@@ -118,6 +116,24 @@ if(isset($_GET['id'])){
                                     <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail'];?>" />
                                 </div>
                             </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">SEO</div>
+                            <div class="card-body">
+                            <div class="form-group">
+                            <label for="description">SEO描述</label>
+                        
+                                <textarea class="form-control" id="description" name="description" rows="6" placeholder=""><?php echo $data['description'];?></textarea>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">关键字</label>
+                           
+                                <input type="text" class="form-control" id="keywords" name="keywords" placeholder="" value="<?php echo $data['keywords'];?>">
+                         
+                        </div>
+                            </div>
+                        
                         </div>
                         </div>
                         </div>
@@ -176,12 +192,26 @@ if(isset($_GET['id'])){
             rules: {
                 title: {
                     required: true
+                },
+                categoryId: {
+                    range:[1,2]
+                },
+                pubdate: {
+                    required: true,
+                    date: true
                 }
 
             },
             messages:{
                 title: {
                     required:"请输入主标题"
+                },
+                categoryId: {
+                    range:"请选择分类"
+                },
+                pubdate: {
+                    required: "请选择发布日期",
+                    date: "日期格式不正确"
                 }
 
             },
