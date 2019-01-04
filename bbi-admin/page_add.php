@@ -53,7 +53,8 @@ require_once('../config/db.php');
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder                                                   
+                                        filebrowserImageBrowseUrl: elFinder,     
+                                        allowedContent: true                                                   
                                     });
                                 </script>                        
                         </div>
@@ -116,7 +117,7 @@ require_once('../config/db.php');
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;

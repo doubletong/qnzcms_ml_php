@@ -3,10 +3,10 @@
 require_once("includes/common.php");
 require_once("includes/output.php");
 require_once("config/db.php");
-require_once("data/article.php");
+require_once("data/topics.php");
 
-$articleClass = new Article();
-$articles = $articleClass->fetch_category(1);
+$topicsClass = new Topics();
+$topicses = $topicsClass->fetch_all();
 
 ?>
 <!DOCTYPE html>
@@ -30,6 +30,7 @@ $articles = $articleClass->fetch_category(1);
 
 <div class="container s1">
             <section class="newlist">
+            <?php  foreach($topicses as $data){ ?>
                 <div class="box">
                     <div class="row">
                         <div class="col-lg-auto">
@@ -41,8 +42,8 @@ $articles = $articleClass->fetch_category(1);
                         <div class="col-lg">
                             <div class="des">
                                 <h3 class="title media-title">
-                                    <a href="media_detail.html">
-                                            30家媒体关注并发布了新闻“Medidata与南京希麦迪再度强强联手，助力中国临床试验取得新进展
+                                    <a href="/media/list-<?php echo $data["id"];?>">
+                                         <?php echo $data["title"];?>
                                     </a>
                                 </h3>
 
@@ -50,71 +51,13 @@ $articles = $articleClass->fetch_category(1);
                         </div>
                     </div>
                 </div>
-                <div class="box">
-                    <div class="row">
-                        <div class="col-lg-auto">
-                            <div class="pubdate">
-                                <div class="date">09.20-24</div>
-                                <div class="year">2018</div>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="des">
-                                <h3 class="title media-title">
-                                    <a href="media_detail.html">
-                                                30家媒体关注并发布了新闻“Medidata与南京希麦迪再度强强联手，助力中国临床试验取得新进展
-                                        </a>
-                                </h3>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="row">
-                        <div class="col-lg-auto">
-                            <div class="pubdate">
-                                <div class="date">09.20-24</div>
-                                <div class="year">2018</div>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="des">
-                                <h3 class="title media-title">
-                                    <a href="media_detail.html">
-                                                    30家媒体关注并发布了新闻“Medidata与南京希麦迪再度强强联手，助力中国临床试验取得新进展
-                                            </a>
-                                </h3>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="row">
-                        <div class="col-lg-auto">
-                            <div class="pubdate">
-                                <div class="date">09.20-24</div>
-                                <div class="year">2018</div>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="des">
-                                <h3 class="title media-title">
-                                    <a href="media_detail.html">
-                                                        30家媒体关注并发布了新闻“Medidata与南京希麦迪再度强强联手，助力中国临床试验取得新进展
-                                                </a>
-                                </h3>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php  } ?>
+                
 
             </section>
-            <footer class="text-center">
+            <!-- <footer class="text-center">
                 <a href="javascript:void(0);" class="more">查看更多</a>
-            </footer>
+            </footer> -->
         </div>
 
 

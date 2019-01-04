@@ -3,10 +3,10 @@
 require_once("includes/common.php");
 require_once("includes/output.php");
 require_once("config/db.php");
-require_once("data/article.php");
+require_once("data/meeting.php");
 
-$articleClass = new Article();
-$articles = $articleClass->fetch_category(1);
+$meetingClass = new Meeting();
+$meetings = $meetingClass->fetch_all();
 
 ?>
 <!DOCTYPE html>
@@ -30,80 +30,37 @@ $articles = $articleClass->fetch_category(1);
 
 <div class="container s2">
             <section class="meetinglist">
+
+            <?php foreach($meetings as $data) {?>
                 <div class="box">
                     <div class="row">
                         <div class="col-sm-5">
-                            <div class="pic" style="background-image:url(img/temp/m1.jpg);">
+                            <div class="pic" style="background-image:url(<?php echo $data["thumbnail"]; ?>);">
 
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="des">
                                 <h3 class="title">
-                                    2018 Medidata NEXT 中国区会议
+                                <?php echo $data["title"]; ?>
                                 </h3>
-                                <p>2018.07.12</p>
+                                <p><?php echo date('Y-m-d',$data['added_date']) ;?></p>
                                 <ul>
-                                    <li>会议时间：2018.07.12</li>
-                                    <li>会议地点：上海</li>
+                                    <li>会议时间：<?php echo date_create($data['meeting_time'])->format("Y年m月d日 H点i分"); ?></li>
+                                    <li>会议地点：<?php echo $data["address"]; ?></li>
                                 </ul>
-                                <a href="meeting_detail.html" class="more">查看详情</a>
+                                <a href="/meeting/detail-<?php echo $data["id"]; ?>" class="more">查看详情</a>
                             </div>
                         </div>
 
                     </div>
                 </div>
-
-                <div class="box">
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="pic" style="background-image:url(img/temp/m1.jpg);">
-
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="des">
-                                <h3 class="title">
-                                    2018 Medidata NEXT 中国区会议
-                                </h3>
-                                <p>2018.07.12</p>
-                                <ul>
-                                    <li>会议时间：2018.07.12</li>
-                                    <li>会议地点：上海</li>
-                                </ul>
-                                <a href="meeting_detail.html" class="more">查看详情</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="pic" style="background-image:url(img/temp/m1.jpg);">
-
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="des">
-                                <h3 class="title">
-                                    2018 Medidata NEXT 中国区会议
-                                </h3>
-                                <p>2018.07.12</p>
-                                <ul>
-                                    <li>会议时间：2018.07.12</li>
-                                    <li>会议地点：上海</li>
-                                </ul>
-                                <a href="meeting_detail.html" class="more">查看详情</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <?php }?>
+               
             </section>
-            <footer class="text-center">
+            <!-- <footer class="text-center">
                 <a href="javascript:void(0);" class="more">查看更多</a>
-            </footer>
+            </footer> -->
         </div>
 
 

@@ -10,7 +10,7 @@
                             <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
                         </a>
                     </li>
-                    <li class="down-nav">
+                    <!-- <li class="down-nav" hidden>
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
                             <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
@@ -32,7 +32,7 @@
                         <a href="orders.php">
                             <i class="iconfont icon-reconciliation"></i> <span class="nav-text">订单管理</span>                    
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="down-nav">
                         <a href="#">
@@ -44,6 +44,34 @@
                             <li><a href="news_add.php">添加新闻</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="meetings.php">
+                            <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">会议信息</span>                    
+                        </a>
+                    </li>
+                    <li class="down-nav">
+                        <a href="#">
+                            <i class="iconfont icon-left   float-right"></i>                             
+                            <i class="iconfont icon-camera"></i> <span class="nav-text">媒体关注</span>
+                        </a>
+                        <ul class="subnav">
+                            <li>
+                                <a href="media.php">
+                                    媒体关注链接
+                                </a>
+                            </li>
+                            <li>
+                                <a href="topics.php">
+                                   主题管理
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="cases.php">
+                            <i class="iconfont icon-antdesign"></i> <span class="nav-text">解决方案</span>                    
+                        </a>
+                    </li>
                     <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
@@ -53,6 +81,12 @@
                             <li><a href="pages.php">页面列表</a></li>
                             <li><a href="page_add.php">添加添加</a></li>
                         </ul>
+                    </li>
+                   
+                    <li>
+                        <a href="teams.php">
+                            <i class="iconfont icon-team"></i> <span class="nav-text">团队管理</span>                    
+                        </a>
                     </li>
                     <li>
                         <a href="jobs.php">
@@ -81,8 +115,7 @@
                         </a>
                         <ul class="subnav">
                             <li><a href="carousels.php"><i class="iconfont icon-image"></i> 轮播图</a></li>
-                            <li><a href="links.php"><i class="iconfont icon-link"></i> 链接</a></li>
-                            <li hidden><a href="distributors.php"><i class="iconfont icon-team"></i> 经销商</a></li>
+                            <li hidden><a href="links.php"><i class="iconfont icon-link"></i> 链接</a></li>                       
                             <li hidden><a href="shopes.php"><i class="iconfont icon-shop"></i> 专卖店</a></li>
                         </ul>
                     </li>

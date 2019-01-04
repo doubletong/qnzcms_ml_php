@@ -65,7 +65,8 @@ if(isset($_GET['id'])){
                                     var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {                                      
                                         filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder                                                   
+                                        filebrowserImageBrowseUrl: elFinder,     
+                                        allowedContent: true                                              
                                     });
 
                                 </script>
@@ -137,7 +138,7 @@ if(isset($_GET['id'])){
 
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass(
+            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass(
                 "active");
 
             $("#btnBrowser").on("click", function () {

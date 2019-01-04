@@ -12,7 +12,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT id FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
-    $pagination->config(3, 5);
+    $pagination->config(6, 10);
     $sql = "SELECT id, title, categoryId, thumbnail,view_count, active, pubdate, added_by FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
@@ -25,7 +25,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 else
 {
     $pagination->rowCount("SELECT id FROM wp_articles");
-    $pagination->config(6,15);
+    $pagination->config(6,10);
     $sql = "SELECT id, title, categoryId, thumbnail,view_count, active, pubdate, added_by FROM wp_articles ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
@@ -134,7 +134,7 @@ else
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(2)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

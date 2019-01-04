@@ -12,7 +12,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT * FROM wp_links WHERE title LIKE '%$search%'");
-    $pagination->config(3, 5);
+    $pagination->config(6, 10);
     $sql = "SELECT * FROM wp_links WHERE title LIKE '%$search%'  ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
@@ -25,7 +25,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 else
 {
     $pagination->rowCount("SELECT * FROM wp_links");
-    $pagination->config(6,15);
+    $pagination->config(6,10);
     $sql = "SELECT * FROM wp_links ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
@@ -145,7 +145,7 @@ else
     <script>
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass(
+            $(".mainmenu>li:nth-of-type(9)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass(
                 "active");
 
             //确认框默认语言

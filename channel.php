@@ -1,9 +1,11 @@
 <?php
 require_once("includes/common.php");
-require_once("includes/output.php");
 require_once("config/db.php");
 
+require_once("data/case.php");
 
+$caseClass = new CaseShow();
+$cases = $caseClass->fetch_category("药品注册途径和策略");
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
@@ -49,24 +51,14 @@ require_once("config/db.php");
                 <h4>THE CASE SHOWS</h4>
             </header>
             <div class="row">
+            <?php foreach($cases as $data){ ?>
                 <div class="col-sm-4">
                     <div class="item">
-                        <img src="img/temp/c1.jpg" alt="">
-                        <p>生物样本分析</p>
+                        <img src="<?php echo $data["thumbnail"]; ?>" alt="">
+                        <p><?php echo $data["title"]; ?></p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="item">
-                        <img src="img/temp/c2.jpg" alt="">
-                        <p>生物样本分析</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="item">
-                        <img src="img/temp/c3.jpg" alt="">
-                        <p>生物样本分析</p>
-                    </div>
-                </div>
+            <?php } ?>
             </div>
         </div>
     </div>

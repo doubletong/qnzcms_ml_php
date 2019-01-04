@@ -4,9 +4,11 @@ require_once('includes/common.php');
 require_once('includes/environment.php');
 require_once('../config/db.php');
 require_once('data/carousel.php');
-require_once('data/link.php');
-require_once('data/product.php');
+ require_once('data/link.php');
+ require_once('data/product.php');
 require_once('data/article.php');
+require_once('data/meeting.php');
+require_once('data/topics.php');
 require_once('data/page.php');
 
 
@@ -14,9 +16,11 @@ require_once('data/page.php');
 $obj = new OS_BROWSER();
 
 $carouselClass = new Carousel();
-$linkClass = new Link();
+ $linkClass = new Link();
 $articleClass = new Article();
-$productClass = new Product();
+ $meetingClass = new Meeting();
+ $topicsClass = new Topics();
+ $productClass = new Product();
 $pageClass = new Page();
 ?>
 <!DOCTYPE html>
@@ -71,7 +75,7 @@ $pageClass = new Page();
             <div class="main-content">
                 <div style="padding:2rem;">
                     <div class="row">
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="box">
                                 <div class="row">
                                     <div class="col-4">
@@ -84,7 +88,7 @@ $pageClass = new Page();
                                 </div>
                             </div>
 
-                        </div>
+                        </div> -->
                         <div class="col">
                             <div class="box">
                                 <div class="row">
@@ -97,9 +101,35 @@ $pageClass = new Page();
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col">
+                            <div class="box">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="icon text-center"><i class="iconfont icon-deploymentunit"></i></div>
+                                    </div>
+                                    <div class="col-8">
+                                        <small>会议信息</small>
+                                        <div class="num"><?php echo $meetingClass->meeting_count();?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="col">
+                            <div class="box">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="icon text-center"><i class="iconfont icon-camera"></i></div>
+                                    </div>
+                                    <div class="col-8">
+                                        <small>媒体关注</small>
+                                        <div class="num"><?php echo $topicsClass->topics_count();?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- <div class="col">
                             <div class="box">
                                 <div class="row">
                                     <div class="col-4">
@@ -112,7 +142,7 @@ $pageClass = new Page();
                                 </div>
                             </div>
 
-                        </div>
+                        </div> -->
                         <div class="col">
                             <div class="box">
                                 <div class="row">

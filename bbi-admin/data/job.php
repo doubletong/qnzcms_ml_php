@@ -40,14 +40,7 @@ class Job{
 //更新
     public function update_job($id,$title, $department, $address, $population, $content) {
 
-        // $sql = "update jobs
-        //      set
-        //      title= :title,
-        //      importance = :importance,
-        //      image_url =:imageUrl,
-        //      job = :job,
-        //      active =:active
-        //      where id =:id";
+        
 
         $sql="UPDATE `jobs` SET       
         `title`=:title,
@@ -77,11 +70,7 @@ class Job{
 
     public function insert_job($title, $department, $address, $population, $content) {
 
-        // $sql="INSERT INTO jobs ( title,importance, image_url,job,active,added_by,added_date)
-        //         VALUES (:title,:importance, :imageUrl, :job,:active,:added_by,:added_date)";
-
-        // $sql="INSERT INTO `jobs`(`title`, `department`, `address`, `population`, `content`, `added_date`, `added_by`) 
-        // VALUES (:title, :department, :address, :population, :content, :added_date, :added_by)";
+    
 
 $sql="INSERT INTO jobs(title, department, address, population, content, added_date, added_by) 
 VALUES (:title, :department, :address, :population, :content, :added_date, :added_by)";

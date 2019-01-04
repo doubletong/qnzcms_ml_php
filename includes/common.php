@@ -4,8 +4,8 @@ define('SITEPATH', 'http://tzgcms.com:8888');
 define('SITENAME', '洁碧官网');
 
 // Set default timezone
-date_default_timezone_set('UTC');
-
+//date_default_timezone_set('UTC');
+date_default_timezone_set('Asia/Shanghai');
 
 function do_html_URL($url, $name) {
 	// output URL as link and br
