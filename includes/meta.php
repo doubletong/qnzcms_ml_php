@@ -6,6 +6,8 @@
 
 <link rel="manifest" href="site.webmanifest">
 <link rel="apple-touch-icon" href="icon.png">
+<link rel="shortcut icon" href="favicon.ico" />
+
 <!-- CSS, you gotta have style -->
 <link href="fonts/iconfont.css" rel="stylesheet">  
 <link rel="stylesheet" href="css/styles.css">

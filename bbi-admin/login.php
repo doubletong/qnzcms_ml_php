@@ -7,33 +7,36 @@ if(isset($_POST['username'],$_POST['password'])){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    if(empty($username) or empty($password)){
-        $error = '请输入用户名与密码！';
-    }else{
-
-
-//echo $username;
-//echo $password     ;
-        $query = db::getInstance()->prepare("SELECT * FROM wp_users WHERE username=:username AND password =:password");
-        $array = array(
-            'username' => $username,
-            'password' => $password
-        );
-     //   $query->bindValue(':username',$username);
-     //   $query->bindValue(':password',$password);
-
-        $query->execute($array);
-        $num= $query->rowCount();
-       // echo  $num;
-        if($num == 1){
-            $_SESSION['logged_in'] = true;
-            $_SESSION['valid_user'] = $username;
-            header('Location: index.php');
-            exit();
+    if($_POST['captcha'] != $_SESSION['digit']) {
+        $error = "验证码不正确";       
+    } else{
+        if(empty($username) or empty($password)){
+            $error = '请输入用户名与密码！';
         }else{
-            $error = '无效的帐号！';
+    
+            $query = db::getInstance()->prepare("SELECT * FROM wp_users WHERE username=:username AND password =:password");
+            $array = array(
+                'username' => $username,
+                'password' => $password
+            );
+         //   $query->bindValue(':username',$username);
+         //   $query->bindValue(':password',$password);
+    
+            $query->execute($array);
+            $num= $query->rowCount();
+           // echo  $num;
+            if($num == 1){
+                $_SESSION['logged_in'] = true;
+                $_SESSION['valid_user'] = $username;
+                header('Location: index.php');
+                exit();
+            }else{
+                $error = '无效的帐号！';
+            }
         }
-    }
+    }     
+
+    
 }
 
 ?>
@@ -52,17 +55,25 @@ if(isset($_POST['username'],$_POST['password'])){
          background:#333 url(content/img/mosaic_noise.gif);
      }
 .loginbox{
-    max-width:360px;
+    max-width:360px; 
     margin:0 auto;
+}
+.card-img-top{
+    text-align:center;padding:2rem;
+}
+.card-footer{
+    background-color:#fff;
+}
+.input-group-text{
+    background-color:#fff;
 }
      </style>
 </head>
 <body class="loginPage">
 <form method="post" class="loginForm">
 <div class="loginbox card">
-    <h5 class="card-header text-center">
-       后台管理
-</h5>
+    <div class="card-img-top"><img src="../img/logo.png"  alt="..."></div>
+
 <div class="card-body">
 
    
@@ -82,7 +93,21 @@ if(isset($_POST['username'],$_POST['password'])){
                 <input class="form-control" type="password" name="password" placeholder="密码" aria-describedby="basic-addon2">
             </div>
         </div>
-
+        <div class="form-group">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="iconfont icon-CodeSandbox"></i></span>
+                </div>
+                <input class="form-control"  type="text" name="captcha" placeholder="验证码">
+                <div class="input-group-append">
+                    <span class="input-group-text" style="padding:0 3px; overflow: hidden;">
+                        <img src="../lib/captcha.php" width="120" height="30"  alt="CAPTCHA">
+                    </span>
+                </div>
+            </div>
+        </div>
+        
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">记住我</label>
@@ -95,6 +120,7 @@ if(isset($_POST['username'],$_POST['password'])){
         </div>
         <div class="card-footer text-center">
         <button type="submit" class="btn btn-primary"><i class="iconfont icon-login"></i> 登录</button>
+        <a href="/" class="btn btn-outline-secondary" ><i class="iconfont icon-left"></i> 取消</a>
         </div>
        
 </div>

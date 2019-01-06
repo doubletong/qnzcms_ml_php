@@ -16,7 +16,7 @@ class Team{
         return $query->fetch();
     }
 
-    public function delete_meeting($id){
+    public function delete_team($id){
         $query = db::getInstance()->prepare("DELETE FROM `teams` WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
@@ -31,7 +31,7 @@ class Team{
 
     
     //获取总数
-    public function meeting_count(){
+    public function team_count(){
         $query = db::getInstance()->prepare("SELECT count(*) as count FROM `teams`");    
         $query->execute();        
         $rows = $query->fetchColumn(); 
@@ -39,7 +39,7 @@ class Team{
     }
 
 //更新
-   public function update_meeting($id, $name, $post, $photo, $content, $category,$importance) {
+   public function update_team($id, $name, $post, $photo, $content, $category,$importance) {
 
         $sql = "UPDATE teams SET name= :name,
            post =:post,
@@ -71,11 +71,11 @@ class Team{
     }
 
 
-    public function insert_meeting($name, $post, $photo, $content, $category,$importance) {
+    public function insert_team($name, $post, $photo, $content, $category,$importance) {
 
         
         $sql="INSERT INTO `teams`(`name`, `post`, `photo`, `content`, `category`, `importance`, `added_by`,`added_date`) 
-        VALUES (:title, :post, :photo, :content, :category, :importance, :added_by,:added_date)";
+        VALUES (:name, :post, :photo, :content, :category, :importance, :added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 

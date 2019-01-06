@@ -212,7 +212,7 @@ require_once('data/product.php');
                                     <div style="width:300px;text-align:center;">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="holder.js/240x180/text:295X333像素" class="img-responsive img-rounded" />
+                                                <img ID="iLogo" src="holder.js/250x250/text:250X250像素" class="img-responsive img-rounded" />
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i

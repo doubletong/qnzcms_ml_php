@@ -10,7 +10,7 @@ require_once('data/article.php');
 require_once('data/meeting.php');
 require_once('data/topics.php');
 require_once('data/page.php');
-
+require_once('data/team.php');
 
 //实例化操作系统与浏览器信息
 $obj = new OS_BROWSER();
@@ -22,6 +22,8 @@ $articleClass = new Article();
  $topicsClass = new Topics();
  $productClass = new Product();
 $pageClass = new Page();
+$teamClass = new Team();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,12 +42,14 @@ $pageClass = new Page();
         }
 
         .box .iconfont {
-            font-size: 3rem;
+            font-size: 2rem;
         }
 
         .box .icon {
             border-radius: 6px 0 0 6px;
             background-color: #0082F6;
+            height:70px;
+            padding:10px 12px;
         }
 
         .box small {
@@ -92,10 +96,10 @@ $pageClass = new Page();
                         <div class="col">
                             <div class="box">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col">
                                         <small>新闻资讯</small>
                                         <div class="num"><?php echo $articleClass->article_count();?> <span>pcs</span></div>
                                     </div>
@@ -105,10 +109,10 @@ $pageClass = new Page();
                         <div class="col">
                             <div class="box">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-deploymentunit"></i></div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col">
                                         <small>会议信息</small>
                                         <div class="num"><?php echo $meetingClass->meeting_count();?> <span>pcs</span></div>
                                     </div>
@@ -119,12 +123,25 @@ $pageClass = new Page();
                         <div class="col">
                             <div class="box">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-camera"></i></div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col">
                                         <small>媒体关注</small>
                                         <div class="num"><?php echo $topicsClass->topics_count();?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col">
+                            <div class="box">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="icon text-center"><i class="iconfont icon-team"></i></div>
+                                    </div>
+                                    <div class="col">
+                                        <small>团队人员</small>
+                                        <div class="num"><?php echo $teamClass->team_count();?> <span>pcs</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -146,10 +163,10 @@ $pageClass = new Page();
                         <div class="col">
                             <div class="box">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-file"></i></div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col">
                                         <small>页面</small>
                                         <div class="num"><?php echo $pageClass->page_count();?> <span>pcs</span></div>
                                     </div>
@@ -160,10 +177,10 @@ $pageClass = new Page();
                         <div class="col">
                             <div class="box">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-image"></i></div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col">
                                         <small>轮播图</small>
                                         <div class="num"><?php echo $carouselClass->carousel_count();?> <span>pcs</span></div>
                                     </div>

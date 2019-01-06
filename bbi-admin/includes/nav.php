@@ -1,6 +1,6 @@
 <aside id="sidebar-nav" class="leftcol bg-dark">
-    <div class="logo">
-        <img src="/bbi-admin/content/img/logo.png" alt="logo" />
+    <div class="logo text-center">
+        <img src="../img/min-logo.png" alt="logo" />
     </div>
 
         <nav id="menu"> 

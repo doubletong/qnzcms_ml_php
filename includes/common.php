@@ -1,7 +1,7 @@
 <?php
 
-define('SITEPATH', 'http://tzgcms.com:8888');
-define('SITENAME', '洁碧官网');
+define('SITEPATH', 'http://a654rgonlkji601397276.t.yun.top');
+define('SITENAME', '希麦迪');
 
 // Set default timezone
 //date_default_timezone_set('UTC');

@@ -136,7 +136,7 @@ else
     <script>
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(10)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(11)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
 
             //确认框默认语言
             bootbox.setDefaults({

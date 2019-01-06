@@ -8,7 +8,7 @@ $carouselClass = new Carousel();
 $carousels = $carouselClass->fetch_all();
 
 $articleClass = new Article();
-$knowledges = $articleClass->lasterKnowledge();
+$knowledges = $articleClass->laster_articles();
 
 ?>
 <!DOCTYPE html>
