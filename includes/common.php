@@ -1,6 +1,6 @@
 <?php
 
-define('SITEPATH', 'http://a654rgonlkji601397276.t.yun.top');
+define('SITEPATH', 'http://test.heiniaozhi.cn');
 define('SITENAME', '希麦迪');
 
 // Set default timezone

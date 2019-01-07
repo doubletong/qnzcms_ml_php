@@ -12,9 +12,9 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_carousels WHERE title LIKE '%$search%' OR description LIKE '%$search%'  ORDER BY importance, id DESC ");
+    $pagination->rowCount("SELECT * FROM wp_carousels WHERE title LIKE '%$search%' OR description LIKE '%$search%'  ORDER BY importance DESC ");
     $pagination->config(6, 10);
-    $sql = "SELECT * FROM wp_carousels WHERE title LIKE '%$search%' OR description LIKE '%$search%'  ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT * FROM wp_carousels WHERE title LIKE '%$search%' OR description LIKE '%$search%'  ORDER BY importance  DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -27,7 +27,7 @@ else
 {
     $pagination->rowCount("SELECT * FROM wp_carousels");
     $pagination->config(6,10);
-    $sql = "SELECT * FROM wp_carousels ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT * FROM wp_carousels ORDER BY importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -83,6 +83,7 @@ else
             <th>缩略图</th>
             <th>主题</th>
             <th>链接</th>
+            <th>权重</th>
             <th>发布者</th>
             <th>创建日期</th>
             <th>操作</th>
@@ -100,6 +101,7 @@ else
             echo "<td>".$row['title']."</td>";
             echo "<td>".$row['link']."</td>";
             ?>
+             <td><?php echo $row['importance'];?></td>
             <td><?php echo $row['added_by'];?></td>
             <td><?php echo $row['added_date'];?></td>
             <td><a href='carousel_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>

@@ -3,7 +3,7 @@ $config = include '../includes/settings.php';
 
 session_start();
 if (!isset($_SESSION['logged_in'])){
-	$url = SITEPATH."/bbi-admin/login.php";
+	$url = "/bbi-admin/login.php";
 	header("Location: $url");
 	exit();
 }
