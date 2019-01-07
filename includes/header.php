@@ -47,7 +47,12 @@
                             <li><a href="/contact">联系我们</a></li>
                         </ul>
                     </nav>
-                    <a href="javascript:void(0);" id="openav" class="openav"><i class="iconfont icon-menu"></i></a>
+                    <!-- <a href="javascript:void(0);" id="openav" class="openav"><i class="iconfont icon-menu"></i></a> -->
+                    <div class="menu-toggle">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                    </div>
                 </div>
             </div>
         </div>
