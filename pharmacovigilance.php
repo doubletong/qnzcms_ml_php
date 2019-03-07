@@ -4,7 +4,7 @@ require_once("config/db.php");
 require_once("data/page.php");
 
 $pageClass = new Page();
-$data = $pageClass->fetch_data("trials");
+$data = $pageClass->fetch_data("pharmacovigilance");
 
 ?>
 <!DOCTYPE html>

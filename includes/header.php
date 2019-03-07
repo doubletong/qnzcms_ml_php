@@ -48,7 +48,7 @@
                             <li><a href="/contact">联系我们</a></li>
                             <li>
                                 <form class="searchbox" action="/search">
-                                    <input name="keyword" class="textbox" />
+                                    <input name="keyword" class="textbox" value="<?php echo $_GET['keyword']; ?>" />
                                     <button type="submit"><i class="iconfont icon-search"></i></button>
                                 </form>
                             </li>

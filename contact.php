@@ -43,10 +43,12 @@ $dis = $disClass->fetch_all();
                         <div class="contact">
                             <h3><?php echo $data["city"];?></h3>
                             <ul>
-                                <li>地址：<?php echo $data["address"];?>
-                                </li>
-                                <li>电话：<?php echo $data["phone"];?>
-                                </li>
+                                <li>地址：<?php echo $data["address"];?></li>
+                                <li>电话：<?php echo $data["phone"];?></li>
+                               
+                                <?php if(!empty($data["cooperation"])){?>
+                                    <li>商务合作：<?php echo $data["cooperation"];?></li>
+                                <?php } ?>                               
                                 <li>邮箱：<?php echo $data["email"];?></li>
                             </ul>
                         </div>

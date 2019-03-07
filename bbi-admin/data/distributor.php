@@ -28,12 +28,13 @@ class Distributor{
     }
 
 //更新产品
-    public function update_distributor($id, $coordinate, $email,$phone,$city,$address,$active,$importance) {
+    public function update_distributor($id, $coordinate, $email,$phone, $cooperation,$city,$address,$active,$importance) {
 
         $sql = "UPDATE wp_distributors
         SET coordinate= :coordinate,
         email = :email,
              phone =:phone,
+             cooperation =:cooperation,
              city = :city,
              address = :address,
              importance =:importance,
@@ -45,6 +46,7 @@ class Distributor{
         $query->bindValue(":coordinate",$coordinate);
         $query->bindValue(":email",$email);
         $query->bindValue(":phone",$phone);
+        $query->bindValue(":cooperation",$cooperation);
         $query->bindValue(":city",$city);
         $query->bindValue(":address",$address);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
@@ -61,10 +63,10 @@ class Distributor{
     }
 
 
-    public function insert_distributor($coordinate, $email,$phone,$city,$address,$active,$importance) {
+    public function insert_distributor($coordinate, $email,$phone,$cooperation,$city,$address,$active,$importance) {
 
-        $sql="INSERT INTO wp_distributors (coordinate,email,phone,city,address,importance,active,added_by,added_date)
-                VALUES (:coordinate,:email,:phone,:city,:address, :importance, :active,:added_by,:added_date)";
+        $sql="INSERT INTO wp_distributors (coordinate,email,phone,cooperation, city,address,importance,active,added_by,added_date)
+                VALUES (:coordinate,:email,:phone,:cooperation, :city,:address, :importance, :active,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -72,6 +74,7 @@ class Distributor{
         $query->bindValue(":coordinate",$coordinate);
         $query->bindValue(":email",$email);
         $query->bindValue(":phone",$phone);
+        $query->bindValue(":cooperation",$cooperation);
         $query->bindValue(":city",$city);
         $query->bindValue(":address",$address);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);

@@ -3,13 +3,13 @@
             <div class="bot_logo">
                 <img src="img/logo_bot.png" alt="logo">
             </div>
-            <form class="emailget">
+            <div class="emailget">
                 <label>为您提供更多内容</label> 
                 <div class="box">
-                    <input type="email" name="email" placeholder="您的邮箱" />
-                    <button type="submit">提交</button>
+                    <input type="email" name="email" id="inputEmail" placeholder="您的邮箱" />
+                    <button type="button" id="btnsetemail">提交</button>
                 </div>
-            </form>
+            </div>
             <div class="row">
                 <div class="col">
                     <dl class="bot_nav">

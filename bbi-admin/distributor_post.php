@@ -10,6 +10,7 @@ if (isset($_POST['city'], $_POST['importance'])) {
     $coordinate = $_POST['coordinate'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    $cooperation = $_POST['cooperation'];
     $city = $_POST['city'];
     $address = $_POST['address'];
     $importance = $_POST['importance'];
@@ -17,10 +18,10 @@ if (isset($_POST['city'], $_POST['importance'])) {
 
     //   echo $content.$productId;
     if($distributorId>0){
-        echo $distributorClass->update_distributor($distributorId, $coordinate, $email, $phone, $city,$address, $active, $importance);
+        echo $distributorClass->update_distributor($distributorId, $coordinate, $email, $phone, $cooperation, $city,$address, $active, $importance);
 
     }else{
-        echo $distributorClass->insert_distributor($coordinate, $email, $phone, $city,$address, $active, $importance);
+        echo $distributorClass->insert_distributor($coordinate, $email, $phone,$cooperation, $city,$address, $active, $importance);
 
     }
 

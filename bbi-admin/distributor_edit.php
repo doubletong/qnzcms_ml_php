@@ -58,6 +58,11 @@ if(isset($_GET['id'])){
                         <input type="type" class="form-control" id="phone" name="phone" value="<?php echo $data["phone"]; ?>" placeholder="">                  
                 </div>
                 <div class="form-group">
+                    <label for="cooperation">商务合作</label>                 
+                        <input type="type" class="form-control" id="cooperation" name="cooperation" value="<?php echo $data["cooperation"]; ?>" placeholder="">                  
+                </div>
+
+                <div class="form-group">
                     <label for="email">邮箱</label>                 
                         <input type="email" class="form-control" id="email" name="email" value="<?php echo $data["email"]; ?>" placeholder="">                  
                 </div>

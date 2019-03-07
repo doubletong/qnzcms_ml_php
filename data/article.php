@@ -16,6 +16,29 @@ class Article{
         return $rows;
     }
 
+    public function search_paged($keyword,$pageIndex,$pageSize){
+        $param = "%{$keyword}%";
+
+        $startIndex = ($pageIndex-1) * $pageSize;
+        $query = db::getInstance()->prepare("SELECT id, title, summary, thumbnail,  
+        pubdate FROM wp_articles  where active=1 AND title LIKE :keyword ORDER BY pubdate DESC LIMIT $startIndex, $pageSize");   
+        $query->bindValue(":keyword", $param);  
+       // $query->bindValue(":id",$id,PDO::PARAM_INT);  
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    //获取总数
+    public function search_count($keyword){
+        $param = "%{$keyword}%";
+        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_articles` where active=1 AND title LIKE :keyword ");    
+        $query->bindValue(":keyword", $param);  
+        $query->execute();        
+        $rows = $query->fetchColumn(); 
+        return $rows;
+    }
+
     // public function fetch_all(){
     //     $query = db::getInstance()->prepare("SELECT * FROM wp_articles ORDER BY added_date DESC");
     //     $query->execute();
@@ -37,11 +60,6 @@ class Article{
         return $query->fetchAll();
     }
 
-    // public function hotKnowledge(){
-    //     $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE categoryId = 2 ORDER BY view_count DESC limit 10");
-    //     $query->execute();
-    //     return $query->fetchAll();
-    // }
 
     public function fetch_data($id){
         $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE id = :id;UPDATE wp_articles SET view_count = view_count + 1 WHERE id =:id ;");

@@ -4757,7 +4757,7 @@ html {
 
 .section-title {
     color: #444;
-    margin-bottom: 2.3rem;
+    margin-bottom: 3rem;
 }
 
 .section-title h2 {
@@ -4779,7 +4779,7 @@ html {
 
 @media (min-width: 768px) {
     .section-title h3 {
-        font-size: 1.5rem;
+        font-size: 28px;
     }
 }
 
@@ -4806,6 +4806,10 @@ html {
     margin-bottom: 5rem;
 }
 
+.page-home .s1 p {
+    line-height: 1.8
+}
+
 .page-home .content {
     margin-bottom: 1.5rem;
     line-height: 1.8;
@@ -4823,16 +4827,20 @@ html {
 }
 
 .page-home .cases .des {
-    padding: 2rem;
+    padding: 2rem 1rem;
     border: #00A0E8 solid 1px;
-    border-top: none;
     -webkit-transition: all .2s;
     transition: all .2s;
-    margin-bottom: 1rem;
+    margin: 0 -10px 10px;
+    display: block;
+}
+
+.page-home .cases .des i {
+    color: #04daae;
 }
 
 .page-home .cases .des .iconfont {
-    font-size: 3.25rem;
+    font-size: 2.8rem;
     background-image: -webkit-gradient(linear, left 0, right 0, from(#1ca7de), to(#42d6c6));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -4841,11 +4849,19 @@ html {
 .page-home .cases .des h3 {
     font-size: 1.125rem;
     margin-top: 0.625rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-home .cases .des p {
+    color: #999;
 }
 
 @media (min-width: 768px) {
     .page-home .cases .des h3 {
-        font-size: 1.5rem;
+        font-size: 26px;
     }
 }
 
@@ -4855,14 +4871,18 @@ html {
 }
 
 .page-home .cases .des:hover {
-    border: none;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#1ca7de), to(#42d6c6));
     background-image: linear-gradient(-180deg, #1ca7de, #42d6c6);
     color: #fff;
 }
 
+.page-home .cases .des:hover i,
+.page-home .cases .des:hover p,
+.page-home .cases .des:hover h3 {
+    color: #fff;
+}
+
 .page-home .cases .des:hover .iconfont {
-    font-size: 3.25rem;
     background-image: none;
     -webkit-background-clip: text;
     -webkit-text-fill-color: #fff;
@@ -4881,6 +4901,10 @@ html {
 
 .page-home .s2 .section-title {
     color: #fff;
+}
+
+.page-home .s2 .section-title h3::after {
+    display: none;
 }
 
 .page-home .s2 .item {
@@ -4919,7 +4943,7 @@ html {
 
 @media (min-width: 1200px) {
     .page-home .s2 .item p {
-        font-size: 1.5rem;
+        font-size: 1.43rem;
     }
 }
 
@@ -4932,77 +4956,71 @@ html {
     margin-bottom: 3rem;
 }
 
-.page-home .s3 .newnav {
-    margin-bottom: 1rem;
+.page-home .s3 .setitle {
+    border-bottom: 1px #e6e6e6 solid;
+    font-size: 24px;
+    padding-bottom: .6rem;
+}
+
+.page-home .s3 .pic img {
+    display: block;
+    width: 100%;
+}
+
+.page-home .s3 .nlist {
+    border: 1px #e6e6e6 solid;
+    padding: 1rem 1rem 2rem;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .page-home .s3 .nlist {
+        min-height: 520px;
+    }
 }
 
 @media (min-width: 992px) {
-    .page-home .s3 .newnav {
-        margin-bottom: 3rem;
+    .page-home .s3 .nlist {
+        min-height: 420px;
     }
 }
 
-.page-home .s3 .newnav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-}
-
-.page-home .s3 .newnav ul li {
-    display: inline-block;
-    margin: 0 0.3125rem;
-}
-
-@media (min-width: 576px) {
-    .page-home .s3 .newnav ul li {
-        margin: 0 1.875rem;
+@media (min-width: 1200px) {
+    .page-home .s3 .nlist {
+        min-height: 360px;
     }
 }
 
-.page-home .s3 .newnav ul li a {
-    display: inline-block;
-    padding: 0 12px;
-    height: 32px;
-    line-height: 30px;
-    border: 1px #999 solid;
-    font-size: 0.875rem;
-    color: #666;
-    -webkit-transition: all .2s;
-    transition: all .2s;
+.page-home .s3 .nlist a.more {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 100;
+    ;
 }
 
-@media (min-width: 576px) {
-    .page-home .s3 .newnav ul li a {
-        width: 134px;
-        height: 39px;
-        line-height: 37px;
-        font-size: 1rem;
-    }
-}
-
-.page-home .s3 .newnav ul li a.active {
-    background-image: -webkit-gradient(linear, left top, right top, from(#1ca7de), to(#42d6c6));
-    background-image: linear-gradient(-270deg, #1ca7de, #42d6c6);
-    border: none;
-    color: #fff;
-}
-
-.page-home .s3 .newnav ul li a:hover {
-    background-image: -webkit-gradient(linear, left top, right top, from(#1ca7de), to(#42d6c6));
-    background-image: linear-gradient(-270deg, #1ca7de, #42d6c6);
-    border: none;
-    color: #fff;
-}
-
-.page-home .s3 .item {
+.page-home .s3 .nlist a {
     display: block;
+    color: #999;
 }
 
-.page-home .s3 .item h3 {
-    color: #444;
-    font-size: 1.25rem;
-    margin-bottom: 0;
+.page-home .s3 .nlist a:hover {
+    color: #00A0E8;
+}
+
+.page-home .s3 .nlist h4 {
+    margin: 0 0 6px;
+    color: #666;
+}
+
+.page-home .s3 .nlist p {
+    font-size: 14px;
+    color: #999;
+    margin-top: 0;
+}
+
+.page-home .s3 .nlist a:hover h4 {
+    color: #00A0E8;
 }
 
 @media (min-width: 1200px) {
@@ -5324,8 +5342,7 @@ html {
 }
 
 .page-about .s1 {
-    padding-top: 3rem;
-    font-size: 1rem;
+    padding-top: 1rem;
 }
 
 .page-about .s1 p {
@@ -5338,6 +5355,9 @@ html {
 }
 
 @media (min-width: 768px) {
+    .page-about .s1 {
+        padding-top: 3rem;
+    }
     .page-about .s1 .s-title {
         font-size: 26px;
     }
@@ -5560,7 +5580,7 @@ html {
 }
 
 .page-about .s4 .box-default {
-    margin-bottom: 2rem;
+    margin-bottom: .8rem;
 }
 
 .page-about .s4 .box-body {
@@ -5572,6 +5592,9 @@ html {
 }
 
 @media (min-width: 768px) {
+    .page-about .s4 .box-default {
+        margin-bottom: 2rem;
+    }
     .page-about .s4 .box-body {
         padding: 0 45px;
     }
@@ -5686,12 +5709,12 @@ html {
 
 .subnav ul li {
     display: inline-block;
-    margin-right: 30px;
+    margin: 0 15px;
 }
 
 @media (min-width: 768px) {
     .subnav ul li {
-        margin-right: 37px;
+        margin: 0 18px;
     }
 }
 
@@ -5948,6 +5971,16 @@ html {
     background-image: url(../img/3-3.png), linear-gradient(-270deg, #1ca7de, #42d6c6);
 }
 
+.page-service .s8 .des {
+    background-image: url(../img/3-8.png), -webkit-gradient(linear, left top, right top, from(#1ca7de), to(#42d6c6));
+    background-image: url(../img/3-8.png), linear-gradient(-270deg, #1ca7de, #42d6c6);
+}
+
+.page-service .s9 .des {
+    background-image: url(../img/3-9.png), -webkit-gradient(linear, left top, right top, from(#1ca7de), to(#42d6c6));
+    background-image: url(../img/3-9.png), linear-gradient(-270deg, #1ca7de, #42d6c6);
+}
+
 .page-service .s3 .content1 .box {
     padding: 1rem 2rem;
 }
@@ -6005,6 +6038,24 @@ html {
     padding: 1rem 2rem;
 }
 
+.page-service .h-list1 {
+    max-width: 992px;
+}
+
+.page-service .h-list1 li {
+    width: 32%;
+    float: left;
+}
+
+.page-service .h-list2 {
+    max-width: 400px;
+}
+
+.page-service .h-list2 li {
+    width: 24.5%;
+    float: left;
+}
+
 .page-service .owl-carousel {
     position: relative;
 }
@@ -6036,6 +6087,20 @@ html {
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
 }
 
 .page-case {
@@ -6184,6 +6249,7 @@ html {
     margin-bottom: 2rem;
     -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .page-news .s1 .box .pic {
@@ -6312,23 +6378,26 @@ html {
     color: #00A0E9;
 }
 
-.page-news .s1 .more {
+.page-news .s1 .more,
+.page-search .s1 .more {
     height: 50px;
     width: 140px;
     text-align: center;
     line-height: 50px;
-    background-color: #F1F7F9;
+    background-color: #DBEBF1;
     display: inline-block;
     border-radius: 35px;
 }
 
-.page-news .s1 .more:hover {
+.page-news .s1 .more:hover,
+.page-search .s1 .more:hover {
     background-color: #00A0E9;
     color: #fff;
 }
 
-.page-news .s1 .newlist {
-    margin-bottom: 4rem;
+.page-news .s1 .newlist,
+.page-search .s1 .newlist {
+    margin-bottom: 3rem;
 }
 
 .page-news .s2 {
@@ -6336,7 +6405,7 @@ html {
 }
 
 .page-news .s2 .meetinglist {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .page-news .s2 .meetinglist .box {
@@ -6354,6 +6423,7 @@ html {
 
 .page-news .s2 .meetinglist .box .des {
     padding: 1.6rem 1rem;
+    background-color: #fff;
 }
 
 .page-news .s2 .meetinglist .box .title {
@@ -6541,6 +6611,27 @@ html {
 
 .page-jion {
     padding-bottom: 3rem;
+}
+
+.page-search {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.page-search .sitepath a {
+    color: #333;
+}
+
+.page-search .box {
+    border-bottom: 1px #E5E5E5 solid;
+    padding-bottom: 1rem;
+    line-height: 1.6;
+    padding-top: 2rem;
+}
+
+.page-search .box .title {
+    font-size: 20px;
+    margin: 0;
 }
 
 @media (min-width: 768px) {

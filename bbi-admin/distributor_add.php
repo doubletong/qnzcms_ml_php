@@ -45,6 +45,10 @@ require_once('../config/db.php');
                         <input type="type" class="form-control" id="phone" name="phone" placeholder="">                  
                 </div>
                 <div class="form-group">
+                    <label for="cooperation">商务合作</label>                 
+                        <input type="type" class="form-control" id="cooperation" name="cooperation" placeholder="">                  
+                </div>
+                <div class="form-group">
                     <label for="email">邮箱</label>                 
                         <input type="email" class="form-control" id="email" name="email" placeholder="">                  
                 </div>

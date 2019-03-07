@@ -68,10 +68,15 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="subscriptions.php">
+                            <i class="iconfont icon-mail"></i> <span class="nav-text">邮件订阅</span>                    
+                        </a>
+                    </li> 
+                    <!-- <li>
                         <a href="cases.php">
                             <i class="iconfont icon-antdesign"></i> <span class="nav-text">解决方案</span>                    
                         </a>
-                    </li>
+                    </li> -->
                     <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   

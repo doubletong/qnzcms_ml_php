@@ -10,4 +10,21 @@ $(document).ready(function() {
         var link = $(this).attr("href");
         location.href = link;
     });
+
+    $("#btnsetemail").on("click", function(e) {
+        e.preventDefault();
+        var email = $("#inputEmail").val();
+        if (email.length === 0) {
+            alert("请输入邮箱！");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "subscribe.php?email=" + email,
+                success: function(response) {
+                    alert(response);
+                }
+            });
+        }
+
+    });
 });

@@ -38,7 +38,7 @@ require_once("includes/common.php");
         </div>
         <div class="container s2">
             <div class="content1">
-            <h3 class="se-title"><i class="iconfont icon-icon-fuwuneirong"></i> 整合服务及优势</h3>
+            <h3 class="se-title"><i class="iconfont icon-xuehua"></i> 整合服务及优势</h3>
 
             <div class="box">
             <ul class="list">

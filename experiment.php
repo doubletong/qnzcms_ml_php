@@ -24,7 +24,7 @@ require_once("includes/common.php");
                 <div class="col-lg-6">
                     <div class="des">
                         <div class="icon">
-                            <i class="iconfont icon-icon-tongjifenxiheshujuguanli"></i>
+                            <i class="iconfont icon-anchuang"></i>
                         </div>
                         <h3 class="title">概念验证及关键性临床研究</h3>
                        <p>概念验证研究和关键性临床研究的设计和执行有赖于高水平的统计和医学专家及高效且稳定的临床运营团队。希麦迪整合了关键资源，以实现对此类试验的有力支持。
@@ -38,7 +38,7 @@ require_once("includes/common.php");
         </div>
         <div class="container s2">
             <div class="content1">
-            <h3 class="se-title"><i class="iconfont icon-icon-fuwuneirong"></i> 整合服务及优势</h3>
+            <h3 class="se-title"><i class="iconfont icon-xuehua"></i> 整合服务及优势</h3>
 
             <div class="box">
             <ul class="list">

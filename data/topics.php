@@ -8,4 +8,10 @@ class Topics{
         return $query->fetchAll();
     }
 
+    public function laster_topics(){
+        $query = db::getInstance()->prepare("SELECT * FROM topics ORDER BY added_date DESC limit 4");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
 }
