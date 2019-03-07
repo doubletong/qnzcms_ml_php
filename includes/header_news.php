@@ -1,7 +1,6 @@
 <div class="banner">
     <div class="page-title">
         <h1>最新动态</h1>
-        <h3>RECENT NEWS</h3>
     </div>
 </div>
 <nav class="subnav">

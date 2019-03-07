@@ -35,7 +35,7 @@ $data = $pageClass->fetch_data("superiority");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(2) a").addClass("active");
            $(".mainav li:nth-of-type(2) a").addClass("active");
-           $(".subnav li:nth-of-type(5) a").addClass("active");
+           $(".subnav li:nth-of-type(4) a").addClass("active");
 
            $('.box-default a').click(function(e) {
                 e.preventDefault();

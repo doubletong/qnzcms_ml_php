@@ -326,6 +326,7 @@ body {
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
     font-size: 1rem;
+    background-color: rgb(243, 248, 250)
 }
 
 a {
@@ -4410,23 +4411,21 @@ html {
 }
 
 .topcol {
-    height: 40px;
     text-align: right;
     line-height: 40px;
-}
-
-.topcol .leftcol {
-    text-align: left;
+    color: #999;
+    padding-top: .4rem;
+    display: none;
 }
 
 @media (min-width: 768px) {
-    .topcol .leftcol {
-        text-align: right;
+    .topcol {
+        display: block;
     }
 }
 
 .topcol .social {
-    padding: 0 0 0 1rem;
+    padding: 0;
     margin: 0;
     list-style-type: none;
     display: inline-block;
@@ -4434,19 +4433,21 @@ html {
 
 .topcol .social li {
     display: inline-block;
+    margin-left: .5rem;
 }
 
 .topcol a {
-    color: #fff;
-    margin-left: .5rem;
+    color: #999;
     display: inline-block;
     -webkit-transition: all .2s;
     transition: all .2s;
+    font-size: .875rem;
 }
 
 .topcol a:hover {
     -webkit-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1);
+    color: #00A0E9;
 }
 
 .bx-wrapper {
@@ -4480,7 +4481,7 @@ html {
 
 @media (min-width: 992px) {
     .site-header {
-        height: 6.25rem;
+        height: 120px;
     }
 }
 
@@ -4491,7 +4492,7 @@ html {
 
 @media (min-width: 992px) {
     .site-header .logo {
-        margin-top: 1rem;
+        margin-top: 1.3rem;
     }
 }
 
@@ -4513,6 +4514,15 @@ html {
     .site-header .mainav {
         display: block;
     }
+    .site-header .mainav li:last-child {
+        display: none;
+    }
+}
+
+@media (min-width: 1201px) {
+    .site-header .mainav li:last-child {
+        display: inline-block;
+    }
 }
 
 .site-header .mainav ul {
@@ -4523,7 +4533,7 @@ html {
 
 .site-header .mainav ul li {
     display: inline-block;
-    margin-left: 2rem;
+    margin-left: 1.6rem;
 }
 
 .site-header .mainav ul li a {
@@ -4537,8 +4547,8 @@ html {
 
 @media (min-width: 992px) {
     .site-header .mainav ul li a {
-        height: 6.25rem;
-        line-height: 6.25rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
     }
 }
 
@@ -4549,7 +4559,7 @@ html {
 .site-header .mainav ul li a.active::after {
     content: " ";
     position: absolute;
-    bottom: 2rem;
+    bottom: -0.4rem;
     left: 0;
     width: 100%;
     height: 2px;
@@ -4565,13 +4575,39 @@ html {
 .site-header .mainav ul li a:hover::after {
     content: " ";
     position: absolute;
-    bottom: 2rem;
+    bottom: -0.4rem;
     left: 0;
     width: 100%;
     height: 2px;
     z-index: 100;
     background-image: -webkit-gradient(linear, left top, right top, from(#1ca7de), to(#42d6c6));
     background-image: linear-gradient(-270deg, #1ca7de, #42d6c6);
+}
+
+.searchbox {
+    background-color: rgb(230, 232, 233);
+    width: 160px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.searchbox .textbox {
+    background-color: transparent;
+    border: none;
+    width: 110px;
+    float: left;
+    height: 30px;
+    outline: none;
+    margin-left: 10px;
+}
+
+.searchbox button {
+    background-color: transparent;
+    border: none;
+    width: 26px;
+    height: 30px;
+    margin-right: 5px;
+    color: #999;
 }
 
 
@@ -4641,6 +4677,10 @@ html {
     height: 60px;
 }
 
+.site-header.fixheader .topcol {
+    display: none;
+}
+
 @media (min-width: 992px) {
     .site-header.fixheader .logo {
         margin-top: .5rem;
@@ -4654,9 +4694,9 @@ html {
 }
 
 @media (min-width: 992px) {
-    .site-header.fixheader ul li a {
-        height: 3.75rem;
-        line-height: 3.75rem;
+    .site-header.fixheader .mainav ul li a {
+        height: 60px;
+        line-height: 60px;
     }
 }
 
@@ -5039,9 +5079,78 @@ html {
 
 .site-footer {
     background: #222 url(../img/bot_bg.jpg) no-repeat center top;
-    padding-top: 20px;
+    padding-top: 30px;
     font-size: 0.875rem;
     color: #fff;
+}
+
+.site-footer .bot_logo {
+    margin-bottom: 1.5rem;
+}
+
+.site-footer .emailget {
+    font-size: 16px;
+    margin-bottom: 1.5rem;
+}
+
+.site-footer .emailget label {
+    display: block;
+    margin-bottom: .8rem;
+}
+
+.site-footer .emailget .box {
+    display: flex;
+}
+
+.site-footer .emailget input {
+    border-radius: 4px;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1rem;
+    height: 35px;
+    width: 100%;
+    margin-right: 3px;
+}
+
+.site-footer .emailget button {
+    border-radius: 4px;
+    background-image: -moz-linear-gradient( 90deg, rgb(28, 167, 222) 0%, rgb(66, 214, 198) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(28, 167, 222) 0%, rgb(66, 214, 198) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(28, 167, 222) 0%, rgb(66, 214, 198) 100%);
+    width: 81px;
+    height: 35px;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .site-footer .emailget {
+        text-align: right;
+        font-size: 22px;
+        margin-bottom: 1.5rem;
+    }
+    .site-footer .emailget label {
+        display: inline;
+    }
+    .site-footer .emailget .box {
+        display: inline-block;
+    }
+    .site-footer .emailget input {
+        width: 300px;
+        margin-left: 1rem;
+        height: 43px;
+    }
+    .site-footer .emailget button {
+        height: 43px;
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .site-footer .emailget {
+        font-size: 28px;
+    }
 }
 
 .site-footer dl.bot_nav {
@@ -5074,76 +5183,72 @@ html {
     color: #fff;
 }
 
-.site-footer .contact {
-    margin: 0;
-    padding: 0;
-    line-height: 1.8;
-}
-
-@media (min-width: 768px) {
-    .site-footer .contact span {
-        margin-left: 1rem;
-    }
-}
-
-.site-footer .contact .br1 {
-    display: block;
-}
-
-@media (min-width: 768px) {
-    .site-footer .contact .br1 {
-        display: none;
-    }
-}
-
-.site-footer .social {
-    padding: 0 0 2.5rem;
-    margin: 0;
-    list-style-type: none;
-    text-align: right;
-}
-
-@media (min-width: 576px) {
-    .site-footer .social {
-        padding: 2.5rem 0 0;
-    }
-}
-
-.site-footer .social li {
-    display: inline-block;
-    margin-right: .8rem;
-}
-
-.site-footer .social li .iconfont {
-    font-size: 1.5rem;
-}
-
-.site-footer .totop {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-bottom: 2.5rem;
-    text-align: center;
-    line-height: 1.5rem;
-}
-
-@media (min-width: 576px) {
-    .site-footer .totop {
-        margin-top: 2.5rem;
-    }
-}
-
 .site-footer .botcol {
     padding: 8px 15px;
     text-align: center;
-    background-color: #292929;
-    color: #999;
     font-size: 12px;
+    margin-top: 1rem;
 }
 
 @media (min-width: 576px) {
     .site-footer .botcol {
         font-size: 14px;
+    }
+}
+
+@media (min-width: 992px) {
+    .site-footer .contact {
+        line-height: 1.8;
+    }
+}
+
+.site-footer .qrcode {
+    padding-top: 1rem;
+    position: relative;
+    text-align: center;
+}
+
+.site-footer .totop {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    line-height: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    z-index: 200;
+}
+
+.site-footer .p1,
+.site-footer .p2 {
+    display: inline-block;
+    margin: 0 1rem;
+    width: 5rem;
+}
+
+@media (min-width: 992px) {
+    .site-footer .p1,
+    .site-footer .p2 {
+        width: 7.3rem;
+        position: absolute;
+        bottom: 0;
+        right: 50px;
+        z-index: 100;
+    }
+    .site-footer .p1 {
+        right: 200px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .site-footer .p1,
+    .site-footer .p2 {
+        width: auto;
+        right: 60px;
+    }
+    .site-footer .p1 {
+        right: 260px;
     }
 }
 
@@ -5169,13 +5274,13 @@ html {
     background: #00A0E9 url(../img/banners/about.jpg) no-repeat center top;
     background-size: cover;
     height: 150px;
-    padding-top: 30px;
+    padding-top: 35px;
 }
 
 @media (min-width: 768px) {
     .banner {
         height: 280px;
-        padding-top: 75px;
+        padding-top: 85px;
     }
 }
 
@@ -5199,6 +5304,7 @@ html {
 .banner .page-title h3 {
     font-size: 1rem;
     margin-top: 0;
+    font-weight: lighter;
 }
 
 @media (min-width: 768px) {
@@ -5233,7 +5339,7 @@ html {
 
 @media (min-width: 768px) {
     .page-about .s1 .s-title {
-        font-size: 2.125rem;
+        font-size: 26px;
     }
 }
 
@@ -5351,6 +5457,7 @@ html {
     -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
     margin-bottom: 1rem;
+    background-color: #fff;
 }
 
 .page-about .s3 .person img {
@@ -5473,13 +5580,13 @@ html {
 .page-about .s4 .box {
     margin-bottom: 1rem;
     border-radius: 6px;
-    background-size: contain !important;
+    background-color: #DBEBF1;
 }
 
 @media (min-width: 768px) {
     .page-about .s4 .box {
-        height: 140px;
-        border-radius: 70px;
+        height: 70px;
+        border-radius: 35px;
     }
 }
 
@@ -5496,10 +5603,10 @@ html {
 
 @media (min-width: 768px) {
     .page-about .s4 .box a {
-        height: 140px;
-        border-radius: 70px;
-        font-size: 1.625rem;
-        line-height: 138px;
+        height: 70px;
+        border-radius: 35px;
+        font-size: 20px;
+        line-height: 70px;
         padding: 0 3rem;
     }
 }
@@ -5511,7 +5618,9 @@ html {
 
 @media (min-width: 768px) {
     .page-about .s4 .box a .iconfont {
-        font-size: 1.625rem;
+        font-size: 20px;
+        display: inline-block;
+        transition: all .2s;
     }
 }
 
@@ -5519,11 +5628,11 @@ html {
     color: #fff;
     background-image: -webkit-gradient(linear, left bottom, left top, from(#1ca7de), to(#42d6c6));
     background-image: linear-gradient(0deg, #1ca7de, #42d6c6);
-    opacity: .5;
 }
 
 .page-about .s4 .box a:hover .iconfont {
     color: #fff;
+    transform: rotate(180deg)
 }
 
 .page-about .s5 {
@@ -5566,7 +5675,8 @@ html {
 }
 
 .subnav {
-    background-color: #F1F7FA;
+    background-color: #dbebf1;
+    text-align: center;
 }
 
 .subnav ul {
@@ -5581,7 +5691,7 @@ html {
 
 @media (min-width: 768px) {
     .subnav ul li {
-        margin-right: 60px;
+        margin-right: 37px;
     }
 }
 
@@ -5655,6 +5765,7 @@ html {
     .page-service .des {
         padding: 2rem 3rem 3rem;
         padding-right: 410px;
+        min-height: 260px;
     }
 }
 
@@ -5676,25 +5787,33 @@ html {
     text-align: justify;
 }
 
-.page-service .list {
+.page-service .list,
+.page-case .list {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
 
-.page-service .list>li {
-    padding: 4px 0px 4px 12px;
-    position: relative;
+.page-case .list {
+    margin-left: 2.2rem;
 }
 
-.page-service .list>li::before {
+.page-service .list>li,
+.page-case .list>li {
+    padding: 4px 0px 4px 12px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.page-service .list>li::before,
+.page-case .list>li::before {
     content: " ";
     display: block;
     width: 5px;
     height: 5px;
     border-radius: 50%;
     left: 0;
-    top: 10px;
+    top: 12px;
     position: absolute;
     background-color: #00A0E8;
 }
@@ -5703,23 +5822,28 @@ html {
     margin-top: 10px;
 }
 
-.page-service .list li {
+.page-service .list li,
+.page-case .list li {
     padding-top: 4px;
     padding-bottom: 4px;
 }
 
-.page-service .se-title {
+.page-service .se-title,
+.page-case .se-title {
     font-size: 1.5rem;
     color: #444;
 }
 
 @media (min-width: 768px) {
-    .page-service .se-title {
-        font-size: 2.125rem;
+    .page-service .se-title,
+    .page-case .se-title {
+        font-size: 30px;
+        margin-bottom: 1rem;
     }
 }
 
-.page-service .se-title .iconfont {
+.page-service .se-title .iconfont,
+.page-case .se-title .iconfont {
     font-size: 1.5rem;
     background-image: -webkit-gradient(linear, left 0, right 0, from(#1ca7de), to(#42d6c6));
     -webkit-background-clip: text;
@@ -5728,8 +5852,9 @@ html {
 }
 
 @media (min-width: 768px) {
-    .page-service .se-title .iconfont {
-        font-size: 2.125rem;
+    .page-service .se-title .iconfont,
+    .page-case .se-title .iconfont {
+        font-size: 30px;
     }
 }
 
@@ -5935,43 +6060,48 @@ html {
 .page-case .s1 .des {
     background-image: linear-gradient(-135deg, #1ca7de, #42d6c6);
     color: #fff;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: 2rem 1rem 1rem;
+    box-sizing: border-box;
+}
+
+.page-case .s1 .des p {
+    text-align: justify;
 }
 
 @media (min-width: 992px) {
     .page-case .s1 .des {
-        height: 400px;
+        height: 100%;
         margin-right: -30px;
-        padding-top: 4rem;
+        padding: 2rem 4rem 1rem;
     }
 }
 
 @media (min-width: 1200px) {
     .page-case .s1 .des {
-        height: 480px;
+        height: 100%;
         margin-right: -30px;
-        padding-top: 6rem;
     }
 }
 
 .page-case .s1 .des h3.title {
     text-align: center;
     font-size: 1.5rem;
+    margin: 0;
 }
 
 @media (min-width: 992px) {
     .page-case .s1 .des h3.title {
-        font-size: 2.125rem;
+        font-size: 30px;
     }
 }
 
 .page-case .s1 .des .icon {
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .page-case .s1 .des .icon .iconfont {
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 
 .page-case .s1 .des ul {
@@ -5989,15 +6119,23 @@ html {
     margin-bottom: 8px;
 }
 
+.page-case .s1 .p1 {
+    display: block;
+    width: 100%;
+}
+
 @media (min-width: 992px) {
     .page-case .s1 .p1 {
-        height: 400px;
+        width: 450px;
+        height: 280px;
+        object-fit: cover;
     }
 }
 
 @media (min-width: 1200px) {
     .page-case .s1 .p1 {
-        height: 480px;
+        width: 540px;
+        height: 280px;
     }
 }
 
@@ -6421,17 +6559,18 @@ html {
 
 .page-jion .s1 .title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .page-jion .s1 .title h2 {
-    font-size: 1.5rem;
+    font-size: 20px;
     color: #444;
+    margin-bottom: 0;
 }
 
 @media (min-width: 992px) {
     .page-jion .s1 .title h2 {
-        font-size: 2.125rem;
+        font-size: 24px;
     }
 }
 
@@ -6450,38 +6589,44 @@ html {
     }
 }
 
+.page-jion .s1 .jionus {
+    background: url(../img/jion_bg.jpg) no-repeat center top;
+    background-size: 100% auto;
+}
+
 .page-jion .s1 .text .item {
     margin: 0 -15px;
-    background: url(../img/j1_bg.jpg) no-repeat center top;
-    height: 770px;
+    height: 440px;
     color: #fff;
-    padding: 430px 15px 15px;
+    padding: 260px 15px 15px;
     text-align: justify;
 }
 
-.page-jion .s1 .text .item.item1 {
-    background-image: url(../img/j2_bg.jpg);
-}
-
-.page-jion .s1 .text .item.item2 {
-    background-image: url(../img/j3_bg.jpg);
-}
-
-.page-jion .s1 .text .item.item3 {
-    background-image: url(../img/j5_bg.jpg);
-}
-
-.page-jion .s1 .text .item.item4 {
-    background-image: url(../img/j4_bg.jpg);
-}
-
 .page-jion .s1 .text .item h3 {
-    font-size: 1.625rem;
+    font-size: 16px;
 }
 
 .page-jion .s1 .text .item p {
     line-height: 1.8;
-    font-size: 1rem;
+    font-size: 12px;
+}
+
+@media (min-width: 1201px) {
+    .page-jion .s1 .text .item {
+        margin: 0 -15px;
+        height: 530px;
+        color: #fff;
+        padding: 270px 15px 15px;
+        text-align: justify;
+        font-size: 16px;
+    }
+    .page-jion .s1 .text .item h3 {
+        font-size: 20px;
+    }
+    .page-jion .s1 .text .item p {
+        line-height: 1.8;
+        font-size: 1rem;
+    }
 }
 
 .page-jion .s1 .postlist {
@@ -6489,7 +6634,7 @@ html {
 }
 
 .page-jion .s1 .postlist .post {
-    margin-bottom: 2rem;
+    margin-bottom: 30px;
 }
 
 .page-jion .s1 .postlist .post .post-header {
@@ -6498,12 +6643,13 @@ html {
     border-left: 4px solid #00A0E9;
     -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 @media (min-width: 992px) {
     .page-jion .s1 .postlist .post .post-header {
-        height: 97px;
-        line-height: 65px;
+        height: 60px;
+        line-height: 30px;
     }
 }
 
@@ -6511,7 +6657,7 @@ html {
     padding-left: 1rem;
     color: #444;
     padding-right: 1rem;
-    font-size: 1.25rem;
+    font-size: 20px;
     margin-bottom: .5rem;
 }
 
@@ -6627,7 +6773,7 @@ html {
 
 @media (min-width: 768px) {
     .page-contact .s1 .contact h3 {
-        font-size: 2.125rem;
+        font-size: 26px;
     }
 }
 
@@ -6644,7 +6790,7 @@ html {
 
 @media (min-width: 992px) {
     .page-contact .s1 .contact ul li {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 

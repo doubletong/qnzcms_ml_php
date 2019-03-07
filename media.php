@@ -34,10 +34,27 @@ $topicses = $topicsClass->fetch_all();
                 <div class="box">
                     <div class="row">
                         <div class="col-lg-auto">
-                            <div class="pubdate">
-                                <div class="date">09.20-24</div>
-                                <div class="year">2018</div>
+                        <div class="pubdate">
+                        <div class="row">
+                        <div class="col"> 
+                            
+                        <div class="date">                        
+                            <?php echo date('m.d',$data['startDate']) ;?></div>
+                                <div class="year"><?php echo date('Y',$data['startDate']) ;?></div>
+                           </div>
+                           <div class="col-auto">
+                           <div class="date">-</div>
+                           </div>
+                        <div class="col">
+                        <div class="date">     
+                      
+                            <?php echo date('m.d',$data['endDate']) ;?></div>
+                                <div class="year"><?php echo date('Y',$data['endDate']) ;?></div>
+                                
+                          
                             </div>
+                        </div>
+                        </div>
                         </div>
                         <div class="col-lg">
                             <div class="des">

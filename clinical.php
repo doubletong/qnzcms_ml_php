@@ -34,7 +34,7 @@ $data = $pageClass->fetch_data("clinical");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(3) a").addClass("active");
            $(".mainav li:nth-of-type(3) a").addClass("active");
-           $(".subnav li:nth-of-type(4) a").addClass("active");
+           $(".subnav li:nth-of-type(3) a").addClass("active");
         });
     </script>
 </body>

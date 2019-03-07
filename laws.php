@@ -35,7 +35,7 @@ $data = $pageClass->fetch_data("laws");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(3) a").addClass("active");
            $(".mainav li:nth-of-type(3) a").addClass("active");
-           $(".subnav li:nth-of-type(2) a").addClass("active");
+           $(".subnav li:nth-of-type(1) a").addClass("active");
         });
     </script>
 </body>

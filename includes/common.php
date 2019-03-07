@@ -1,6 +1,6 @@
 <?php
 
-define('SITEPATH', 'http://xmd.heiniaozhi.cn');
+define('SITEPATH', 'http://tzgcms.com:8888');
 define('SITENAME', '希麦迪');
 
 // Set default timezone

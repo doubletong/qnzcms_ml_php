@@ -3,31 +3,39 @@
             <div class="bot_logo">
                 <img src="img/logo_bot.png" alt="logo">
             </div>
+            <form class="emailget">
+                <label>为您提供更多内容</label> 
+                <div class="box">
+                    <input type="email" name="email" placeholder="您的邮箱" />
+                    <button type="submit">提交</button>
+                </div>
+            </form>
             <div class="row">
                 <div class="col">
                     <dl class="bot_nav">
                         <dt>关于我们</dt>
                         <dd><a href="/about">公司简介</a></dd>
-                        <dd><a href="/vision">企业愿景</a></dd>
+                        <!-- <dd><a href="/vision">企业愿景</a></dd> -->
                         <dd><a href="/team">核心团队</a></dd>
                         <dd><a href="/advisor">专家顾问</a></dd>
                         <dd><a href="/superiority">我们的优势</a></dd>
-                        <dd><a href="/culture">我们的文化</a></dd>
+                        <!-- <dd><a href="/culture">我们的文化</a></dd> -->
                     </dl>
                 </div>
                 <div class="col">
                     <dl class="bot_nav">
                         <dt>服务平台</dt>
-                        <dd><a href="/ectd">eCTD培训</a></dd>
+                        <!-- <dd><a href="/ectd">eCTD培训</a></dd> -->
                         <dd><a href="/laws">法规注册</a></dd>
                         <dd><a href="/medicine">医学事物</a></dd>
                         <dd><a href="/clinical">临床监查和项目管理</a></dd>
-                        <dd><a href="/statistics">统计分析和数据整理</a></dd>
-                        <dd><a href="/biologic">生物样本分析</a></dd>                
+                        <dd><a href="/trials">医疗器械临床试验</a></dd>
+                        <dd><a href="/statistics">数据管理和统计分析</a></dd>
+                        <dd><a href="/biologic">生物样本分析</a></dd>         
+                        <dd><a href="/pharmacovigilance">药物警戒</a></dd>           
                         <dd><a href="/train">专业培训</a></dd>
                     </dl>
                 </div>
-
                
                 <!-- <div class="col">
                     <dl class="bot_nav">
@@ -40,12 +48,16 @@
                     <dl class="bot_nav">
                         <dt>解决方案</dt>
                         <dd><a href="/strategy">药物临床开发策略</a></dd>
-                        <dd><a href="/channel">药品注册路径和策略</a></dd>
+                        <dd><a href="/declare">中美双报</a></dd>
+                        <dd><a href="/development">新药早期临床研究</a></dd>
+                        <dd><a href="/experiment">概念验证及关键性临床研究</a></dd>           
+                        <dd><a href="/instrument">医疗器械</a></dd>
+                        <!-- <dd><a href="/channel">药品注册路径和策略</a></dd>
                         <dd><a href="/experiment">药物临床试验统计</a></dd>
-                        <dd><a href="/development">新药早期临床开发</a></dd>
+                        <dd><a href="/development">新药早期临床开发</a></dd> -->
                         <dd><a href="/equivalence">生物等效性试验</a></dd>                      
                     </dl>
-                 
+                    
                 </div>
                 <div class="col">
                     <dl class="bot_nav">
@@ -68,33 +80,28 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="contact">
-                        <p>电话：+86-25-5870782 <span>传真：+86-25-58707762</span><br> 邮箱：info@crmedicon.com
-                            <br> 地址：南京市江宁区科学园芝兰路18号 <br class="br1"><span>邮编：210001 </span></p>
+            <div class="row c001">
+                <div class="col-lg-auto">
+                    <div class="row contact">
+                        <div class="col-sm-auto">                      
+                                电话：+86-25-5870782 <br> 邮箱：info@crmedicon.com                 
+                        </div>
+                        <div class="col-sm">                          
+                            传真：+86-25-58707762<br> 
+                                地址：南京市江宁区科学园芝兰路18号 <span>邮编：210001 </span>                        
+                        </div>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <ul class="social">
-                        <li>
-                            <a href="#"><i class="iconfont icon-sina-square"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="weixincode"><i class="iconfont icon-weixin-square"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="iconfont icon-linkedin-square"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col col-sm-1 text-right">
+                <div class="col-lg text-right qrcode">
+                    <img src="img/qrcode_1.png" alt="" class="p1"/>
+                    <img src="img/qrcode_2.png" alt="" class="p2"/>
                     <a href="javascript:void(0);" class="bg-linear totop" id="toTop"><i class="iconfont icon-arrowtop"></i></a>
                 </div>
+             
             </div>
         </div>
         <div class="container-fluid botcol">
-            Copyright @ 2018南京希麦迪医药科技有限公司版权所有 Design by：HOLY荷勒
+            Copyright @ 2018南京希麦迪医药科技有限公司版权所有 Design by：<a href="http://www.inholy.com" target="_blank">HOLY荷勒</a>
         </div>
     </footer>
 

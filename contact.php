@@ -25,7 +25,7 @@ $dis = $disClass->fetch_all();
         <div class="banner">
             <div class="page-title">
                 <h1>联系我们</h1>
-                <h3>CONTACT US</h3>
+        
             </div>
         </div>
 

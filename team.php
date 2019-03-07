@@ -64,7 +64,7 @@ $teams = $teamClass->fetch_category("核心团队");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(2) a").addClass("active");
            $(".mainav li:nth-of-type(2) a").addClass("active");
-           $(".subnav li:nth-of-type(3) a").addClass("active");
+           $(".subnav li:nth-of-type(2) a").addClass("active");
         });
     </script>
 </body>

@@ -35,7 +35,7 @@ $data = $pageClass->fetch_data("train");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(3) a").addClass("active");
            $(".mainav li:nth-of-type(3) a").addClass("active");
-           $(".subnav li:nth-of-type(7) a").addClass("active");
+           $(".subnav li:nth-of-type(8) a").addClass("active");
         });
     </script>
 </body>

@@ -35,3 +35,5 @@ CKEDITOR.editorConfig = function(config) {
     // Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
 };
+CKEDITOR.dtd.$removeEmpty.span = false;
+CKEDITOR.dtd.$removeEmpty.i = false;

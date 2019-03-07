@@ -4,7 +4,7 @@ require_once("config/db.php");
 require_once("data/page.php");
 
 $pageClass = new Page();
-$data = $pageClass->fetch_data("medicine");
+$data = $pageClass->fetch_data("trials");
 
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ $data = $pageClass->fetch_data("medicine");
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(3) a").addClass("active");
            $(".mainav li:nth-of-type(3) a").addClass("active");
-           $(".subnav li:nth-of-type(2) a").addClass("active");
+           $(".subnav li:nth-of-type(7) a").addClass("active");
         });
     </script>
 </body>

@@ -137,14 +137,14 @@ $knowledges = $articleClass->laster_articles();
             <nav class="newnav">
                 <ul>
                     <li><a href="#" class="active">新闻报道</a></li>
-                    <li><a href="meeting.html">会议信息发布</a></li>
-                    <li><a href="media.html">媒体关注</a></li>
+                    <li><a href="/meeting">会议信息发布</a></li>
+                    <li><a href="/media">媒体关注</a></li>
                 </ul>
             </nav>
             <div class="row">
             <?php   foreach($knowledges as $klg){ ?>
                 <div class="col-sm-6 col-lg-4">
-                    <a href="article/detail-<?php echo $klg['id'];?>.html" class="item">
+                    <a href="news/detail-<?php echo $klg['id'];?>" class="item">
                         <h3><?php echo $klg['title'];?></h3>
                         <p class="note">TIME/<?php echo date('Y-m-d',$klg['pubdate']) ;?></p>
                         <div class="box">

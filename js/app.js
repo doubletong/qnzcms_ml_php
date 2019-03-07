@@ -5,4 +5,9 @@ $(document).ready(function() {
         $(this).toggleClass("on");
         $("#overmenu").slideToggle();
     });
+    $(".subnav a").on("touchstart", function(e) {
+        "use strict";
+        var link = $(this).attr("href");
+        location.href = link;
+    });
 });
