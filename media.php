@@ -36,7 +36,7 @@ $topicses = $topicsClass->fetch_all();
                         <div class="col-lg-auto">
                         <div class="pubdate">
                         <div class="row">
-                        <div class="col"> 
+                        <div class="col-auto"> 
                             
                         <div class="date">                        
                             <?php echo date('m.d',$data['startDate']) ;?></div>
@@ -45,13 +45,10 @@ $topicses = $topicsClass->fetch_all();
                            <div class="col-auto">
                            <div class="date">-</div>
                            </div>
-                        <div class="col">
-                        <div class="date">     
-                      
+                        <div class="col-auto">
+                            <div class="date">                      
                             <?php echo date('m.d',$data['endDate']) ;?></div>
-                                <div class="year"><?php echo date('Y',$data['endDate']) ;?></div>
-                                
-                          
+                                <div class="year"><?php echo date('Y',$data['endDate']) ;?></div>                          
                             </div>
                         </div>
                         </div>

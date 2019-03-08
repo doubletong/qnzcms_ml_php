@@ -60,7 +60,7 @@ $knowledges = $articleClass->laster_articles();
             <div class="cases row">
                 <div class="col-md-6 col-lg-3">
                   
-                    <a class="des" href="/laws">
+                    <a class="des d1" href="/laws">
                         <div class="icon"><i class="iconfont icon-faguizhuce"></i></div>
                         <h3>法规注册</h3>
                         <p>希麦迪法规注册团队由超过18年经验的业内专家领衔...<i>了解更多</i></p>
@@ -68,16 +68,16 @@ $knowledges = $articleClass->laster_articles();
                 </div>
                 <div class="col-md-6 col-lg-3">
                   
-                    <a class="des">
+                    <a class="des d2">
                         <div class="icon"><i class="iconfont icon-yixueshiwu"></i></div>
                         <h3>医学事务</h3>
                       
                         <p>希麦迪医学事务部依托医学专家和撰写人员极为丰富...<i>了解更多</i></p>
-             </a>
+                </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
                   
-                    <a class="des">
+                    <a class="des d3">
                         <div class="icon"><i class="iconfont icon-projects"></i></div>
                         <h3>临床监查和项目管理</h3>
                         <p>拥希麦迪的临床操作部门，人员规模近50，并持续高速...<i>了解更多</i></p>
@@ -85,7 +85,7 @@ $knowledges = $articleClass->laster_articles();
                 </div>
                 <div class="col-md-6 col-lg-3">
                   
-                  <a class="des">
+                  <a class="des d4">
                       <div class="icon"><i class="iconfont icon-test"></i></div>
                       <h3>医疗器械临床试验</h3>
                         <p>希麦迪的数据管理和统计部门，从质量标准、中美...<i>了解更多</i></p>
@@ -93,7 +93,7 @@ $knowledges = $articleClass->laster_articles();
               </div>
               <div class="col-md-6 col-lg-3">
                   
-                  <a class="des">
+                  <a class="des d5">
                       <div class="icon"><i class="iconfont icon-chart"></i></div>
                       <h3>数据管理和统计分析</h3>
                       <p>希麦迪的数据管理和统计部门，从质量标准、中美...<i>了解更多</i></p>
@@ -101,7 +101,7 @@ $knowledges = $articleClass->laster_articles();
               </div>
               <div class="col-md-6 col-lg-3">
                 
-                  <a class="des">
+                  <a class="des d6">
                       <div class="icon"><i class="iconfont icon-yangben"></i></div>
                       <h3>生物样本分析</h3>                    
                       <p>希麦迪投入大量资金，在南京建立了设备先进、管理标准...<i>了解更多</i></p>
@@ -109,7 +109,7 @@ $knowledges = $articleClass->laster_articles();
               </div>
               <div class="col-md-6 col-lg-3">
                 
-                  <a class="des">
+                  <a class="des d7">
                       <div class="icon"><i class="iconfont icon-jingjie"></i></div>
                       <h3>药物警戒</h3>
                       <p>希希麦迪团队提供基于先进技术的药物警戒解决方案...<i>了解更多</i></p>
@@ -117,7 +117,7 @@ $knowledges = $articleClass->laster_articles();
               </div>
               <div class="col-md-6 col-lg-3">
                 
-                <a class="des">
+                <a class="des d8">
                     <div class="icon"><i class="iconfont icon-peixun"></i></div>
                     <h3>专业培训</h3>
                       <p>希麦希麦迪专家团队均为业内顶级的专家，从临床前研...<i>了解更多</i></p>
@@ -199,7 +199,7 @@ $knowledges = $articleClass->laster_articles();
                     </div>
                     <div class="nlist">
                     <?php   foreach($meetings as $klg){ ?>            
-                        <a href="news/detail-<?php echo $klg['id'];?>" class="item">
+                        <a href="meeting/detail-<?php echo $klg['id'];?>" class="item">
                             <h4><?php echo $klg['title'];?></h4>
                             <p><?php echo mb_substr($klg['summary'],0,38,'utf-8')."……";?></p>           
                         </a>      
@@ -215,7 +215,7 @@ $knowledges = $articleClass->laster_articles();
                     <div class="nlist">
                     <?php   foreach($topicses as $klg){ ?>
             
-                    <a href="news/detail-<?php echo $klg['id'];?>" class="item">
+                    <a href="media/list-<?php echo $klg['id'];?>" class="item">
                         <h4><?php echo $klg['title'];?></h4>
                     
                     </a>      
