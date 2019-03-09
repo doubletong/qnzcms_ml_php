@@ -4494,6 +4494,9 @@ html {
     .site-header .logo {
         margin-top: 1.3rem;
     }
+    .bx-wrapper {
+        margin-bottom: 80px;
+    }
 }
 
 .site-header .logo img {
@@ -4817,7 +4820,7 @@ html {
 
 @media (min-width: 768px) {
     .page-home .content {
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -4827,11 +4830,11 @@ html {
 }
 
 .page-home .cases .des {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 1rem;
     border: #00A0E8 solid 1px;
     -webkit-transition: all .2s;
     transition: all .2s;
-    margin: 0 -10px 10px;
+    margin: 0 -11px 8px;
     display: block;
 }
 
@@ -4840,7 +4843,7 @@ html {
 }
 
 .page-home .cases .des .iconfont {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     background-image: -webkit-gradient(linear, left 0, right 0, from(#1ca7de), to(#42d6c6));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -4853,6 +4856,7 @@ html {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 1rem;
 }
 
 .page-home .cases .des p {
@@ -4861,7 +4865,7 @@ html {
 
 @media (min-width: 768px) {
     .page-home .cases .des h3 {
-        font-size: 26px;
+        font-size: 24px;
     }
 }
 
@@ -4948,6 +4952,9 @@ html {
 }
 
 @media (min-width: 992px) {
+    .section-title {
+        margin-bottom: 3.5rem;
+    }
     .page-home .s2 .item {
         height: 200px;
     }
@@ -4986,7 +4993,7 @@ html {
 
 .page-home .s3 .section-title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .page-home .s3 .setitle {
@@ -5365,12 +5372,12 @@ html {
 }
 
 .page-about {
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
     .page-about {
-        padding-bottom: 5rem;
+        padding-bottom: 2.4rem;
     }
 }
 
@@ -5383,13 +5390,13 @@ html {
 }
 
 .page-about .s1 .s-title {
-    font-size: 1.75rem;
+    font-size: 20px;
     color: #444;
 }
 
 @media (min-width: 768px) {
     .page-about .s1 {
-        padding-top: 3rem;
+        padding-top: 1.5rem;
     }
     .page-about .s1 .s-title {
         font-size: 26px;
@@ -5408,18 +5415,18 @@ html {
 }
 
 .page-about .s1 .tongji {
-    height: 200px;
+    height: 175px;
     background: #00A0E9 url(../img/about_s1_bg.jpg) no-repeat center center;
     background-size: cover;
     color: #fff;
     text-align: center;
-    padding-top: 4rem;
-    margin: 3rem -15px;
+    padding-top: 3rem;
+    margin: 1.8rem -15px;
 }
 
 @media (min-width: 768px) {
     .page-about .s1 .tongji {
-        height: 250px;
+        height: 200px;
         border-radius: 6px;
         margin-left: 0;
         margin-right: 0;
@@ -5462,6 +5469,7 @@ html {
 @media (min-width: 768px) {
     .page-about .s1 .tongji p {
         font-size: 1rem;
+        margin-top: .3rem;
     }
 }
 
@@ -5503,7 +5511,7 @@ html {
 }
 
 .page-about .s3 {
-    padding-top: 4rem;
+    padding-top: 1.5rem;
 }
 
 .page-about .s3 .person {
@@ -5519,6 +5527,9 @@ html {
 }
 
 @media (min-width: 768px) {
+    .page-about .s3 {
+        padding-top: 3rem;
+    }
     .page-about .s3 .person img {
         width: auto;
     }
@@ -5602,12 +5613,13 @@ html {
 }
 
 .page-about .s4 {
-    padding-top: 4rem;
+    padding-top: 1.5rem;
     padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .page-about .s4 {
+        padding-top: 3rem;
         padding-bottom: 5rem;
     }
 }
@@ -5655,6 +5667,8 @@ html {
     -webkit-transition: all .2s;
     transition: all .2s;
     overflow: hidden;
+    position: relative;
+    padding-left: 3rem;
 }
 
 @media (min-width: 768px) {
@@ -5663,20 +5677,29 @@ html {
         border-radius: 35px;
         font-size: 20px;
         line-height: 70px;
-        padding: 0 3rem;
+        padding: 0 2rem 0 5.4rem;
     }
 }
 
 .page-about .s4 .box a .iconfont {
     color: #00A0E9;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    position: absolute;
+    left: 1rem;
+    top: .7rem;
+    z-index: 100;
 }
 
 @media (min-width: 768px) {
     .page-about .s4 .box a .iconfont {
-        font-size: 20px;
+        font-size: 28px;
         display: inline-block;
         transition: all .2s;
+        position: absolute;
+        left: 2rem;
+        top: 0rem;
+        z-index: 100;
     }
 }
 
@@ -5793,12 +5816,12 @@ html {
 }
 
 .page-service {
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
 }
 
 @media (min-width: 768px) {
     .page-service {
-        padding-bottom: 5rem;
+        padding-bottom: 2rem;
     }
 }
 
@@ -5814,7 +5837,7 @@ html {
     background-image: url(../img/3-1.png), linear-gradient(-270deg, #1ca7de, #42d6c6);
     background-repeat: no-repeat, no-repeat;
     background-position: right -120px top -70px, left top;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 @media (min-width: 992px) {
@@ -5895,6 +5918,7 @@ html {
     .page-case .se-title {
         font-size: 30px;
         margin-bottom: 1rem;
+        margin-top: 0;
     }
 }
 
@@ -5912,10 +5936,6 @@ html {
     .page-case .se-title .iconfont {
         font-size: 30px;
     }
-}
-
-.page-service .s1 {
-    padding-top: 4rem;
 }
 
 .page-service .s1 .content1 .box {
@@ -5949,10 +5969,6 @@ html {
     .page-service .s1 .content1 .box .t1 {
         font-size: 2rem;
     }
-}
-
-.page-service .s2 {
-    padding-top: 4rem;
 }
 
 .page-service .s2 .des {
@@ -5995,10 +6011,6 @@ html {
     padding: 5px;
 }
 
-.page-service .s3 {
-    padding-top: 4rem;
-}
-
 .page-service .s3 .des {
     background-image: url(../img/3-3.png), -webkit-gradient(linear, left top, right top, from(#1ca7de), to(#42d6c6));
     background-image: url(../img/3-3.png), linear-gradient(-270deg, #1ca7de, #42d6c6);
@@ -6015,11 +6027,33 @@ html {
 }
 
 .page-service .s3 .content1 .box {
-    padding: 1rem 2rem;
+    padding: 0rem 2rem 1.5rem;
 }
 
-.page-service .s4 {
-    padding-top: 4rem;
+.page-case .s1,
+.page-service .s1,
+.page-service .s2,
+.page-service .s3,
+.page-service .s4,
+.page-service .s5,
+.page-service .s6,
+.page-service .s7 {
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .page-case .s1,
+    .page-service .s1,
+    .page-service .s2,
+    .page-service .s3,
+    .page-service .s4,
+    .page-service .s5,
+    .page-service .s6,
+    .page-service .s7 {
+        padding-top: 3rem;
+        margin-bottom: 2.5rem;
+    }
 }
 
 .page-service .s4 .des {
@@ -6028,11 +6062,11 @@ html {
 }
 
 .page-service .s4 .content1 .box {
-    padding: 1rem 2rem;
+    padding: 0 2rem 1.5rem;
 }
 
-.page-service .s5 {
-    padding-top: 4rem;
+.page-service .s4 .content1 .box>p:first-child {
+    margin-top: .4rem;
 }
 
 .page-service .s5 .des {
@@ -6041,12 +6075,7 @@ html {
 }
 
 .page-service .s5 .content1 .box {
-    padding: 1rem 2rem;
-}
-
-.page-service .s6 {
-    padding-top: 4rem;
-    margin-bottom: 3rem;
+    padding: 0rem 2rem 1.5rem;
 }
 
 .page-service .s6 .des {
@@ -6055,11 +6084,7 @@ html {
 }
 
 .page-service .s6 .content1 .box {
-    padding: 1rem 2rem;
-}
-
-.page-service .s7 {
-    padding-top: 4rem;
+    padding: 0rem 2rem 1.5rem;
 }
 
 .page-service .s7 .des {
@@ -6068,7 +6093,7 @@ html {
 }
 
 .page-service .s7 .content1 .box {
-    padding: 1rem 2rem;
+    padding: 0rem 2rem 1.5rem;
 }
 
 .page-service .h-list1 {
@@ -6137,22 +6162,17 @@ html {
 }
 
 .page-case {
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
     .page-case {
-        padding-bottom: 5rem;
+        padding-bottom: 2.6rem;
     }
 }
 
 .page-case .banner {
     background-image: url(../img/banners/case.jpg);
-}
-
-.page-case .s1 {
-    padding-top: 4rem;
-    margin-bottom: 5rem;
 }
 
 .page-case .s1 .des {
@@ -6238,7 +6258,7 @@ html {
 }
 
 .page-case .s2 .se-title {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .page-case .s2 .se-title h2 {
@@ -6261,12 +6281,12 @@ html {
 }
 
 .page-news {
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
     .page-news {
-        padding-bottom: 5rem;
+        padding-bottom: 3rem;
     }
 }
 
@@ -6275,7 +6295,7 @@ html {
 }
 
 .page-news .s1 {
-    padding-top: 4rem;
+    padding-top: 3rem;
 }
 
 .page-news .s1 .box {
@@ -6434,7 +6454,7 @@ html {
 }
 
 .page-news .s2 {
-    padding-top: 4rem;
+    padding-top: 3rem;
 }
 
 .page-news .s2 .meetinglist {
@@ -6644,7 +6664,7 @@ html {
 }
 
 .page-jion {
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
 }
 
 .page-search {
@@ -6670,7 +6690,7 @@ html {
 
 @media (min-width: 768px) {
     .page-jion {
-        padding-bottom: 5rem;
+        padding-bottom: 3rem;
     }
 }
 
@@ -6860,12 +6880,12 @@ html {
 }
 
 .page-contact {
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
     .page-contact {
-        padding-bottom: 5rem;
+        padding-bottom: 1rem;
     }
 }
 
@@ -6874,7 +6894,7 @@ html {
 }
 
 .page-contact .s1 {
-    padding-top: 4rem;
+    padding-top: 3rem;
 }
 
 .page-contact .s1 .contact {
