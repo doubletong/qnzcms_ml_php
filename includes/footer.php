@@ -27,7 +27,7 @@
                         <dt>服务平台</dt>
                         <!-- <dd><a href="/ectd">eCTD培训</a></dd> -->
                         <dd><a href="/laws">法规注册</a></dd>
-                        <dd><a href="/medicine">医学事物</a></dd>
+                        <dd><a href="/medicine">医学事务</a></dd>
                         <dd><a href="/clinical">临床监查和项目管理</a></dd>
                         <dd><a href="/trials">医疗器械临床试验</a></dd>
                         <dd><a href="/statistics">数据管理和统计分析</a></dd>

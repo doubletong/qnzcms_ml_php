@@ -35,7 +35,7 @@ $jobs = $JobClass->fetch_all();
                 <h2>
                     为什么选择希麦迪？
                 </h2>
-                <p>加入希麦迪！一个让你能实现个人和事业共同发展的优秀平台，实现员工和企业的中国梦。</p>
+                <p>加入希麦迪！一个让你能实现个人和事业共同发展的优秀平台，实现员工和企业的梦想。</p>
             </header>
             <div class="container-fluid text">
                 <div class="row jionus">

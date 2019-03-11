@@ -7,7 +7,7 @@
     <ul class="container">
         <!-- <li><a href="/ectd">eCTD培训</a></li> -->
         <li><a href="/laws">法规注册</a></li>
-        <li><a href="/medicine">医学事物</a></li>
+        <li><a href="/medicine">医学事务</a></li>
         <li><a href="/clinical">临床监查和项目管理</a></li>
         <li><a href="/trials">医疗器械临床试验 </a></li>
         <li><a href="/statistics">数据管理和统计分析 </a></li>
