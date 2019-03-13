@@ -15,7 +15,7 @@ $data = $pageClass->fetch_data("pharmacovigilance");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "医学事物-".SITENAME; ?></title>    
+    <title><?php echo "药物警戒-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>

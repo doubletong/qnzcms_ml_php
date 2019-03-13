@@ -1,6 +1,10 @@
 <?php
 require_once("includes/common.php");
+require_once("config/db.php");
+require_once("data/page.php");
 
+$pageClass = new Page();
+$data = $pageClass->fetch_data("experiment");
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +23,8 @@ require_once("includes/common.php");
 <?php require_once('includes/header.php') ?>
 <div class="page-case">
     <?php require_once('includes/header_case.php') ?>
-    <div class="container s1">
+    <?php echo $data["content"];?>  
+    <!-- <div class="container s1">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="des">
@@ -42,11 +47,7 @@ require_once("includes/common.php");
 
             <div class="box">
             <ul class="list">
-                <li>行业顶级的统计师团队。概念验证试验和关键性试验的设计往往是多样化的，采用何种设计很大程度依赖于统计学。希麦迪的统计师团队完成过超过50个向FDA
-
-
-</li>
-                <li>递交的NDA申报，能够在试验设计、执行以及报告阶段提供权威咨询；
+                <li>行业顶级的统计师团队。概念验证试验和关键性试验的设计往往是多样化的，采用何种设计很大程度依赖于统计学。希麦迪的统计师团队完成过超过50个向FDA递交的NDA申报，能够在试验设计、执行以及报告阶段提供权威咨询；
 
 
 </li>
@@ -65,7 +66,7 @@ require_once("includes/common.php");
             </ul>
             </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <?php require_once('includes/footer.php') ?>

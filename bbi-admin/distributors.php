@@ -11,7 +11,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY importance,  id DESC ");
+    $pagination->rowCount("SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY importance ,  id DESC ");
     $pagination->config(6, 10);
     $sql = "SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);

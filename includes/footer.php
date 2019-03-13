@@ -84,7 +84,7 @@
                 <div class="col-lg-auto">
                     <div class="row contact">
                         <div class="col-sm-auto">                      
-                                电话：+86-25-5870782 <br> 邮箱：info@crmedicon.com                 
+                                电话：+86-25-58707829 <br> 邮箱：info@crmedicon.com                 
                         </div>
                         <div class="col-sm">                          
                             传真：+86-25-58707762<br> 
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="container-fluid botcol">
-            Copyright @ 2018南京希麦迪医药科技有限公司版权所有 Design by：<a href="http://www.inholy.com" target="_blank">HOLY荷勒</a>
+            Copyright @ 2018南京希麦迪医药科技有限公司版权所有 <a href="http://www.inholy.com" target="_blank">Design by：HOLY荷勒</a>
         </div>
     </footer>
 

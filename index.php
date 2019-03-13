@@ -133,19 +133,19 @@ $knowledges = $articleClass->laster_articles();
                 <div class="row">
                     <div class="col-6 col-lg-2">
                         <div class="item">
-                            <div class="icon"><i class="iconfont icon-icon-yaowulinchuangkaifacelve"></i></div>
+                            <div class="icon"><i class="iconfont icon-celue"></i></div>
                             <p>新药临床开发策略</p>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="item">
-                            <div class="icon"><i class="iconfont icon-icon-zhongmeishuangbao"></i></div>
+                            <div class="icon"><i class="iconfont icon-shuangbao"></i></div>
                             <p>中美双报</p>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="item">
-                            <div class="icon"><i class="iconfont icon-icon-xinyaozaoqilinchuangkaifa"></i></div>
+                            <div class="icon"><i class="iconfont icon-yanjiu"></i></div>
                             <p>新药早期临床研究</p>
                         </div>
                     </div>
@@ -158,13 +158,13 @@ $knowledges = $articleClass->laster_articles();
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="item">
-                            <div class="icon"><i class="iconfont icon-icon-yiliaoqixie"></i></div>
+                            <div class="icon"><i class="iconfont icon-qixie"></i></div>
                             <p>医疗器械</p>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="item">
-                            <div class="icon"><i class="iconfont icon-icon-shengwudengxiaoxingshiyan"></i></div>
+                            <div class="icon"><i class="iconfont icon-shiyan"></i></div>
                             <p>生物等效性试验</p>
                         </div>
                     </div>
