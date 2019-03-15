@@ -4534,11 +4534,16 @@ html {
     list-style-type: none;
 }
 
-.site-header .mainav ul li {
+.site-header .mainav>ul>li {
     display: inline-block;
     margin-left: 1.6rem;
     position: relative;
     height: 73px;
+}
+
+.fixheader .mainav>ul>li {
+    height: 60px;
+    padding-top: .6rem;
 }
 
 .site-header .mainav ul li .subnav {
@@ -4553,6 +4558,10 @@ html {
     background-color: #00A0E9;
     margin-left: -80px;
     transition: all .2s;
+}
+
+.fixheader .mainav ul li .subnav {
+    top: 60px;
 }
 
 .site-header .mainav ul li .subnav dd {
@@ -4735,17 +4744,17 @@ html {
 }
 
 @media (min-width: 992px) {
-    .site-header.fixheader .mainav ul li a {
+    .site-header.fixheader .maina>ul>li>a {
         height: 60px;
         line-height: 60px;
     }
 }
 
-.site-header.fixheader ul li a.active::after {
+.site-header.fixheader ul>li>a.active::after {
     bottom: 0;
 }
 
-.site-header.fixheader ul li a:hover::after {
+.site-header.fixheader ul>li>a:hover::after {
     bottom: 0;
 }
 
@@ -4987,6 +4996,8 @@ html {
     border-radius: 8px;
     height: 130px;
     margin: 0 -15px;
+    display: block;
+    color: #fff;
 }
 
 @media (min-width: 992px) {
@@ -6146,9 +6157,11 @@ html {
     max-width: 992px;
 }
 
-.page-service .h-list1 li {
-    width: 32%;
-    float: left;
+@media (min-width: 768px) {
+    .page-service .h-list1 li {
+        width: 32%;
+        float: left;
+    }
 }
 
 .page-service .h-list2 {
@@ -6349,6 +6362,12 @@ html {
     -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    display: block;
+    transition: all .2s;
+}
+
+.page-news .s1 .box:hover {
+    transform: scale(1.05);
 }
 
 .page-news .s1 .box .pic {
@@ -6376,6 +6395,10 @@ html {
 
 .page-news .s1 .box .des {
     padding: 1rem;
+}
+
+.page-news .s1 .box .des p {
+    color: #999;
 }
 
 .page-news .s1 .box .des h3.title {
@@ -6511,6 +6534,12 @@ html {
     margin-bottom: 2rem;
     -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    transition: all .2s;
+}
+
+.page-news .s2 .meetinglist .box:hover {
+    transform: scale(1.05);
 }
 
 .page-news .s2 .meetinglist .box .pic {

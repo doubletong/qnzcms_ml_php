@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['logged_in'])){
+	$url = "/bbi-admin/login.php";
+	header("Location: $url");
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -64,8 +72,12 @@
                 // 'DOM Element ID': { /* elFinder options of this DOM Element */ }
                 'elfinder': {
                     getFileCallback: function(file, fm) {
-                        console.log(file.url);
-                        window.opener.singleEelFinder.elFinderCallback(fm.convAbsUrl(file.url));
+                        // console.log(fm);
+                        // console.log(file.path);
+                        // console.log(fm.convAbsUrl(file.path));
+                        var fileUrl = '/'+file.path;
+                        window.opener.singleEelFinder.elFinderCallback(fileUrl);
+                        //window.opener.singleEelFinder.elFinderCallback(fm.convAbsUrl(file.url));
                         fm.destroy();
                         window.close();
                     },

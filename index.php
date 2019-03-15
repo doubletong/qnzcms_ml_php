@@ -42,9 +42,9 @@ $knowledges = $articleClass->laster_articles();
         <!-- slider start -->
         <div class="slider">           
              <?php   foreach($carousels as $carousel){ ?>
-                <div><a href="<?php echo $carousel['link'];?>" title="<?php echo $carousel['title'];?>" target="_blank">
+                <div>
                 <img src="<?php echo $carousel['image_url'];?>" alt="<?php echo $carousel['title'];?>">
-                </a></div>
+                </div>
              <?php } ?>          
         </div>
         <!-- slider end -->
@@ -68,7 +68,7 @@ $knowledges = $articleClass->laster_articles();
                 </div>
                 <div class="col-md-6 col-lg-3">
                   
-                    <a class="des d2">
+                    <a class="des d2" href="/medicine">
                         <div class="icon"><i class="iconfont icon-yixueshiwu"></i></div>
                         <h3>医学事务</h3>
                       
@@ -77,23 +77,24 @@ $knowledges = $articleClass->laster_articles();
                 </div>
                 <div class="col-md-6 col-lg-3">
                   
-                    <a class="des d3">
+                    <a class="des d3" href="/clinical">
                         <div class="icon"><i class="iconfont icon-projects"></i></div>
                         <h3>临床监查和项目管理</h3>
-                        <p>拥希麦迪的临床操作部门，人员规模近50，并持续高速...<i>了解更多</i></p>
+                        <p>希麦迪的临床操作部门，人员规模近50，并持续高速...<i>了解更多</i></p>
              </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
                   
-                  <a class="des d4">
+                  <a class="des d4" href="/trials">
                       <div class="icon"><i class="iconfont icon-test"></i></div>
                       <h3>医疗器械临床试验</h3>
-                        <p>希麦迪的数据管理和统计部门，从质量标准、中美...<i>了解更多</i></p>
+                        <p>在中国国内的监管环境下，医疗器械/诊断试剂的临床...<i>了解更多</i></p>
+                        
              </a>
               </div>
               <div class="col-md-6 col-lg-3">
                   
-                  <a class="des d5">
+                  <a class="des d5" href="/statistics">
                       <div class="icon"><i class="iconfont icon-chart"></i></div>
                       <h3>数据管理和统计分析</h3>
                       <p>希麦迪的数据管理和统计部门，从质量标准、中美...<i>了解更多</i></p>
@@ -101,7 +102,7 @@ $knowledges = $articleClass->laster_articles();
               </div>
               <div class="col-md-6 col-lg-3">
                 
-                  <a class="des d6">
+                  <a class="des d6" href="/biologic">
                       <div class="icon"><i class="iconfont icon-yangben"></i></div>
                       <h3>生物样本分析</h3>                    
                       <p>希麦迪投入大量资金，在南京建立了设备先进、管理标准...<i>了解更多</i></p>
@@ -109,18 +110,18 @@ $knowledges = $articleClass->laster_articles();
               </div>
               <div class="col-md-6 col-lg-3">
                 
-                  <a class="des d7">
+                  <a class="des d7" href="/pharmacovigilance">
                       <div class="icon"><i class="iconfont icon-jingjie"></i></div>
                       <h3>药物警戒</h3>
-                      <p>希希麦迪团队提供基于先进技术的药物警戒解决方案...<i>了解更多</i></p>
+                      <p>希麦迪团队提供基于先进技术的药物警戒解决方案...<i>了解更多</i></p>
              </a>
               </div>
               <div class="col-md-6 col-lg-3">
                 
-                <a class="des d8">
+                <a class="des d8" href="/train">
                     <div class="icon"><i class="iconfont icon-peixun"></i></div>
                     <h3>专业培训</h3>
-                      <p>希麦希麦迪专家团队均为业内顶级的专家，从临床前研...<i>了解更多</i></p>
+                      <p>希麦迪专家团队均为业内顶级的专家，从临床前研...<i>了解更多</i></p>
              </a>
             </div>
             </div>
@@ -132,41 +133,41 @@ $knowledges = $articleClass->laster_articles();
                 </div>
                 <div class="row">
                     <div class="col-6 col-lg-2">
-                        <div class="item">
+                        <a href="/strategy" class="item">
                             <div class="icon"><i class="iconfont icon-celue"></i></div>
                             <p>新药临床开发策略</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2">
-                        <div class="item">
+                        <a href="/declare" class="item">
                             <div class="icon"><i class="iconfont icon-shuangbao"></i></div>
                             <p>中美双报</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2">
-                        <div class="item">
+                        <a href="/development" class="item">
                             <div class="icon"><i class="iconfont icon-yanjiu"></i></div>
                             <p>新药早期临床研究</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2">
-                        <div class="item">
+                        <a href="/experiment" class="item">
                             <div class="icon"><i class="iconfont icon-anchuang"></i></div>
                             <p>概念验证及关键性临床研究
 </p>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2">
-                        <div class="item">
+                        <a href="/instrument" class="item">
                             <div class="icon"><i class="iconfont icon-qixie"></i></div>
                             <p>医疗器械</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2">
-                        <div class="item">
+                        <a href="/equivalence" class="item">
                             <div class="icon"><i class="iconfont icon-shiyan"></i></div>
                             <p>生物等效性试验</p>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -242,7 +243,8 @@ $knowledges = $articleClass->laster_articles();
            $(".mainav li:nth-of-type(1) a").addClass("active");
             $('.slider').bxSlider({
                 auto: true,
-                controls: false
+                controls: false,
+                autoHover:true
             });
         });
     </script>

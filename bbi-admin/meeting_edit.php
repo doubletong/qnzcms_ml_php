@@ -76,7 +76,7 @@ if(isset($_GET['id'])){
                             <label for="content">会议内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo $data["content"];?></textarea>
                                 <script>
-                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
+                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,

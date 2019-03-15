@@ -7,8 +7,8 @@
                 <div class="col-auto">
                     <a href="/" class="logo">
                         <picture>
-                            <source media="(min-width: 992px)" srcset="img/logo.png">
-                            <img src="img/min-logo.png" alt="logo">
+                            <source media="(min-width: 992px)" srcset="/img/logo.png">
+                            <img src="/img/min-logo.png" alt="logo">
                         </picture>
                     </a>
                 </div>
@@ -19,7 +19,7 @@
                                 <div class="col leftcol">                              
                                     <ul class="social">
                                         <li>
-                                            <a href="#"><i class="iconfont icon-sina"></i></a>
+                                            <a href="https://m.weibo.cn/u/6917524030"><i class="iconfont icon-sina"></i></a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0);" class="weixincode"><i class="iconfont icon-weixin"></i></a>
@@ -62,7 +62,7 @@
                             <!-- <li><a href="experience">经验领域</a></li> -->
                             <li><a href="/strategy">解决方案</a>
                                 <dl class="subnav">                      
-                                    <dd><a href="/strategy">药物临床开发策略</a></dd>
+                                    <dd><a href="/strategy">新药临床开发策略</a></dd>
                                     <dd><a href="/declare">中美双报</a></dd>
                                     <dd><a href="/development">新药早期临床研究</a></dd>
                                     <dd><a href="/experiment">概念验证及关键性临床研究</a></dd>           

@@ -5,7 +5,7 @@
 </div>
 <nav class="subnav">
     <ul class="container">
-        <li><a href="/strategy">药物临床开发策略</a></li>
+        <li><a href="/strategy">新药临床开发策略</a></li>
         <li><a href="/declare">中美双报</a></li>
         <li><a href="/development">新药早期临床研究</a></li>
         <li><a href="/experiment">概念验证及关键性临床研究</a></li>

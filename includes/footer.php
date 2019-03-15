@@ -1,7 +1,7 @@
 <footer class="site-footer">
         <div class="container">
             <div class="bot_logo">
-                <img src="img/logo_bot.png" alt="logo">
+                <img src="/img/logo_bot.png" alt="logo">
             </div>
             <div class="emailget">
                 <label>为您提供更多内容</label> 
@@ -47,7 +47,7 @@
                 <div class="col">
                     <dl class="bot_nav">
                         <dt>解决方案</dt>
-                        <dd><a href="/strategy">药物临床开发策略</a></dd>
+                        <dd><a href="/strategy">新药临床开发策略</a></dd>
                         <dd><a href="/declare">中美双报</a></dd>
                         <dd><a href="/development">新药早期临床研究</a></dd>
                         <dd><a href="/experiment">概念验证及关键性临床研究</a></dd>           
@@ -88,13 +88,13 @@
                         </div>
                         <div class="col-sm">                          
                             传真：+86-25-58707762<br> 
-                                地址：南京市江宁区科学园芝兰路18号 <span>邮编：210001 </span>                        
+                                地址：南京市江宁区菲尼克斯路99号3号楼 <span>邮编：210001 </span>                        
                         </div>
                     </div>
                 </div>
                 <div class="col-lg text-right qrcode">
-                    <img src="img/qrcode_1.png" alt="" class="p1"/>
-                    <img src="img/qrcode_2.png" alt="" class="p2"/>
+                    <img src="/img/qrcode_1.png" alt="" class="p1"/>
+                    <img src="/img/qrcode_2.png" alt="" class="p2"/>
                     <a href="javascript:void(0);" class="bg-linear totop" id="toTop"><i class="iconfont icon-arrowtop"></i></a>
                 </div>
              
@@ -108,7 +108,7 @@
     <div class="over">
         <div style="display: table;height: 100%;text-align: center;width: 100%;">
             <div class="qrcode">
-                <img src="img/qrcode.jpg" alt="微信公众号">
+                <img src="/img/qrcode.jpg" alt="微信公众号">
             </div>
         </div>
     </div>

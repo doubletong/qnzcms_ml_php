@@ -33,7 +33,7 @@ $articleCount = $articleClass->article_count();
 
             <?php   foreach($articles as $article){ ?>
 
-                <div class="box">
+                <a class="box" href="/news/detail-<?php echo $article['id'];?>">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 d1">
                             <div class="pubdate">
@@ -44,9 +44,9 @@ $articleCount = $articleClass->article_count();
                         <div class="col-md-8 col-lg-6 d2">
                             <div class="des">
                                 <h3 class="title">
-                                    <a href="<?php echo SITEPATH; ?>/news/detail-<?php echo $article['id'];?>">
+                                   
                                     <?php echo $article['title'];?>
-                                    </a>
+                                  
                                 </h3>
                                 <div class="note">发布日期：<?php echo date('Y-m-d',$article['pubdate']) ;?></div>
                                 <p><?php echo mb_substr($article['summary'],0,56,'utf-8')."……";?></p>
@@ -55,11 +55,11 @@ $articleCount = $articleClass->article_count();
                         <div class="col-md-4 col-lg-3  d3">
                             <div class="pic">
                                 <img src="<?php echo $article['thumbnail'];?>" alt="">
-                            </div>
+            </div>
 
                         </div>
                     </div>
-                </div>
+            </a>
 
 <?php } ?>
 

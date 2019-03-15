@@ -123,7 +123,7 @@ $opts = array(
 		array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
 			'path'          => '../../../../uploads/',                 // path to files (REQUIRED)
-			'URL'           => 'http://tzgcms.com:8888/uploads/', // URL to files (REQUIRED)
+			'URL'           => 'http://1fdergonlkji601397276.t.yun.top/uploads/', // URL to files (REQUIRED)
 			'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
@@ -136,7 +136,7 @@ $opts = array(
 			'id'            => '1',
 			'driver'        => 'Trash',
 			'path'          => '../files/.trash/',
-			'tmbURL'        => 'http://tzgcms.com:8888/js/vendor/elfinder/files/.trash/.tmb/',
+			'tmbURL'        => 'http://1fdergonlkji601397276.t.yun.top/js/vendor/elFinder-2.1.48/files/.trash/.tmb/',
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // Recomend the same settings as the original volume that uses the trash
 			'uploadAllow'   => array('image/x-ms-bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/x-icon', 'text/plain'), // Same as above

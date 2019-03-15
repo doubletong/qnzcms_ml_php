@@ -43,7 +43,7 @@ if(isset($_GET['id'])){
 <div class="container news-detail">
             <header class="news-header">
                 <h1><?php echo $data['title'];?></h1>
-                <p><?php echo date('Y-m-d H:i:s',$data['pubdate']) ;?></p>
+                <p><?php echo date('Y-m-d',$data['pubdate']) ;?></p>
             </header>
             <article class="news-body">
             <?php echo $data['content'];?>

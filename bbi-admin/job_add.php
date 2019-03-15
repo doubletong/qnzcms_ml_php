@@ -53,7 +53,7 @@ require_once('../config/db.php');
                             <label for="content">岗位描述</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
-                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
+                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,

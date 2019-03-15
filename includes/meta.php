@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="favicon.ico" />
 
 <!-- CSS, you gotta have style -->
-<link href="fonts/iconfont.css" rel="stylesheet">  
-<link rel="stylesheet" href="css/styles.css">
+<link href="/fonts/iconfont.css" rel="stylesheet">  
+<link rel="stylesheet" href="/css/styles.css?v=20190314">
 <!-- Modernizer, cause some browsers suck -->
-<script src="js/libs/modernizr.min.js"></script>
+<script src="/js/libs/modernizr.min.js"></script>

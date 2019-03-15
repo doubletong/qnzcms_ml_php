@@ -32,7 +32,7 @@ $meetings = $meetingClass->fetch_all();
             <section class="meetinglist">
 
             <?php foreach($meetings as $data) {?>
-                <div class="box">
+                <a class="box" href="/meeting/detail-<?php echo $data["id"]; ?>">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="pic" style="background-image:url(<?php echo $data["thumbnail"]; ?>);">
@@ -49,12 +49,12 @@ $meetings = $meetingClass->fetch_all();
                                     <li>会议时间：<?php echo date_create($data['meeting_time'])->format("Y年m月d日 H点i分"); ?></li>
                                     <li>会议地点：<?php echo $data["address"]; ?></li>
                                 </ul>
-                                <a href="/meeting/detail-<?php echo $data["id"]; ?>" class="more">查看详情</a>
+                                <div class="more">查看详情</div>
                             </div>
                         </div>
 
                     </div>
-                </div>
+            </a>
             <?php }?>
                
             </section>

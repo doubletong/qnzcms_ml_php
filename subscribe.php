@@ -1,7 +1,7 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/Subscription.php");
+require_once("data/subscription.php");
 
 $subscribe = new Subscription();
 
