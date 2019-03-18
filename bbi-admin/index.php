@@ -30,7 +30,7 @@ $teamClass = new Team();
 
 <head>
     <title>
-        <?php echo "后台管理_".SITENAME;?>
+        <?php echo "后台管理_".$config["site"]["name"];?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <style>

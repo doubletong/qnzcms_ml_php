@@ -44,7 +44,7 @@ else
 
 <head>
     <title>
-        <?php echo "管理员_系统_后台管理_".SITENAME;?>
+        <?php echo "管理员_系统_后台管理_".$config["site"]["name"];?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -76,7 +76,7 @@ else
                     </div>
                     <div class="col-auto">
                         <a href="admin_add.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i> 添加链接
+                            <i class="iconfont icon-plus"></i> 创建帐号
                         </a>
                     </div>
                 </div>
@@ -100,9 +100,9 @@ else
                             <?php echo $row['created_date'];?>
                         </td>
                         <td>
-                            <!--<a href='admin_edit.php?id=<?php /*echo $row['id'];*/?>' class='btn btn-primary btn-xs'>
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>-->
+                            <a href='admin_updatepwd.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm' title="修改密码">
+                                <span class="iconfont icon-lock"></span>
+                            </a>
                             <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                                 <i class="iconfont icon-delete"></i>
                             </button>

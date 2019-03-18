@@ -10,7 +10,7 @@ require_once('data/user.php');
 
 <head>
     <title>
-        <?php echo "添加_链接_组件_后台管理_".$config["site"]["name"];;?>
+        <?php echo "修改密码_管理员_后台管理_".$config["site"]["name"];;?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -29,27 +29,21 @@ require_once('data/user.php');
                 <form novalidate="novalidate">
                     <div class="card">
                         <div class="card-header">
-                            添加管理员
+                            修改密码
                         </div>
                         <div class="card-body">
-
-
-
+                            <input type="hidden" name="userId" value="<?php echo $_GET['id']; ?>">
                             <div class="form-group">
-                                <label for="username">帐号</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="">
+                                <label for="oldpassword">旧密码</label>
+                                <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="">
                             </div>
                             <div class="form-group">
-                                <label for="password">密码</label>
-
+                                <label for="password">新密码</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="">
-
                             </div>
                             <div class="form-group">
                                 <label for="repwd">确认密码</label>
-
                                 <input type="password" class="form-control" id="repwd" name="repwd" placeholder="">
-
                             </div>
 
                         </div>
@@ -68,7 +62,7 @@ require_once('data/user.php');
 
     <?php require_once('includes/scripts.php'); ?>
 
-    <script src="../js/vendor/holderjs/holder.min.js"></script>
+  
     <script src="../js/vendor/toastr/toastr.min.js"></script>
     <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript">
@@ -81,7 +75,7 @@ require_once('data/user.php');
             $("form").validate({
 
                 rules: {
-                    username: {
+                    oldpassword: {
                         required: true
                     },
                     password: {
@@ -94,8 +88,8 @@ require_once('data/user.php');
 
                 },
                 messages: {
-                    username: {
-                        required: "请输入帐号"
+                    oldpassword: {
+                        required: "请输入旧密码"
                     },
                     password: {
                         required: "请输入密码"
@@ -119,17 +113,19 @@ require_once('data/user.php');
             },
                 submitHandler: function (form) {
                     //form.submit();
-
                     $.ajax({
-                        url: 'admin_post.php',
+                        url: 'admin_updatepwd_post.php',
                         type: 'POST',
                         data: $(form).serialize(),
                         success: function (res) {
                             //  $('#resultreturn').prepend(res);
-                            if (res) {
-                                toastr.success('管理员已添加成功！', '添加管理员')
-                            } else {
-                                toastr.error('管理员添加失败！', '添加管理员')
+                            console.log(res);
+                            if (res==1) {
+                                toastr.error('旧密码不正确！', '修改密码')
+                            } else if(res==2){                              
+                                toastr.success('密码修改成功！', '修改密码')
+                            }else{
+                                toastr.error('密码修改失败！', '修改密码')
                             }
                         }
                     });

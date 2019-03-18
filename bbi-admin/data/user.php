@@ -28,8 +28,28 @@ class User{
             return false;
         }
     }
+//修改密码
+public function update_pwd($id, $password) {
 
-//更新产品
+    $sql = "UPDATE wp_users SET 
+       password =:password
+         WHERE id =:id";
+
+    $query = db::getInstance()->prepare($sql);
+
+    $query->bindValue(":password",$password);
+    $query->bindValue(":id",$id,PDO::PARAM_INT);
+    $query->execute();
+
+    $result = $query->rowCount();;
+    if ($result>0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//更新
     public function update_user($id, $username, $password) {
 
         $sql = "UPDATE wp_users SET username= :username,
