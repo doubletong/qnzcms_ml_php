@@ -30,7 +30,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-auto">
-                                <a href="#">中文</a>/<a href="#">EN</a>
+                                <a href="http://xmdcn.heiniaozhi.cn:8080">中文</a>/<a href="http://xmd.heiniaozhi.cn:8080">EN</a>
                                 </div>
                             </div>
                        
@@ -81,7 +81,11 @@
                             <li><a href="/contact">联系我们</a></li>
                             <li>
                                 <form class="searchbox" action="/search">
-                                    <input name="keyword" class="textbox" value="<?php echo $_GET['keyword']; ?>" />
+                                    <?php if(isset($_GET['keyword'])) {?>
+                                        <input name="keyword" class="textbox" value="<?php echo $_GET['keyword']; ?>" />
+                                    <?php }else{?>
+                                        <input name="keyword" class="textbox" />
+                                    <?php }?>
                                     <button type="submit"><i class="iconfont icon-search"></i></button>
                                 </form>
                             </li>
