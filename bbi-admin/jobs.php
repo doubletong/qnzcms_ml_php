@@ -13,7 +13,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT * FROM jobs WHERE title LIKE '%$search%'");
     $pagination->config(6, 10);
-    $sql = "SELECT * FROM jobs WHERE title LIKE '%$search%'  ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT * FROM jobs WHERE title LIKE '%$search%'  ORDER BY importance ASC, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -26,7 +26,7 @@ else
 {
     $pagination->rowCount("SELECT * FROM jobs");
     $pagination->config(6,10);
-    $sql = "SELECT * FROM jobs ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT * FROM jobs ORDER BY importance ASC, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -83,6 +83,7 @@ else
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
+                        <th>序号</th>
                             <th>职位</th>
                             <th>部门</th>
                             <th>工作地点</th>
@@ -99,6 +100,7 @@ else
           
             ?>
             <tr>
+            <td><?php echo $row['importance']; ?></td>
                         <td><?php echo $row['title']; ?></td>
                        <td><?php echo $row['department']; ?></td>
                        <td><?php echo $row['address']; ?></td>

@@ -76,7 +76,7 @@ if(isset($_GET['id'])){
                             <label for="content">会议内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo $data["content"];?></textarea>
                                 <script>
-                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
+                                var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,
@@ -92,7 +92,7 @@ if(isset($_GET['id'])){
                        
                         <div class="form-group">
                             <div class="form-check">
-                            <input type="checkbox" class="form-check-input" checked id="chkActive" name="active">                          
+                            <input type="checkbox" class="form-check-input" <?php echo $data['active']?"checked":"";?> id="chkActive" name="active">                          
                             <label class="form-check-label" for="chkActive">发布</label>
                             </div>
                         </div>
@@ -160,7 +160,7 @@ if(isset($_GET['id'])){
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         //自定义图标
         $.extend(true, $.fn.datetimepicker.defaults, {
             icons: {

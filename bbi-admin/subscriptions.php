@@ -84,7 +84,7 @@ else
                     <thead>
                         <tr>
                             <th>邮箱</th>
-                          
+                            <th>订阅时间</th>
                             <th style="min-width:120px;">操作</th>
                         </tr>
                     </thead>
@@ -96,7 +96,7 @@ else
             ?>
             <tr>
                         <td><?php echo $row['email']; ?></td>
-                    
+                        <td><?php echo date('Y-m-d h:i:s',$row['added_date']) ;?></td>
                         <td>
                             <button type="button" data-id="<?php echo $row['email'];?>" class='btn btn-danger btn-sm btn-delete'>
                                 <i class="iconfont icon-delete"></i>
@@ -132,7 +132,7 @@ else
     <script>
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass(
+            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass(
                 "active");
 
             //确认框默认语言

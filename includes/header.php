@@ -1,7 +1,4 @@
-
-
-
-    <header class="site-header" id="site-header">
+<header class="site-header" id="site-header">
         <div class="container">
             <div class="row">
                 <div class="col-auto">
@@ -30,7 +27,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-auto">
-                                <a href="http://xmdcn.heiniaozhi.cn:8080">中文</a>/<a href="http://xmd.heiniaozhi.cn:8080">EN</a>
+                                <a href="http://www.crmedicon.com">中文</a>/<a href="http://en.crmedicon.com">EN</a>
                                 </div>
                             </div>
                        
@@ -91,6 +88,8 @@
                             </li>
                         </ul>
                     </nav>
+                    <a href="/search" class="minsearch"><i class="iconfont icon-search"></i></a>
+                    <a href="http://en.crmedicon.com" class="minlang">EN</a>
                     <!-- <a href="javascript:void(0);" id="openav" class="openav"><i class="iconfont icon-menu"></i></a> -->
                     <div class="menu-toggle">
                         <div class="one"></div>

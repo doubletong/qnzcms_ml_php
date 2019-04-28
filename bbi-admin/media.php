@@ -15,7 +15,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT * FROM media_links WHERE title LIKE '%$search%'");
     $pagination->config(3, 5);
-    $sql = "SELECT m.id, m.title, m.link,m.category, t.title as topic,m.added_by,m.added_date FROM media_links m left join topics t on m.topicsId = t.id WHERE m.title LIKE '%$search%'  ORDER BY m.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT m.id, m.title, m.link,m.category, t.title as topic,m.added_by,m.pubdate FROM media_links m left join topics t on m.topicsId = t.id WHERE m.title LIKE '%$search%'  ORDER BY m.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -28,7 +28,7 @@ else
 {
     $pagination->rowCount("SELECT * FROM media_links");
     $pagination->config(6,15);
-    $sql = "SELECT m.id, m.title, m.link,m.category, t.title as topic,m.added_by,m.added_date FROM media_links m left join topics t on m.topicsId = t.id ORDER BY m.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT m.id, m.title, m.link,m.category, t.title as topic,m.added_by,m.pubdate FROM media_links m left join topics t on m.topicsId = t.id ORDER BY m.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -87,9 +87,10 @@ else
                         <tr>
                             <th>网站域名</th>
                             <th>所属主题</th>                                   
-                            <th>别类</th>                          
+                            <th>别类</th>    
+                            <th style="min-width:120px;">发布日期</th>                      
                             <th>发布者</th>
-                            <th style="min-width:120px;">创建日期</th>
+                          
                             <th style="min-width:120px;">操作</th>
                         </tr>
                     </thead>
@@ -102,13 +103,14 @@ else
             <tr>
                         <td><?php echo $row['title']; ?></td>
                         <td><?php echo $row['topic']; ?></td>      
-                       <td><?php echo $row['category']; ?></td>                  
+                       <td><?php echo $row['category']; ?></td>      
+                       <td>
+                            <?php echo date('Y-m-d',$row['pubdate']) ;?>
+                        </td>            
                         <td>
                             <?php echo $row['added_by'];?>
                         </td>
-                        <td>
-                            <?php echo date('Y-m-d',$row['added_date']) ;?>
-                        </td>
+                     
                         <td><a href='media_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                                 <i class="iconfont icon-edit"></i>
                             </a>

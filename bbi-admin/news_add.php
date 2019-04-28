@@ -48,7 +48,7 @@ require_once('../config/db.php');
                             </select>                            
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="display:none;">
                             <label for="imageUrl">
                                 大图</label>
                                 <div class="input-group">
@@ -67,7 +67,7 @@ require_once('../config/db.php');
                             <label for="content">新闻内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
-                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
+                                var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,

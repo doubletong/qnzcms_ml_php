@@ -66,7 +66,7 @@ require_once('../config/db.php');
                             <label for="content">会议内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
-                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
+                                var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,
@@ -149,7 +149,7 @@ require_once('../config/db.php');
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         //自定义图标
         $.extend(true, $.fn.datetimepicker.defaults, {
             icons: {

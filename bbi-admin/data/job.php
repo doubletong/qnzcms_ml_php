@@ -37,62 +37,64 @@ class Job{
             return $rows;
         }
 
+
 //更新
-    public function update_job($id,$title, $department, $address, $population, $content) {
+public function update_job($id,$title, $department, $address, $population, $content,$importance) {
 
-        
+    $sql="UPDATE `jobs` SET       
+    `title`=:title,
+    `department`=:department,
+    `address`=:address,
+    `population`=:population,
+    `content`=:content,
+    `importance`=:importance
+        WHERE `id`=:id";
 
-        $sql="UPDATE `jobs` SET       
-        `title`=:title,
-        `department`=:department,
-        `address`=:address,
-        `population`=:population,
-        `content`=:content
-            WHERE `id`=:id";
+    $query = db::getInstance()->prepare($sql);
+    $query->bindValue(":title",$title);
+    $query->bindValue(":department",$department);
+    $query->bindValue(":address",$address);
+    $query->bindValue(":content",$content);
+    $query->bindValue(":importance",$importance,PDO::PARAM_INT);
+    $query->bindValue(":population",$population,PDO::PARAM_INT);
+    $query->bindValue(":id",$id,PDO::PARAM_INT);
+    $query->execute();
 
-        $query = db::getInstance()->prepare($sql);
-        $query->bindValue(":title",$title);
-        $query->bindValue(":department",$department);
-        $query->bindValue(":address",$address);
-        $query->bindValue(":content",$content);
-        $query->bindValue(":population",$population,PDO::PARAM_INT);
-        $query->bindValue(":id",$id,PDO::PARAM_INT);
-        $query->execute();
-
-        $result = $query->rowCount();;
-        if ($result>0) {
-            return true;
-        } else {
-            return false;
-        }
+    $result = $query->rowCount();;
+    if ($result>0) {
+        return true;
+    } else {
+        return false;
     }
+}
 
 
-    public function insert_job($title, $department, $address, $population, $content) {
+public function insert_job($title, $department, $address, $population, $content,  $importance) {
 
-    
 
-$sql="INSERT INTO jobs(title, department, address, population, content, added_date, added_by) 
-VALUES (:title, :department, :address, :population, :content, :added_date, :added_by)";
 
-        $username = $_SESSION['valid_user'] ;
+$sql="INSERT INTO jobs(title, department, address, population, content, importance, added_date, added_by) 
+VALUES (:title, :department, :address, :population, :content,  :importance,  :added_date, :added_by)";
 
-        $query = db::getInstance()->prepare($sql);
-        $query->bindValue(":title",$title);
-        $query->bindValue(":department",$department);
-        $query->bindValue(":address",$address);
-        $query->bindValue(":content",$content);
-        $query->bindValue(":population",$population,PDO::PARAM_INT);
-        $query->bindValue(":added_by",$username);
-        $query->bindValue(":added_date",time());
-        $query->execute();
+    $username = $_SESSION['valid_user'] ;
 
-        $result = $query->rowCount();;
-        if ($result>0) {
-            return true;
-        } else {
-            return false;
-        }
+    $query = db::getInstance()->prepare($sql);
+    $query->bindValue(":title",$title);
+    $query->bindValue(":department",$department);
+    $query->bindValue(":address",$address);
+    $query->bindValue(":content",$content);
+    $query->bindValue(":importance",$importance,PDO::PARAM_INT);
+    $query->bindValue(":population",$population,PDO::PARAM_INT);
+    $query->bindValue(":added_by",$username);
+    $query->bindValue(":added_date",time());
+    $query->execute();
+
+    $result = $query->rowCount();;
+    if ($result>0) {
+        return true;
+    } else {
+        return false;
     }
+}
 
 }

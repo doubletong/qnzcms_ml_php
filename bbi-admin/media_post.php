@@ -13,13 +13,13 @@ if (isset( $_POST['title'], $_POST['link'])) {
     $summary = $_POST['summary'];
     $link = $_POST['link'];
     $topicsId = $_POST['topicsId'];
-
+    $pubdate = $_POST['pubdate'];
    //echo $summary.$linkId;
     if(isset($_POST['linkId'])){
-        echo $mediaClass->update_media($linkId, $title,$category,$summary,$topicsId, $link);
+        echo $mediaClass->update_media($linkId, $title,$category,$summary,$pubdate,$topicsId, $link);
     }else{
         
-        echo $mediaClass->insert_media($title, $category, $summary, $topicsId, $link);
+        echo $mediaClass->insert_media($title, $category, $summary, $pubdate,$topicsId, $link);
     }
 
 }else{

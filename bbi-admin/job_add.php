@@ -48,7 +48,10 @@ require_once('../config/db.php');
                         <input type="number" class="form-control" id="population" name="population" value="0" placeholder="">
               
                 </div>
-
+                <div class="form-group">
+                    <label for="importance">排序</label>                 
+                    <input type="number" class="form-control" id="importance" name="importance" value="0" placeholder="">            
+                </div>
                 <div class="form-group">
                             <label for="content">岗位描述</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
@@ -106,6 +109,10 @@ require_once('../config/db.php');
                 population: {
                     required: true,
                     digits:true
+                },
+                importance: {
+                    required: true,
+                    digits:true
                 }
 
             },
@@ -121,6 +128,10 @@ require_once('../config/db.php');
                 },
                 population: {
                     required: "请输入招聘人数",
+                    digits:"请输入有效的整数"
+                },
+                importance: {
+                    required: "请输入序号",
                     digits:"请输入有效的整数"
                 }
 

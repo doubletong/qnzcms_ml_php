@@ -10,6 +10,6 @@
 
 <!-- CSS, you gotta have style -->
 <link href="/fonts/iconfont.css" rel="stylesheet">  
-<link rel="stylesheet" href="/css/styles.css?v=20190314">
+<link rel="stylesheet" href="/css/styles.css?v=20190414">
 <!-- Modernizer, cause some browsers suck -->
 <script src="/js/libs/modernizr.min.js"></script>

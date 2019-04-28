@@ -57,10 +57,12 @@ if(isset($_GET['id'])){
 
                 <div class="form-group">
                     <label for="population">招聘人数</label>                  
-                        <input type="number" class="form-control" id="population" name="population" value="<?php echo $data["population"]; ?>" placeholder="">
-              
+                        <input type="number" class="form-control" id="population" name="population" value="<?php echo $data["population"]; ?>" placeholder="">              
                 </div>
-
+                <div class="form-group">
+                    <label for="importance">排序</label>                 
+                    <input type="number" class="form-control" id="importance" name="importance" value="<?php echo $data["importance"]; ?>" placeholder="">            
+                </div>
                 <div class="form-group">
                             <label for="content">岗位描述</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo $data["content"]; ?></textarea>
@@ -118,6 +120,10 @@ if(isset($_GET['id'])){
                 population: {
                     required: true,
                     digits:true
+                },
+                importance: {
+                    required: true,
+                    digits:true
                 }
 
             },
@@ -133,6 +139,10 @@ if(isset($_GET['id'])){
                 },
                 population: {
                     required: "请输入招聘人数",
+                    digits:"请输入有效的整数"
+                },
+                importance: {
+                    required: "请输入序号",
                     digits:"请输入有效的整数"
                 }
 

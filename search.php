@@ -32,7 +32,19 @@ if(!empty($_GET['keyword'])){
 <div class="page-search">
     <div class="container s1">
   
-        <div class="sitepath"><a href="/">首页</a>/搜索结果</div>
+
+    <div class="searchform">
+        <form class="searchbox" action="/search">
+                                    <?php if(isset($_GET['keyword'])) {?>
+                                        <input name="keyword" class="textbox" value="<?php echo $_GET['keyword']; ?>" />
+                                    <?php }else{?>
+                                        <input name="keyword" class="textbox" />
+                                    <?php }?>
+                                    <button type="submit"><i class="iconfont icon-search"></i></button>
+                                </form>
+</div>
+
+        <!-- <div class="sitepath"><a href="/">首页</a>/搜索结果</div> -->
 
             <section class="newlist" id="newlist">
                 <?php  foreach($articles as $article){ ?>
@@ -41,7 +53,7 @@ if(!empty($_GET['keyword'])){
                    
                             <div class="des">
                                 <h3 class="title">
-                                    <a href="<?php echo SITEPATH; ?>/news/detail-<?php echo $article['id'];?>">
+                                    <a href="/news/detail-<?php echo $article['id'];?>">
                                     <?php echo $article['title'];?>
                                     </a>
                                 </h3>

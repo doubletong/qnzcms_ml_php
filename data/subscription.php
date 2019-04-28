@@ -1,10 +1,11 @@
 <?php
 class Subscription{
     public function insert_email($email) {
-        $sql="INSERT INTO subscriptions(email) VALUES (:email)";
+        $sql="INSERT INTO subscriptions(email,added_date) VALUES (:email,:added_date)";
     
                 $query = db::getInstance()->prepare($sql);
-                $query->bindValue(":email",$email);              
+                $query->bindValue(":email",$email);       
+                $query->bindValue(":added_date",time());                
                 $query->execute();
 
                 $result = $query->rowCount();;

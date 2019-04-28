@@ -37,22 +37,28 @@ class Media{
         }
 
 //更新产品
-    public function update_media($id,$title,$category,$summary,$topicsId, $link) {
+    public function update_media($id,$title,$category,$summary,$pubdate,$topicsId, $link) {
 
         $sql = "update media_links
              set
              title= :title,
              category = :category,
+             pubdate = :pubdate,
              summary =:summary,
              link = :link,
              topicsId =:topicsId
              where id =:id";
 
         $query = db::getInstance()->prepare($sql);
+
+        $date = new DateTime($pubdate);
+        $publish = $date->getTimestamp();
+
         $query->bindValue(":title",$title);
         $query->bindValue(":link",$link);
         $query->bindValue(":topicsId",$topicsId,PDO::PARAM_INT);
         $query->bindValue(":category",$category);
+        $query->bindValue(":pubdate",$publish,PDO::PARAM_INT);
         $query->bindValue(":summary",$summary);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
@@ -66,18 +72,21 @@ class Media{
     }
 
 
-    public function insert_media($title,$category,$summary,$topicsId, $link) {
+    public function insert_media($title,$category,$summary,$pubdate,$topicsId, $link) {
 
-        $sql="INSERT INTO media_links (title, category, summary, topicsId, link, added_by, added_date)
-                VALUES (:title,:category, :summary, :topicsId, :link, :added_by, :added_date)";
+        $sql="INSERT INTO media_links (title, category, pubdate, summary, topicsId, link, added_by, added_date)
+                VALUES (:title,:category, :pubdate, :summary, :topicsId, :link, :added_by, :added_date)";
 
 
         $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
+        $date = new DateTime($pubdate);
+        $publish = $date->getTimestamp();
 
         $query->bindValue(":title",$title);      
         $query->bindValue(":category",$category);
+        $query->bindValue(":pubdate",$publish,PDO::PARAM_INT);
         $query->bindValue(":summary",$summary);
         $query->bindValue(":topicsId",$topicsId,PDO::PARAM_INT);
         $query->bindValue(":link",$link);

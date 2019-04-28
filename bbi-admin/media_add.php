@@ -55,7 +55,11 @@ $topicses = $topicsClass->fetch_all();
                     <input type="text" class="form-control" id="link" name="link" >                  
                 </div>
 
-          
+                <div class="form-group">
+                            <label for="pubdate">发布日期</label>
+                            <input class="form-control" id="pubdate" name="pubdate" value="<?php echo date("Y-m-d");?>" placeholder="" type="date" />                        
+                        </div>
+
                 <div class="form-group">
                     <label for="category">分类</label>
                     <input type="text" class="form-control" id="category" name="category" >                  
@@ -109,6 +113,10 @@ $topicses = $topicsClass->fetch_all();
                 summary: {
                     required: true,
                    
+                },
+                pubdate: {
+                    required: true,
+                    date: true
                 }
 
             },
@@ -126,6 +134,10 @@ $topicses = $topicsClass->fetch_all();
                 summary: {
                     required: "请输入描述"
                   
+                },
+                pubdate: {
+                    required: "请选择发布日期",
+                    date: "日期格式不正确"
                 }
 
             },

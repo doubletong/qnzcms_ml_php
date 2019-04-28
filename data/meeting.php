@@ -1,7 +1,7 @@
 <?php
 class Meeting{
     public function fetch_all(){
-        $query = db::getInstance()->prepare("SELECT * FROM meetings ORDER BY added_date DESC");
+        $query = db::getInstance()->prepare("SELECT * FROM meetings where active=1 ORDER BY added_date DESC");
         $query->execute();
 
         return $query->fetchAll();
@@ -9,7 +9,7 @@ class Meeting{
    
 
     public function laster_meetings(){
-        $query = db::getInstance()->prepare("SELECT * FROM meetings ORDER BY added_date DESC limit 3");
+        $query = db::getInstance()->prepare("SELECT * FROM meetings where active=1 ORDER BY added_date DESC limit 3");
         $query->execute();
         return $query->fetchAll();
     }

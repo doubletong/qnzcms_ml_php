@@ -84,7 +84,7 @@
                         </a>
                         <ul class="subnav">
                             <li><a href="pages.php">页面列表</a></li>
-                            <li><a href="page_add.php">添加添加</a></li>
+                            <li><a href="page_add.php">添加页面</a></li>
                         </ul>
                     </li>
                    

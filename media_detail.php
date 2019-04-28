@@ -37,7 +37,7 @@ $medias = $mediaClass->fetch_all();
                     <?php echo $data["title"]; ?>
                     </h3>
                     <p class="des"><?php echo $data["summary"]; ?></p>
-                    <p class="note"><?php echo date("Y-m-d",$data["added_date"]); ?> | <?php echo $data["category"]; ?></p>
+                    <p class="note"><?php echo date("Y-m-d",$data["pubdate"]); ?> | <?php echo $data["category"]; ?></p>
                 </a>
                 <?php } ?>               
             </section>

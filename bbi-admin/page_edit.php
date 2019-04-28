@@ -62,7 +62,7 @@ if(isset($_GET['id'])){
 
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']);?></textarea>
                                 <script>
-                                    var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
+                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {                                      
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder,     

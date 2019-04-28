@@ -78,7 +78,11 @@ if(isset($_GET['id'])){
                     <input type="text" class="form-control" id="link" name="link" value="<?php echo $data["link"];?>" />                  
                 </div>
 
-          
+                <div class="form-group">
+                            <label for="pubdate">发布日期</label>
+                            <input class="form-control" id="pubdate" name="pubdate" value="<?php echo date('Y-m-d',$data['pubdate']);?>" placeholder="" type="date" />                        
+                        </div>
+
                 <div class="form-group">
                     <label for="category">分类</label>
                     <input type="text" class="form-control" id="category" name="category" value="<?php echo $data["category"];?>" />                  
@@ -132,6 +136,10 @@ if(isset($_GET['id'])){
                 summary: {
                     required: true,
                    
+                },
+                pubdate: {
+                    required: true,
+                    date: true
                 }
 
             },
@@ -149,7 +157,12 @@ if(isset($_GET['id'])){
                 summary: {
                     required: "请输入描述"
                   
+                },
+                pubdate: {
+                    required: "请选择发布日期",
+                    date: "日期格式不正确"
                 }
+
 
             },
 

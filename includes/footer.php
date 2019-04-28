@@ -81,7 +81,7 @@
 
             </div>
             <div class="row c001">
-                <div class="col-lg-auto">
+                <div class="col-lg-7">
                     <div class="row contact">
                         <div class="col-sm-auto">                      
                                 电话：+86-25-58707829 <br> 邮箱：info@crmedicon.com                 
@@ -92,9 +92,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg text-right qrcode">
-                    <img src="/img/qrcode_1.png" alt="" class="p1"/>
-                    <img src="/img/qrcode_2.png" alt="" class="p2"/>
+                <div class="col-lg-5 text-right qrcode">
+                    <div class="p1">
+                        <img src="/img/qrcode_1.png" alt="官方微信" />
+                        <p>官方微信</p>
+                    </div>
+                    <div class="p2">
+                        <img src="/img/qrcode_2.png" alt="官方微博" />
+                        <p>官方微博</p>
+                    </div>
                     <a href="javascript:void(0);" class="bg-linear totop" id="toTop"><i class="iconfont icon-arrowtop"></i></a>
                 </div>
              

@@ -12,12 +12,12 @@ if (isset( $_POST['title'], $_POST['address'])) {
     $address = $_POST['address'];
     $population = $_POST['population'];
     $content = stripslashes($_POST['content']);
-
+    $importance = $_POST['importance'];
 
     if(isset($_POST['jobId'])){
-        echo $jobClass->update_job($jobId,$title, $department, $address, $population, $content);
+        echo $jobClass->update_job($jobId,$title, $department, $address, $population, $content,$importance);
     }else{
-        echo $jobClass->insert_job($title, $department, $address, $population, $content);
+        echo $jobClass->insert_job($title, $department, $address, $population, $content,$importance);
     }
 
 }else{
