@@ -1,10 +1,6 @@
 <?php
 require_once("includes/common.php");
-require_once("config/db.php");
-require_once("data/distributor.php");
 
-$disClass = new Distributor();
-$dis = $disClass->fetch_all();
 
 ?>
 <!DOCTYPE html>
@@ -21,84 +17,43 @@ $dis = $disClass->fetch_all();
 </head>
 <body>
 <?php require_once('includes/header.php') ?>
-<div class="page-contact">
-        <div class="banner">
-            <div class="page-title">
-                <h1>联系我们</h1>
+<div class="banner-contact">
+            <img src="/img/1x/banner-contact-80.jpg" alt="">
+        </div>
+<div class="container">
+    <div class="page-contact">
+      <div class="qrcode wow slideInUp">
+          <img src="/img/1x/qrcode_big-80.jpg" alt="公众号">
+          <p>关注觅乐墨品官方公众号</p>
+      </div>
         
-            </div>
-        </div>
-
-        <div class="container s1">
-            <div class="address">
-            <?php   foreach($dis as $data){ ?>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div id="map<?php echo $data["id"];?>" data-id="map<?php echo $data["id"];?>" data-coordinate="<?php echo $data["coordinate"];?>"
-                        data-add="<?php echo $data["address"];?>" data-city="<?php echo $data["city"];?>" class="baidumap" >
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="contact">
-                            <h3><?php echo $data["city"];?></h3>
-                            <ul>
-                                <li>地址：<?php echo $data["address"];?></li>
-                                <li>电话：<?php echo $data["phone"];?></li>
-                               
-                                <?php if(!empty($data["cooperation"])){?>
-                                    <li>商务合作：<?php echo $data["cooperation"];?></li>
-                                <?php } ?>                               
-                                <li>邮箱：<?php echo $data["email"];?></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-                
-               
-            </div>
-        </div>
+      <div class="contact wow slideInUp">
+          <div class="logo">
+              <img src="/img/1x/bot_logo.png" alt="觅乐墨品">
+          </div>
+          <h3>深圳市觅乐墨品创意设计有限公司</h3>
+          <ul class="u1">
+              <li><i class="iconfont icon-dibiao"></i>  深圳市龙华新区环观南路72-1创客大厦1412室</li>
+              <li><i class="iconfont icon-dianhua"></i>  0755-23774104</li>
+              <li><i class="iconfont icon-qq"></i> 123456789 / 123456567</li>
+              <li><i class="iconfont icon-youxiang"></i> 07552377@qq.com</li>           
+          </ul>
+          <ul>
+              <li><i class="iconfont icon-user"></i> 黎总监 13724231080 <small>(同微信号)</small></li>
+              <li><i class="iconfont icon-user"></i> 邱总监 13528458259 <small>(同微信号)</small></li>            
+          </ul>
+      </div>
     </div>
-
-
+    </div>
     <?php require_once('includes/footer.php') ?>
 
 <?php require_once('includes/scripts.php') ?>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=omKoELLZ6xvnS3LjGlg2jnvcGRfcb4dV"></script>
-<script>
-    function loadmap(mapdiv, title, address, x, y) {
-            // 百度地图API功能
-            var map = new BMap.Map(mapdiv);
-            var point = new BMap.Point(x, y);
-            var marker = new BMap.Marker(point); // 创建标注    
-            map.addOverlay(marker); // 将标注添加到地图中 
-            map.centerAndZoom(point, 12);
-            var opts = {
-                width: 200, // 信息窗口宽度
-                height: 100, // 信息窗口高度
-                title: title // 信息窗口标题                
-            }
-            var infoWindow = new BMap.InfoWindow(address, opts); // 创建信息窗口对象 
-            marker.addEventListener("click", function() {
-                map.openInfoWindow(infoWindow, point); //开启信息窗口
-            });
-        }
 
+<script>
         $(document).ready(function() {
-            $(".leftnav li:nth-of-type(6) a").addClass("active");
+            $(".leftnav li:nth-of-type(7) a").addClass("active");
            $(".mainav li:nth-of-type(7) a").addClass("active");
 
-           $(".baidumap").each(function(){
-               var divId = $(this).attr("data-id");
-               var city = $(this).attr("data-city");
-               var add = $(this).attr("data-add");
-               var coordinate = $(this).attr("data-coordinate");
-               var xandy = coordinate.split(',');
-               loadmap(divId, city, add, xandy[0], xandy[1]);
-            });
-
-        
         });
     </script>
 </body>

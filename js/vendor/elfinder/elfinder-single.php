@@ -72,10 +72,12 @@ if (!isset($_SESSION['logged_in'])){
                 // 'DOM Element ID': { /* elFinder options of this DOM Element */ }
                 'elfinder': {
                     getFileCallback: function(file, fm) {
-                        // console.log(fm);
-                        // console.log(file.path);
-                        // console.log(fm.convAbsUrl(file.path));
-                        var fileUrl = '/'+file.path;
+                         //console.log(fm);
+                         //console.log(file);
+                         //console.log(fm.convAbsUrl(file.url));
+                      
+                        var fileUrl = '/'+file.path.replace(/\\/g,"/");
+                     
                         window.opener.singleEelFinder.elFinderCallback(fileUrl);
                         //window.opener.singleEelFinder.elFinderCallback(fm.convAbsUrl(file.url));
                         fm.destroy();

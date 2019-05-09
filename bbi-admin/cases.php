@@ -11,9 +11,10 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT id FROM cases WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
+    $pagination->rowCount("SELECT id FROM cases  WHERE title LIKE '%$search%' OR summary LIKE '%$search%' OR body LIKE '%$search%' ORDER BY  importance DESC,id ASC ");
     $pagination->config(6, 10);
-    $sql = "SELECT * FROM cases WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT cases.id,cases.title,cases.importance,cases.pubdate,cases.thumbnail, cases.recommend, case_categories.title as categoryTitle FROM cases INNER JOIN case_categories 
+    ON cases.categoryid = case_categories.id WHERE title LIKE '%$search%' OR summary LIKE '%$search%' OR body LIKE '%$search%' ORDER BY  importance DESC , id ASC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -26,7 +27,8 @@ else
 {
     $pagination->rowCount("SELECT id FROM cases");
     $pagination->config(6,10);
-    $sql = "SELECT * FROM cases ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT cases.id,cases.title,cases.importance,cases.pubdate,cases.thumbnail, cases.recommend, case_categories.title as categoryTitle FROM cases INNER JOIN case_categories 
+    ON cases.categoryid = case_categories.id ORDER BY  importance DESC,id ASC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -81,7 +83,9 @@ else
                     <th>缩略图</th>
                     <th>标题</th>
                     <th>类别</th>
-                    <th>创建时间</th>
+                    <th>排序</th>
+                    <th>推荐</th>
+                    <th>完成日期</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -93,8 +97,10 @@ else
                 ?>
                     <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
                     <td><?php echo $row['title'] ;?></td> 
-                    <td><?php echo $row['category'] ;?></td>         
-                    <td><?php echo date("Y-m-d H:i",$row['added_date']);?></td>
+                    <td><?php echo $row['categoryTitle'] ;?></td>         
+                    <td><?php echo $row['importance'] ;?></td>        
+                    <td><i class="iconfont <?php echo $row['recommend']==1?"icon-check":"icon-close" ;?>"></i></td>      
+                    <td><?php echo date("Y-m-d",$row['pubdate']);?></td>
                    
                     <td><a href='case_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
@@ -130,7 +136,7 @@ else
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(2)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

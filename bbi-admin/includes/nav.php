@@ -1,6 +1,6 @@
 <aside id="sidebar-nav" class="leftcol bg-dark">
     <div class="logo text-center">
-        <img src="../img/min-logo.png" alt="logo" />
+        <img src="../img/logo_white.png" alt="logo" />
     </div>
 
         <nav id="menu"> 
@@ -33,7 +33,16 @@
                             <i class="iconfont icon-reconciliation"></i> <span class="nav-text">订单管理</span>                    
                         </a>
                     </li> -->
-
+                    <li class="down-nav">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-percentage"></i> <span class="nav-text">案例</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="cases.php">案例管理</a></li>
+                            <li><a href="case_categories.php">案例分类</a></li>
+                        </ul>
+                    </li>
                     <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>   
@@ -44,12 +53,12 @@
                             <li><a href="news_add.php">添加新闻</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li hidden>
                         <a href="meetings.php">
                             <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">会议信息</span>                    
                         </a>
                     </li>
-                    <li class="down-nav">
+                    <li class="down-nav" hidden>
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
                             <i class="iconfont icon-camera"></i> <span class="nav-text">媒体关注</span>
@@ -67,7 +76,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li hidden>
                         <a href="subscriptions.php">
                             <i class="iconfont icon-mail"></i> <span class="nav-text">邮件订阅</span>                    
                         </a>
@@ -88,7 +97,7 @@
                         </ul>
                     </li>
                    
-                    <li>
+                    <li hidden>
                         <a href="teams.php">
                             <i class="iconfont icon-team"></i> <span class="nav-text">团队管理</span>                    
                         </a>
@@ -98,7 +107,7 @@
                             <i class="iconfont icon-user"></i> <span class="nav-text">加入我们</span>                    
                         </a>
                     </li>
-                    <li>
+                    <li hidden>
                         <a href="distributors.php">
                             <i class="iconfont icon-heatmap"></i> <span class="nav-text">公司分部</span>                    
                         </a>
@@ -133,6 +142,7 @@
                             <li><a href="administrators.php"><i class="iconfont icon-team"></i> 管理员</a></li>
                             <li><a href="admin_add.php"><i class="iconfont icon-adduser"></i> 创建管理员</a></li>
                         </ul>
+                    </li>
 <!--                    <li class="liitem"><a href="/BBI-Admin/Pages/ManagePages.aspx"><i class="fa fa-paste"></i> 内容片段</a></li>-->
 
                     <!--<li class="liitem down-nav">

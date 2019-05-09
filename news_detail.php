@@ -1,7 +1,6 @@
 <?php
 
 require_once("includes/common.php");
-require_once("includes/output.php");
 require_once("config/db.php");
 require_once("data/article.php");
 
@@ -38,28 +37,31 @@ if(isset($_GET['id'])){
 
 
 <div class="page-news">
-<?php require_once('includes/header_news.php') ?>
+
 
 <div class="container news-detail">
-            <header class="news-header">
+            <header class="news-header  wow slideInUp">
                 <h1><?php echo $data['title'];?></h1>
                 <p><?php echo date('Y-m-d',$data['pubdate']) ;?></p>
             </header>
-            <article class="news-body">
+            <article class="news-body  wow slideInUp">
             <?php echo $data['content'];?>
             </article>
-            <footer class="text-center">
+            <footer class="row prevnext wow slideInUp">
+            <div class="col-md-6">
                 <?php if(!empty($prev)){?>
-                    <div class="nav">
+                  
                         <a href="/news/detail-<?php echo $prev["id"];?>" class="more">上一篇：<?php echo $prev["title"];?> </a>
-                    </div>
+                
                 <?php } ?>
+                </div>
+                <div class="col-md-6">
                 <?php if(!empty($next)){?>
-                    <div class="nav">
+                  
                         <a href="/news/detail-<?php echo $next["id"];?>" class="more">下一篇：<?php echo $next["title"];?> </a>
-                    </div>
+                  
                 <?php } ?>
-              
+                </div>
             </footer>
         </div>
 
@@ -71,9 +73,9 @@ if(isset($_GET['id'])){
 
 <script>
         $(document).ready(function() {
-            $(".leftnav li:nth-of-type(5) a").addClass("active");
-           $(".mainav li:nth-of-type(5) a").addClass("active");
-           $(".subnav li:nth-of-type(1) a").addClass("active");
+            $(".leftnav li:nth-of-type(4) a").addClass("active");
+           $(".mainav li:nth-of-type(4) a").addClass("active");
+     
         });
     </script>
 </body>

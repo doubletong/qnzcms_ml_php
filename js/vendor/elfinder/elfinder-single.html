@@ -65,6 +65,7 @@
                 'elfinder': {
                     getFileCallback: function(file, fm) {
                         console.log(file.url);
+                      
                         window.opener.singleEelFinder.elFinderCallback(fm.convAbsUrl(file.url));
                         fm.destroy();
                         window.close();

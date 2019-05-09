@@ -1,0 +1,78 @@
+@import "utilities/index";
+@import "common/reboot";
+@import "common/grid";
+@import "pages/index";
+
+
+
+
+body {
+    -webkit-font-smoothing: antialiased; 
+    text-rendering: optimizeLegibility;
+    color: #666;
+    font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+   
+    background-color: $color-background;
+    line-height: 1.8;
+    margin: 0;
+    
+    padding: 0;
+}
+
+a {
+    background: transparent;
+    color: #00A0E9;
+    text-decoration: none;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: normal;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+
+
+
+
+.page-search {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.page-search .sitepath a {
+    color: #333;
+}
+
+.page-search .box {
+    border-bottom: 1px #E5E5E5 solid;
+    padding-bottom: 1rem;
+    line-height: 1.6;
+    padding-top: 2rem;
+}
+
+.page-search .box .title {
+    font-size: 20px;
+    margin: 0;
+}
+
+

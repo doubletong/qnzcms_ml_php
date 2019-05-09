@@ -3,6 +3,8 @@ require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/case.php');
+require_once('data/case_category.php');
+
 
 $caseClass = new CaseShow();
 if(isset($_GET['id'])){
@@ -13,7 +15,8 @@ if(isset($_GET['id'])){
     exit;
 }
 
-
+$categoryClass = new CaseCategory();
+$categories = $categoryClass->fetch_all();
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,20 +54,59 @@ if(isset($_GET['id'])){
                             <input type="text" class="form-control" id="title" name="title" value="<?php echo $data["title"]; ?>">                         
                         </div>
 
-                  
                         <div class="form-group">
                             <label for="category">类别</label>
-                            <select class="form-control" id="category" name="category" placeholder="" >
+                            <select class="form-control" id="categoryid" name="categoryid" placeholder="" >
                                 <option value="">--请选择类别--</option>
-                                <option value="药物临床开发策略" <?php echo $data['category']=="药物临床开发策略"?"selected":"";?>>药物临床开发策略</option>
-                                <option value="药品注册途径和策略" <?php echo $data['category']=="药品注册途径和策略"?"selected":"";?>>药品注册途径和策略</option>
-                                <option value="药物临床试验统计" <?php echo $data['category']=="药物临床试验统计"?"selected":"";?>>药物临床试验统计</option>
-                                <option value="新药早期临床开发" <?php echo $data['category']=="新药早期临床开发"?"selected":"";?>>新药早期临床开发</option>
-                                <option value="生物等效性试验" <?php echo $data['category']=="生物等效性试验"?"selected":"";?>>生物等效性试验</option>                         
+                               <?php foreach( $categories as $model)
+                                {
+                                    if($model["id"]=== $data["categoryid"]){
+                                    ?>
+                                            <option value="<?php echo $model["id"]; ?>" selected><?php echo $model["title"]; ?></option>
+
+                                <?php }else{?>
+
+                                    <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?> </option>
+                                    <?php } } ?>
+                                                 
                             </select>                       
                         </div>
+                  
+                        <div class="form-group">
+                            <label for="importance">排序</label>                 
+                            <input type="number" class="form-control" id="importance" name="importance" value="<?php echo $data["importance"]; ?>" placeholder="值越大越排前">                  
+                        </div>
 
-                       
+                        <div class="form-group">
+                            <label for="content">案例内容</label>                            
+                                <textarea class="form-control" id="body" name="body" placeholder=""><?php echo $data["body"]; ?></textarea>
+                                <script>
+                                var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
+                                    CKEDITOR.replace( 'body', {
+                                      
+                                        filebrowserBrowseUrl: elFinder,
+                                        filebrowserImageBrowseUrl: elFinder                                                   
+                                    });
+                                </script>                        
+                        </div>
+
+                        <div class="form-group">
+                            <label for="summary">摘要</label>
+                            <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo $data["summary"]; ?></textarea>                          
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pubdate">发布日期</label>
+                            <input class="form-control" id="pubdate" name="pubdate" value="<?php echo date('Y-m-d',$data['pubdate']);?>" placeholder="" type="date" />                        
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" <?php echo $data['recommend']?"checked":"";?> id="chkRecommend" name="recommend">                          
+                            <label class="form-check-label" for="chkRecommend">首页推荐</label>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-auto">
                         <div style="width:300px; text-align:center;" class="mb-3">
@@ -112,7 +154,7 @@ if(isset($_GET['id'])){
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(2)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         
 
         $("#btnBrowser").on("click", function () {         
@@ -129,8 +171,12 @@ if(isset($_GET['id'])){
                 title: {
                     required: true
                 },
-                category: {
+                categoryid: {
                     required: true
+                },
+                pubdate: {
+                    required: true,
+                    date: true
                 }
             
 
@@ -139,9 +185,14 @@ if(isset($_GET['id'])){
                 title: {
                     required:"请输入主标题"
                 },
-                category: {
+                categoryid: {
                     required: "请选择类别"
+                },
+                pubdate: {
+                    required: "请选择发布日期",
+                    date: "日期格式不正确"
                 }
+
                 
 
             },

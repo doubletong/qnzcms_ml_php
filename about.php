@@ -21,10 +21,13 @@ $data = $pageClass->fetch_data("about");
 </head>
 <body>
 <?php require_once('includes/header.php') ?>
-
-<div class="page-about">
-    <?php require_once('includes/header_about.php') ?>
-    <?php echo $data["content"];?>        
+<div class="banner banner-about">
+</div>
+<div class="container">
+    <div class="page-about">   
+       <?php echo $data["content"];?>
+   
+    </div>
 </div>
 
     <?php require_once('includes/footer.php') ?>

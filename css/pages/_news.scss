@@ -1,0 +1,82 @@
+
+.page-news{
+    padding-top:2rem;
+    padding-bottom:2rem;
+    @include  respond-above(md){
+        padding-top:3rem;
+        padding-bottom:3rem;
+    }
+    @include  respond-above(lg){
+        padding-top:4rem;
+        padding-bottom:4rem;
+    }
+    
+    .newlist{
+        .box{        
+            padding: 1rem 0;
+            @include  respond-above(sm){
+                padding: 2rem 0;    border-bottom: 1px #eee solid; 
+            }
+            @include  respond-above(md){
+                padding: 3rem 0;    border-bottom: 1px #eee solid; 
+            }
+
+            .pic{
+                margin: 0 -15px;
+                @include  respond-above(sm){
+                    margin: 0;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+            .title{
+                margin-top: 0;
+                margin-bottom: .5rem;
+                a{
+                    color: $color-text-heading;
+                    &:hover{
+                        color:$color-primary;
+                    }
+                }
+               
+             
+                font-size:1.125rem;
+                @include  respond-above(md){
+                    font-size:1.5rem;
+                }
+    
+            }
+            .pubdate{
+                font-size: .875rem;
+                 color:$color-text-weak;
+            }
+            p{
+                color:$color-text-weak;
+                margin:.5rem 0;
+            }
+        }
+    }
+
+    .news-header{
+        text-align: center;
+        h1{
+            color:$color-text-heading;
+            font-size: 1.5rem;
+            @include  respond-above(md){
+                font-size: 2rem;
+            }
+        }
+    }
+    .news-body{
+        margin-bottom: 3rem;
+        min-height:30rem;
+    }
+}
+
+.news-detail{
+    padding-top: 2rem;
+    @include  respond-above(md){
+        padding-top: 3rem;
+    }
+}

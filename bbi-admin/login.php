@@ -72,7 +72,7 @@ if(isset($_POST['username'],$_POST['password'])){
 <body class="loginPage">
 <form method="post" class="loginForm">
 <div class="loginbox card">
-    <div class="card-img-top"><img src="../img/logo.png"  alt="..."></div>
+    <div class="card-img-top"><img src="../img/logo_black.png"  alt="..."></div>
 
 <div class="card-body">
 
