@@ -1,18 +1,42 @@
-
+.slider{
+    div.item{
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        a{
+           display: block; height: 100%;
+        }
+    }
+}
 .bx-wrapper {
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+.bx-wrapper .slider .bx-pager{
+    text-align: right;
+    margin-top: -4rem;
+    position: relative;
+    padding-top:0;
+    .num{
+        display: inline-block; line-height:12px; vertical-align:bottom;
+        color: #fff;
+        font-weight: lighter;
+        margin-right: 5px;
 
-
-
-.bx-wrapper .bx-pager.bx-default-pager a {
-    background-color: #ccc;
+    }
+}
+.bx-wrapper .slider .bx-controls-auto, .bx-wrapper .bx-pager{
+    bottom:0;
 }
 
-.bx-wrapper .bx-pager.bx-default-pager a.active,
-.bx-wrapper .bx-pager.bx-default-pager a:focus,
-.bx-wrapper .bx-pager.bx-default-pager a:hover {
-    background-color:$color-primary;
+.bx-wrapper .slider .bx-pager.bx-default-pager a {
+    background: transparent url(../img/star.png) no-repeat center center; width: 14px;height: 14px;
+}
+
+.bx-wrapper .slider .bx-pager.bx-default-pager a.active,
+.bx-wrapper .slider .bx-pager.bx-default-pager a:focus,
+.bx-wrapper .slider .bx-pager.bx-default-pager a:hover {
+    background: transparent url(../img/star_white.png) no-repeat center center;
 }

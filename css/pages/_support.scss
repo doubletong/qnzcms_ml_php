@@ -1,0 +1,23 @@
+.page-support{
+    @include respond-above (md) {       
+        padding-top: 4rem;
+        padding-bottom: 4rem;    
+      }
+    text-align: center;
+    h2{
+        font-size: 3rem;
+        color: $color-text-heading;
+        font-weight: lighter;
+    }
+    .s1{
+        margin-bottom: 6rem;
+    }
+    figure{
+        margin-bottom: 2rem;
+        img{
+            display: block;
+            margin: 0 auto 1rem;
+         
+        }
+    }
+}

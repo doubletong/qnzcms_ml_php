@@ -1,87 +1,182 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Thin.ttf');
+    /* IE9+ */
+}
+
+.container {
+    @include respond-above(lg) {
+        max-width: 1210px;
+    }
+}
+
 .banner {
     background-color: $color-primary;
     background-size: cover;
     height: 150px;
     background-position: center center;
     background-repeat: no-repeat;
-   
-    .page-title{
+
+    .page-title {
         padding-top: 3.5rem;
         color: #fff;
-        @include  respond-above(sm){
+        position: relative;
+        height: 100%;
+
+        @include respond-above(sm) {
             padding-top: 7rem;
-         }
-        @include  respond-above(md){
+        }
+
+        @include respond-above(md) {
             padding-top: 10rem;
-         }
-         @include  respond-above(lg){
+        }
+
+        @include respond-above(lg) {
             padding-top: 13rem;
-         }
-        h1{
-           
-           margin: 0; font-weight: lighter;
+        }
+
+        .down {
+            position: absolute;
+            left: 0;
+            padding: 0 15px 2.5rem;
+            bottom: 0;
+            z-index: 100;
+            line-height: 1.5;
+
+            .date {
+                font-size: rem(24);
+            }
+        }
+
+        h1 {
+
+            margin: 0;
+            font-weight: lighter;
             font-size: rem(24);
-            @include  respond-above(sm){
+
+            @include respond-above(sm) {
                 font-size: rem(32);
             }
-            @include  respond-above(md){
+
+            @include respond-above(md) {
                 font-size: rem(48);
             }
-            @include  respond-above(lg){
+
+            @include respond-above(lg) {
                 font-size: rem(60);
             }
-            
+
         }
-        p{
+
+        p {
             margin: 0;
             font-weight: lighter;
             font-size: rem(12);
-            @include  respond-above(sm){
+
+            @include respond-above(sm) {
                 font-size: rem(14);
-             }
-            @include  respond-above(md){
-               font-size: 1rem;
+            }
+
+            @include respond-above(md) {
+                font-size: 1rem;
             }
         }
     }
-  
-    @include respond-above (sm) {       
-          height: 280px;          
+
+    @include respond-above (sm) {
+        height: 280px;
     }
-    @include respond-above (md) {       
-        height: 400px;          
+
+    @include respond-above (md) {
+        height: 400px;
     }
-    @include respond-above (lg) {       
-        height: 550px;          
-    }   
-    &.banner-story {   
-        background-image:url(../img/banners/story.jpg);      
-     }
- 
+
+    @include respond-above (lg) {
+        height: 550px;
+    }
+
+    &.banner-story {
+        background-image: url(../img/banners/story.jpg);
+    }
+
+    &.banner-support {
+        background-image: url(../img/banners/support.jpg);
+    }
+
+    &.banner-disease {
+        background-image: url(../img/banners/disease.jpg);
+    }
+
+    &.banner-cards {
+        background-image: url(../img/banners/cards.jpg);
+    }
+
+    &.banner-operation {
+        background-image: url(../img/banners/operation.jpg);
+    }
+
+    &.banner-events {
+        background-image: url(../img/banners/events.jpg);
+    }
+
+    &.banner-school {
+        background-image: url(../img/banners/school.jpg);
+    }
+
+    &.banner-creative {
+        background-image: url(../img/banners/creative.jpg);
+    }
 }
 
-.page{
+.page {
+    overflow: hidden;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @include respond-above (sm) {       
+
+    @include respond-above (sm) {
         padding-top: 3rem;
-        padding-bottom: 3rem;   
-  }
-  @include respond-above (md) {       
-    padding-top: 4rem;
-    padding-bottom: 4rem;    
-  }
-  @include respond-above (lg) {       
-    padding-top: 5rem;
-    padding-bottom: 5rem;   
-  }   
+        padding-bottom: 3rem;
+    }
+
+    @include respond-above (md) {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    @include respond-above (lg) {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
 }
 
+.title {
+    color: $color-text-heading;
+    font-weight: lighter;
+}
 
-.list{
+.list {
     margin-bottom: 1rem;
 }
 
+.godown {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    z-index: 6000;
+
+    margin-left: -25px;
+
+    a {
+        color: #fff;
+        display: block;
+        text-align: center;
+        width: 50px;
+
+        .iconfont {
+            font-size: 2.35rem;
+        }
+    }
+}
 
 a.yellow {
     display: inline-block;
@@ -109,59 +204,52 @@ a.yellow {
 
 
 .page-home {
-    padding-bottom: 5rem;
-
+    padding-bottom: 0;
+    overflow: hidden;
+    background-color: #fff;
     .s1 {
-        max-width: 45rem;
-        margin: 0 auto 3rem;
-     
+        padding-top: 2rem;
         text-align: center;
-        padding: 0 1rem;
-        @include respond-above(sm) {
-            font-size: rem(24);
-        }
-        @include respond-above(md) {
-            padding-top: 2rem;
-            margin: 0 auto 5rem;
+        padding-bottom: 2rem;
+        margin-bottom: 1rem;
+
+        h2.se-title {
+            font-size: 3rem;
         }
 
-    }
+        .s1-001 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
 
-    .goodcase {
-        @include respond-above(lg) {
-            padding-left: 5rem;
-            padding-right: 5rem;
-        }
-
-        &.s3 {
             .item {
+                padding-top: 3rem;
 
-                margin: 0 0 16px;
-                @include respond-above(sm) {
-                    margin: 0 -15px 0;
+                .icon {
+                    margin-bottom: 2rem;
                 }
-               
-                a {
-                    display: block;
-                    overflow: hidden;
 
-                    img {
-                        width: 100%;
-                        display: block;
-                        transition: all .2s;
+                .title {
+                    line-height: 1;
+
+                    .num001 {
+                        font-family: 'Roboto';
+                        font-size: rem(66);
+                        margin-right: .5rem;
                     }
 
-                    &:hover {
-                        img {
-                            transform: scale(1.1)
-                        }
+                    small {
+                        font-size: rem(34);
                     }
                 }
 
+                p {
+                    color: $color-text-weak;
+                }
             }
         }
-
     }
+
+
 
     .s2 {
         margin-bottom: 2rem;
@@ -173,218 +261,157 @@ a.yellow {
         @include respond-above(lg) {
             margin-bottom: 4rem;
         }
-    }
-}
 
-
-.categories {
-    text-align: center;
-
-    .item {
-        margin-bottom: 1rem;
-
-        .icon {
-
-            @include respond-above(md) {
-                margin-bottom: .8rem;
-            }
-
-            a {
-                img {
-                    transition: all .2s;
-                    width: rem(100);
-                }
-
-                &:hover {
-                    img {
-                        transform: scale(.8);
-                    }
-                }
-            }
-        }
-
-        h3 {
-            font-size: 1.125rem;
-            margin: 0;
-
-            @include respond-above(md) {
-                font-size: rem(20);
-            }
-
-            a {
-                color: #666;
-                display: inline-block;
-                position: relative;
-                padding: 0 .8rem;
-
-                &::after {
-                    content: " ";
-                    display: block;
-                    height: 0;
-                    background-color: $color-primary;
-                    position: absolute;
-                    bottom: 0;
-                    width: 100%;
-                    z-index: -1;
-                    left: 0;
-                    transition: height .2s;
-                }
-
-                &:hover {
-                    color: #333;
-
-                    &::after {
-
-                        height: 1rem;
-
-                    }
-                }
-            }
-        }
-
-        small {
-            color: #ccc;
-            text-transform: uppercase;
-        }
-    }
-}
-
-.site-footer {
-    background: #333;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-    font-size: 0.875rem;
-    color: #999;
-
-    a {
-        color: #999;
-
-        &:hover {
+        .item {
+            background: $color-primary url(../img/h_01_bg.jpg) no-repeat center center;
+            background-size: cover;
             color: #fff;
+            height: rem(500);
+
+            .container {
+                height: 100%;
+
+                .row {
+                    height: 100%;
+
+                    h2 {
+                        font-size: rem(40);
+                        margin: 0;
+                        line-height: 1;
+                    }
+
+                    p {
+                        font-size: rem(18);
+                        margin-bottom: 2rem;
+                    }
+
+                    .more {
+
+                        background-color: rgb(255, 255, 255);
+                        display: inline-block;
+                        width: 125px;
+                        height: 50px;
+                        line-height: 50px;
+                        border-radius: 25px;
+                        text-align: center;
+                        color: $color-secondary;
+
+                    }
+                }
+            }
+
+            &.t2 {
+                background-image: url(../img/h_02_bg.jpg);
+                text-align: right;
+            }
+
+            &.t3 {
+                background-image: url(../img/h_03_bg.jpg);
+
+            }
         }
     }
 
-    .footer-top {
-        margin-bottom: 1rem;
-
-        .leftcol {
-            border-bottom: 1px #444 solid;
-            margin-bottom: 2rem;
-
-            @include respond-above(sm) {
-                border-bottom: none;
-                margin-bottom: 0;
-            }
-        }
-
-        .bot_logo {
-            width: rem(120);
-            margin: 0 auto;
-
-            @include respond-above(sm) {
-                margin: 0 auto 0 0;
-            }
-        }
-
-        h3 {
+    .s4 {
+        .item {
             text-align: center;
-
-            @include respond-above(sm) {
-                text-align: left;
-            }
-        }
-    }
-
-    .contact {
-        margin: 0 0 1rem;
-        padding: 0;
-        list-style: none;
-
-        li {
-            padding: .3rem 0 .3rem 2rem;
             position: relative;
-
-            i.iconfont {
-                color: #777;
-                font-size: 1.235rem;
+            .pic{
+                img{
+                    display: block;
+                    width: 100%;
+                }
+            }
+            a {
+                display: block;
                 position: absolute;
-                left: 0;
-                top: 0;
+                width: 100%;
+                height: 100%;
                 z-index: 100;
+                top: 0;
+                left: 0;
+                color: #fff;
+
+                .row {
+                    height: 100%;
+                }
+
+                h3 {
+                    font-size: rem(36);
+                    margin: 0 0 2.5rem;
+                }
+
+                .more {
+                    display: block;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    color: $color-primary;
+                    background-color: rgb(255, 255, 255);
+                    line-height: 50px;
+                    border-radius: 25px;
+                    width: 50px;
+                    height: 50px;
+                    transition: all .2s;
+                    font-size: rem(18);
+
+                    span {
+                        display: none;
+                    }
+
+                    .iconfont {
+                        font-size: rem(18);
+                    }
+
+                }
+
+                @include hover {
+                    .more {
+                        width: 125px;
+
+                        span {
+                            display: inline-block;
+                        }
+                    }
+
+                }
             }
+
         }
     }
 
-    .bot-nav {
-        border-left: 1px #444 solid;
-        padding-left: 6rem;
-        display: none;
-
-        @include respond-above(md) {
-            display: block;
-        }
-
-        dl.nav {
-            padding: 0;
-            margin: 0;
-
-            dt {
-                font-size: 1rem;
-                font-weight: bold;
-                margin-bottom: 1rem;
-                color: #666;
-            }
-
-            dd {
-                margin: 0;
-                font-size: 0.875rem;
-                padding: 5px 0;
-
-            }
-        }
+    .s6 {
+        background: $color-primary url(../img/map_03.jpg) no-repeat center center;
+        background-size: cover;
+        height: 1050px;
     }
-
-    .qrcode {
-        width: 8.6rem;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .copyright {
-        border-top: 1px #444 solid;
+    .s7{
         text-align: center;
-        padding-top: 1rem;
-    }
-
-}
-
-.qqservice {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 2000;
-    width: 3rem;
-}
-
-.totop {
-    display: block;
-    width: 3rem;
-    height: 3rem;
-    text-align: center;
-    line-height: 3rem;
-
-    border-radius: 50%;
-    opacity: .5;
-    transition: opacity .2s;
-    background-color: $color-primary;
-    color: #000;
-
-    &:hover {
-        opacity: 1;
-    }
-
-    @include respond-above(sm) {
-        bottom: 2rem;
-        right: 2rem;
+        margin-bottom: 3rem;
+        .navs{
+            display: inline-block;
+        }
+        a{
+            border-radius: 22px;
+            background-color: rgb(238, 238, 238);
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            margin: 0 .3rem;
+            color:$color-secondary;
+            &.all{
+                width: 120px;
+            }
+            &:hover{
+                background-color: $color-primary;
+                color: #fff;
+            }
+            &.active{
+                background-color: $color-primary;
+                color: #fff;
+            }
+          }
+          
     }
 }
+

@@ -11,8 +11,8 @@ body {
     text-rendering: optimizeLegibility;
     color: #666;
     font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-   
-    background-color: $color-background;
+
+    background-color: $color-background-shade;
     line-height: 1.8;
     margin: 0;
     
@@ -50,29 +50,7 @@ h6 {
     text-align: right;
 }
 
-
-
-
-
-.page-search {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+input,textarea,button{
+    font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
-
-.page-search .sitepath a {
-    color: #333;
-}
-
-.page-search .box {
-    border-bottom: 1px #E5E5E5 solid;
-    padding-bottom: 1rem;
-    line-height: 1.6;
-    padding-top: 2rem;
-}
-
-.page-search .box .title {
-    font-size: 20px;
-    margin: 0;
-}
-
 

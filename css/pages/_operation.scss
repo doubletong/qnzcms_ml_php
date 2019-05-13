@@ -1,0 +1,31 @@
+.page-operation-detail{
+    .se-title{
+        font-size: rem(30);
+        color:$color-text-heading;
+    }
+    .pdf {
+       position: relative;
+      padding: 0 3rem;
+        height: 40px;
+        border-radius: 20px;
+      line-height: 40px;
+      background: #d7ddeb url(../img/PDF.png) no-repeat 1rem center;
+      margin-bottom: rem(24);
+      
+        .title{
+            white-space: nowrap;overflow: hidden; text-overflow: ellipsis;
+        }
+        a{
+            position: absolute;right: 1rem;
+            top: 0; color:$color-primary;
+            .iconfont{
+                font-size: rem(22);
+            }
+        }
+
+        &:hover{
+            background-color: #fff;
+        }
+      }
+      
+}

@@ -1,0 +1,94 @@
+
+.site-footer {
+    background:#050823;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+
+    color: #999;
+    overflow: hidden;
+
+    a {
+        color: #94acce;
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    .footer-navs {
+        margin-bottom: 1.5rem;
+        dl{
+            margin: 0;
+            dt{
+                font-size: rem(18);
+                color:#e3eeff;
+                margin-bottom: 1.5rem;
+            }
+            dd{
+                margin: 0;
+                font-size: rem(14);
+                margin-bottom: .8rem;
+            }
+        }
+
+  
+
+    }
+.f-s2{
+    margin-bottom: 2rem;
+}
+    .sinawechat{
+        a{
+            display: inline-block;
+            width: 50px;
+            height: 50px; line-height: 50px;
+            border-radius: 6px;
+            background-color: #6b8ac7;
+            color: #050823;
+            text-align: center;
+            margin-right: .7rem; 
+            .iconfont{
+                font-size: rem(36);
+            }
+        }
+    }
+    .support{
+        padding-left: 1rem;
+    }
+    .copyright {
+        border-top: 1px #444 solid;
+        text-align: center;
+        padding-top: 1rem;   font-size: rem(14);
+    }
+
+}
+
+.qqservice {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 2000;
+    width: 3rem;
+}
+
+.totop {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+
+    border-radius: 50%;
+    opacity: .5;
+    transition: opacity .2s;
+    background-color: $color-primary;
+    color: #000;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    @include respond-above(sm) {
+        bottom: 2rem;
+        right: 2rem;
+    }
+}

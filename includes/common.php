@@ -1,7 +1,7 @@
 <?php
 
 define('SITEPATH', 'http://tzgcmsphp.com:83/');
-define('SITENAME', '觅乐墨品');
+define('SITENAME', '微创医疗');
 
 // Set default timezone
 //date_default_timezone_set('UTC');
