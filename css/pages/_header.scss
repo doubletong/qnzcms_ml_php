@@ -66,12 +66,13 @@
                 overflow: hidden;
                 li{
                     border-bottom: 1px #eee solid;
+                    float: none;
                     &:last-child{
                         border-bottom: none;
                     }
                     a{
                         display: block;
-                     padding: .7rem 0;
+                     padding: .6rem 0;
                         color:$color-text-heading;
                         @include hover {
                            color:$color-primary;
@@ -86,6 +87,7 @@
                     .subnav{
                         height:auto;
                         opacity: 1;
+                        box-shadow: 3px 3px 5px rgba(0,0,0,.1)
                     }
                     &::after {
                         content: " ";
@@ -127,6 +129,37 @@
         width: 100%;
         z-index: 8000;
 
+    }
+    .searchbox{ 
+        display: none;
+    }
+    &.forSearch{
+        height: 250px;
+        background-color: $color-accent;
+        .searchbox{
+            display: block;
+            padding-top: 2.5rem;
+            border-bottom: 1px #fff solid;
+            input{
+                width: 100%;
+                font-size: rem(30);
+                padding: .8rem 1rem;
+                background-color: transparent;
+                border:none;
+                outline: none;
+                color:#fff;
+            }
+            button{
+                background-color: transparent;
+                border:none;
+                color: #fff;
+                cursor: pointer;
+                padding: .8rem;
+                .iconfont{
+                    font-size: rem(30);
+                }
+            }
+        }
     }
 }
 

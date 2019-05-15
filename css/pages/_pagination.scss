@@ -107,8 +107,7 @@
         padding: 0 2rem;
         background-color: rgb(215, 221, 235);
         color: #666;
-        text-align: center;
-     
+        text-align: center;       
         transition: all .2s;
         max-width: 720px;
         height: 60px;
@@ -116,7 +115,8 @@
         margin: 0 auto 2rem;
         line-height: 60px;overflow: hidden;
         text-overflow: ellipsis;
-
+        white-space: nowrap;
+        
         &:hover {
             background-color: $color-primary;
             color: #fff;

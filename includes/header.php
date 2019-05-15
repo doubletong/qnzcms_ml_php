@@ -8,16 +8,16 @@
             </div>
             <div class="col-auto">
                 <ul class="mainav">
-                    <li><a href="/">首页</a></li>
+                    
                     <li class="down"><a href="/about">关于微创</a>
                         <ul class="subnav">
                             <li><a href="/about">公司简介</a></li>
-                            <li><a href="/events">分子公司信息</a></li>
-                            <li><a href="/school">里程碑</a></li>
-                            <li><a href="/creative">奖项荣誉</a></li>
-                            <li><a href="/creative">全球管理团队</a></li>
-                            <li><a href="/creative">企业社会责任</a></li>
-                            <li><a href="/creative">职业发展</a></li>
+                            <li><a href="/branch">分子公司信息</a></li>
+                            <li><a href="/course">里程碑</a></li>
+                            <li><a href="/honor">奖项荣誉</a></li>
+                            <li><a href="/team">全球管理团队</a></li>
+                            <li><a href="/duty">企业社会责任</a></li>
+                            <li><a href="/career">职业发展</a></li>
                         </ul>
 
                     </li>
@@ -38,46 +38,62 @@
                         </ul>
                     </li>
                     <li class="down">
-                        <a href="/jion">产品中心</a>
+                        <a href="/products">产品中心</a>
                         <ul class="subnav">
-                            <li><a href="/support">心血管介入产品
+                            <li><a href="/products">心血管介入产品
                                 </a></li>
-                            <li><a href="/disease">心律管理产品
+                            <li><a href="/products">心律管理产品
                                 </a></li>
-                            <li><a href="/cards">骨科医疗器械产品
+                            <li><a href="/productorthopaedics">骨科医疗器械产品
                                 </a></li>
-                            <li><a href="/story">大动脉及外周血管介入产品
+                            <li><a href="/products">大动脉及外周血管介入产品
                                 </a></li>
-                            <li><a href="/support">电生理医疗器械产品
+                            <li><a href="/products">电生理医疗器械产品
                                 </a></li>
-                            <li><a href="/disease">神经介入产品
+                            <li><a href="/productnerve">神经介入产品
                                 </a></li>
-                            <li><a href="/cards">内分泌医疗器械产品
+                            <li><a href="/products">内分泌医疗器械产品
                                 </a></li>
-                            <li><a href="/story">外科医疗器械产品
+                            <li><a href="/products">外科医疗器械产品
                                 </a></li>
-                            <li><a href="/support">介入配件</a></li>
+                            <li><a href="/products">介入配件</a></li>
 
                         </ul>
                     </li>
-                    <li class="down"><a href="/cooperate">传媒中心</a>
+                    <li class="down"><a href="/">传媒中心</a>
                         <ul class="subnav">
-                            <li><a href="/support">新闻动态
+                            <li><a href="/news">新闻动态
                                 </a></li>
-                            <li><a href="/disease">媒体报道
+                            <li><a href="/media">媒体报道
                                 </a></li>
-                            <li><a href="/cards">视频中心
+                            <li><a href="/videos">视频中心
                                 </a></li>
-                            <li><a href="/story">内刊
-                                </a></li>                           
+                            <li><a href="/magazine">内刊
+                                </a></li>
                         </ul>
-                    
-                </li>
+
+                    </li>
                     <li class="down">
-                        <a href="/contact">投资者关系</a>
-                        
-                </li>
-                    <li class="langs"><a href="javascript:void(0);"><i class="iconfont icon-search"></i></a></li>
+                        <a href="/">投资者关系</a>
+                        <ul class="subnav">
+                            <li><a href="/">公司治理
+                                </a></li>
+                            <li><a href="/">公告与通函
+                                </a></li>
+                            <li><a href="/">股票信息
+                                </a></li>
+                            <li><a href="/">演示材料
+                                </a></li>
+                            <li><a href="/">投资者关系简报
+                                </a></li>
+                            <li><a href="/">财务信息
+                                </a></li>
+                            <li><a href="/">投资者联系方式
+                                </a></li>
+                        </ul>
+
+                    </li>
+                    <li class="langs"><a href="javascript:void(0);" id="btnSearch"><i class="iconfont icon-search"></i></a></li>
                     <li class="langs"><a href="#">中文</a>/<a href="#">ENG</a></li>
                 </ul>
 
@@ -88,6 +104,19 @@
                     <div class="three"></div>
                 </div>
             </div>
+        </div>
+
+        <div id="searchbox" class="searchbox">
+            <form action="/search" method="get">
+                <div class="row">
+                    <div class="col">
+                        <input type="search" name="keyword" id="keyword" placeholder="请输入您想搜索的内容" />
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit"><i class="iconfont icon-search"></i></button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div id="overmenu" class="overmenu">

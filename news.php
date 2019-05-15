@@ -1,20 +1,10 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once('includes/PDO_Pagination.php');
+require_once("data/page.php");
 
-$pagination = new PDO_Pagination(db::getInstance());
-$model = array();
-$pagination->config(6, 12);
-
-$pagination->rowCount("SELECT * FROM wp_articles");
-
-$sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
-$query = db::getInstance()->prepare($sql);
-$query->execute();
-while ($rows = $query->fetch()) {
-    $model[] = $rows;
-}
+$pageClass = new Page();
+$data = $pageClass->fetch_data("declare");
 
 ?>
 <!DOCTYPE html>
@@ -25,89 +15,214 @@ while ($rows = $query->fetch()) {
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "新闻资讯-".SITENAME; ?></title>    
+    <title><?php echo "心血管介入产品-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
 <body>
 <?php require_once('includes/header.php') ?>
-<div class="banner banner-news">
-</div>
-<div class="page-news container">
-    <div class="page-title  wow slideInUp">
-        <h1>设计资讯</h1>
-        <h3>news</h3>
-    </div>
-        <div class="newlist"> 
-            <?php foreach($model as $article){ ?>
-            <div class="box  wow slideInUp">
-                <div class="row">
-                  
-                        <div class="col-md-4 col-lg-6">
-                        <div class="pic">
-                          <a  href="/news/detail-<?php echo $article['id'];?>" title="<?php echo $article['title'];?>  ">
-                            <img src="<?php echo $article['thumbnail'];?>" alt="<?php echo $article['title'];?>  ">
-          
-            </a>
-            </div>
-                        </div>
-                        <div class="col-md-8 col-lg-6 d2 align-self-center">
-                            <div class="des">
-                                <h3 class="title">
-                                <a  href="/news/detail-<?php echo $article['id'];?>" title="<?php echo $article['title'];?>  ">
-                                    <?php echo $article['title'];?>  
-                                    </a>                                
-                                </h3>
-                                <div class="pubdate">
-                                <i class="iconfont icon-time"></i> <?php echo date('Y-m-d',$article['pubdate']) ;?>                    
-                                </div>                 
-                                <p><?php echo mb_substr($article['summary'],0,56,'utf-8')."……";?></p>
-                            </div>
-                        </div>
-                      
-            
-            </div>
-            </div> 
-<?php } ?>
 
-                
-               
-     
-<ul class="pagination  wow slideInUp">
-                <?php
-                $pagination->pages("btn");
-                ?>
-            </ul>
+    <?php //echo $data["content"];?>   
+    
+    <div class="striving">
+<!--banner-->
+<div class="inside_banner news_banner" style="background-image:url(images/news_banner.jpg)">
+        <div class="wrap clear">
+            <div class="inside_banner_txt pos_center">
+                <h1 class="wow fadeInLeft">新闻动态</h1>
+                <p class="wow fadeInLeft">时刻与您分享我们的一点一滴</p>
+            </div>
         </div>
-
     </div>
+<!--banner end-->
 
-<?php require_once('includes/footer.php') ?>
+<!--main-->
+    <div class="main news">
+        <div class="news_title">
+            <div class="wrap">
+                <!--years-->
+                <div class="years clear wow fadeInUp">
+                    <p class="current_year">2019</p>
+                    <ul class="years_list">
+                        <li><a href="/news"><p>2019</p></a></li>
+                        <li><a href="/news"><p>2018</p></a></li>
+                        <li><a href="/news"><p>2017</p></a></li>
+                        <li><a href="/news"><p>2016</p></a></li>
+                        <li><a href="/news"><p>2015</p></a></li>
+                    </ul>
+                </div>
+                <!--years end-->
+            </div>
+        </div>
+        <div class="news_list">
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="news_item wow fadeInUp">
+                <div class="wrap">
+                    <a href="/news/detail-1" class="clear">
+                        <div class="img fl">
+                            <img src="images/news_01.jpg" alt=""/>
+                        </div>
+                        <div class="txt">
+                            <h4>微创®与亚洲医疗集团举行产业合作签约仪式</h4>
+                            <span>2018-12-29</span>
+                            <p>中国，武汉——2018年12月20日，上海微创医疗器械（集团）有限公司（以下简称“微创®”）与香港亚洲医疗集团（以下简称“亚洲医疗集团”）产业合作签约仪式在武汉亚洲大酒店举行。总经理叶红等亚洲医疗...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--pagination-->
+        <div class="pagination wow fadeInUp">
+            <ul class="pager">
+                <li><a class="prev" href="#">上一页</a></li>
+                <li class="active"><a class="page-link" href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#" class="more">…</a></li>
+                <li><a class="next" href="#">上一页</a></li>
+            </ul>
+            <span>共5页，到第</span> <input type="number" id="pagenum" class="pagenum"> <span>页</span> <a href="javascript:void(0);" class="go">确定</a>
+        </div>
+        <!--pagination end-->
+    </div>
+<!--main end-->
+</div>
+
+    <?php require_once('includes/footer.php') ?>
+
 <?php require_once('includes/scripts.php') ?>
 
 <script>
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(4) a").addClass("active");
            $(".mainav li:nth-of-type(4) a").addClass("active");
-      
-
-        //    $("#moreLoad").click(function(e){
-        //        var pageIndex = $(this).attr("data-page");
-        //        pageIndex = parseInt(pageIndex) + 1;
-        //        $(this).attr("data-page",pageIndex);
-
-        //        $.ajax({
-        //            type: "get",
-        //            url: "news_ajax_page.php?page=" + pageIndex,                 
-        //            success: function (response) {
-                      
-        //                $("#newlist").append(response);
-        //               if(response.length==1){
-        //                 $("#moreLoad").fadeOut();
-        //               }
-        //            }
-        //        });
-        //    })
+           $(".subnav li:nth-of-type(2) a").addClass("active");
         });
     </script>
 </body>

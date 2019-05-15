@@ -3,7 +3,8 @@ RewriteEngine on                       //on为打开,off为关闭
 RewriteRule ^/?([a-z]+)$ $1.php [L]
 RewriteRule ^news/detail-(.*)$ /news_detail.php?id=$1 
 RewriteRule ^meeting/detail-(.*)$ /meeting_detail.php?id=$1
-RewriteRule ^media/list-(.*)$ /media_detail.php?id=$1 
+RewriteRule ^media/list-(.*)$ /media_list.php?id=$1 
+RewriteRule ^media/detail-(.*)$ /media_detail.php?id=$1 
 RewriteRule ^cases/detail-(.*)$ /case_detail.php?id=$1 
 RewriteRule ^story/detail-(.*)$ /story_detail.php?id=$1 
 RewriteRule ^disease/list-(.*)$ /disease_list.php?id=$1 
@@ -11,3 +12,7 @@ RewriteRule ^disease/detail-(.*)$ /disease_detail.php?id=$1
 RewriteRule ^operation/detail-(.*)$ /operation_detail.php?id=$1 
 RewriteRule ^events/detail-(.*)$ /event_detail.php?id=$1 
 RewriteRule ^creative/detail-(.*)$ /creative_detail.php?id=$1 
+RewriteRule ^branch/detail-(.*)$ /branch_detail.php?id=$1 
+RewriteRule ^team/detail-(.*)$ /team_detail.php?id=$1 
+RewriteRule ^duty/detail-(.*)$ /duty_detail.php?id=$1 
+RewriteRule ^product/detail-(.*)$ /product_detail.php?id=$1 

@@ -2,7 +2,7 @@
     padding-bottom: 0;
     .s1{
         .more {
-            background-color: rgb(94, 126, 208);
+            background-color:$color-primary;
            display: inline-block;
             width: 160px;
             height: 40px;
@@ -10,7 +10,9 @@
             line-height: 40px;
           color:#fff;
           margin-top: 1rem;
-       
+          @include hover{
+            background-color: $color-secondary;
+        }
           }
           
     }

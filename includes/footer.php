@@ -1,28 +1,17 @@
 <footer class="site-footer">
     <div class="container">
-        <div class="row footer-navs  wow flipInX">
+        <div class="row footer-navs">
             <div class="col-md-2">
                 <dl>
                     <dt>关于微创</dt>
-                    <dd><a href="#">
-                            公司简介
-                        </a></dd>
-                    <dd><a href="#">分子公司信息
-                        </a></dd>
-                    <dd><a href="#">
-                            里程碑
-                        </a></dd>
-                    <dd><a href="#">
-                            奖项荣誉
-                        </a></dd>
-                    <dd><a href="#">
-                            全球管理团队
-                        </a></dd>
-                    <dd><a href="#">
-                            企业社会责任
-                        </a></dd>
-                    <dd><a href="#">
-                            职业发展</a></dd>
+                   
+                            <dd><a href="/about">公司简介</a></dd>
+                            <dd><a href="/branch">分子公司信息</a></dd>
+                            <dd><a href="/course">里程碑</a></dd>
+                            <dd><a href="/honor">奖项荣誉</a></dd>
+                            <dd><a href="/team">全球管理团队</a></dd>
+                            <dd><a href="/duty">企业社会责任</a></dd>
+                            <dd><a href="/career">职业发展</a></dd>
                 </dl>
             </div>
             <div class="col-md-2">
@@ -47,41 +36,45 @@
             <div class="col-md-2">
                 <dl>
                     <dt>产品中心</dt>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             心血管介入产品
                         </a></dd>
-                    <dd><a href="#">心律管理产品
+                    <dd><a href="/products">心律管理产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             骨科医疗器械产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             大动脉及外周血管介入产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             电生理医疗器械产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             神经介入产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             内分泌医疗器械产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             外科医疗器械产品
                         </a></dd>
-                    <dd><a href="#">
+                    <dd><a href="/products">
                             介入配件</a></dd>
                 </dl>
             </div>
             <div class="col-md-2">
                 <dl>
                     <dt>传媒中心</dt>
-                    <dd><a href="#">新闻动态</a></dd>
-                    <dd><a href="#">媒体报道</a></dd>
-                    <dd><a href="#">视频中心</a></dd>
-                    <dd><a href="#">内刊</a></dd>
-                   
+                 
+                    <dd><a href="/news">新闻动态
+                                </a></dd>
+                            <dd><a href="/media">媒体报道
+                                </a></dd>
+                            <dd><a href="/videos">视频中心
+                                </a></dd>
+                            <dd><a href="/magazine">内刊
+                                </a></dd>
                 </dl>
             </div>
             <div class="col-md-2">
@@ -119,7 +112,7 @@
                 </nav>
             </div>
             <div class="col-md">
-                <div class="support"> <a href="#">法律声明</a>   |   <a href="#">官方商城</a>   |   <a href="#">招贤纳士</a> <br/>
+                <div class="support"> <a href="#">法律声明</a>   |  <a href="#">招贤纳士</a> <br/>
                 客户支持邮箱：MTS@microport.com
                 </div>
             </div>
@@ -129,7 +122,10 @@
         </div>
         <div class="copyright  wow slideInUp">
             <p>
-            &copy;Copyright 1998-2019, MicroPort Scientific Corporation. All rights reserved.   |   网站备案/许可证号：<a href="http://www.beian.miit.gov.cn">沪ICP备06056186号</a>    <br/>  互联网药品信息服务资格证书编号：（沪）- 非经营性 - 2016 - 0131
+            &copy;Copyright 1998-2019, MicroPort Scientific Corporation. All rights reserved.   |   网站备案/许可证号：<a href="http://www.beian.miit.gov.cn">沪ICP备06056186号</a> <span class="designby">
+                Design by:<a href="http://www.inholy.com" target="_blank">HOLY荷勒</a>
+            </span>  
+                 <br/>  互联网药品信息服务资格证书编号：（沪）- 非经营性 - 2016 - 0131
             </p>
         </div>
     </div>

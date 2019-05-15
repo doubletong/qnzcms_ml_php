@@ -1,154 +1,194 @@
 <?php
-
 require_once("includes/common.php");
-require_once("includes/output.php");
 require_once("config/db.php");
-require_once("data/product.php");
-require_once("data/cart.php");
+require_once("data/page.php");
 
-$productClass = new Product();
+$pageClass = new Page();
+$data = $pageClass->fetch_data("declare");
 
-if(!isset($_GET['id'])){
-    header('Location: /products/');
-}
-$id = $_GET['id'];
-
-/*if(isset($_GET['view']) && $_GET['view'] == "add_to_cart"){
-        $add_item = add_to_cart($id);
-        $_SESSION['total_items'] = total_items($_SESSION['cart']);
-        $_SESSION['total_price'] = total_price($_SESSION['cart']);
-        $url = "productDetail.php?id=".$id;
-        header('Location:'.$url);
-}*/
-
-$data = $productClass->fetch_data($id);
-
-do_html_doctype("waterpik".$data['title']."（".$data['product_no']."）_价格_怎么样-".SITENAME)
 ?>
-    <meta name=keywords content="<?php echo $data['keywords'];?>">
-    <meta name=description content="<?php echo $data['description'];?>">
-    <link type="text/css" href="/js/lib/toastr/toastr.css"/>
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js gt-ie9 ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js gt-ie9">
+<!--<![endif]-->
 
-<?php
-do_html_header();
+<head>
+    <title><?php echo "中美双报-".SITENAME; ?></title>    
+    <?php require_once('includes/meta.php') ?>
+  
+</head>
+<body>
+<?php require_once('includes/header.php') ?>
 
-/*print_r($_SESSION['cart']);
-print_r($_SESSION['total_price']);*/
-?>
-    <div class="container hidden-xs">
-        <div class="breadcrumb">
-            <a href="<?php echo SITEPATH; ?>">首页</a> &gt; <a href="<?php echo SITEPATH; ?>/products/">口腔护理产品</a>  &gt; <h1><?php echo $data['title'];?>（<?php echo $data['product_no'];?>）</h1>
+    <?php // echo $data["content"];?>   
+    
+    <div class="striving">
+<!--banner-->
+<div class="inside_banner product_detail_banner">
+        <div class="wrap clear">
+            <div class="inside_banner_txt pos_center">
+                <div class="inside_banner_logo wow fadeInLeft">
+                    <img src="/images/product_detail_logo.png"/>
+                </div>
+                <h2 class="wow fadeInLeft">Firehawk®冠脉雷帕霉素靶向洗脱支架系统</h2>
+            </div>
+        </div>
+        <div class="inside_banner_img wow fadeInRight" style="background-image:url(/images/product_detail_banner.png)"></div>
+    </div>
+<!--banner end-->
+
+<!--main-->
+    <div class="main product_detail">
+        <div class="wrap">
+            <!--产品简介-->
+            <div class="product_detail_item product_detail_desc">
+                <div class="product_detail_title wow fadeInUp">
+                    <h3>产品简介</h3>
+                </div>
+                <p class="wow fadeInUp">Firehawk®冠脉雷帕霉素靶向洗脱支架系统（TES）是微创®继Firebird™和Firebird2™之后的全新一代用于冠状动脉狭窄或阻塞等病变治疗的产品。全新的最优药物剂量安全理念，全新的高科技制造工艺，全新的临床学评价系统，全新的产品受众群市场。</p><br/>
+                <dl class="wow fadeInUp">
+                    <dd>涂层暴露面积仅为支架表面积的5%</dd>
+                    <dd>药物体内释放时间超过90天</dd>
+                    <dd>聚合物涂层9个月内完全降解</dd>
+                    <dd>平均金属覆盖率14.0-16.1%</dd>
+                    <dd>全球更低载药量支架，同类产品1/3载药量，获得相同的有效性</dd>
+                </dl>
+            </div>
+            <!--规格参数-->
+            <div class="product_detail_item product_detail_spec">
+                <div class="product_detail_title wow fadeInUp">
+                    <h3>规格参数</h3>
+                </div>
+                <div class="product_detail_table wow fadeInUp">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                        <tr>
+                            <td rowspan="2">支架<br/>直径</td>
+                            <td colspan="11">支架长度</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>18</td>
+                            <td>21</td>
+                            <td>23</td>
+                            <td>26</td>
+                            <td>29</td>
+                            <td>31</td>
+                            <td>33</td>
+                            <td>35</td>
+                            <td>38</td>
+                        </tr>
+                        <tr>
+                            <td>2.25</td>
+                            <td>RV2213</td>
+                            <td>RV2216</td>
+                            <td>RV2218</td>
+                            <td>RV2221</td>
+                            <td>RV2223</td>
+                            <td>RV2226</td>
+                            <td>RV2229</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>2.5</td>
+                            <td>RV2513</td>
+                            <td>RV2516</td>
+                            <td>RV2518</td>
+                            <td>RV2521</td>
+                            <td>RV2523</td>
+                            <td>RV2526</td>
+                            <td>RV2529</td>
+                            <td>RV2531</td>
+                            <td>RV2533</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>2.75</td>
+                            <td>RV2713</td>
+                            <td>RV2716</td>
+                            <td>RV2718</td>
+                            <td>RV2721</td>
+                            <td>RV2723</td>
+                            <td>RV2726</td>
+                            <td>RV2729</td>
+                            <td>RV2731</td>
+                            <td>RV2733</td>
+                            <td>RV2735</td>
+                            <td>RV2738</td>
+                        </tr>
+                        <tr>
+                            <td>3.0</td>
+                            <td>RV3013</td>
+                            <td>RV3016</td>
+                            <td>RV3018</td>
+                            <td>RV3021</td>
+                            <td>RV3023</td>
+                            <td>RV3026</td>
+                            <td>RV3029</td>
+                            <td>RV3031</td>
+                            <td>RV3033</td>
+                            <td>RV3035</td>
+                            <td>RV3038</td>
+                        </tr>
+                        <tr>
+                            <td>3.5</td>
+                            <td>RV3513</td>
+                            <td>RV3516</td>
+                            <td>RV3518</td>
+                            <td>RV3521</td>
+                            <td>RV3523</td>
+                            <td>RV3526</td>
+                            <td>RV3529</td>
+                            <td>RV3531</td>
+                            <td>RV3533</td>
+                            <td>RV3535</td>
+                            <td>RV3438</td>
+                        </tr>
+                        <tr>
+                            <td>4.0</td>
+                            <td>RV4013</td>
+                            <td>RV4016</td>
+                            <td>RV4018</td>
+                            <td>RV4021</td>
+                            <td>RV4023</td>
+                            <td>RV4026</td>
+                            <td>RV4029</td>
+                            <td>RV4031</td>
+                            <td>RV4033</td>
+                            <td>RV4035</td>
+                            <td>RV4038</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+                <p class="wow fadeInUp">注册信息：<br/>
+                    1）医疗器械名称：冠脉雷帕霉素靶向洗脱支架系统（商品名：火鹰，Firehawk）<br/>
+                    2）医疗器械生产企业名称：上海微创医疗器械（集团）有限公司<br/>
+                    3）医疗器械注册证号：国械注准20143462100</p>
+            </div>
         </div>
     </div>
-    <div class="container product-page">
-        <div class="row visible-xs">
-            <div class="col-xs-12">
-            <header class="title">
-                <h2><?php echo $data['title'];?>（<?php echo $data['product_no'];?>）</h2>
-                <h4><?php echo $data['sub_title'];?></h4>
-            </header>
-            </div>
-        </div>
-        <div class="row">
-            <div class="displayPic" style="background-image: url(<?php echo $data['background'];?>)">
-                <div class="col-sm-5 col-md-5 col-md-offset-1">
-                    <figure>
-                        <img src="<?php echo $data['thumbnail'];?>" class="showpic" alt="<?php echo $data['title'];?>" />
-                    </figure>
-                </div>
-               <div class="col-sm-7 col-md-6">
-                   <div class="displayText">
-                       <img src="/assets/img/logo_product.png" alt="logo" class="hidden-xs"/>
-                       <h2 class="hidden-xs"><?php echo $data['title'];?>（<?php echo $data['product_no'];?>）</h2>
-                       <h4 class="hidden-xs"><?php echo $data['sub_title'];?></h4>
-                       <p>建议零售价：<?php echo number_format($data['price'],2) ;?>RMB</p>
-                       <a href="<?php echo SITEPATH; ?>/shoppingCart.php?id=<?php echo $data['id'];?>" target="_blank" rel="external nofollow">
-                           <i class="icon-yen"></i> 马上购买
-                       </a>
-                       <a href="#" data-id="<?php echo $data['id'];?>" id="addToCart">
-                           <i class="icon-cart-plus"></i> 加入购物车
-                       </a>
-                   </div>
-
-               </div>
-
-            </div>
-
-            <div class="col-md-8 col-md-offset-2">
-                <header class="title">
-                    <h2 class="text-center"><?php echo $data['title'];?>（<?php echo $data['product_no'];?>）</h2>
-                    <h4 class="text-center"><?php echo $data['sub_title'];?></h4>
-                </header>
-
-                <!--<div class="note">
-                    日期：<time datetime="<?php /*echo date('Y-m-d H:i:s',$data['added_date']) ;*/?>"><?php /*echo date('Y-m-d',$data['added_date']) ;*/?></time>，阅读 <?php /*echo $data['view_count'];*/?> 次
-                </div>-->
-                <div class="container-fluid">
-                <div class="row product-attr">
-                    <div class="col-sm-2 col-xs-4">
-                        <div class="title">
-                            商品名称
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-8">
-                        <div class="content">
-                            <?php echo $data['title'];?><span class="hidden-sm">（<?php echo $data['product_no'];?>）</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-4">
-                        <div class="title">
-                            品牌
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-8">
-                        <div class="content">
-                            <?php echo $data['brand'];?>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-4">
-                        <div class="title">
-                            生产厂家
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-8">
-                        <div class="content">
-                            <?php echo $data['company'];?>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-4">
-                        <div class="title">
-                            类别
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-8">
-                        <div class="content">
-                            <?php echo $data['category'];?>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-4">
-                        <div class="title">
-                            产品描述
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-xs-8">
-                        <div class="content">
-                             <?php echo $data['summary'];?>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <article class="body">
-                    <?php echo $data['content'];?>
-                </article>
-                <div class="arrowLeft">
-                    <a href="<?php echo SITEPATH; ?>/products/">
-                        <img src="/assets/img/arrow-left.jpg" alt="返回" />
-                    </a>
-                </div>
-            </div>
-        </div>
+<!--main end-->
     </div>
 
-<?php
-do_html_footer();
-do_html_analytics();
+    <?php require_once('includes/footer.php') ?>
+
+<?php require_once('includes/scripts.php') ?>
+
+<script>
+        $(document).ready(function() {
+            $(".leftnav li:nth-of-type(4) a").addClass("active");
+           $(".mainav li:nth-of-type(4) a").addClass("active");
+           $(".subnav li:nth-of-type(2) a").addClass("active");
+        });
+    </script>
+</body>
+</html>

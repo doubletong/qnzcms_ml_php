@@ -41,17 +41,10 @@ $data = $pageClass->fetch_data("clinical");
                                     <div class="des">
                                         <h3 class="title">了解颅内疾病</h3>
                                         <ul>
-                                            <li>— 冠心病
+                                            <li>— 出血性脑血管病
                                             </li>
-                                            <li>— 房颤
-                                            </li>
-                                            <li>— 心动过缓
-                                            </li>
-                                            <li>— 室上速
-                                            </li>
-                                            <li>— 瓣膜疾病
-                                            </li>
-                                            <li>— 心律失常</li>
+                                            <li>— 缺血性脑血管病
+                                            </li>                                           
                                         </ul>
                                     </div>
                                 </a>
@@ -65,7 +58,7 @@ $data = $pageClass->fetch_data("clinical");
                             </div>
                             <a href="/disease/list-1" class="txt">
                                     <div class="des">
-                                        <h3 class="title">了解颅内疾病</h3>
+                                        <h3 class="title">了解心脏疾病</h3>
                                         <ul>
                                             <li>— 冠心病
                                             </li>
@@ -91,19 +84,9 @@ $data = $pageClass->fetch_data("clinical");
                             </div>
                             <a href="/disease/list-1" class="txt">
                                     <div class="des">
-                                        <h3 class="title">了解颅内疾病</h3>
+                                        <h3 class="title">了解动脉疾病</h3>
                                         <ul>
-                                            <li>— 冠心病
-                                            </li>
-                                            <li>— 房颤
-                                            </li>
-                                            <li>— 心动过缓
-                                            </li>
-                                            <li>— 室上速
-                                            </li>
-                                            <li>— 瓣膜疾病
-                                            </li>
-                                            <li>— 心律失常</li>
+                                            <li>— 主动脉夹层</li>                                          
                                         </ul>
                                     </div>
                                 </a>
@@ -117,19 +100,12 @@ $data = $pageClass->fetch_data("clinical");
                             </div>
                             <a href="/disease/list-1" class="txt">
                                     <div class="des">
-                                        <h3 class="title">了解颅内疾病</h3>
+                                        <h3 class="title">了解胰腺疾病</h3>
                                         <ul>
-                                            <li>— 冠心病
+                                            <li>— 糖尿病
                                             </li>
-                                            <li>— 房颤
-                                            </li>
-                                            <li>— 心动过缓
-                                            </li>
-                                            <li>— 室上速
-                                            </li>
-                                            <li>— 瓣膜疾病
-                                            </li>
-                                            <li>— 心律失常</li>
+                                            <li>— IHH/卡尔曼综合征
+                                            </li>                                         
                                         </ul>
                                     </div>
                                 </a>
@@ -143,19 +119,10 @@ $data = $pageClass->fetch_data("clinical");
                             </div>
                             <a href="/disease/list-1" class="txt">
                                     <div class="des">
-                                        <h3 class="title">了解颅内疾病</h3>
+                                        <h3 class="title">了解髋关节疾病</h3>
                                         <ul>
-                                            <li>— 冠心病
-                                            </li>
-                                            <li>— 房颤
-                                            </li>
-                                            <li>— 心动过缓
-                                            </li>
-                                            <li>— 室上速
-                                            </li>
-                                            <li>— 瓣膜疾病
-                                            </li>
-                                            <li>— 心律失常</li>
+                                            <li>— 髋关节疾病</li>
+                                            
                                         </ul>
                                     </div>
                                 </a>
@@ -169,19 +136,10 @@ $data = $pageClass->fetch_data("clinical");
                             </div>
                             <a href="/disease/list-1" class="txt">
                                     <div class="des">
-                                        <h3 class="title">了解颅内疾病</h3>
+                                        <h3 class="title">了解膝关节疾病</h3>
                                         <ul>
-                                            <li>— 冠心病
-                                            </li>
-                                            <li>— 房颤
-                                            </li>
-                                            <li>— 心动过缓
-                                            </li>
-                                            <li>— 室上速
-                                            </li>
-                                            <li>— 瓣膜疾病
-                                            </li>
-                                            <li>— 心律失常</li>
+                                            <li>— 漆关节疾病</li>
+                                          
                                         </ul>
                                     </div>
                                 </a>

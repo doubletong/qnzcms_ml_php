@@ -1,4 +1,20 @@
 .page-creative {
+    .s1{
+        .more{
+          margin-top: 2rem;
+                background-color:$color-primary;
+            padding-left: .5rem;
+                width: 145px;
+                height: 40px;
+              line-height: 40px;
+              text-align: center;
+              display: inline-block;
+              color:#fff;border-radius: 20px;
+              @include hover{
+                  background-color: $color-secondary;
+              }
+        }
+    }
     .s2 {
         text-align: left;
 

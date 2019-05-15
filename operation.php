@@ -34,38 +34,27 @@ $data = $pageClass->fetch_data("clinical");
             <section class="s2">
 
                 <div class="categories">
-                    <div class="row">
-                        <div class="col-md-2">
+                
                             <a href="#">全部</a>
-                        </div>
-                        <div class="col-md-2">
+                      
                             <a href="#">心律管理</a>
-                        </div>
-                        <div class="col-md-2">
+                      
                             <a href="#">电生理</a>
-                        </div>
-                        <div class="col-md-2">
+                
                             <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
+                 
                             <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
+                    
                             <a href="#">骨科髋关节</a>
-                        </div>
-                        <div class="col-md-2">
+                 
                             <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
+                 
                             <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
+            
                             <a href="#">大动脉与外周血管</a>
-                        </div>
-                        <div class="col-md-2">
+             
                             <a href="#">冠心病</a>
-                        </div>
-                    </div>
+                    
                 </div>
             </section>
         </div>
