@@ -236,7 +236,7 @@ $data = $pageClass->fetch_data("equivalence");
                             <div class="swiper-slide">
                                 <h3>2019</h3>
                                 <div class="desc">
-                                    <p>平均每8秒左右，一个微创®产品在全球内得到使用</p>
+                                    <p>平均每8秒左右，一个微创<sup>®</sup>产品在全球内得到使用</p>
                                     <p>Aspiration™及SoSuperior™全膝关节置换系统获批上市</p>
                                     <p>新一代冠脉雷帕霉素靶向洗脱支架系统Firehawk Liberty™获欧盟CE认证</p>
                                 </div>
@@ -244,14 +244,14 @@ $data = $pageClass->fetch_data("equivalence");
                             <div class="swiper-slide">
                                 <h3>2018</h3>
                                 <div class="desc">
-                                    <p>平均每12秒左右，一个微创®产品在全球内得到使用
-                                    <p>Tubridge®血管重建装置、Columbus®三维心脏电生理标测系统（2.0）、CompassAnalyzer™起搏系统分析仪等产品上市</p>
+                                    <p>平均每12秒左右，一个微创<sup>®</sup>产品在全球内得到使用
+                                    <p>Tubridge<sup>®</sup>血管重建装置、Columbus<sup>®</sup>三维心脏电生理标测系统（2.0）、CompassAnalyzer™起搏系统分析仪等产品上市</p>
                                     <p>冠脉支架系统全球累计植入量达450万套，人工关节假体全球累计植入量达110万套，起搏器全球累计植入量达100万台</p>
-                                    <p>Firehawk®、Firebird2® 等产品首次进入台湾市场</p>
+                                    <p>Firehawk<sup>®</sup>、Firebird2<sup>®</sup> 等产品首次进入台湾市场</p>
                                     <p>累计15款产品进入创新医疗器械绿色通道</p>
                                     <p>国产起搏器投入市场</p>
-                                    <p>Firehawk® TARGET AC临床研究12个月结果在EuroPCR 2018大会上首次公布，进一步证明了Firehawk® 仅需同类产品1/3的全球最低载药量就可以达到同等安全性和有效性，研究成果发表在《柳叶刀》杂志，为近200年来该杂志首次出现中国医疗器械的身影, 该科技成果入选“2018中国十大科技事件”</p>
-                                    <p>于法国巴黎设立微创®心律管理全球总部，开拓心脏节律管理业务</p>
+                                    <p>Firehawk<sup>®</sup> TARGET AC临床研究12个月结果在EuroPCR 2018大会上首次公布，进一步证明了Firehawk<sup>®</sup> 仅需同类产品1/3的全球最低载药量就可以达到同等安全性和有效性，研究成果发表在《柳叶刀》杂志，为近200年来该杂志首次出现中国医疗器械的身影, 该科技成果入选“2018中国十大科技事件”</p>
+                                    <p>于法国巴黎设立微创<sup>®</sup>心律管理全球总部，开拓心脏节律管理业务</p>
                                     <p>苏州微创骨科学（集团）有限公司成立</p>
                                 </div>
                             </div>
@@ -261,66 +261,66 @@ $data = $pageClass->fetch_data("equivalence");
                                     <p>“大血管覆膜支架系列产品关键技术开发及大规模产业化”项目荣获国家科技进步二等奖</p>
                                     <p>Rega™心系列植入式心脏起搏器、Firefighter™PTCA球囊扩张导管等产品获得CFDA注册证</p>
                                     <p>累计共有11项产品进入CFDA创新医疗器械特别审批程序</p>
-                                    <p>Firehawk®（火鹰）欧洲临床TARGET AC首次研究结果显示3个月支架覆盖率达99.9%，TARGET I RCT 5年长期临床随访数据显示5年支架血栓率为0</p>
+                                    <p>Firehawk<sup>®</sup>（火鹰）欧洲临床TARGET AC首次研究结果显示3个月支架覆盖率达99.9%，TARGET I RCT 5年长期临床随访数据显示5年支架血栓率为0</p>
                                     <p>内轴型全膝关节置换系统17年随访结果显示出极高的假体存留率（98.8%）和患者满意度（95%）</p>
-                                    <p>Firesorb®（火鹮）关键性临床研究项目FUTURE II试验完成首例病例入组</p>
+                                    <p>Firesorb<sup>®</sup>（火鹮）关键性临床研究项目FUTURE II试验完成首例病例入组</p>
                                     <p>拟以1.9亿美元现金收购LivaNova心律管理业务</p>
-                                    <p>微创®科威、微创®生命科技改制</p>
-                                    <p>微创®心通获得对外融资</p>
-                                    <p>设立微创®优通公司，正式进入泌尿及妇女健康领域</p>
-                                    <p>微创®电生理于全国中小企业股份转让系统挂牌</p>
-                                    <p>微创®嘉兴园启用</p>
+                                    <p>微创<sup>®</sup>科威、微创<sup>®</sup>生命科技改制</p>
+                                    <p>微创<sup>®</sup>心通获得对外融资</p>
+                                    <p>设立微创<sup>®</sup>优通公司，正式进入泌尿及妇女健康领域</p>
+                                    <p>微创<sup>®</sup>电生理于全国中小企业股份转让系统挂牌</p>
+                                    <p>微创<sup>®</sup>嘉兴园启用</p>
                                     <p>捐资为云南省建水县第一中学建立“建水一中致公科技馆”</p>
-                                    <p>微创®医疗投资投资Zenomics、Promaxo</p>
-                                    <p>收购巴西代理商业务，开展微创®巴西属地化管理</p>
+                                    <p>微创<sup>®</sup>医疗投资投资Zenomics、Promaxo</p>
+                                    <p>收购巴西代理商业务，开展微创<sup>®</sup>巴西属地化管理</p>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <h3>2016</h3>
                                 <div class="desc">
-                                    <p>平均每15秒左右，一个微创®产品在全球内得到使用</p>
+                                    <p>平均每15秒左右，一个微创<sup>®</sup>产品在全球内得到使用</p>
                                     <p>“心脏病微创外科治疗新技术及临床应用”项目荣获国家科学技术二等奖</p>
-                                    <p>微创®电生理Columbus®三维心脏电生理标测系统获得CFDA 注册证</p>
-                                    <p>微创®在线“医线生机”平台正式发布</p>
-                                    <p>微创®集团荣获“五星级诚信创建企业”称号</p>
+                                    <p>微创<sup>®</sup>电生理Columbus<sup>®</sup>三维心脏电生理标测系统获得CFDA 注册证</p>
+                                    <p>微创<sup>®</sup>在线“医线生机”平台正式发布</p>
+                                    <p>微创<sup>®</sup>集团荣获“五星级诚信创建企业”称号</p>
                                     <p>设立MicroPort Scientific India Private Ltd.</p>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <h3>2015</h3>
                                 <div class="desc">
-                                    <p>平均每18秒左右，一个微创®产品在全球内得到使用</p>
+                                    <p>平均每18秒左右，一个微创<sup>®</sup>产品在全球内得到使用</p>
                                     <p>“微创介入与植入医疗器械关键技术及产业化平台”项目荣获国家科学技术进步奖二等奖</p>
-                                    <p>Firehawk®（火鹰）药物靶向洗脱支架（TES）获得欧盟CE认证</p>
+                                    <p>Firehawk<sup>®</sup>（火鹰）药物靶向洗脱支架（TES）获得欧盟CE认证</p>
                                     <p>EVOLUTION™ 内轴型全膝关节置换系统于中国获准上市</p>
                                     <p>创领心律管理医疗器械（上海）有限公司建成中国首条国产心脏起搏器生产线</p>
-                                    <p>微创® 骨科入驻苏州新总部</p>
+                                    <p>微创<sup>®</sup> 骨科入驻苏州新总部</p>
                                     <p>苏州微创关节医疗科技有限公司、苏州微创骨科医疗工具有限公司在苏州工业园区成立</p>
                                     <p>微创（上海）医疗机器人有限公司成立</p>
                                     <p>微创在线医疗科技（上海）有限公司成立</p>
                                     <p>良知创意中心正式投入使用</p>
                                     <p>知行医学培训学院正式投入使用</p>
-                                    <p>微创® 电生理、微创® 神通两个子业务完成改制</p>
+                                    <p>微创<sup>®</sup> 电生理、微创<sup>®</sup> 神通两个子业务完成改制</p>
                                     <p>上海微创电生理医疗科技有限公司荣获上海市“高新技术企业”认定</p>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <h3>2014</h3>
                                 <div class="desc">
-                                    <p>WILLIS®临床应用研究项目荣获2014年度国家科学技术进步二等奖</p>
-                                    <p>Firehawk®靶向洗脱支架（TES）于中国获准上市</p>
+                                    <p>WILLIS<sup>®</sup>临床应用研究项目荣获2014年度国家科学技术进步二等奖</p>
+                                    <p>Firehawk<sup>®</sup>靶向洗脱支架（TES）于中国获准上市</p>
                                     <p>完成收购 Wright Medical OrthoRecon关节重建业务及其相关资产</p>
                                     <p>收购强生Cordis旗下Conor Medsystems公司及其他药物洗脱支架相关资产</p>
                                     <p>与索林集团签署合资协议，在华共建心律管理业务平台</p>
-                                    <p>平均每20秒左右，一个微创®产品在全球内得到使用</p>
+                                    <p>平均每20秒左右，一个微创<sup>®</sup>产品在全球内得到使用</p>
                                     <p>入驻新总部</p>
-                                    <p>微创®工程研究院成立</p>
+                                    <p>微创<sup>®</sup>工程研究院成立</p>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <h3>2013</h3>
                                 <div class="desc">
-                                    <p>WILLIS®颅内覆膜支架系统获国内首个此类产品的CFDA注册证</p>
+                                    <p>WILLIS<sup>®</sup>颅内覆膜支架系统获国内首个此类产品的CFDA注册证</p>
                                     <p>微创骨科医疗科技（苏州）有限公司在苏州新加坡工业园区正式开工</p>
                                     <p>宣布2.9亿美元收购美国Wright Medical 公司OrthoRecon 关节重建业务</p>
                                     <p>电生理FireMagic™、EasyFinder™、EasyLoop™、FireMagic™ 3D、Columbus™三维标测系统产品获得CE认证</p>
@@ -330,9 +330,9 @@ $data = $pageClass->fetch_data("equivalence");
                             <div class="swiper-slide">
                                 <h3>2012</h3>
                                 <div class="desc">
-                                    <p>着手实施"微创®联合舰队"集团化运作模式</p>
+                                    <p>着手实施"微创<sup>®</sup>联合舰队"集团化运作模式</p>
                                     <p>公司正式更名为上海微创医疗器械（集团）有限公司</p>
-                                    <p>平均每30秒左右，一个微创®产品在全球内得到使用</p>
+                                    <p>平均每30秒左右，一个微创<sup>®</sup>产品在全球内得到使用</p>
                                     <p>收购东莞科威医疗器械有限公司、龙脉医疗器械（北京）有限公司</p>
                                     <p>微创神通医疗科技（上海）有限公司、微创手术器材（上海）有限公司在上海国际医学园区成立</p>
                                     <p>微创骨科医疗科技（苏州）有限公司在苏州工业园区成立</p>
@@ -457,13 +457,13 @@ $data = $pageClass->fetch_data("equivalence");
 <script>
      var aboutCourseList = new Swiper('.about_course_list .swiper-container', {
         spaceBetween: 10,
-        loop:true,
-        loopAdditionalSlides : 3
+        // loop:true,
+        // loopAdditionalSlides : 3
     });
     var aboutCourseNav = new Swiper('.about_course_nav .swiper-container', {
         spaceBetween: 0,
-        loop:true,
-        loopAdditionalSlides : 1,
+        // loop:true,
+        // loopAdditionalSlides : 1,
         centeredSlides: true,
         slidesPerView: 3,
         touchRatio: 0.2,

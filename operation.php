@@ -1,10 +1,42 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/article.php");
+require_once('includes/PDO_Pagination.php');
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("clinical");
+$did = 1;
+
+$articleClass = new Article();
+$categories = $articleClass->get_categories($did);
+
+
+$pagination = new PDO_Pagination(db::getInstance());
+$model = array();
+$pagination->config(6, 10);
+
+
+$cid = isset($_GET['cid'])? $_GET['cid']:0;
+if (isset($_GET['cid'])) {   
+
+    $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid");
+
+    $sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $query = db::getInstance()->prepare($sql);
+    $query->execute();
+    while ($rows = $query->fetch()) {
+        $model[] = $rows;
+    }
+} else {
+    $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did");
+
+    $sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE dictionary_id = $did ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $query = db::getInstance()->prepare($sql);
+    $query->execute();
+    while ($rows = $query->fetch()) {
+        $model[] = $rows;
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -28,91 +60,48 @@ $data = $pageClass->fetch_data("clinical");
             <p>帮助您了解更多疾病知识</p>
         </div>
     </div>
-    <div class="page page-disease-list">
+    <div class="page page-disease-list page-operation">
         <div class="container">
-        
             <section class="s2">
 
-                <div class="categories">
-                
-                            <a href="#">全部</a>
+                <div class="list-categories">
+                    <h3 class="title">疾病分类</h3>
+                    <ul>
+                        <li><a style="background-image:url(/img/icon/001.png);" href="/operation" class="<?php echo $cid==0?"active":""; ?>">全部</a></li>
+                        <?php foreach ($categories as $data) { ?>
+                            <li><a style="background-image:url(<?php echo $data['thumbnail']; ?>);" 
+                            href="/operation?cid=<?php echo $data['id']; ?>" 
+                            class="<?php echo $cid==$data['id']?"active":""; ?>"><?php echo $data['title']; ?></a></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+
+
+                <main class="maincontent">
+                    <div class="list list-disease">
+                        <?php foreach ($model as $article) { ?>
+                            <a href="/operation/detail-<?php echo $article['id']; ?>" class="item">
+                                <div class="disease">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="pic"><img src="<?php echo $article['thumbnail']; ?>" alt="<?php echo $article['title']; ?>"></div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="des">
+                                                <h3><?php echo $article['title']; ?></h3>
+                                                <p><?php echo mb_substr($article['summary'], 0, 100, 'utf-8') . "……"; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        <?php } ?>
+
                       
-                            <a href="#">心律管理</a>
-                      
-                            <a href="#">电生理</a>
-                
-                            <a href="#">冠心病</a>
-                 
-                            <a href="#">冠心病</a>
-                    
-                            <a href="#">骨科髋关节</a>
-                 
-                            <a href="#">冠心病</a>
-                 
-                            <a href="#">冠心病</a>
-            
-                            <a href="#">大动脉与外周血管</a>
-             
-                            <a href="#">冠心病</a>
-                    
-                </div>
-            </section>
-        </div>
-        <div class="list list-disease">
-            <a href="/operation/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-                                    <h3>经皮冠状动脉介入治疗</h3>
-                                    <p>经皮冠状动脉介入治疗( percutaneous coronary intervention，PCI)，是指经心导管技术疏通狭窄甚至闭塞的冠状动脉管腔，从而改善心肌的血流灌注的治疗方法。...</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="/operation/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
-                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="/operation/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
-                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-   
-        <div class="pagination">
+
+                    <!-- <div class="pagination">
             <ul class="pager">
                 <li><a class="prev" href="#">上一页</a></li>
                 <li class="active"><a class="page-link" href="#">1</a></li>
@@ -123,7 +112,23 @@ $data = $pageClass->fetch_data("clinical");
                 <li><a class="next" href="#">下一页</a></li>    
             </ul>
             <span>共5页，到第</span> <input type="number" id="pagenum" class="pagenum"> <span>页</span> <a href="javascript:void();" class="go">确定</a>
+        </div> -->
+
+                    <!--pagination-->
+                    <div class="pagination wow fadeInUp">
+                        <ul class="pager">
+                            <?php
+                            $pagination->pages("btn");
+                            ?>
+                        </ul>
+
+                    </div>
+                    <!--pagination end-->
+                </main>
+
+            </section>
         </div>
+
     </div>
 
     <?php require_once('includes/footer.php') ?>
@@ -136,9 +141,43 @@ $data = $pageClass->fetch_data("clinical");
             $(".mainav li:nth-of-type(3) a").addClass("active");
             $(".subnav li:nth-of-type(3) a").addClass("active");
 
-            $(".btnclose").click(function(e){
+            $(".btnclose").click(function(e) {
                 $(".quickcontact").slideToggle();
-            })
+            });
+
+
+
+
+
+            $(window).on("scroll", function() {
+                h = $(".site-footer").outerHeight(true);
+                var toTop = $(window).scrollTop();
+
+                var scrollButtom = $(document).height() - (toTop + $(window).height());
+                var bannerHeight = $(".banner").outerHeight(true);
+                var headH = $('.site-header').outerHeight(true) + 30;
+
+                if (toTop > bannerHeight) {
+                    $(".list-categories").addClass("fixed_for_top").css({
+                        'top': headH + 'px'
+                    });
+                    if (scrollButtom < h) {
+                        $(".list-categories").css({
+                            'bottom': (h - scrollButtom + 60) + 'px',
+                            'top': 'auto'
+                        });
+                    } else {
+                        $(".list-categories").css({
+                            'bottom': 'auto',
+                            'top': headH + 'px'
+                        });
+                    }
+                } else {
+                    $(".list-categories").removeClass("fixed_for_top").css({
+                        'top': 'auto','bottom': 'auto'
+                    });
+                }
+            });
         });
     </script>
 </body>

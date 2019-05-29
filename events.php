@@ -1,10 +1,41 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/article.php");
+require_once('includes/PDO_Pagination.php');
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("clinical");
+$did = 2;
+
+$articleClass = new Article();
+$categories = $articleClass->get_categories($did);
+
+
+$pagination = new PDO_Pagination(db::getInstance());
+$model = array();
+$pagination->config(6, 10);
+
+
+$cid = isset($_GET['cid'])? $_GET['cid']:0;
+if (isset($_GET['cid'])) {   
+
+    $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid");
+
+    $sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $query = db::getInstance()->prepare($sql);
+    $query->execute();
+    while ($rows = $query->fetch()) {
+        $model[] = $rows;
+    }
+} else {
+    $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did");
+
+    $sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE dictionary_id = $did ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $query = db::getInstance()->prepare($sql);
+    $query->execute();
+    while ($rows = $query->fetch()) {
+        $model[] = $rows;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +46,7 @@ $data = $pageClass->fetch_data("clinical");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "疾病管理-" . SITENAME; ?></title>
+    <title><?php echo "学术活动-" . SITENAME; ?></title>
     <?php require_once('includes/meta.php') ?>
 
 </head>
@@ -32,127 +63,50 @@ $data = $pageClass->fetch_data("clinical");
         <div class="container">
         
             <section class="s2">
-
-                <div class="categories">
-                  
-                      
-                            <a href="#" class="active">全部</a>
-                       
-                            <a href="#">心律管理</a>
-                     
-                            <a href="#">电生理</a>
-                    
-                            <a href="#">冠心病</a>
-                      
-                            <a href="#">冠心病</a>
-                       
-                            <a href="#">骨科髋关节</a>
-                     
-                            <a href="#">冠心病</a>
-                      
-                            <a href="#">冠心病</a>
-                      
-                            <a href="#">大动脉与外周血管</a>
-                    
-                            <a href="#">冠心病</a>
-                    
-                </div>
-            </section>
+            <div class="list-categories">
+            <h3 class="title">疾病分类</h3>
+                <ul>
+                <li><a style="background-image:url(/img/icon/001.png);" href="/events" class="<?php echo $cid==0?"active":""; ?>">全部</a></li>
+                        <?php foreach ($categories as $data) { ?>
+                            <li><a style="background-image:url(<?php echo $data['thumbnail']; ?>);" 
+                            href="/events?cid=<?php echo $data['id']; ?>" 
+                            class="<?php echo $cid==$data['id']?"active":""; ?>"><?php echo $data['title']; ?></a></li>
+                        <?php } ?>
+              
+                </ul>   
+        
         </div>
+            
+        <main class="maincontent">
         <div class="list list-disease list-events">
-            <a href="/events/detail-1" class="item">
-                <div class="container">
+
+            <?php foreach ($model as $article) { ?>
+
+                <a href="/events/detail-<?php echo $article['id']; ?>" class="item">            
                     <div class="disease">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
+                            <div class="col-md-5">
+                                <div class="pic"><img src="<?php echo $article['thumbnail']; ?>" alt="<?php echo $article['title']; ?>"></div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <div class="des">
-									<h3>经皮冠状动脉介入治疗</h3>
-									<time>2019-03-28</time>
-                                    <p>经皮冠状动脉介入治疗( percutaneous coronary intervention，PCI)，是指经心导管技术疏通狭窄甚至闭塞的冠状动脉管腔，从而改善心肌的血流灌注的治疗方法。...</p>
+									<h3><?php echo $article['title']; ?></h3>
+									<time><?php echo date('Y-m-d',$article['pubdate']) ;?> </time>
+                                    <p><?php echo mb_substr($article['summary'], 0, 80, 'utf-8') . "……"; ?></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>             
             </a>
-            <a href="/events/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-									<h3>经皮冠状动脉介入治疗</h3>
-									<time>2019-03-28</time>
-                                    <p>经皮冠状动脉介入治疗( percutaneous coronary intervention，PCI)，是指经心导管技术疏通狭窄甚至闭塞的冠状动脉管腔，从而改善心肌的血流灌注的治疗方法。...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-			</a>
-			<a href="/events/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-									<h3>经皮冠状动脉介入治疗</h3>
-									<time>2019-03-28</time>
-                                    <p>经皮冠状动脉介入治疗( percutaneous coronary intervention，PCI)，是指经心导管技术疏通狭窄甚至闭塞的冠状动脉管腔，从而改善心肌的血流灌注的治疗方法。...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-			</a>
-			<a href="/events/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-									<h3>经皮冠状动脉介入治疗</h3>
-									<time>2019-03-28</time>
-                                    <p>经皮冠状动脉介入治疗( percutaneous coronary intervention，PCI)，是指经心导管技术疏通狭窄甚至闭塞的冠状动脉管腔，从而改善心肌的血流灌注的治疗方法。...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-			</a>
-			<a href="/events/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-									<h3>经皮冠状动脉介入治疗</h3>
-									<time>2019-03-28</time>
-                                    <p>经皮冠状动脉介入治疗( percutaneous coronary intervention，PCI)，是指经心导管技术疏通狭窄甚至闭塞的冠状动脉管腔，从而改善心肌的血流灌注的治疗方法。...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+
+
+                        <?php } ?>
+
+
+            
         </div>
    
-        <div class="pagination">
+        <!-- <div class="pagination">
             <ul class="pager">
                 <li><a class="prev" href="#">上一页</a></li>
                 <li class="active"><a class="page-link" href="#">1</a></li>
@@ -163,7 +117,24 @@ $data = $pageClass->fetch_data("clinical");
                 <li><a class="next" href="#">下一页</a></li>    
             </ul>
             <span>共5页，到第</span> <input type="number" id="pagenum" class="pagenum"> <span>页</span> <a href="javascript:void();" class="go">确定</a>
+        </div> -->
+
+          <!--pagination-->
+          <div class="pagination wow fadeInUp">
+                <ul class="pager">
+                    <?php
+                    $pagination->pages("btn");
+                    ?>
+                </ul>
+
+            </div>
+            <!--pagination end-->
+        </main>
+
+                
+            </section>
         </div>
+        
     </div>
 
     <?php require_once('includes/footer.php') ?>
@@ -178,7 +149,34 @@ $data = $pageClass->fetch_data("clinical");
 
             $(".btnclose").click(function(e){
                 $(".quickcontact").slideToggle();
-            })
+            });
+
+
+         
+
+            $(window).on("scroll", function() {    
+
+                h = $(".site-footer").outerHeight(true);
+
+                var toTop = $(window).scrollTop();     
+                
+                var scrollButtom = $(document).height()-(toTop + $(window).height());
+                var bannerHeight = $(".banner").outerHeight(true);
+                var headH = $('.site-header').outerHeight(true) + 30;
+                
+                if(toTop>bannerHeight){
+                    $(".list-categories").addClass("fixed_for_top").css({'top': headH +'px'});
+                    if (scrollButtom < h) {
+                        $(".list-categories").css({'bottom':(h-scrollButtom + 60)+'px','top':'auto'});
+                    }else{
+                        $(".list-categories").css({'bottom':'auto','top':headH +'px'});
+                    }
+                }else{
+                    $(".list-categories").removeClass("fixed_for_top").css({
+                        'top': 'auto','bottom': 'auto'
+                    });
+                }
+            });
         });
     </script>
 </body>

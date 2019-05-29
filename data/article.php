@@ -39,12 +39,12 @@ class Article{
         return $rows;
     }
 
-    // public function fetch_all(){
-    //     $query = db::getInstance()->prepare("SELECT * FROM wp_articles ORDER BY added_date DESC");
-    //     $query->execute();
+    public function get_all_articles($did){
+        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE active=1 AND dictionary_id = $did ORDER BY pubdate DESC");
+        $query->execute();
 
-    //     return $query->fetchAll();
-    // }
+        return $query->fetchAll();
+    }
 
     // public function fetch_category($categoryId){
     //     $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE categoryId = :categoryId ORDER BY added_date DESC");
@@ -69,19 +69,28 @@ class Article{
         return $query->fetch();
     }
   //获取前一条记录
-    public function fetch_prev_data($id){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE id = (SELECT MAX(id) FROM wp_articles WHERE id < :id);");
+    public function fetch_prev_data($id,$did){
+        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE dictionary_id = $did AND id = (SELECT MAX(id) FROM wp_articles WHERE dictionary_id = $did AND id < :id);");
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
 
         return $query->fetch();
     }
    //获取下一条记录
-    public function fetch_next_data($id){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE id = (SELECT MIN(id) FROM wp_articles WHERE id > :id);");
+    public function fetch_next_data($id,$did){
+        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE dictionary_id = $did AND id = (SELECT MIN(id) FROM wp_articles WHERE dictionary_id = $did AND id > :id);");
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
 
         return $query->fetch();
+    }
+
+
+    public function get_categories($did){     
+        $query = db::getInstance()->prepare("SELECT * FROM  article_categories WHERE dictionary_id = ? ORDER BY importance DESC");
+        $query->bindValue(1,$did);
+        $query->execute();
+
+        return $query->fetchAll();
     }
 }

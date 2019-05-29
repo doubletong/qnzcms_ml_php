@@ -24,6 +24,7 @@ $teams = $teamClass->fetch_category("核心团队");
 
 
 <div class="striving">
+
 <!--banner-->
 <div class="inside_banner about_banner" style="background-image:url(images/about_team_banner.jpg)">
     <div class="wrap clear">
@@ -46,7 +47,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <img src="images/about_team_icon_01.png"/>
                         </div>
                         <p>6000<span>名</span></p>
-                        <i>微创®在职员工</i>
+                        <i>微创<sup>®</sup>在职员工</i>
                     </li>
                     <li>
                         <div class="icon">
@@ -68,7 +69,7 @@ $teams = $teamClass->fetch_category("核心团队");
         <div class="about_team_c">
             <div class="wrap">
                 <h2 class="wow fadeInUp">组织架构</h2>
-                <p class="wow fadeInUp">微创医疗科学有限公司旗下的业务由大中华地区和除大中华地区以外的微创®业务构成，<br/>分别由大中华执行委员会和两个洲际执行委员会领导和协调。</p>
+                <p class="wow fadeInUp">微创医疗科学有限公司旗下的业务由大中华地区和除大中华地区以外的微创<sup>®</sup>业务构成，<br/>分别由大中华执行委员会和两个洲际执行委员会领导和协调。</p>
                 <div class="about_team_c_wrap wow fadeInUp">
                     <img src="images/about_team_jg.jpg" alt=""/>
                 </div>
@@ -95,10 +96,9 @@ $teams = $teamClass->fetch_category("核心团队");
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
-                                <p>董事局主席、执行
-                                    董事、首席执行官、
+                                <p>董事局主席、执行董事、首席执行官、
                                     GMC主席</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -108,7 +108,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -118,7 +118,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -128,7 +128,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -138,7 +138,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -148,7 +148,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -158,7 +158,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>邵春阳先生</h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                     </ul>
@@ -169,10 +169,9 @@ $teams = $teamClass->fetch_category("核心团队");
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
-                                <p>董事局主席、执行
-                                    董事、首席执行官、
+                                <p>董事局主席、执行董事、首席执行官、
                                     GMC主席</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -182,7 +181,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -192,7 +191,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -202,7 +201,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -212,7 +211,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -222,7 +221,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -232,7 +231,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>邵春阳先生</h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                     </ul>
@@ -243,10 +242,9 @@ $teams = $teamClass->fetch_category("核心团队");
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
-                                <p>董事局主席、执行
-                                    董事、首席执行官、
+                                <p>董事局主席、执行董事、首席执行官、
                                     GMC主席</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -256,7 +254,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -266,7 +264,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -276,7 +274,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -286,7 +284,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -296,7 +294,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -306,7 +304,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>邵春阳先生</h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                     </ul>
@@ -317,10 +315,9 @@ $teams = $teamClass->fetch_category("核心团队");
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
-                                <p>董事局主席、执行
-                                    董事、首席执行官、
+                                <p>董事局主席、执行董事、首席执行官、
                                     GMC主席</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -330,7 +327,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -340,7 +337,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -350,7 +347,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -360,7 +357,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -370,7 +367,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -380,7 +377,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>邵春阳先生</h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                     </ul>
@@ -391,10 +388,9 @@ $teams = $teamClass->fetch_category("核心团队");
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
-                                <p>董事局主席、执行
-                                    董事、首席执行官、
+                                <p>董事局主席、执行董事、首席执行官、
                                     GMC主席</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -404,7 +400,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -414,7 +410,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -424,7 +420,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -434,7 +430,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -444,7 +440,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -454,7 +450,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>邵春阳先生</h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                     </ul>
@@ -465,10 +461,9 @@ $teams = $teamClass->fetch_category("核心团队");
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
-                                <p>董事局主席、执行
-                                    董事、首席执行官、
+                                <p>董事局主席、执行董事、首席执行官、
                                     GMC主席</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -478,7 +473,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -488,7 +483,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -498,7 +493,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
                                 <p>非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -508,7 +503,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -518,7 +513,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                         <li>
@@ -528,7 +523,7 @@ $teams = $teamClass->fetch_category("核心团队");
                             <div class="txt">
                                 <h4>邵春阳先生</h4>
                                 <p>独立非执行董事</p>
-                                <a href="/team/detail-1">了解更多</a>
+                                <a href="about_team_detail.html">了解更多</a>
                             </div>
                         </li>
                     </ul>

@@ -54,7 +54,7 @@ $carousels = $carouselClass->fetch_all();
 
         <div class="container s1">
             <h2 class="title se-title  wow slideInUp">以人为本   持续创新</h2>
-            <p class="wow slideInUp" data-wow-delay=".3s">微创®起源于1998年成立的上海微创医疗器械（集团）有限公司，公司现有员工来自于30多个国家，约6,000名；已上市产品约300个；已进入全球逾10,000家医院，覆盖亚太、欧洲和美洲等主要地区，平均每8秒就有一个微创®产品被用于救治患者生命；或改善其生活品质；或用于帮助其催生新的生命。现已拥有专利（申请）3,500余项（国外2,000项）；5次获得中国国家科学技术进步奖；15个产品进入国家创新医疗器械注册绿色通道。</p>
+            <p class="wow slideInUp" data-wow-delay=".3s">微创<sup>®</sup>起源于1998年成立的上海微创医疗器械（集团）有限公司，公司现有员工来自于30多个国家，约6,000名；已上市产品约300个；已进入全球逾10,000家医院，覆盖亚太、欧洲和美洲等主要地区，平均每8秒就有一个微创<sup>®</sup>产品被用于救治患者生命；或改善其生活品质；或用于帮助其催生新的生命。现已拥有专利（申请）3,500余项（国外2,000项）；5次获得中国国家科学技术进步奖；15个产品进入国家创新医疗器械注册绿色通道。</p>
 
             <section class="row s1-001  ">
                 <div class="col-md-4 wow slideInUp">
@@ -89,7 +89,7 @@ $carousels = $carouselClass->fetch_all();
                         <div class="title">
                             <span class="num001">3,500</span><small>余项</small>
                         </div>
-                       <p>微创已上市产品</p>
+                       <p>国内外专利</p>
                        
                     </div>
                 </div>
@@ -141,7 +141,7 @@ $carousels = $carouselClass->fetch_all();
     
         <section class="container s1 s3">
             <h2 class="title se-title  wow slideInUp">中国领先的高端医疗解决方案</h2>
-            <p class="wow slideInUp" data-wow-delay=".3s">微创®业务已覆盖心血管介入及结构性心脏病医疗、心脏节律管理及电生理医疗、骨科植入与修复、大动脉及外周血管介入、神经介入及脑科学、糖尿病及内分泌管理、泌尿及妇女健康、外科手术、医疗机器人与人工智能等十大业务集群。</p>
+            <p class="wow slideInUp" data-wow-delay=".3s">微创<sup>®</sup>业务已覆盖心血管介入及结构性心脏病医疗、心脏节律管理及电生理医疗、骨科植入与修复、大动脉及外周血管介入、神经介入及脑科学、糖尿病及内分泌管理、泌尿及妇女健康、外科手术、医疗机器人与人工智能等十大业务集群。</p>
         </section>
         <section class="s4">
 
@@ -209,7 +209,8 @@ $carousels = $carouselClass->fetch_all();
                                 <div class="more">
                                     <span>了解更多</span> <i class="iconfont icon-right"></i>
                                 </div>
-                            </div></div>
+                            </div>
+                        </div>
                         </a>                       
                     </div>
                 </div>
@@ -363,8 +364,8 @@ $carousels = $carouselClass->fetch_all();
     <a href="/products" class="all">全部产品</a>
 </section>
         <section class="container s1 s5">
-            <h2 class="title se-title  wow slideInUp">微创®在全球</h2>
-            <p class="wow slideInUp" data-wow-delay=".3s">微创®总部位于中国上海张江科学城，在中国上海、苏州、嘉兴、东莞，美国孟菲斯，法国巴黎近郊，意大利米兰近郊和多米尼加共和国等地均建有主要生产（研发）基地，形成了全球化的研发、生产、营销和服务网络。</p>
+            <h2 class="title se-title  wow slideInUp">微创<sup>®</sup>在全球</h2>
+            <p class="wow slideInUp" data-wow-delay=".3s">微创<sup>®</sup>总部位于中国上海张江科学城，在中国上海、苏州、嘉兴、东莞，美国孟菲斯，法国巴黎近郊，意大利米兰近郊和多米尼加共和国等地均建有主要生产（研发）基地，形成了全球化的研发、生产、营销和服务网络。</p>
         </section>
         <section class="s6">
         </section>

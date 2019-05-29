@@ -5,7 +5,7 @@
 }
 
 .container {
-    @include respond-above(lg) {
+    @media (min-width:1440px) {
         max-width: 1210px;
     }
 }
@@ -16,6 +16,56 @@
     height: 150px;
     background-position: center center;
     background-repeat: no-repeat;
+
+
+    
+    @include respond-above (sm) {
+        height: 280px;
+    }
+
+    @include respond-above (md) {
+        height: 400px;
+    }
+
+    @include respond-above (lg) {
+        height: 460px;
+    }
+
+    @media  (min-width:1601px){
+        height: 550px;
+    }
+
+    &.banner-story {
+        background-image: url(../img/banners/story.jpg);
+    }
+
+    &.banner-support {
+        background-image: url(../img/banners/support.jpg);
+    }
+
+    &.banner-disease {
+        background-image: url(../img/banners/disease.jpg);
+    }
+
+    &.banner-cards {
+        background-image: url(../img/banners/cards.jpg);
+    }
+
+    &.banner-operation {
+        background-image: url(../img/banners/operation.jpg);
+    }
+
+    &.banner-events {
+        background-image: url(../img/banners/events.jpg);
+    }
+
+    &.banner-school {
+        background-image: url(../img/banners/school.jpg);
+    }
+
+    &.banner-creative {
+        background-image: url(../img/banners/creative.jpg);
+    }
 
     .page-title {
         padding-top: 3.5rem;
@@ -32,9 +82,11 @@
         }
 
         @include respond-above(lg) {
+            padding-top: 11rem;
+        }
+        @media  (min-width:1601px){
             padding-top: 13rem;
         }
-
         .down {
             position: absolute;
             left: 0;
@@ -83,49 +135,6 @@
         }
     }
 
-    @include respond-above (sm) {
-        height: 280px;
-    }
-
-    @include respond-above (md) {
-        height: 400px;
-    }
-
-    @include respond-above (lg) {
-        height: 550px;
-    }
-
-    &.banner-story {
-        background-image: url(../img/banners/story.jpg);
-    }
-
-    &.banner-support {
-        background-image: url(../img/banners/support.jpg);
-    }
-
-    &.banner-disease {
-        background-image: url(../img/banners/disease.jpg);
-    }
-
-    &.banner-cards {
-        background-image: url(../img/banners/cards.jpg);
-    }
-
-    &.banner-operation {
-        background-image: url(../img/banners/operation.jpg);
-    }
-
-    &.banner-events {
-        background-image: url(../img/banners/events.jpg);
-    }
-
-    &.banner-school {
-        background-image: url(../img/banners/school.jpg);
-    }
-
-    &.banner-creative {
-        background-image: url(../img/banners/creative.jpg);
-    }
 }
 
 .page {
@@ -144,6 +153,10 @@
     }
 
     @include respond-above (lg) {
+        padding-top: rem(70);
+        padding-bottom: rem(70);
+    }
+    @media  (min-width:1601px){
         padding-top: 5rem;
         padding-bottom: 5rem;
     }
@@ -208,24 +221,59 @@ a.yellow {
     overflow: hidden;
     background-color: #fff;
     .s1 {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
         text-align: center;
         padding-bottom: 2rem;
-        margin-bottom: 1rem;
-
+        @include respond-above(sm) {
+            padding-top: 2rem;
+        }
+        @include respond-above(md) {
+            padding-top: 3rem;
+        }
+        @include respond-above(lg) {
+            padding-top: 4rem;
+        }
         h2.se-title {
-            font-size: 3rem;
+            font-size: rem(22);
+            margin-bottom: 1.5rem;
+            @include respond-above(sm) {
+                font-size: rem(28);
+            }
+            @include respond-above(md) {
+                font-size: rem(34);
+            }
+            @include respond-above(lg) {
+                font-size: rem(40);
+            }
         }
 
         .s1-001 {
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-
-            .item {
+          
+            @include respond-above(sm) {
+                padding-top: 1rem;
+            }
+            @include respond-above(md) {
+                padding-top: 2rem;
+            }
+            @include respond-above(lg) {
                 padding-top: 3rem;
+            }
+            padding-bottom: 1.5rem;
 
+            .item {              
+                margin-bottom: 2rem;
+                @include respond-above(md) {
+                    margin-bottom: 0;
+                }
                 .icon {
-                    margin-bottom: 2rem;
+                   
+                  
+                    @include respond-above(md) {
+                        margin-bottom: 1rem;
+                    }
+                    @include respond-above(lg) {
+                        margin-bottom: 2rem;
+                    }
                 }
 
                 .title {
@@ -233,12 +281,30 @@ a.yellow {
 
                     .num001 {
                         font-family: 'Roboto';
-                        font-size: rem(66);
+                        font-size: rem(48);
                         margin-right: .5rem;
+                        @include respond-above(sm) {
+                            font-size: rem(54);
+                        }
+                        @include respond-above(md) {
+                            font-size: rem(60);
+                        }
+                        @include respond-above(lg) {
+                            font-size: rem(66);
+                        }
                     }
 
                     small {
-                        font-size: rem(34);
+                        font-size: rem(28);
+                        @include respond-above(sm) {
+                            font-size: rem(30);
+                        }
+                        @include respond-above(md) {
+                            font-size: rem(32);
+                        }
+                        @include respond-above(lg) {
+                            font-size: rem(34);
+                        }
                     }
                 }
 
@@ -252,22 +318,21 @@ a.yellow {
 
 
     .s2 {
-        margin-bottom: 2rem;
-
-        @include respond-above(md) {
-            margin-bottom: 3rem;
-        }
-
-        @include respond-above(lg) {
-            margin-bottom: 4rem;
-        }
-
+        
         .item {
             background: $color-primary url(../img/h_01_bg.jpg) no-repeat center center;
             background-size: cover;
             color: #fff;
-            height: rem(500);
-
+            height: rem(200);
+            @include respond-above(sm) {
+                height: rem(200);
+            }
+            @include respond-above(md) {
+                height: rem(300);
+            }
+            @include respond-above(lg) {
+                height: rem(400);
+            }
             .container {
                 height: 100%;
 
@@ -275,27 +340,60 @@ a.yellow {
                     height: 100%;
 
                     h2 {
-                        font-size: rem(40);
+                        font-size: rem(24);
                         margin: 0;
                         line-height: 1;
+                        @include respond-above(sm) {
+                            font-size: rem(28);
+                        }
+                        @include respond-above(md) {
+                            font-size: rem(32);
+                        }
+                        @include respond-above(lg) {
+                            font-size: rem(36);
+                        }
                     }
 
                     p {
-                        font-size: rem(18);
-                        margin-bottom: 2rem;
+                        font-size: rem(12);
+                    
+                        @include respond-above(sm) {
+                            font-size: rem(14);
+                        }
+                        @include respond-above(md) {
+                            margin-bottom: 1rem;
+                            font-size: 1rem; 
+                        }
+                        @include respond-above(lg) {
+                            font-size: rem(18);
+                            margin-bottom: 2rem;
+                        }
                     }
 
                     .more {
 
                         background-color: rgb(255, 255, 255);
                         display: inline-block;
-                        width: 125px;
-                        height: 50px;
-                        line-height: 50px;
-                        border-radius: 25px;
+                        width: 100px;
+                        height: 35px;
+                        line-height: 35px;
+                        border-radius: 18px;
                         text-align: center;
                         color: $color-secondary;
-
+                        font-size: rem(14);
+                        @include respond-above(sm) {
+                            height: 39px;
+                            line-height: 39px;   border-radius: 20px;
+                        }
+                        @include respond-above(md) {
+                            height: 46px;
+                            line-height: 46px;
+                            font-size: 1rem;  width: 125px;   border-radius: 23px;
+                        }
+                        @include respond-above(lg) {
+                            height: 50px;
+                            line-height: 50px;   border-radius: 25px;
+                        }
                     }
                 }
             }
@@ -323,6 +421,11 @@ a.yellow {
                 }
             }
             a {
+                background-image:  linear-gradient( -90deg, rgba(100,154,235,0) 0%, rgba(99,104,212,0) 100%);
+                        background-image: -moz-linear-gradient( -90deg, rgba(100,154,235,0) 0%, rgba(99,104,212,0) 100%);
+                        background-image: -webkit-linear-gradient( -90deg, rgba(100,154,235,0) 0%, rgba(99,104,212,0) 100%);
+                        background-image: -ms-linear-gradient( -90deg, rgba(100,154,235,0) 0%, rgba(99,104,212,0) 100%);
+
                 display: block;
                 position: absolute;
                 width: 100%;
@@ -331,14 +434,24 @@ a.yellow {
                 top: 0;
                 left: 0;
                 color: #fff;
+                transition: all .2s;
 
                 .row {
                     height: 100%;
                 }
 
                 h3 {
-                    font-size: rem(36);
-                    margin: 0 0 2.5rem;
+                    font-size: rem(20);
+                    margin: 0 0 1rem;
+                    @include respond-above(sm) {
+                        font-size: rem(24);    margin: 0 0 1.5rem;
+                    }
+                    @include respond-above(md) {
+                        font-size: rem(28);    margin: 0 0 2rem;
+                    }
+                    @include respond-above(lg) {
+                        font-size: rem(34);    margin: 0 0 2.5rem;
+                    }
                 }
 
                 .more {
@@ -365,6 +478,13 @@ a.yellow {
                 }
 
                 @include hover {
+                        background-image:  linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                        background-image: -moz-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                        background-image: -webkit-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                        background-image: -ms-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                      
+                   
+                      
                     .more {
                         width: 125px;
 
@@ -382,23 +502,62 @@ a.yellow {
     .s6 {
         background: $color-primary url(../img/map_03.jpg) no-repeat center center;
         background-size: cover;
-        height: 1050px;
+        height: 190px;
+        @include respond-above(sm) {
+            height: 380px;
+        }
+        @include respond-above(md) {
+            height: 550px;
+        }
+        @include respond-above(lg) {
+            height: 800px;
+        }
+        @media screen and (min-width: 1440px){
+            height: 1050px;
+        }
     }
     .s7{
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+        padding-top: 1.5rem;
+      
+        @include respond-above(sm) {
+            padding-top: 2rem;
+        }
+        @include respond-above(md) {
+            padding-top: 3rem;
+        }
+        @include respond-above(lg) {
+            padding-top: 4rem;
+        }
         .navs{
             display: inline-block;
         }
         a{
-            border-radius: 22px;
+           
             background-color: rgb(238, 238, 238);
             display: inline-block;
-            width: 44px;
-            height: 44px;
-            line-height: 44px;
-            margin: 0 .3rem;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 16px;
+            margin: 0 .3rem 1rem;
             color:$color-secondary;
+            @include respond-above(sm) {
+                width: 36px;
+                height: 36px;
+                line-height: 36px; border-radius: 18px;
+            }
+            @include respond-above(md) {
+                width: 40px;
+                height: 40px;
+                line-height: 40px; border-radius: 20px;
+            }
+            @include respond-above(lg) {
+                width: 44px;
+                height: 44px;
+                line-height: 44px; border-radius: 22px;
+            }
             &.all{
                 width: 120px;
             }

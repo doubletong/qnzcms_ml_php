@@ -46,19 +46,19 @@ $data = $pageClass->fetch_data("declare");
                     <h2>进口髋关节产品</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/productorthopaedicsdetail">PROFEMUR® Z Femoral Stem System</a>
+                            <a href="/productorthopaedicsdetail">PROFEMUR<sup>®</sup> Z Femoral Stem System</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">PROFEMUR® TL Femoral Stem System</a>
+                            <a href="/productorthopaedicsdetail">PROFEMUR<sup>®</sup> TL Femoral Stem System</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">LINEAGE® Acetabular Hip System</a>
+                            <a href="/productorthopaedicsdetail">LINEAGE<sup>®</sup> Acetabular Hip System</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">GLADIATOR® Bipolar Femoral Head System</a>
+                            <a href="/productorthopaedicsdetail">GLADIATOR<sup>®</sup> Bipolar Femoral Head System</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">BIOLOX® Delta Hip Ceramic Products</a>
+                            <a href="/productorthopaedicsdetail">BIOLOX<sup>®</sup> Delta Hip Ceramic Products</a>
                         </li>
                     </ul>
                 </div>
@@ -71,16 +71,16 @@ $data = $pageClass->fetch_data("declare");
                     <h2>进口膝关节产品</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/productorthopaedicsdetail">Evolution® 内轴型全膝关节置换系统</a>
+                            <a href="/productorthopaedicsdetail">Evolution<sup>®</sup> 内轴型全膝关节置换系统</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">Advance® 内轴型全膝关节置换系统</a>
+                            <a href="/productorthopaedicsdetail">Advance<sup>®</sup> 内轴型全膝关节置换系统</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">Advance® 内轴型膝关节翻修系统</a>
+                            <a href="/productorthopaedicsdetail">Advance<sup>®</sup> 内轴型膝关节翻修系统</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">Prophecy® 3D打印截骨导板</a>
+                            <a href="/productorthopaedicsdetail">Prophecy<sup>®</sup> 3D打印截骨导板</a>
                         </li>
                     </ul>
                 </div>
@@ -93,10 +93,10 @@ $data = $pageClass->fetch_data("declare");
                     <h2>国产膝关节产品</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/productorthopaedicsdetail">Aspiration® 内稳定型全膝关节置换系统</a>
+                            <a href="/productorthopaedicsdetail">Aspiration<sup>®</sup> 内稳定型全膝关节置换系统</a>
                         </li>
                         <li>
-                            <a href="/productorthopaedicsdetail">SoSuperior® 内稳定型全膝关节置换系统</a>
+                            <a href="/productorthopaedicsdetail">SoSuperior<sup>®</sup> 内稳定型全膝关节置换系统</a>
                         </li>
                     </ul>
                 </div>
@@ -124,7 +124,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="product_item_txt wow fadeInUp">
                     <h2>国产创伤产品</h2>
                     <ul class="clear">
-                        <li><a href="/productorthopaedicsdetail">Reindeer® 锁定接骨板系统</a></li>
+                        <li><a href="/productorthopaedicsdetail">Reindeer<sup>®</sup> 锁定接骨板系统</a></li>
                         <li><a href="/productorthopaedicsdetail">Cayman™ 金属线缆系统</a></li>
                     </ul>
                 </div>

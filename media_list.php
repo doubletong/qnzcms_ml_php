@@ -32,7 +32,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="clear">
                     <span class="date wow fadeInLeft">2018-01-03</span>
                 </div>
-                <h2 class="wow fadeInLeft">SuperPath®技术助103岁高龄患者完成髋关节置换术 术后当天下午就能自行站立</h2>
+                <h2 class="wow fadeInLeft">SuperPath<sup>®</sup>技术助103岁高龄患者完成髋关节置换术 术后当天下午就能自行站立</h2>
             </div>
         </div>
     </div>
@@ -48,9 +48,9 @@ $data = $pageClass->fetch_data("declare");
                             <img src="/images/news_01.jpg" alt=""/>
                         </div>
                         <div class="txt">
-                            <h4><i>中国经济网</i>SuperPath®技术助103岁高龄患者完成髋关节置换术</h4>
+                            <h4><i>中国经济网</i>SuperPath<sup>®</sup>技术助103岁高龄患者完成髋关节置换术</h4>
                             <span>2018-01-04</span>
-                            <p>12月26日，镇江市第一人民医院骨科SuperPath®微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath®微创伤后入路全髋关节置换技...</p>
+                            <p>12月26日，镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath<sup>®</sup>微创伤后入路全髋关节置换技...</p>
                         </div>
                     </a>
                 </div>
@@ -62,9 +62,9 @@ $data = $pageClass->fetch_data("declare");
                             <img src="/images/news_01.jpg" alt=""/>
                         </div>
                         <div class="txt">
-                            <h4><i>经济日报</i>103岁患者完成髋关节置换术 SuperPath®引领技术飞跃</h4>
+                            <h4><i>经济日报</i>103岁患者完成髋关节置换术 SuperPath<sup>®</sup>引领技术飞跃</h4>
                             <span>2018-02-18</span>
-                            <p>日前，一位103岁患者在江苏省镇江市第一人民医院骨科SuperPath®微创关节中心，成功接受了微创髋关节置换术，当天即可自行站立，恢复良好。这刷新了国内使用SuperPath®微创伤技术治愈患者的最高年龄纪录。</p>
+                            <p>日前，一位103岁患者在江苏省镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心，成功接受了微创髋关节置换术，当天即可自行站立，恢复良好。这刷新了国内使用SuperPath<sup>®</sup>微创伤技术治愈患者的最高年龄纪录。</p>
                         </div>
                     </a>
                 </div>
@@ -78,7 +78,7 @@ $data = $pageClass->fetch_data("declare");
                         <div class="txt">
                             <h4><i>科学网</i>新技术圆百岁骨折老人行走梦</h4>
                             <span>2018-01-04</span>
-                            <p>12月26日，镇江市第一人民医院骨科SuperPath®微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath®微创伤后入路全髋关节置换技...</p>
+                            <p>12月26日，镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath<sup>®</sup>微创伤后入路全髋关节置换技...</p>
                         </div>
                     </a>
                 </div>
@@ -90,9 +90,9 @@ $data = $pageClass->fetch_data("declare");
                             <img src="/images/news_01.jpg" alt=""/>
                         </div>
                         <div class="txt">
-                            <h4><i>浦东时报</i>微创®医疗创新技术 助103岁高龄患者髋关节置换</h4>
+                            <h4><i>浦东时报</i>微创<sup>®</sup>医疗创新技术 助103岁高龄患者髋关节置换</h4>
                             <span>2018-01-24</span>
-                            <p>12月26日，镇江市第一人民医院骨科SuperPath®微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath®微创伤后入路全髋关节置换技...</p>
+                            <p>12月26日，镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath<sup>®</sup>微创伤后入路全髋关节置换技...</p>
                         </div>
                     </a>
                 </div>
@@ -104,9 +104,9 @@ $data = $pageClass->fetch_data("declare");
                             <img src="/images/news_01.jpg" alt=""/>
                         </div>
                         <div class="txt">
-                            <h4><i>中国经济网</i>SuperPath®技术助103岁高龄患者完成髋关节置换术</h4>
+                            <h4><i>中国经济网</i>SuperPath<sup>®</sup>技术助103岁高龄患者完成髋关节置换术</h4>
                             <span>2018-01-04</span>
-                            <p>12月26日，镇江市第一人民医院骨科SuperPath®微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath®微创伤后入路全髋关节置换技...</p>
+                            <p>12月26日，镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath<sup>®</sup>微创伤后入路全髋关节置换技...</p>
                         </div>
                     </a>
                 </div>
@@ -118,9 +118,9 @@ $data = $pageClass->fetch_data("declare");
                             <img src="/images/news_01.jpg" alt=""/>
                         </div>
                         <div class="txt">
-                            <h4><i>经济日报</i>103岁患者完成髋关节置换术 SuperPath®引领技术飞跃</h4>
+                            <h4><i>经济日报</i>103岁患者完成髋关节置换术 SuperPath<sup>®</sup>引领技术飞跃</h4>
                             <span>2018-02-18</span>
-                            <p>日前，一位103岁患者在江苏省镇江市第一人民医院骨科SuperPath®微创关节中心，成功接受了微创髋关节置换术，当天即可自行站立，恢复良好。这刷新了国内使用SuperPath®微创伤技术治愈患者的最高年龄纪录。</p>
+                            <p>日前，一位103岁患者在江苏省镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心，成功接受了微创髋关节置换术，当天即可自行站立，恢复良好。这刷新了国内使用SuperPath<sup>®</sup>微创伤技术治愈患者的最高年龄纪录。</p>
                         </div>
                     </a>
                 </div>
@@ -134,7 +134,7 @@ $data = $pageClass->fetch_data("declare");
                         <div class="txt">
                             <h4><i>科学网</i>新技术圆百岁骨折老人行走梦</h4>
                             <span>2018-01-04</span>
-                            <p>12月26日，镇江市第一人民医院骨科SuperPath®微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath®微创伤后入路全髋关节置换技...</p>
+                            <p>12月26日，镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath<sup>®</sup>微创伤后入路全髋关节置换技...</p>
                         </div>
                     </a>
                 </div>
@@ -146,9 +146,9 @@ $data = $pageClass->fetch_data("declare");
                             <img src="/images/news_01.jpg" alt=""/>
                         </div>
                         <div class="txt">
-                            <h4><i>浦东时报</i>微创®医疗创新技术 助103岁高龄患者髋关节置换</h4>
+                            <h4><i>浦东时报</i>微创<sup>®</sup>医疗创新技术 助103岁高龄患者髋关节置换</h4>
                             <span>2018-01-24</span>
-                            <p>12月26日，镇江市第一人民医院骨科SuperPath®微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath®微创伤后入路全髋关节置换技...</p>
+                            <p>12月26日，镇江市第一人民医院骨科SuperPath<sup>®</sup>微创关节中心为一位103岁患者成功实施微创髋关节置换术，患者当天下午就可自行站立，术后恢复良好。这也是目前国内使用SuperPath<sup>®</sup>微创伤后入路全髋关节置换技...</p>
                         </div>
                     </a>
                 </div>

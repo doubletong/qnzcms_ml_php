@@ -46,7 +46,7 @@ $data = $pageClass->fetch_data("declare");
                     <h2>颅内动脉支架系统</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/productnervedetail">APOLLO®颅内动脉支架系统</a>
+                            <a href="/productnervedetail">APOLLO<sup>®</sup>颅内动脉支架系统</a>
                         </li>
                     </ul>
                 </div>
@@ -59,7 +59,7 @@ $data = $pageClass->fetch_data("declare");
                     <h2>颅内覆膜支架系统</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/productnervedetail">WILLIS®颅内覆膜支架系统</a>
+                            <a href="/productnervedetail">WILLIS<sup>®</sup>颅内覆膜支架系统</a>
                         </li>
                     </ul>
                 </div>
@@ -71,7 +71,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="product_item_txt wow fadeInUp">
                     <h2>血管重建装置</h2>
                     <ul class="clear">
-                        <li><a href="/productnervedetail">Tubridge® 血管重建装置</a></li>
+                        <li><a href="/productnervedetail">Tubridge<sup>®</sup> 血管重建装置</a></li>
                     </ul>
                 </div>
             </div>

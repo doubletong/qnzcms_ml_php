@@ -6,14 +6,20 @@ require_once('../includes/PDO_Pagination.php');
 
 $pagination = new PDO_Pagination(db::getInstance());
 
+$did = isset($_GET['did'])?$_GET['did']:"";
+
 $search = null;
 if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
-    $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT id FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
+    $pagination->param = "&search=$search&did=$did";
+    $pagination->rowCount("SELECT id FROM wp_articles WHERE  dictionary_id = $did AND (title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%') ORDER BY  id DESC ");
     $pagination->config(6, 10);
-    $sql = "SELECT id, title, categoryId, thumbnail,view_count, active, pubdate, added_by FROM wp_articles WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT a.id, a.title, c.title as category_title,a.dictionary_id, a.thumbnail,a.view_count, 
+    a.active, a.pubdate, a.added_by FROM wp_articles as a Left JOIN article_categories as c 
+    ON c.id = a.categoryId
+        WHERE  a.dictionary_id = $did AND (a.title LIKE '%$search%' OR a.description LIKE '%$search%' OR a.content LIKE '%$search%')
+        ORDER BY  a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -24,9 +30,13 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 }
 else
 {
-    $pagination->rowCount("SELECT id FROM wp_articles");
+    $pagination->param = "&did=$did";
+    $pagination->rowCount("SELECT id FROM `wp_articles` WHERE dictionary_id = $did");
     $pagination->config(6,10);
-    $sql = "SELECT id, title, categoryId, thumbnail,view_count, active, pubdate, added_by FROM wp_articles ORDER BY id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    
+    $sql = "SELECT a.id, a.title, c.title as category_title,a.dictionary_id, a.thumbnail,a.view_count, 
+    a.active, a.pubdate, a.added_by FROM wp_articles as a Left JOIN article_categories as c 
+    ON c.id = a.categoryId  WHERE  a.dictionary_id = $did ORDER BY a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -41,7 +51,7 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "新闻资讯_后台管理_".SITENAME;?></title>
+    <title><?php echo "文章_后台管理_".SITENAME;?></title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
@@ -70,8 +80,8 @@ else
                     </form>
                 </div>
                 <div class="col-auto">
-                        <a href="news_add.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i>  添加新闻
+                        <a href="news_add.php?did=<?php echo $did;?>" class="btn btn-primary">
+                            <i class="iconfont icon-plus"></i>  添加文章
                         </a>
                 </div>
             </div>
@@ -80,7 +90,9 @@ else
                 <tr>
                     <th>缩略图</th>
                     <th>标题</th>
+                    <?php if($did=="1"||$did=="2"){ ?>
                     <th>分类</th>
+                    <?php } ?>
                     <th>显示</th>
                     <th>发布日期</th>
                     <th>操作</th>
@@ -95,12 +107,13 @@ else
                     <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
                     <?php
                     echo "<td>".$row['title']."</td>";
-                    $categoryTitle = $row['categoryId']==1?'新闻资讯':'口腔护理知识';
-                    echo "<td>".$categoryTitle."</td>";
+                   if($did=="1"||$did=="2"){
+                    echo "<td>".$row['category_title']."</td>";
+                   }
                     echo "<td>".$row['view_count']."</td>";
                     ?>
                     <td><?php echo date('Y-m-d',$row['pubdate']) ;?></td>
-                    <td><a href='news_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                    <td><a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
                         <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
@@ -134,7 +147,24 @@ else
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+     
+        if("1"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("2"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("3"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("4"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("5"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+
+
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

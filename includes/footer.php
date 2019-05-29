@@ -3,7 +3,7 @@
         <div class="row footer-navs">
             <div class="col-md-2">
                 <dl>
-                    <dt>关于微创</dt>
+                    <dt>关于微创<sup>®</sup></dt>
                    
                             <dd><a href="/about">公司简介</a></dd>
                             <dd><a href="/branch">分子公司信息</a></dd>
@@ -28,7 +28,7 @@
                     <dt>患者关爱</dt>
                     <dd><a href="/support">患者服务与支持</a></dd>
                             <dd><a href="/disease">疾病管理</a></dd>
-                            <dd><a href="/cards">微创植入卡</a></dd>
+                            <dd><a href="/cards">微创<sup>®</sup>植入卡</a></dd>
                             <dd><a href="/story">患者故事</a></dd>                
                   
                 </dl>
@@ -116,7 +116,7 @@
                 客户支持邮箱：MTS@microport.com
                 </div>
             </div>
-            <div class="col-md-auto">
+            <div class="col-md-auto logo">
                 <img src="/img/bot_logo.png" alt="logo">
             </div>
         </div>

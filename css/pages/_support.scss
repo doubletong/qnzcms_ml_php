@@ -8,6 +8,12 @@
         font-size: 3rem;
         color: $color-text-heading;
         font-weight: lighter;
+        margin-top: 0;
+        line-height: 1;
+        @media (min-width:1601) {
+            margin-top: auto;
+            line-height: 1.8;
+        }
     }
     .s1{
         margin-bottom: 6rem;

@@ -45,7 +45,7 @@ $data = $pageClass->fetch_data("declare");
                     <h2>冠脉雷帕霉素靶向洗脱支架系统</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/product/detail-1">Firehawk®冠脉雷帕霉素靶向洗脱支架系统</a>
+                            <a href="/product/detail-1">Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</a>
                         </li>
                     </ul>
                 </div>
@@ -58,7 +58,7 @@ $data = $pageClass->fetch_data("declare");
                     <h2>冠脉雷帕霉素药物支架系统</h2>
                     <ul class="clear">
                         <li>
-                            <a href="/product/detail-1">Firebird2®冠脉雷帕霉素洗脱钴基合金支架系统</a>
+                            <a href="/product/detail-1">Firebird2<sup>®</sup>冠脉雷帕霉素洗脱钴基合金支架系统</a>
                         </li>
                     </ul>
                 </div>
@@ -70,10 +70,10 @@ $data = $pageClass->fetch_data("declare");
                 <div class="product_item_txt wow fadeInUp">
                     <h2>PTCA球囊扩张导管</h2>
                     <ul class="clear">
-                        <li><a href="/product/detail-1">Evolution® 内轴型全膝关节置换系统</a></li>
-                        <li><a href="/product/detail-1">Advance® 内轴型全膝关节置换系统</a></li>
-                        <li><a href="/product/detail-1">Advance® 内轴型膝关节翻修系统</a></li>
-                        <li><a href="/product/detail-1">Prophecy® 3D打印截骨导板</a></li>
+                        <li><a href="/product/detail-1">Evolution<sup>®</sup> 内轴型全膝关节置换系统</a></li>
+                        <li><a href="/product/detail-1">Advance<sup>®</sup> 内轴型全膝关节置换系统</a></li>
+                        <li><a href="/product/detail-1">Advance<sup>®</sup> 内轴型膝关节翻修系统</a></li>
+                        <li><a href="/product/detail-1">Prophecy<sup>®</sup> 3D打印截骨导板</a></li>
                     </ul>
                 </div>
             </div>

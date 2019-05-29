@@ -2,9 +2,12 @@
 require_once("includes/common.php");
 require_once("config/db.php");
 require_once("data/page.php");
+require_once("data/article.php");
 
 $pageClass = new Page();
-$data = $pageClass->fetch_data("laws");
+$pageModel = $pageClass->fetch_data("laws");
+$articleClass = new Article();
+$articles = $articleClass->get_all_articles(5);
 
 
 ?>
@@ -45,84 +48,22 @@ $data = $pageClass->fetch_data("laws");
             <h2 class="title">医工合作案例</h2>
             <div class="list list-story list-case">
         <div class="row">
+            <?php foreach($articles as $data){ ?>
             <div class="col-md-4">
                 <div class="item">
-                    <img src="/img/temp/cover1.png" class="bg" alt="">
+                    <img src="<?php echo $data['image_url']; ?>" class="bg" alt="<?php echo $data['title']; ?>">
                     <div class="txt">
                         <div class="logo">
-                            <img src="/img/temp/s-logo.png" alt="">
+                            <img src="<?php echo $data['thumbnail']; ?>" alt="<?php echo $data['title']; ?>">
                         </div>
 
-                        <h3>分支型主动脉覆膜支架及输送系统</h3>
-                        <a href="/creative/detail-1" class="view">查看案例</a>
+                        <h3><?php echo $data['title']; ?></h3>
+                        <a href="/creative/detail-<?php echo $data['id']; ?>" class="view">查看案例</a>
                     </div>
                 </div>                
             </div>
-            <div class="col-md-4">
-                <div class="item">
-                    <img src="/img/temp/cover1.png" class="bg" alt="">
-                    <div class="txt">
-                        <div class="logo">
-                            <img src="/img/temp/s-logo.png" alt="">
-                        </div>
-                   
-                        <h3>颅内覆膜支架</h3>
-                        <a href="/creative/detail-1" class="view">查看案例</a>
-                    </div>
-                </div>                
-            </div>
-            <div class="col-md-4">
-                <div class="item">
-                    <img src="/img/temp/cover1.png" class="bg" alt="">
-                    <div class="txt">
-                        <div class="logo">
-                            <img src="/img/temp/s-logo.png" alt="">
-                        </div>
-                   
-                        <h3>SuperPath® 技术接受者</h3>
-                        <a href="/creative/detail-1" class="view">查看案例</a>
-                    </div>
-                </div>                
-            </div>
-            <div class="col-md-4">
-                <div class="item">
-                    <img src="/img/temp/cover1.png" class="bg" alt="">
-                    <div class="txt">
-                        <div class="logo">
-                            <img src="/img/temp/s-logo.png" alt="">
-                        </div>
+            <?php } ?>
                      
-                        <h3>SuperPath® 技术接受者</h3>
-                        <a href="/creative/detail-1" class="view">查看案例</a>
-                    </div>
-                </div>                
-            </div>
-            <div class="col-md-4">
-                <div class="item">
-                    <img src="/img/temp/cover1.png" class="bg" alt="">
-                    <div class="txt">
-                        <div class="logo">
-                            <img src="/img/temp/s-logo.png" alt="">
-                        </div>
-                       
-                        <h3>SuperPath® 技术接受者</h3>
-                        <a href="/creative/detail-1" class="view">查看案例</a>
-                    </div>
-                </div>                
-            </div>
-            <div class="col-md-4">
-                <div class="item">
-                    <img src="/img/temp/cover1.png" class="bg" alt="">
-                    <div class="txt">
-                        <div class="logo">
-                            <img src="/img/temp/s-logo.png" alt="">
-                        </div>
-                   
-                        <h3>SuperPath® 技术接受者</h3>
-                        <a href="/creative/detail-1" class="view">查看案例</a>
-                    </div>
-                </div>                
-            </div>            
         </div>
         </div>
         
@@ -133,7 +74,7 @@ $data = $pageClass->fetch_data("laws");
                 <p>您有关于医疗产品或医疗过程痛点问题寻求解决方案吗？<br/>
 您有医疗相关创意或跨界技术方案希望转化为医疗产品吗？<br/>
 您希望凭您一技之长挑战医疗产品开发难题吗？<br/>
-与微创®一起，助力实现人类延年益寿之梦想！</p>
+与微创<sup>®</sup>一起，助力实现人类延年益寿之梦想！</p>
             
             </section>
 <section class="s4">

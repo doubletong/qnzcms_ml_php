@@ -13,8 +13,9 @@
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+    margin-bottom: 0;
 }
-.bx-wrapper .slider .bx-pager{
+.bx-wrapper  .bx-pager{
     text-align: right;
     margin-top: -4rem;
     position: relative;
@@ -27,16 +28,16 @@
 
     }
 }
-.bx-wrapper .slider .bx-controls-auto, .bx-wrapper .bx-pager{
+.bx-wrapper  .bx-controls-auto, .bx-wrapper .bx-pager{
     bottom:0;
 }
 
-.bx-wrapper .slider .bx-pager.bx-default-pager a {
+.bx-wrapper  .bx-pager.bx-default-pager a {
     background: transparent url(../img/star.png) no-repeat center center; width: 14px;height: 14px;
 }
 
-.bx-wrapper .slider .bx-pager.bx-default-pager a.active,
-.bx-wrapper .slider .bx-pager.bx-default-pager a:focus,
-.bx-wrapper .slider .bx-pager.bx-default-pager a:hover {
+.bx-wrapper  .bx-pager.bx-default-pager a.active,
+.bx-wrapper  .bx-pager.bx-default-pager a:focus,
+.bx-wrapper  .bx-pager.bx-default-pager a:hover {
     background: transparent url(../img/star_white.png) no-repeat center center;
 }

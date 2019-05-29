@@ -47,84 +47,83 @@ $data = $pageClass->fetch_data("clinical");
             <section class="s2">
 
                 <h2 class="se-title">更多内容</h2>
+<div class="s2main">
+<div class="list-categories">
+            <h3 class="title">疾病分类</h3>
+                <ul>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">全部</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">心律管理</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">电生理</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">冠心病</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">骨科髋关节</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">大动脉与外周血管</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">冠心病</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">冠心病</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">冠心病</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">冠心病</a></li>
+                   <li>  <a style="background-image:url(/img/icon/001.png);" href="#">冠心病</a></li>
+                </ul>   
+        
+        </div>
 
-                <div class="categories">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#">冠心病</a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#">冠心病</a>
+<div class="list list-disease">
+            <a href="/disease/detail-1" class="item">
+                <div class="container">
+                    <div class="disease">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="des">
+                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
+                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </a>
+            <a href="/disease/detail-1" class="item">
+                <div class="container">
+                    <div class="disease">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="des">
+                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
+                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/disease/detail-1" class="item">
+                <div class="container">
+                    <div class="disease">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="des">
+                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
+                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+</div>
+               
             </section>
         </div>
-        <div class="list list-disease">
-            <a href="/disease/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
-                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="/disease/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
-                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="/disease/detail-1" class="item">
-                <div class="container">
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="pic"><img src="/img/temp/d1.jpg" alt=""></div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="des">
-                                    <h3>成人二尖瓣狭窄(基础篇)</h3>
-                                    <p>什么是主动脉瓣狭窄？主动脉瓣狭窄是指心脏的主动脉瓣无法完全开放(图 1)。心瓣膜可维持血液只沿单一方向流动，当其正常工作时，可完全开放以使血液流过。血液从一个叫“左心室”的心腔流出，经过主动脉瓣...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+        
         <div class="container">
 
 
@@ -138,7 +137,7 @@ $data = $pageClass->fetch_data("clinical");
                             <div class="logo">
                                 <img src="/img/temp/logo1.png" alt="">
                             </div>
-                                <h3>Firehawk®冠脉雷帕霉素靶向洗脱支架系统</h3>
+                                <h3>Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h3>
                                 <div class="more">查看产品</div>
                             </a>
                         </div>
@@ -147,7 +146,7 @@ $data = $pageClass->fetch_data("clinical");
                             <div class="logo">
                                 <img src="/img/temp/logo1.png" alt="">
                             </div>
-                                <h3>Firehawk®冠脉雷帕霉素靶向洗脱支架系统</h3>
+                                <h3>Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h3>
                                 <div class="more">查看产品</div>
                             </a>
                         </div>
@@ -156,7 +155,7 @@ $data = $pageClass->fetch_data("clinical");
                             <div class="logo">
                                 <img src="/img/temp/logo1.png" alt="">
                             </div>
-                                <h3>Firehawk®冠脉雷帕霉素靶向洗脱支架系统</h3>
+                                <h3>Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h3>
                                 <div class="more">查看产品</div>
                             </a>
                         </div>
@@ -193,7 +192,29 @@ $data = $pageClass->fetch_data("clinical");
 
             $(".btnclose").click(function(e){
                 $(".quickcontact").slideToggle();
-            })
+            });
+
+
+            h = $(".site-footer").outerHeight(true) + $(".s3").outerHeight(true) + $(".quickcontact").outerHeight(true) + 120;
+
+            $(window).on("scroll", function() {    
+                var toTop = $(window).scrollTop();     
+                
+                var scrollButtom = $(document).height()-(toTop + $(window).height());
+                var bannerHeight = $(".banner").outerHeight(true) + $(".s1").outerHeight(true) + $(".s2 .se-title").outerHeight(true);
+                var headH = $('.site-header').outerHeight(true) + 30;
+                
+                if(toTop>bannerHeight){
+                    $(".list-categories").addClass("fixed_for_top").css({'top': headH +'px'});
+                    if (scrollButtom < h) {
+                        $(".list-categories").css({'bottom':(h-scrollButtom)+'px','top':'auto'});
+                    }else{
+                        $(".list-categories").css({'bottom':'auto','top':headH +'px'});
+                    }
+                }else{
+                    $(".list-categories").removeClass("fixed_for_top").css({'top': 'auto'});
+                }
+             });
         });
     </script>
 </body>

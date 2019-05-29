@@ -53,11 +53,11 @@
 
             .subnav{
                 @include reset-list;
-                padding: 0 1rem;
+                padding: 0;
                 position: absolute;
                 left: 0;
                 border-radius: 6px;
-                width: 160px;
+                width: 240px;
                 background-color: #fff;
                 top: rem(72);
                 height: 0;
@@ -70,20 +70,29 @@
                     &:last-child{
                         border-bottom: none;
                     }
+                    padding: 0 1rem;
+                    @include hover{
+                        background-color: lighten($color-primary,45%);
+                    }
                     a{
                         display: block;
-                     padding: .6rem 0;
+                        padding: .6rem 0;
+                        font-size: rem(14);
                         color:$color-text-heading;
                         @include hover {
                            color:$color-primary;
+                        
         
                         }
                     }
                 }
             }
 
-            &.down{
+            &.down{              
                 @include hover {
+                    &>a{
+                        color:lighten($color-primary,30%);
+                    }
                     .subnav{
                         height:auto;
                         opacity: 1;

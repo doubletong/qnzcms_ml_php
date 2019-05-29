@@ -74,10 +74,13 @@
         @include  respond-above(md){
             padding-top: 16rem;
          }
+         
          @include  respond-above(lg){
-            padding-top: 22rem;
+            padding-top: 18rem;
          }
-       
+         @media (min-width: 1600px) {
+            padding-top: 22rem;
+        }
         p{           
             span{
                 margin: 0 .5rem;

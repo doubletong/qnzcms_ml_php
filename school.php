@@ -35,7 +35,7 @@ $data = $pageClass->fetch_data("laws");
                 <h2>知行合一</h2>
                 <p>知行医学培训学院是微创旗下一所专业的临床医学及专业教育培训中心。其名称来源于明代思想家王阳明的“知行合一”的心学理念，知是指科学知识，行是指人的时间，知与行的统一，代表着微创的高科技产品与医生的实践相结合，研发的产品经过学术推广，安全地被应用到医学临床。<br/>
       知行学院上海培训中心位于微创集团上海总部，自2015年11月施工完成，包含知了报告厅、远程医疗全球指导中心、3D体验中心、介入及骨科培训教室、DSA模拟手术室、zSpace、3D打印等高科技设施设备。</p>
-                <a href="#" class="more">知行学院官网 <i class="iconfont icon-right"></i></a>
+                <!-- <a href="#" class="more">知行学院官网 <i class="iconfont icon-right"></i></a> -->
             </section>
         </div>
         <section class="s1 s2">

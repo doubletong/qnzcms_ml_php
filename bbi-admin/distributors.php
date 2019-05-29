@@ -11,9 +11,9 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY importance ,  id DESC ");
+    $pagination->rowCount("SELECT * FROM distributors WHERE address LIKE '%$search%' OR name LIKE '%$search%' ");
     $pagination->config(6, 10);
-    $sql = "SELECT * FROM wp_distributors WHERE address LIKE '%$search%' OR city LIKE '%$search%' ORDER BY  id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id, name,thumbnail, homepage, importance,added_date FROM distributors WHERE address LIKE '%$search%' OR name LIKE '%$search%' ORDER BY  importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -24,9 +24,9 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 }
 else
 {
-    $pagination->rowCount("SELECT * FROM wp_distributors");
+    $pagination->rowCount("SELECT * FROM distributors");
     $pagination->config(6,10);
-    $sql = "SELECT * FROM wp_distributors ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id, name,thumbnail, homepage, importance, added_date FROM distributors ORDER BY importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -42,7 +42,7 @@ else
 
 <head>
     <title>
-        <?php echo "加入我们_后台管理_".SITENAME;?>
+        <?php echo "子公司信息_后台管理_".SITENAME;?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -75,7 +75,7 @@ else
     </div>
     <div class="col-auto">
         <a href="distributor_add.php" class="btn btn-primary">
-            <i class="iconfont icon-plus"></i> 添加公司分部
+            <i class="iconfont icon-plus"></i> 添加
         </a>
     </div>
 </div>
@@ -84,11 +84,11 @@ else
         <thead>
         <tr>
 
-            <th>城市</th>
-            <th>地址</th>           
-            <th>电话</th>
-            <th>邮箱</th>
-            <th>坐标</th>
+            <th>logo</th>
+            <th>名称</th>           
+            <th>官网</th>
+            <th>排序</th>
+         
             <th>创建日期</th>
             <th>操作</th>
         </tr>
@@ -100,13 +100,11 @@ else
            
             ?>
             <tr>
-            <td><?php echo $row['city'];?></td>
-            <td><?php echo $row['address'];?></td>
-            <td><?php echo $row['phone'];?></td>
-            <td><?php echo $row['email'];?></td>
-            <td><?php echo $row['coordinate'];?></td>
+            <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
            
-           
+            <td><?php echo $row['name'];?></td>
+            <td><?php echo $row['homepage'];?></td>
+            <td><?php echo $row['importance'];?></td>            
             <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
             <td><a href='distributor_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                     <span class="iconfont icon-edit"></span>
@@ -142,7 +140,7 @@ else
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(9)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(14)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"
@@ -150,7 +148,7 @@ else
 
         $(".btn-delete").click(function(){
             var $that = $(this);
-            bootbox.confirm("删除后公司分部将无法恢复，您确定要删除吗？", function (result) {
+            bootbox.confirm("删除后子公司信息将无法恢复，您确定要删除吗？", function (result) {
                 if (result) {
                     var articleId = $that.attr("data-id");
 
@@ -162,10 +160,10 @@ else
 
                             //  $('#resultreturn').prepend(res);
                             if (res) {
-                                toastr.success('公司分部已删除成功！', '删除公司分部')
+                                toastr.success('子公司信息已删除成功！', '删除子公司信息')
                                 $that.closest("tr").remove();
                             } else {
-                                toastr.error('公司分部删除失败！', '删除公司分部')
+                                toastr.error('子公司信息删除失败！', '删除子公司信息')
                             }
                         }
                     });

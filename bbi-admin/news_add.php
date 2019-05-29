@@ -2,13 +2,17 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
+require_once('data/article_category.php');
+$categoryClass = new ArticleCategory();
 
+$did = isset($_GET['did'])?$_GET['did']:"";
+$categories = $categoryClass->fetch_all($did);
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "发布新闻_新闻资讯_后台管理_".SITENAME;?></title>
+    <title><?php echo "发布_文章_后台管理_".SITENAME;?></title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
     <script src="../js/vendor/ckeditor/ckeditor.js"></script>
@@ -27,51 +31,98 @@ require_once('../config/db.php');
         <form novalidate="novalidate" id="editform">
             <div class="card">
                 <div class="card-header">
-                添加新闻
+                添加文章
             </div>
       
         <div class="card-body">
                 <input id="articleId" type="hidden" name="articleId" value="0" />
+                <input id="dictionary_id" type="hidden" name="dictionary_id" value="<?php echo $did; ?>" />
                 <div class="row">
                     <div class="col">
                         <div class="form-group">                          
                             <label for="title">主题</label>
                             <input type="text" class="form-control" id="title" name="title" placeholder="">                         
                         </div>
+                        <?php if($did=="1" || $did=="2"){ ?>
+                            <div class="form-group">
+                                <label for="categoryId">分类</label>                           
+                            
+                                <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
+                                    <option value="0">--请选择分类--</option>
+                                <?php foreach( $categories as $model)
+                                    {
+                                        ?>
+                                                <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
 
-                        <div class="form-group">
-                            <label for="categoryId">分类</label>                           
-                            <select class="form-control"  id="categoryId" name="categoryId" >
-                                <option value="0">--选择分类--</option>
-                                <option value="1">新闻资讯</option>
-                                <!-- <option value="2">口腔护理知识</option> -->
-                            </select>                            
+                                    <?php } ?>
+                                                    
+                                </select>                          
+                            </div>
+                        <?php } ?>
+
+                        <?php if($did=="4"){ ?>
+
+                            <div class="form-group">                          
+                            <label for="author">患者</label>
+                            <input type="text" class="form-control" id="author" name="author" placeholder="">                         
+                        </div>
+                        <div class="form-group">                          
+                            <label for="source">来自</label>
+                            <input type="text" class="form-control" id="source" name="source" placeholder="">                         
                         </div>
 
-                        <div class="form-group" style="display:none;">
+                            <div class="form-group">
                             <label for="imageUrl">
-                                大图</label>
+                                图片</label>
                                 <div class="input-group">
-                                    <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="大图" aria-describedby="setImageUrl">
+                                    <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="图片" aria-describedby="setImageUrl">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                                     </div>
                                 </div>
-                                <small id="emailHelp" class="form-text text-muted">图片尺寸：500*500像素</small>
-                              
-                        </div>
+                                <small id="emailHelp" class="form-text text-muted">图片尺寸：380*530像素</small>                              
+                            </div>                            
 
+                       <?php } ?>
+
+                       <?php if($did=="5"){ ?>
+                            <div class="form-group">
+                            <label for="imageUrl">
+                                图片</label>
+                                <div class="input-group">
+                                    <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="图片" aria-describedby="setImageUrl">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
+                                    </div>
+                                </div>
+                                <small id="emailHelp" class="form-text text-muted">图片尺寸：380*530像素</small>                              
+                            </div>                          
+
+                       <?php } ?>
+
+                        <div class="form-group">
+                            <label for="background_image">
+                                背景图</label>
+                                <div class="input-group">
+                                    <input id="background_image" name="background_image"  class="form-control" placeholder="背景图" aria-describedby="setBackgroundImage">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" id="setBackgroundImage" type="button" >浏览…</button>                                 
+                                    </div>
+                                </div>
+                                <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*550像素</small>                              
+                        </div>
                        
                         
                         <div class="form-group">
-                            <label for="content">新闻内容</label>                            
+                            <label for="content">内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
                                 var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder                                                   
+                                        filebrowserImageBrowseUrl: elFinder,
+                                        allowedContent: true 
                                     });
                                 </script>                        
                         </div>
@@ -80,6 +131,16 @@ require_once('../config/db.php');
                             <label for="summary">摘要</label>
                             <textarea class="form-control" id="summary" name="summary" placeholder=""></textarea>                          
                         </div>
+                        <?php if($did!="4"){ ?>
+                            <div class="form-group">                          
+                                <label for="author">作者</label>
+                                <input type="text" class="form-control" id="author" name="author" placeholder="">                         
+                            </div>
+                            <div class="form-group">                          
+                                <label for="source">来源</label>
+                                <input type="text" class="form-control" id="source" name="source" placeholder="">                         
+                            </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label for="pubdate">发布日期</label>
                             <input class="form-control" id="pubdate" name="pubdate" value="<?php echo date("Y-m-d");?>" placeholder="" type="date" />                        
@@ -95,7 +156,11 @@ require_once('../config/db.php');
                         <div style="width:300px; text-align:center;" class="mb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <img ID="iLogo" src="holder.js/240x180/text:433X289像素" class="img-responsive img-rounded" />
+                                <?php if($did=="5" || $did=="4"){ ?>
+                                    <img ID="iLogo" src="holder.js/240x180?text=?x34像素" class="img-responsive img-rounded" />
+                                <?php }else{?>
+                                    <img ID="iLogo" src="holder.js/240x180?text=580X304像素" class="img-responsive img-rounded" />
+                                <?php } ?>
                                 </div>
                                 <div class="card-footer">
                                     <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
@@ -125,7 +190,7 @@ require_once('../config/db.php');
         </div>
         <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
-            <a href="news.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
+            <a href="JavaScript:window.history.back()" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
         </div>
     </div>
     </form>
@@ -148,24 +213,44 @@ require_once('../config/db.php');
         $('#thumbnail').val(fileUrl);
         $('#iLogo').attr('src', fileUrl);
     }
-
-    function SetBackground(fileUrl) {
+    function SetImageUrl(fileUrl) {
         $('#imageUrl').val(fileUrl);
+    }
+    function SetBackground(fileUrl) {
+        $('#background_image').val(fileUrl);
     }
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        if("1"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("2"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("3"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("4"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("5"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;
             singleEelFinder.open();        
           
-        });
-
-       
+        });       
 
         $("#setImageUrl").on("click", function () {  
+            singleEelFinder.selectActionFunction = SetImageUrl;
+            singleEelFinder.open();            
+        });
+
+        $("#setBackgroundImage").on("click", function () {  
             singleEelFinder.selectActionFunction = SetBackground;
             singleEelFinder.open();            
         });
@@ -177,9 +262,7 @@ require_once('../config/db.php');
                 title: {
                     required: true
                 },
-                categoryId: {
-                    range:[1,2]
-                },
+               
                 pubdate: {
                     required: true,
                     date: true
@@ -190,9 +273,7 @@ require_once('../config/db.php');
                 title: {
                     required:"请输入主标题"
                 },
-                categoryId: {
-                    range:"请选择分类"
-                },
+              
                 pubdate: {
                     required: "请选择发布日期",
                     date: "日期格式不正确"

@@ -32,7 +32,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="inside_banner_logo wow fadeInLeft">
                     <img src="/images/product_detail_logo.png"/>
                 </div>
-                <h2 class="wow fadeInLeft">Firehawk®冠脉雷帕霉素靶向洗脱支架系统</h2>
+                <h2 class="wow fadeInLeft">Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h2>
             </div>
         </div>
         <div class="inside_banner_img wow fadeInRight" style="background-image:url(/images/product_detail_banner.png)"></div>
@@ -47,7 +47,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="product_detail_title wow fadeInUp">
                     <h3>产品简介</h3>
                 </div>
-                <p class="wow fadeInUp">Firehawk®冠脉雷帕霉素靶向洗脱支架系统（TES）是微创®继Firebird™和Firebird2™之后的全新一代用于冠状动脉狭窄或阻塞等病变治疗的产品。全新的最优药物剂量安全理念，全新的高科技制造工艺，全新的临床学评价系统，全新的产品受众群市场。</p><br/>
+                <p class="wow fadeInUp">Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统（TES）是微创<sup>®</sup>继Firebird™和Firebird2™之后的全新一代用于冠状动脉狭窄或阻塞等病变治疗的产品。全新的最优药物剂量安全理念，全新的高科技制造工艺，全新的临床学评价系统，全新的产品受众群市场。</p><br/>
                 <dl class="wow fadeInUp">
                     <dd>涂层暴露面积仅为支架表面积的5%</dd>
                     <dd>药物体内释放时间超过90天</dd>

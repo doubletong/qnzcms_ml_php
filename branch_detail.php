@@ -25,7 +25,7 @@ $data = $pageClass->fetch_data("culture");
 
     <?php // echo $data["content"];?>  
 
-    <div class="striving">
+<div class="striving">
 <!--banner-->
 <div class="inside_banner about_branch_banner" style="background-image:url(/images/about_branch_banner.jpg)">
     <div class="wrap clear">

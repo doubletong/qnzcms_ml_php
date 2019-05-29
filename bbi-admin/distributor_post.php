@@ -5,27 +5,30 @@ require_once('data/distributor.php');
 
 $distributorClass = new Distributor();
 
-if (isset($_POST['city'], $_POST['importance'])) {
+if (isset($_POST['name'], $_POST['importance'])) {
+
+    
+
     $distributorId = $_POST['distributorId'];
-    $coordinate = $_POST['coordinate'];
-    $email = $_POST['email'];
+    $thumbnail = $_POST['thumbnail'];
+    $name = $_POST['name'];
+    $postcode = $_POST['postcode'];
     $phone = $_POST['phone'];
-    $cooperation = $_POST['cooperation'];
-    $city = $_POST['city'];
+    $homepage = $_POST['homepage'];
+    $fax = $_POST['fax'];
     $address = $_POST['address'];
+
+    $intro = stripslashes($_POST['intro']);
+
     $importance = $_POST['importance'];
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
-
+  
     //   echo $content.$productId;
-    if($distributorId>0){
-        echo $distributorClass->update_distributor($distributorId, $coordinate, $email, $phone, $cooperation, $city,$address, $active, $importance);
-
-    }else{
-        echo $distributorClass->insert_distributor($coordinate, $email, $phone,$cooperation, $city,$address, $active, $importance);
-
+    if ($distributorId > 0) {
+        echo $distributorClass->update_distributor($distributorId,  $thumbnail, $name, $postcode, $homepage, $phone, $fax, $address, $active, $importance, $intro);
+    } else {
+        echo $distributorClass->insert_distributor($thumbnail, $name, $postcode, $homepage, $phone, $fax, $address, $active, $importance, $intro);
     }
-
-}else{
+} else {
     echo false;
 }
-

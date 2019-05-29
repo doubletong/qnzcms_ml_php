@@ -51,7 +51,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-09-04</span>
-                                <p>Firehawk®（火鹰）最新临床试验结果刊登《柳叶刀》杂志</p>
+                                <p>Firehawk<sup>®</sup>（火鹰）最新临床试验结果刊登《柳叶刀》杂志</p>
                             </div>
                         </a>
                     </div>
@@ -65,7 +65,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-08-01</span>
-                                <p>微创®Firehawk®（火鹰）支架完成非洲首例植入</p>
+                                <p>微创<sup>®</sup>Firehawk<sup>®</sup>（火鹰）支架完成非洲首例植入</p>
                             </div>
                         </a>
                         <a href="/media/list-1" class="wow fadeInUp">
@@ -77,7 +77,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-06-20</span>
-                                <p>微创®心律管理新总部启用</p>
+                                <p>微创<sup>®</sup>心律管理新总部启用</p>
                             </div>
                         </a>
                     </div>
@@ -93,7 +93,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-01-03</span>
-                                <p>“微创®系”产品单道心电记录仪成为全国首个按医疗器械注册人制度获批上市产品</p>
+                                <p>“微创<sup>®</sup>系”产品单道心电记录仪成为全国首个按医疗器械注册人制度获批上市产品</p>
                             </div>
                         </a>
                     </div>
@@ -107,7 +107,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-08-01</span>
-                                <p>微创®Firehawk®（火鹰）支架完成非洲首例植入</p>
+                                <p>微创<sup>®</sup>Firehawk<sup>®</sup>（火鹰）支架完成非洲首例植入</p>
                             </div>
                         </a>
                         <a href="/media/list-1" class="wow fadeInUp">
@@ -119,7 +119,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-03-01</span>
-                                <p>微创®公布Firehawk®（火鹰）支架TARGET AC临床研究最新结果</p>
+                                <p>微创<sup>®</sup>公布Firehawk<sup>®</sup>（火鹰）支架TARGET AC临床研究最新结果</p>
                             </div>
                         </a>
                     </div>
@@ -135,7 +135,7 @@ $data = $pageClass->fetch_data("declare");
                             </div>
                             <div class="txt">
                                 <span>2018-03-26</span>
-                                <p>微创®造“中国心”在多地使用，加速心脏起搏器进口替代</p>
+                                <p>微创<sup>®</sup>造“中国心”在多地使用，加速心脏起搏器进口替代</p>
                             </div>
                         </a>
                     </div>

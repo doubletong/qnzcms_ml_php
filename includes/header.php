@@ -9,7 +9,7 @@
             <div class="col-auto">
                 <ul class="mainav">
                     
-                    <li class="down"><a href="/about">关于微创</a>
+                    <li class="down"><a href="javascript:void(0);">关于微创<sup>®</sup></a>
                         <ul class="subnav">
                             <li><a href="/about">公司简介</a></li>
                             <li><a href="/branch">分子公司信息</a></li>
@@ -21,7 +21,7 @@
                         </ul>
 
                     </li>
-                    <li class="down"><a href="/operation">临床解决方案</a>
+                    <li class="down"><a href="javascript:void(0);">临床解决方案</a>
                         <ul class="subnav">
                             <li><a href="/operation">疾病与术式</a></li>
                             <li><a href="/events">学术活动</a></li>
@@ -29,16 +29,16 @@
                             <li><a href="/creative">良知创意中心</a></li>
                         </ul>
                     </li>
-                    <li class="down"><a href="/support">患者关爱</a>
+                    <li class="down"><a href="javascript:void(0);">患者关爱</a>
                         <ul class="subnav">
                             <li><a href="/support">患者服务与支持</a></li>
                             <li><a href="/disease">疾病管理</a></li>
-                            <li><a href="/cards">微创植入卡</a></li>
+                            <li><a href="/cards">微创<sup>®</sup>植入卡</a></li>
                             <li><a href="/story">患者故事</a></li>
                         </ul>
                     </li>
                     <li class="down">
-                        <a href="/products">产品中心</a>
+                        <a href="javascript:void(0);">产品中心</a>
                         <ul class="subnav">
                             <li><a href="/products">心血管介入产品
                                 </a></li>
@@ -60,7 +60,7 @@
 
                         </ul>
                     </li>
-                    <li class="down"><a href="/">传媒中心</a>
+                    <li class="down"><a href="javascript:void(0);">传媒中心</a>
                         <ul class="subnav">
                             <li><a href="/news">新闻动态
                                 </a></li>
@@ -74,7 +74,7 @@
 
                     </li>
                     <li class="down">
-                        <a href="/">投资者关系</a>
+                        <a href="javascript:void(0);">投资者关系</a>
                         <ul class="subnav">
                             <li><a href="/">公司治理
                                 </a></li>
@@ -94,7 +94,7 @@
 
                     </li>
                     <li class="langs"><a href="javascript:void(0);" id="btnSearch"><i class="iconfont icon-search"></i></a></li>
-                    <li class="langs"><a href="#">中文</a>/<a href="#">ENG</a></li>
+                    <li class="langs"><a href="http://2019test.microport.com.cn/">中文</a>/<a href="http://2019testen.microport.com.cn/">ENG</a></li>
                 </ul>
 
                 <!-- <a href="javascript:void(0);" id="openav" class="openav"><i class="iconfont icon-menu"></i></a> -->

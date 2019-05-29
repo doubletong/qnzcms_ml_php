@@ -30,7 +30,7 @@ $teams = $teamClass->fetch_category("核心团队");
     <div class="wrap clear">
         <div class="inside_banner_txt pos_center">
             <h1 class="wow fadeInLeft">职业发展</h1>
-            <p class="wow fadeInLeft">你的加入  让微创®更出彩！</p>
+            <p class="wow fadeInLeft">你的加入  让微创<sup>®</sup>更出彩！</p>
         </div>
     </div>
 </div>

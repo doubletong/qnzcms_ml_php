@@ -1,13 +1,13 @@
 <?php
 class Distributor{
     public function fetch_all(){
-        $query =  db::getInstance()->prepare("SELECT * FROM wp_distributors ORDER BY added_date DESC");
+        $query =  db::getInstance()->prepare("SELECT * FROM distributors ORDER BY added_date DESC");
         $query->execute();
         return $query->fetchAll();
     }
 
     public function fetch_data($id){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_distributors WHERE id = ?");
+        $query = db::getInstance()->prepare("SELECT * FROM distributors WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
 
@@ -15,11 +15,11 @@ class Distributor{
     }
 
     public function delete_distributor($id){
-        $query = db::getInstance()->prepare("DELETE FROM `wp_distributors` WHERE id = ?");
+        $query = db::getInstance()->prepare("DELETE FROM `distributors` WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
 
-        $result = $query->rowCount();;
+        $result = $query->rowCount();
         if ($result>0) {
             return true;
         } else {
@@ -28,26 +28,30 @@ class Distributor{
     }
 
 //更新产品
-    public function update_distributor($id, $coordinate, $email,$phone, $cooperation,$city,$address,$active,$importance) {
+    public function update_distributor($id, $thumbnail,$name, $postcode,$homepage,$phone, $fax,$address,$active,$importance,$intro) {
 
-        $sql = "UPDATE wp_distributors
-        SET coordinate= :coordinate,
-        email = :email,
+        $sql = "UPDATE distributors
+        SET name= :name,
+        postcode = :postcode,
+        homepage = :homepage,
+        thumbnail = :thumbnail,
              phone =:phone,
-             cooperation =:cooperation,
-             city = :city,
+             fax =:fax,            
              address = :address,
              importance =:importance,
+             intro = :intro,
              active =:active
              WHERE id =:id";
 
         $query = db::getInstance()->prepare($sql);
 
-        $query->bindValue(":coordinate",$coordinate);
-        $query->bindValue(":email",$email);
+        $query->bindValue(":thumbnail",$thumbnail);
+        $query->bindValue(":name",$name);
+        $query->bindValue(":postcode",$postcode);
         $query->bindValue(":phone",$phone);
-        $query->bindValue(":cooperation",$cooperation);
-        $query->bindValue(":city",$city);
+        $query->bindValue(":fax",$fax);
+        $query->bindValue(":homepage",$homepage);
+        $query->bindValue(":intro",$intro);
         $query->bindValue(":address",$address);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
@@ -63,19 +67,22 @@ class Distributor{
     }
 
 
-    public function insert_distributor($coordinate, $email,$phone,$cooperation,$city,$address,$active,$importance) {
+    public function insert_distributor($thumbnail,$name, $postcode,$homepage,$phone, $fax,$address,$active,$importance,$intro) {
 
-        $sql="INSERT INTO wp_distributors (coordinate,email,phone,cooperation, city,address,importance,active,added_by,added_date)
-                VALUES (:coordinate,:email,:phone,:cooperation, :city,:address, :importance, :active,:added_by,:added_date)";
+        $sql="INSERT INTO distributors (thumbnail,name,postcode,homepage, phone,fax,address,importance,intro,active,added_by,added_date)
+                VALUES (:thumbnail,:name,:postcode,:homepage, :phone,:fax,:address, :importance,:intro, :active,:added_by,:added_date)";
+
 
         $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
-        $query->bindValue(":coordinate",$coordinate);
-        $query->bindValue(":email",$email);
+        $query->bindValue(":thumbnail",$thumbnail);
+        $query->bindValue(":name",$name);
+        $query->bindValue(":postcode",$postcode);
         $query->bindValue(":phone",$phone);
-        $query->bindValue(":cooperation",$cooperation);
-        $query->bindValue(":city",$city);
+        $query->bindValue(":fax",$fax);
+        $query->bindValue(":homepage",$homepage);
+        $query->bindValue(":intro",$intro);
         $query->bindValue(":address",$address);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
@@ -83,7 +90,8 @@ class Distributor{
         $query->bindValue(":added_date",time(),PDO::PARAM_INT);
         $query->execute();
 
-        $result = $query->rowCount();;
+        $result = $query->rowCount();
+        echo $result ;
         if ($result>0) {
             return true;
         } else {

@@ -124,7 +124,7 @@ $data = $pageClass->fetch_data("declare");
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
-                                    <p>微创®2017年半年净利润同比大增272.4%</p>
+                                    <p>微创<sup>®</sup>2017年半年净利润同比大增272.4%</p>
                                 </div>
                             </a>
                             <a class="wow fadeInUp">
@@ -256,7 +256,7 @@ $data = $pageClass->fetch_data("declare");
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
-                                    <p>微创®2017年半年净利润同比大增272.4%</p>
+                                    <p>微创<sup>®</sup>2017年半年净利润同比大增272.4%</p>
                                 </div>
                             </a>
                             <a class="wow fadeInUp">

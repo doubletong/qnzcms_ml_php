@@ -33,7 +33,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="inside_banner_logo wow fadeInLeft">
                     <img src="images/product_detail_logo_03.png"/>
                 </div>
-                <h2 class="wow fadeInLeft">Tubridge® 血管重建装置</h2>
+                <h2 class="wow fadeInLeft">Tubridge<sup>®</sup> 血管重建装置</h2>
             </div>
         </div>
         <div class="inside_banner_img wow fadeInRight" style="background-image:url(images/product_detail_banner_03.png)"></div>
@@ -48,7 +48,7 @@ $data = $pageClass->fetch_data("declare");
                 <div class="product_detail_title wow fadeInUp">
                     <h3>产品简介</h3>
                 </div>
-                <p class="wow fadeInUp">Tubridge®血管重建装置专门针对最难治疗的大型、巨大型动脉瘤研发设计，通过利用“血流动力学”原理，显著改变动脉瘤内血流流态，降低血流对动脉瘤的冲击，使内皮细胞沿支架骨架生长，逐渐修复动脉瘤瘤颈，治愈动脉瘤，从而排除“颅内不定时炸弹”。</p><br/>
+                <p class="wow fadeInUp">Tubridge<sup>®</sup>血管重建装置专门针对最难治疗的大型、巨大型动脉瘤研发设计，通过利用“血流动力学”原理，显著改变动脉瘤内血流流态，降低血流对动脉瘤的冲击，使内皮细胞沿支架骨架生长，逐渐修复动脉瘤瘤颈，治愈动脉瘤，从而排除“颅内不定时炸弹”。</p><br/>
                 <dl class="wow fadeInUp">
                     <dd><b>48/64根NiTi合金丝编织结构设计</b><br/>
                         柔顺性：独特的编织设计结构，即使在迂曲血管中也能提供顺滑的推送体验<br/>

@@ -10,7 +10,7 @@
                             <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
                         </a>
                     </li>
-                    <!-- <li class="down-nav" hidden>
+                    <li class="down-nav" hidden>
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
                             <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
@@ -28,12 +28,13 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- 
                     <li hidden>
                         <a href="orders.php">
                             <i class="iconfont icon-reconciliation"></i> <span class="nav-text">订单管理</span>                    
                         </a>
                     </li> -->
-                    <li class="down-nav">
+                    <!-- <li class="down-nav">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-percentage"></i> <span class="nav-text">案例</span> 
@@ -42,17 +43,55 @@
                             <li><a href="cases.php">案例管理</a></li>
                             <li><a href="case_categories.php">案例分类</a></li>
                         </ul>
+                    </li> -->
+                    <li class="down-nav">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-file-copy"></i> <span class="nav-text">疾病与术式</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="news.php?did=1">文章列表</a></li>
+                            <li><a href="article_categories.php?did=1">分类</a></li>
+                        </ul>
                     </li>
                     <li class="down-nav">
                         <a href="#">
-                            <i class="iconfont icon-left   float-right"></i>   
-                            <i class="iconfont icon-file-copy"></i> <span class="nav-text">新闻资讯</span> 
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-file-copy"></i> <span class="nav-text">学术活动</span> 
                         </a>
                         <ul class="subnav">
-                            <li><a href="news.php">新闻列表</a></li>
-                            <li><a href="news_add.php">添加新闻</a></li>
+                            <li><a href="news.php?did=2">文章列表</a></li>
+                            <li><a href="article_categories.php?did=2">分类</a></li>
                         </ul>
+                    </li>       
+                    <li hidden>
+                        <a href="news.php?did=3">
+                            <i class="iconfont  icon-file-copy"></i> <span class="nav-text">新闻资讯</span>                    
+                        </a>
                     </li>
+                    <li>
+                        <a href="news.php?did=4">
+                            <i class="iconfont  icon-file-copy"></i> <span class="nav-text">患者故事</span>                    
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="news.php?did=5">
+                            <i class="iconfont  icon-file-copy"></i> <span class="nav-text">医工合作案例</span>                    
+                        </a>
+                    </li>
+
+                    <li class="down-nav">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-file-copy"></i> <span class="nav-text">疾病管理</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="news.php?did=2">文章列表</a></li>
+                            <li><a href="article_categories.php?did=2">分类</a></li>
+                        </ul>
+                    </li>    
+
                     <li hidden>
                         <a href="meetings.php">
                             <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">会议信息</span>                    
@@ -86,7 +125,7 @@
                             <i class="iconfont icon-antdesign"></i> <span class="nav-text">解决方案</span>                    
                         </a>
                     </li> -->
-                    <li class="down-nav">
+                    <li class="down-nav" hidden>
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-file"></i> <span class="nav-text">页面</span>  
@@ -102,14 +141,14 @@
                             <i class="iconfont icon-team"></i> <span class="nav-text">团队管理</span>                    
                         </a>
                     </li>
-                    <li>
+                    <li hidden>
                         <a href="jobs.php">
                             <i class="iconfont icon-user"></i> <span class="nav-text">加入我们</span>                    
                         </a>
                     </li>
                     <li hidden>
                         <a href="distributors.php">
-                            <i class="iconfont icon-heatmap"></i> <span class="nav-text">公司分部</span>                    
+                            <i class="iconfont icon-heatmap"></i> <span class="nav-text">分子公司信息</span>                    
                         </a>
                     </li>
                     <!-- <li class="down-nav">
