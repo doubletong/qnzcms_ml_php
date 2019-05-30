@@ -19,6 +19,25 @@ if (isset($_GET['id'])) {
 }
 
 
+function buildTree(array $elements, $parentId = 0)
+{
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+        }
+    }
+
+    return $branch;
+}
+
+$tree = buildTree($categories);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,7 +73,7 @@ if (isset($_GET['id'])) {
                                         <label for="title">标题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo $data['title']; ?>">
                                     </div>
-                                    <?php if($did=="1" || $did=="2"){ ?>
+                                    <?php if($did=="1" || $did=="2" ){ ?>
                                     <div class="form-group">
                                         <label for="categoryId">分类</label>                                   
                                         <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
@@ -73,6 +92,30 @@ if (isset($_GET['id'])) {
                                         </select>  
                                     </div>
                                 <?php } ?>
+
+                                <?php if($did=="6"){ ?>
+                            <div class="form-group">
+                                <label for="categoryId">分类</label>                           
+                            
+                                <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
+                                    <option value="0">--请选择分类--</option>
+                                    <?php foreach( $tree as $model)
+                                            {
+                                                ?>
+                                                <optgroup label="<?php echo $model["title"]; ?>">                                                    
+
+                                            <?php if($model['children']){ 
+                                                 foreach( $model['children'] as $subModel){
+                                                ?>
+                                                     <option value="<?php echo $subModel["id"]; ?>"  <?php echo  $subModel["id"] == $data["categoryId"] ? "selected":""; ?>  ><?php echo $subModel["title"]; ?></option>
+
+                                                <?php } 
+                                            } ?>
+                                             </optgroup>
+                                       <?php } ?>
+                                </select>                          
+                            </div>
+                        <?php } ?>
 
                                     <?php if($did=="4"){ ?>
                                         <div class="form-group">                          
@@ -269,6 +312,9 @@ if (isset($_GET['id'])) {
         if("5"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
+        if ("6" == <?php echo $did; ?>) {
+                $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            }
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;

@@ -87,8 +87,8 @@
                             <i class="iconfont icon-file-copy"></i> <span class="nav-text">疾病管理</span> 
                         </a>
                         <ul class="subnav">
-                            <li><a href="news.php?did=2">文章列表</a></li>
-                            <li><a href="article_categories.php?did=2">分类</a></li>
+                            <li><a href="news.php?did=6">文章列表</a></li>
+                            <li><a href="article_categories_v2.php?did=6">分类</a></li>
                         </ul>
                     </li>    
 

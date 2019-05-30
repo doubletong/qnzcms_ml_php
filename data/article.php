@@ -93,4 +93,11 @@ class Article{
 
         return $query->fetchAll();
     }
+    public function get_children_categories($did, $parent_id){     
+        $query = db::getInstance()->prepare("SELECT * FROM  article_categories WHERE dictionary_id = ? AND parent_id = $parent_id ORDER BY importance DESC");
+        $query->bindValue(1,$did);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
 }

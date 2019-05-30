@@ -153,7 +153,12 @@ if (isset($_GET['cid'])) {
                 h = $(".site-footer").outerHeight(true);
                 var toTop = $(window).scrollTop();
 
-                var scrollButtom = $(document).height() - (toTop + $(window).height());
+                 var documentH = $(document).height();
+                 //  var winH=$(window).height();
+                 var selfH=$(".list-categories").outerHeight(true);
+
+                var scrollButtom = documentH-(toTop + selfH);
+                //var scrollButtom = $(document).height() - (toTop + $(window).height());
                 var bannerHeight = $(".banner").outerHeight(true);
                 var headH = $('.site-header').outerHeight(true) + 30;
 
@@ -161,9 +166,9 @@ if (isset($_GET['cid'])) {
                     $(".list-categories").addClass("fixed_for_top").css({
                         'top': headH + 'px'
                     });
-                    if (scrollButtom < h) {
-                        $(".list-categories").css({
-                            'bottom': (h - scrollButtom + 60) + 'px',
+                    if (scrollButtom < (h+100)) {
+                        $(".list-categories").removeClass("fixed_for_top").css({
+                            'bottom': '0px',
                             'top': 'auto'
                         });
                     } else {
@@ -174,7 +179,7 @@ if (isset($_GET['cid'])) {
                     }
                 } else {
                     $(".list-categories").removeClass("fixed_for_top").css({
-                        'top': 'auto','bottom': 'auto'
+                        'top': '0' + 'px','bottom': 'auto'
                     });
                 }
             });

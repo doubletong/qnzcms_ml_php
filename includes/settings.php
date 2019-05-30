@@ -1,13 +1,13 @@
 <?php 
 return [
     'site' => [
-        'name' => '希麦迪',
-        'short_name' => '希麦迪',
-        'web_number'=>'粤ICP备13057252号-1',        
-        'phone' => '+86-25-5870782 ',
-        'email' => 'info@crmedicon.com',
+        'name' => '微创',
+        'short_name' => '微创',
+        'web_number'=>'粤ICP备8888888号-1',        
+        'phone' => '+86-25-88888 ',
+        'email' => 'info@inholy.com',
         'qq' => '',
-        'address' => '南京市江宁区科学园芝兰路18号',
+        'address' => '南京市江宁区科学园芝兰路56号',
         'fax' => '+86-25-58707762',
         'mobile' => '',
         'homepage' => 'http://www.crmedicon.com/'

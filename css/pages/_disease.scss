@@ -97,9 +97,11 @@
         }
 
         @include respond-above(lg) {
+            padding-top: 19rem;
+        }
+        @media (min-width:1600px) {
             padding-top: 23rem;
         }
-
 
     }
 

@@ -8,6 +8,26 @@ $categoryClass = new ArticleCategory();
 $did = isset($_GET['did'])?$_GET['did']:"";
 $categories = $categoryClass->fetch_all($did);
 
+function buildTree(array $elements, $parentId = 0)
+{
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+        }
+    }
+
+    return $branch;
+}
+
+$tree = buildTree($categories);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,6 +79,32 @@ $categories = $categoryClass->fetch_all($did);
                                 </select>                          
                             </div>
                         <?php } ?>
+
+                        <?php if($did=="6"){ ?>
+                            <div class="form-group">
+                                <label for="categoryId">分类</label>                           
+                            
+                                <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
+                                    <option value="0">--请选择分类--</option>
+                                    <?php foreach( $tree as $data)
+                                            {
+                                                ?>
+                                                <optgroup label="<?php echo $data["title"]; ?>">
+                                                    
+
+                                            <?php if($data['children']){ 
+                                                 foreach( $data['children'] as $subModel){
+                                                ?>
+                                                     <option value="<?php echo $subModel["id"]; ?>"><?php echo $subModel["title"]; ?></option>
+
+                                                <?php } 
+                                            } ?>
+                                             </optgroup>
+                                       <?php } ?>
+                                </select>                          
+                            </div>
+                        <?php } ?>
+
 
                         <?php if($did=="4"){ ?>
 
@@ -237,7 +283,9 @@ $categories = $categoryClass->fetch_all($did);
         if("5"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-
+        if ("6" == <?php echo $did; ?>) {
+                $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            }
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;

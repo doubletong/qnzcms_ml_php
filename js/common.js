@@ -8,7 +8,7 @@ if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobi
 var wow = new WOW({
     boxClass: 'wow',
     animateClass: 'animated',
-    offset: 0,
+    offset: -100,
     mobile: mobileFlag,
     live: true
 });

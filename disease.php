@@ -1,10 +1,29 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/article.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("clinical");
+$did = 6;
+
+$articleClass = new Article();
+$categories = $articleClass->get_categories($did);
+
+function buildTree(array $elements, $parentId = 0)
+{
+    $branch = array();
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+        }
+    }
+    return $branch;
+}
+
+$tree = buildTree($categories);
 
 ?>
 <!DOCTYPE html>
@@ -32,121 +51,36 @@ $data = $pageClass->fetch_data("clinical");
         <div class="container">
             <section class="list list-disease">
                 <div class="row">
+                <?php   foreach ($tree as $row) {     ?>
+
                     <div class="col-md-6">
                         <div class="item">
-                            <img src="/img/temp/d001.jpg" alt="">
+                            <img src="<?php echo $row['thumbnail']; ?>" alt="<?php echo $row['title']; ?>">
                             <div class="bg">                                
                             </div>
-                            <a href="/disease/list-1" class="txt">
+                            <a href="/disease/list-<?php echo $row['id']; ?>" class="txt">
                                     <div class="des">
-                                        <h3 class="title">了解颅内疾病</h3>
-                                        <ul>
-                                            <li>— 出血性脑血管病
-                                            </li>
-                                            <li>— 缺血性脑血管病
-                                            </li>                                           
-                                        </ul>
+                                        <h3 class="title">了解<?php echo $row['title']; ?></h3>
+                                       
+                                        <?php if(!empty($row['children'])){   ?>
+                                             <ul>
+                                             <?php     foreach( $row['children'] as $subModel){
+                                            ?>
+                                              <li>—  <?php echo $subModel['title']; ?>
+                                              
+                                            <?php }  ?> 
+                                            </ul>
+                                            <?php  }?> 
+
+
                                     </div>
                                 </a>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="item">
-                            <img src="/img/temp/d002.jpg" alt="">
-                            <div class="bg">                                
-                            </div>
-                            <a href="/disease/list-1" class="txt">
-                                    <div class="des">
-                                        <h3 class="title">了解心脏疾病</h3>
-                                        <ul>
-                                            <li>— 冠心病
-                                            </li>
-                                            <li>— 房颤
-                                            </li>
-                                            <li>— 心动过缓
-                                            </li>
-                                            <li>— 室上速
-                                            </li>
-                                            <li>— 瓣膜疾病
-                                            </li>
-                                            <li>— 心律失常</li>
-                                        </ul>
-                                    </div>
-                                </a>
-                        </div>
-                    </div>
+                  <?php  } ?>
 
-                    <div class="col-md-6">
-                        <div class="item">
-                            <img src="/img/temp/d003.jpg" alt="">
-                            <div class="bg">                                
-                            </div>
-                            <a href="/disease/list-1" class="txt">
-                                    <div class="des">
-                                        <h3 class="title">了解动脉疾病</h3>
-                                        <ul>
-                                            <li>— 主动脉夹层</li>                                          
-                                        </ul>
-                                    </div>
-                                </a>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="item">
-                            <img src="/img/temp/d004.jpg" alt="">
-                            <div class="bg">                                
-                            </div>
-                            <a href="/disease/list-1" class="txt">
-                                    <div class="des">
-                                        <h3 class="title">了解胰腺疾病</h3>
-                                        <ul>
-                                            <li>— 糖尿病
-                                            </li>
-                                            <li>— IHH/卡尔曼综合征
-                                            </li>                                         
-                                        </ul>
-                                    </div>
-                                </a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="item">
-                            <img src="/img/temp/d005.jpg" alt="">
-                            <div class="bg">                                
-                            </div>
-                            <a href="/disease/list-1" class="txt">
-                                    <div class="des">
-                                        <h3 class="title">了解髋关节疾病</h3>
-                                        <ul>
-                                            <li>— 髋关节疾病</li>
-                                            
-                                        </ul>
-                                    </div>
-                                </a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="item">
-                            <img src="/img/temp/d006.jpg" alt="">
-                            <div class="bg">                                
-                            </div>
-                            <a href="/disease/list-1" class="txt">
-                                    <div class="des">
-                                        <h3 class="title">了解膝关节疾病</h3>
-                                        <ul>
-                                            <li>— 漆关节疾病</li>
-                                          
-                                        </ul>
-                                    </div>
-                                </a>
-                        </div>
-                    </div>
-
-                    
                 </div>
             </section>
         </div>

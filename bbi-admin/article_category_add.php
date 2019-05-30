@@ -2,8 +2,29 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
+require_once('data/article_category.php');
 
 $did = isset($_GET['did'])?$_GET['did']:"";
+$cateModel = new ArticleCategory();
+$categories = $cateModel->fetch_all($did);
+
+function buildTree(array $elements, $parentId = 0) {
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }         
+            $branch[] = $element;
+        }
+    }
+
+    return $branch;
+}
+
+$tree = buildTree($categories);
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +66,28 @@ $did = isset($_GET['did'])?$_GET['did']:"";
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="parent_id">分类</label>                           
+                                    
+                                        <select class="form-control" id="parent_id" name="parent_id" placeholder="" >
+                                            <option value="0">--请选择父类--</option>
+                                            <?php foreach( $tree as $model)
+                                            {
+                                                ?>
+                                                        <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
+
+                                            <?php if($model['children']){ 
+                                                 foreach( $model['children'] as $subModel){
+                                                ?>
+                                                    <!-- <option value="<?php echo $subModel["id"]; ?>"> - <?php echo $subModel["title"]; ?></option> -->
+
+                                                <?php }
+                                        }
+                                        } ?>
+                                                            
+                                        </select>                          
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="importance">排序</label>
                                         <input type="number" class="form-control" id="importance" name="importance" value="0" placeholder="值越大越排前">
                                     </div>
@@ -58,10 +101,15 @@ $did = isset($_GET['did'])?$_GET['did']:"";
 
                                 </div>
                                 <div class="col-auto">
-                                    <div style="width:200px; text-align:center;" class="mb-3">
+                                    <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="holder.js/100x100?text=45X45像素" class="img-responsive img-rounded" />
+                                            <?php if($did=="6"){ ?>
+                                                <img ID="iLogo" src="holder.js/240x180?text=580X400像素" class="img-responsive img-rounded" />                                                  
+                                                <?php }else{ ?>
+                                                    <img ID="iLogo" src="holder.js/100x100?text=45X45像素" class="img-responsive img-rounded" />
+                                                <?php } ?>
+                                              
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>

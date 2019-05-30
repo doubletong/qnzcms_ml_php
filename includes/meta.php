@@ -4,9 +4,9 @@
 <meta name="viewport" content="width=device-width,user-scalable=1,initial-scale=1,maximum-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
-<link rel="manifest" href="site.webmanifest">
-<link rel="apple-touch-icon" href="icon.png">
-<link rel="shortcut icon" href="favicon.ico" />
+<link rel="manifest" href="/site.webmanifest">
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="shortcut icon" href="/favicon.ico" />
 
 <!-- CSS, you gotta have style -->
 <link href="/fonts/iconfont.css" rel="stylesheet">  

@@ -4,18 +4,36 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/article_category.php');
 
-$caseClass = new ArticleCategory();
+$cateModel = new ArticleCategory();
 
 $did = isset($_GET['did']) ? $_GET['did'] : "";
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = $caseClass->fetch_data($id);
+    $data = $cateModel->fetch_data($id);
 } else {
     header('Location: article_categories.php?did=' . $did);
     exit;
 }
 
+$categories = $cateModel->fetch_all($did);
+function buildTree(array $elements, $parentId = 0) {
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }         
+            $branch[] = $element;
+        }
+    }
+
+    return $branch;
+}
+
+$tree = buildTree($categories);
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +74,27 @@ if (isset($_GET['id'])) {
                                         <input type="text" class="form-control" id="title" name="title" value="<?php echo $data["title"]; ?>">
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="parent_id">分类</label>                           
+                                    
+                                        <select class="form-control" id="parent_id" name="parent_id" placeholder="" >
+                                            <option value="0">--请选择父类--</option>
+                                            <?php foreach( $tree as $model)
+                                            {
+                                                ?>
+                                                        <option value="<?php echo $model["id"]; ?>"   <?php echo $model["id"]==$data["parent_id"]?"selected":""; ?> ><?php echo $model["title"]; ?></option>
 
+                                            <?php if($model['children']){ 
+                                                 foreach( $model['children'] as $subModel){
+                                                ?>
+                                                    <!-- <option value="<?php echo $subModel["id"]; ?>" <?php echo $subModel["id"]==$data["parent_id"]?"selected":""; ?> > - <?php echo $subModel["title"]; ?></option> -->
+
+                                                <?php }}
+                                        
+                                        } ?>
+                                                            
+                                        </select>                          
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="importance">排序</label>
@@ -72,14 +110,19 @@ if (isset($_GET['id'])) {
 
                                 </div>
                                 <div class="col-auto">
-                                    <div style="width:200px; text-align:center;" class="mb-3">
+                                    <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/100x100?text=45X45像素":$data['imageurl'];?>" class="img-responsive img-rounded" />
+                                                <?php if($did=="6"){ ?>
+                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=580X400像素":$data['thumbnail'];?>" class="img-fluid" />
+                                                <?php }else{ ?>
+                                                    <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/100x100?text=45X45像素":$data['thumbnail'];?>" class="img-fluid" />
+                                                <?php } ?>
+                                           
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
-                                                <input id="thumbnail" type="hidden" name="thumbnail" />
+                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail'];?>" />
                                             </div>
                                         </div>
                                     </div>

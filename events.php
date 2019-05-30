@@ -15,8 +15,8 @@ $model = array();
 $pagination->config(6, 10);
 
 
-$cid = isset($_GET['cid'])? $_GET['cid']:0;
-if (isset($_GET['cid'])) {   
+$cid = isset($_GET['cid']) ? $_GET['cid'] : 0;
+if (isset($_GET['cid'])) {
 
     $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid");
 
@@ -59,54 +59,58 @@ if (isset($_GET['cid'])) {
             <p>时刻更新我们的最新动态</p>
         </div>
     </div>
+
+
+
     <div class="page page-disease-list page-events">
+
+
         <div class="container">
-        
+
             <section class="s2">
-            <div class="list-categories">
-            <h3 class="title">疾病分类</h3>
-                <ul>
-                <li><a style="background-image:url(/img/icon/001.png);" href="/events" class="<?php echo $cid==0?"active":""; ?>">全部</a></li>
+
+                <div class="list-categories">
+                    <h3 class="title">疾病分类</h3>
+                    <ul>
+                        <li><a style="background-image:url(/img/icon/001.png);" href="/events" class="<?php echo $cid == 0 ? "active" : ""; ?>">全部</a></li>
                         <?php foreach ($categories as $data) { ?>
-                            <li><a style="background-image:url(<?php echo $data['thumbnail']; ?>);" 
-                            href="/events?cid=<?php echo $data['id']; ?>" 
-                            class="<?php echo $cid==$data['id']?"active":""; ?>"><?php echo $data['title']; ?></a></li>
+                            <li><a style="background-image:url(<?php echo $data['thumbnail']; ?>);" href="/events?cid=<?php echo $data['id']; ?>" class="<?php echo $cid == $data['id'] ? "active" : ""; ?>"><?php echo $data['title']; ?></a></li>
                         <?php } ?>
-              
-                </ul>   
-        
-        </div>
-            
-        <main class="maincontent">
-        <div class="list list-disease list-events">
 
-            <?php foreach ($model as $article) { ?>
+                    </ul>
 
-                <a href="/events/detail-<?php echo $article['id']; ?>" class="item">            
-                    <div class="disease">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="pic"><img src="<?php echo $article['thumbnail']; ?>" alt="<?php echo $article['title']; ?>"></div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="des">
-									<h3><?php echo $article['title']; ?></h3>
-									<time><?php echo date('Y-m-d',$article['pubdate']) ;?> </time>
-                                    <p><?php echo mb_substr($article['summary'], 0, 80, 'utf-8') . "……"; ?></p>
+                </div>
+
+                <main class="maincontent">
+                    <div class="list list-disease list-events">
+
+                        <?php foreach ($model as $article) { ?>
+
+                            <a href="/events/detail-<?php echo $article['id']; ?>" class="item">
+                                <div class="disease">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="pic"><img src="<?php echo $article['thumbnail']; ?>" alt="<?php echo $article['title']; ?>"></div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="des">
+                                                <h3><?php echo $article['title']; ?></h3>
+                                                <time><?php echo date('Y-m-d', $article['pubdate']); ?> </time>
+                                                <p><?php echo mb_substr($article['summary'], 0, 80, 'utf-8') . "……"; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>             
-            </a>
+                            </a>
 
 
                         <?php } ?>
 
 
-            
-        </div>
-   
-        <!-- <div class="pagination">
+
+                    </div>
+
+                    <!-- <div class="pagination">
             <ul class="pager">
                 <li><a class="prev" href="#">上一页</a></li>
                 <li class="active"><a class="page-link" href="#">1</a></li>
@@ -119,22 +123,22 @@ if (isset($_GET['cid'])) {
             <span>共5页，到第</span> <input type="number" id="pagenum" class="pagenum"> <span>页</span> <a href="javascript:void();" class="go">确定</a>
         </div> -->
 
-          <!--pagination-->
-          <div class="pagination wow fadeInUp">
-                <ul class="pager">
-                    <?php
-                    $pagination->pages("btn");
-                    ?>
-                </ul>
+                    <!--pagination-->
+                    <div class="pagination wow fadeInUp">
+                        <ul class="pager">
+                            <?php
+                            $pagination->pages("btn");
+                            ?>
+                        </ul>
 
-            </div>
-            <!--pagination end-->
-        </main>
+                    </div>
+                    <!--pagination end-->
+                </main>
 
-                
+
             </section>
         </div>
-        
+
     </div>
 
     <?php require_once('includes/footer.php') ?>
@@ -147,33 +151,45 @@ if (isset($_GET['cid'])) {
             $(".mainav li:nth-of-type(3) a").addClass("active");
             $(".subnav li:nth-of-type(3) a").addClass("active");
 
-            $(".btnclose").click(function(e){
+            $(".btnclose").click(function(e) {
                 $(".quickcontact").slideToggle();
             });
 
 
-         
 
-            $(window).on("scroll", function() {    
 
+
+            $(window).on("scroll", function() {
                 h = $(".site-footer").outerHeight(true);
+                var toTop = $(window).scrollTop();
 
-                var toTop = $(window).scrollTop();     
-                
-                var scrollButtom = $(document).height()-(toTop + $(window).height());
+                 var documentH = $(document).height();
+                 //  var winH=$(window).height();
+                 var selfH=$(".list-categories").outerHeight(true);
+
+                var scrollButtom = documentH-(toTop + selfH);
+                //var scrollButtom = $(document).height() - (toTop + $(window).height());
                 var bannerHeight = $(".banner").outerHeight(true);
                 var headH = $('.site-header').outerHeight(true) + 30;
-                
-                if(toTop>bannerHeight){
-                    $(".list-categories").addClass("fixed_for_top").css({'top': headH +'px'});
-                    if (scrollButtom < h) {
-                        $(".list-categories").css({'bottom':(h-scrollButtom + 60)+'px','top':'auto'});
-                    }else{
-                        $(".list-categories").css({'bottom':'auto','top':headH +'px'});
+
+                if (toTop > bannerHeight) {
+                    $(".list-categories").addClass("fixed_for_top").css({
+                        'top': headH + 'px'
+                    });
+                    if (scrollButtom < (h+100)) {
+                        $(".list-categories").removeClass("fixed_for_top").css({
+                            'bottom': '0px',
+                            'top': 'auto'
+                        });
+                    } else {
+                        $(".list-categories").css({
+                            'bottom': 'auto',
+                            'top': headH + 'px'
+                        });
                     }
-                }else{
+                } else {
                     $(".list-categories").removeClass("fixed_for_top").css({
-                        'top': 'auto','bottom': 'auto'
+                        'top': '0' + 'px','bottom': 'auto'
                     });
                 }
             });

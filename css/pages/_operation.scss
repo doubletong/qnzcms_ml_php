@@ -59,6 +59,7 @@
     top: 0;
     z-index: 100;
     margin-left: -480px;
+   
     @include respond-above (lg) {
         margin-left: -570px;
     }
@@ -86,19 +87,19 @@
 
     ul {
         @include reset-list;
-        height: 350px;        
+        max-height: 350px;        
         overflow-y: auto;
         @media (min-height:600px) {
-            height: 450px;     
+            max-height: 450px;     
         }
         @media (min-height:700px) {
-            height: 550px;     
+            max-height: 550px;     
         }
         @media (min-height:800px) {
-            height: 650px;     
+            max-height: 650px;     
         }
         @media (min-height:900px) {
-            height: 750px;     
+            max-height: 750px;     
         }
         &::-webkit-scrollbar {
             width: 10px;
@@ -119,9 +120,9 @@
 
             a {
                 display: block;
-                height: 80px;
+                height: 70px;
                 border-bottom: 1px #eceff6 solid;
-                line-height: rem(79);
+                line-height: rem(69);
                 padding-left: rem(50);
                 color: #666;
                 background-position: left center;
