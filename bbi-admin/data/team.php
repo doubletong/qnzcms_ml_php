@@ -39,13 +39,14 @@ class Team{
     }
 
 //更新
-   public function update_team($id, $name, $post, $photo, $content, $category,$importance) {
+   public function update_team($id, $name, $post, $photo,$fullphoto, $content, $dictionary_id,$importance) {
 
         $sql = "UPDATE teams SET name= :name,
            post =:post,
            photo =:photo,
+           fullphoto =:fullphoto,
            content = :content,
-           category = :category,
+           dictionary_id = :dictionary_id,
            importance = :importance
          
              WHERE id =:id";
@@ -55,8 +56,9 @@ class Team{
         $query->bindValue(":name",$name);
         $query->bindValue(":post",$post);
         $query->bindValue(":photo",$photo);
+        $query->bindValue(":fullphoto",$fullphoto);
         $query->bindValue(":content",$content);
-        $query->bindValue(":category",$category);
+        $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         
         $query->bindValue(":id",$id,PDO::PARAM_INT);
@@ -71,11 +73,11 @@ class Team{
     }
 
 
-    public function insert_team($name, $post, $photo, $content, $category,$importance) {
+    public function insert_team($name, $post, $photo,$fullphoto, $content, $dictionary_id,$importance) {
 
         
-        $sql="INSERT INTO `teams`(`name`, `post`, `photo`, `content`, `category`, `importance`, `added_by`,`added_date`) 
-        VALUES (:name, :post, :photo, :content, :category, :importance, :added_by,:added_date)";
+        $sql="INSERT INTO `teams`(`name`, `post`, `photo`,`fullphoto`, `content`, `dictionary_id`, `importance`, `added_by`,`added_date`) 
+        VALUES (:name, :post, :photo, :fullphoto,:content, :dictionary_id, :importance, :added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -83,8 +85,9 @@ class Team{
         $query->bindValue(":name",$name);
         $query->bindValue(":post",$post);
         $query->bindValue(":photo",$photo);
+        $query->bindValue(":fullphoto",$fullphoto);
         $query->bindValue(":content",$content);
-        $query->bindValue(":category",$category);
+        $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":added_by",$username);
         $query->bindValue(":added_date",time(),PDO::PARAM_INT);

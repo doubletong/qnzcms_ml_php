@@ -206,6 +206,8 @@ if (isset($_GET['cid'])) {
             h = $(".site-footer").outerHeight(true) + $(".s3").outerHeight(true) + $(".quickcontact").outerHeight(true) + 120;
 
             $(window).on("scroll", function() {
+                var winW = $(window).width();
+                if(winW>=992){
                 var toTop = $(window).scrollTop();
 
                 var scrollButtom = $(document).height() - (toTop + $(window).height());
@@ -232,6 +234,7 @@ if (isset($_GET['cid'])) {
                         'top': 'auto','bottom':'auto'
                     });
                 }
+            }
             });
         });
     </script>

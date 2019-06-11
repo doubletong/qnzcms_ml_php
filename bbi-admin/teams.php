@@ -13,7 +13,8 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT id FROM teams WHERE name LIKE '%$search%' OR post LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
     $pagination->config(6,10);
-    $sql = "SELECT id, name, photo, post, category, added_date, added_by FROM teams WHERE name LIKE '%$search%' OR post LIKE '%$search%' OR content LIKE '%$search%' ORDER BY importance DESC, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT a.id, a.name, a.photo, a.post, d.title as category, a.importance,a.added_date, a.added_by FROM teams as a Left JOIN dictionaries as d
+    ON d.id = a.dictionary_id WHERE a.name LIKE '%$search%' OR a.post LIKE '%$search%' OR a.content LIKE '%$search%' ORDER BY a.importance DESC, a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -26,7 +27,8 @@ else
 {
     $pagination->rowCount("SELECT id FROM teams");
     $pagination->config(6,10);
-    $sql = "SELECT id, name, photo, post,category, added_date, added_by FROM teams ORDER BY importance DESC,id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT a.id, a.name, a.photo, a.post, d.title as category, a.importance, a.added_date, a.added_by FROM teams as a Left JOIN dictionaries as d
+    ON d.id = a.dictionary_id  ORDER BY a.importance DESC, a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -82,7 +84,7 @@ else
                     <th>姓名</th>
                     <th>类别</th>
                     <th>职位</th>
-                  
+                    <th>重要性</th>
                     <th>创建时间</th>                  
                     <th>操作</th>
                 </tr>
@@ -95,8 +97,9 @@ else
                 ?>
                     <td><img src="<?php echo $row['photo'];?>" style="height:35px;"/></td>
                     <td><?php echo $row['name'] ;?></td>         
-                    <td><?php echo $row['category'] ;?></td>         
-                    <td><?php echo $row['post'] ;?></td>          
+                    <td><?php echo $row['category'] ;?></td>                    
+                    <td><?php echo $row['post'] ;?></td>    
+                    <td><?php echo $row['importance'] ;?></td>               
                     <td><?php echo date("Y-m-d H:i",$row['added_date']);?></td>                    
                     <td><a href='team_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
@@ -132,7 +135,7 @@ else
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li:nth-of-type(13)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

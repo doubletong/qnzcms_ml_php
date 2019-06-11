@@ -3,8 +3,13 @@ require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/article_category.php');
+require_once('data/article.php');
 
 $did = isset($_GET['did'])?$_GET['did']:"";
+
+$articleClass = new Article();
+$pageConfig = $articleClass->get_section_title($did);
+
 $cateModel = new ArticleCategory();
 $categories = $cateModel->fetch_all($did);
 
@@ -31,7 +36,7 @@ $tree = buildTree($categories);
 <html>
 
 <head>
-    <title><?php echo "创建分类_后台管理_" . SITENAME; ?></title>
+    <title><?php echo "创建".$pageConfig['category']."_".$pageConfig['section']."_后台管理_" . SITENAME; ?></title>
     <?php require_once('includes/meta.php') ?>
 
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -52,7 +57,7 @@ $tree = buildTree($categories);
                 <form novalidate="novalidate" id="editform">
                     <div class="card">
                         <div class="card-header">
-                            创建分类
+                            创建<?php echo $pageConfig['category']; ?>
                         </div>
 
                         <div class="card-body">
@@ -64,10 +69,9 @@ $tree = buildTree($categories);
                                         <label for="title">主题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="parent_id">分类</label>                           
-                                    
+                                    <?php if($did=="6"){ ?>
+                                        <div class="form-group">
+                                        <label for="parent_id">分类</label>                                    
                                         <select class="form-control" id="parent_id" name="parent_id" placeholder="" >
                                             <option value="0">--请选择父类--</option>
                                             <?php foreach( $tree as $model)
@@ -85,7 +89,11 @@ $tree = buildTree($categories);
                                         } ?>
                                                             
                                         </select>                          
-                                    </div>
+                                    </div>                                   
+                                    <?php }else{ ?>
+                                        
+                                    <?php } ?>
+                                    
 
                                     <div class="form-group">
                                         <label for="importance">排序</label>
@@ -105,7 +113,9 @@ $tree = buildTree($categories);
                                         <div class="card">
                                             <div class="card-body">
                                             <?php if($did=="6"){ ?>
-                                                <img ID="iLogo" src="holder.js/240x180?text=580X400像素" class="img-responsive img-rounded" />                                                  
+                                                <img ID="iLogo" src="holder.js/240x180?text=580X400像素" class="img-responsive img-rounded" />     
+                                                <?php }elseif($did=="16"){ ?>   
+                                                    <img ID="iLogo" src="holder.js/240x280?text=580X632像素" class="img-responsive img-rounded" />    
                                                 <?php }else{ ?>
                                                     <img ID="iLogo" src="holder.js/100x100?text=45X45像素" class="img-responsive img-rounded" />
                                                 <?php } ?>
@@ -161,6 +171,11 @@ $tree = buildTree($categories);
         if("3"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
+
+        if("6"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        }
+
         
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
@@ -224,10 +239,10 @@ $tree = buildTree($categories);
                         success: function(res) {
                             //  $('#resultreturn').prepend(res);
                             if (res) {
-                                toastr.success('分类已添加成功！', '添加分类')
+                                toastr.success('<?php echo $pageConfig['category'];?>已添加成功！', '添加<?php echo $pageConfig['category'];?>')
                             } else {
 
-                                toastr.error('分类添加失败！', '添加分类')
+                                toastr.error('<?php echo $pageConfig['category'];?>添加失败！', '添加<?php echo $pageConfig['category'];?>')
                             }
                         }
                     });

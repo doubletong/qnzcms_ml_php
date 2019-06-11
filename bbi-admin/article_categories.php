@@ -3,10 +3,14 @@ require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('../includes/PDO_Pagination.php');
+require_once('data/article.php');
 
 $pagination = new PDO_Pagination(db::getInstance());
 
 $did = isset($_GET['did'])?$_GET['did']:"";
+
+$articleClass = new Article();
+$pageConfig = $articleClass->get_section_title($did);
 
 $search = null;
 if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
@@ -43,7 +47,7 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "分类_疾病与术式_后台管理_".SITENAME;?></title>
+    <title><?php echo $pageConfig['category']."_".$pageConfig['section']."_后台管理_".SITENAME;?></title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
@@ -73,14 +77,21 @@ else
                 </div>
                 <div class="col-auto">
                     <a href="article_category_add.php?did=<?php echo $did;?>" class="btn btn-primary">
-                        <i class="iconfont icon-plus"></i>  添加分类
+               
+                        <i class="iconfont icon-plus"></i>  添加<?php echo $pageConfig['category']; ?>                          
+               
+                       
                     </a>
                 </div>
             </div>
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                <th>图标</th>
+                <?php if($did=="16"){ ?>
+                    <th>图片</th>                                           
+                <?php }else{ ?>
+                    <th>图标</th>
+                <?php } ?>
                     <th>标题</th>
                     <th>排序</th>
                     <th>创建时间</th>
@@ -95,7 +106,7 @@ else
                 ?>
                     <td>
                         <?php if(!empty($row['thumbnail'])){ ?> 
-                            <img src="<?php echo $row['thumbnail'] ;?>" alt="<?php echo $row['title'] ;?>">
+                            <img src="<?php echo $row['thumbnail'] ;?>" alt="<?php echo $row['title'] ;?>" style="max-height:50px;display:block;">
                         <?php } ?>
                 </td> 
                     <td><?php echo $row['title'] ;?></td> 

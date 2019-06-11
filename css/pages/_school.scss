@@ -17,15 +17,34 @@
           
     }
     .s2{
-        padding: 4rem 0 8rem;
+        padding: 2rem 0 0;
         background:$color-primary url(../img/school_bg.jpg) no-repeat center center;
         background-size: cover;
         color:#fff;
         margin-bottom: 0;
+
+        @include respond-above (md) {       
+            padding: 2rem 0 0;
+          }
+          @include respond-above (lg) {       
+            padding: 3rem 0 6rem;
+          }
+          @media (min-width:1601) {
+            padding: 4rem 0 8rem;
+        }
+
         .four{
             position: relative;
-            margin-top: 5rem;
-          
+            margin-top: 2rem;
+            @include respond-above (md) {       
+                margin-top: 3rem;
+              }
+              @include respond-above (lg) {       
+                margin-top: 3rem;
+              }
+              @media (min-width:1601) {
+                 margin-top: 5rem;
+            }
         }
         .item{
             position: relative;
@@ -81,12 +100,27 @@
         }
         .txt{
 
-            padding: 0 28%;
+            padding: 1rem;
             text-align: justify;
+            @include respond-above (md) {       
+                padding: 0 15%;
+              }
+              @include respond-above (lg) {       
+                padding: 0 28%;
+              }
             h3{
                text-align: center;
-               font-size: rem(40);
+               font-size: rem(24);
                margin: 0;
+               @include respond-above (md) {       
+                font-size: rem(30);
+              }
+              @include respond-above (lg) {       
+                font-size: rem(36);
+              }
+              @media (min-width:1601) {
+                font-size: rem(40);
+            }
             }
         }
     }

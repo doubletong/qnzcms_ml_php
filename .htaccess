@@ -1,6 +1,6 @@
 RewriteEngine on                       //on为打开,off为关闭
 
-RewriteRule ^/?([a-z]+)$ $1.php [L]
+RewriteRule ^/?([a-z|_|0-9]+)$ $1.php [L]
 RewriteRule ^news/detail-(.*)$ /news_detail.php?id=$1 
 RewriteRule ^meeting/detail-(.*)$ /meeting_detail.php?id=$1
 RewriteRule ^media/list-(.*)$ /media_list.php?id=$1 

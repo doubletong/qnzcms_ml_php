@@ -2,7 +2,6 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('includes/output.php');
 require_once('data/video.php');
 require_once('../includes/PDO_Pagination.php');
 
@@ -13,9 +12,10 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
     $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_videos WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY importance, id DESC ");
+    $pagination->rowCount("SELECT id FROM videos WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY importance, id DESC ");
     $pagination->config(3, 5);
-    $sql = "SELECT * FROM wp_videos WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT v.id,v.title,v.thumbnail,v.importance,v.added_date,d.title as category FROM videos as v Left JOIN dictionaries as d
+    ON d.id = v.dictionary_id WHERE v.title LIKE '%$search%' OR v.description LIKE '%$search%' OR v.content LIKE '%$search%' ORDER BY v.importance, v.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -26,9 +26,10 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 }
 else
 {
-    $pagination->rowCount("SELECT * FROM wp_videos");
+    $pagination->rowCount("SELECT id FROM videos");
     $pagination->config(6,15);
-    $sql = "SELECT * FROM wp_videos ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT v.id,v.title,v.thumbnail,v.importance,v.added_date,d.title as category FROM videos as v Left JOIN dictionaries as d
+    ON d.id = v.dictionary_id ORDER BY v.importance, v.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -38,45 +39,57 @@ else
     }
 }
 
-do_html_doctype("视频_后台管理".SITENAME);
 ?>
-<link href="assets/css/toastr.min.css" rel="stylesheet" />
 
-<?php
-do_html_header();
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo "视频_后台管理_".SITENAME;?></title>
+    <?php require_once('includes/meta.php') ?>
+    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="wrapper">
 
-?>
-<div class="toolbar">
-    <a href="#" class="showmenu"><i class="fa fa-bars"></i></a>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 控制面板</a></li>
-        <li class="active">视频管理</li>
+<!-- nav start -->
+<?php require_once('includes/nav.php'); ?>
+    <!-- /nav end -->
+    <section class="rightcol">            
+        <?php require_once('includes/header.php'); ?>
 
-    </ol>
-</div>
-<div class="main-content">
-    <div class="well well-sm">
-        <a href="video_add.php" class="btn btn-primary pull-right">
-            <span class="glyphicon glyphicon-plus"></span>  添加视频
-        </a>
+        <div class="container-fluid maincontent">
+            <div class="row">
+                <div class="col">
+                    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInput">搜索</label>
+                            <input type="text" name="search" class="form-control mb-2" id="inlineFormInput" value="<?php echo $search ?>" placeholder="关键字">
+                            </div>
 
-        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>" class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search for..." value="<?php echo $search ?>">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">搜索</button>
-                      </span>
-            </div><!-- /input-group -->
-        </form>
+                            <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-auto">
+                        <a href="video_add.php" class="btn btn-primary">
+                            <i class="iconfont icon-plus"></i>  添加视频
+                        </a>
+                </div>
+            </div>
 
-    </div>
-    <table class="table table-hover table-bordered">
+
+
+
+            <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr>
             <th>缩略图</th>
             <th>视频名称</th>
-            <th>英文名称</th>
-            <th>发布者</th>
+            <th>类别</th>
+        
             <th>创建日期</th>
             <th>操作</th>
         </tr>
@@ -91,15 +104,15 @@ do_html_header();
             <?php
 
             echo "<td>".$row['title']."</td>";
-            echo "<td>".$row['sub_title']."</td>";
+      
             ?>
-            <td><?php echo $row['added_by'];?></td>
+            <td><?php echo $row['category'];?></td>
             <td><?php echo $row['added_date'];?></td>
-            <td><a href='video_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-xs'>
-                    <span class="glyphicon glyphicon-edit"></span>
+            <td><a href='video_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                    <span class="iconfont icon-edit"></span>
                 </a>
-                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-xs btn-delete'>
-                    <span class="glyphicon glyphicon-trash"></span>
+                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                    <span class="iconfont icon-delete"></span>
                 </button>
             </td>
             <?php
@@ -111,28 +124,26 @@ do_html_header();
     </table>
 
 
-    <nav>
-        <ul class="pagination">
-            <?php
-            $pagination->pages("btn");
-            ?>
-        </ul>
-    </nav>
+    <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <?php
+                    $pagination->pages("btn");
+                    ?>
+                </ul>
+            </nav>
+        </div>
+        <?php require_once('includes/footer.php'); ?> 
+    </section>
 </div>
+<?php require_once('includes/scripts.php'); ?> 
 
-
-
-</div>
-
-<?php
-do_html_footer();
-?>
-<script src="assets/js/toastr.min.js"></script>
-<script src="assets/js/bootbox.js"></script>
+<script src="../js/vendor/toastr/toastr.min.js"></script>
+<script src="../js/vendor/bootbox.js/bootbox.js"></script>
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu li.liitem:nth-of-type(5)").addClass("nav-open").find("ul li:nth-of-type(1) a").addClass("active");
+
+        $(".mainmenu>li:nth-of-type(16)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

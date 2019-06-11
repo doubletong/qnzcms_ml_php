@@ -45,13 +45,24 @@
                     transition: all .3s;
 
                     .title {
-                        font-size: rem(30);
+                        font-size: rem(20);
                         background: url(../img/arrow.png) no-repeat right center;
                         padding-right: 1.7rem;
                         display: inline-block;
                         margin-top: 0;
                         margin-bottom: 1rem;
                         color:#fff;
+                       
+                        @include respond-above(md) {
+                            font-size: rem(22);
+                        }
+                
+                        @include respond-above(lg) {
+                            font-size: rem(24);
+                        }
+                        @media (min-width:1600px) {
+                            font-size: rem(30);
+                        }
                     }
 
                     ul {
@@ -85,7 +96,7 @@
 
 .banner-disease-list {
     .page-title {
-        padding-top: 3.5rem;
+        padding-top: 5.5rem;
         color: #fff;
 
         @include respond-above(sm) {
@@ -113,9 +124,11 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-gap: rem(20);
-        margin-bottom: 5rem;
-
+        grid-gap: rem(10);
+      
+        @include respond-above(md) {
+            margin-bottom: 5rem;  grid-gap: rem(20);
+        }
         .item {
             display: block;
             position: relative;
@@ -142,13 +155,20 @@
                 top: 50%;
                 left: 50%;
                 z-index: 120;
-                margin-left: -55px;
-                margin-top: -55px;
+                margin-left: -30px;
+                margin-top: -30px;
+                width: 60px;
+                @include respond-above(md) {
+                    margin-left: -55px;
+                    margin-top: -55px;
+                    width: auto;
+                }
             }
 
             img {
                 display: block;
                 transition: all .3s;
+               
             }
 
             .pic {
@@ -163,10 +183,14 @@
                 position: absolute;
                 left: 0;
                 bottom: 1rem;
-                font-size: rem(22);
+                font-size: rem(20);
                 z-index: 100;
                 padding: 0 2rem;
                 color: #fff;
+                display: none;
+                @include respond-above(md) {
+                    font-size: rem(22); display: block;
+                }
             }
 
             &:first-child {
@@ -197,14 +221,23 @@
     }
 
     .se-title {
-        font-size: rem(48);
+        font-size: rem(24);
         color: $color-text-heading;
+        @include respond-above(sm) {
+            font-size:2rem;
+        }
+        @include respond-above(md) {
+            font-size:3rem;
+        }
     }
 
     .s2 {
         .s2main{
             position: relative;
-            padding-left: 337px;
+           
+            @include respond-above(md) {
+                padding-left: 337px;
+            }
         }
         
     }
@@ -218,8 +251,17 @@
             }
 
             .disease {
-                padding: 4rem 0;
+                padding: 1rem 0;
                 border-bottom: 1px #ddd solid;
+                @include respond-above(sm) {
+                    padding: 2rem 0;
+                }
+                @include respond-above(md) {
+                    padding: 3rem 0;
+                }
+                @include respond-above(lg) {
+                    padding: 4rem 0;
+                }
             }
 
             .pic {
@@ -230,13 +272,20 @@
 
             h3 {
                 color: $color-text-heading;
-                font-size: rem(26);
+                font-size: rem(20);
 
                 margin: 0;
+                margin-top: 1rem;
+                @include respond-above(md) {
+                    margin: 0;font-size: rem(26);
+                }
             }
 
             p {
                 color: #444;
+                margin-top: .5rem;
+                margin-bottom: 0;
+                color: $color-text-weak;
             }
         }
     }
@@ -252,6 +301,7 @@
                 height: rem(380);
                 padding: 2rem;
                 transition: all .2s;
+                margin-bottom: 1rem;
 
                 .logo {
                     height: 70px;
@@ -259,10 +309,13 @@
 
                 h3 {
                     color: #fff;
-                    font-size: rem(30);
+                    font-size: rem(20);
                     font-weight: lighter;
                     text-align: justify;
                     margin-top: 0;
+                    @include respond-above(md) {
+                        font-size: rem(30);
+                    }
                 }
 
                 .more {
@@ -301,6 +354,7 @@
                 line-height: 50px;
                 padding: 0 3rem 0 2rem;
                 border-radius: 25px;
+                
 
                 @include hover {
                     background-color: rgb(56, 239, 255);
@@ -336,8 +390,11 @@
     background-color: $color-primary;
     color: #fff;
     padding: 1.5rem 0;
-    font-size: rem(26);
+    font-size: rem(18);
     position: relative;
+    @include respond-above (md) {
+        font-size: rem(26);
+    }
 
     .btnclose {
         position: absolute;
@@ -345,7 +402,8 @@
         right: 1rem;
         z-index: 100;
         color: #fff;
-
+      
+    
         .iconfont {
             font-size: rem(22);
         }
@@ -358,11 +416,13 @@
         color: $color-secondary;
         width: 122px;
         height: 50px;
-        font-size: rem(18);
+      
         text-align: center;
         border-radius: 25px;
         transition: all .2s;
-
+        @include respond-above (md) {
+            font-size: rem(18);
+        }
         @include hover {
             background-color: $color-secondary;
             color: #fff;

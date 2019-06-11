@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="container">
         <div class="row footer-navs">
-            <div class="col-md-2">
+            <div class="col-md">
                 <dl>
                     <dt>关于微创<sup>®</sup></dt>
                    
@@ -11,10 +11,10 @@
                             <dd><a href="/honor">奖项荣誉</a></dd>
                             <dd><a href="/team">全球管理团队</a></dd>
                             <dd><a href="/duty">企业社会责任</a></dd>
-                            <dd><a href="/career">职业发展</a></dd>
+                           
                 </dl>
             </div>
-            <div class="col-md-2">
+            <div class="col-md">
                 <dl>
                     <dt>临床解决方案</dt>
                     <dd><a href="/operation">疾病与术式</a></dd>
@@ -23,7 +23,7 @@
                             <dd><a href="/creative">良知创意中心</a></dd> 
                 </dl>
             </div>
-            <div class="col-md-2">
+            <div class="col-md">
                 <dl>
                     <dt>患者关爱</dt>
                     <dd><a href="/support">患者服务与支持</a></dd>
@@ -33,7 +33,7 @@
                   
                 </dl>
             </div>
-            <div class="col-md-2">
+            <div class="col-md">
                 <dl>
                     <dt>产品中心</dt>
                     <dd><a href="/products">
@@ -63,7 +63,7 @@
                             介入配件</a></dd>
                 </dl>
             </div>
-            <div class="col-md-2">
+            <div class="col-md">
                 <dl>
                     <dt>传媒中心</dt>
                  
@@ -77,7 +77,24 @@
                                 </a></dd>
                 </dl>
             </div>
-            <div class="col-md-2">
+            <div class="col-md">
+                <dl>
+                    <dt>人才招聘</dt>
+                    <dd><a href="/recruit_plan">领军计划
+                                </a></dd>
+                            <dd><a href="/recruit_plan2">管培生计划
+                                </a></dd>
+                            <dd><a href="/recruit_pay">薪酬与福利
+                                </a></dd>
+                            <dd><a href="/recruit_college">创新学院
+                                </a></dd>
+                            <dd><a href="/recruit">职业发展
+                                </a></dd>
+                            <dd><a href="/recruit_post">职位申请
+                                </a></dd>                  
+                </dl>
+            </div>
+            <div class="col-md">
                 <dl>
                     <dt>投资者关系</dt>
                     <dd><a href="#">

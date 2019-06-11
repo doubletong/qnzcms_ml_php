@@ -10,6 +10,7 @@
               text-align: center;
               display: inline-block;
               color:#fff;border-radius: 20px;
+              margin-bottom: 2rem;
               @include hover{
                   background-color: $color-secondary;
               }
@@ -27,23 +28,28 @@
         .tab-header {
 
             background-color: rgb(212, 220, 239);
-            margin: 0 auto 4.5rem;
-            width: 786px;
-            height: 75px;
-            border-radius: 38px;
-
+            margin: 0 auto 1.5rem;
+           
+          
+            border-radius:23px;
+            @include respond-above (md) {
+                border-radius: 38px;
+                width: 786px;  margin: 0 auto 4.5rem;
+            }
             a {
 
-                height: 75px;
+                height: 45px;
                 display: block;
                 border-radius: 38px;
-                line-height: 75px;
-                font-size: rem(20);
-
+                line-height: 45px;
+                font-size: rem(14); 
+                @include respond-above (md) {
+                    line-height: 75px;  height: 75px;
+                    font-size: rem(20);  border-radius: 38px;
+                }
                 &.active {
 
                     background-color: rgb(72, 102, 180);
-
                     color: #fff;
 
                 }
@@ -52,11 +58,13 @@
 
         .tabcontent {
             text-align: left;
-            padding: rem(40);
+            padding: rem(15) 1rem 2rem;
             border-radius: 4px;
             background-color: rgb(255, 255, 255);
             box-shadow: 0px 4px 19.6px 0.4px rgba(0, 0, 0, 0.1);
-
+            @include respond-above (sm) {
+                padding: rem(40);
+            }
             .form-box {
                 margin-bottom: 1.5rem;
 
@@ -124,15 +132,21 @@
             }
             .action{
                 text-align: center;
+              
                 button{
                  
                         background-color: $color-primary;
-                       border-radius: 30px;
+                       border-radius: 20px;
                         width: 194px;
-                        height: 60px;
+                        height: 40px;
                    color: #fff;
                       border:none;
-                      font-size: rem(20);
+                      font-size: rem(16);
+                      @include respond-above (sm) {
+                        border-radius: 30px;
+                        width: 194px;
+                        height: 60px;  font-size: rem(20);
+                    }
                       @include hover {
                         background-color: darken($color-primary, 10%);
                     }
@@ -142,8 +156,16 @@
         }
     }
     .s5{
-        padding-top: rem(110);
-        padding-bottom: rem(50);
+        padding-top: rem(40);
+        padding-bottom: rem(20);
+        @include respond-above (sm) {
+            padding-top: rem(110);
+            padding-bottom: rem(50);
+        }
+        @include respond-above (md) {
+            padding-top: rem(110);
+            padding-bottom: rem(50);
+        }
         .qrcode{
             text-align: center;
             img{

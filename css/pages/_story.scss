@@ -44,16 +44,27 @@
                     left: 50%;
                     bottom: rem(62);
                     font-size: rem(20);
-                    margin-left: -140px;
+                    margin-left: -100px;
                     border: 1px #fff solid;
                     border-radius: 30px;
                     color: #fff;
                     line-height: 58px;
                     text-align: center;
-                    width: 280px;
+                    width: 200px;
                     height: 60px;
                     z-index: 48;
+                    @include respond-above (md) {       
+                        width: 200px;
 
+                      }
+                      @include respond-above (lg) {       
+                        width: 240px;
+                        margin-left: -120px;
+                      }
+                      @media (min-width:1601) {
+                        width: 280px;
+                        margin-left: -140px;
+                    }
                     @include hover {
                         background-color: rgb(255, 255, 255);
                         color:$color-primary;

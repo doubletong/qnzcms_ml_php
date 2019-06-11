@@ -3,8 +3,8 @@ require_once("includes/common.php");
 require_once("config/db.php");
 require_once("data/team.php");
 
-$teamClass = new Team();
-$teams = $teamClass->fetch_category("核心团队");
+// $teamClass = new Team();
+// $teams = $teamClass->fetch_category("核心团队");
 
 ?>
 <!DOCTYPE html>

@@ -32,7 +32,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                 <h1 class="wow fadeInLeft">常兆华博士</h1>
                 <p class="wow fadeInLeft">董事局主席、执行董事、首席执行官、GMC主席</p>
             </div>
-            <div class="inside_banner_img wow fadeInRight" style="background-image:url(images/about_team_detail_banner.png)"></div>
+            <div class="inside_banner_img wow fadeInRight" style="background-image:url(/images/about_team_detail_banner.png)"></div>
         </div>
     </div>
 <!--banner end-->
@@ -53,7 +53,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="/images/about_team_01.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>常兆华博士</h4>
@@ -64,7 +64,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                         </div>
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
+                                <img src="/images/about_team_02.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>芦田典裕先生 </h4>
@@ -74,7 +74,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                         </div>
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
+                                <img src="/images/about_team_03.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>白藤泰司先生 </h4>
@@ -84,7 +84,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                         </div>
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
+                                <img src="/images/about_team_04.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>余洪亮先生</h4>
@@ -94,7 +94,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                         </div>
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
+                                <img src="/images/about_team_05.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>周嘉鸿先生 </h4>
@@ -104,7 +104,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                         </div>
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
+                                <img src="/images/about_team_06.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>刘国恩博士 </h4>
@@ -114,7 +114,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                         </div>
                         <div class="swiper-slide">
                             <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
+                                <img src="/images/about_team_07.jpg" alt=""/>
                             </div>
                             <div class="txt">
                                 <h4>邵春阳先生</h4>

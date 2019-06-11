@@ -44,22 +44,29 @@
     }
 
     .s2 {
-        position: relative;
-        padding-left: 337px;
+        position: relative;       
         min-height: 450px;
+        @include respond-above (md) {
+            padding-left: 337px;
+        }
+
     }
 
 }
 
 .list-categories {
-    width: 230px;
-    background-color: #fff;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    z-index: 100;
-    margin-left: -480px;
+   margin-bottom: 1rem;
    
+
+    @include respond-above (md) {
+        margin-bottom: 0;
+        width: 230px;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        z-index: 100;
+        margin-left: -480px;
+    }
     @include respond-above (lg) {
         margin-left: -570px;
     }
@@ -82,14 +89,20 @@
         font-weight: normal;
         box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.1);
         margin: 0;
-
+        display: none;
+        @include respond-above (md) {
+            display: block;
+        }
     }
 
     ul {
         @include reset-list;
         max-height: 350px;        
         overflow-y: auto;
-        @media (min-height:600px) {
+
+
+
+        @media (min-height:600px)  {
             max-height: 450px;     
         }
         @media (min-height:700px) {
@@ -117,20 +130,35 @@
 
         li {
             padding: 0 1rem;
-
+            display: inline-block;
+            margin-bottom: 5px;
+            background-color: #fff;
+            @include respond-above (md) {
+               display: block; margin-bottom: 0;
+            }
             a {
+            
                 display: block;
-                height: 70px;
-                border-bottom: 1px #eceff6 solid;
-                line-height: rem(69);
-                padding-left: rem(50);
+                height: rem(35);         
+                line-height: rem(35);
+                padding-left: rem(26);
                 color: #666;
                 background-position: left center;
                 background-repeat: no-repeat;
+                background-size: auto 1rem;
+               
+              
                 &.active{
                     color: $color-primary;
                     font-weight: bold;
                 }
+                @include respond-above (md) {
+                    background-size: auto auto;
+                    line-height: rem(69);
+                    padding-left: rem(50);  height: 70px;
+                    border-bottom: 1px #eceff6 solid;
+                    line-height: rem(69); 
+                 }
             }
         }
     }

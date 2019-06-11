@@ -9,19 +9,18 @@ if (isset($_POST['name'], $_POST['content'])) {
     $teamId = $_POST['teamId'];
     $name = $_POST['name'];
     $post = $_POST['post'];
-    $category = $_POST['category'];   
+    $dictionary_id = $_POST['dictionary_id'];   
     $importance = $_POST['importance'];
     $photo = $_POST['photo'];
+    $fullphoto = $_POST['fullphoto'];
     $content = stripslashes($_POST['content']);   
     
 
     //   echo $content.$productId;
     if($teamId>0){
-        echo $teamClass->update_team($teamId, $name, $post, $photo, $content, $category,$importance);
-
+        echo $teamClass->update_team($teamId, $name, $post, $photo,$fullphoto, $content, $dictionary_id,$importance);
     }else{
-        echo $teamClass->insert_team($name, $post, $photo, $content, $category,$importance);
-
+        echo $teamClass->insert_team($name, $post, $photo,$fullphoto, $content, $dictionary_id,$importance);
     }
 
 }else{

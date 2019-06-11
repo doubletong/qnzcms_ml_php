@@ -141,7 +141,7 @@ $tree = buildTree($categories);
                 $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
             }
             if ("6" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+                $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
             }
             //确认框默认语言
             bootbox.setDefaults({

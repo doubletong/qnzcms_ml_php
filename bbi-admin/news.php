@@ -155,16 +155,19 @@ else
             $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("4"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("5"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if ("6" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+                $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            }
+            if ("16" == <?php echo $did; ?>) {
+                $(".mainmenu>li:nth-of-type(9)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
             }
 
         //确认框默认语言

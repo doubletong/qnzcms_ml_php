@@ -124,4 +124,29 @@ class Article{
         }
     }
 
+    public function get_section_title($did){
+      
+        switch ($did) {
+            case "16":
+            return array(
+                "category" => "主题",
+                "article" => "文章",
+                "section" => "媒体报告",
+            );
+              break;
+            case "banana":
+              echo "Your favorite fruit is banana!";
+              break;
+            case "orange":
+              echo "Your favorite fruit is orange!";
+              break;
+            default:
+              return array(
+                "category" => "分类",
+                "article" => "文章",
+                "section" => "文章系统",
+            );
+         }
+    }
+
 }

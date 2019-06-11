@@ -32,4 +32,10 @@ $(document).ready(function() {
     $("#btnSearch").click(function(e){
         $(".site-header").toggleClass("forSearch");
     });
+
+    $(".overmenu li.down>a").click(function(e){
+        e.preventDefault();
+        $(this).next(".subnav").slideToggle();
+        $(this).closest("li").toggleClass("open");
+    })
 });

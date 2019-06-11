@@ -73,11 +73,11 @@ $tree = buildTree($categories);
                                         <label for="title">标题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo $data['title']; ?>">
                                     </div>
-                                    <?php if($did=="1" || $did=="2" ){ ?>
+                                    <?php if($did=="1" || $did=="2" || $did=="16"){ ?>
                                     <div class="form-group">
-                                        <label for="categoryId">分类</label>                                   
+                                        <label for="categoryId"><?php echo $did=="16"?"主题":"分类";?></label>                                   
                                         <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
-                                            <option value="">--请选择分类--</option>
+                                            <option value="">--请选择<?php echo $did=="16"?"主题":"分类";?>--</option>
                                             <?php foreach( $categories as $model)
                                             {
                                                 if($model["id"]=== $data["categoryId"]){
@@ -304,17 +304,22 @@ $tree = buildTree($categories);
             $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("4"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("5"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if ("6" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+                $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
             }
+
+            if ("16" == <?php echo $did; ?>) {
+                $(".mainmenu>li:nth-of-type(9)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            }
+
 
         $("#btnBrowser").on("click", function () {         
             singleEelFinder.selectActionFunction = SetThumbnail;

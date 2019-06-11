@@ -62,13 +62,9 @@ if (isset($_GET['cid'])) {
 
 
 
-    <div class="page page-disease-list page-events">
-
-
+    <div class="page page-disease-list page-operation page-events">
         <div class="container">
-
             <section class="s2">
-
                 <div class="list-categories">
                     <h3 class="title">疾病分类</h3>
                     <ul>
@@ -160,38 +156,41 @@ if (isset($_GET['cid'])) {
 
 
             $(window).on("scroll", function() {
-                h = $(".site-footer").outerHeight(true);
-                var toTop = $(window).scrollTop();
+                var winW = $(window).width();
+                if(winW>=992){
+                    h = $(".site-footer").outerHeight(true);
+                    var toTop = $(window).scrollTop();
 
-                 var documentH = $(document).height();
-                 //  var winH=$(window).height();
-                 var selfH=$(".list-categories").outerHeight(true);
+                    var documentH = $(document).height();
+                    //  var winH=$(window).height();
+                    var selfH=$(".list-categories").outerHeight(true);
 
-                var scrollButtom = documentH-(toTop + selfH);
-                //var scrollButtom = $(document).height() - (toTop + $(window).height());
-                var bannerHeight = $(".banner").outerHeight(true);
-                var headH = $('.site-header').outerHeight(true) + 30;
+                    var scrollButtom = documentH-(toTop + selfH);
+                    //var scrollButtom = $(document).height() - (toTop + $(window).height());
+                    var bannerHeight = $(".banner").outerHeight(true);
+                    var headH = $('.site-header').outerHeight(true) + 30;
 
-                if (toTop > bannerHeight) {
-                    $(".list-categories").addClass("fixed_for_top").css({
-                        'top': headH + 'px'
-                    });
-                    if (scrollButtom < (h+100)) {
-                        $(".list-categories").removeClass("fixed_for_top").css({
-                            'bottom': '0px',
-                            'top': 'auto'
-                        });
-                    } else {
-                        $(".list-categories").css({
-                            'bottom': 'auto',
+                    if (toTop > bannerHeight) {
+                        $(".list-categories").addClass("fixed_for_top").css({
                             'top': headH + 'px'
                         });
+                        if (scrollButtom < (h+100)) {
+                            $(".list-categories").removeClass("fixed_for_top").css({
+                                'bottom': '0px',
+                                'top': 'auto'
+                            });
+                        } else {
+                            $(".list-categories").css({
+                                'bottom': 'auto',
+                                'top': headH + 'px'
+                            });
+                        }
+                    } else {
+                        $(".list-categories").removeClass("fixed_for_top").css({
+                            'top': '0' + 'px','bottom': 'auto'
+                        });
                     }
-                } else {
-                    $(".list-categories").removeClass("fixed_for_top").css({
-                        'top': '0' + 'px','bottom': 'auto'
-                    });
-                }
+            }
             });
         });
     </script>

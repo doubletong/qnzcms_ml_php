@@ -2,14 +2,14 @@
 class Video{
     public function fetch_all(){
         global $dbh;
-        $query = $dbh->prepare("SELECT * FROM wp_videos ORDER BY added_date DESC");
+        $query = $dbh->prepare("SELECT * FROM videos ORDER BY added_date DESC");
         $query->execute();
 
         return $query->fetchAll();
     }
 
     public function fetch_data($id){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_videos WHERE id = ?");
+        $query = db::getInstance()->prepare("SELECT * FROM videos WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
 
@@ -17,7 +17,7 @@ class Video{
     }
 
     public function delete_video($id){
-        $query = db::getInstance()->prepare("DELETE FROM `wp_videos` WHERE id = ?");
+        $query = db::getInstance()->prepare("DELETE FROM `videos` WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
 
@@ -30,15 +30,13 @@ class Video{
     }
 
 //更新产品
-    public function update_video($id, $title,$sub_title,$productName,$thumbnail, $videoUrl,$ogv,$webm,$keywords, $description, $content,$importance,$active) {
+    public function update_video($id, $title,$thumbnail, $videoUrl,$ogv,$webm,$dictionary_id, $content,$importance,$active,$recommend) {
 
-        $sql = "update wp_videos
+        $sql = "update videos
              set
              title= :title,
-             sub_title = :sub_title,
-             productName = :productName,
-               keywords = :keywords,
-             description = :description,
+             recommend = :recommend,           
+             dictionary_id = :dictionary_id,    
              content = :content,
              importance = :importance,
              thumbnail =:thumbnail,
@@ -51,17 +49,16 @@ class Video{
         $query = db::getInstance()->prepare($sql);
 
         $query->bindValue(":title",$title);
-        $query->bindValue(":sub_title",$sub_title);
-        $query->bindValue(":productName",$productName);
+     
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":videoUrl",$videoUrl);
         $query->bindValue(":ogv",$ogv);
         $query->bindValue(":webm",$webm);
-        $query->bindValue(":keywords",$keywords);
-        $query->bindValue(":description",$description);
+        $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);
         $query->bindValue(":content",$content);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
+        $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
 
@@ -74,26 +71,25 @@ class Video{
     }
 
 
-    public function insert_video( $title,$sub_title,$productName,$thumbnail, $videoUrl,$ogv,$webm,$keywords, $description, $content,$importance,$active) {
+    public function insert_video( $title,$thumbnail, $videoUrl,$ogv,$webm,$dictionary_id, $content,$importance,$active,$recommend) {
 
-        $sql="INSERT INTO wp_videos ( title,sub_title,productName,thumbnail,video_url,ogv,webm, keywords,description,content,importance,active,added_by,added_date)
-                VALUES (:title,:sub_title,:productName,:thumbnail,:videoUrl,:ogv,:webm, :keywords,:description,:content,:importance,:active,:added_by,:added_date)";
+        $sql="INSERT INTO videos ( title,thumbnail,video_url,ogv,webm, dictionary_id,content,importance,active,recommend,added_by,added_date)
+                VALUES (:title,:thumbnail,:videoUrl,:ogv,:webm, :dictionary_id,:content,:importance,:active,:recommend,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
         $query->bindValue(":title",$title);
-        $query->bindValue(":sub_title",$sub_title);
-        $query->bindValue(":productName",$productName);
+      
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":videoUrl",$videoUrl);
         $query->bindValue(":ogv",$ogv);
         $query->bindValue(":webm",$webm);
-        $query->bindValue(":keywords",$keywords);
-        $query->bindValue(":description",$description);
+        $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);      
         $query->bindValue(":content",$content);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
+        $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":added_by",$username);
         $query->bindValue(":added_date",date('Y-m-d H:i:s'));
         $query->execute();

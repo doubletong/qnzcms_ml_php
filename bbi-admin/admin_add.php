@@ -74,8 +74,7 @@ require_once('data/user.php');
     <script type="text/javascript">
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(11)").addClass("nav-open").find("ul li:nth-of-type(2) a").addClass(
-                "active");
+            $(".mainmenu>li.system").addClass("nav-open").find("ul>li.manager_add a").addClass("active");
 
 
             $("form").validate({

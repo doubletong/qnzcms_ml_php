@@ -6,27 +6,23 @@ require_once('data/video.php');
 $videoClass = new video();
 
 if (isset($_POST['title'], $_POST['importance'])) {
-    $videoId = $_POST['videoId'];
+    $videoId = isset($_POST['videoId'])?$_POST['videoId']:0;
     $title = $_POST['title'];
-    $sub_title = $_POST['sub_title'];
-    $productName = $_POST['productName'];
     $thumbnail = $_POST['thumbnail'];
     $videoUrl = $_POST['videoUrl'];
     $ogv = $_POST['ogvUrl'];
     $webm = $_POST['webmUrl'];
     $importance = $_POST['importance'];
-    $keywords = $_POST['keywords'];
-    $description = $_POST['description'];
+    $dictionary_id = $_POST['dictionary_id'];
     $content = stripslashes($_POST['content']);
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
+    $recommend = isset($_POST['recommend']) && $_POST['recommend']  ? "1" : "0";
 
     //   echo $content.$videoId;
     if(isset($_POST['videoId'])){
-        echo $videoClass->update_video($videoId, $title, $sub_title,$productName, $thumbnail,$videoUrl,$ogv,$webm, $keywords, $description, $content,$importance, $active);
-
+        echo $videoClass->update_video($videoId, $title, $thumbnail,$videoUrl,$ogv,$webm, $dictionary_id, $content,$importance, $active,$recommend);
     }else{
-        echo $videoClass->insert_video($title, $sub_title,$productName,$thumbnail,$videoUrl,$ogv,$webm, $keywords, $description, $content,$importance, $active);
-
+        echo $videoClass->insert_video($title, $thumbnail,$videoUrl,$ogv,$webm, $dictionary_id, $content,$importance, $active,$recommend);
     }
 
 }else{

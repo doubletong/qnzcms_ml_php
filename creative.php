@@ -240,8 +240,8 @@ $articles = $articleClass->get_all_articles(5);
 
     <script>
         $(document).ready(function() {
-            $(".leftnav li:nth-of-type(3) a").addClass("active");
-            $(".mainav li:nth-of-type(3) a").addClass("active");
+         
+            $(".mainav li:nth-of-type(2) a").addClass("active");
 
 
             $(".tab-header a").click(function() {

@@ -65,7 +65,7 @@ if (isset($_GET['cid'])) {
                 <div class="row">
                     <?php foreach ($model as $article) { ?>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6 col-lg-4">
                             <div class="item">
                                 <img src="<?php echo $article['image_url']; ?>" class="bg" alt="<?php echo $article['title']; ?>">
                                 <div class="txt">

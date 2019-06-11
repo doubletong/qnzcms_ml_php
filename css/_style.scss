@@ -14,13 +14,12 @@
     p{margin:0}
     .clear{clear:both;zoom:1}
     .clear:before,.clear:after{content:"";display:table;height:0;clear:both}
-    .wrap{width:1180px;max-width:90%;min-width:300px;margin:0 auto;position:relative;height:100%}
+    .wrap{width:1180px;max-width:94%;min-width:300px;margin:0 auto;position:relative;height:100%}
     .pos_center{position:absolute;top:50%;left:50%;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-ms-transform: translate(-50%,-50%);-o-transform: translate(-50%,-50%);transform: translate(-50%,-50%);}
     .fl,li{float:left}
     .fr{float:right}
     .zz{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;opacity:.5;filter:alpha(opacity=50);z-index: 8}
 }
-
 
 .pagination { text-align: center; padding: 1rem 0; font-size: 0.875rem; color: #999; }
 @media (min-width: 992px) {
@@ -315,7 +314,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 */
 
 /*product_detail*/
-.product_detail_banner{background-image:-webkit-linear-gradient(top,#24449a,#13255a);background-image:-moz-linear-gradient(top,#24449a,#13255a);background-image:-ms-linear-gradient(top,#24449a,#13255a);background-image:linear-gradient(#24449a,#13255a);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24449a', endColorstr='#13255a',GradientType=0 );}
+.product_detail_banner{background-image:-webkit-linear-gradient(#24449a,#13255a);background-image:-moz-linear-gradient(#24449a,#13255a);background-image:-ms-linear-gradient(#24449a,#13255a);background-image:linear-gradient(#24449a,#13255a);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24449a', endColorstr='#13255a',GradientType=0 );background:#13255a\9}
 .product_detail{background:#eceff6;padding:3rem 0;}
 .product_detail_title{border-bottom:1px solid #bfbfbf;margin-bottom: 2.5rem;}
 .product_detail_title h3{font-size: 2.5rem;line-height:2.875;font-weight: 100;color:#222;display:inline-block;vertical-align: top;}
@@ -441,6 +440,31 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .news_magazine_search input{width:72%;height:100%;padding-left:1em;font-size:1rem;color:#222;background:none;border:none;}
 .news_magazine_search button{width:28%;height:100%;float:right;background:url(../images/news_magazine_search.png) no-repeat center;border:none;-webkit-transition:.3s;transition:.3s}
 .news_magazine_search button:hover{opacity:0.75}
+/*recruit*/
+.recruit_post_t{padding:5rem 0 6.25rem;}
+.recruit_post_t h3{color:#222}
+.recruit_post_t li{width:33.3333%;text-align: center;}
+.recruit_post_t li .icon{margin-bottom: 0.5rem;position:relative}
+.recruit_post_t li .icon:after{position:absolute;content:'';width:37px;height:31px;background:url(../images/recruit_post_icon_04.png) no-repeat center;background-size:100%;top:50%;right:-18px;margin-top: -15px;}
+.recruit_post_t li:last-child .icon:after{display:none;}
+.recruit_post_t li .icon img{width:11.25rem;max-width: 45%}
+.recruit_post_t li h4{color:#222;font-size:1.75rem;line-height:4;padding:0; }
+.recruit_post_t li p{font-size: 1rem;line-height: 1.875;color:#666;max-width: 55%;margin:0 auto;text-align: justify }
+/*recruit_pay*/
+.recruit_pay_t li{width:25%;}
+.recruit_pay_t li .icon:after{display:none;}
+.recruit_pay_t li .icon img{max-width: 50%;width:7.5rem;}
+.recruit_pay_t li p{max-width: 74%}
+.recruit_pay_t .wrap>h3{margin-bottom: 2.5rem;}
+.recruit_pay_t .wrap>p{font-size: 1.125rem;line-height: 1.5;color:#666;margin-bottom: 5rem;}
+.recruit_pay_b{padding-bottom: 5em;}
+.recruit_pay_b .wrap>h3{color:#222;}
+.recruit_pay_b ul{}
+.recruit_pay_b li{width:24.25%;margin-right:1%;margin-bottom: 1%;position:relative }
+.recruit_pay_b li img{width:100%}
+.recruit_pay_b li:nth-child(4n){margin-right: 0}
+.recruit_pay_b li p{position:absolute;font-size: 1.25rem;line-height: 1.5;color:#FFF;width:80%;left:10%;top:50%;-webkit-transform: translateY(-50%);transform: translateY(-50%)}
+
 
 
 @media screen and (max-width: 1601px){
@@ -456,8 +480,8 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .inside_banner_txt h1,.about_course_list .swiper-slide h3{font-size:3rem; }
     .product_detail_banner .inside_banner_txt h2{font-size:1.875em;}
     .inside_banner_txt h2,.about_title,.about_career h3,.about_career_b li .txt h3,.about_course_title h2,.about_duty h2,.about_team h2,.current_year{font-size: 2.25rem;}
-    .about_item{min-height:36rem;}
-    .about_item_01{min-height: 32rem}
+    .about_item{min-height:33rem;}
+    .about_item_01{min-height: 30rem}
     .about_other_list li .txt h3{font-size: 2.25rem;}
     .about_other_list li .txt h2{font-size: 2.5rem;}
     .about_other_list li .img{height:33.5rem;}
@@ -477,7 +501,23 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 }
 @media screen and (max-width: 992px){
     .inside_banner{height:280px;}
+    .about_course_list .swiper-slide h3, .inside_banner_txt h1,.about_other_list li .txt h2{font-size: 2rem;}
+    .about_career_b li .txt h3, .about_career h3, .about_course_title h2, .about_duty h2, .about_team h2, .about_title, .current_year, .inside_banner_txt h2,.about_other_list li .txt h3{font-size: 1.75rem;}
+
 }
 @media screen and (max-width: 768px){
     .inside_banner{height:150px;}
+    .wrap{max-width: 540px;}
+    .about_course_list .swiper-slide h3, .inside_banner_txt h1,.about_other_list li .txt h2{font-size: 1.5rem;letter-spacing: 0}
+    .inside_banner_txt{top:55%}
+    .inside_banner_txt h1{line-height: 1.8;padding:0;}
+    .inside_banner_txt p{font-size: 0.75rem;line-height: 1}
+    .about_career_b li .txt h3, .about_career h3, .about_course_title h2, .about_duty h2, .about_team h2, .about_title, .current_year, .inside_banner_txt h2,.about_other_list li .txt h3{font-size: 1.3rem;}
+    .about_desc p{font-size: 0.75rem;}
+    .about_item{height:30rem;}
+    .about_item_01{height:24rem;}
+    .about_title{padding-bottom: 0.5rem;}
+    .about_other_list li .img{float:none;width:100%;height:20rem;}
+    .about_other_list li .txt{width:100%;float:none;padding:2rem 15px;}
+    .about_other_list li .txt p{font-size: 0.75rem}
 }

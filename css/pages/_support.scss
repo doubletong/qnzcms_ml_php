@@ -5,18 +5,36 @@
       }
     text-align: center;
     h2{
-        font-size: 3rem;
+        font-size: rem(24);
         color: $color-text-heading;
         font-weight: lighter;
         margin-top: 0;
         line-height: 1;
+        @include respond-above (sm) {       
+            font-size: 2rem;
+          }
+        @include respond-above (md) {       
+            font-size: 3rem;
+          }
         @media (min-width:1601) {
             margin-top: auto;
             line-height: 1.8;
         }
     }
     .s1{
-        margin-bottom: 6rem;
+        margin-bottom: 2rem;
+        @include respond-above (sm) {       
+            margin-bottom: 3rem;
+          }
+        @include respond-above (md) {       
+            margin-bottom: 4rem;
+          }
+          @include respond-above (lg) {       
+            margin-bottom: 5rem;
+          }
+          @media (min-width:1601) {
+            margin-bottom: 6rem;
+        }
     }
     figure{
         margin-bottom: 2rem;
