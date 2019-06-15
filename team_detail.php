@@ -4,7 +4,17 @@ require_once("config/db.php");
 require_once("data/team.php");
 
 $teamClass = new Team();
-$teams = $teamClass->fetch_category("常兆华博士");
+if(isset($_GET['id'])){
+    $id = $_GET['id'];  
+    $teams = $teamClass->get_all_teams();
+    $data = $teamClass->fetch_data( $id);
+  
+}else{
+    header('Location: /team');
+    exit;
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +25,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "常兆华博士-".SITENAME; ?></title>    
+    <title><?php echo $data['name']."-全球管理团队-关于我们-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -29,10 +39,10 @@ $teams = $teamClass->fetch_category("常兆华博士");
 <div class="inside_banner about_team_detail_banner">
         <div class="wrap clear">
             <div class="inside_banner_txt pos_center">
-                <h1 class="wow fadeInLeft">常兆华博士</h1>
-                <p class="wow fadeInLeft">董事局主席、执行董事、首席执行官、GMC主席</p>
+                <h1 class="wow fadeInLeft"><?php echo $data['name']; ?></h1>
+                <p class="wow fadeInLeft"><?php echo $data['post']; ?></p>
             </div>
-            <div class="inside_banner_img wow fadeInRight" style="background-image:url(/images/about_team_detail_banner.png)"></div>
+            <div class="inside_banner_img wow fadeInRight" style="background-image:url(<?php echo $data['fullphoto']; ?>)"></div>
         </div>
     </div>
 <!--banner end-->
@@ -42,7 +52,8 @@ $teams = $teamClass->fetch_category("常兆华博士");
         <div class="wrap">
             <div class="about_team_detail">
                 <div class="about_team_detail_desc wow fadeInUp">
-                    <p>常兆华博士，微创医疗科学有限公司董事局主席、执行董事兼首席执行官及GMC主席。常博士在医疗器械行业拥有逾29年的经验，现时担任上海理工大学医疗器械学院教授。于1998年创办上海微创医疗器械（集团）有限公司之前，常博士自1996年至1997年，担任总部位于美国加利福尼亚州的纳斯达克上市医疗器械公司Endocare Inc.的研发副总裁。自1990年至1995年，常博士于美国马里兰州的一家医疗器械公司Cryomedical Sciences Inc.先后担任高级工程师、首席科学家、研发部主任兼工程部副总裁等职务。常博士分别于1983年及1985年在上海理工大学获得制冷工程学士学位及低温工程硕士学位，并于1992年在纽约州立大学宾汉姆顿分校获得生物科学博士学位。常博士在生物医学科学领域上发表了大量文章，在中国及美国拥有多项专利。</p>
+                <?php echo $data['content']; ?>
+                
                 </div>
             </div>
         </div>
@@ -51,17 +62,19 @@ $teams = $teamClass->fetch_category("常兆华博士");
             <div class="about_team_detail_list wow fadeInUp">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                        <?php foreach ($teams as $item) {?>
+                            <div class="swiper-slide">
                             <div class="img">
-                                <img src="/images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $item['photo']; ?>" alt="<?php echo $item['name']; ?>"/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $item['name']; ?></h4>
+                                <p><?php echo $item['post']; ?></p>
+                                <a href="/team-detail-<?php echo $item['id']; ?>">了解更多</a>
                             </div>
                         </div>
+                            <?php }?>
+<!--                       
                         <div class="swiper-slide">
                             <div class="img">
                                 <img src="/images/about_team_02.jpg" alt=""/>
@@ -121,7 +134,7 @@ $teams = $teamClass->fetch_category("常兆华博士");
                                 <p>独立非执行董事</p>
                                 <a href="about_team_detail.html">了解更多</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="about_team_detail_controls">
                         <div class="swiper-button-prev"></div>

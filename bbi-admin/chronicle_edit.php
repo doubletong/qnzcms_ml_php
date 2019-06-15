@@ -71,12 +71,12 @@ if (isset($_GET['id'])) {
                             <div class="col-md-auto">
                                 <div style="width:300px; text-align:center;" class="mb-3">
                                     <div class="card">
-                                        <div class="card-body">                                       
-                                            <img ID="iLogo" src="holder.js/240x240?text=500X500像素" class="img-responsive img-rounded" />                                   
+                                        <div class="card-body">
+                                            <img ID="iLogo" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=500X500像素" : $data['image_url']; ?>" class="img-fluid" />                              
                                         </div>
                                         <div class="card-footer">
                                             <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
-                                            <input id="image_url" type="hidden" name="image_url" />
+                                            <input id="image_url" type="hidden" name="image_url" value="<?php echo $data['image_url']; ?>"/>
                                         </div>
                                     </div>
                                 </div>

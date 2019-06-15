@@ -73,7 +73,7 @@
                                 </a></dd>
                             <dd><a href="/videos">视频中心
                                 </a></dd>
-                            <dd><a href="/magazine">内刊
+                            <dd><a href="/newspaper">内刊
                                 </a></dd>
                 </dl>
             </div>

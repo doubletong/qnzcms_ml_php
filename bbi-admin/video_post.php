@@ -10,8 +10,8 @@ if (isset($_POST['title'], $_POST['importance'])) {
     $title = $_POST['title'];
     $thumbnail = $_POST['thumbnail'];
     $videoUrl = $_POST['videoUrl'];
-    $ogv = $_POST['ogvUrl'];
-    $webm = $_POST['webmUrl'];
+    $thumbnail2 = isset($_POST['thumbnail2'])  ?  $_POST['thumbnail2'] : "";
+    $webm = isset($_POST['webmUrl'])  ?  $_POST['webmUrl'] : ""; 
     $importance = $_POST['importance'];
     $dictionary_id = $_POST['dictionary_id'];
     $content = stripslashes($_POST['content']);
@@ -20,9 +20,9 @@ if (isset($_POST['title'], $_POST['importance'])) {
 
     //   echo $content.$videoId;
     if(isset($_POST['videoId'])){
-        echo $videoClass->update_video($videoId, $title, $thumbnail,$videoUrl,$ogv,$webm, $dictionary_id, $content,$importance, $active,$recommend);
+        echo $videoClass->update_video($videoId, $title, $thumbnail,$videoUrl,$thumbnail2,$webm, $dictionary_id, $content,$importance, $active,$recommend);
     }else{
-        echo $videoClass->insert_video($title, $thumbnail,$videoUrl,$ogv,$webm, $dictionary_id, $content,$importance, $active,$recommend);
+        echo $videoClass->insert_video($title, $thumbnail,$videoUrl,$thumbnail2,$webm, $dictionary_id, $content,$importance, $active,$recommend);
     }
 
 }else{

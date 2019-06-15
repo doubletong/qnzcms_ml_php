@@ -1,10 +1,11 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/chronicle.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("instrument");
+$did = 14;
+$chronicleClass = new Chronicle();
+$data = $chronicleClass->get_all_chronicles($did);
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ $data = $pageClass->fetch_data("instrument");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "医疗器械-".SITENAME; ?></title>    
+    <title><?php echo "奖项荣誉-关于我们-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -43,7 +44,13 @@ $data = $pageClass->fetch_data("instrument");
                 <div class="about_course_nav wow fadeInUp">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            <?php foreach($data as $course){ ?>                            
+                                <div class="swiper-slide">
+                                <div class="dot"></div>
+                                <p><?php echo $course['year']; ?></p>
+                            </div>
+                            <?php } ?>
+                            <!-- <div class="swiper-slide">
                                 <div class="dot"></div>
                                 <p>2019</p>
                             </div>
@@ -102,7 +109,7 @@ $data = $pageClass->fetch_data("instrument");
                             <div class="swiper-slide">
                                 <div class="dot"></div>
                                 <p>2001</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="about_course_nav_controls">
@@ -113,7 +120,13 @@ $data = $pageClass->fetch_data("instrument");
                 <div class="about_course_list wow fadeInUp">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
+                        <?php foreach($data as $course){ ?>                            
+                               
                             <div class="swiper-slide">
+                                <?php echo $course['description']; ?> 
+                            </div>
+                            <?php } ?>
+                            <!-- <div class="swiper-slide">
                                 <p>本集团获评全国模范劳动关系和谐企业。</p>
                                 <p>本集团荣获中国公益节“2018年度责任品牌奖”。</p>
                                 <p>本集团的Firehawk<sup>®</sup>（火鹰）支架和Rega<sup>®</sup>心系列起搏器入选“健康中国（2018）·十大医疗器械”。</p>
@@ -202,7 +215,7 @@ $data = $pageClass->fetch_data("instrument");
                             </div>
                             <div class="swiper-slide">
                                 <p>本集团获四家上海市政府机构认定为高新技术企业。</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

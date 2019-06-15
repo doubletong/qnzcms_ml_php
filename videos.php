@@ -1,11 +1,13 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/video.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("declare");
-
+$videoClass = new Video();
+$data = $videoClass->fetch_all(18);
+$data1 = $videoClass->fetch_all(17);
+$i=1;
+$j=1;
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
@@ -15,7 +17,7 @@ $data = $pageClass->fetch_data("declare");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "心血管介入产品-".SITENAME; ?></title>    
+    <title><?php echo "视频中心-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -47,268 +49,190 @@ $data = $pageClass->fetch_data("declare");
             </div>
             <div class="news_media news_video">
                 <div class="news_video_item active">
-                    <div class="news_media_box clear">
+
+                <?php for ($a = 0; $a < count($data); ++$a) { 
+                   
+                    
+                     if ($i == 1)
+                     {
+                        ?>
+                        <div class="news_media_box clear">       
                         <div class="news_media_item news_media_item_big">
                             <a class="wow fadeInUp">
                                 <div class="img img_pc">
-                                    <img src="images/news_video_01.jpg" alt=""/>
+                                    <img src="<?php echo $data[$a]['thumbnail'] ?>" alt=""/>
                                 </div>
                                 <div class="img img_mb">
-                                    <img src="images/news_video_01.jpg" alt=""/>
+                                    <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt=""/>
                                 </div>
                                 <div class="play_btn" data-video-src="111">
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
-                                    <p>秒针中的生命 - 微创20周年品牌宣传片</p>
+                                    <p><?php echo $data[$a]['title'] ?></p>
                                 </div>
                             </a>
                         </div>
-                        <div class="news_media_item news_media_item_small">
-                            <a class="wow fadeInUp">
+                         
+                         <?php   
+                          if(($a+1)==count($data)){ ?>
+                            
+                            </div>
+                           <?php 
+                           }        
+                         $i++;
+                     }else{
+                      
+                        if($i == 2)
+                        {
+                           ?>
+                             <div class="news_media_item news_media_item_small">
+                           <a class="wow fadeInUp">
                                 <div class="img img_pc">
-                                    <img src="images/news_video_02.jpg" alt=""/>
+                                    <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt="<?php echo $data[$a]['title'] ?>"/>
                                 </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_02.jpg" alt=""/>
-                                </div>
+                               
                                 <div class="play_btn" data-video-src="">
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
-                                    <p>企业宣传片</p>
+                                    <p><?php echo $data[$a]['title'] ?></p>
                                 </div>
                             </a>
+                            
+
+                            <?php 
+                            if(($a+1)==count($data)){ ?>
+                             </div>
+                             </div>
+                            <?php 
+                            }    
+                            $i++;
+                        }
+                       elseif ($i == 3)
+                       {
+                           ?>
                             <a class="wow fadeInUp">
                                 <div class="img img_pc">
-                                    <img src="images/news_video_03.jpg" alt=""/>
+                                    <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt="<?php echo $data[$a]['title'] ?>"/>
                                 </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_03.jpg" alt=""/>
-                                </div>
+                               
                                 <div class="play_btn" data-video-src="">
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
-                                    <p>创新的基因 - 常兆华博士专访</p>
+                                    <p><?php echo $data[$a]['title'] ?></p>
                                 </div>
                             </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="news_media_box clear">
-                        <div class="news_media_item news_media_item_big">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_04.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_04.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>美国职业橄榄球运动员Terry Bradshaw专访</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="news_media_item news_media_item_small">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_05.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_05.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>微创<sup>®</sup>2017年半年净利润同比大增272.4%</p>
-                                </div>
-                            </a>
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_06.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_06.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>走出大山看世界 - 微创希望小学活动侧记</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="news_media_box clear">
-                        <div class="news_media_item news_media_item_big">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_07.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_07.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>上海生物医药创新突破</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="news_media_item news_media_item_small">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_08.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_08.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>“中国心”或将年底临床运用</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                           <?php     
+                           $i = 1;
+                       }
+
+                     }
+                  
+                    
+                    ?>
+                
+                     
+                  
+
+                    <?php } ?>
+                    
+                    
                 </div>
                 <div class="news_video_item">
-                    <div class="news_media_box clear">
-                        <div class="news_media_item news_media_item_big">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_01.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_01.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>秒针中的生命 - 微创20周年品牌宣传片</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="news_media_item news_media_item_small">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_02.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_02.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>企业宣传片</p>
-                                </div>
-                            </a>
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_03.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_03.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>创新的基因 - 常兆华博士专访</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="news_media_box clear">
-                        <div class="news_media_item news_media_item_big">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_04.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_04.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>美国职业橄榄球运动员Terry Bradshaw专访</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="news_media_item news_media_item_small">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_05.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_05.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>微创<sup>®</sup>2017年半年净利润同比大增272.4%</p>
-                                </div>
-                            </a>
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_06.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_06.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>走出大山看世界 - 微创希望小学活动侧记</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="news_media_box clear">
-                        <div class="news_media_item news_media_item_big">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_07.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_07.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>上海生物医药创新突破</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="news_media_item news_media_item_small">
-                            <a class="wow fadeInUp">
-                                <div class="img img_pc">
-                                    <img src="images/news_video_08.jpg" alt=""/>
-                                </div>
-                                <div class="img img_mb">
-                                    <img src="images/news_video_08.jpg" alt=""/>
-                                </div>
-                                <div class="play_btn" data-video-src="">
-                                    <img src="images/play.png"/>
-                                </div>
-                                <div class="txt">
-                                    <p>“中国心”或将年底临床运用</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                <?php for ($a = 0; $a < count($data1); ++$a) { 
+                   
+                    
+                   if ($j == 1)
+                   {
+                      ?>
+<div class="news_media_box clear">       
+                      <div class="news_media_item news_media_item_big">
+                          <a class="wow fadeInUp">
+                              <div class="img img_pc">
+                                  <img src="<?php echo $data1[$a]['thumbnail'] ?>" alt=""/>
+                              </div>
+                              <div class="img img_mb">
+                                  <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt=""/>
+                              </div>
+                              <div class="play_btn" data-video-src="111">
+                                  <img src="images/play.png"/>
+                              </div>
+                              <div class="txt">
+                                  <p><?php echo $data1[$a]['title'] ?></p>
+                              </div>
+                          </a>
+                      </div>
+                       
+                       <?php   
+                        if(($a+1)==count($data1)){ ?>
+                          
+                          </div>
+                         <?php 
+                         }        
+                       $j++;
+                   }else{
+                    
+                      if($j == 2)
+                      {
+                         ?>
+                           <div class="news_media_item news_media_item_small">
+                         <a class="wow fadeInUp">
+                              <div class="img img_pc">
+                                  <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt="<?php echo $data1[$a]['title'] ?>"/>
+                              </div>
+                          
+                              <div class="play_btn" data-video-src="">
+                                  <img src="images/play.png"/>
+                              </div>
+                              <div class="txt">
+                                  <p><?php echo $data1[$a]['title'] ?></p>
+                              </div>
+                          </a>
+                          
+
+                          <?php 
+                          if(($a+1)==count($data1)){ ?>
+                           </div>
+                           </div>
+                          <?php 
+                          }    
+                          $j++;
+                      }
+                     elseif ($j == 3)
+                     {
+                         ?>
+                          <a class="wow fadeInUp">
+                              <div class="img img_pc">
+                                  <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt="<?php echo $data1[$a]['title'] ?>"/>
+                              </div>
+                             
+                              <div class="play_btn" data-video-src="">
+                                  <img src="images/play.png"/>
+                              </div>
+                              <div class="txt">
+                                  <p><?php echo $data1[$a]['title'] ?></p>
+                              </div>
+                          </a>
+                          </div>
+                      </div>
+                         <?php     
+                         $j = 1;
+                     }
+
+                   }
+                
+                  
+                  ?>
+              
+                   
+                
+
+                  <?php } ?>
+                    
                 </div>
             </div>
         </div>

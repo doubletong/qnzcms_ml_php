@@ -201,6 +201,10 @@ $tree = buildTree($categories);
                                             <label for="source">来源</label>
                                             <input type="text" class="form-control" id="source" name="source"  value="<?php echo $data['source']; ?>" placeholder="">                         
                                         </div>
+                                        <div class="form-group">                          
+                                            <label for="source">来源网址</label>
+                                            <input type="text" class="form-control" id="source_url" name="source_url" value="<?php echo $data['source_url']; ?>">                         
+                                        </div>
                                     <?php } ?>
 
                                     <div class="form-group">

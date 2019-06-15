@@ -72,16 +72,12 @@ if (isset($_GET['id'])) {
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="title">视频（MP4）</label>
-                                        <div class="input-group">
-                                            <input id="videoUrl" name="videoUrl" class="form-control" value="<?php echo $data['video_url']; ?>" aria-describedby="setVideoUrl">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="setVideoUrl" type="button">浏览…</button>
-                                            </div>
-                                        </div>
-
+                                        <label for="title">优酷视频ID</label>
+                                       
+                                        <input id="videoUrl" name="videoUrl" class="form-control" value="<?php echo $data['video_url']; ?>">
+                                          
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="title">视频（ogv）</label>
                                         <div class="input-group">
                                             <input id="ogvUrl" name="ogvUrl" class="form-control" value="<?php echo $data['ogv']; ?>" aria-describedby="setOgvUrl">
@@ -100,7 +96,7 @@ if (isset($_GET['id'])) {
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group">
                                         <label for="importance">排序</label>
@@ -145,8 +141,19 @@ if (isset($_GET['id'])) {
                                                 <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x280?text=580X632像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 缩略图...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 大图...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail']; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img ID="iLogo2" src="<?php echo empty($data['thumbnail2']) ? "holder.js/240x160?text=580X304像素" : $data['thumbnail2']; ?>" class="img-fluid" />                                         
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 小图...</button>
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" value="<?php echo $data['thumbnail2']; ?>"/>
                                             </div>
                                         </div>
                                     </div>
@@ -196,6 +203,10 @@ if (isset($_GET['id'])) {
             $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
+        function SetThumbnail2(fileUrl) {
+            $('#thumbnail2').val(fileUrl);
+            $('#iLogo2').attr('src', fileUrl);
+        }
 
         function SetVideoUrl(fileUrl) {
             $('#videoUrl').val(fileUrl);
@@ -216,6 +227,11 @@ if (isset($_GET['id'])) {
 
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
+                singleEelFinder.open();
+            });
+
+            $("#btnBrowser2").on("click", function() {
+                singleEelFinder.selectActionFunction = SetThumbnail2;
                 singleEelFinder.open();
             });
 

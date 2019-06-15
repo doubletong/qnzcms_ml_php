@@ -107,7 +107,7 @@ if (isset($_GET['cid'])) {
 
                         <?php foreach ($model as $article) { ?>
 
-                            <a href="/disease/detail-<?php echo $article['id']; ?>" class="item">
+                            <a href="/disease-detail-<?php echo $article['id']; ?>" class="item">
                                 <div class="container">
                                     <div class="disease">
                                         <div class="row">

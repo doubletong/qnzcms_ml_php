@@ -46,6 +46,13 @@ class Article{
         return $query->fetchAll();
     }
 
+    public function get_all_years($did){
+        $query = db::getInstance()->prepare("SELECT  DISTINCT DATE_FORMAT(FROM_UNIXTIME(`pubdate`), '%Y') as year FROM wp_articles WHERE active=1 AND dictionary_id = $did ORDER BY year DESC");
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
     // public function fetch_category($categoryId){
     //     $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE categoryId = :categoryId ORDER BY added_date DESC");
     //     $query->bindValue(":categoryId",$categoryId,PDO::PARAM_INT);
@@ -99,5 +106,14 @@ class Article{
         $query->execute();
 
         return $query->fetchAll();
+    }
+
+    
+    public function get_category_byid($id){
+        $query = db::getInstance()->prepare("SELECT * FROM article_categories WHERE id = :id;");
+        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->fetch();
     }
 }

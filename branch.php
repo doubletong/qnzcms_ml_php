@@ -1,17 +1,17 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/distributor.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("biologic");
+$branchClass = new Distributor();
+$branchs = $branchClass->fetch_all();
 
 ?>
 <!doctype html>
 <html class="no-js" lang="zh-CN">
 
 <head>
-    <title><?php echo "分子公司信息-".SITENAME; ?></title>    
+    <title><?php echo "分子公司信息-关于我们-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
 
 </head>
@@ -35,116 +35,19 @@ $data = $pageClass->fetch_data("biologic");
 <!--main-->
 <div class="main about_branch">
     <ul class="clear">
+        <?php foreach($branchs as $branch){ ?>
         <li class="wow fadeInUp">
             <div class="img">
-                <img src="images/about_branch_01.jpg" alt=""/>
+                <img src="<?php echo $branch['image_url']; ?>" alt="<?php echo $branch['name']; ?>"/>
             </div>
             <div class="txt">
-                <span><img src="images/about_branch_logo_01.png" alt=""/></span>
-                <p>MicroPort Orthopedics Inc.</p>
-                <a href="/branch/detail-1">了解更多</a>
+                <span><img src="<?php echo $branch['thumbnail']; ?>" alt=""/></span>
+                <p><?php echo $branch['name']; ?></p>
+                <a href="/branch-detail-<?php echo $branch['id']; ?>">了解更多</a>
             </div>
         </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_02.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_02.png" alt=""/></span>
-                <p>苏州微创骨科学（集团）有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_03.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_03.png" alt=""/></span>
-                <p>MicroPort CRM</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_04.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_04.png" alt=""/></span>
-                <p>上海微创心脉医疗科技股份有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_05.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_05.png" alt=""/></span>
-                <p>上海微创电生理医疗科技股份有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_06.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_06.png" alt=""/></span>
-                <p>微创神通医疗科技（上海）有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_07.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_07.png" alt=""/></span>
-                <p>上海微创心通医疗科技有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_08.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_08.png" alt=""/></span>
-                <p>上海微创生命科技有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_09.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_09.png" alt=""/></span>
-                <p>东莞科威医疗器械有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_10.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_10.png" alt=""/></span>
-                <p>上海微创龙脉医疗器材有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
-        <li class="wow fadeInUp">
-            <div class="img">
-                <img src="images/about_branch_11.jpg" alt=""/>
-            </div>
-            <div class="txt">
-                <span><img src="images/about_branch_logo_11.png" alt=""/></span>
-                <p>创领心律管理医疗器械（上海）有限公司</p>
-                <a href="/branch/detail-1">了解更多</a>
-            </div>
-        </li>
+        <?php } ?>
+        
         <li class="last wow fadeInUp">
             <p>更多子公司<br/>敬请期待</p>
         </li>

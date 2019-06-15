@@ -2,21 +2,20 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
-require_once('data/article_category.php');
+require_once('data/product_category.php');
 
-$cateModel = new ArticleCategory();
+$cateModel = new ProductCategory();
 
-$did = isset($_GET['did']) ? $_GET['did'] : "";
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = $cateModel->fetch_data($id);
 } else {
-    header('Location: article_categories.php?did=' . $did);
+    header('Location: product_categories.php');
     exit;
 }
 
-$categories = $cateModel->fetch_all($did);
+$categories = $cateModel->get_all();
 function buildTree(array $elements, $parentId = 0) {
     $branch = array();
 
@@ -113,11 +112,9 @@ $tree = buildTree($categories);
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <?php if($did=="6"){ ?>
-                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=580X400像素":$data['thumbnail'];?>" class="img-fluid" />
-                                                <?php }else{ ?>
-                                                    <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/100x100?text=45X45像素":$data['thumbnail'];?>" class="img-fluid" />
-                                                <?php } ?>
+                                            
+                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=1920x550/960X374像素":$data['thumbnail'];?>" class="img-fluid" />
+                                             
                                            
                                             </div>
                                             <div class="card-footer">
@@ -159,18 +156,10 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-            if ("1" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
-            if ("2" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
-            if ("3" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
-            if("6"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-        }
+          
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
+          
+         
 
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
@@ -228,7 +217,7 @@ $tree = buildTree($categories);
                     });
 
                     $.ajax({
-                        url: 'article_category_post.php',
+                        url: 'product_category_post.php',
                         type: 'POST',
                         data: values,
                         success: function(res) {

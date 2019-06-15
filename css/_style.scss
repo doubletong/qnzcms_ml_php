@@ -20,7 +20,6 @@
     .fr{float:right}
     .zz{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;opacity:.5;filter:alpha(opacity=50);z-index: 8}
 }
-
 .pagination { text-align: center; padding: 1rem 0; font-size: 0.875rem; color: #999; }
 @media (min-width: 992px) {
     .pagination { padding: 2rem 0; }
@@ -331,7 +330,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .product_detail_literature li:hover p{color:#FFF}
 .product_detail_video{padding-bottom: 5rem;}
 .product_detail_video_wrap{position:relative}
-.product_detail_video_wrap video{background:#000;}
+.product_detail_video_wrap video{background:#000;width:100%}
 .product_detail_video_wrap .play_btn{position:absolute;top:50%;left:50%;width:6.875rem;height:6.875rem;margin:-3.4375rem 0 0 -3.4375rem;z-index: 1}
 .product_detail_case{padding-bottom: 5rem;}
 .product_detail_case_pagination{margin-top: 2.5rem;}
@@ -498,26 +497,227 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 }
 @media screen and (max-width: 1200px){
     .inside_banner{height:400px;}
+    .about_branch li .txt p{font-size: 1.5rem;margin-bottom: 2rem;}
+    .about_branch li .txt a{font-size: 1rem;}
+    .about_course_nav_controls>div.swiper-button-next{right:-10px;}
+    .about_course_nav_controls>div.swiper-button-prev{left:-10px;}
+    .about_duty_item_title .txt h3, .about_duty_item_list li .txt h3{font-size: 1.5rem;margin-bottom: 1rem;}
+    .about_duty_item_list li .txt p{font-size: 14px;margin:0 auto 1.5rem;max-width: 90%}
+    .about_duty_item_list li .txt a{font-size: 14px;line-height: 36px;}
+    .about_team_b .tab_nav li{font-size: 16px;}
 }
 @media screen and (max-width: 992px){
     .inside_banner{height:280px;}
     .about_course_list .swiper-slide h3, .inside_banner_txt h1,.about_other_list li .txt h2{font-size: 2rem;}
     .about_career_b li .txt h3, .about_career h3, .about_course_title h2, .about_duty h2, .about_team h2, .about_title, .current_year, .inside_banner_txt h2,.about_other_list li .txt h3{font-size: 1.75rem;}
-
+    .about_branch li .txt p{font-size: 1.25rem;margin-bottom: 1rem;}
+    .about_branch li .txt a{font-size: 14px;line-height: 36px;}
+    .about_branch li .txt span{height:36px;line-height: 36px;margin-bottom: 1rem;}
+    .about_course_nav .swiper-slide .img{width:18rem;height:18rem;}
+    .about_course_nav .swiper-container{padding:6rem 0 4rem;}
+    .about_team_b .tab_nav li{font-size: 14px;}
+    .about_team_t li p{font-size:2rem}
+    .news_item .txt h4, .news_magazine_item_wrap li .txt>p{font-size: 20px;}
+    .news_item .txt p,.news_item .txt span{font-size: 14px;}
+    .tab_nav li{font-size: 16px;}
+    .news_magazine_search{margin-top: 0}
+    .recruit_post_t li h4{font-size: 18px;}
 }
 @media screen and (max-width: 768px){
-    .inside_banner{height:150px;}
-    .wrap{max-width: 540px;}
-    .about_course_list .swiper-slide h3, .inside_banner_txt h1,.about_other_list li .txt h2{font-size: 1.5rem;letter-spacing: 0}
+    .inside_banner{height:200px;}
+    .wrap{max-width: 540px;width:94%}
+    .about_course_list .swiper-slide h3, .inside_banner_txt h1{font-size: 20px;letter-spacing: 0}
+    .about_other_list li .txt h2{font-size: 24px;}
     .inside_banner_txt{top:55%}
     .inside_banner_txt h1{line-height: 1.8;padding:0;}
-    .inside_banner_txt p{font-size: 0.75rem;line-height: 1}
-    .about_career_b li .txt h3, .about_career h3, .about_course_title h2, .about_duty h2, .about_team h2, .about_title, .current_year, .inside_banner_txt h2,.about_other_list li .txt h3{font-size: 1.3rem;}
-    .about_desc p{font-size: 0.75rem;}
-    .about_item{height:30rem;}
-    .about_item_01{height:24rem;}
-    .about_title{padding-bottom: 0.5rem;}
-    .about_other_list li .img{float:none;width:100%;height:20rem;}
+    .inside_banner_txt p{font-size: 12px;line-height: 1.3}
+    .about_career_b li .txt h3, .about_career h3, .about_course_title h2, .about_duty h2, .about_team h2, .about_title, .current_year, .inside_banner_txt h2,.about_other_list li .txt h3{font-size: 20px;}
+    .about_desc{text-align: justify}
+    .about_other_list li .txt.fl{text-align: left}
+    .about_other_list li .txt .line,.about_other_list li .txt.fl .line{height:50px;margin:15px 0 0 3px;}
+    .about_desc p{font-size: 14px;line-height: 1.715}
+    .about_item{height:auto;min-height: inherit;padding:70px 0 80px;position:static;}
+    .about_item .wrap{position:static;top:auto;left:auto;-webkit-transform: translate(0,0);transform: translate(0,0)}
+    .about_item_01{height:26rem;min-height: inherit}
+    .about_item_02{height:auto;}
+    .about_item_02 .about_img{margin:2em 0}
+    .about_title{padding-bottom: 1.5rem;}
+    .about_other_list li .img{float:none;width:100%;height:17rem;}
     .about_other_list li .txt{width:100%;float:none;padding:2rem 15px;}
-    .about_other_list li .txt p{font-size: 0.75rem}
+    .about_other_list li .txt p{font-size: 14px}
+    .about_branch li .txt p{font-size: 14px;margin-bottom:20px;}
+    .about_branch li.last p{font-size: 14px;}
+    .about_branch li .txt a{font-size: 12px;line-height: 30px;}
+    .about_branch li .txt span{height:30px;line-height: 30px;margin-bottom: 15px;}
+    .inside_banner_logo{height:3.5rem;line-height: 3.5rem;margin-bottom: 0}
+    .inside_banner_logo img{max-height: 50%}
+    .about_branch_banner .inside_banner_txt{bottom:8%}
+    .about_branch_detail_desc p{font-size: 14px;}
+    .about{padding:2rem 0}
+    a.about_branch_detail_link{font-size: 14px;}
+    .about_branch_detail_contact h3, .about_career h4, .product_item_txt h2{font-size: 20px;}
+    .about_branch_detail_contact dd{font-size: 14px;background-size:30px;padding-left: 45px;background-position:left 10px;}
+    .about_course_nav .swiper-slide .img{width:12rem;height:12rem;}
+    .about_course_nav{margin-top: 0}
+    .about_course_nav .swiper-container{padding:5.5rem 0 3.4rem;}
+    .about_course_list .swiper-slide h3:after{border-top-width:8px;border-left-width:8px;border-right-width:8px;margin-left: -8px;}
+    .about_course_title p{font-size: 14px;}
+    .about_course_nav .swiper-slide p{font-size: 14px;}
+    .about_course_nav .swiper-slide .dot{margin:0 auto 7px;}
+    .about_course_nav .swiper-slide{margin:6px 0 0 0}
+    .about_course_list .swiper-slide p{font-size: 14px;text-align: justify}
+    .about_course_list{max-width: 90%}
+    .about_duty h2{padding-bottom: 2rem;}
+    .about_duty_title p,.about_duty_item_title .txt h3 span,.about_duty_item_title .txt p{font-size: 14px;}
+    .about_duty_nav li h3 span{font-size: 12px;}
+    .about_duty_nav li .icon{height:3.5rem;}
+    .about_duty_nav li h3, .inside_banner_txt .source, .inside_banner_txt .date{font-size: 14px;}
+    .about_duty_item_title .txt h3, .about_duty_item_list li .txt h3{font-size: 18px;line-height: 30px;}
+    .about_duty_item_title .txt h3 span{line-height: 30px;}
+    .about_duty_item_title{height:36rem;}
+    .about_duty_item_list li .txt p,.about_duty_detail p{font-size: 14px;}
+    .about_duty_item_title .txt h3, .about_duty_item_list li .txt h3{margin-bottom:10px;}
+    .about_duty_item_list li .txt p{max-width: 100%;margin:0 auto 10px;}
+    .about_duty_item_list li .txt a{font-size: 14px;line-height: 30px;}
+    .about_duty_good{padding:3rem 0}
+    .about_duty_good .wrap img:first-child{display:none}
+    .about_duty_good .wrap img:last-child{display:block;}
+    .inside_banner_txt .source{margin-bottom: 5px;line-height: 30px;}
+    .about_honor{margin-top: 0}
+    .about_course_nav_controls>div{display:none;}
+    .about_honor .about_course_nav .swiper-slide .dot{margin:20px auto 0}
+    .about_honor .about_course_nav:before{top:30px;}
+    .about_honor .about_course_nav .swiper-slide p{font-size: 14px;}
+    .about_honor .about_course_nav .swiper-slide-active p{-webkit-transform: scale(1.5);transform: scale(1.5)}
+    .about_honor .about_course_list .swiper-slide p{font-size: 14px;}
+    .about_honor .about_course_list{padding-top: 0}
+    .about_team_t{padding-bottom: 5rem;}
+    .about_team_t ul{padding-top: 0}
+    .about_team_t li .icon{height:5rem;line-height: 5rem;margin-bottom: 1rem;}
+    .about_team_t li .icon img{max-width: 70%}
+    .about_team_t li p{font-size: 20px;}
+    .about_team_t li i,.about_team .wrap>p{font-size: 14px;line-height: 1.715}
+    .about_team h2{line-height: 4rem;}
+    .about_team_c_wrap{margin-top: 3rem;}
+    .about_team_c{padding-bottom: 5rem;}
+    .about_team_c_wrap img:first-child{display:none}
+    .about_team_c_wrap img:last-child{display:block;}
+    .about_team_b .tab_nav li{width:33.3333%;border-radius: 0}
+    .tab_nav ul{border-radius: 0}
+    .about_team_b .tab_nav{margin-bottom: 3rem;  }
+    .about_team_b_item li, .about_team_detail_list .swiper-slide{width:49.25%;height:16rem;}
+    .about_team_b_item li:nth-child(3n){margin-right: 1.5%}
+    .about_team_b_item li:nth-child(2n){margin-right: 0}
+    .about_team_b_item li .txt h4, .about_team_detail_list .swiper-slide .txt h4{font-size: 16px;}
+    .about_team_b_item li .txt p, .about_team_detail_list .swiper-slide .txt p,.about_team_b_item li .txt a, .about_team_detail_list .swiper-slide .txt a{font-size: 14px}
+    .about_team_detail_desc p{font-size: 14px;}
+    .about_team_detail_other>h3{font-size: 18px;margin-bottom: 1rem;}
+    .about_team_detail_desc{padding:1rem 0 1.5rem;}
+    .about_team_b_item li .txt, .about_team_detail_list .swiper-slide .txt{padding-left: 0.5rem;max-width: 80%}
+    .about_team_detail_controls>div{width:2rem;height:2rem;margin-top:-1rem;background-size:30%}
+    .about_team_detail_controls>div.swiper-button-next,.about_team_detail_controls>div.swiper-button-next:hover{right:0}
+    .about_team_detail_controls>div.swiper-button-prev,.about_team_detail_controls>div.swiper-button-prev:hover{left:0}
+    .news_item .txt h4, .news_magazine_item_wrap li .txt>p{font-size: 14px;}
+    .news_item .txt p,.news_item .txt span{font-size: 14px;}
+    .news_item .img{width:15rem}
+    .news_item .txt{padding-left: 16rem;}
+    .current_year{width:4.5em;}
+    .years_list li{font-size: 14px;line-height: 3}
+    .years_list{width:10rem;max-height: 15.5rem;}
+    .inside_banner_txt .date{margin-bottom: 0}
+    .news_detail_main p, .news_detail div{font-size: 14px;}
+    .news_detail{padding: 0}
+    .news_detail_link a{font-size: 14px;margin:0 auto 15px;}
+    .news .tab_nav ul{border-radius: 3.75rem;}
+    .news_media_item a .txt p{font-size: 14px;}
+    .news_media_item a .txt{padding:0 15px 15px;}
+    .news_media_item a .txt span{font-size: 14px;margin-bottom: 6px;}
+    .news_item .txt h4 i{font-size: 14px;}
+    .inside_banner_txt .source_link{font-size: 14px;margin-top: 0}
+    .product_detail_banner .inside_banner_logo{margin-bottom: 0;height:40px;line-height: 38px;}
+    .product_detail_banner .inside_banner_txt h2{font-size: 16px;max-width: 50%}
+    .product_detail{padding-top: 20px;}
+    .product_detail_title{margin-bottom: 20px;}
+    .product_detail_title h3{font-size: 18px;}
+    .product_detail_item p, .product_detail_item dd{font-size: 14px;}
+    .product_detail_item dd{background-size:12px;background-positon:left 6px;padding-left: 20px;}
+    .product_detail td{font-size: 10px;}
+    .about_college_detail p{font-size: 14px;}
+    .recruit_post_t li h4{font-size: 18px;}
+    .recruit_pay_t .wrap>p,.recruit_post_t li p,.recruit_pay_b li p{font-size: 14px;line-height: 1.715}
+    .recruit_post_t li p{max-width: 80%}
+    .about_career_b li .txt a{font-size: 14px;line-height: 30px;}
+}
+@media screen and (max-width: 700px){
+    .about_branch li{width:100%}
+    .about_course_nav .swiper-slide .img{width:10rem;height:10rem;}
+    .about_course_list .swiper-slide h3{margin-bottom: 1rem;}
+    .about_course_nav .swiper-container{padding:4.5rem 0 2.4rem;}
+    .about_course_title{margin-bottom: 2rem;}
+    .about_course_nav .swiper-slide .dot{width:10px;height:10px;}
+    .about_duty_nav li .icon{height:2rem;}
+    .about_duty_nav li h3, .inside_banner_txt .source, .inside_banner_txt .date{font-size: 14px;}
+    .about_duty_nav li h3{max-width: 90%;margin:0 auto;}
+    .about_duty_nav li .icon{margin-bottom: 10px;}
+    .about_duty_nav li{padding:1rem 0 1rem;height:10rem;}
+    .about_duty_nav li i{margin:10px 0 0 0}
+    .about_duty_item_list li .img, .about_duty_item_list li.odd .txt,.about_duty_item_list li .txt, .about_duty_item_list li.odd .img{width:100%;float:none;}
+    .about_duty_item_list li .txt{position:static;-webkit-transform:translateY(0);transform:translateY(0);padding:8% 5%}
+    .about_honor .about_course_nav .swiper-slide p{font-size: 14px;}
+    .about_honor .about_course_nav .swiper-slide-active p{-webkit-transform: scale(1.2);transform: scale(1.2);line-height: 1.5}
+    .about_honor .about_course_nav{padding:0 10px;}
+    .about_honor .about_course_nav .swiper-slide .dot:after{width:16px;height:16px;margin:-8px 0 0 -8px;}
+    .about_honor .about_course_nav .swiper-slide p{margin-top: 10px;}
+    .about_honor .about_course_nav .swiper-slide p:after{bottom:30px;}
+    .about_honor .about_course_list .swiper-slide p{background-size:16px;padding-left: 20px;}
+    .about_team_b .tab_nav li{font-size: 14px;width:50%}
+    .news_item .txt h4, .news_magazine_item_wrap li .txt>p{font-size: 14px;letter-spacing: 0}
+    .news_item .img{width:100%;float:none;}
+    .news_item .txt{padding-left: 0;padding-top: 20px;}
+    .news_item a{padding:30px 0}
+    .tab_nav{margin-top: 0}
+    .tab_nav li{font-size: 14px;padding:0 15px;}
+    .news_magazine_search{height:30px;font-size: 14px;}
+    .news_magazine_search input{font-size: 14px;}
+    .news_magazine_item{margin-top: 20px;}
+    .news_magazine_item_wrap li,.news_magazine_item_wrap li:nth-child(3n){width:48%;margin:0 1% 2%}
+    .news_magazine_item_wrap li .txt{opacity:1;padding:10px}
+    .news_magazine_item_wrap li .img:after{opacity:0.8}
+    .news_magazine_item_wrap li .news_magazine_title{margin-bottom: 10px;}
+    .news_magazine_item_wrap li .news_magazine_title h4{font-size: 16px;line-height: 1.3;padding:0 0 0.5em;}
+    .news_magazine_item_wrap li .news_magazine_title span,.news_magazine_item_wrap li .news_magazine_btn span{font-size: 14px;}
+    .news_magazine_item_wrap li .news_magazine_btn{bottom:10px;}
+    .news_magazine_item_wrap li .news_magazine_btn a{width:80%;font-size: 12px;margin:0 auto 6px;line-height: 2.5}
+    .news_media_item{width:100%;float:none;margin-bottom: 10px;}
+    .news_media_item_big a .img_mb{display:block;}
+    .news_media_item_big a .img_pc{display:none;}
+    .news_media_box,.news_media_item_small a:first-child{margin-bottom: 10px;}
+    .news_media{margin-top: 0}
+    .news_video{margin-top: 30px;}
+    .news_video .play_btn,.news_video .news_media_item_small .play_btn,.product_detail_video_wrap .play_btn{width:40px;height:40px;margin:-20px 0 0 -20px}
+    .product_item_txt{width:100%;padding-top: 30px;}
+    .product_item_txt li a{font-size: 14px;}
+    .product_item_bg{height:40%;width:100%;top:60%;right:0}
+    .product_detail_video,.product_detail_case{padding-bottom: 30px}
+    .product_detail_case_pagination{margin-top: 15px;}
+    .product_detail_case_pagination span{font-size: 14px;margin-left: 6px;width:24px;line-height: 24px;height:24px;}
+    .product_detail_case_wrap .swiper-slide{padding:10px;}
+    .product_detail_case_wrap .swiper-slide p{font-size: 14px;}
+    .product_detail_case_wrap .swiper-slide a{font-size: 14x;}
+    .product_detail_literature li{float:none;width:100%;margin-right: 0;margin-bottom: 15px;}
+    .product_detail_literature li p{font-size: 14px;}
+    .recruit_post_t{padding:40px 0 40px;}
+    .recruit_pay_t .wrap>h3,.recruit_pay_t .wrap>p{margin-bottom: 20px;}
+    .recruit_pay_t ul{margin-top: 30px}
+    .recruit_pay_t li{width:50%;margin-bottom: 20px;}
+    .recruit_pay_t li h4{line-height: 2.5}
+    .recruit_pay_t li .icon img{width:80px;max-width: 40%}
+    .recruit_pay_b li{width:48%;margin:0 1% 2%}
+    .recruit_pay_b .wrap>h3{margin-bottom: 30px}
+    .recruit_post_t h3{margin-bottom: 50px}
+    .recruit_post_t li h4{line-height: 2.5}
+    .recruit_post_t li .icon:after{width:18px;right:-9px;}
+    .recruit_post_t li .icon img{max-width: 60%}
+    .about_career_b li{width:100%}
+    .about_career_b li .txt h3{margin-bottom: 30px;}
 }

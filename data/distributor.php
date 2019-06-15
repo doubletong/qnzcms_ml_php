@@ -1,7 +1,7 @@
 <?php
 class Distributor{
     public function fetch_all(){
-        $query =  db::getInstance()->prepare("SELECT * FROM wp_distributors WHERE active = 1 ORDER BY importance ASC");
+        $query =  db::getInstance()->prepare("SELECT * FROM distributors WHERE active = 1 ORDER BY importance ASC");
         $query->execute();
         return $query->fetchAll();
     }
@@ -14,7 +14,7 @@ class Distributor{
     // }
 
     public function fetch_data($id){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_distributors WHERE id = ?");
+        $query = db::getInstance()->prepare("SELECT * FROM distributors WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
 

@@ -74,7 +74,7 @@ if (isset($_GET['cid'])) {
                                     </div>
                                     <div class="person"><span><?php echo $article['author']; ?></span> | <span><?php echo $article['source']; ?></span></div>
                                     <h3><?php echo $article['title']; ?></h3>
-                                    <a href="/story/detail-<?php echo $article['id']; ?>" class="view">查看故事</a>
+                                    <a href="/story-detail-<?php echo $article['id']; ?>" class="view">查看故事</a>
                                 </div>
                             </div>
                         </div>

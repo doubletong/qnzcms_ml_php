@@ -13,8 +13,9 @@ if (isset($_POST['title'], $_POST['content'])) {
     $thumbnail = $_POST['thumbnail'];
     $imageUrl = isset($_POST['imageUrl']) ? $_POST['imageUrl']:"";
     $background_image =  isset($_POST['background_image']) ? $_POST['background_image']:"";  
-    $author = $_POST['author'];
-    $source = $_POST['source'];
+    $author = isset($_POST['author']) ? $_POST['author']:"";
+    $source = isset($_POST['source']) ? $_POST['source']:"";
+    $source_url = isset($_POST['source_url']) ? $_POST['source_url']:""; 
     $keywords = $_POST['keywords'];
     $description = $_POST['description'];
     $content = stripslashes($_POST['content']);
@@ -24,10 +25,10 @@ if (isset($_POST['title'], $_POST['content'])) {
 
     //   echo $content.$productId;
     if($articleId>0){
-        echo $articleClass->update_article($articleId, $title,$categoryId,$dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source, $keywords, $active, $description, $content,$summary,$pubdate);
+        echo $articleClass->update_article($articleId, $title,$categoryId,$dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active, $description, $content,$summary,$pubdate);
 
     }else{
-        echo $articleClass->insert_article($title,$categoryId, $dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source, $keywords, $active, $description, $content,$summary,$pubdate);
+        echo $articleClass->insert_article($title,$categoryId, $dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active, $description, $content,$summary,$pubdate);
     }
 
 }else{

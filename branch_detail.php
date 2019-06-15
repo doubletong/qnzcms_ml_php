@@ -1,10 +1,17 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/distributor.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("culture");
+$branchClass = new Distributor();
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];    
+    $data = $branchClass->fetch_data($id);   
+} else {
+    header('Location: /branch');
+    exit;
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +22,7 @@ $data = $pageClass->fetch_data("culture");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "上海微创心脉医疗科技股份有限公司-".SITENAME; ?></title>    
+    <title><?php echo  $data['name']."-子公司信息-关于我们-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -31,9 +38,9 @@ $data = $pageClass->fetch_data("culture");
     <div class="wrap clear">
         <div class="inside_banner_txt pos_center">
             <div class="inside_banner_logo wow fadeInLeft">
-                <img src="/images/about_branch_logo_04.png"/>
+                <img src="<?php echo $data['thumbnail'];?>"/>
             </div>
-            <h2 class="wow fadeInLeft">上海微创心脉医疗科技股份有限公司</h2>
+            <h2 class="wow fadeInLeft"><?php echo $data['name'];?></h2>
         </div>
     </div>
 </div>
@@ -43,25 +50,18 @@ $data = $pageClass->fetch_data("culture");
 <div class="main about">
     <div class="wrap">
         <div class="about_branch_detail_desc wow fadeInUp">
-            <p>上海微创心脉医疗科技股份有限公司（Shanghai MicroPort Endovascular MedTech Co., Ltd.）是微创医疗科学有限公司（HK:853）旗下的子公司之一（以下简称：心脉医疗™），公司成立于2012年，注册在中国上海国际医学园区时代医创园内，是上海市高新技术企业、上海市科技小巨人企业。</p>
+            <?php echo $data['intro'];?>
 
-            <p>心脉医疗™致力于介入医疗器械的研发、制造、销售和技术支持，主营产品为大动脉覆膜支架系统、术中支架系统、大球囊及外周血管支架等产品。公司产品广泛用于国内三甲医院，且出口至南美及东南亚等国家和地区。公司拥有专业化的研发团队，拥有及申请专利138项，已获得授权发明专利64项，实用新型专利17项，外观设计2项。</p>
-
-            <p>公司现有员工300多人，拥有多名包括博士、硕士在内的微创伤介入医疗器材产品开发与生产方面的专业人才，拥有一批服务年限在5年以上的骨干员工。</p>
-
-            <p>公司配备了精密、自动化程度高的加工设备及检测设备、现代化实验室等，拥有符合国家生产Ⅲ类植入产品标准的净化车间。</p>
-
-            <p>心脉医疗™秉承微创集团“一个属于患者和医生的品牌”理念，关注于每一位用户的切身感受，以向主动脉及外周血管疾病患者提供个性化的治疗方案和服务为愿景，通过持续创新为医生提供能挽救并重塑患者生命或改善其生活质量的最佳普惠医疗解决方案，从而为社会做出贡献。</p>
-            <a href="" class="about_branch_detail_link" target="_blank">查看公司官网</a>
+            <a href="<?php echo $data['homepage'];?>" class="about_branch_detail_link" target="_blank">查看公司官网</a>
         </div>
         <div class="about_branch_detail_contact wow fadeInUp">
             <h3>联系方式</h3>
             <dl>
-                <dd class="add">地址：上海市浦东新区康新公路3399弄1号楼（上海国际医学园区医创园）</dd>
-                <dd class="email">邮编：201318</dd>
-                <dd class="tel">电话：+ (86) (21) 38139300</dd>
-                <dd class="fax">传真：+ (86) (21) 33750026</dd>
-                <dd class="site">网址：www.endovastec.com</dd>
+                <dd class="add">地址：<?php echo $data['address'];?></dd>
+                <dd class="email">邮编：<?php echo $data['postcode'];?></dd>
+                <dd class="tel">电话：<?php echo $data['phone'];?></dd>
+                <dd class="fax">传真：<?php echo $data['fax'];?></dd>
+                <dd class="site">网址：<?php echo $data['homepage'];?></dd>
             </dl>
         </div>
     </div>

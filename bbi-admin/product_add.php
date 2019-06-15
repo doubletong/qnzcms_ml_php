@@ -4,6 +4,26 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('includes/output.php');
 require_once('data/product.php');
+require_once('data/product_category.php');
+$categoryClass = new ProductCategory();
+$categories = $categoryClass->get_all();
+
+function buildTree(array $elements, $parentId = 0)
+{
+    $branch = array();
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+        }
+    }
+    return $branch;
+}
+
+$tree = buildTree($categories);
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +31,7 @@ require_once('data/product.php');
 
 <head>
     <title>
-        <?php echo "添加产品_新闻资讯_后台管理_".SITENAME;?>
+        <?php echo "添加产品_产品_后台管理_".SITENAME;?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -44,64 +64,34 @@ require_once('data/product.php');
                                                     placeholder="">
                                             </div>
                                         </div>
+                                    
+                                
+                                       
                                         <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="product_no">型号</label>
-                                                <input type="text" class="form-control" id="product_no" name="product_no"
-                                                    placeholder="">
+                                        <div class="form-group">
+                                                <label for="categoryId">分类</label>                           
+                                            
+                                                <select class="form-control" id="category_id" name="category_id" placeholder="" >
+                                                    <option value="0">--请选择分类--</option>
+                                                    <?php foreach( $tree as $data)
+                                                            {
+                                                                ?>
+                                                                <optgroup label="<?php echo $data["title"]; ?>">
+                                                                    
+
+                                                            <?php if($data['children']){ 
+                                                                foreach( $data['children'] as $subModel){
+                                                                ?>
+                                                                    <option value="<?php echo $subModel["id"]; ?>"><?php echo $subModel["title"]; ?></option>
+
+                                                                <?php } 
+                                                            } ?>
+                                                            </optgroup>
+                                                    <?php } ?>
+                                                </select>                          
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="sub_title">英文名称</label>
-
-                                                <input type="text" class="form-control" id="sub_title" name="sub_title"
-                                                    placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="slogan">标语</label>
-
-                                                <input type="text" class="form-control" id="slogan" name="slogan"
-                                                    placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="price">价格</label>
-
-                                                <input type="text" class="form-control" id="price" name="price"
-                                                    placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="link">购买地址</label>
-
-                                                <input type="text" class="form-control" id="link" name="link"
-                                                    placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="imageUrl">
-                                                    背景图</label>
-                                                <div class="input-group">
-                                                    <input id="background" name="background" class="form-control"
-                                                        placeholder="大图" aria-describedby="setImageUrl">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" id="setImageUrl" type="button">浏览…</button>
-                                                    </div>
-                                                </div>
-                                                <small id="emailHelp" class="form-text text-muted">图片尺寸：500*500像素</small>
-
-                                            </div>
-                                        </div>
+                                    
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="importance">排序</label>
@@ -121,7 +111,7 @@ require_once('data/product.php');
                                         <script>
                                             var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
                                     CKEDITOR.replace( 'content', {
-                                      
+                                       height:400,
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder                                                   
                                     });
@@ -135,40 +125,7 @@ require_once('data/product.php');
                                         <textarea class="form-control" id="summary" name="summary" placeholder=""></textarea>
 
                                     </div>
-                                    <div class="row">
-
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="category">分类</label>
-
-                                                <input type="text" class="form-control" id="category" name="category"
-                                                    placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="brand">品牌</label>
-
-                                                <input type="text" class="form-control" id="brand" name="brand"
-                                                    placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-
-                                            <div class="form-group">
-                                                <label for="company">生产厂商</label>
-
-                                                <input type="text" class="form-control" id="company" name="company"
-                                                    placeholder="">
-
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
+                                
 
                                     <div class="form-group">
                                         <label for="description">SEO描述</label>
@@ -212,12 +169,24 @@ require_once('data/product.php');
                                     <div style="width:300px;text-align:center;">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="holder.js/250x250/text:250X250像素" class="img-responsive img-rounded" />
+                                                <img ID="iLogo" src="holder.js/250x80?text=210X69像素" class="img-fluid"  />
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i
-                                                        class="iconfont icon-image"></i> 缩略图...</button>
+                                                        class="iconfont icon-image"></i> 图标...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width:300px;text-align:center;">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img ID="image_url_show" src="holder.js/250x125?text=962X440像素" class="img-fluid"  />
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnImageUrl" class="btn btn-info btn-block"><i
+                                                        class="iconfont icon-image"></i> 大图...</button>
+                                                <input id="image_url" type="hidden" name="image_url" />
                                             </div>
                                         </div>
                                     </div>
@@ -253,20 +222,24 @@ require_once('data/product.php');
             $('#iLogo').attr('src', fileUrl);
         }
 
-        function SetBackground(fileUrl) {
-            $('#background').val(fileUrl);
+        function SetImageUrl(fileUrl) {
+            $('#image_url').val(fileUrl);
+            $('#image_url_show').attr('src', fileUrl);
         }
+
+
+      
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(2)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
 
             $("#btnBrowser").on("click", function () {
                 singleEelFinder.selectActionFunction = SetThumbnail;
                 singleEelFinder.open();
             });
 
-            $("#setImageUrl").on("click", function () {
-                singleEelFinder.selectActionFunction = SetBackground;
+            $("#btnImageUrl").on("click", function () {
+                singleEelFinder.selectActionFunction = SetImageUrl;
                 singleEelFinder.open();
             });
 
@@ -277,15 +250,9 @@ require_once('data/product.php');
                     title: {
                         required: true
                     },
-                    product_no: {
+                    category_Id: {
                         required: true
-                    },
-                    price: {
-                        number: true
-                    },
-                    link: {
-                        url: true
-                    },
+                    },           
                     importance: {
                         required: true,
                         digits: true
@@ -296,15 +263,10 @@ require_once('data/product.php');
                     title: {
                         required: "请输入主标题"
                     },
-                    product_no: {
-                        required: "请输入型号"
+                    category_Id: {
+                        required: "请选择分类"
                     },
-                    price: {
-                        number: "请输入数字格式"
-                    },
-                    link: {
-                        url: "请输入正确的网址格式"
-                    },
+               
                     importance: {
                         required: "请输入序号",
                         digits: "请输入有效的整数"

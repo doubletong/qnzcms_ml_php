@@ -39,10 +39,11 @@ class ArticleCategory{
     }
 
 //更新
-   public function update_category($id, $title,$thumbnail, $dictionary_id, $parent_id, $importance,$active) {
+   public function update_category($id, $title,$thumbnail,$thumbnail2, $dictionary_id, $parent_id, $importance,$active) {
 
         $sql = "UPDATE `article_categories` SET title= :title,
         thumbnail= :thumbnail,
+        thumbnail2= :thumbnail2,
            dictionary_id =:dictionary_id,         
            parent_id =:parent_id,         
            importance =:importance,     
@@ -53,6 +54,7 @@ class ArticleCategory{
 
         $query->bindValue(":title",$title);
         $query->bindValue(":thumbnail",$thumbnail);      
+        $query->bindValue(":thumbnail2",$thumbnail2);      
         $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);   
         $query->bindValue(":parent_id",$parent_id,PDO::PARAM_INT);   
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
@@ -69,17 +71,18 @@ class ArticleCategory{
     }
 
 
-    public function insert_category($title, $thumbnail, $dictionary_id,$parent_id, $importance,$active) {
+    public function insert_category($title, $thumbnail, $thumbnail2, $dictionary_id,$parent_id, $importance,$active) {
 
       
-        $sql="INSERT INTO `article_categories`(`title`, `thumbnail`, `dictionary_id`,   `parent_id`, `importance`, `active`,`added_date`) 
-        VALUES (:title,:thumbnail, :dictionary_id, :parent_id, :importance, :active,:added_date)";
+        $sql="INSERT INTO `article_categories`(`title`, `thumbnail`,`thumbnail2`, `dictionary_id`,   `parent_id`, `importance`, `active`,`added_date`) 
+        VALUES (:title,:thumbnail, :thumbnail2, :dictionary_id, :parent_id, :importance, :active,:added_date)";
 
        // $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
         $query->bindValue(":title",$title);
-        $query->bindValue(":thumbnail",$thumbnail);      
+        $query->bindValue(":thumbnail",$thumbnail);     
+        $query->bindValue(":thumbnail2",$thumbnail2);      
         $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);   
         $query->bindValue(":parent_id",$parent_id,PDO::PARAM_INT);   
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);

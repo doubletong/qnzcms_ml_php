@@ -30,7 +30,7 @@ class Video{
     }
 
 //更新产品
-    public function update_video($id, $title,$thumbnail, $videoUrl,$ogv,$webm,$dictionary_id, $content,$importance,$active,$recommend) {
+    public function update_video($id, $title,$thumbnail, $videoUrl,$thumbnail2,$webm,$dictionary_id, $content,$importance,$active,$recommend) {
 
         $sql = "update videos
              set
@@ -41,7 +41,7 @@ class Video{
              importance = :importance,
              thumbnail =:thumbnail,
              video_url= :videoUrl,
-             ogv = :ogv,
+             thumbnail2 = :thumbnail2,
              webm = :webm,
              active =:active
              where id =:id";
@@ -52,7 +52,7 @@ class Video{
      
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":videoUrl",$videoUrl);
-        $query->bindValue(":ogv",$ogv);
+        $query->bindValue(":thumbnail2",$thumbnail2);
         $query->bindValue(":webm",$webm);
         $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);
         $query->bindValue(":content",$content);
@@ -71,10 +71,10 @@ class Video{
     }
 
 
-    public function insert_video( $title,$thumbnail, $videoUrl,$ogv,$webm,$dictionary_id, $content,$importance,$active,$recommend) {
+    public function insert_video( $title,$thumbnail, $videoUrl,$thumbnail2,$webm,$dictionary_id, $content,$importance,$active,$recommend) {
 
-        $sql="INSERT INTO videos ( title,thumbnail,video_url,ogv,webm, dictionary_id,content,importance,active,recommend,added_by,added_date)
-                VALUES (:title,:thumbnail,:videoUrl,:ogv,:webm, :dictionary_id,:content,:importance,:active,:recommend,:added_by,:added_date)";
+        $sql="INSERT INTO videos ( title,thumbnail,video_url,thumbnail2,webm, dictionary_id,content,importance,active,recommend,added_by,added_date)
+                VALUES (:title,:thumbnail,:videoUrl,:thumbnail2,:webm, :dictionary_id,:content,:importance,:active,:recommend,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -83,7 +83,7 @@ class Video{
       
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":videoUrl",$videoUrl);
-        $query->bindValue(":ogv",$ogv);
+        $query->bindValue(":thumbnail2",$thumbnail2);
         $query->bindValue(":webm",$webm);
         $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);      
         $query->bindValue(":content",$content);

@@ -55,7 +55,7 @@ $articles = $articleClass->get_all_articles(5);
                                             <img src="<?php echo $data['thumbnail']; ?>" alt="<?php echo $data['title']; ?>">
                                         </div>
                                         <h3><?php echo $data['title']; ?></h3>
-                                        <a href="/creative/detail-<?php echo $data['id']; ?>" class="view">查看案例</a>
+                                        <a href="/creative-detail-<?php echo $data['id']; ?>" class="view">查看案例</a>
                                     </div>
                                 </div>
                             </div>

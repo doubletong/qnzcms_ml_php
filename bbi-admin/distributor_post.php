@@ -11,6 +11,7 @@ if (isset($_POST['name'], $_POST['importance'])) {
 
     $distributorId = $_POST['distributorId'];
     $thumbnail = $_POST['thumbnail'];
+    $image_url = $_POST['image_url'];
     $name = $_POST['name'];
     $postcode = $_POST['postcode'];
     $phone = $_POST['phone'];
@@ -25,9 +26,9 @@ if (isset($_POST['name'], $_POST['importance'])) {
   
     //   echo $content.$productId;
     if ($distributorId > 0) {
-        echo $distributorClass->update_distributor($distributorId,  $thumbnail, $name, $postcode, $homepage, $phone, $fax, $address, $active, $importance, $intro);
+        echo $distributorClass->update_distributor($distributorId,  $thumbnail,$image_url, $name, $postcode, $homepage, $phone, $fax, $address, $active, $importance, $intro);
     } else {
-        echo $distributorClass->insert_distributor($thumbnail, $name, $postcode, $homepage, $phone, $fax, $address, $active, $importance, $intro);
+        echo $distributorClass->insert_distributor($thumbnail,$image_url, $name, $postcode, $homepage, $phone, $fax, $address, $active, $importance, $intro);
     }
 } else {
     echo false;

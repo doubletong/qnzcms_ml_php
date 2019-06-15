@@ -1,10 +1,10 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-// require_once("data/team.php");
+require_once("data/team.php");
 
-// $teamClass = new Team();
-// $teams = $teamClass->fetch_category("核心团队");
+$teamClass = new Team();
+$teams = $teamClass->get_all_teams();
 
 ?>
 <!DOCTYPE html>
@@ -90,442 +90,119 @@ require_once("config/db.php");
                 </div>
                 <div class="about_team_b_list wow fadeInUp">
                     <ul class="clear about_team_b_item active">
+                        <?php foreach($teams as $team) {
+                            if($team['dictionary_id'] == 7){                            
+                            ?>
+                        
                         <li>
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $team['photo']; ?>" alt=""/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $team['name']; ?></h4>
+                                <p><?php echo $team['post']; ?></p>
+                                <a href="team-detail-<?php echo $team['id']; ?>">了解更多</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
+                        <?php }
+                        }
+                         ?>
+                        
                     </ul>
                     <ul class="clear about_team_b_item">
+                    <?php foreach($teams as $team) {
+                            if($team['dictionary_id'] == 8){                            
+                            ?>
+                        
                         <li>
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $team['photo']; ?>" alt=""/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $team['name']; ?></h4>
+                                <p><?php echo $team['post']; ?></p>
+                                <a href="team-detail-<?php echo $team['id']; ?>">了解更多</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
+                        <?php }
+                        }
+                         ?>
                     </ul>
                     <ul class="clear about_team_b_item">
+                    <?php foreach($teams as $team) {
+                            if($team['dictionary_id'] == 9){                            
+                            ?>
+                        
                         <li>
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $team['photo']; ?>" alt=""/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $team['name']; ?></h4>
+                                <p><?php echo $team['post']; ?></p>
+                                <a href="team-detail-<?php echo $team['id']; ?>">了解更多</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
+                        <?php }
+                        }
+                         ?>
                     </ul>
                     <ul class="clear about_team_b_item">
+                    <?php foreach($teams as $team) {
+                            if($team['dictionary_id'] == 10){                            
+                            ?>
+                        
                         <li>
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $team['photo']; ?>" alt=""/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $team['name']; ?></h4>
+                                <p><?php echo $team['post']; ?></p>
+                                <a href="team-detail-<?php echo $team['id']; ?>">了解更多</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
+                        <?php }
+                        }
+                         ?>
                     </ul>
                     <ul class="clear about_team_b_item">
+                    <?php foreach($teams as $team) {
+                            if($team['dictionary_id'] == 11){                            
+                            ?>
+                        
                         <li>
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $team['photo']; ?>" alt=""/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $team['name']; ?></h4>
+                                <p><?php echo $team['post']; ?></p>
+                                <a href="team-detail-<?php echo $team['id']; ?>">了解更多</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
+                        <?php }
+                        }
+                         ?>
                     </ul>
                     <ul class="clear about_team_b_item">
+                    <?php foreach($teams as $team) {
+                            if($team['dictionary_id'] == 12){                            
+                            ?>
+                        
                         <li>
                             <div class="img">
-                                <img src="images/about_team_01.jpg" alt=""/>
+                                <img src="<?php echo $team['photo']; ?>" alt=""/>
                             </div>
                             <div class="txt">
-                                <h4>常兆华博士</h4>
-                                <p>董事局主席、执行董事、首席执行官、
-                                    GMC主席</p>
-                                <a href="about_team_detail.html">了解更多</a>
+                                <h4><?php echo $team['name']; ?></h4>
+                                <p><?php echo $team['post']; ?></p>
+                                <a href="team-detail-<?php echo $team['id']; ?>">了解更多</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img">
-                                <img src="images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </li>
+                        <?php }
+                        }
+                         ?>
                     </ul>
                 </div>
             </div>

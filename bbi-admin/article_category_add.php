@@ -126,8 +126,20 @@ $tree = buildTree($categories);
                                                 <input id="thumbnail" type="hidden" name="thumbnail" />
                                             </div>
                                         </div>
-                                    </div>                                 
-                                
+                                    </div>     
+                                    <?php if($did=="16"){ ?>
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">                                          
+                                                <img ID="iLogo2" src="holder.js/240x160?text=580X304像素" class="img-fuild" />                                               
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" />
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <?php } ?>
                                 </div>
                             </div>
 
@@ -157,7 +169,10 @@ $tree = buildTree($categories);
             $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
-
+        function SetThumbnail2(fileUrl) {
+            $('#thumbnail2').val(fileUrl);
+            $('#iLogo2').attr('src', fileUrl);
+        }
 
 
         $(document).ready(function() {
@@ -176,13 +191,20 @@ $tree = buildTree($categories);
             $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
 
-        
+        if("16"==<?php echo $did; ?>){
+            $(".mainmenu>li.medialist").addClass("nav-open").find("ul>li.category a").addClass("active");
+        }
+
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
                 singleEelFinder.open();
 
             });
+            $("#btnBrowser2").on("click", function() {
+                singleEelFinder.selectActionFunction = SetThumbnail2;
+                singleEelFinder.open();
 
+            });
 
 
             $("#editform").validate({

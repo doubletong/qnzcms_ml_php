@@ -38,46 +38,35 @@ class Product{
     }
 
 //更新
-   public function update_product($id, $product_no, $title,$sub_title,$slogan,$price,$link,$importance,$thumbnail,$background,$keywords,$recommend,$active,$summary, $description, $content, $brand,$category,$company) {
+   public function update_product($id, $title,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, $description, $content, $category_id) {
 
-        $sql = "update products
-             set product_no= :product_no,
+        $sql = "UPDATE products SET           
              title= :title,
-             sub_title = :sub_title,
-             summary = :summary,
-             description = :description,
-             content = :content,
-             slogan = :slogan,
-             price = :price,
-             link = :link,
+             summary = :summary,         
+             content = :content,          
              importance = :importance,
              thumbnail =:thumbnail,
-             background = :background,
+             image_url = :image_url,
              keywords = :keywords,
-             recommend = :recommend,
-             brand = :brand,
-             category = :category,
-             company = :company,
+             description = :description,
+             recommend = :recommend,           
+             category_id = :category_id,        
              active =:active
-             where id =:id";
+             WHERE id =:id";
+
+        
 
         $query = db::getInstance()->prepare($sql);
-        $query->bindValue(":product_no",$product_no);
-        $query->bindValue(":title",$title);
-        $query->bindValue(":sub_title",$sub_title);
-       $query->bindValue(":summary",$summary);
-        $query->bindValue(":description",$description);
+   
+        $query->bindValue(":title",$title);    
+       $query->bindValue(":summary",$summary);      
         $query->bindValue(":content",$content);
-        $query->bindValue(":slogan",$slogan);
-       $query->bindValue(":price",$price);
-       $query->bindValue(":link",$link);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":thumbnail",$thumbnail);
-        $query->bindValue(":background",$background);
+        $query->bindValue(":image_url",$image_url);
+        $query->bindValue(":description",$description);
         $query->bindValue(":keywords",$keywords);
-       $query->bindValue(":brand",$brand);
-       $query->bindValue(":category",$category);
-       $query->bindValue(":company",$company);
+        $query->bindValue(":category_id",$category_id,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
@@ -92,31 +81,26 @@ class Product{
     }
 
 
-    public function insert_product($product_no, $title,$sub_title,$slogan,$price,$link,$importance,$thumbnail,
-                                   $background,$keywords,$recommend,$active,$summary, $description, $content, $brand,$category,$company) {
+    public function insert_product( $title, $importance,$thumbnail,
+                                   $image_url,$keywords,$recommend,$active,$summary, $description, $content,$category_id) {
 
-        $sql="INSERT INTO products ( product_no,title,sub_title, summary, description,content, slogan,price,link,importance,thumbnail,background,keywords,recommend,active,added_by,added_date,brand,category,company)
-                VALUES (:product_no,:title,:sub_title,:summary, :description,:content, :slogan,:price,:link,:importance,:thumbnail,:background,:keywords,:recommend,:active,:added_by,:added_date,:brand,:category,:company)";
+        $sql="INSERT INTO products (title, summary, description,content,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id)
+                VALUES (:title,:summary, :description,:content, :importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id)";
 
         $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
-        $query->bindValue(":product_no",$product_no);
+     
         $query->bindValue(":title",$title);
-        $query->bindValue(":sub_title",$sub_title);
+      
         $query->bindValue(":summary",$summary);
         $query->bindValue(":description",$description);
-        $query->bindValue(":content",$content);
-        $query->bindValue(":slogan",$slogan);
-        $query->bindValue(":price",$price);
-        $query->bindValue(":link",$link);
+        $query->bindValue(":content",$content);     
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":thumbnail",$thumbnail);
-        $query->bindValue(":background",$background);
+        $query->bindValue(":image_url",$image_url);
         $query->bindValue(":keywords",$keywords);
-        $query->bindValue(":brand",$brand);
-        $query->bindValue(":category",$category);
-        $query->bindValue(":company",$company);
+        $query->bindValue(":category_id",$category_id,PDO::PARAM_INT);
         $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":added_by",$username);

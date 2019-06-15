@@ -28,13 +28,14 @@ class Distributor{
     }
 
 //更新产品
-    public function update_distributor($id, $thumbnail,$name, $postcode,$homepage,$phone, $fax,$address,$active,$importance,$intro) {
+    public function update_distributor($id, $thumbnail,$image_url,$name, $postcode,$homepage,$phone, $fax,$address,$active,$importance,$intro) {
 
         $sql = "UPDATE distributors
         SET name= :name,
         postcode = :postcode,
         homepage = :homepage,
         thumbnail = :thumbnail,
+        image_url = :image_url,
              phone =:phone,
              fax =:fax,            
              address = :address,
@@ -46,6 +47,7 @@ class Distributor{
         $query = db::getInstance()->prepare($sql);
 
         $query->bindValue(":thumbnail",$thumbnail);
+        $query->bindValue(":image_url",$image_url);
         $query->bindValue(":name",$name);
         $query->bindValue(":postcode",$postcode);
         $query->bindValue(":phone",$phone);
@@ -58,7 +60,7 @@ class Distributor{
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
 
-        $result = $query->rowCount();;
+        $result = $query->rowCount();
         if ($result>0) {
             return true;
         } else {
@@ -67,16 +69,17 @@ class Distributor{
     }
 
 
-    public function insert_distributor($thumbnail,$name, $postcode,$homepage,$phone, $fax,$address,$active,$importance,$intro) {
+    public function insert_distributor($thumbnail,$image_url,$name, $postcode,$homepage,$phone, $fax,$address,$active,$importance,$intro) {
 
-        $sql="INSERT INTO distributors (thumbnail,name,postcode,homepage, phone,fax,address,importance,intro,active,added_by,added_date)
-                VALUES (:thumbnail,:name,:postcode,:homepage, :phone,:fax,:address, :importance,:intro, :active,:added_by,:added_date)";
+        $sql="INSERT INTO distributors (thumbnail,image_url,name,postcode,homepage, phone,fax,address,importance,intro,active,added_by,added_date)
+                VALUES (:thumbnail,:image_url,:name,:postcode,:homepage, :phone,:fax,:address, :importance,:intro, :active,:added_by,:added_date)";
 
 
         $username = $_SESSION['valid_user'] ;
 
         $query = db::getInstance()->prepare($sql);
         $query->bindValue(":thumbnail",$thumbnail);
+        $query->bindValue(":image_url",$image_url);
         $query->bindValue(":name",$name);
         $query->bindValue(":postcode",$postcode);
         $query->bindValue(":phone",$phone);

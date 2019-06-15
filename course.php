@@ -1,10 +1,11 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/chronicle.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("equivalence");
+$did = 13;
+$chronicleClass = new Chronicle();
+$data = $chronicleClass->get_all_chronicles($did);
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ $data = $pageClass->fetch_data("equivalence");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "里程碑-".SITENAME; ?></title>    
+    <title><?php echo "里程碑-关于我们-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -47,15 +48,17 @@ $data = $pageClass->fetch_data("equivalence");
                 <div class="about_course_nav wow fadeInUp">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
+                            <?php foreach($data as $course){ ?>
                             <div class="swiper-slide">
                                 <div class="dot">
                                     <div class="img">
-                                        <img src="images/about_course_01.jpg" alt=""/>
+                                        <img src="<?php echo $course['image_url'] ?>" alt=""/>
                                     </div>
                                 </div>
-                                <p>2019</p>
+                                <p><?php echo $course['year']; ?></p>
                             </div>
-                            <div class="swiper-slide">
+                            <?php } ?>
+                            <!-- <div class="swiper-slide">
                                 <div class="dot">
                                     <div class="img">
                                         <img src="images/about_course_01.jpg" alt=""/>
@@ -222,7 +225,7 @@ $data = $pageClass->fetch_data("equivalence");
                                     </div>
                                 </div>
                                 <p>1998</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="about_course_nav_controls">
@@ -233,7 +236,16 @@ $data = $pageClass->fetch_data("equivalence");
                 <div class="about_course_list wow fadeInUp">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
+                        <?php foreach($data as $course){ ?>
                             <div class="swiper-slide">
+                                <h3><?php echo $course['year']; ?></h3>
+                                <div class="desc">
+                                    <?php echo $course['description']; ?>
+                                </div>
+                            </div>
+                           
+                            <?php } ?>
+                            <!-- <div class="swiper-slide">
                                 <h3>2019</h3>
                                 <div class="desc">
                                     <p>平均每8秒左右，一个微创<sup>®</sup>产品在全球内得到使用</p>
@@ -441,7 +453,7 @@ $data = $pageClass->fetch_data("equivalence");
                                 <div class="desc">
                                     <p>5月15日公司创建，注册地在张江高科技园区郭守敬路351号1号楼618室</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

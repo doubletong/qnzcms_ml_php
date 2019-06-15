@@ -5,10 +5,9 @@ require_once('../config/db.php');
 require_once('data/product_category.php');
 require_once('data/product.php');
 
-$did = isset($_GET['did'])?$_GET['did']:"";
+
 
 $articleClass = new Product();
-$pageConfig = $articleClass->get_section_title($did);
 
 $cateModel = new ProductCategory();
 $categories = $cateModel->get_all();
@@ -36,7 +35,7 @@ $tree = buildTree($categories);
 <html>
 
 <head>
-    <title><?php echo "创建".$pageConfig['category']."_".$pageConfig['section']."_后台管理_" . SITENAME; ?></title>
+    <title><?php echo "创建分类_产品_后台管理_" . SITENAME; ?></title>
     <?php require_once('includes/meta.php') ?>
 
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -57,12 +56,12 @@ $tree = buildTree($categories);
                 <form novalidate="novalidate" id="editform">
                     <div class="card">
                         <div class="card-header">
-                            创建<?php echo $pageConfig['category']; ?>
+                            创建分类
                         </div>
 
                         <div class="card-body">
                             <input id="categoryId" type="hidden" name="categoryId" value="0" />
-                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="<?php echo $did; ?>" />
+                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="" />
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -110,13 +109,9 @@ $tree = buildTree($categories);
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                            <?php if($did=="6"){ ?>
-                                                <img ID="iLogo" src="holder.js/240x180?text=580X400像素" class="img-responsive img-rounded" />     
-                                                <?php }elseif($did=="16"){ ?>   
-                                                    <img ID="iLogo" src="holder.js/240x280?text=580X632像素" class="img-responsive img-rounded" />    
-                                                <?php }else{ ?>
-                                                    <img ID="iLogo" src="holder.js/100x100?text=45X45像素" class="img-responsive img-rounded" />
-                                                <?php } ?>
+                                           
+                                                    <img ID="iLogo" src="holder.js/240x280?text=1920x550/960X374像素" class="img-responsive img-rounded" />    
+                                             
                                               
                                             </div>
                                             <div class="card-footer">
@@ -160,20 +155,10 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-            if("1"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-        }
-        if("2"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-        }
-        if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-        }
-
-        if("6"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-        }
-
+          
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li:.category a").addClass("active");
+     
+     
         
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;

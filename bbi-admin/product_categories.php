@@ -4,9 +4,9 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/product_category.php');
 
-$did = isset($_GET['did']) ? $_GET['did'] : "";
+
 $cateModel = new ProductCategory();
-$categories = $cateModel->get_all($did);
+$categories = $cateModel->get_all();
 
 function buildTree(array $elements, $parentId = 0)
 {
@@ -49,7 +49,7 @@ $tree = buildTree($categories);
 
             <div class="container-fluid maincontent">
                 <div class="mb-2 text-right">
-                    <a href="product_category_add.php?did=<?php echo $did; ?>" class="btn btn-primary">
+                    <a href="product_category_add.php" class="btn btn-primary">
                         <i class="iconfont icon-plus"></i> 添加分类
                     </a>
                 </div>
@@ -76,7 +76,7 @@ $tree = buildTree($categories);
                                 </td>
                                 <td><?php echo $row['title']; ?></td>
                                 <td><?php echo $row['importance']; ?></td>
-                                <td><?php echo date("Y-m-d H:i", $row['added_date']); ?></td>
+                                <td><?php echo date("Y-m-d", $row['added_date']); ?></td>
 
                                 <td><a href='product_category_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm'>
                                         <i class="iconfont icon-edit"></i>
@@ -131,18 +131,7 @@ $tree = buildTree($categories);
     <script>
         $(document).ready(function() {
             //当前菜单
-            if ("1" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
-            if ("2" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
-            if ("3" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
-            if ("6" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
-            }
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"

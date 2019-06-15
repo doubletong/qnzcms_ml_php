@@ -2,42 +2,59 @@
 require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
+require_once('data/product_category.php');
 
 require_once('../includes/PDO_Pagination.php');
-
+// get paging products
 $pagination = new PDO_Pagination(db::getInstance());
+$search = (isset($_REQUEST["search"]) && $_REQUEST["search"] != "") ? htmlspecialchars($_REQUEST["search"]):null;
+$cid = (isset($_REQUEST["cid"]) && $_REQUEST["cid"] != "") ? htmlspecialchars($_REQUEST["cid"]):null;
 
-$search = null;
-if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
-{
-    $search = htmlspecialchars($_REQUEST["search"]);
-    $pagination->param = "&search=$search";
-    $pagination->rowCount("SELECT * FROM wp_products WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY importance, id DESC ");
-    $pagination->config(3, 5);
-    $sql = "SELECT * FROM wp_products WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
-    $query =db::getInstance()->prepare($sql);
-    $query->execute();
-    $model = array();
-    while($rows = $query->fetch())
-    {
-        $model[] = $rows;
-    }
+$sql = "SELECT a.id,a.title, a.thumbnail,a.added_by,a.added_date, a.view_count, c.title as category_title FROM products as a Left JOIN product_categories as c 
+ON c.id = a.category_id WHERE 1 ";
+
+if(isset($_REQUEST["search"]) && $_REQUEST["search"] != ""){    
+    $pagination->param .= "&search=$search";
+    $sql .= " AND a.title LIKE '%$search%' OR a.description LIKE '%$search%' OR a.content LIKE '%$search%' ";
 }
-else
-{
-    $pagination->rowCount("SELECT * FROM wp_products");
-    $pagination->config(6,15);
-    $sql = "SELECT * FROM wp_products ORDER BY importance, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
-    $query =db::getInstance()->prepare($sql);
-    $query->execute();
-    $model = array();
-    while($rows = $query->fetch())
-    {
-        $model[] = $rows;
-    }
+if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){    
+    $pagination->param .= "&cid=$cid";
+    $sql .= " AND a.category_id = $cid ";
 }
 
+$pagination->rowCount($sql);
+$pagination->config(3, 15);
 
+$sql .= " ORDER BY a.importance, a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+$query =db::getInstance()->prepare($sql);
+$query->execute();
+$model = array();
+while($rows = $query->fetch())
+{
+    $model[] = $rows;
+}
+
+//get all categories
+
+$categoryClass = new ProductCategory();
+$categories = $categoryClass->get_all();
+
+function buildTree(array $elements, $parentId = 0)
+{
+    $branch = array();
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+        }
+    }
+    return $branch;
+}
+
+$tree = buildTree($categories);
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,36 +77,54 @@ else
 
             <div class="container-fluid maincontent">
 
-                <div class="row">
+                <div class="row  mb-2">
                     <div class="col">
-                        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
-                                    <label class="sr-only" for="inlineFormInput">搜索</label>
-                                    <input type="text" name="search" class="form-control mb-2" id="inlineFormInput"
+                                    <label class="sr-only" for="inlineFormInput">关键字</label>
+                                    <input type="text" name="search" class="form-control" id="inlineFormInput"
                                         value="<?php echo $search ?>" placeholder="关键字">
                                 </div>
-
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                    <label class="sr-only" for="inlineFormInput">分类</label>
+                                     <select class="form-control" id="cid" name="cid" placeholder="">
+                                                    <option value="">--请选择分类--</option>
+                                                    <?php foreach ($tree as $category) {
+                                                        ?>
+                                                        <optgroup label="<?php echo $category["title"]; ?>">
+
+                                                            <?php if ($category['children']) {
+                                                                foreach ($category['children'] as $subModel) {
+                                                                    ?>
+                                                                    <option value="<?php echo $subModel["id"]; ?>" <?php echo  $subModel["id"] == $cid ? "selected" : ""; ?>><?php echo $subModel["title"]; ?></option>
+
+                                                                <?php }
+                                                        } ?>
+                                                        </optgroup>
+                                                    <?php } ?>
+                                                </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary">搜索</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-auto">
                         <a href="product_add.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i> 添加新闻
+                            <i class="iconfont icon-plus"></i> 添加产品
                         </a>
                     </div>
                 </div>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>缩略图</th>
-                            <th>型号</th>
+                            <th>图片</th>
+                       
                             <th>产品名称</th>
+                            <th>所属分类</th>
                           
-                            <th>建议价</th>
                             <th>显示</th>
                             <th>发布者</th>
                             <th>创建日期</th>
@@ -104,11 +139,11 @@ else
                         ?>
                         <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;" /></td>
                         <?php
-                        echo "<td>".$row['product_no']."</td>";
+                      
                         echo "<td>".$row['title']."</td>";                      
                         ?>
-                        <td>
-                            <?php echo $row['price'];?>
+                      <td>
+                            <?php echo $row['category_title'];?>
                         </td>
                         <td>
                             <?php echo $row['view_count'];?>
@@ -153,7 +188,7 @@ else
     <script>
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(2)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"

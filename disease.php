@@ -58,7 +58,7 @@ $tree = buildTree($categories);
                             <img src="<?php echo $row['thumbnail']; ?>" alt="<?php echo $row['title']; ?>">
                             <div class="bg">                                
                             </div>
-                            <a href="/disease/list-<?php echo $row['id']; ?>" class="txt">
+                            <a href="/disease-list-<?php echo $row['id']; ?>" class="txt">
                                     <div class="des">
                                         <h3 class="title">了解<?php echo $row['title']; ?></h3>
                                        

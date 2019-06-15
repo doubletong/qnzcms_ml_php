@@ -107,11 +107,23 @@ if (isset($_GET['id'])) {
                                 <div style="width:300px;  text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180/text:433X289像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x80?text=192X44像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 缩略图...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 图标...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail']; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img ID="iImageUrl" src="<?php echo empty($data['image_url']) ? "holder.js/240x180?text=960X500像素" : $data['image_url']; ?>" class="img-fluid" />
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnImageUrl" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大图...</button>
+                                                <input id="image_url" type="hidden" name="image_url" value="<?php echo $data['image_url']; ?>"/>
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +163,11 @@ if (isset($_GET['id'])) {
         $('#thumbnail').val(fileUrl);
         $('#iLogo').attr('src', fileUrl);
     }
- 
+
+    function SetImageUrl(fileUrl) {
+        $('#image_url').val(fileUrl);
+        $('#iImageUrl').attr('src', fileUrl);
+    }
 
         $(document).ready(function() {
             //当前菜单
@@ -162,7 +178,13 @@ if (isset($_GET['id'])) {
             singleEelFinder.selectActionFunction = SetThumbnail;
             singleEelFinder.open();        
           
-        });      
+        });   
+
+        $("#btnImageUrl").on("click", function () {         
+            singleEelFinder.selectActionFunction = SetImageUrl;
+            singleEelFinder.open();        
+          
+        });       
 
             $("form").validate({
 

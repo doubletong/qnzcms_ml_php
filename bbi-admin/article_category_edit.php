@@ -73,10 +73,9 @@ $tree = buildTree($categories);
                                         <label for="title">主题</label>
                                         <input type="text" class="form-control" id="title" name="title" value="<?php echo $data["title"]; ?>">
                                     </div>
-
+                                    <?php if($did=="6"){ ?>
                                     <div class="form-group">
-                                        <label for="parent_id">分类</label>                           
-                                    
+                                        <label for="parent_id">分类</label>                                     
                                         <select class="form-control" id="parent_id" name="parent_id" placeholder="" >
                                             <option value="0">--请选择父类--</option>
                                             <?php foreach( $tree as $model)
@@ -95,7 +94,7 @@ $tree = buildTree($categories);
                                                             
                                         </select>                          
                                     </div>
-
+                                    <?php } ?>
                                     <div class="form-group">
                                         <label for="importance">排序</label>
                                         <input type="number" class="form-control" id="importance" name="importance" value="<?php echo $data["importance"]; ?>" placeholder="值越大越排前">
@@ -127,6 +126,20 @@ $tree = buildTree($categories);
                                         </div>
                                     </div>
 
+                                    <?php if($did=="16"){ ?>
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">      
+                                                <img ID="iLogo2" src="<?php echo empty($data['thumbnail2'])?"holder.js/240x160?text=580X304像素":$data['thumbnail2'];?>" class="img-fluid" />                                                                                     
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" />
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <?php } ?>
+
                                 </div>
                             </div>
 
@@ -155,7 +168,10 @@ $tree = buildTree($categories);
             $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
-
+        function SetThumbnail2(fileUrl) {
+            $('#thumbnail2').val(fileUrl);
+            $('#iLogo2').attr('src', fileUrl);
+        }
 
         $(document).ready(function() {
             //当前菜单
@@ -171,6 +187,9 @@ $tree = buildTree($categories);
             if("6"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
+        if("16"==<?php echo $did; ?>){
+            $(".mainmenu>li.medialist").addClass("nav-open").find("ul>li.category a").addClass("active");
+        }
 
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
@@ -178,6 +197,11 @@ $tree = buildTree($categories);
 
             });
 
+            $("#btnBrowser2").on("click", function() {
+                singleEelFinder.selectActionFunction = SetThumbnail2;
+                singleEelFinder.open();
+
+            });
 
 
             $("#editform").validate({

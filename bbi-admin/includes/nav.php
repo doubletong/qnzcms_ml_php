@@ -10,18 +10,18 @@
                             <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
                         </a>
                     </li>
-                    <li class="down-nav">
+                    <li class="down-nav products">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
                             <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
                         </a>
                         <ul class="subnav">
-                            <li>
+                            <li class="list">
                                 <a href="products.php">
                                     产品列表
                                 </a>
                             </li>
-                            <li><a href="product_categories.php">分类</a></li>
+                            <li class="category"><a href="product_categories.php">分类</a></li>
                         </ul>
                     </li>
                     <!-- 
@@ -88,14 +88,14 @@
                             <i class="iconfont  icon-file-copy"></i> <span class="nav-text">新闻资讯</span>                    
                         </a>
                     </li>
-                    <li class="down-nav">
+                    <li class="down-nav medialist">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-highlight"></i> <span class="nav-text">媒体报道</span> 
                         </a>
                         <ul class="subnav">
                             <li><a href="news.php?did=16">文章列表</a></li>
-                            <li><a href="article_categories.php?did=16">主题列表</a></li>
+                            <li class="category"><a href="article_categories_v3.php?did=16">主题列表</a></li>
                         </ul>
                     </li>
                     <!-- <li hidden>

@@ -39,7 +39,7 @@ class Article{
     }
 
 //更新
-   public function update_article($id, $title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$keywords,$active, $description, $content,$summary,$pubdate) {
+   public function update_article($id, $title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,$keywords,$active, $description, $content,$summary,$pubdate) {
 
         $sql = "UPDATE wp_articles SET title= :title,
            categoryId =:categoryId,
@@ -49,6 +49,7 @@ class Article{
              background_image = :background_image,
              author=:author,
              source=:source,
+             source_url=:source_url,
              keywords = :keywords,
              description = :description,
              content = :content,
@@ -69,6 +70,7 @@ class Article{
        $query->bindValue(":background_image",$background_image);
        $query->bindValue(":author",$author);
        $query->bindValue(":source",$source);
+       $query->bindValue(":source_url",$source_url);
        $query->bindValue(":keywords",$keywords);
         $query->bindValue(":description",$description);
         $query->bindValue(":content",$content);
@@ -87,10 +89,10 @@ class Article{
     }
 
 
-    public function insert_article($title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$keywords,$active, $description, $content,$summary,$pubdate) {
+    public function insert_article($title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,$keywords,$active, $description, $content,$summary,$pubdate) {
 
-        $sql="INSERT INTO wp_articles (title,categoryId,dictionary_id,thumbnail,image_url,background_image,author,source,keywords, description,content,summary,pubdate,active,added_by,added_date)
-                VALUES (:title,:categoryId,:dictionary_id,:thumbnail,:imageUrl,:background_image,:author,:source,:keywords, :description,:content, :summary,:pubdate,:active,:added_by,:added_date)";
+        $sql="INSERT INTO wp_articles (title,categoryId,dictionary_id,thumbnail,image_url,background_image,author,source,source_url,keywords, description,content,summary,pubdate,active,added_by,added_date)
+                VALUES (:title,:categoryId,:dictionary_id,:thumbnail,:imageUrl,:background_image,:author,:source,:source_url,:keywords, :description,:content, :summary,:pubdate,:active,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -106,6 +108,7 @@ class Article{
         $query->bindValue(":background_image",$background_image);
         $query->bindValue(":author",$author);
         $query->bindValue(":source",$source);
+        $query->bindValue(":source_url",$source_url);
         $query->bindValue(":keywords",$keywords);
         $query->bindValue(":description",$description);
         $query->bindValue(":content",$content);

@@ -56,16 +56,10 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(3);
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="title">视频（MP4）</label>
-                                        <div class="input-group">
-                                            <input id="videoUrl" name="videoUrl" class="form-control" placeholder="" aria-describedby="setVideoUrl">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="setVideoUrl" type="button">浏览…</button>
-                                            </div>
-                                        </div>
-
+                                        <label for="title">优酷视频ID</label>                                        
+                                        <input id="videoUrl" name="videoUrl" class="form-control" placeholder="" >    
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="title">视频（ogv）</label>
                                         <div class="input-group">
                                             <input id="ogvUrl" name="ogvUrl" class="form-control" placeholder="" aria-describedby="setOgvUrl">
@@ -84,7 +78,7 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(3);
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="importance">排序</label>
 
@@ -129,8 +123,19 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(3);
                                                 <img ID="iLogo" src="holder.js/240x280?text=580X632像素" class="img-responsive img-rounded" />
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大图...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img ID="iLogo2" src="holder.js/240x160?text=580X304像素" class="img-responsive img-rounded" />
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 小图...</button>
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" />
                                             </div>
                                         </div>
                                     </div>
@@ -179,7 +184,10 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(3);
             $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
-
+        function SetThumbnail2(fileUrl) {
+            $('#thumbnail2').val(fileUrl);
+            $('#iLogo2').attr('src', fileUrl);
+        }
         function SetVideoUrl(fileUrl) {
             $('#videoUrl').val(fileUrl);
         }
@@ -199,6 +207,10 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(3);
 
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
+                singleEelFinder.open();
+            });
+            $("#btnBrowser2").on("click", function() {
+                singleEelFinder.selectActionFunction = SetThumbnail2;
                 singleEelFinder.open();
             });
 

@@ -146,7 +146,7 @@
                             <li><a href="/honor">奖项荣誉</a></li>
                             <li><a href="/team">全球管理团队</a></li>
                             <li><a href="/duty">企业社会责任</a></li>
-                            <li><a href="/career">职业发展</a></li>
+                         
                         </ul>
 
                     </li>
@@ -197,10 +197,27 @@
                                 </a></li>
                             <li><a href="/videos">视频中心
                                 </a></li>
-                            <li><a href="/magazine">内刊
+                            <li><a href="/newspaper">内刊
                                 </a></li>
                         </ul>
 
+                    </li>
+                    <li class="down">
+                        <a href="javascript:void(0);">人才招聘</a>
+                        <ul class="subnav">
+                            <li><a href="/recruit_plan">领军计划
+                                </a></li>
+                            <li><a href="/recruit_plan2">管培生计划
+                                </a></li>
+                            <li><a href="/recruit_pay">薪酬与福利
+                                </a></li>
+                            <li><a href="/recruit_college">创新学院
+                                </a></li>
+                            <li><a href="/recruit">职业发展
+                                </a></li>
+                            <li><a href="/recruit_post">职位申请
+                                </a></li>                  
+                        </ul>
                     </li>
                     <li class="down">
                         <a href="javascript:void(0);">投资者关系</a>

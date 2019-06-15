@@ -80,7 +80,7 @@ if (isset($_GET['cid'])) {
                 <main class="maincontent">
                     <div class="list list-disease">
                         <?php foreach ($model as $article) { ?>
-                            <a href="/operation/detail-<?php echo $article['id']; ?>" class="item">
+                            <a href="/operation-detail-<?php echo $article['id']; ?>" class="item">
                                 <div class="disease">
                                     <div class="row">
                                         <div class="col-md-5">
