@@ -39,13 +39,14 @@ class ArticleCategory{
     }
 
 //更新
-   public function update_category($id, $title,$thumbnail,$thumbnail2, $dictionary_id, $parent_id, $importance,$active) {
+   public function update_category($id, $title,$thumbnail,$thumbnail2, $dictionary_id, $parent_id, $product_ids, $importance,$active) {
 
         $sql = "UPDATE `article_categories` SET title= :title,
         thumbnail= :thumbnail,
         thumbnail2= :thumbnail2,
            dictionary_id =:dictionary_id,         
            parent_id =:parent_id,         
+           product_ids =:product_ids,      
            importance =:importance,     
            active =:active 
              WHERE id =:id";
@@ -57,6 +58,7 @@ class ArticleCategory{
         $query->bindValue(":thumbnail2",$thumbnail2);      
         $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);   
         $query->bindValue(":parent_id",$parent_id,PDO::PARAM_INT);   
+        $query->bindValue(":product_ids",$product_ids);   
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
@@ -71,11 +73,11 @@ class ArticleCategory{
     }
 
 
-    public function insert_category($title, $thumbnail, $thumbnail2, $dictionary_id,$parent_id, $importance,$active) {
+    public function insert_category($title, $thumbnail, $thumbnail2, $dictionary_id,$parent_id,  $product_ids,$importance,$active) {
 
       
-        $sql="INSERT INTO `article_categories`(`title`, `thumbnail`,`thumbnail2`, `dictionary_id`,   `parent_id`, `importance`, `active`,`added_date`) 
-        VALUES (:title,:thumbnail, :thumbnail2, :dictionary_id, :parent_id, :importance, :active,:added_date)";
+        $sql="INSERT INTO `article_categories`(`title`, `thumbnail`,`thumbnail2`, `dictionary_id`,   `parent_id`,  `product_ids`, `importance`, `active`,`added_date`) 
+        VALUES (:title,:thumbnail, :thumbnail2, :dictionary_id, :parent_id,:product_ids, :importance, :active,:added_date)";
 
        // $username = $_SESSION['valid_user'] ;
 
@@ -85,6 +87,7 @@ class ArticleCategory{
         $query->bindValue(":thumbnail2",$thumbnail2);      
         $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);   
         $query->bindValue(":parent_id",$parent_id,PDO::PARAM_INT);   
+        $query->bindValue(":product_ids",$product_ids);   
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":added_date",time(),PDO::PARAM_INT);

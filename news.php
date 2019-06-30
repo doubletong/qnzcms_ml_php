@@ -20,7 +20,7 @@ $pagination->config(6, 15);
 $pagination->param = "&year=$paran_year";
 $pagination->rowCount("SELECT * FROM wp_articles WHERE DATE_FORMAT(FROM_UNIXTIME(`pubdate`), '%Y') = $paran_year AND dictionary_id = $did ");
 
-$sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE DATE_FORMAT(FROM_UNIXTIME(`pubdate`), '%Y') = $paran_year AND dictionary_id = $did ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+$sql = "SELECT id,title,thumbnail,summary,pubdate,content FROM wp_articles WHERE DATE_FORMAT(FROM_UNIXTIME(`pubdate`), '%Y') = $paran_year AND dictionary_id = $did ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
 $query = db::getInstance()->prepare($sql);
 $query->execute();
 while ($rows = $query->fetch()) {
@@ -85,7 +85,18 @@ while ($rows = $query->fetch()) {
                         <div class="txt">
                             <h4><?php  echo $article['title'] ?></h4>
                             <span><?php echo date('Y-m-d', $article['pubdate']); ?></span>
-                            <p><?php echo mb_substr($article['summary'], 0, 80, 'utf-8') . "……"; ?></p>
+                            <?php 
+                             if(empty($article['summary'])){                                 
+                                $newstr = filter_var($article['content'], FILTER_SANITIZE_STRING);
+                                ?>
+                                <p><?php echo mb_substr( $newstr, 0, 140, 'utf-8') . "……"; ?></p>
+                            <?php
+                             }else{
+                                 ?>
+                                <p><?php echo mb_substr($article['summary'], 0, 140, 'utf-8') . "……"; ?></p>
+                            <?php }                          
+                             ?>
+                           
                         </div>
                     </a>
                 </div>

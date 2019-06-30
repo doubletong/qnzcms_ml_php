@@ -22,6 +22,47 @@
         .title {
             text-align: center;
         }
+        .list-case{
+            .txt{
+               .logo{
+                margin-bottom: 1rem;
+                @include respond-above (md) {
+                    margin-bottom: 2rem;
+                }
+               }
+                h3{
+                    font-size: rem(14);
+                    @include respond-above (md) {
+                        font-size: 1.5rem;
+                    }
+                }
+                .view{
+                    font-size: rem(14);
+                    line-height: 31px;
+                    height: 33px;
+                    width: 120px;
+                    margin-left: -60px;
+                    bottom: 1rem;
+                    @include respond-above (md) {
+                        position: absolute;
+                        left: 50%;
+                        bottom: 3.875rem;
+                        font-size: 1.25rem;
+                        margin-left: -100px;
+                        border: 1px solid #fff;
+                        border-radius: 30px;
+                        color: #fff;
+                        line-height: 58px;
+                        text-align: center;
+                        width: 200px;
+                        height: 60px;
+                        z-index: 48;
+                    }
+                   
+                }
+            }
+          
+        }
     }
 
     .s4 {

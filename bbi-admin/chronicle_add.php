@@ -43,7 +43,7 @@ $did = isset($_GET['did'])?$_GET['did']:"";
                                     <label for="description">事件描述</label>
                                     <textarea class="form-control" id="description" name="description" placeholder=""></textarea>
                                     <script>
-                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
+                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.php'; 
                                         CKEDITOR.replace( 'description', {
                                         
                                             filebrowserBrowseUrl: elFinder,

@@ -20,6 +20,7 @@
     .fr{float:right}
     .zz{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;opacity:.5;filter:alpha(opacity=50);z-index: 8}
 }
+
 .pagination { text-align: center; padding: 1rem 0; font-size: 0.875rem; color: #999; }
 @media (min-width: 992px) {
     .pagination { padding: 2rem 0; }
@@ -42,10 +43,10 @@
 /*inside_banner*/
 .inside_banner{height:34.375rem;background-position: center;background-repeat: no-repeat;background-size:cover;position:relative}
 .inside_banner_txt{color:#FFF;width:100%}
-.inside_banner_txt h1{font-size:3.75rem;line-height: 1.2;padding:0.4em 0; letter-spacing: 2px;text-transform: uppercase}
-.inside_banner_txt h2{font-size:3.125rem;line-height: 1.5;max-width: 40% ;letter-spacing: 1px;text-transform: uppercase}
+.inside_banner_txt h1{font-size:3.75rem;line-height: 1.2;padding:0.4em 0; letter-spacing: 2px;/*text-transform: uppercase*/}
+.inside_banner_txt h2{font-size:3.125rem;line-height: 1.5;max-width: 40% ;letter-spacing: 1px;/*text-transform: uppercase*/}
 .product_detail_banner .inside_banner_txt h2{font-size:2.25em;}
-.inside_banner_img{position:absolute;width:50%;height:100%;bottom:0;right:0;background-size:100%;background-position: bottom center;background-repeat: no-repeat;}
+.inside_banner_img{position:absolute;width:50%;height:100%;bottom:0;right:0;background-size:100%;background-position:center;background-repeat: no-repeat;}
 .about_team_detail_banner{background:#3d5696}
 .about_team_detail_banner .inside_banner_img{background-size:auto 80%}
 .inside_banner_txt p{font-size:1rem;line-height: 2;letter-spacing: 1px; }
@@ -68,7 +69,7 @@
 .about_item .wrap{position:absolute;top:50%;left:50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);height:auto;}
 .about_item_01{min-height:37.5rem;}
 .about_item_01 .about_title{padding-bottom:1em;}
-.about_title{font-size: 3rem;line-height: 1.5;padding:0.2em 0 1.5em;color:#222;text-align:center;text-transform: uppercase}
+.about_title{font-size: 3rem;line-height: 1.5;padding:0.2em 0 1.5em;color:#222;text-align:center;/*text-transform: uppercase*/}
 .about_desc{color:#444;text-align: center}
 .about_desc p{font-size: 1rem;line-height: 2.125;letter-spacing:1px;margin-bottom: 2rem; }
 .fff .about_title,.fff .about_desc{color:#FFF}
@@ -82,17 +83,17 @@
 .about_other_list li .img{width:50%;height:37.5rem;background-position:center;background-repeat: no-repeat;background-size:cover;}
 .about_other_list li .txt{width:50%;padding:3.5rem 3rem;}
 .about_other_list li .txt.fl{text-align: right;}
-.about_other_list li .txt h2{font-size:3.75rem;line-height:1.2;padding:0.4em 0;color:#222;text-transform: uppercase}
+.about_other_list li .txt h2{font-size:3.75rem;line-height:1.2;padding:0.4em 0;color:#222;/*text-transform: uppercase*/}
 .about_other_list li .txt h3{font-size:3rem;line-height: 2;color:#222}
 .about_other_list li .txt p{font-size:1rem;line-height: 2;color:#444}
 .about_other_list li .txt .line{width:1px;height:6.5rem;background:#535353;margin:3rem 0 1.5rem 0.5rem;}
 .about_other_list li .txt.fl .line{margin:3rem 0.5rem 1.5rem 0;}
 
-
 /*about_branch*/
 .about_branch{}
 .about_branch li{width:50%;position:relative}
 .about_branch li .img{position:relative}
+.about_branch li .img img{width:100%}
 .about_branch li .img:after{position:absolute;content:'';width:100%;height:100%;top:0;left:0;background:#050b38;opacity:0.5;-webkit-transition: .2s;transition: .2s}
 .about_branch li .txt{position:absolute;top:50%;left:0;width:100%;-webkit-transform:translateY(-50%);transform:translateY(-50%);color:#FFF;padding:0 10%;text-align: center;}
 .about_branch li .txt span{display:block;height:50px;line-height:50px;margin-bottom: 1.5rem;}
@@ -150,7 +151,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .about_course_nav .swiper-slide .img{position:absolute;top:50%;left:50%;-webkit-transform: translate(-50%,-50%) scale(0);transform: translate(-50%,-50%) scale(0);width:25rem;height:25rem;overflow: hidden;border-radius: 50%;border:6px solid #7e91c4;opacity:0;-webkit-transition: .5s;transition: .5s}
 .about_course_nav .swiper-slide .img img{width:100%}
 .about_course_nav .swiper-slide.swiper-slide-active .img{-webkit-transform: translate(-50%,-50%) scale(1);transform: translate(-50%,-50%) scale(1);opacity:1}
- .about_course_nav_controls>div{width:40px;height:40px;margin-top:-20px;border-radius: 50%;background-color:#7e91c4;background-size:11px;cursor:pointer;-webkit-transition: .3s;transition: .3s}
+.about_course_nav_controls>div{width:40px;height:40px;margin-top:-20px;border-radius: 50%;background-color:#7e91c4;background-size:11px;cursor:pointer;-webkit-transition: .3s;transition: .3s}
 .about_course_nav_controls>div:hover{background-color: #737cc4}
 .about_course_nav_controls>div.swiper-button-prev{background-image:url(../images/about_prev_01.png);left:-40px;}
 .about_course_nav_controls>div.swiper-button-next{background-image:url(../images/about_next_01.png);right:-40px;}
@@ -176,11 +177,12 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .about_honor .about_course_nav .swiper-slide-active .dot:after{opacity:1}
 .about_honor .about_course_list{padding:3rem 0 2rem;max-width: inherit}
 .about_honor .about_course_list .swiper-slide{text-align: left}
-.about_honor .about_course_list .swiper-slide p{font-size:1.125rem;line-height:1.5;padding:0.8em 0 0.8em 2.875em;color:#444;background:url(../images/product_dot.png) no-repeat left 1em;}
+.about_honor .about_course_list .swiper-slide p{font-size:1.125rem;line-height:1.5;padding:0.8em 0 0.8em 2.875em;color:#444;background:url(../images/product_dot.png) no-repeat left 1em;text-align: justify}
 
 /*about_duty*/
 .about_duty{padding-bottom: 0}
 .about_duty h2{text-align: center;font-size:3rem;line-height:1.2;color:#222;padding:4rem 0 5rem;}
+.about_duty_t{position:relative;z-index: 1}
 .about_duty_title{margin-bottom: 3rem;text-align: center}
 .about_duty_title p{text-align: center;max-width: 850px;margin:0 auto;font-size:1rem;line-height:2;padding-bottom:1.875em;color:#444;}
 .about_duty_nav{}
@@ -205,8 +207,8 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .about_duty_nav li.active:before{height:100%}
 .about_duty_nav li.active{height:auto;-webkit-box-shadow:none;box-shadow:none}
 .about_duty_nav li:hover{}
-.about_duty_box{margin-top:-3.125rem;}
-.about_duty_item{display:none}
+.about_duty_box{margin-top:-3.125rem;position:relative;z-index: 0}
+.about_duty_item{display:none;}
 .about_duty_item.active{display:block;}
 .about_duty_item_title{background-repeat: no-repeat;background-position:center;background-size:cover;height:37.5rem;}
 .about_duty_item_title .wrap{height:100%;position:relative}
@@ -220,7 +222,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .about_duty_item_list li .txt{position:absolute;right:0;top:50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);padding:0 5%;text-align: center;}
 .about_duty_item_list li.odd .txt{right:auto;left:0;}
 .about_duty_item_list li .txt h3{font-size:2.5rem;color:#222;line-height:1.5;margin-bottom: 2rem;}
-.about_duty_item_list li .txt p{font-size:1rem;line-height:1.75;color:#444;text-align: justify;max-width: 80%;margin:0 auto 3rem;}
+.about_duty_item_list li .txt p{font-size:1rem;line-height:1.75;color:#444;text-align: justify;max-width: 80%;margin:0 auto 3rem;height:5.25em;}
 .about_duty_item_list li .txt a{}
 .about_duty_item_list li .txt a{font-size:1.125rem;line-height:3.125rem;padding:0 2.25rem 0 1.25rem;color:#FFF;border-radius: 3.125rem;background:#4d6dbe url(../images/product_more_03.png) no-repeat 85% center;}
 .about_duty_item_list li .txt a:hover{background-color:#2e81de}
@@ -260,9 +262,17 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .about_team_c h2{color:#FFF;}
 .about_team_c_wrap{margin-top:5rem;}
 .about_team_b{padding-bottom:9rem;}
-.about_team_b .tab_nav{margin:2rem 0 5rem;}
-.about_team_b .tab_nav ul{display:block;text-align: center;}
-.about_team_b .tab_nav li{width:16.6666%;padding:0.8em 0;font-size:1.125rem;line-height: 1.5;}
+
+.about_team_nav{margin:2rem 0 5rem;padding:0 60px;height:3.5rem;position:relative}
+.about_team_nav .swiper-container{border-radius:3.75rem;height:3.5rem; background:#d4dcef;}
+.about_team_nav .swiper-container .swiper-slide{font-size:1rem;line-height:3.5rem;color:#4866b4;-webkit-transition: .3s;transition: .3s;border-radius: 3.5rem;cursor:pointer;text-align: center;}
+.about_team_nav .swiper-container .swiper-slide.active{color:#FFF;background:#4866b4}
+.about_team_nav_controls>div{cursor:pointer;width:3rem;height:3rem;margin-top:-1.5rem;background-color:#FFF;border-radius: 50%;background-size:30%;-webkit-transition: .2s;transition: .2s;-webkit-box-shadow: 0 0 10px 1px #ccc;box-shadow: 0 0 10px 1px #ccc}
+.about_team_nav_controls>div.swiper-button-prev{background-image:url(../images/prev_01.png);left:0}
+.about_team_nav_controls>div.swiper-button-next{background-image:url(../images/next_01.png);right:0}
+.about_team_nav_controls>div.swiper-button-prev:hover{left:-3px}
+.about_team_nav_controls>div.swiper-button-next:hover{right:-3px}
+
 .about_team_b_list{}
 .about_team_b_item{display:none}
 .about_team_b_item.active{display:block;}
@@ -279,15 +289,18 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .about_team_detail_desc{padding:2rem 0 6rem;}
 .about_team_detail_desc p{font-size:1.125rem;line-height: 1.75;padding-bottom:1.75em;text-align: justify;color:#444;letter-spacing: 1px;}
 .about_team_detail_other>h3{font-size: 1.875rem;line-height: 3;text-align: center;margin-bottom: 3rem}
-.about_team_detail_controls>div{cursor:pointer;width:5rem;height:5rem;margin-top:-2.5rem;background-color:#FFF;border-radius: 50%;background-size:21px;-webkit-transition: .2s;transition: .2s}
-.about_team_detail_controls>div.swiper-button-prev{background-image:url(../images/prev_01.png);left:21%}
-.about_team_detail_controls>div.swiper-button-next{background-image:url(../images/next_01.png);right:21%}
-.about_team_detail_controls>div.swiper-button-prev:hover{left:20.5%}
-.about_team_detail_controls>div.swiper-button-next:hover{right:20.5%}
+.about_team_detail_controls{text-align: center;margin:20px 0;}
+.about_team_detail_controls>div{cursor:pointer;width:5rem;height:5rem;margin-top:0;background-color:#FFF;border-radius: 50%;background-size:21px;-webkit-transition: .2s;transition: .2s;position:static;display:inline-block;margin:0 20px;-webkit-box-shadow: 0 0 10px 1px #ccc;box-shadow: 0 0 10px 1px #ccc}
+.about_team_detail_controls>div.swiper-button-prev{background-image:url(../images/prev_01.png);/*left:21%*/}
+.about_team_detail_controls>div.swiper-button-next{background-image:url(../images/next_01.png);/*right:21%*/}
+/*.about_team_detail_controls>div.swiper-button-prev:hover{left:20.5%}
+.about_team_detail_controls>div.swiper-button-next:hover{right:20.5%}*/
+.about_team_detail_controls>div.swiper-button-prev:hover{-webkit-transform: translateX(-5px);transform: translateX(-5px)}
+.about_team_detail_controls>div.swiper-button-next:hover{-webkit-transform: translateX(5px);transform: translateX(5px)}
 
 /*product*/
 .product{background:#b3baca;border-top:1px solid #b3baca}
-.product_item{background-color:#182f6d;position:relative;margin-bottom: 1px;height:25rem;color:#FFF;}
+.product_item{background-color:#182f6d;position:relative;margin-bottom: 1px;min-height:25rem;color:#FFF;}
 .product_item:last-child{margin-bottom: 0}
 .product_item_bg{position:absolute;width:50%;height:100%;top:0;right:0;background-position:center;background-size:100%;background-repeat: no-repeat;}
 .product_item_txt{width:50%;padding-top:3.75rem; }
@@ -315,19 +328,22 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 /*product_detail*/
 .product_detail_banner{background-image:-webkit-linear-gradient(#24449a,#13255a);background-image:-moz-linear-gradient(#24449a,#13255a);background-image:-ms-linear-gradient(#24449a,#13255a);background-image:linear-gradient(#24449a,#13255a);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24449a', endColorstr='#13255a',GradientType=0 );background:#13255a\9}
 .product_detail{background:#eceff6;padding:3rem 0;}
-.product_detail_title{border-bottom:1px solid #bfbfbf;margin-bottom: 2.5rem;}
-.product_detail_title h3{font-size: 2.5rem;line-height:2.875;font-weight: 100;color:#222;display:inline-block;vertical-align: top;}
+.product_detail_title{border-bottom:1px solid #bfbfbf;margin-bottom: 2.5rem!important;padding:0!important;}
+.product_detail_title h3{font-size: 2.5rem;line-height:2.875;font-weight: 100;color:#222;display:inline-block;vertical-align: top;padding:0;margin:0;}
 .product_detail_item{padding-bottom: 2rem;}
 .product_detail_item p,.product_detail_item dd{font-size: 1.125rem;line-height: 2;color:#444;}
 .product_detail_item dd{padding-left:1.875rem;background:url(../images/product_dot.png) no-repeat left 0.55rem;background-size:1.125rem;}
+.product_detail_desc ul,.product_detail_desc ol,.product_detail_desc li,.product_detail_spec ul,.product_detail_spec ol,.product_detail_spec li{float:none;list-style: none;}
+.product_detail_spec *,.product_detail_desc *{margin:inherit;}
+.product_detail_table{width:100%;overflow: auto}
 .product_detail td{border-right:2px solid #eceff6;border-bottom:2px solid #eceff6;background:#d5dbe9;color:#192239;text-align: center;height:3.2rem;font-size: 1.125rem;font-weight: 100;padding:1rem 0}
-.product_detail tr td:first-child{width:6rem;}
+// .product_detail tr td:first-child{width:6rem;}
 .product_detail_literature ul{}
 .product_detail_literature li{width:48.5%;margin-right: 3%;height:2.5rem;border-radius: 1.25rem;background:#d7ddeb url(../images/icon_download_01.png) no-repeat 96% center;background-size:1.125rem;margin-bottom: 1.5rem;-webkit-transition: .3s;transition: .3s;cursor:pointer;}
-.product_detail_literature li p{font-size: 1rem;color:#444;line-height: 2.5rem;padding-left: 3.5rem;background:url(../images/icon_pdf.png) no-repeat 1.25rem center;background-size:1.4375rem;max-width: 86%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;-webkit-transition: .3s;transition: .3s}
+.product_detail_literature li a{display:block;font-size: 1rem;color:#444;line-height: 2.5rem;padding-left: 3.5rem;background:url(../images/icon_pdf.png) no-repeat 1.25rem center;background-size:1.4375rem;max-width: 86%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;-webkit-transition: .3s;transition: .3s}
 .product_detail_literature li:nth-child(2n){margin-right: 0}
 .product_detail_literature li:hover{background-color:#6375a0;background-image:url(../images/icon_download_02.png)}
-.product_detail_literature li:hover p{color:#FFF}
+.product_detail_literature li:hover a{color:#FFF!important;}
 .product_detail_video{padding-bottom: 5rem;}
 .product_detail_video_wrap{position:relative}
 .product_detail_video_wrap video{background:#000;width:100%}
@@ -369,7 +385,9 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 /*news_detail*/
 .news_detail_banner{}
 .news_detail{font-size: 1rem;line-height:1.75;color:#222;text-align: justify;padding:1.5rem 0}
-.news_detail_main p,.news_detail div{padding-bottom:1.5rem;line-height: 1.75;}
+.news_detail_main *{padding:inherit;margin:inherit;}
+.news_detail_main li{list-style: inherit;float:none;}
+/*.news_detail_main p,.news_detail div{padding-bottom:1.5rem;line-height: 1.75;}*/
 .news_detail_main img{height:auto;}
 .news_detail_link{margin:2rem 0 0;text-align: center;}
 .news_detail_link a{width:620px;font-size: 1rem;line-height:3.625;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;padding:0 2rem;max-width: 80%;background:#d7ddeb;border-radius:1.8125em;display:block;margin:0 auto 2.25rem;}
@@ -406,9 +424,9 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
 .news_video .play_btn{position:absolute;top:45%;left:50%;width:6.875rem;height:6.875rem;margin:-3.4375rem 0 0 -3.4375rem;-webkit-transition: .2s;transition: .2s;cursor:pointer}
 .news_video .play_btn:hover{-webkit-transform:scale(1.1);transform:scale(1.1);opacity:0.5}
 .news_video .news_media_item_small .play_btn{width:4.6875rem;height:4.6875rem;margin:-2.34375rem 0 0 -2.34375rem;}
- .news_video_item{display:none}
- .news_video_item.active{display:block}
- .video_box{position:fixed;width:62.5rem;max-width: 80%;top:55%;left:50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);background:#000;z-index: 9;color:#FFF;display:none;}
+.news_video_item{display:none}
+.news_video_item.active{display:block}
+.video_box{position:fixed;width:62.5rem;max-width: 80%;top:55%;left:50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);background:#000;z-index: 9;color:#FFF;display:none;}
 .video_wrap video{width:100%;background:#000;}
 .video_box_title{padding:0 1rem 0 1.875rem;}
 .video_box_title h4{font-size:1.25rem;line-height:3.125rem;float:left;letter-spacing: 1px;}
@@ -473,6 +491,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_team h2{padding-top: 2.5rem;}
     .about_duty h2{padding-top: 1rem;}
     .about_career_t{padding-top: 4.75rem;}
+    .about_duty_item_list li .txt p{height:7em;}
 }
 
 @media screen and (max-width: 1441px){
@@ -488,7 +507,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_branch_detail_contact h3,.about_career h4,.product_item_txt h2{font-size: 1.625rem;}
     .about_duty_nav li h3,.inside_banner_txt .source,.inside_banner_txt .date{font-size: 1.25rem;}
     .about_duty_item_title .txt h3,.about_duty_item_list li .txt h3{font-size: 2rem;}
-    .about_duty_item_list li .txt p{margin-bottom: 2rem;}
+    .about_duty_item_list li .txt p{margin-bottom: 2rem;height:8.75em;}
     .about_duty_item_title{height:35rem;}
     .about_team_t li p{font-size: 3rem;}
     .about_team_b_item li .txt h4, .about_team_detail_list .swiper-slide .txt h4{font-size: 1.375rem;}
@@ -533,12 +552,13 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .inside_banner_txt p{font-size: 12px;line-height: 1.3}
     .about_career_b li .txt h3, .about_career h3, .about_course_title h2, .about_duty h2, .about_team h2, .about_title, .current_year, .inside_banner_txt h2,.about_other_list li .txt h3{font-size: 20px;}
     .about_desc{text-align: justify}
+    .about_desc br{display:none;}
     .about_other_list li .txt.fl{text-align: left}
     .about_other_list li .txt .line,.about_other_list li .txt.fl .line{height:50px;margin:15px 0 0 3px;}
     .about_desc p{font-size: 14px;line-height: 1.715}
-    .about_item{height:auto;min-height: inherit;padding:70px 0 80px;position:static;}
+    .about_item{height:auto;min-height: inherit;padding:70px 0;position:static;}
     .about_item .wrap{position:static;top:auto;left:auto;-webkit-transform: translate(0,0);transform: translate(0,0)}
-    .about_item_01{height:26rem;min-height: inherit}
+    .about_item_01{height:auto;min-height: inherit}
     .about_item_02{height:auto;}
     .about_item_02 .about_img{margin:2em 0}
     .about_title{padding-bottom: 1.5rem;}
@@ -569,15 +589,17 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_course_list{max-width: 90%}
     .about_duty h2{padding-bottom: 2rem;}
     .about_duty_title p,.about_duty_item_title .txt h3 span,.about_duty_item_title .txt p{font-size: 14px;}
+    .about_duty_title p{text-align: justify}
     .about_duty_nav li h3 span{font-size: 12px;}
     .about_duty_nav li .icon{height:3.5rem;}
     .about_duty_nav li h3, .inside_banner_txt .source, .inside_banner_txt .date{font-size: 14px;}
     .about_duty_item_title .txt h3, .about_duty_item_list li .txt h3{font-size: 18px;line-height: 30px;}
     .about_duty_item_title .txt h3 span{line-height: 30px;}
-    .about_duty_item_title{height:36rem;}
+    .about_duty_item_title{height:auto;padding:100px 0 70px;}
+    .about_duty_item_title .txt{position:static;-webkit-transform: translate(0);transform: translate(0)}
     .about_duty_item_list li .txt p,.about_duty_detail p{font-size: 14px;}
     .about_duty_item_title .txt h3, .about_duty_item_list li .txt h3{margin-bottom:10px;}
-    .about_duty_item_list li .txt p{max-width: 100%;margin:0 auto 10px;}
+    .about_duty_item_list li .txt p{max-width: 100%;margin:0 auto 20px;height:auto;}
     .about_duty_item_list li .txt a{font-size: 14px;line-height: 30px;}
     .about_duty_good{padding:3rem 0}
     .about_duty_good .wrap img:first-child{display:none}
@@ -595,8 +617,11 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_team_t ul{padding-top: 0}
     .about_team_t li .icon{height:5rem;line-height: 5rem;margin-bottom: 1rem;}
     .about_team_t li .icon img{max-width: 70%}
-    .about_team_t li p{font-size: 20px;}
+    .about_team_t li p{font-size: 26px;}
+    .about_team_t li p span{font-size: 16px;}
     .about_team_t li i,.about_team .wrap>p{font-size: 14px;line-height: 1.715}
+    .about_team .wrap>p{text-align: justify}
+    .about_team .wrap>p br{display:none;}
     .about_team h2{line-height: 4rem;}
     .about_team_c_wrap{margin-top: 3rem;}
     .about_team_c{padding-bottom: 5rem;}
@@ -605,7 +630,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_team_b .tab_nav li{width:33.3333%;border-radius: 0}
     .tab_nav ul{border-radius: 0}
     .about_team_b .tab_nav{margin-bottom: 3rem;  }
-    .about_team_b_item li, .about_team_detail_list .swiper-slide{width:49.25%;height:16rem;}
+    .about_team_b_item li, .about_team_detail_list .swiper-slide{width:49.25%;height:14rem;}
     .about_team_b_item li:nth-child(3n){margin-right: 1.5%}
     .about_team_b_item li:nth-child(2n){margin-right: 0}
     .about_team_b_item li .txt h4, .about_team_detail_list .swiper-slide .txt h4{font-size: 16px;}
@@ -614,9 +639,9 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_team_detail_other>h3{font-size: 18px;margin-bottom: 1rem;}
     .about_team_detail_desc{padding:1rem 0 1.5rem;}
     .about_team_b_item li .txt, .about_team_detail_list .swiper-slide .txt{padding-left: 0.5rem;max-width: 80%}
-    .about_team_detail_controls>div{width:2rem;height:2rem;margin-top:-1rem;background-size:30%}
-    .about_team_detail_controls>div.swiper-button-next,.about_team_detail_controls>div.swiper-button-next:hover{right:0}
-    .about_team_detail_controls>div.swiper-button-prev,.about_team_detail_controls>div.swiper-button-prev:hover{left:0}
+    .about_team_detail_controls>div{width:2rem;height:2rem;/*margin-top:-1rem;*/background-size:30%}
+    /*.about_team_detail_controls>div.swiper-button-next,.about_team_detail_controls>div.swiper-button-next:hover{right:0}
+    .about_team_detail_controls>div.swiper-button-prev,.about_team_detail_controls>div.swiper-button-prev:hover{left:0}*/
     .news_item .txt h4, .news_magazine_item_wrap li .txt>p{font-size: 14px;}
     .news_item .txt p,.news_item .txt span{font-size: 14px;}
     .news_item .img{width:15rem}
@@ -635,12 +660,12 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .news_item .txt h4 i{font-size: 14px;}
     .inside_banner_txt .source_link{font-size: 14px;margin-top: 0}
     .product_detail_banner .inside_banner_logo{margin-bottom: 0;height:40px;line-height: 38px;}
-    .product_detail_banner .inside_banner_txt h2{font-size: 16px;max-width: 50%}
+    .product_detail_banner .inside_banner_txt h2{font-size: 14px;max-width: 50%}
     .product_detail{padding-top: 20px;}
-    .product_detail_title{margin-bottom: 20px;}
+    .product_detail_title{margin-bottom: 20px!important;}
     .product_detail_title h3{font-size: 18px;}
     .product_detail_item p, .product_detail_item dd{font-size: 14px;}
-    .product_detail_item dd{background-size:12px;background-positon:left 6px;padding-left: 20px;}
+    /*.product_detail_item dd{background-size:12px;background-positon:left 6px;padding-left: 20px;}*/
     .product_detail td{font-size: 10px;}
     .about_college_detail p{font-size: 14px;}
     .recruit_post_t li h4{font-size: 18px;}
@@ -652,7 +677,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_branch li{width:100%}
     .about_course_nav .swiper-slide .img{width:10rem;height:10rem;}
     .about_course_list .swiper-slide h3{margin-bottom: 1rem;}
-    .about_course_nav .swiper-container{padding:4.5rem 0 2.4rem;}
+    .about_course_nav .swiper-container{padding:5.3rem 0 3.4rem;}
     .about_course_title{margin-bottom: 2rem;}
     .about_course_nav .swiper-slide .dot{width:10px;height:10px;}
     .about_duty_nav li .icon{height:2rem;}
@@ -671,7 +696,12 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .about_honor .about_course_nav .swiper-slide p:after{bottom:30px;}
     .about_honor .about_course_list .swiper-slide p{background-size:16px;padding-left: 20px;}
     .about_team_b .tab_nav li{font-size: 14px;width:50%}
+    .about_team_b_item li{width:100%;margin-right: 0;margin-bottom: 15px;}
+    .about_team_b_item li .img{width:50%}
+    .about_team_b_item li .txt{max-width:60%}
+    .about_team_t li{width:100%;margin:10px auto 30px;}
     .news_item .txt h4, .news_magazine_item_wrap li .txt>p{font-size: 14px;letter-spacing: 0}
+    .news_magazine_item_wrap li .txt>p{display:none;}
     .news_item .img{width:100%;float:none;}
     .news_item .txt{padding-left: 0;padding-top: 20px;}
     .news_item a{padding:30px 0}
@@ -684,7 +714,7 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .news_magazine_item_wrap li .txt{opacity:1;padding:10px}
     .news_magazine_item_wrap li .img:after{opacity:0.8}
     .news_magazine_item_wrap li .news_magazine_title{margin-bottom: 10px;}
-    .news_magazine_item_wrap li .news_magazine_title h4{font-size: 16px;line-height: 1.3;padding:0 0 0.5em;}
+    .news_magazine_item_wrap li .news_magazine_title h4{font-size: 16px;line-height: 1.3;padding:0 0 0.5em;letter-spacing: 0}
     .news_magazine_item_wrap li .news_magazine_title span,.news_magazine_item_wrap li .news_magazine_btn span{font-size: 14px;}
     .news_magazine_item_wrap li .news_magazine_btn{bottom:10px;}
     .news_magazine_item_wrap li .news_magazine_btn a{width:80%;font-size: 12px;margin:0 auto 6px;line-height: 2.5}
@@ -696,28 +726,40 @@ a.about_branch_detail_link:hover{background-color:#2e81de;color:#FFF;}
     .news_video{margin-top: 30px;}
     .news_video .play_btn,.news_video .news_media_item_small .play_btn,.product_detail_video_wrap .play_btn{width:40px;height:40px;margin:-20px 0 0 -20px}
     .product_item_txt{width:100%;padding-top: 30px;}
-    .product_item_txt li a{font-size: 14px;}
-    .product_item_bg{height:40%;width:100%;top:60%;right:0}
+    .product_item_txt li{width:100%;margin:0 auto 10px;float:none;}
+    .product_item_txt li a{font-size: 14px;height:auto;}
+    .product_item{padding-bottom: 10rem;}
+    .product_item_bg{height:10rem;width:100%;bottom:0;right:0;top:auto}
     .product_detail_video,.product_detail_case{padding-bottom: 30px}
     .product_detail_case_pagination{margin-top: 15px;}
     .product_detail_case_pagination span{font-size: 14px;margin-left: 6px;width:24px;line-height: 24px;height:24px;}
     .product_detail_case_wrap .swiper-slide{padding:10px;}
-    .product_detail_case_wrap .swiper-slide p{font-size: 14px;}
-    .product_detail_case_wrap .swiper-slide a{font-size: 14x;}
+    .product_detail_case_wrap .swiper-slide p{font-size: 14px;height:7em;letter-spacing: 0}
+    .product_detail_case_wrap .swiper-slide a{font-size: 14px;line-height: 32px;}
     .product_detail_literature li{float:none;width:100%;margin-right: 0;margin-bottom: 15px;}
     .product_detail_literature li p{font-size: 14px;}
     .recruit_post_t{padding:40px 0 40px;}
     .recruit_pay_t .wrap>h3,.recruit_pay_t .wrap>p{margin-bottom: 20px;}
     .recruit_pay_t ul{margin-top: 30px}
-    .recruit_pay_t li{width:50%;margin-bottom: 20px;}
+    .recruit_pay_t li{width:100%;margin-bottom: 30px;}
     .recruit_pay_t li h4{line-height: 2.5}
     .recruit_pay_t li .icon img{width:80px;max-width: 40%}
     .recruit_pay_b li{width:48%;margin:0 1% 2%}
     .recruit_pay_b .wrap>h3{margin-bottom: 30px}
     .recruit_post_t h3{margin-bottom: 50px}
+    .recruit_post_t li{width:100%;margin:0 auto 50px;position:relative}
+    .recruit_post_t li:after{position:absolute;content:'';width:20px;height:30px;background:url(../images/recruit_post_icon_04.png) no-repeat center;background-size:100%;bottom:-40px;left:50%;margin-left:-10px;-webkit-transform: rotate(90deg);transform: rotate(90deg)}
+    .recruit_post_t li:last-child:after{display:none;}
     .recruit_post_t li h4{line-height: 2.5}
-    .recruit_post_t li .icon:after{width:18px;right:-9px;}
-    .recruit_post_t li .icon img{max-width: 60%}
+    .recruit_post_t li .icon:after{width:18px;right:-9px;display:none;}
+    .recruit_post_t li .icon img{max-width: 60%;width:80px;}
     .about_career_b li{width:100%}
     .about_career_b li .txt h3{margin-bottom: 30px;}
+    .about_team_nav{margin:20px 0 50px;padding:0 35px;height:40px;}
+    .about_team_nav .swiper-container{border-radius:40px;height:40px;}
+    .about_team_nav .swiper-container .swiper-slide{font-size:13px;line-height:40px;}
+    .about_team_nav_controls>div{cursor:pointer;width:30px;height:30px;margin-top:-15px;}
+    .about_team_nav_controls>div.swiper-button-prev:hover{left:0}
+    .about_team_nav_controls>div.swiper-button-next:hover{right:0}
+
 }

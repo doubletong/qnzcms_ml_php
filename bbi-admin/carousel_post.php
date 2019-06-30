@@ -10,6 +10,7 @@ if (isset( $_POST['title'], $_POST['importance'])) {
     $title = $_POST['title'];
     $importance = $_POST['importance'];
     $imageUrl = $_POST['imageUrl'];
+    $image_url_mobile  = $_POST['image_url_mobile'];
     $link = $_POST['link'];
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
     $description = $_POST['description'];
@@ -17,9 +18,9 @@ if (isset( $_POST['title'], $_POST['importance'])) {
     //   echo $content.$carouselId;
     if(isset($_POST['carouselId'])){
         echo $carouselClass->update_carousel($carouselId,
-            $title, $importance, $imageUrl, $active, $description, $link);
+            $title, $importance, $imageUrl,$image_url_mobile, $active, $description, $link);
     }else{
-        echo $carouselClass->insert_carousel($title, $importance, $imageUrl, $active, $description, $link);
+        echo $carouselClass->insert_carousel($title, $importance, $imageUrl,$image_url_mobile, $active, $description, $link);
     }
 
 }else{

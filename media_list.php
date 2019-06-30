@@ -17,7 +17,7 @@ if(isset($_GET['id'])){
 
 
 $pagination = new PDO_Pagination(db::getInstance());
-$model = array();
+$articles = array();
 $pagination->config(6, 10);
 
 
@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
     $query = db::getInstance()->prepare($sql);
     $query->execute();
     while ($rows = $query->fetch()) {
-        $model[] = $rows;
+        $articles[] = $rows;
     }
 } 
 
@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
 <!--main-->
     <div class="main news">
         <div class="news_list news_media_list">
-            <?php foreach ($model as $article) { ?>
+            <?php foreach ($articles as $article) { ?>
                 <div class="news_item wow fadeInUp">
                     <div class="wrap">
                         <a href="/media-detail-<?php echo $article['id']; ?>" class="clear">

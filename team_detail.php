@@ -5,9 +5,9 @@ require_once("data/team.php");
 
 $teamClass = new Team();
 if(isset($_GET['id'])){
-    $id = $_GET['id'];  
-    $teams = $teamClass->get_all_teams();
+    $id = $_GET['id'];   
     $data = $teamClass->fetch_data( $id);
+    $teams = $teamClass->get_related_teams($id,$data['dictionary_id']);
   
 }else{
     header('Location: /team');
@@ -74,67 +74,7 @@ if(isset($_GET['id'])){
                             </div>
                         </div>
                             <?php }?>
-<!--                       
-                        <div class="swiper-slide">
-                            <div class="img">
-                                <img src="/images/about_team_02.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>芦田典裕先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img">
-                                <img src="/images/about_team_03.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>白藤泰司先生 </h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img">
-                                <img src="/images/about_team_04.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>余洪亮先生</h4>
-                                <p>非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img">
-                                <img src="/images/about_team_05.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>周嘉鸿先生 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img">
-                                <img src="/images/about_team_06.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>刘国恩博士 </h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img">
-                                <img src="/images/about_team_07.jpg" alt=""/>
-                            </div>
-                            <div class="txt">
-                                <h4>邵春阳先生</h4>
-                                <p>独立非执行董事</p>
-                                <a href="about_team_detail.html">了解更多</a>
-                            </div>
-                        </div> -->
+                            
                     </div>
                     <div class="about_team_detail_controls">
                         <div class="swiper-button-prev"></div>
@@ -151,16 +91,16 @@ if(isset($_GET['id'])){
 <?php require_once('includes/scripts.php') ?>
 
 <script>
-     var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        slidesPerView: 5,
-        centeredSlides: true,
-        loop:true,
-        paginationClickable: true,
-        spaceBetween: '1%',
-        prevButton:'.swiper-button-prev',
-        nextButton:'.swiper-button-next'
-    });
+    //  var swiper = new Swiper('.swiper-container', {
+    //     pagination: '.swiper-pagination',
+    //     slidesPerView: 5,
+    //     centeredSlides: true,
+    //     loop:true,
+    //     paginationClickable: true,
+    //     spaceBetween: '1%',
+    //     prevButton:'.swiper-button-prev',
+    //     nextButton:'.swiper-button-next'
+    // });
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(2) a").addClass("active");
            $(".mainav li:nth-of-type(2) a").addClass("active");

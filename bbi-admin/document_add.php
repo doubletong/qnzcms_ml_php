@@ -41,7 +41,7 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(5);
                             <label for="title">主题</label>
                             <input type="text" class="form-control" id="title" name="title" placeholder="">                         
                         </div>
-                      
+               
                         <div class="form-group">
                                         <label for="dictionary_id">类别</label>
 
@@ -55,7 +55,10 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(5);
 
                                         </select>
                                     </div>
-                    
+                                    <div class="form-group">
+                                    <label for="description">描述</label>
+                                    <textarea class="form-control" id="description" rows="6" name="description" placeholder=""></textarea>                          
+                                </div>
                             <div class="form-group">
                             <label for="file_url">
                                 文档</label>

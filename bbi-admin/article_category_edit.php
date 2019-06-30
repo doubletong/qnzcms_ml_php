@@ -3,6 +3,8 @@ require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/article_category.php');
+require_once('data/product.php');
+
 
 $cateModel = new ArticleCategory();
 
@@ -35,6 +37,14 @@ function buildTree(array $elements, $parentId = 0) {
 
 $tree = buildTree($categories);
 
+if($did==="6"){
+    $productModel = new Product();
+    $products = $productModel->fetch_all();
+
+    $selected = explode(",", $data['product_ids']); 
+   
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,7 +54,7 @@ $tree = buildTree($categories);
     <?php require_once('includes/meta.php') ?>
 
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="../js/vendor/ckeditor/ckeditor.js"></script>
+    <link href="../js/vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -94,6 +104,21 @@ $tree = buildTree($categories);
                                                             
                                         </select>                          
                                     </div>
+
+                                    <div class="form-group">
+                                            <label for="product_ids">相关产品</label>                                    
+                                            <select class="form-control" id="product_ids" name="product_ids[]" multiple="multiple" >                                               
+                                                <?php foreach( $products as $product)
+                                                {
+                                                    if (in_array($product["id"], $selected)){  
+                                                    ?>
+                                                    <option value="<?php echo $product["id"]; ?>" selected><?php echo $product["title"]; ?></option>         
+                                                    <?php }else { ?>
+                                                        <option value="<?php echo $product["id"]; ?>"><?php echo $product["title"]; ?></option>         
+                                                <?php }  } ?>                                                            
+                                            </select>                          
+                                        </div>  
+
                                     <?php } ?>
                                     <div class="form-group">
                                         <label for="importance">排序</label>
@@ -161,6 +186,9 @@ $tree = buildTree($categories);
 
     <script src="../js/vendor/holderjs/holder.min.js"></script>
     <script src="../js/vendor/toastr/toastr.min.js"></script>
+    <script src="../js/vendor/select2/dist/js/select2.min.js"></script>
+    <script src="../js/vendor/select2/dist/js/i18n/zh-CN.js"></script>
+
     <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 
     <script type="text/javascript">
@@ -190,6 +218,10 @@ $tree = buildTree($categories);
         if("16"==<?php echo $did; ?>){
             $(".mainmenu>li.medialist").addClass("nav-open").find("ul>li.category a").addClass("active");
         }
+
+
+        $('#product_ids').select2();
+
 
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
@@ -240,21 +272,12 @@ $tree = buildTree($categories);
                     $(element).addClass('is-valid');
                 },
                 submitHandler: function(form) {
-                    //form.submit();
-                    var values = {};
-                    var fields = {};
-                    for (var instanceName in CKEDITOR.instances) {
-                        CKEDITOR.instances[instanceName].updateElement();
-                    }
-
-                    $.each($(form).serializeArray(), function(i, field) {
-                        values[field.name] = field.value;
-                    });
+                
 
                     $.ajax({
                         url: 'article_category_post.php',
                         type: 'POST',
-                        data: values,
+                        data:  $(form).serialize(),
                         success: function(res) {
                             //  $('#resultreturn').prepend(res);
                             if (res) {

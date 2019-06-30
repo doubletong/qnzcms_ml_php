@@ -34,9 +34,12 @@ if (isset($_GET['id'])) {
 <body>
     <?php require_once('includes/header.php') ?>
     <div class="banner banner-disease-list" style="background-image:url(../img/temp/b3.jpg)">
-        <div class="container page-title">
+    <div class="page-title1">
+        <div class="container">
             <h1><?php echo $data['title']; ?></h1>
         </div>
+    </div>
+      
     </div>
     <div class="page page-disease-detail">
         <div class="container detail">

@@ -51,8 +51,9 @@ if (isset($_GET['id'])) {
     <div class="wrap">
         <div class="about_branch_detail_desc wow fadeInUp">
             <?php echo $data['intro'];?>
-
-            <a href="<?php echo $data['homepage'];?>" class="about_branch_detail_link" target="_blank">查看公司官网</a>
+            <?php if(!empty($data['homepage'])){ ?>
+                <a href="<?php echo $data['homepage'];?>" class="about_branch_detail_link" target="_blank">查看公司官网</a>
+            <?php } ?>
         </div>
         <div class="about_branch_detail_contact wow fadeInUp">
             <h3>联系方式</h3>
@@ -61,7 +62,7 @@ if (isset($_GET['id'])) {
                 <dd class="email">邮编：<?php echo $data['postcode'];?></dd>
                 <dd class="tel">电话：<?php echo $data['phone'];?></dd>
                 <dd class="fax">传真：<?php echo $data['fax'];?></dd>
-                <dd class="site">网址：<?php echo $data['homepage'];?></dd>
+                <!-- <dd class="site">网址：<?php echo $data['homepage'];?></dd> -->
             </dl>
         </div>
     </div>

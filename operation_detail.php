@@ -8,7 +8,8 @@ $articleClass = new Article();
 if(isset($_GET['id'])){
     $id = $_GET['id'];
     $data = $articleClass->fetch_data($id);
-   
+    $docs = $articleClass->get_article_documents($id);
+  
 }else{
     header('Location: /news');
     exit;
@@ -40,13 +41,25 @@ if(isset($_GET['id'])){
         <div class="container detail">
         <?php echo $data['content'];?>
 
-            <!-- <div class="docs">
+        <?php if (!empty($docs)) { ?>
+                 
+           <div class="docs">
                 <h2 class="se-title">
                     相关文档
                 </h2>
                 <div class="list">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <?php foreach ($docs as $doc) { ?>
+                               
+                            <div class="col-lg-6">
+                                <div class="pdf">
+                                    <div class="title"><?php echo $doc['title']; ?></div>
+                                    <a href="<?php echo $doc['file_url']; ?>" title="<?php echo $doc['title']; ?>"><i class="iconfont icon-download"></i></a>
+                                </div>
+                            </div>
+                            <?php } ?>
+                       
+                        <!-- <div class="col-lg-6">
                             <div class="pdf">
                                 <div class="title">12-month Results from the Patient-level Pooled Analysis of ...</div>
                                 <a href="/uploads/files/sample.pdf"><i class="iconfont icon-download"></i></a>
@@ -63,17 +76,14 @@ if(isset($_GET['id'])){
                                 <div class="title">12-month Results from the Patient-level Pooled Analysis of ...</div>
                                 <a href="/uploads/files/sample.pdf"><i class="iconfont icon-download"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="pdf">
-                                <div class="title">12-month Results from the Patient-level Pooled Analysis of ...</div>
-                                <a href="/uploads/files/sample.pdf"><i class="iconfont icon-download"></i></a>
-                            </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
-            </div> -->
+            </div> 
+            <?php } ?>
+
+
         </div>
 
     </div>

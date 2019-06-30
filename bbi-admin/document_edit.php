@@ -53,7 +53,7 @@ if (isset($_GET['id'])) {
                                         <label for="title">标题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo $data['title']; ?>">
                                     </div>
-
+                               
                                     <div class="form-group">
                                         <label for="dictionary_id">类别</label>
                                         <select class="form-control" id="dictionary_id" name="dictionary_id" placeholder="">
@@ -71,7 +71,11 @@ if (isset($_GET['id'])) {
 
                                         </select>
                                     </div>
-
+                                  
+                                    <div class="form-group">
+                                    <label for="description">描述</label>
+                                    <textarea class="form-control" id="description" rows="6" name="description" placeholder=""><?php echo $data["description"]; ?></textarea>                          
+                                </div>
                                     <div class="form-group">
                                         <label for="file_url">
                                             文档</label>

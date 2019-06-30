@@ -469,6 +469,7 @@ $data = $chronicleClass->get_all_chronicles($did);
 <script>
      var aboutCourseList = new Swiper('.about_course_list .swiper-container', {
         spaceBetween: 10,
+        autoHeight: true
         // loop:true,
         // loopAdditionalSlides : 3
     });
@@ -480,6 +481,7 @@ $data = $chronicleClass->get_all_chronicles($did);
         slidesPerView: 3,
         touchRatio: 0.2,
         slideToClickedSlide: true,
+      
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev'
     });

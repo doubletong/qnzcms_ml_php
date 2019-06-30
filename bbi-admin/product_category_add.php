@@ -108,19 +108,28 @@ $tree = buildTree($categories);
                                 <div class="col-auto">
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
-                                            <div class="card-body">
-                                           
-                                                    <img ID="iLogo" src="holder.js/240x280?text=1920x550/960X374像素" class="img-responsive img-rounded" />    
-                                             
-                                              
+                                            <div class="card-body">                                           
+                                                <img ID="iLogo" src="holder.js/240x120?text=图片" class="img-responsive img-rounded" />                                               
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 图片...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" />
+                                                <small id="emailHelp" class="form-text text-muted">大类顶部背景尺寸：1920x550像素；小类背景尺寸：960X374像素</small>
+                                              
                                             </div>
                                         </div>
                                     </div>                                 
-                                
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">                                           
+                                                <img ID="iLogo2" src="holder.js/240x120?text=960X420像素" class="img-responsive img-rounded" />                                               
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大类首页背景...</button>
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" />
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
 
@@ -151,12 +160,15 @@ $tree = buildTree($categories);
             $('#iLogo').attr('src', fileUrl);
         }
 
-
+        function SetThumbnail2(fileUrl) {
+            $('#thumbnail2').val(fileUrl);
+            $('#iLogo2').attr('src', fileUrl);
+        }
 
         $(document).ready(function() {
             //当前菜单
           
-            $(".mainmenu>li.products").addClass("nav-open").find("ul>li:.category a").addClass("active");
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
      
      
         
@@ -166,7 +178,11 @@ $tree = buildTree($categories);
 
             });
 
+            $("#btnBrowser2").on("click", function() {
+                singleEelFinder.selectActionFunction = SetThumbnail2;
+                singleEelFinder.open();
 
+            });
 
             $("#editform").validate({
 
@@ -189,8 +205,6 @@ $tree = buildTree($categories);
                         required: "请输入序号",
                         digits: "请输入有效的整数"
                     }
-
-
                 },
 
                 errorClass: "invalid-feedback",
@@ -216,16 +230,15 @@ $tree = buildTree($categories);
                     });
 
                     $.ajax({
-                        url: 'article_category_post.php',
+                        url: 'product_category_post.php',
                         type: 'POST',
                         data: values,
                         success: function(res) {
                             //  $('#resultreturn').prepend(res);
                             if (res) {
-                                toastr.success('<?php echo $pageConfig['category'];?>已添加成功！', '添加<?php echo $pageConfig['category'];?>')
+                                toastr.success('产品分类已添加成功！', '添加产品分类')
                             } else {
-
-                                toastr.error('<?php echo $pageConfig['category'];?>添加失败！', '添加<?php echo $pageConfig['category'];?>')
+                                toastr.error('产品分类添加失败！', '添加产品分类')
                             }
                         }
                     });

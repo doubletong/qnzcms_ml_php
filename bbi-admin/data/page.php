@@ -64,13 +64,14 @@ class Page{
     }
 
     //更新
-   public function update_page($id, $title,$alias,$keywords,$active, $description, $content) {
+   public function update_page($id, $title,$alias,$keywords,$active, $description, $content,$background_image) {
 
         $sql = "UPDATE pages SET title= :title,
              alias =:alias,        
              keywords = :keywords,
              description = :description,
              content = :content,
+             background_image = :background_image,
              active =:active
              WHERE id =:id";
 
@@ -81,6 +82,7 @@ class Page{
         $query->bindValue(":keywords",$keywords);
         $query->bindValue(":description",$description);
         $query->bindValue(":content",$content);
+        $query->bindValue(":background_image",$background_image);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
@@ -94,10 +96,10 @@ class Page{
     }
 
 
-    public function insert_page($title,$alias, $keywords,$active, $description, $content) {
+    public function insert_page($title,$alias, $keywords,$active, $description, $content,$background_image) {
 
-        $sql="INSERT INTO pages (title,alias,keywords, description,content,active,added_by,added_date)
-                VALUES (:title,:alias,:keywords, :description,:content, :active,:added_by,:added_date)";
+        $sql="INSERT INTO pages (title,alias,keywords, description,content,background_image,active,added_by,added_date)
+                VALUES (:title,:alias,:keywords, :description,:content,:background_image, :active,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -107,6 +109,7 @@ class Page{
         $query->bindValue(":keywords",$keywords);
         $query->bindValue(":description",$description);
         $query->bindValue(":content",$content);
+        $query->bindValue(":background_image",$background_image);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":added_by",$username);
         $query->bindValue(":added_date",time(),PDO::PARAM_INT);

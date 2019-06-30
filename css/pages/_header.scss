@@ -18,7 +18,7 @@
     .logo {
         display: block;
        
-        width: 6rem;
+       
         z-index: 9000;
 
         @include respond-above(sm) {         
@@ -26,8 +26,9 @@
         }
 
         img {
-            width: 100%;
+            max-width: 100%;
             transition: all .2s;
+            display: block;
         }
     }
     .search{

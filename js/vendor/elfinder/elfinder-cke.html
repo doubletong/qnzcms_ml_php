@@ -64,7 +64,8 @@
                 // 'DOM Element ID': { /* elFinder options of this DOM Element */ }
                 'elfinder': {
                     getFileCallback: function(file, fm) {
-                        var fileUrl = '/' + file.path;
+                       // var fileUrl = '/' + file.path;
+                        var fileUrl = '/'+file.path.replace(/\\/g,"/");
                         window.opener.CKEDITOR.tools.callFunction((function() {
                             var reParam = new RegExp('(?:[\?&]|&amp;)CKEditorFuncNum=([^&]+)', 'i');
                             var match = window.location.search.match(reParam);

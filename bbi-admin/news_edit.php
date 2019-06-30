@@ -178,7 +178,7 @@ $tree = buildTree($categories);
 
                                         <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']); ?></textarea>
                                         <script>
-                                            var elFinder = '/js/vendor/elfinder/elfinder-cke.html';
+                                            var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
                                                 filebrowserBrowseUrl: elFinder,
                                                 filebrowserImageBrowseUrl: elFinder,

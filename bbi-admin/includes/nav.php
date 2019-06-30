@@ -180,9 +180,9 @@
                         </a>
                         <ul class="subnav">
                             <li class="carousels"><a href="carousels.php"><i class="iconfont icon-image"></i> 轮播图</a></li>
-                         
+                            <li class="menus"><a href="menus.php"><i class="iconfont icon-menu"></i>栏目</a></li>              
                             <li hidden><a href="links.php"><i class="iconfont icon-link"></i> 链接</a></li>                       
-                            <li hidden><a href="shopes.php"><i class="iconfont icon-shop"></i> 专卖店</a></li>
+                   
                         </ul>
                     </li>
 

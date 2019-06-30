@@ -16,7 +16,8 @@ $search = null;
 if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
     $search = htmlspecialchars($_REQUEST["search"]);
-    $pagination->param = "&search=$search";
+   
+    $pagination->param = "&search=$search&did=$did";
     $pagination->rowCount("SELECT id FROM `article_categories` WHERE dictionary_id = $did and title LIKE '%$search%' ORDER BY  importance DESC ");
     $pagination->config(6, 10);
     $sql = "SELECT * FROM `article_categories` WHERE dictionary_id = $did title LIKE '%$search%'  ORDER BY  importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
@@ -32,6 +33,7 @@ else
 {
     $pagination->rowCount("SELECT id FROM `article_categories`  WHERE dictionary_id = $did");
     $pagination->config(6,10);
+    $pagination->param = "&did=$did";
     $sql = "SELECT * FROM `article_categories`  WHERE dictionary_id = $did ORDER BY importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();

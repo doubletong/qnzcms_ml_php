@@ -95,28 +95,56 @@
 }
 
 .banner-disease-list {
-    .page-title {
-        padding-top: 5.5rem;
+    position: relative;
+    // .page-title {
+    //     padding-top: 5.5rem;
+    //     color: #fff;
+
+    //     @include respond-above(sm) {
+    //         padding-top: 13rem;
+    //     }
+
+    //     @include respond-above(md) {
+    //         padding-top: 17rem;
+    //     }
+
+    //     @include respond-above(lg) {
+    //         padding-top: 19rem;
+    //     }
+    //     @include respond-above(xlg)  {
+    //         padding-top: 23rem;
+    //     }
+
+    // }
+
+    .page-title1{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        width: 100%;
+        padding-bottom: 1.5rem;
         color: #fff;
+        h1 {
 
-        @include respond-above(sm) {
-            padding-top: 13rem;
-        }
+            margin: 0;
+            font-weight: lighter;
+            font-size: rem(20);
 
-        @include respond-above(md) {
-            padding-top: 17rem;
-        }
+            @include respond-above(sm) {
+                font-size: rem(32);
+            }
 
-        @include respond-above(lg) {
-            padding-top: 19rem;
-        }
-        @media (min-width:1600px) {
-            padding-top: 23rem;
-        }
+            @include respond-above(md) {
+                font-size: rem(48);
+            }
 
+            @include respond-above(lg) {
+                font-size: rem(60);
+            }
+
+        }
     }
-
-  
 }
 
 .page-disease-list {
@@ -251,7 +279,7 @@
             }
 
             .disease {
-                padding: 1rem 0;
+                padding: 2rem 0;
                 border-bottom: 1px #ddd solid;
                 @include respond-above(sm) {
                     padding: 2rem 0;
@@ -265,8 +293,18 @@
             }
 
             .pic {
-                img {
-                    display: block;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+                height: 200px;
+                @include respond-above(sm) {
+                    height: 150px;
+                }
+                @include respond-above(md) {
+                    height: 120px;
+                }
+                @include respond-above(lg) {
+                    height: 180px;
                 }
             }
 

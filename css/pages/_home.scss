@@ -256,6 +256,12 @@ a.yellow {
                 font-size: rem(40);
             }
         }
+        p.p1{
+            text-align: justify;
+            @include respond-above(sm) {
+                text-align: center;
+            }
+        }
 
         .s1-001 {
           
@@ -323,6 +329,8 @@ a.yellow {
                 }
             }
         }
+
+       
     }
 
 
@@ -419,6 +427,7 @@ a.yellow {
             }
         }
     }
+ 
 
     .s4 {
         .item {
@@ -487,19 +496,23 @@ a.yellow {
 
                 }
 
-                @include hover {
-                        background-image:  linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
-                        background-image: -moz-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
-                        background-image: -webkit-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
-                        background-image: -ms-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                @include hover {                      
                       
-                   
+                        @include respond-above(md) {
+                            background-image:  linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                            background-image: -moz-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                            background-image: -webkit-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                            background-image: -ms-linear-gradient( -90deg, rgba(100,154,235,.8) 0%, rgba(99,104,212,.8) 100%);
+                        }
                       
-                    .more {
-                        width: 125px;
-
-                        span {
-                            display: inline-block;
+                    .more {                       
+                        @include respond-above(md) {
+                            width: 125px;
+                        }
+                        span {    
+                            @include respond-above(md) {
+                                display: inline-block;
+                            }
                         }
                     }
 
@@ -508,7 +521,21 @@ a.yellow {
 
         }
     }
-
+    .s5{
+        padding-top: 0;
+        @include respond-above(sm) {
+            padding-top: 1rem;
+        }
+        @include respond-above(md) {
+            padding-top: 2rem;
+        }
+        @include respond-above(lg) {
+            padding-top: 3rem;
+        }
+        @media screen and (min-width: 1440px){
+            padding-top: 4rem;
+        }
+    }
     .s6 {
         background: $color-primary url(../img/map_03.jpg) no-repeat center center;
         background-size: cover;

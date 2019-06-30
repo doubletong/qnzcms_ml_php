@@ -35,6 +35,12 @@
           @media (min-width:1601) {
             margin-bottom: 6rem;
         }
+        p{
+            text-align: justify;
+            @include respond-above (md) {       
+              text-align: center;
+            }
+        }
     }
     figure{
         margin-bottom: 2rem;

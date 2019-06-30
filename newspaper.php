@@ -1,10 +1,32 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("declare");
+require_once('includes/PDO_Pagination.php');
+require_once("data/document.php");
+
+$did= 23;
+$docClass = new Document();
+$years = $docClass->get_all_years($did);
+
+$lastYear = $years[0]['year'];
+
+$paran_year = isset($_GET['year'])?$_GET['year']:$lastYear;
+
+$pagination = new PDO_Pagination(db::getInstance());
+
+$documents = array();
+$pagination->config(6, 12);
+$pagination->param = "&year=$paran_year";
+$pagination->rowCount("SELECT * FROM documents WHERE DATE_FORMAT(FROM_UNIXTIME(`added_date`), '%Y') = $paran_year AND dictionary_id = $did ");
+
+$sql = "SELECT * FROM documents WHERE DATE_FORMAT(FROM_UNIXTIME(`added_date`), '%Y') = $paran_year AND dictionary_id = $did ORDER BY added_date DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+$query = db::getInstance()->prepare($sql);
+$query->execute();
+while ($rows = $query->fetch()) {
+    $documents[] = $rows;
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -15,15 +37,14 @@ $data = $pageClass->fetch_data("declare");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "心血管介入产品-".SITENAME; ?></title>    
+    <title><?php echo "内刊-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
 <body>
 <?php require_once('includes/header.php') ?>
 
-    <?php //echo $data["content"];?>   
-    
+    <?php //echo $data["content"];?>       
     <div class="striving">
 <!--banner-->
 <div class="inside_banner news_media_banner" style="background-image:url(images/news_magazine_banner.jpg)">
@@ -41,251 +62,64 @@ $data = $pageClass->fetch_data("declare");
         <div class="wrap">
             <div class="tab_nav wow fadeInUp">
                 <ul class="clear">
-                    <li class="active">《微创时代》报纸</li>
-                    <li>《微创时代》杂志</li>
+                    <li class="active"><a href="/newspaper">《微创时代》报纸</a></li>
+                    <li><a href="/magazine">《微创时代》杂志</a></li>
                 </ul>
             </div>
             <div class="news_media news_magazine">
                 <div class="news_magazine_item active">
                     <!--years-->
                     <div class="years clear wow fadeInUp">
-                        <p class="current_year">2019</p>
+                        <p class="current_year"><?php echo $paran_year; ?></p>
                         <ul class="years_list">
-                            <li><a href="news_magazine.html"><p>2019</p></a></li>
-                            <li><a href="news_magazine.html"><p>2018</p></a></li>
-                            <li><a href="news_magazine.html"><p>2017</p></a></li>
-                            <li><a href="news_magazine.html"><p>2016</p></a></li>
-                            <li><a href="news_magazine.html"><p>2015</p></a></li>
+                            <?php  foreach($years as $year) {?>
+                                <li><a href="/newspaper?year=<?php  echo $year['year'] ?>"><p><?php  echo $year['year'] ?></p></a></li>
+                            <?php }?>             
                         </ul>
                         <!--search-->
-                        <div class="news_magazine_search fr">
+                        <!-- <div class="news_magazine_search fr">
                             <input type="text" placeholder="搜索报纸"/>
                             <button></button>
-                        </div>
+                        </div> -->
                         <!--search end-->
                     </div>
                     <!--years end-->
                     <div class="news_magazine_item_wrap">
                         <ul class="clear">
+                            <?php foreach($documents as $doc){?>
                             <li class="wow fadeInUp">
                                 <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
+                                    <img src="<?php echo $doc['thumbnail'] ?>" alt=""/>
                                 </div>
                                 <div class="txt">
                                     <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
+                                        <h4><?php echo $doc['title'] ?></h4>
                                         <span>2019-03-28</span>
                                     </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
+                                    <p><?php echo $doc['description'] ?></p>
                                     <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
+                                        <a href="<?php echo $doc['file_url'] ?>" target="_blank">下载PDF</a>
+                                        <span>PDF <?php echo $doc['file_size'] ?></span>
                                     </div>
                                 </div>
                             </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
+                            <?php } ?>
+
                         </ul>
+
+                        
                     </div>
+                    <!--pagination-->
+                    <div class="pagination wow fadeInUp">
+                                <ul class="pager">
+                                    <?php
+                                    $pagination->pages("btn");
+                                    ?>
+                                </ul>
+                            </div>
+                        <!--pagination end-->
                 </div>
-                <div class="news_magazine_item">
-                    <!--years-->
-                    <div class="years clear wow fadeInUp">
-                        <p class="current_year">2019</p>
-                        <ul class="years_list">
-                            <li><a href="news_magazine.html"><p>2019</p></a></li>
-                            <li><a href="news_magazine.html"><p>2018</p></a></li>
-                            <li><a href="news_magazine.html"><p>2017</p></a></li>
-                            <li><a href="news_magazine.html"><p>2016</p></a></li>
-                            <li><a href="news_magazine.html"><p>2015</p></a></li>
-                        </ul>
-                        <!--search-->
-                        <div class="news_magazine_search fr">
-                            <input type="text" placeholder="搜索杂志"/>
-                            <button></button>
-                        </div>
-                        <!--search end-->
-                    </div>
-                    <!--years end-->
-                    <div class="news_magazine_item_wrap">
-                        <ul class="clear">
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="wow fadeInUp">
-                                <div class="img">
-                                    <img src="images/news_magazine.jpg" alt=""/>
-                                </div>
-                                <div class="txt">
-                                    <div class="news_magazine_title">
-                                        <h4>2019年第2期  总第122期</h4>
-                                        <span>2019-03-28</span>
-                                    </div>
-                                    <p>微创荣获2018年度上海市质量金奖</p>
-                                    <div class="news_magazine_btn">
-                                        <a href="" target="_blank">下载PDF</a>
-                                        <span>PDF 8932.03K</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -297,7 +131,7 @@ $data = $pageClass->fetch_data("declare");
 <?php require_once('includes/scripts.php') ?>
 
 <script>
- domTab('.news_magazine_item')
+//  domTab('.news_magazine_item')
         $(document).ready(function() {
             $(".leftnav li:nth-of-type(4) a").addClass("active");
            $(".mainav li:nth-of-type(4) a").addClass("active");

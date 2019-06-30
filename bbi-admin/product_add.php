@@ -31,7 +31,7 @@ $tree = buildTree($categories);
 
 <head>
     <title>
-        <?php echo "添加产品_产品_后台管理_".SITENAME;?>
+        <?php echo "添加产品_产品_后台管理_" . SITENAME; ?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
@@ -60,44 +60,46 @@ $tree = buildTree($categories);
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="title">产品名称</label>
-                                                <input type="text" class="form-control" id="title" name="title"
-                                                    placeholder="">
+                                                <input type="text" class="form-control" id="title" name="title" placeholder="">
                                             </div>
                                         </div>
-                                    
-                                
-                                       
-                                        <div class="col-6">
-                                        <div class="form-group">
-                                                <label for="categoryId">分类</label>                           
-                                            
-                                                <select class="form-control" id="category_id" name="category_id" placeholder="" >
-                                                    <option value="0">--请选择分类--</option>
-                                                    <?php foreach( $tree as $data)
-                                                            {
-                                                                ?>
-                                                                <optgroup label="<?php echo $data["title"]; ?>">
-                                                                    
 
-                                                            <?php if($data['children']){ 
-                                                                foreach( $data['children'] as $subModel){
-                                                                ?>
+
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="categoryId">分类</label>
+
+                                                <select class="form-control" id="category_id" name="category_id" placeholder="">
+                                                    <option value="0">--请选择分类--</option>
+                                                    <?php foreach ($tree as $data) {
+                                                        ?>
+                                                        <optgroup label="<?php echo $data["title"]; ?>">
+
+
+                                                            <?php if ($data['children']) {
+                                                                foreach ($data['children'] as $subModel) {
+                                                                    ?>
                                                                     <option value="<?php echo $subModel["id"]; ?>"><?php echo $subModel["title"]; ?></option>
 
-                                                                <?php } 
-                                                            } ?>
-                                                            </optgroup>
+                                                                <?php }
+                                                        } ?>
+                                                        </optgroup>
                                                     <?php } ?>
-                                                </select>                          
+                                                </select>
                                             </div>
                                         </div>
-                                    
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="video_id">视频ID</label>
+                                                <input type="text" class="form-control" id="video_id" name="video_id" placeholder="">
+                                            </div>
+                                        </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="importance">排序</label>
 
-                                                <input type="number" class="form-control" id="importance" name="importance"
-                                                    value="0" placeholder="">
+                                                <input type="number" class="form-control" id="importance" name="importance" value="0" placeholder="">
 
                                             </div>
                                         </div>
@@ -106,26 +108,52 @@ $tree = buildTree($categories);
 
                                     <div class="form-group">
                                         <label for="content">产品描述</label>
-
                                         <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                         <script>
-                                            var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html'; 
-                                    CKEDITOR.replace( 'content', {
-                                       height:400,
-                                        filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder                                                   
-                                    });
-                                </script>
-
-
+                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            CKEDITOR.replace('content', {
+                                                height: 350,
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                allowedContent: true       
+                                            });
+                                        </script>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="specifications">规格参数</label>
+                                        <textarea class="form-control" id="specifications" name="specifications" placeholder=""></textarea>
+                                        <script>
+                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            CKEDITOR.replace('specifications', {
+                                                height: 350,
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                allowedContent: true       
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registration">注册信息</label>
+                                        <textarea class="form-control" id="registration" name="registration" placeholder=""></textarea>
+                                        <script>
+                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            CKEDITOR.replace('registration', {
+                                                height: 350,
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                allowedContent: true       
+                                            });
+                                        </script>
+                                    </div>
+                              
+
                                     <div class="form-group">
                                         <label for="summary">摘要</label>
 
                                         <textarea class="form-control" id="summary" name="summary" placeholder=""></textarea>
 
                                     </div>
-                                
+
 
                                     <div class="form-group">
                                         <label for="description">SEO描述</label>
@@ -136,16 +164,14 @@ $tree = buildTree($categories);
                                     <div class="form-group">
                                         <label for="keywords">关键字</label>
 
-                                        <input type="text" class="form-control" id="keywords" name="keywords"
-                                            placeholder="">
+                                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">
 
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" checked id="chkActive"
-                                                        name="active">
+                                                    <input type="checkbox" class="form-check-input" checked id="chkActive" name="active">
                                                     <label class="form-check-label" for="chkActive">发布</label>
                                                 </div>
                                             </div>
@@ -153,8 +179,7 @@ $tree = buildTree($categories);
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" checked id="chkRecommend"
-                                                        name="recommend">
+                                                    <input type="checkbox" class="form-check-input" checked id="chkRecommend" name="recommend">
                                                     <label class="form-check-label" for="chkRecommend">推荐</label>
                                                 </div>
                                             </div>
@@ -169,11 +194,10 @@ $tree = buildTree($categories);
                                     <div style="width:300px;text-align:center;">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="holder.js/250x80?text=210X69像素" class="img-fluid"  />
+                                                <img ID="iLogo" src="holder.js/250x80?text=210X69像素" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i
-                                                        class="iconfont icon-image"></i> 图标...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 图标...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" />
                                             </div>
                                         </div>
@@ -181,11 +205,10 @@ $tree = buildTree($categories);
                                     <div style="width:300px;text-align:center;">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="image_url_show" src="holder.js/250x125?text=962X440像素" class="img-fluid"  />
+                                                <img ID="image_url_show" src="holder.js/250x125?text=962X440像素" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnImageUrl" class="btn btn-info btn-block"><i
-                                                        class="iconfont icon-image"></i> 大图...</button>
+                                                <button type="button" id="btnImageUrl" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大图...</button>
                                                 <input id="image_url" type="hidden" name="image_url" />
                                             </div>
                                         </div>
@@ -228,17 +251,17 @@ $tree = buildTree($categories);
         }
 
 
-      
-        $(document).ready(function () {
+
+        $(document).ready(function() {
             //当前菜单
             $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
 
-            $("#btnBrowser").on("click", function () {
+            $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
                 singleEelFinder.open();
             });
 
-            $("#btnImageUrl").on("click", function () {
+            $("#btnImageUrl").on("click", function() {
                 singleEelFinder.selectActionFunction = SetImageUrl;
                 singleEelFinder.open();
             });
@@ -252,7 +275,7 @@ $tree = buildTree($categories);
                     },
                     category_Id: {
                         required: true
-                    },           
+                    },
                     importance: {
                         required: true,
                         digits: true
@@ -266,7 +289,7 @@ $tree = buildTree($categories);
                     category_Id: {
                         required: "请选择分类"
                     },
-               
+
                     importance: {
                         required: "请输入序号",
                         digits: "请输入有效的整数"
@@ -276,15 +299,15 @@ $tree = buildTree($categories);
 
                 errorClass: "invalid-feedback",
                 errorElement: "div",
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
                     $(element).removeClass('is-valid');
                     $(element).addClass('is-invalid');
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                     $(element).addClass('is-valid');
                 },
-                submitHandler: function (form) {
+                submitHandler: function(form) {
                     //form.submit();
                     var values = {};
                     var fields = {};
@@ -292,7 +315,7 @@ $tree = buildTree($categories);
                         CKEDITOR.instances[instanceName].updateElement();
                     }
 
-                    $.each($(form).serializeArray(), function (i, field) {
+                    $.each($(form).serializeArray(), function(i, field) {
                         values[field.name] = field.value;
                     });
 
@@ -300,7 +323,7 @@ $tree = buildTree($categories);
                         url: 'product_post.php',
                         type: 'POST',
                         data: values,
-                        success: function (res) {
+                        success: function(res) {
                             //  $('#resultreturn').prepend(res);
                             if (res) {
                                 toastr.success('产品已添加成功！', '添加产品')

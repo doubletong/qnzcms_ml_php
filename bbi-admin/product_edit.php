@@ -100,11 +100,16 @@ $tree = buildTree($categories);
                                             </div>
                                         </div>
                                  
-                                   
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="video_id">视频ID</label>
+                                                <input type="text" class="form-control" id="video_id" name="video_id" value="<?php echo $data["video_id"]; ?>" placeholder="">
+                                            </div>
+                                        </div>
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="importance">排序</label>
-
                                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['number']) ? "0" : $data['number']; ?>" placeholder="">
 
                                             </div>
@@ -114,19 +119,48 @@ $tree = buildTree($categories);
 
                                     <div class="form-group">
                                         <label for="content">产品描述</label>
-
                                         <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']); ?></textarea>
                                         <script>
-                                            var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elFinder/elfinder-cke.html';
+                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
-                                                height:400,
+                                                height:350,
                                                 filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                allowedContent: true       
                                             });
                                         </script>
-
-
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="specifications">规格参数</label>
+                                        <textarea class="form-control" id="specifications" name="specifications" placeholder=""><?php echo stripslashes($data['specifications']); ?></textarea>
+                                        <script>
+                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            CKEDITOR.replace('specifications', {
+                                                height: 350,
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                allowedContent: true       
+                                            });
+                                        </script>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="registration">注册信息</label>
+                                        <textarea class="form-control" id="registration" name="registration" placeholder=""><?php echo stripslashes($data['registration']); ?></textarea>
+                                        <script>
+                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            CKEDITOR.replace('registration', {
+                                                height: 350,
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                allowedContent: true       
+                                            });
+                                        </script>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <label for="summary">摘要</label>
 

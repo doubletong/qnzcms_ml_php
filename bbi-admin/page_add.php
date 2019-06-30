@@ -31,6 +31,8 @@ require_once('../config/db.php');
             </div>
       
         <div class="card-body">
+        <div class="row">
+                    <div class="col">
                 <input id="pageId" type="hidden" name="pageId" value="0" />
                
                         <div class="form-group">                          
@@ -49,7 +51,7 @@ require_once('../config/db.php');
                             <label for="content">页面内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
-                                var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
+                                var elFinder = '/js/vendor/elfinder/elfinder-cke.php'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,
@@ -58,14 +60,7 @@ require_once('../config/db.php');
                                     });
                                 </script>                        
                         </div>
-                        <div class="form-group">
-                            <label for="description">SEO描述</label>
-                            <textarea class="form-control" id="description" name="description" placeholder=""></textarea>                          
-                        </div>
-                        <div class="form-group">
-                            <label for="keywords">关键字</label>                           
-                            <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">                         
-                        </div>
+                       
                      
                         <div class="form-group">
                             <div class="form-check">
@@ -73,7 +68,36 @@ require_once('../config/db.php');
                             <label class="form-check-label" for="chkActive">发布</label>
                             </div>
                         </div>
-                  
+                        </div>
+                    <div class="col-auto">
+                        <div style="width:300px; text-align:center;" class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img ID="iLogo" src="holder.js/240x80?text=1920X550像素" class="img-fuild" />                           
+                                </div>
+                                <div class="card-footer">
+                                    <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 背景图...</button>
+                                    <input id="background_image" type="hidden" name="background_image" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">SEO</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="description">SEO描述</label>
+                                    <textarea class="form-control" id="description" rows="6" name="description" placeholder=""></textarea>                          
+                                </div>
+                                <div class="form-group">
+                                    <label for="keywords">关键字</label>                           
+                                    <input type="text" class="form-control" id="keywords" name="keywords" placeholder="">                         
+                                </div>
+                            </div>
+                        
+                        </div>
+                     
+                    </div>
+                </div>
 
         </div>
         <div class="card-footer text-center">
@@ -98,13 +122,11 @@ require_once('../config/db.php');
 
 <script type="text/javascript">
     function SetThumbnail(fileUrl) {
-        $('#thumbnail').val(fileUrl);
+        $('#background_image').val(fileUrl);
         $('#iLogo').attr('src', fileUrl);
     }
 
-    function SetBackground(fileUrl) {
-        $('#imageUrl').val(fileUrl);
-    }
+
 
     $.validator.addMethod(
         "regex",
@@ -125,13 +147,7 @@ require_once('../config/db.php');
           
         });
 
-       
-
-        $("#setImageUrl").on("click", function () {  
-            singleEelFinder.selectActionFunction = SetBackground;
-            singleEelFinder.open();            
-        });
-
+    
 
         $("#editform").validate({
 

@@ -17,5 +17,6 @@ RewriteRule ^events-detail-(.*)$ /event_detail.php?id=$1
 RewriteRule ^creative-detail-(.*)$ /creative_detail.php?id=$1 
 RewriteRule ^branch-detail-(.*)$ /branch_detail.php?id=$1 
 RewriteRule ^team-detail-(.*)$ /team_detail.php?id=$1 
-RewriteRule ^duty-detail-(.*)$ /duty_detail.php?id=$1 
+RewriteRule ^duty-(.*)$ /duty_detail.php?alias=$1 
+RewriteRule ^product-list-([0-9]+)$ /products.php?cid=$1 
 RewriteRule ^product-detail-(.*)$ /product_detail.php?id=$1 

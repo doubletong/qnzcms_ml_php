@@ -11,7 +11,7 @@ $categories = $articleClass->get_categories($did);
 
 
 $pagination = new PDO_Pagination(db::getInstance());
-$model = array();
+$articles = array();
 $pagination->config(6, 10);
 
 
@@ -24,7 +24,7 @@ if (isset($_GET['cid'])) {
     $query = db::getInstance()->prepare($sql);
     $query->execute();
     while ($rows = $query->fetch()) {
-        $model[] = $rows;
+        $articles[] = $rows;
     }
 } else {
     $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did");
@@ -33,7 +33,7 @@ if (isset($_GET['cid'])) {
     $query = db::getInstance()->prepare($sql);
     $query->execute();
     while ($rows = $query->fetch()) {
-        $model[] = $rows;
+        $articles[] = $rows;
     }
 }
 
@@ -79,7 +79,7 @@ if (isset($_GET['cid'])) {
 
                 <main class="maincontent">
                     <div class="list list-disease">
-                        <?php foreach ($model as $article) { ?>
+                        <?php foreach ($articles as $article) { ?>
                             <a href="/operation-detail-<?php echo $article['id']; ?>" class="item">
                                 <div class="disease">
                                     <div class="row">

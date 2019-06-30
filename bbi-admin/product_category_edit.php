@@ -113,17 +113,29 @@ $tree = buildTree($categories);
                                         <div class="card">
                                             <div class="card-body">
                                             
-                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=1920x550/960X374像素":$data['thumbnail'];?>" class="img-fluid" />
+                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=图片":$data['thumbnail'];?>" class="img-fluid" />
                                              
                                            
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail'];?>" />
+                                                <small id="emailHelp" class="form-text text-muted">大类顶部背景尺寸：1920x550像素；小类背景尺寸：960X374像素</small>                                              
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">      
+                                                <img ID="iLogo2" src="<?php echo empty($data['thumbnail2'])?"holder.js/240x120?text=960X420像素":$data['thumbnail2'];?>" class="img-fluid" />
+                                                                                                                                                                       
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大类首页背景...</button>
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" value="<?php echo $data['thumbnail2'];?>"/>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
 
@@ -152,7 +164,10 @@ $tree = buildTree($categories);
             $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
-
+        function SetThumbnail2(fileUrl) {
+            $('#thumbnail2').val(fileUrl);
+            $('#iLogo2').attr('src', fileUrl);
+        }
 
         $(document).ready(function() {
             //当前菜单
@@ -166,7 +181,11 @@ $tree = buildTree($categories);
                 singleEelFinder.open();
 
             });
+            $("#btnBrowser2").on("click", function() {
+                singleEelFinder.selectActionFunction = SetThumbnail2;
+                singleEelFinder.open();
 
+            });
 
 
             $("#editform").validate({

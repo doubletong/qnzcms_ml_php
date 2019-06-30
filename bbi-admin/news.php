@@ -116,6 +116,12 @@ else
                     <td><a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
+                        <?php if($did=="1"){ ?>
+                            <a href='article_documents.php?aid=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                                <i class="iconfont icon-attachment"></i>
+                            </a>
+                    <?php } ?>
+                        
                         <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                             <i class="iconfont icon-delete"></i>
                         </button>

@@ -59,14 +59,23 @@ if(isset($_GET['id'])){
                 <div class="form-group">
                     <label for="imageUrl">轮播图</label>                  
                     <div class="input-group">
-                        <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="轮播图" value="<?php echo $data['image_url'];?>" aria-describedby="setImageUrl">
+                        <input id="imageUrl" name="imageUrl"  class="form-control" value="<?php echo $data['image_url'];?>" aria-describedby="setImageUrl">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                         </div>
                     </div>                      
                     <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*500像素</small>   
                 </div>
-
+                <div class="form-group">
+                    <label for="image_url_mobile">轮播图(移动)</label>                  
+                        <div class="input-group">
+                            <input id="image_url_mobile" name="image_url_mobile"  class="form-control" value="<?php echo $data['image_url_mobile'];?>"  aria-describedby="setImageUrlMobile">                                
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" id="setImageUrlMobile" type="button" >浏览…</button>                                 
+                            </div>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">图片尺寸：750*1334像素</small>                   
+                </div>
                 <div class="form-group">
                     <label for="importance">排序</label>
                     <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['importance'])?"0":$data['importance'];?>" placeholder="">
@@ -111,6 +120,12 @@ if(isset($_GET['id'])){
     function SetBackground(fileUrl) {
         $('#imageUrl').val(fileUrl);
     }
+
+    function SetImageUrlMobile(fileUrl) {
+        $('#image_url_mobile').val(fileUrl);
+    }
+
+
     $(document).ready(function () {
         //当前菜单
         $(".mainmenu>li:nth-of-type(10)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
@@ -119,7 +134,10 @@ if(isset($_GET['id'])){
               singleEelFinder.selectActionFunction = SetBackground;
             singleEelFinder.open();         
         });
-
+        $("#setImageUrlMobile").on("click", function () {
+            singleEelFinder.selectActionFunction = SetImageUrlMobile;
+            singleEelFinder.open();         
+        });
 
         $("form").validate({
 

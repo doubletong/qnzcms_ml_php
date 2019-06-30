@@ -1,10 +1,19 @@
 <?php
 require_once("includes/common.php");
 require_once("config/db.php");
-require_once("data/page.php");
+require_once("data/product.php");
 
-$pageClass = new Page();
-$data = $pageClass->fetch_data("declare");
+$productClass = new Product();
+
+if(isset($_GET['cid'])){
+    $cid = $_GET['cid'];  
+    $data = $productClass->get_category_bgId($cid);
+    $subCates = $productClass->get_sub_categories($cid);
+    $products = $productClass->get_products_byBigCateId($cid);
+}else{
+    header('Location: /creative');
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +24,7 @@ $data = $pageClass->fetch_data("declare");
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "心血管介入产品-".SITENAME; ?></title>    
+    <title><?php echo $data['title']."-产品-".SITENAME; ?></title>    
     <?php require_once('includes/meta.php') ?>
   
 </head>
@@ -26,10 +35,10 @@ $data = $pageClass->fetch_data("declare");
     
     <div class="striving">
 <!--banner-->
-<div class="inside_banner product_banner" style="background-image:url(images/product_banner.jpg)">
+<div class="inside_banner product_banner" style="background-image:url(<?php echo $data['thumbnail']; ?>)">
         <div class="wrap clear">
             <div class="inside_banner_txt pos_center">
-                <h1 class="wow fadeInLeft">心血管介入产品</h1>
+                <h1 class="wow fadeInLeft"><?php echo $data['title'] ?></h1>
                 <p class="wow fadeInLeft">微创守护您的每一个明天</p>
             </div>
         </div>
@@ -38,20 +47,27 @@ $data = $pageClass->fetch_data("declare");
 
 <!--main-->
     <div class="main product">
+        <?php foreach($subCates as $cate){ ?>
         <div class="product_item">
-            <div class="product_item_bg" style="background-image:url(images/product_01.png)"></div>
+            <div class="product_item_bg" style="background-image:url(<?php echo $cate['thumbnail']; ?>)"></div>
             <div class="wrap">
                 <div class="product_item_txt wow fadeInUp">
-                    <h2>冠脉雷帕霉素靶向洗脱支架系统</h2>
+                    <h2><?php echo $cate['title']; ?></h2>
                     <ul class="clear">
+                        <?php foreach($products as $product){
+                            if($cate['id'] == $product['category_id']){
+                            ?>
                         <li>
-                            <a href="/product/detail-1">Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</a>
+                            <a href="/product-detail-<?php echo $product['id']; ?>"><?php echo $product['title']; ?></a>
                         </li>
+                        <?php }
+                    } ?>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="product_item">
+        <?php } ?>
+        <!-- <div class="product_item">
             <div class="product_item_bg" style="background-image:url(images/product_02.png)"></div>
             <div class="wrap">
                 <div class="product_item_txt wow fadeInUp">
@@ -77,7 +93,7 @@ $data = $pageClass->fetch_data("declare");
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 <!--main end-->
     </div>

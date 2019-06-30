@@ -60,12 +60,12 @@ $j=1;
                         <div class="news_media_item news_media_item_big">
                             <a class="wow fadeInUp">
                                 <div class="img img_pc">
-                                    <img src="<?php echo $data[$a]['thumbnail'] ?>" alt=""/>
+                                    <img src="<?php echo $data[$a]['thumbnail'] ?>" alt="<?php echo $data[$a]['title'] ?>"/>
                                 </div>
                                 <div class="img img_mb">
-                                    <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt=""/>
+                                    <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt="<?php echo $data[$a]['title'] ?>"/>
                                 </div>
-                                <div class="play_btn" data-video-src="111">
+                                <div class="play_btn" data-video-src="<?php echo $data[$a]['video_url'] ?>" data-title="<?php echo $data[$a]['title'] ?>">
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
@@ -92,7 +92,7 @@ $j=1;
                                     <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt="<?php echo $data[$a]['title'] ?>"/>
                                 </div>
                                
-                                <div class="play_btn" data-video-src="">
+                                <div class="play_btn" data-video-src="<?php echo $data[$a]['video_url'] ?>" data-title="<?php echo $data[$a]['title'] ?>">
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
@@ -117,7 +117,7 @@ $j=1;
                                     <img src="<?php echo $data[$a]['thumbnail2'] ?>" alt="<?php echo $data[$a]['title'] ?>"/>
                                 </div>
                                
-                                <div class="play_btn" data-video-src="">
+                                <div class="play_btn" data-video-src="<?php echo $data[$a]['video_url'] ?>" data-title="<?php echo $data[$a]['title'] ?>">
                                     <img src="images/play.png"/>
                                 </div>
                                 <div class="txt">
@@ -129,10 +129,7 @@ $j=1;
                            <?php     
                            $i = 1;
                        }
-
-                     }
-                  
-                    
+                     }                    
                     ?>
                 
                      
@@ -153,12 +150,12 @@ $j=1;
                       <div class="news_media_item news_media_item_big">
                           <a class="wow fadeInUp">
                               <div class="img img_pc">
-                                  <img src="<?php echo $data1[$a]['thumbnail'] ?>" alt=""/>
+                                  <img src="<?php echo $data1[$a]['thumbnail'] ?>" alt="<?php echo $data1[$a]['title'] ?>"/>
                               </div>
                               <div class="img img_mb">
-                                  <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt=""/>
+                                  <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt="<?php echo $data1[$a]['title'] ?>"/>
                               </div>
-                              <div class="play_btn" data-video-src="111">
+                              <div class="play_btn" data-video-src="<?php echo $data1[$a]['video_url'] ?>" data-title="<?php echo $data1[$a]['title'] ?>">
                                   <img src="images/play.png"/>
                               </div>
                               <div class="txt">
@@ -185,7 +182,7 @@ $j=1;
                                   <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt="<?php echo $data1[$a]['title'] ?>"/>
                               </div>
                           
-                              <div class="play_btn" data-video-src="">
+                              <div class="play_btn" data-video-src="<?php echo $data1[$a]['video_url'] ?>" data-title="<?php echo $data1[$a]['title'] ?>">
                                   <img src="images/play.png"/>
                               </div>
                               <div class="txt">
@@ -210,7 +207,7 @@ $j=1;
                                   <img src="<?php echo $data1[$a]['thumbnail2'] ?>" alt="<?php echo $data1[$a]['title'] ?>"/>
                               </div>
                              
-                              <div class="play_btn" data-video-src="">
+                              <div class="play_btn" data-video-src="<?php echo $data1[$a]['video_url'] ?>" data-title="<?php echo $data1[$a]['title'] ?>">
                                   <img src="images/play.png"/>
                               </div>
                               <div class="txt">
@@ -238,15 +235,18 @@ $j=1;
         </div>
     </div>
 <!--main end-->
+<!-- <div id="youkuplayer"style="width:580px;height:326px"></div> -->
+
+
 <!--video-->
 <div class="zz"></div>
     <div class="video_box">
         <div class="video_box_title clear">
-            <h4>秒针中的生命 - 微创20周年品牌宣传片</h4>
+            <h4 id="videoshow">视频播放</h4>
             <a href="javascript:void(0);" class="video_close">×</a>
         </div>
-        <div class="video_wrap">
-            <video src="" controls></video>
+        <div class="video_wrap" id="youkuplayer" style="height:550px;">
+         
         </div>
     </div>
 <!--video end-->
@@ -256,16 +256,28 @@ $j=1;
 
 <?php require_once('includes/scripts.php') ?>
 
+<script type="text/javascript" src="//player.youku.com/jsapi"></script>
 <script>
 
 $('.news_video_item').each(function(){
         $(this).find('.news_media_box:odd').addClass('odd');
     });
+
     $('.play_btn').click(function(){
        var videoSrc=$(this).attr('data-video-src');
+       var title=$(this).attr('data-title');
        $('.zz,.video_box').fadeIn(200);
-       $('.video_wrap video').attr('src',videoSrc);
-       $('.video_wrap video')[0].play()
+    //    $('.video_wrap video').attr('src',videoSrc);
+    //    $('.video_wrap video')[0].play();
+   $("#videoshow").text(title);
+        var player = new YKU.Player('youkuplayer',{
+        styleid: '0',
+        client_id: '6c97f129b630ded7',
+        vid: videoSrc,
+        newPlayer: true
+        });
+
+
     });
     $('.video_close').click(function(){
         $('.zz,.video_box').fadeOut(100);

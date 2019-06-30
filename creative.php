@@ -5,7 +5,8 @@ require_once("data/page.php");
 require_once("data/article.php");
 
 $pageClass = new Page();
-$pageModel = $pageClass->fetch_data("laws");
+$data = $pageClass->fetch_data("creative");
+
 $articleClass = new Article();
 $articles = $articleClass->get_all_articles(5);
 
@@ -19,35 +20,29 @@ $articles = $articleClass->get_all_articles(5);
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "良知创意中心-" . SITENAME; ?></title>
+    <title><?php echo $data["title"]."-临床解决方案-" . SITENAME; ?></title>
     <link href="js/vendor/toastr/toastr.min.css" rel="stylesheet" />
     <?php require_once('includes/meta.php') ?>
 </head>
 
 <body>
     <?php require_once('includes/header.php') ?>
-    <div class="banner banner-creative">
+    <div class="banner banner-creative"  style="background-image:url(<?php echo $data["background_image"];?>)">
         <div class="container page-title">
-            <h1>良知创意中心</h1>
+            <h1><?php echo $data["title"];?></h1>
             <p>发现需求 收集创意 解决问题</p>
         </div>
     </div>
     <div class="page page-support page-story page-creative">
         <div class="container">
-            <section class="s1">
-                <h2>发现需求 不断创新</h2>
-                <p>疾病是微创与医生和患者共同面对的敌人。我们应统一战线，开展医工合作，发现需求、收集创意，解决问题，最终打败敌人！<br />
-                    早在2002年，微创就预见到医生是创新转化的重要力量，通过医工合作，才能为医疗器械发展带来源源不断的创新项目。<br />
-                    自微创创立至今，已有48个医工合作项目，其中9个项目已获注册证，8个项目已完成样品评价。微创正在积极加强与全球医疗行业的合作，在我们的业务中开发出更有适用价值的产品，实现医工合作双赢局面, 共同为“让患者向115岁而生”而努力！</p>
-                <a href="#" class="more">知行学院官网 <i class="iconfont icon-right"></i></a>
-            </section>
+            <?php echo $data["content"];?>
 
             <section class="s1 s2">
                 <h2 class="title">医工合作案例</h2>
                 <div class="list list-story list-case">
                     <div class="row">
                         <?php foreach ($articles as $data) { ?>
-                            <div class="col-md-4">
+                            <div class="col-6 col-md-4">
                                 <div class="item">
                                     <img src="<?php echo $data['image_url']; ?>" class="bg" alt="<?php echo $data['title']; ?>">
                                     <div class="txt">

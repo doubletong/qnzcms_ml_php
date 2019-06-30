@@ -3,6 +3,7 @@ require_once("includes/common.php");
 require_once("config/db.php");
 require_once("data/article.php");
 require_once('includes/PDO_Pagination.php');
+require_once("data/product.php");
 
 $did = 6;
 $cid = isset($_GET['cid']) ? $_GET['cid'] : 0;
@@ -19,36 +20,47 @@ if (isset($_GET['id'])) {
 
 
 $pagination = new PDO_Pagination(db::getInstance());
-$model = array();
+$articles = array();
 $pagination->config(6, 10);
 
 
 $cid = isset($_GET['cid']) ? $_GET['cid'] : 0;
 
+$productClass = new Product();
+
 if (isset($_GET['cid'])) {
   
     $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid");
 
-    $sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id,title,thumbnail,summary,pubdate,content FROM wp_articles WHERE dictionary_id = $did AND categoryId = $cid ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query = db::getInstance()->prepare($sql);
     $query->execute();
     while ($rows = $query->fetch()) {
-        $model[] = $rows;
+        $articles[] = $rows;
     }
+
+    $category = $articleClass->get_category_byid($cid);
 } else {
 
    
     $pagination->rowCount("SELECT * FROM wp_articles WHERE dictionary_id = $did AND categoryId in (SELECT article_categories.id FROM article_categories WHERE article_categories.parent_id = $id)");
 
-    $sql = "SELECT id,title,thumbnail,summary,pubdate FROM wp_articles WHERE dictionary_id = $did AND categoryId in (SELECT article_categories.id FROM article_categories WHERE article_categories.parent_id = $id) ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id,title,thumbnail,summary,pubdate,content FROM wp_articles WHERE dictionary_id = $did AND categoryId in (SELECT article_categories.id FROM article_categories WHERE article_categories.parent_id = $id) ORDER BY pubdate DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query = db::getInstance()->prepare($sql);
     $query->execute();
     while ($rows = $query->fetch()) {
-        $model[] = $rows;
+        $articles[] = $rows;
     }
+
+    $category = $articleClass->get_category_byid($id);
+    
+}
+//print_r($category);
+if(!empty($category['product_ids'])){
+    $products = $productClass->get_products_bycategory($category['product_ids']);
 }
 
-
+//print_r($products);
 
 ?>
 <!DOCTYPE html>
@@ -95,9 +107,9 @@ if (isset($_GET['cid'])) {
                     <div class="list-categories">
                         <h3 class="title">疾病分类</h3>
                         <ul>
-                            <li><a style="background-image:url(/img/icon/001.png);" href="/disease/list-<?php echo $id; ?>" class="<?php echo $cid == 0 ? "active" : ""; ?>">全部</a></li>
+                            <li><a style="background-image:url(/img/icon/001.png);" href="/disease-list-<?php echo $id; ?>" class="<?php echo $cid == 0 ? "active" : ""; ?>">全部</a></li>
                             <?php foreach ($categories as $data) { ?>
-                                <li><a style="background-image:url(<?php echo $data['thumbnail']; ?>);" href="/disease/list-<?php echo $id; ?>-c-<?php echo $data['id']; ?>" class="<?php echo $cid == $data['id'] ? "active" : ""; ?>"><?php echo $data['title']; ?></a></li>
+                                <li><a style="background-image:url(<?php echo $data['thumbnail']; ?>);" href="/disease-list-<?php echo $id; ?>-c-<?php echo $data['id']; ?>" class="<?php echo $cid == $data['id'] ? "active" : ""; ?>"><?php echo $data['title']; ?></a></li>
                             <?php } ?>
                         </ul>
 
@@ -105,24 +117,35 @@ if (isset($_GET['cid'])) {
 
                     <div class="list list-disease">
 
-                        <?php foreach ($model as $article) { ?>
+                        <?php foreach ($articles as $article) { ?>
 
                             <a href="/disease-detail-<?php echo $article['id']; ?>" class="item">
-                                <div class="container">
+                               
                                     <div class="disease">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="pic"><img src="<?php echo $article['thumbnail']; ?>" alt="<?php echo $article['title']; ?>"></div>
+                                                <div class="pic" style="background-image:url('<?php echo $article['thumbnail']; ?>')"></div>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="des">
                                                     <h3><?php echo $article['title']; ?></h3>
-                                                    <p><?php echo mb_substr($article['summary'], 0, 80, 'utf-8') . "……"; ?></p>
+                                                    <?php 
+                             if(empty($article['summary'])){                                 
+                                $newstr = filter_var($article['content'], FILTER_SANITIZE_STRING);
+                                ?>
+                                <p><?php echo mb_substr( $newstr, 0, 140, 'utf-8') . "……"; ?></p>
+                            <?php
+                             }else{
+                                 ?>
+                                <p><?php echo mb_substr($article['summary'], 0, 140, 'utf-8') . "……"; ?></p>
+                            <?php }                          
+                             ?>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                              
                             </a>
                         <?php } ?>
 
@@ -132,41 +155,25 @@ if (isset($_GET['cid'])) {
             </section>
         </div>
 
+        <?php if(isset($products)){?>
         <div class="container">
-
-
             <section class=" s3">
                 <h2 class="se-title">解决方案</h2>
 
                 <div class="raproducts">
                     <div class="row">
+                        <?php foreach($products as $product){?>
                         <div class="col-md-4">
-                            <a class="item" href="/products/detail-1">
+                            <a class="item" href="/products/detail-<?php echo $product['id'];?>">
                                 <div class="logo">
-                                    <img src="/img/temp/logo1.png" alt="">
+                                    <img src="<?php echo $product['thumbnail'];?>" alt="<?php echo $product['title'];?>">
                                 </div>
-                                <h3>Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h3>
+                                <h3><?php echo $product['title'];?></h3>
                                 <div class="more">查看产品</div>
                             </a>
                         </div>
-                        <div class="col-md-4">
-                            <a class="item" href="/products/detail-1">
-                                <div class="logo">
-                                    <img src="/img/temp/logo1.png" alt="">
-                                </div>
-                                <h3>Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h3>
-                                <div class="more">查看产品</div>
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a class="item" href="/products/detail-1">
-                                <div class="logo">
-                                    <img src="/img/temp/logo1.png" alt="">
-                                </div>
-                                <h3>Firehawk<sup>®</sup>冠脉雷帕霉素靶向洗脱支架系统</h3>
-                                <div class="more">查看产品</div>
-                            </a>
-                        </div>
+                        <?php } ?>
+                        
                     </div>
                 </div>
                 <div class="go">
@@ -174,6 +181,8 @@ if (isset($_GET['cid'])) {
                 </div>
             </section>
         </div>
+        <?php } ?>
+
     </div>
     <div class="quickcontact">
         <div class="container">

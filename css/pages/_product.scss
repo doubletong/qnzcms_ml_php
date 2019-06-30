@@ -1,0 +1,12 @@
+.product_detail_video_wrap{
+    height: 320px;
+    @include  respond-above(sm){
+        height: 560px;
+    }
+    @include  respond-above(md){
+        height: 640px;
+    }
+    @include  respond-above(lg){
+        height: 820px;
+    }
+}

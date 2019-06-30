@@ -71,10 +71,11 @@ if(isset($_GET['id'])){
 <body>
     <?php require_once('includes/header.php') ?>
     <div class="banner banner-story-detail" style="background-image:url(../img/temp/b1.jpg)">
-        <div class="container page-title">
-          
+    <div class="page-title1">
+        <div class="container">          
             <p><?php echo $data['author']; ?>  <span>|</span>  <?php echo $data['source']; ?></p>
             <h1><?php echo $data['title']; ?></h1>
+        </div>
         </div>
     </div>
     <div class="page page-story-detail">

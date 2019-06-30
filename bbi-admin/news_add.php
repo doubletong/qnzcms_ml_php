@@ -163,7 +163,7 @@ $tree = buildTree($categories);
                             <label for="content">内容</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""></textarea>
                                 <script>
-                                var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
+                                var elFinder = '/js/vendor/elfinder/elfinder-cke.php'; 
                                     CKEDITOR.replace( 'content', {
                                       
                                         filebrowserBrowseUrl: elFinder,

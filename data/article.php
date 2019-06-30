@@ -116,4 +116,11 @@ class Article{
 
         return $query->fetch();
     }
+
+    public function get_article_documents($aid){
+        $query = db::getInstance()->prepare("SELECT * FROM article_documents WHERE article_id = ? ORDER BY importance DESC");   
+        $query->bindValue(1,$aid);  
+        $query->execute();
+        return $query->fetchAll();
+    }
 }

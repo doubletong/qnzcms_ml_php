@@ -7,7 +7,7 @@ require_once('includes/PDO_Pagination.php');
 $did= 16;
 $pagination = new PDO_Pagination(db::getInstance());
 
-$categories = array();
+$mediaCategories = array();
 $pagination->config(6, 9);
 //$pagination->param = "&year=$paran_year";
 $pagination->rowCount("SELECT * FROM article_categories WHERE dictionary_id = $did ");
@@ -16,7 +16,7 @@ $sql = "SELECT id,title,thumbnail,thumbnail2,added_date FROM  article_categories
 $query = db::getInstance()->prepare($sql);
 $query->execute();
 while ($rows = $query->fetch()) {
-    $categories[] = $rows;
+    $mediaCategories[] = $rows;
 }
 
 
@@ -56,43 +56,43 @@ while ($rows = $query->fetch()) {
             <div class="news_media">
                 <div class="news_media_box clear">
                     <div class="news_media_item news_media_item_big">
-                    <?php if(!empty($categories[0])){?>
-                        <a href="/media-list-<?php echo $categories[0]['id'];?>" class="wow fadeInUp">
+                    <?php if(!empty($mediaCategories[0])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[0]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                                <img src="<?php echo $categories[0]['thumbnail'];?>" alt="<?php echo $categories[0]['title'];?>"/>
+                                <img src="<?php echo $mediaCategories[0]['thumbnail'];?>" alt="<?php echo $mediaCategories[0]['title'];?>"/>
                             </div>
                             <div class="img img_mb">
-                                <img src="<?php echo $categories[0]['thumbnail2'];?>" alt="<?php echo $categories[0]['title'];?>"/>
+                                <img src="<?php echo $mediaCategories[0]['thumbnail2'];?>" alt="<?php echo $mediaCategories[0]['title'];?>"/>
                             </div>
                             <div class="txt">
-                                <span><?php echo date('Y-m-d', $categories[0]['added_date']); ?></span>
-                                <p><?php echo $categories[0]['title'];?></p>
+                                <span><?php echo date('Y-m-d', $mediaCategories[0]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[0]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
                     </div>
                     <div class="news_media_item news_media_item_small">
-                    <?php if(!empty($categories[1])){?>
-                        <a href="/media-list-<?php echo $categories[1]['id'];?>" class="wow fadeInUp">
+                    <?php if(!empty($mediaCategories[1])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[1]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                            <img src="<?php echo $categories[1]['thumbnail2'];?>" alt="<?php echo $categories[1]['title'];?>"/>
+                            <img src="<?php echo $mediaCategories[1]['thumbnail2'];?>" alt="<?php echo $mediaCategories[1]['title'];?>"/>
                             </div>
                           
                             <div class="txt">
-                            <span><?php echo date('Y-m-d', $categories[1]['added_date']); ?></span>
-                                <p><?php echo $categories[1]['title'];?></p>
+                            <span><?php echo date('Y-m-d', $mediaCategories[1]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[1]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
-                        <?php if(!empty($categories[2])){?>
-                        <a href="/media-list-<?php echo $categories[2]['id'];?>" class="wow fadeInUp">
+                        <?php if(!empty($mediaCategories[2])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[2]['id'];?>" class="wow fadeInUp">
                         <div class="img img_pc">
-                            <img src="<?php echo $categories[2]['thumbnail2'];?>" alt="<?php echo $categories[2]['title'];?>"/>
+                            <img src="<?php echo $mediaCategories[2]['thumbnail2'];?>" alt="<?php echo $mediaCategories[2]['title'];?>"/>
                             </div>
                            
                             <div class="txt">
-                            <span><?php echo date('Y-m-d', $categories[2]['added_date']); ?></span>
-                                <p><?php echo $categories[2]['title'];?></p>
+                            <span><?php echo date('Y-m-d', $mediaCategories[2]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[2]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
@@ -100,43 +100,43 @@ while ($rows = $query->fetch()) {
                 </div>
                 <div class="news_media_box clear">
                     <div class="news_media_item news_media_item_big">
-                    <?php if(!empty($categories[3])){?>
-                    <a href="/media-list-<?php echo $categories[3]['id'];?>" class="wow fadeInUp">
+                    <?php if(!empty($mediaCategories[3])){?>
+                    <a href="/media-list-<?php echo $mediaCategories[3]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                                <img src="<?php echo $categories[3]['thumbnail'];?>" alt="<?php echo $categories[3]['title'];?>"/>
+                                <img src="<?php echo $mediaCategories[3]['thumbnail'];?>" alt="<?php echo $mediaCategories[3]['title'];?>"/>
                             </div>
                             <div class="img img_mb">
-                                <img src="<?php echo $categories[3]['thumbnail2'];?>" alt="<?php echo $categories[3]['title'];?>"/>
+                                <img src="<?php echo $mediaCategories[3]['thumbnail2'];?>" alt="<?php echo $mediaCategories[3]['title'];?>"/>
                             </div>
                             <div class="txt">
-                                <span><?php echo date('Y-m-d', $categories[3]['added_date']); ?></span>
-                                <p><?php echo $categories[3]['title'];?></p>
+                                <span><?php echo date('Y-m-d', $mediaCategories[3]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[3]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
                     </div>
                     <div class="news_media_item news_media_item_small">
-                    <?php if(!empty($categories[4])){?>
-                    <a href="/media-list-<?php echo $categories[4]['id'];?>" class="wow fadeInUp">
+                    <?php if(!empty($mediaCategories[4])){?>
+                    <a href="/media-list-<?php echo $mediaCategories[4]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                            <img src="<?php echo $categories[4]['thumbnail2'];?>" alt="<?php echo $categories[4]['title'];?>"/>
+                            <img src="<?php echo $mediaCategories[4]['thumbnail2'];?>" alt="<?php echo $mediaCategories[4]['title'];?>"/>
                             </div>
                         
                             <div class="txt">
-                            <span><?php echo date('Y-m-d', $categories[4]['added_date']); ?></span>
-                                <p><?php echo $categories[4]['title'];?></p>
+                            <span><?php echo date('Y-m-d', $mediaCategories[4]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[4]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
-                        <?php if(!empty($categories[5])){?>
-                        <a href="/media-list-<?php echo $categories[5]['id'];?>" class="wow fadeInUp">
+                        <?php if(!empty($mediaCategories[5])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[5]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                            <img src="<?php echo $categories[5]['thumbnail2'];?>" alt="<?php echo $categories[5]['title'];?>"/>
+                            <img src="<?php echo $mediaCategories[5]['thumbnail2'];?>" alt="<?php echo $mediaCategories[5]['title'];?>"/>
                             </div>
                           
                             <div class="txt">
-                            <span><?php echo date('Y-m-d', $categories[5]['added_date']); ?></span>
-                                <p><?php echo $categories[5]['title'];?></p>
+                            <span><?php echo date('Y-m-d', $mediaCategories[5]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[5]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
@@ -144,43 +144,43 @@ while ($rows = $query->fetch()) {
                 </div>
                 <div class="news_media_box clear">
                     <div class="news_media_item news_media_item_big">
-                    <?php if(!empty($categories[6])){?>
-                        <a href="/media-list-<?php echo $categories[6]['id'];?>" class="wow fadeInUp">
+                    <?php if(!empty($mediaCategories[6])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[6]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                                <img src="<?php echo $categories[6]['thumbnail'];?>" alt="<?php echo $categories[6]['title'];?>"/>
+                                <img src="<?php echo $mediaCategories[6]['thumbnail'];?>" alt="<?php echo $mediaCategories[6]['title'];?>"/>
                             </div>
                             <div class="img img_mb">
-                                <img src="<?php echo $categories[6]['thumbnail2'];?>" alt="<?php echo $categories[6]['title'];?>"/>
+                                <img src="<?php echo $mediaCategories[6]['thumbnail2'];?>" alt="<?php echo $mediaCategories[6]['title'];?>"/>
                             </div>
                             <div class="txt">
-                                <span><?php echo date('Y-m-d', $categories[6]['added_date']); ?></span>
-                                <p><?php echo $categories[6]['title'];?></p>
+                                <span><?php echo date('Y-m-d', $mediaCategories[6]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[6]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
                     </div>
                     <div class="news_media_item news_media_item_small">
-                    <?php if(!empty($categories[7])){?>
-                        <a href="/media-list-<?php echo $categories[7]['id'];?>" class="wow fadeInUp">
+                    <?php if(!empty($mediaCategories[7])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[7]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                            <img src="<?php echo $categories[7]['thumbnail2'];?>" alt="<?php echo $categories[7]['title'];?>"/>
+                            <img src="<?php echo $mediaCategories[7]['thumbnail2'];?>" alt="<?php echo $mediaCategories[7]['title'];?>"/>
                             </div>
                          
                             <div class="txt">
-                            <span><?php echo date('Y-m-d', $categories[7]['added_date']); ?></span>
-                                <p><?php echo $categories[7]['title'];?></p>
+                            <span><?php echo date('Y-m-d', $mediaCategories[7]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[7]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>
-                        <?php if(!empty($categories[8])){?>
-                        <a href="/media-list-<?php echo $categories[8]['id'];?>" class="wow fadeInUp">
+                        <?php if(!empty($mediaCategories[8])){?>
+                        <a href="/media-list-<?php echo $mediaCategories[8]['id'];?>" class="wow fadeInUp">
                             <div class="img img_pc">
-                            <img src="<?php echo $categories[8]['thumbnail2'];?>" alt="<?php echo $categories[8]['title'];?>"/>
+                            <img src="<?php echo $mediaCategories[8]['thumbnail2'];?>" alt="<?php echo $mediaCategories[8]['title'];?>"/>
                             </div>
                         
                             <div class="txt">
-                            <span><?php echo date('Y-m-d', $categories[8]['added_date']); ?></span>
-                                <p><?php echo $categories[8]['title'];?></p>
+                            <span><?php echo date('Y-m-d', $mediaCategories[8]['added_date']); ?></span>
+                                <p><?php echo $mediaCategories[8]['title'];?></p>
                             </div>
                         </a>
                         <?php }?>

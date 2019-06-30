@@ -39,7 +39,7 @@ class Carousel{
 
 
     //更新产品
-    public function update_carousel($id,$title,$importance,$imageUrl,$active, $description, $link) {
+    public function update_carousel($id,$title,$importance,$imageUrl,$image_url_mobile,$active, $description, $link) {
 
         $sql = "update wp_carousels
              set
@@ -47,6 +47,7 @@ class Carousel{
              description = :description,
              importance = :importance,
              image_url =:imageUrl,
+             image_url_mobile = :image_url_mobile,
              link = :link,
              active =:active
              where id =:id";
@@ -57,6 +58,7 @@ class Carousel{
         $query->bindValue(":link",$link);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":imageUrl",$imageUrl);
+        $query->bindValue(":image_url_mobile",$image_url_mobile);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
@@ -70,10 +72,10 @@ class Carousel{
     }
 
 
-    public function insert_carousel($title,$importance,$imageUrl,$active, $description, $link) {
+    public function insert_carousel($title,$importance,$imageUrl,$image_url_mobile,$active, $description, $link) {
 
-        $sql="INSERT INTO wp_carousels ( title,importance, description,image_url,link,active,added_by,added_date)
-                VALUES (:title,:importance, :description,:imageUrl, :link,:active,:added_by,:added_date)";
+        $sql="INSERT INTO wp_carousels ( title,importance, description,image_url,image_url_mobile,link,active,added_by,added_date)
+                VALUES (:title,:importance, :description,:imageUrl,:image_url_mobile, :link,:active,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -83,6 +85,7 @@ class Carousel{
         $query->bindValue(":link",$link);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":imageUrl",$imageUrl);
+        $query->bindValue(":image_url_mobile",$image_url_mobile);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":added_by",$username);
         $query->bindValue(":added_date",date('Y-m-d H:i:s'));

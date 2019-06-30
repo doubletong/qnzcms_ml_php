@@ -1,8 +1,7 @@
 <?php
 class Product{
     public function fetch_all(){
-        global $dbh;
-        $query = $dbh->prepare("SELECT * FROM products ORDER BY added_date DESC");
+        $query = db::getInstance()->prepare("SELECT id,title FROM products ORDER BY added_date DESC");
         $query->execute();
 
         return $query->fetchAll();
@@ -38,34 +37,39 @@ class Product{
     }
 
 //更新
-   public function update_product($id, $title,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, $description, $content, $category_id) {
+   public function update_product($id, $title,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, $description, $content,$specifications,$registration, $category_id,$video_id) {
 
         $sql = "UPDATE products SET           
              title= :title,
              summary = :summary,         
-             content = :content,          
+             content = :content,   
+             specifications = :specifications,  
+             registration = :registration,        
              importance = :importance,
              thumbnail =:thumbnail,
              image_url = :image_url,
              keywords = :keywords,
              description = :description,
              recommend = :recommend,           
-             category_id = :category_id,        
+             category_id = :category_id,      
+             video_id = :video_id,  
              active =:active
              WHERE id =:id";
-
         
 
         $query = db::getInstance()->prepare($sql);
    
         $query->bindValue(":title",$title);    
-       $query->bindValue(":summary",$summary);      
+        $query->bindValue(":summary",$summary);      
         $query->bindValue(":content",$content);
+        $query->bindValue(":specifications",$specifications);     
+        $query->bindValue(":registration",$registration);
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":image_url",$image_url);
         $query->bindValue(":description",$description);
         $query->bindValue(":keywords",$keywords);
+        $query->bindValue(":video_id",$video_id);
         $query->bindValue(":category_id",$category_id,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
@@ -82,10 +86,10 @@ class Product{
 
 
     public function insert_product( $title, $importance,$thumbnail,
-                                   $image_url,$keywords,$recommend,$active,$summary, $description, $content,$category_id) {
+                                   $image_url,$keywords,$recommend,$active,$summary, $description, $content,$specifications,$registration,$category_id,$video_id) {
 
-        $sql="INSERT INTO products (title, summary, description,content,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id)
-                VALUES (:title,:summary, :description,:content, :importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id)";
+        $sql="INSERT INTO products (title, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,video_id)
+                VALUES (:title,:summary, :description,:content,:specifications, :registration,:importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id,:video_id)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -94,12 +98,15 @@ class Product{
         $query->bindValue(":title",$title);
       
         $query->bindValue(":summary",$summary);
-        $query->bindValue(":description",$description);
+        $query->bindValue(":description",$description);        
         $query->bindValue(":content",$content);     
+        $query->bindValue(":specifications",$specifications);   
+        $query->bindValue(":registration",$registration);      
         $query->bindValue(":importance",$importance,PDO::PARAM_INT);
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":image_url",$image_url);
         $query->bindValue(":keywords",$keywords);
+        $query->bindValue(":video_id",$video_id);
         $query->bindValue(":category_id",$category_id,PDO::PARAM_INT);
         $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);

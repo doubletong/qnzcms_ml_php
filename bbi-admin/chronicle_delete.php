@@ -8,7 +8,7 @@ $chronicleClass = new Chronicle();
 //   echo $content.$productId;
 if(isset($_POST['id'])){
     $id=$_POST['id'];
-    echo $chronicleClass->delete_link($id);
+    echo $chronicleClass->delete_chronicle($id);
 }else{
     echo false;
 }

@@ -4,6 +4,7 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/article_category.php');
 require_once('data/article.php');
+require_once('data/product.php');
 
 $did = isset($_GET['did'])?$_GET['did']:"";
 
@@ -31,6 +32,11 @@ function buildTree(array $elements, $parentId = 0) {
 
 $tree = buildTree($categories);
 
+if($did==="6"){
+    $productModel = new Product();
+    $products = $productModel->fetch_all();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,8 +46,7 @@ $tree = buildTree($categories);
     <?php require_once('includes/meta.php') ?>
 
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="../js/vendor/ckeditor/ckeditor.js"></script>
-
+    <link href="../js/vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -77,9 +82,9 @@ $tree = buildTree($categories);
                                             <?php foreach( $tree as $model)
                                             {
                                                 ?>
-                                                        <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
+                                                <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
 
-                                            <?php if($model['children']){ 
+                                                <?php if($model['children']){ 
                                                  foreach( $model['children'] as $subModel){
                                                 ?>
                                                     <!-- <option value="<?php echo $subModel["id"]; ?>"> - <?php echo $subModel["title"]; ?></option> -->
@@ -89,8 +94,18 @@ $tree = buildTree($categories);
                                         } ?>
                                                             
                                         </select>                          
-                                    </div>                                   
-                                    <?php }else{ ?>
+                                        </div>   
+                                        
+                                        <div class="form-group">
+                                            <label for="product_ids">相关产品</label>                                    
+                                            <select class="form-control" id="product_ids" name="product_ids[]" multiple="multiple" >                                               
+                                                <?php foreach( $products as $product)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $product["id"]; ?>"><?php echo $product["title"]; ?></option>                                             
+                                                <?php } ?>                                                            
+                                            </select>                          
+                                        </div>  
                                         
                                     <?php } ?>
                                     
@@ -161,6 +176,10 @@ $tree = buildTree($categories);
 
     <script src="../js/vendor/holderjs/holder.min.js"></script>
     <script src="../js/vendor/toastr/toastr.min.js"></script>
+ 
+    <script src="../js/vendor/select2/dist/js/select2.min.js"></script>
+    <script src="../js/vendor/select2/dist/js/i18n/zh-CN.js"></script>
+
     <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 
 
@@ -177,7 +196,7 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-            if("1"==<?php echo $did; ?>){
+        if("1"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
         if("2"==<?php echo $did; ?>){
@@ -194,6 +213,9 @@ $tree = buildTree($categories);
         if("16"==<?php echo $did; ?>){
             $(".mainmenu>li.medialist").addClass("nav-open").find("ul>li.category a").addClass("active");
         }
+
+        $('#product_ids').select2();
+
 
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
@@ -243,21 +265,12 @@ $tree = buildTree($categories);
                     $(element).addClass('is-valid');
                 },
                 submitHandler: function(form) {
-                    //form.submit();
-                    var values = {};
-                    var fields = {};
-                    for (var instanceName in CKEDITOR.instances) {
-                        CKEDITOR.instances[instanceName].updateElement();
-                    }
-
-                    $.each($(form).serializeArray(), function(i, field) {
-                        values[field.name] = field.value;
-                    });
+                    
 
                     $.ajax({
                         url: 'article_category_post.php',
                         type: 'POST',
-                        data: values,
+                        data:  $(form).serialize(),
                         success: function(res) {
                             //  $('#resultreturn').prepend(res);
                             if (res) {

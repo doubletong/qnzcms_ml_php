@@ -13,17 +13,15 @@ if (isset($_POST['title'], $_POST['content'])) {
     $description = $_POST['description'];
     $content = stripslashes($_POST['content']);
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
-
+    $background_image = $_POST['background_image'];
     //   echo $content.$productId;
 
     if($pageId>0){
-        echo $pageClass->update_page($pageId, $title,$alias, $keywords, $active, $description, $content);
-
+        echo $pageClass->update_page($pageId, $title,$alias, $keywords, $active, $description, $content,$background_image);
     }else{
-        echo $pageClass->insert_page($title, $alias, $keywords, $active, $description, $content);
-
+        echo $pageClass->insert_page($title, $alias, $keywords, $active, $description, $content,$background_image);
     }
-    echo true;
+  
 }else{
     echo false;
 }

@@ -154,8 +154,12 @@ $tree = buildTree($categories);
                         <td>
                             <?php echo date('Y-m-d',$row['added_date']) ;?>
                         </td>
-                        <td><a href='product_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
-                        <i class="iconfont icon-edit"></i>
+                        <td>
+                            <a href='product_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                                <i class="iconfont icon-edit"></i>
+                            </a>
+                            <a href='product_documents.php?pid=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                                <i class="iconfont icon-attachment"></i>
                             </a>
                             <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                             <i class="iconfont icon-delete"></i>

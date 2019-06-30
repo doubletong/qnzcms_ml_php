@@ -231,7 +231,8 @@ $data = $chronicleClass->get_all_chronicles($did);
 
 <script>
      var aboutCourseList = new Swiper('.about_course_list .swiper-container', {
-        spaceBetween: 10
+        spaceBetween: 10,
+        autoHeight: true
     });
     var aboutCourseNav = new Swiper('.about_course_nav .swiper-container', {
         spaceBetween: 0,
@@ -239,6 +240,7 @@ $data = $chronicleClass->get_all_chronicles($did);
         slidesPerView: 7,
         touchRatio: 0.2,
         slideToClickedSlide: true,
+        
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev'
     });

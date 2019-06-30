@@ -15,7 +15,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT id FROM documents WHERE   title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%' ORDER BY  id DESC ");
     $pagination->config(6, 10);
-    $sql = "SELECT a.id, a.title, a.thumbnail,a.importance, d.title as category,
+    $sql = "SELECT a.id, a.title, a.thumbnail,a.importance, d.title as category,a.file_url,  a.file_size, a.description,
     a.active,  a.added_date FROM documents as a  Left JOIN dictionaries as d
     ON d.id = a.dictionary_id
         WHERE   a.title LIKE '%$search%' OR a.description LIKE '%$search%' OR a.content LIKE '%$search%'
@@ -32,7 +32,7 @@ else
 {
     $pagination->rowCount("SELECT id FROM `documents` ");
     $pagination->config(6,10);
-    $sql = "SELECT a.id, a.title,  a.thumbnail,a.importance, d.title as category,
+    $sql = "SELECT a.id, a.title,  a.thumbnail,a.importance, d.title as category,a.file_url,  a.file_size, a.description,
     a.active,  a.added_date FROM documents as a Left JOIN dictionaries as d
     ON d.id = a.dictionary_id ORDER BY a.importance DESC, a.id  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
@@ -87,8 +87,10 @@ else
                 <thead>
                 <tr>
                     <th>缩略图</th>
-                    <th>标题</th>       
-                    <th>类别</th>          
+                    <th>标题</th>                               
+                    <th>类别</th>  
+                    <th>描述</th>  
+                    <th>文件大小</th>             
                     <th>排序</th>
                     <th>发布日期</th>
                     <th>操作</th>
@@ -100,10 +102,16 @@ else
                 {
                     echo "<tr>";
                 ?>
-                    <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:60px;"/></td>
+                    <td>
+                        <a href="<?php echo $row['file_url'];?>">
+                        <img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:60px;"/>
+                        </a>
+                    </td>
                     <?php
                     echo "<td>".$row['title']."</td>";
                     echo "<td>".$row['category']."</td>";
+                    echo "<td>".$row['description']."</td>";
+                    echo "<td>".$row['file_size']."</td>";
                     echo "<td>".$row['importance']."</td>";
                     ?>
                     <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>

@@ -11,8 +11,8 @@ $did = isset($_GET['did'])?$_GET['did']:"";
 $search = null;
 if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
 {
-    $search = htmlspecialchars($_REQUEST["search"]);
-    $pagination->param = "&search=$search";
+    $search = htmlspecialchars($_REQUEST["search"]);  
+    $pagination->param = "&search=$search&did=$did";
     $pagination->rowCount("SELECT * FROM chronicles WHERE dictionary_id = $did AND description LIKE '%$search%'");
     $pagination->config(6, 10);
     $sql = "SELECT * FROM chronicles WHERE dictionary_id = $did AND description LIKE '%$search%'  ORDER BY year, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
@@ -28,6 +28,7 @@ else
 {
     $pagination->rowCount("SELECT * FROM chronicles WHERE dictionary_id = $did");
     $pagination->config(6,10);
+    $pagination->param = "&did=$did";
     $sql = "SELECT * FROM chronicles WHERE dictionary_id = $did  ORDER BY year, id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
@@ -163,7 +164,7 @@ else
 
             $(".btn-delete").click(function () {
                 var $that = $(this);
-                bootbox.confirm("删除后链接将无法恢复，您确定要删除吗？", function (result) {
+                bootbox.confirm("删除后事件记录将无法恢复，您确定要删除吗？", function (result) {
                     if (result) {
                         var productId = $that.attr("data-id");
 
@@ -177,10 +178,10 @@ else
 
                                 //  $('#resultreturn').prepend(res);
                                 if (res) {
-                                    toastr.success('链接已删除成功！', '删除链接')
+                                    toastr.success('事件记录已删除成功！', '删除事件记录')
                                     $that.closest("tr").remove();
                                 } else {
-                                    toastr.error('链接删除失败！', '删除链接')
+                                    toastr.error('事件记录删除失败！', '删除事件记录')
                                 }
                             }
                         });

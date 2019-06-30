@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
                                         <label for="intro">内容</label>
                                         <textarea class="form-control" id="intro" name="intro" placeholder=""><?php echo $data["intro"]; ?></textarea>
                                         <script>
-                                            var elFinder = '/js/vendor/elfinder/elfinder-cke.html';
+                                            var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('intro', {
 
                                                 filebrowserBrowseUrl: elFinder,

@@ -9,6 +9,9 @@ if(!empty($_GET['keyword'])){
     $keyword = $_GET['keyword'];
     $articles = $articleClass->search_paged($keyword,1,10);
     $articleCount = $articleClass->search_count($keyword);
+}else{
+    header('Location: /news');
+    exit;
 }
 ?>
 
@@ -52,50 +55,19 @@ if(!empty($_GET['keyword'])){
     </div>
     <div class="s1">
         <section class="list list-search" id="searchlist">
-                      <a href="#" class="item">
-                          <div class="container">
-                            <div class="des">
-                                <time>2018-11-29</time>
-                                <h3 class="title">
-                            传媒中心 > 新闻动态 > 2018年第三期微创<sup>®</sup>髋膝关节置换技术国际交流班走进比利时、荷兰
-                            </h3>
-                            </div>
-                          </div>
-                    </a>  
-                    <a href="#" class="item">
-                          <div class="container">
-                            <div class="des">
-                                <time>2018-11-29</time>
-                                <h3 class="title">
-                            传媒中心 > 新闻动态 > 2018年第三期微创<sup>®</sup>髋膝关节置换技术国际交流班走进比利时、荷兰
-                            </h3>
-                            </div>
-                          </div>
-                    </a>  
-                    <a href="#" class="item">
-                          <div class="container">
-                            <div class="des">
-                                <time>2018-11-29</time>
-                                <h3 class="title">
-                            传媒中心 > 新闻动态 > 2018年第三期微创<sup>®</sup>髋膝关节置换技术国际交流班走进比利时、荷兰
-                            </h3>
-                            </div>
-                          </div>
-                    </a>  
+                     
                 <?php  foreach($articles as $article){ ?>
-                <div class="box">
-                   
+                    <a href="/news/detail-<?php echo $article['id'];?>" class="item">
+                          <div class="container">
                             <div class="des">
+                                <time><?php echo date('Y-m-d', $article['pubdate']); ?></time>
                                 <h3 class="title">
-                                    <a href="/news/detail-<?php echo $article['id'];?>">
-                                    <?php echo $article['title'];?>
-                                    </a>
-                                </h3>
-                            
-                                <p><?php echo $article['summary'];?></p>
+                                传媒中心 > 新闻动态 >  <?php echo $article['title'];?>
+                            </h3>
                             </div>
-                       
-                </div>
+                          </div>
+                    </a>  
+         
 
                 <?php } ?>               
                

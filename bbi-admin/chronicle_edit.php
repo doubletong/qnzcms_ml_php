@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
                                 <label for="description">事件描述</label>
                                 <textarea class="form-control" id="description" name="description" placeholder=""><?php echo $data['description']; ?></textarea>
                                 <script>
-                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
+                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.php'; 
                                         CKEDITOR.replace( 'description', {
                                         
                                             filebrowserBrowseUrl: elFinder,

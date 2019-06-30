@@ -41,10 +41,9 @@ if(isset($_GET['id'])){
                             编辑页面
                         </div>
                         <div class="card-body">
+                        <div class="row">
+                                <div class="col">
                             <input id="pageId" type="hidden" name="pageId" value="<?php echo $data['id'];?>" />
-
-
-
                             <div class="form-group">
                                 <label for="title">标题</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo $data['title'];?>">
@@ -62,7 +61,7 @@ if(isset($_GET['id'])){
 
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']);?></textarea>
                                 <script>
-                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.html'; 
+                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.php'; 
                                     CKEDITOR.replace( 'content', {                                      
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder,     
@@ -71,19 +70,7 @@ if(isset($_GET['id'])){
 
                                 </script>
                             </div>
-                            <div class="form-group">
-                                <label for="description">SEO描述</label>
-
-                                <textarea class="form-control" id="description" name="description" placeholder=""><?php echo $data['description'];?></textarea>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="keywords">关键字</label>
-
-                                <input type="text" class="form-control" id="keywords" name="keywords" placeholder=""
-                                    value="<?php echo $data['keywords'];?>">
-
-                            </div>
+                       
                             <div class="form-group">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" <?php echo
@@ -91,7 +78,43 @@ if(isset($_GET['id'])){
                                     <label class="form-check-label" for="chkActive">发布</label>
                                 </div>
                             </div>
+                            </div>
+                                <div class="col-auto">
+                                    <div style="width:300px;  text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                       
+                                                <img ID="iLogo" src="<?php echo empty($data['background_image']) ? "holder.js/240x180?text=1920X550像素" : $data['background_image']; ?>" class="img-fluid" />
+                                          
+                                        
+                                                
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 背景图...</button>
+                                                <input id="background_image" type="hidden" name="background_image" value="<?php echo $data['background_image']; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">SEO</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="description">SEO描述</label>
 
+                                                <textarea class="form-control" id="description" name="description" rows="6" placeholder=""><?php echo $data['description']; ?></textarea>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="keywords">关键字</label>
+
+                                                <input type="text" class="form-control" id="keywords" name="keywords" placeholder="" value="<?php echo $data['keywords']; ?>">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>
@@ -119,13 +142,11 @@ if(isset($_GET['id'])){
     
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {
-            $('#thumbnail').val(fileUrl);
+            $('#background_image').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
 
-        function SetBackground(fileUrl) {
-            $('#imageUrl').val(fileUrl);
-        }
+     
 
         $.validator.addMethod(
         "regex",
@@ -146,10 +167,7 @@ if(isset($_GET['id'])){
                 singleEelFinder.open();
             });
 
-            $("#setImageUrl").on("click", function () {
-                singleEelFinder.selectActionFunction = SetBackground;
-                singleEelFinder.open();
-            });
+        
 
 
             $("#editform").validate({
