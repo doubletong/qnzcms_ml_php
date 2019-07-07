@@ -26,7 +26,8 @@
         border-bottom: 1px lighten($color_dark_bg,8%) solid;
 
         img {
-            height: 30px;display: block;
+            max-height: 30px;
+            display: block;
             margin: 7px auto;
         }
     }

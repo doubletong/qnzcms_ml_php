@@ -3,7 +3,7 @@ require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/job.php');
-
+require_once('data/dictionary.php');
 $JobClass = new Job();
 
 if(isset($_GET['id'])){
@@ -13,6 +13,11 @@ if(isset($_GET['id'])){
     header('Location: index.php');
     exit;
 }
+
+
+$dictionaryClass = new Dictionary();
+$cities = $dictionaryClass->get_dictionaries_byid(9);
+$worktypes = $dictionaryClass->get_dictionaries_byid(10);
 
 ?>
 <!DOCTYPE html>
@@ -47,12 +52,28 @@ if(isset($_GET['id'])){
                         <input type="text" class="form-control" id="title" name="title" value="<?php echo $data["title"]; ?>" placeholder="">                  
                 </div>
                 <div class="form-group">
-                    <label for="department">所在部门</label>
-                    <input type="text" class="form-control" id="department" name="department" value="<?php echo $data["department"]; ?>" placeholder="">                  
+                    <label for="department">职位类别</label>
+                   
+                    <select class="form-control" id="department" name="department">
+                        <option value="">--请选择职位类别--</option>
+                        <?php foreach ($worktypes as $type) {
+                            ?>
+
+                            <option value="<?php echo $type["title"]; ?>" <?php echo $type["title"]==$data["department"]?"selected":""; ?> ><?php echo $type["title"]; ?></option>
+
+                        <?php } ?>
+                    </select>                        
                 </div>
                 <div class="form-group">
-                    <label for="address">工作地点</label>
-                    <input type="text" class="form-control" id="address" name="address" value="<?php echo $data["address"]; ?>" placeholder="">                  
+                    <label for="address">工作城市</label>
+                    <select class="form-control" id="address" name="address">
+                        <option value="">--请选择工作城市--</option>
+                        <?php foreach ($cities as $city) {
+                            ?>
+                            <option value="<?php echo $city["title"]; ?>" <?php echo $city["title"]==$data["address"]?"selected":""; ?> ><?php echo $city["title"]; ?></option>
+
+                        <?php } ?>
+                    </select>                  
                 </div>
 
                 <div class="form-group">
@@ -67,11 +88,14 @@ if(isset($_GET['id'])){
                             <label for="content">岗位描述</label>                            
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo $data["content"]; ?></textarea>
                                 <script>
-                                var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
-                                    CKEDITOR.replace( 'content', {
-                                      
-                                        filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder                                                   
+                                // var elFinder = '<?php echo SITEPATH; ?>/js/vendor/elfinder/elfinder-cke.html'; 
+                                    CKEDITOR.replace( 'content', {                                      
+                                        // filebrowserBrowseUrl: elFinder,
+                                        // filebrowserImageBrowseUrl: elFinder  
+                                        filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                        filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                        filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                        filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'                                                 
                                     });
                                 </script>                        
                         </div>
@@ -96,13 +120,14 @@ if(isset($_GET['id'])){
 
 <script src="../js/vendor/toastr/toastr.min.js"></script>
 <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="../js/vendor/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
 
 
   
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li.jobs").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
 
 
         $("form").validate({

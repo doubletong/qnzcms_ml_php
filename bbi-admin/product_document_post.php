@@ -10,10 +10,10 @@ if (isset($_POST['product_id'], $_POST['title'], $_POST['importance'])) {
     $documentId = isset($_POST['documentId']) ? $_POST['documentId']:0;
     $title = $_POST['title'];
     $file_url = $_POST['file_url'];
-    $address = $_POST['address'];
+    $address = "";
     $importance = $_POST['importance'];  
     $product_id = $_POST['product_id'];   
-    $dictionary_id = $_POST['dictionary_id'];
+    $dictionary_id = 0;
 
     // echo $content.$productId;
 

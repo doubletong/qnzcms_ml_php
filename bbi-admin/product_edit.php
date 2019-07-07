@@ -16,9 +16,10 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-
+$did = isset($_GET['did'])?$_GET['did']:"";
 $categoryClass = new ProductCategory();
-$categories = $categoryClass->get_all();
+$categories = $categoryClass->get_all_bydid($did);
+
 
 function buildTree(array $elements, $parentId = 0)
 {
@@ -67,6 +68,7 @@ $tree = buildTree($categories);
                         </h5>
                         <div class="card-body">
                             <input id="productId" type="hidden" name="productId" value="<?php echo $data['id']; ?>" />
+                            <input type="hidden"  name="dictionary_id" value="<?php echo $data['dictionary_id']; ?>">
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
@@ -82,27 +84,21 @@ $tree = buildTree($categories);
                                                 <label for="categoryId">分类</label>
 
                                                 <select class="form-control" id="category_id" name="category_id" placeholder="">
-                                                    <option value="0">--请选择分类--</option>
-                                                    <?php foreach ($tree as $model) {
-                                                        ?>
-                                                        <optgroup label="<?php echo $model["title"]; ?>">
+                                                    <option value="">--请选择分类--</option>
+                                                    <?php foreach ($categories as $category) {
+                                                        ?>                                                       
+                                                            <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $data["category_id"] ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
 
-                                                            <?php if ($model['children']) {
-                                                                foreach ($model['children'] as $subModel) {
-                                                                    ?>
-                                                                    <option value="<?php echo $subModel["id"]; ?>" <?php echo  $subModel["id"] == $data["category_id"] ? "selected" : ""; ?>><?php echo $subModel["title"]; ?></option>
-
-                                                                <?php }
-                                                        } ?>
-                                                        </optgroup>
+                                                             
                                                     <?php } ?>
+                                                   
                                                 </select>
                                             </div>
                                         </div>
                                  
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="video_id">视频ID</label>
+                                                <label for="video_id">标题</label>
                                                 <input type="text" class="form-control" id="video_id" name="video_id" value="<?php echo $data["video_id"]; ?>" placeholder="">
                                             </div>
                                         </div>
@@ -121,11 +117,15 @@ $tree = buildTree($categories);
                                         <label for="content">产品描述</label>
                                         <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']); ?></textarea>
                                         <script>
-                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            //var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
                                                 height:350,
-                                                filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: elFinder,
+                                                // filebrowserImageBrowseUrl: elFinder,
+                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true       
                                             });
                                         </script>
@@ -135,11 +135,15 @@ $tree = buildTree($categories);
                                         <label for="specifications">规格参数</label>
                                         <textarea class="form-control" id="specifications" name="specifications" placeholder=""><?php echo stripslashes($data['specifications']); ?></textarea>
                                         <script>
-                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            //var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('specifications', {
                                                 height: 350,
-                                                filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: elFinder,
+                                                // filebrowserImageBrowseUrl: elFinder,
+                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true       
                                             });
                                         </script>
@@ -147,14 +151,18 @@ $tree = buildTree($categories);
 
 
                                     <div class="form-group">
-                                        <label for="registration">注册信息</label>
+                                        <label for="registration">产品设计</label>
                                         <textarea class="form-control" id="registration" name="registration" placeholder=""><?php echo stripslashes($data['registration']); ?></textarea>
                                         <script>
-                                            var elFinder = '/js/vendor/elFinder/elfinder-cke.php';
+                                            //var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('registration', {
                                                 height: 350,
-                                                filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: elFinder,
+                                                // filebrowserImageBrowseUrl: elFinder,
+                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true       
                                             });
                                         </script>
@@ -208,10 +216,10 @@ $tree = buildTree($categories);
                                     <div style="width:300px;text-align:center;">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img id="iLogo"  src="<?php echo empty($data['thumbnail']) ? "holder.js/250x80?text=210X69像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img id="iLogo"  src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=316X262像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 图标...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail']; ?>" />
                                             </div>
                                         </div>
@@ -236,7 +244,7 @@ $tree = buildTree($categories);
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
-                            <a href="products.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
+                            <a href="JavaScript:window.history.back()" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
                         </div>
                     </div>
                 </form>
@@ -252,6 +260,7 @@ $tree = buildTree($categories);
     <script src="../js/vendor/holderjs/holder.min.js"></script>
     <script src="../js/vendor/toastr/toastr.min.js"></script>
     <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../js/vendor/ckfinder/ckfinder.js"></script>
     <script type="text/javascript">
            function SetThumbnail(fileUrl) {
             $('#thumbnail').val(fileUrl);
@@ -266,18 +275,49 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
+            if(<?php echo $did;?>==="4"){
+                $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
+            }else{
+                $(".mainmenu>li.accessories").addClass("nav-open").find("ul>li.list a").addClass("active");
+            }
+          
 
-            $("#btnBrowser").on("click", function () {
-                singleEelFinder.selectActionFunction = SetThumbnail;
-                singleEelFinder.open();
+            $("#btnBrowser").on("click", function() {
+                // singleEelFinder.selectActionFunction = SetThumbnail;
+                // singleEelFinder.open();
+               
+                CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetThumbnail(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                         SetThumbnail(evt.data.resizedUrl);
+                     } );
+                 }
+             } );
+
             });
 
-            $("#btnImageUrl").on("click", function () {
-                singleEelFinder.selectActionFunction = SetImageUrl;
-                singleEelFinder.open();
-            });
+            $("#btnImageUrl").on("click", function() {
+                // singleEelFinder.selectActionFunction = SetImageUrl;
+                // singleEelFinder.open();
 
+                CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetImageUrl(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetImageUrl(evt.data.resizedUrl);
+                     } );
+                 }
+                });
+            });
 
             $("form").validate({
 

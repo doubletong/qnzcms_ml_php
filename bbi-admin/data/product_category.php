@@ -5,6 +5,12 @@ class ProductCategory{
         $query->execute();
         return $query->fetchAll();
     }
+    
+    public function get_all_bydid($did){     
+        $query = db::getInstance()->prepare("SELECT * FROM  product_categories WHERE dictionary_id = $did ORDER BY importance DESC");      
+        $query->execute();
+        return $query->fetchAll();
+    }
 
     public function fetch_all($did){     
         $query = db::getInstance()->prepare("SELECT * FROM  product_categories WHERE dictionary_id = ? ORDER BY importance DESC");

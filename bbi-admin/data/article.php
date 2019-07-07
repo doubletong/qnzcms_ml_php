@@ -39,7 +39,8 @@ class Article{
     }
 
 //更新
-   public function update_article($id, $title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,$keywords,$active, $description, $content,$summary,$pubdate) {
+   public function update_article($id, $title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,
+   $keywords,$active, $recommend,$description, $content,$summary,$pubdate) {
 
         $sql = "UPDATE wp_articles SET title= :title,
            categoryId =:categoryId,
@@ -55,7 +56,8 @@ class Article{
              content = :content,
              summary = :summary,
              pubdate = :pubdate,
-             active =:active
+             active =:active,
+             recommend = :recommend
              WHERE id =:id";
 
         $query = db::getInstance()->prepare($sql);
@@ -77,6 +79,7 @@ class Article{
         $query->bindValue(":summary",$summary);
         $query->bindValue(":pubdate",$publish,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
+        $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
         $query->execute();
 
@@ -89,10 +92,11 @@ class Article{
     }
 
 
-    public function insert_article($title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,$keywords,$active, $description, $content,$summary,$pubdate) {
+    public function insert_article($title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,
+    $author,$source,$source_url,$keywords,$active, $recommend, $description, $content,$summary,$pubdate) {
 
-        $sql="INSERT INTO wp_articles (title,categoryId,dictionary_id,thumbnail,image_url,background_image,author,source,source_url,keywords, description,content,summary,pubdate,active,added_by,added_date)
-                VALUES (:title,:categoryId,:dictionary_id,:thumbnail,:imageUrl,:background_image,:author,:source,:source_url,:keywords, :description,:content, :summary,:pubdate,:active,:added_by,:added_date)";
+        $sql="INSERT INTO wp_articles (title,categoryId,dictionary_id,thumbnail,image_url,background_image,author,source,source_url,keywords, description,content,summary,pubdate,active,recommend,added_by,added_date)
+                VALUES (:title,:categoryId,:dictionary_id,:thumbnail,:imageUrl,:background_image,:author,:source,:source_url,:keywords, :description,:content, :summary,:pubdate,:active,:recommend,:added_by,:added_date)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -115,6 +119,7 @@ class Article{
         $query->bindValue(":summary",$summary);
         $query->bindValue(":pubdate",$publish,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
+        $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":added_by",$username);
         $query->bindValue(":added_date",time(),PDO::PARAM_INT);
         $query->execute();

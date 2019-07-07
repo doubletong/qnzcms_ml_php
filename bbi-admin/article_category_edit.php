@@ -134,7 +134,7 @@ if($did==="6"){
 
                                 </div>
                                 <div class="col-auto">
-                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                    <!-- <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
                                                 <?php if($did=="6"){ ?>
@@ -163,7 +163,7 @@ if($did==="6"){
                                             </div>
                                         </div>
                                     </div>  
-                                    <?php } ?>
+                                    <?php } ?> -->
 
                                 </div>
                             </div>

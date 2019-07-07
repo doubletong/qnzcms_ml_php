@@ -131,12 +131,36 @@ if(isset($_GET['id'])){
         $(".mainmenu>li:nth-of-type(10)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
 
         $("#setImageUrl").on("click", function () {
-              singleEelFinder.selectActionFunction = SetBackground;
-            singleEelFinder.open();         
+            // singleEelFinder.selectActionFunction = SetBackground;
+            // singleEelFinder.open();         
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetBackground(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetBackground(evt.data.resizedUrl);
+                     } );
+                 }
+             });    
         });
         $("#setImageUrlMobile").on("click", function () {
-            singleEelFinder.selectActionFunction = SetImageUrlMobile;
-            singleEelFinder.open();         
+            // singleEelFinder.selectActionFunction = SetImageUrlMobile;
+            // singleEelFinder.open();   
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetImageUrlMobile(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                         SetImageUrlMobile(evt.data.resizedUrl);
+                     } );
+                 }
+             });          
         });
 
         $("form").validate({

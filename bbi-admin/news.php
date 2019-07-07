@@ -16,7 +16,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $pagination->rowCount("SELECT id FROM wp_articles WHERE  dictionary_id = $did AND (title LIKE '%$search%' OR description LIKE '%$search%' OR content LIKE '%$search%') ORDER BY  id DESC ");
     $pagination->config(6, 10);
     $sql = "SELECT a.id, a.title, c.title as category_title,a.dictionary_id, a.thumbnail,a.view_count, 
-    a.active, a.pubdate, a.added_by FROM wp_articles as a Left JOIN article_categories as c 
+    a.active, a.recommend, a.pubdate, a.added_by FROM wp_articles as a Left JOIN article_categories as c 
     ON c.id = a.categoryId
         WHERE  a.dictionary_id = $did AND (a.title LIKE '%$search%' OR a.description LIKE '%$search%' OR a.content LIKE '%$search%')
         ORDER BY  a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
@@ -35,7 +35,7 @@ else
     $pagination->config(6,10);
     
     $sql = "SELECT a.id, a.title, c.title as category_title,a.dictionary_id, a.thumbnail,a.view_count, 
-    a.active, a.pubdate, a.added_by FROM wp_articles as a Left JOIN article_categories as c 
+    a.active,a.recommend, a.pubdate, a.added_by FROM wp_articles as a Left JOIN article_categories as c 
     ON c.id = a.categoryId  WHERE  a.dictionary_id = $did ORDER BY a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
@@ -105,8 +105,16 @@ else
                     echo "<tr>";
                 ?>
                     <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
+                    <td><?php echo $row['title']; ?>  
+                    <?php if($row['recommend']){
+                        ?>
+                       <span class="badge badge-primary">
+                        <i class='iconfont  icon-like-fill'></i></span>   
+                      
+                        <?php } ?></td>
+                   
                     <?php
-                    echo "<td>".$row['title']."</td>";
+                 
                    if($did=="1"||$did=="2"){
                     echo "<td>".$row['category_title']."</td>";
                    }
@@ -116,11 +124,7 @@ else
                     <td><a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
-                        <?php if($did=="1"){ ?>
-                            <a href='article_documents.php?aid=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
-                                <i class="iconfont icon-attachment"></i>
-                            </a>
-                    <?php } ?>
+               
                         
                         <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                             <i class="iconfont icon-delete"></i>
@@ -155,27 +159,20 @@ else
         //当前菜单
      
         if("1"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-        }
-        if("2"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-        }
-        if("4"==<?php echo $did; ?>){
+        if("2"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if("5"==<?php echo $did; ?>){
+        if("3"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if ("6" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-            }
-            if ("16" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(9)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-            }
-
+        if("6"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("16"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

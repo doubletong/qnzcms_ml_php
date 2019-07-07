@@ -1,16 +1,16 @@
 <?php 
 return [
     'site' => [
-        'name' => '微创',
-        'short_name' => '微创',
-        'web_number'=>'粤ICP备8888888号-1',        
-        'phone' => '+86-25-88888 ',
-        'email' => 'info@inholy.com',
+        'name' => '南光集团',
+        'short_name' => '南光集团',
+        'web_number'=>'粤ICP备05140124号',        
+        'phone' => '+86 0754-85751187',
+        'email' => 'info@nglbg.com',
         'qq' => '',
-        'address' => '南京市江宁区科学园芝兰路56号',
-        'fax' => '+86-25-58707762',
+        'address' => '广东省汕头市澄海区东里镇国道324线樟林路段',
+        'fax' => '+86 0754-85316687',
         'mobile' => '',
-        'homepage' => 'http://www.crmedicon.com/'
+        'homepage' => 'http://www.nglbg.com/'
 
     ],
     'application' => [

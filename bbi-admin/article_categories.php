@@ -70,7 +70,6 @@ else
                             <label class="sr-only" for="inlineFormInput">搜索</label>
                             <input type="text" name="search" class="form-control mb-2" id="inlineFormInput" value="<?php echo $search ?>" placeholder="关键字">
                             </div>
-
                             <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-2">搜索</button>
                             </div>
@@ -89,11 +88,9 @@ else
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                <?php if($did=="16"){ ?>
-                    <th>图片</th>                                           
-                <?php }else{ ?>
-                    <th>图标</th>
-                <?php } ?>
+          
+                    <!-- <th>图标</th> -->
+             
                     <th>标题</th>
                     <th>排序</th>
                     <th>创建时间</th>
@@ -106,11 +103,11 @@ else
                 {
                     echo "<tr>";
                 ?>
-                    <td>
+                    <!-- <td>
                         <?php if(!empty($row['thumbnail'])){ ?> 
                             <img src="<?php echo $row['thumbnail'] ;?>" alt="<?php echo $row['title'] ;?>" style="max-height:50px;display:block;">
                         <?php } ?>
-                </td> 
+                    </td>  -->
                     <td><?php echo $row['title'] ;?></td> 
                     <td><?php echo $row['importance'] ;?></td>         
                     <td><?php echo date("Y-m-d H:i",$row['added_date']);?></td>

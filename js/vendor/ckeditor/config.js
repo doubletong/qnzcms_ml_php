@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
     config.language = 'zh-cn';
 	// config.uiColor = '#AADC6E';
-	config.extraPlugins = 'lineheight';
+	config.extraPlugins = 'lineheight,video';
 };
 CKEDITOR.dtd.$removeEmpty.span = false;
 CKEDITOR.dtd.$removeEmpty.i = false;

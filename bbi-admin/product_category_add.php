@@ -5,12 +5,12 @@ require_once('../config/db.php');
 require_once('data/product_category.php');
 require_once('data/product.php');
 
-
+$did = isset($_GET['did'])?$_GET['did']:"";
 
 $articleClass = new Product();
 
 $cateModel = new ProductCategory();
-$categories = $cateModel->get_all();
+$categories = $cateModel->get_all_bydid($did);
 
 function buildTree(array $elements, $parentId = 0) {
     $branch = array();
@@ -61,7 +61,7 @@ $tree = buildTree($categories);
 
                         <div class="card-body">
                             <input id="categoryId" type="hidden" name="categoryId" value="0" />
-                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="" />
+                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="<?php echo $did;?>" />
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -105,7 +105,7 @@ $tree = buildTree($categories);
                                     </div>
 
                                 </div>
-                                <div class="col-auto">
+                                <!-- <div class="col-auto">
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">                                           
@@ -130,7 +130,7 @@ $tree = buildTree($categories);
                                             </div>
                                         </div>
                                     </div> 
-                                </div>
+                                </div> -->
                             </div>
 
 
@@ -167,9 +167,11 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-          
-            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
-     
+            if(<?php echo $did;?>==="4"){
+                $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
+            }else{
+                $(".mainmenu>li.accessories").addClass("nav-open").find("ul>li.category a").addClass("active");
+            }
      
         
             $("#btnBrowser").on("click", function() {

@@ -4,7 +4,6 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('../includes/PDO_Pagination.php');
 require_once('data/product_document.php');
-require_once('data/dictionary.php');
 
 if(isset($_GET['pid'])){
     $pid = $_GET['pid'];  
@@ -18,18 +17,13 @@ if(isset($_GET['pid'])){
 }
 
 
-$dictionaryClass = new Dictionary();
-$dictionaries = $dictionaryClass->get_dictionaries_byid(6);
-
-
-
 
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title><?php echo "相关文档/文献_产品_后台管理_" . SITENAME; ?></title>
+    <title><?php echo "产品图片_产品_后台管理_" . SITENAME; ?></title>
     <?php require_once('includes/meta.php') ?>
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
@@ -60,30 +54,8 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(6);
                         
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="title">主题</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="dictionary_id">类别</label>
-
-                                <select class="form-control" id="dictionary_id" name="dictionary_id" placeholder="">
-                                    <option value="">--请选择类别--</option>
-                                    <?php foreach ($dictionaries as $model) {
-                                        ?>
-                                        <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
-
-                                    <?php } ?>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="form-group">
                                 <label for="file_url">
-                                    文档</label>
+                                    图片</label>
                                 <div class="input-group">
                                     <input id="file_url" name="file_url" class="form-control" placeholder="" aria-describedby="setFileUrl">
                                     <div class="input-group-append">
@@ -94,10 +66,12 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(6);
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="title">案例地址</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="">
+                                <label for="title">描述</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="">
                             </div>
                         </div>
+                       
+        
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="importance">排序</label>
@@ -114,9 +88,9 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(6);
                 <table class="table table-hover table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>标题</th>
-                            <th>类别</th>
-                            <th>案例地址</th>
+                        <th>图片</th>
+                            <th>描述</th>
+                        
                             <th>排序</th>
                             <th>发布日期</th>
                             <th>操作</th>
@@ -128,14 +102,11 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(6);
                             echo "<tr>";
                             ?>
                             <td>
+                              <img src="<?php echo $row['file_url']; ?>" alt="<?php echo $row['title']; ?>" style="height:80px;" />
+                            </td>
+                            <td>
                                 <?php echo $row['title']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['category']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['address']; ?>
-                            </td>
+                            </td>                      
                             <td>
                                 <?php echo $row['importance']; ?>
                             </td>
@@ -166,6 +137,7 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(6);
     <script src="../js/vendor/toastr/toastr.min.js"></script>
     <script src="../js/vendor/bootbox.js/bootbox.js"></script>
     <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../js/vendor/ckfinder/ckfinder.js"></script>
     <script>
         function SetFileUrl(fileUrl) {
             $('#file_url').val(fileUrl);
@@ -177,8 +149,20 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(6);
             $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
 
             $("#setFileUrl").on("click", function () {  
-                singleEelFinder.selectActionFunction = SetFileUrl;
-                singleEelFinder.open();            
+                // singleEelFinder.selectActionFunction = SetFileUrl;
+                // singleEelFinder.open();  
+                CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetFileUrl(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetFileUrl(evt.data.resizedUrl);
+                     } );
+                    }
+                } );          
             });
 
             //确认框默认语言

@@ -22,13 +22,14 @@ if (isset($_POST['title'], $_POST['content'])) {
     $summary = $_POST['summary'];
     $pubdate = $_POST['pubdate'];
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
+    $recommend = isset($_POST['recommend']) && $_POST['recommend']  ? "1" : "0";
 
     //   echo $content.$productId;
     if($articleId>0){
-        echo $articleClass->update_article($articleId, $title,$categoryId,$dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active, $description, $content,$summary,$pubdate);
+        echo $articleClass->update_article($articleId, $title,$categoryId,$dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active,$recommend, $description, $content,$summary,$pubdate);
 
     }else{
-        echo $articleClass->insert_article($title,$categoryId, $dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active, $description, $content,$summary,$pubdate);
+        echo $articleClass->insert_article($title,$categoryId, $dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active,$recommend, $description, $content,$summary,$pubdate);
     }
 
 }else{

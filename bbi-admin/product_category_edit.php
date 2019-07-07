@@ -4,8 +4,9 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/product_category.php');
 
-$cateModel = new ProductCategory();
+$did = isset($_GET['did'])?$_GET['did']:"";
 
+$cateModel = new ProductCategory();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -15,7 +16,8 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-$categories = $cateModel->get_all();
+$categories = $cateModel->get_all_bydid($did);
+
 function buildTree(array $elements, $parentId = 0) {
     $branch = array();
 
@@ -108,7 +110,7 @@ $tree = buildTree($categories);
                                     </div>
 
                                 </div>
-                                <div class="col-auto">
+                                <!-- <div class="col-auto">
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
@@ -136,7 +138,7 @@ $tree = buildTree($categories);
                                             </div>
                                         </div>
                                     </div> 
-                                </div>
+                                </div> -->
                             </div>
 
 
@@ -171,9 +173,11 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-          
-            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
-          
+            if(<?php echo $did;?>==="4"){
+                $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
+            }else{
+                $(".mainmenu>li.accessories").addClass("nav-open").find("ul>li.category a").addClass("active");
+            }
          
 
             $("#btnBrowser").on("click", function() {

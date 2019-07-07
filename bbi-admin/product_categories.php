@@ -4,9 +4,10 @@ require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/product_category.php');
 
+$did = isset($_GET['did'])?$_GET['did']:"";
 
 $cateModel = new ProductCategory();
-$categories = $cateModel->get_all();
+$categories = $cateModel->get_all_bydid($did);
 
 function buildTree(array $elements, $parentId = 0)
 {
@@ -49,14 +50,14 @@ $tree = buildTree($categories);
 
             <div class="container-fluid maincontent">
                 <div class="mb-2 text-right">
-                    <a href="product_category_add.php" class="btn btn-primary">
+                    <a href="product_category_add.php?did=<?php echo $did;?>" class="btn btn-primary">
                         <i class="iconfont icon-plus"></i> 添加分类
                     </a>
                 </div>
                 <table class="table table-hover table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>图片/图标</th>
+                            <!-- <th>图片/图标</th> -->
                             <th>标题</th>
                             <th>排序</th>
                             <th>创建时间</th>
@@ -69,16 +70,16 @@ $tree = buildTree($categories);
 
                             ?>
                             <tr>
-                                <td>
+                                <!-- <td>
                                     <?php if (!empty($row['thumbnail'])) { ?>
                                         <img src="<?php echo $row['thumbnail']; ?>" alt="<?php echo $row['title']; ?>" style="display:block; height:30px;">
                                     <?php } ?>
-                                </td>
+                                </td> -->
                                 <td><?php echo $row['title']; ?></td>
                                 <td><?php echo $row['importance']; ?></td>
                                 <td><?php echo date("Y-m-d", $row['added_date']); ?></td>
 
-                                <td><a href='product_category_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm'>
+                                <td><a href='product_category_edit.php?id=<?php echo $row['id']; ?>&did=<?php echo $row['dictionary_id']; ?>' class='btn btn-primary btn-sm'>
                                         <i class="iconfont icon-edit"></i>
                                     </a>
                                     <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-danger btn-sm btn-delete'>
@@ -101,7 +102,7 @@ $tree = buildTree($categories);
                                                     <td><?php echo $subModel['importance']; ?></td>
                                                     <td><?php echo date("Y-m-d H:i", $subModel['added_date']); ?></td>
 
-                                                    <td><a href='product_category_edit.php?id=<?php echo $subModel['id']; ?>' class='btn btn-primary btn-sm'>
+                                                    <td><a href='product_category_edit.php?id=<?php echo $subModel['id']; ?>&did=<?php echo $subModel['dictionary_id']; ?>' class='btn btn-primary btn-sm'>
                                                             <i class="iconfont icon-edit"></i>
                                                         </a>
                                                         <button type="button" data-id="<?php echo $subModel['id']; ?>" class='btn btn-danger btn-sm btn-delete'>
@@ -131,7 +132,13 @@ $tree = buildTree($categories);
     <script>
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
+            if(<?php echo $did;?>==="4"){
+                $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
+            }else{
+                $(".mainmenu>li.accessories").addClass("nav-open").find("ul>li.category a").addClass("active");
+            }
+          
+          
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"

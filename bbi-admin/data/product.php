@@ -11,12 +11,25 @@ class Product{
         $query = db::getInstance()->prepare("SELECT * FROM products WHERE id = ?");
         $query->bindValue(1,$id);
         $query->execute();
-
         return $query->fetch();
     }
 
     public function delete_product($id){
         $query = db::getInstance()->prepare("DELETE FROM `products` WHERE id = ?");
+        $query->bindValue(1,$id);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function copy_product($id){
+        $query = db::getInstance()->prepare("INSERT INTO `products` (title, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,dictionary_id)
+                                                     SELECT '新记录', summary, description,content,specifications,registration,0,thumbnail,image_url,keywords,recommend,active,added_by,UNIX_TIMESTAMP(now()),category_id,dictionary_id FROM `products` WHERE id = ? ");
         $query->bindValue(1,$id);
         $query->execute();
 
@@ -37,7 +50,8 @@ class Product{
     }
 
 //更新
-   public function update_product($id, $title,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, $description, $content,$specifications,$registration, $category_id,$video_id) {
+   public function update_product($id, $title,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, 
+   $description, $content,$specifications,$registration, $category_id,$dictionary_id) {
 
         $sql = "UPDATE products SET           
              title= :title,
@@ -52,7 +66,8 @@ class Product{
              description = :description,
              recommend = :recommend,           
              category_id = :category_id,      
-             video_id = :video_id,  
+          
+             dictionary_id = :dictionary_id,  
              active =:active
              WHERE id =:id";
         
@@ -69,8 +84,9 @@ class Product{
         $query->bindValue(":image_url",$image_url);
         $query->bindValue(":description",$description);
         $query->bindValue(":keywords",$keywords);
-        $query->bindValue(":video_id",$video_id);
+      
         $query->bindValue(":category_id",$category_id,PDO::PARAM_INT);
+        $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":id",$id,PDO::PARAM_INT);
@@ -86,10 +102,10 @@ class Product{
 
 
     public function insert_product( $title, $importance,$thumbnail,
-                                   $image_url,$keywords,$recommend,$active,$summary, $description, $content,$specifications,$registration,$category_id,$video_id) {
+                                   $image_url,$keywords,$recommend,$active,$summary, $description, $content,$specifications,$registration,$category_id,$dictionary_id) {
 
-        $sql="INSERT INTO products (title, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,video_id)
-                VALUES (:title,:summary, :description,:content,:specifications, :registration,:importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id,:video_id)";
+        $sql="INSERT INTO products (title, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,dictionary_id)
+                VALUES (:title,:summary, :description,:content,:specifications, :registration,:importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id,:dictionary_id)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -106,8 +122,9 @@ class Product{
         $query->bindValue(":thumbnail",$thumbnail);
         $query->bindValue(":image_url",$image_url);
         $query->bindValue(":keywords",$keywords);
-        $query->bindValue(":video_id",$video_id);
+    
         $query->bindValue(":category_id",$category_id,PDO::PARAM_INT);
+        $query->bindValue(":dictionary_id",$dictionary_id,PDO::PARAM_INT);
         $query->bindValue(":recommend",$recommend,PDO::PARAM_BOOL);
         $query->bindValue(":active",$active,PDO::PARAM_BOOL);
         $query->bindValue(":added_by",$username);

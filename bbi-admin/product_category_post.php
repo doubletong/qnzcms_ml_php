@@ -8,8 +8,8 @@ $caseClass = new ProductCategory();
 if (isset($_POST['title'], $_POST['dictionary_id'])) {
     $categoryId = $_POST['categoryId'];
     $title = $_POST['title'];
-    $thumbnail = $_POST['thumbnail'];
-    $thumbnail2 = $_POST['thumbnail2'];
+    $thumbnail = isset($_POST['thumbnail']) ?$_POST['thumbnail']:""; 
+    $thumbnail2 = isset($_POST['thumbnail2']) ?$_POST['thumbnail2']:""; 
     $dictionary_id = $_POST['dictionary_id'];
     $parent_id = isset($_POST['parent_id']) ?$_POST['parent_id']:0;
     $importance = $_POST['importance'];

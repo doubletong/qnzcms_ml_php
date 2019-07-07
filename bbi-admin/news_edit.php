@@ -73,11 +73,11 @@ $tree = buildTree($categories);
                                         <label for="title">标题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo $data['title']; ?>">
                                     </div>
-                                    <?php if($did=="1" || $did=="2" || $did=="16"){ ?>
+                                    <?php if($did=="1"){ ?>
                                     <div class="form-group">
-                                        <label for="categoryId"><?php echo $did=="16"?"主题":"分类";?></label>                                   
+                                        <label for="categoryId">分类</label>                                   
                                         <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
-                                            <option value="">--请选择<?php echo $did=="16"?"主题":"分类";?>--</option>
+                                            <option value="">--请选择分类--</option>
                                             <?php foreach( $categories as $model)
                                             {
                                                 if($model["id"]=== $data["categoryId"]){
@@ -93,7 +93,7 @@ $tree = buildTree($categories);
                                     </div>
                                 <?php } ?>
 
-                                <?php if($did=="6"){ ?>
+                                <!-- <?php if($did=="6"){ ?>
                             <div class="form-group">
                                 <label for="categoryId">分类</label>                           
                             
@@ -115,35 +115,11 @@ $tree = buildTree($categories);
                                        <?php } ?>
                                 </select>                          
                             </div>
-                        <?php } ?>
+                        <?php } ?> -->
 
-                                    <?php if($did=="4"){ ?>
-                                        <div class="form-group">                          
-                            <label for="author">患者</label>
-                            <input type="text" class="form-control" id="author" name="author" value="<?php echo $data['author']; ?>" placeholder="">                         
-                        </div>
-                        <div class="form-group">                          
-                            <label for="source">来自</label>
-                            <input type="text" class="form-control" id="source" name="source" value="<?php echo $data['source']; ?>" placeholder="">                         
-                        </div>
+                                
 
-                            <div class="form-group">
-                            <label for="imageUrl">
-                                图片</label>
-                                <div class="input-group">
-                                    <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="图片" value="<?php echo $data['image_url']; ?>" aria-describedby="setImageUrl">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
-                                    </div>
-                                </div>
-                                <small id="emailHelp" class="form-text text-muted">图片尺寸：380*530像素</small>                              
-                            </div>
-
-                            
-
-                       <?php } ?>
-
-                       <?php if($did=="5"){ ?>
+                   
                             <div class="form-group">
                             <label for="imageUrl">
                                 图片</label>
@@ -153,12 +129,12 @@ $tree = buildTree($categories);
                                         <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                                     </div>
                                 </div>
-                                <small id="emailHelp" class="form-text text-muted">图片尺寸：380*530像素</small>                              
+                                <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*480像素</small>                              
                             </div>                          
 
-                       <?php } ?>
+            
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="background_image">
                                 背景图</label>
                                 <div class="input-group">
@@ -167,8 +143,8 @@ $tree = buildTree($categories);
                                         <button class="btn btn-outline-secondary" id="setBackgroundImage" type="button" >浏览…</button>                                 
                                     </div>
                                 </div>
-                                <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*550像素</small>                              
-                        </div>
+                                <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*480像素</small>                              
+                        </div> -->
 
 
 
@@ -178,10 +154,14 @@ $tree = buildTree($categories);
 
                                         <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']); ?></textarea>
                                         <script>
-                                            var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
+                                            // var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
-                                                filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: elFinder,
+                                                // filebrowserImageBrowseUrl: elFinder,
+                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true                  
                                             });
                                         </script>
@@ -218,6 +198,12 @@ $tree = buildTree($categories);
                                             <label class="form-check-label" for="chkActive">发布</label>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" <?php echo $data['recommend'] ? "checked" : ""; ?> id="chkRecommend" name="recommend">
+                                            <label class="form-check-label" for="chkRecommend">精选</label>
+                                        </div>
+                                    </div>
 
 
 
@@ -226,11 +212,14 @@ $tree = buildTree($categories);
                                     <div style="width:300px;  text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                            <?php if($did=="5" || $did=="4"){ ?>
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=?x34像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                            <?php if($did=="1"){ ?>
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x360?text=340X422像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                              
+                                            <?php }elseif($did=="2"){?>
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=370x224像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                               
                                             <?php }else{?>
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=580X304像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=370x278像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
                                             <?php } ?>
                                                 
@@ -286,6 +275,7 @@ $tree = buildTree($categories);
     <script src="../js/vendor/holderjs/holder.min.js"></script>
     <script src="../js/vendor/toastr/toastr.min.js"></script>
     <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../js/vendor/ckfinder/ckfinder.js"></script>
 
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {
@@ -301,44 +291,72 @@ $tree = buildTree($categories);
 
         $(document).ready(function() {
             //当前菜单
-        if("1"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(3)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-        }
-        if("2"==<?php echo $did; ?>){
+            if("1"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-        }
-        if("4"==<?php echo $did; ?>){
+        if("2"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if("5"==<?php echo $did; ?>){
+        if("3"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if ("6" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-            }
-
-            if ("16" == <?php echo $did; ?>) {
-                $(".mainmenu>li:nth-of-type(9)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-            }
-
+        if("6"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
+        if("16"==<?php echo $did; ?>){
+            $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        }
 
         $("#btnBrowser").on("click", function () {         
-            singleEelFinder.selectActionFunction = SetThumbnail;
-            singleEelFinder.open();        
+            // singleEelFinder.selectActionFunction = SetThumbnail;
+            // singleEelFinder.open();    
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetThumbnail(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetThumbnail(evt.data.resizedUrl);
+                     } );
+                 }
+             });    
           
         });       
 
         $("#setImageUrl").on("click", function () {  
-            singleEelFinder.selectActionFunction = SetImageUrl;
-            singleEelFinder.open();            
+            // singleEelFinder.selectActionFunction = SetImageUrl;
+            // singleEelFinder.open();    
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetImageUrl(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetImageUrl(evt.data.resizedUrl);
+                     } );
+                 }
+             } );            
         });
 
         $("#setBackgroundImage").on("click", function () {  
-            singleEelFinder.selectActionFunction = SetBackground;
-            singleEelFinder.open();            
+            // singleEelFinder.selectActionFunction = SetBackground;
+            // singleEelFinder.open(); 
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetBackground(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetBackground(evt.data.resizedUrl);
+                     } );
+                 }
+             } );               
         });
 
 

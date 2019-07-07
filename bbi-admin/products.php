@@ -6,12 +6,16 @@ require_once('data/product_category.php');
 
 require_once('../includes/PDO_Pagination.php');
 // get paging products
+$did = isset($_GET['did'])?$_GET['did']:"";
+
 $pagination = new PDO_Pagination(db::getInstance());
 $search = (isset($_REQUEST["search"]) && $_REQUEST["search"] != "") ? htmlspecialchars($_REQUEST["search"]):null;
 $cid = (isset($_REQUEST["cid"]) && $_REQUEST["cid"] != "") ? htmlspecialchars($_REQUEST["cid"]):null;
 
-$sql = "SELECT a.id,a.title, a.thumbnail,a.added_by,a.added_date, a.view_count, c.title as category_title FROM products as a Left JOIN product_categories as c 
-ON c.id = a.category_id WHERE 1 ";
+$sql = "SELECT a.id,a.title, a.thumbnail,a.importance,a.active,a.added_date, a.view_count,a.dictionary_id, c.title as category_title FROM products as a Left JOIN product_categories as c 
+ON c.id = a.category_id WHERE a.dictionary_id = $did ";
+
+$pagination->param .= "&did=$did";
 
 if(isset($_REQUEST["search"]) && $_REQUEST["search"] != ""){    
     $pagination->param .= "&search=$search";
@@ -23,9 +27,9 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
 }
 
 $pagination->rowCount($sql);
-$pagination->config(3, 15);
+$pagination->config(6, 15);
 
-$sql .= " ORDER BY a.importance, a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+$sql .= " ORDER BY a.importance DESC, a.id DESC  LIMIT $pagination->start_row, $pagination->max_rows";
 $query =db::getInstance()->prepare($sql);
 $query->execute();
 $model = array();
@@ -37,7 +41,8 @@ while($rows = $query->fetch())
 //get all categories
 
 $categoryClass = new ProductCategory();
-$categories = $categoryClass->get_all();
+$categories = $categoryClass->get_all_bydid($did);
+
 
 function buildTree(array $elements, $parentId = 0)
 {
@@ -85,24 +90,21 @@ $tree = buildTree($categories);
                                     <label class="sr-only" for="inlineFormInput">关键字</label>
                                     <input type="text" name="search" class="form-control" id="inlineFormInput"
                                         value="<?php echo $search ?>" placeholder="关键字">
+
+                                        <input type="hidden" name = "did" value="<?php echo $did;?>" />
                                 </div>
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">分类</label>
                                      <select class="form-control" id="cid" name="cid" placeholder="">
                                                     <option value="">--请选择分类--</option>
-                                                    <?php foreach ($tree as $category) {
-                                                        ?>
-                                                        <optgroup label="<?php echo $category["title"]; ?>">
 
-                                                            <?php if ($category['children']) {
-                                                                foreach ($category['children'] as $subModel) {
-                                                                    ?>
-                                                                    <option value="<?php echo $subModel["id"]; ?>" <?php echo  $subModel["id"] == $cid ? "selected" : ""; ?>><?php echo $subModel["title"]; ?></option>
+                                                    <?php foreach ($categories as $category) {
+                                                        ?>                                                       
+                                                            <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $cid  ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
 
-                                                                <?php }
-                                                        } ?>
-                                                        </optgroup>
                                                     <?php } ?>
+                                                   
+                                              
                                                 </select>
                                 </div>
                                 <div class="col-auto">
@@ -112,7 +114,7 @@ $tree = buildTree($categories);
                         </form>
                     </div>
                     <div class="col-auto">
-                        <a href="product_add.php" class="btn btn-primary">
+                        <a href="product_add.php?did=<?php echo $did; ?>" class="btn btn-primary">
                             <i class="iconfont icon-plus"></i> 添加产品
                         </a>
                     </div>
@@ -120,13 +122,12 @@ $tree = buildTree($categories);
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>图片</th>
-                       
+                            <th>图片</th>                       
                             <th>产品名称</th>
-                            <th>所属分类</th>
-                          
+                            <th>所属分类</th>                          
                             <th>显示</th>
-                            <th>发布者</th>
+                            <th>重要性</th>
+                            <th>发布</th>
                             <th>创建日期</th>
                             <th>操作</th>
                         </tr>
@@ -149,20 +150,29 @@ $tree = buildTree($categories);
                             <?php echo $row['view_count'];?>
                         </td>
                         <td>
-                            <?php echo $row['added_by'];?>
+                            <?php echo $row['importance'];?>                        
+                            </td>
+                        
+                        <td>
+                            <?php echo $row['active']==1?"是":"否";?>
                         </td>
                         <td>
                             <?php echo date('Y-m-d',$row['added_date']) ;?>
                         </td>
                         <td>
-                            <a href='product_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                            <a href='product_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm'>
                                 <i class="iconfont icon-edit"></i>
                             </a>
-                            <a href='product_documents.php?pid=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
-                                <i class="iconfont icon-attachment"></i>
-                            </a>
+                            <?php if( $did=="5"){ ?>
+                                <a href='product_documents.php?pid=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                                    <i class="iconfont icon-image"></i>
+                                </a>
+                            <?php } ?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy'>
+                                <i class="iconfont icon-file-copy"></i>
+                            </button>
                             <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
-                            <i class="iconfont icon-delete"></i>
+                                <i class="iconfont icon-delete"></i>
                             </button>
                         </td>
                         <?php
@@ -192,7 +202,12 @@ $tree = buildTree($categories);
     <script>
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
+            if(<?php echo $did;?>=="4"){
+                $(".mainmenu>li.products").addClass("nav-open").find("ul>li.list a").addClass("active");
+            }else{
+                $(".mainmenu>li.accessories").addClass("nav-open").find("ul>li.list a").addClass("active");
+            }
+          
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"
@@ -221,13 +236,35 @@ $tree = buildTree($categories);
                                 }
                             }
                         });
-
                     }
-
-
                 });
+            });
+            //拷贝记录
+            $(".btn-copy").click(function () {
+                var $that = $(this);
+                bootbox.confirm("拷贝后会复制出一条一样的新记录，您确定要拷贝吗？", function (result) {
+                    if (result) {
+                        var productId = $that.attr("data-id");
 
+                        $.ajax({
+                            url: 'product_copy.php',
+                            type: 'POST',
+                            data: {
+                                id: productId
+                            },
+                            success: function (res) {
 
+                                //  $('#resultreturn').prepend(res);
+                                if (res) {
+                                    toastr.success('产品已拷贝成功！', '拷贝产品')
+                                    location.reload()
+                                } else {
+                                    toastr.error('产品拷贝失败！', '拷贝产品')
+                                }
+                            }
+                        });
+                    }
+                });
             });
 
         });

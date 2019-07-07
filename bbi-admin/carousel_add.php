@@ -99,6 +99,7 @@ require_once('../config/db.php');
 <script src="../js/vendor/holderjs/holder.min.js"></script>
 <script src="../js/vendor/toastr/toastr.min.js"></script>
 <script src="../js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="../js/vendor/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
 
 
@@ -117,12 +118,36 @@ require_once('../config/db.php');
 
 
         $("#setImageUrl").on("click", function () {
-            singleEelFinder.selectActionFunction = SetBackground;
-            singleEelFinder.open();         
+            // singleEelFinder.selectActionFunction = SetBackground;
+            // singleEelFinder.open();         
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetBackground(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                        SetBackground(evt.data.resizedUrl);
+                     } );
+                 }
+             });    
         });
         $("#setImageUrlMobile").on("click", function () {
-            singleEelFinder.selectActionFunction = SetImageUrlMobile;
-            singleEelFinder.open();         
+            // singleEelFinder.selectActionFunction = SetImageUrlMobile;
+            // singleEelFinder.open();   
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();                       
+                         SetImageUrlMobile(file.getUrl());
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
+                         SetImageUrlMobile(evt.data.resizedUrl);
+                     } );
+                 }
+             });          
         });
 
 
