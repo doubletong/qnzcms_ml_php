@@ -1,6 +1,5 @@
 <?php
 require_once('../includes/common.php');
-require_once('../config/db.php');
 session_start();
 
 if(isset($_POST['username'],$_POST['password'])){
@@ -46,7 +45,7 @@ if(isset($_POST['username'],$_POST['password'])){
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width">
     <title>
-        后台管理
+        后台管理-<?php echo $site_info['sitename']; ?>
     </title>
     <link href="/js/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="content/iconfonts/iconfont.css" rel="stylesheet" />
@@ -72,7 +71,7 @@ if(isset($_POST['username'],$_POST['password'])){
 <body class="loginPage">
 <form method="post" class="loginForm">
 <div class="loginbox card">
-    <div class="card-img-top"><img src="../img/logo_black.png"  alt="..."></div>
+    <div class="card-img-top"><img src="<?php echo $site_info['logo2'] ?>"  alt="..."></div>
 
 <div class="card-body">
 

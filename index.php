@@ -1,20 +1,18 @@
 <?php
+
 require_once("includes/common.php");
-require_once("config/db.php");
 require_once("data/carousel.php");
-// require_once("data/product.php");
-// $productClass = new Product();
+require_once("data/link.php");
+require_once("data/article.php");
 
-// $categories = $productClass->get_parent_categories(8);
-// $i=1;
-// $cases = $caseClass->get_recommend_cases();
-require_once("data/product.php");
-$productClass = new Product();
-$productCategories = $productClass->get_parent_categories(100);
+$carouselClass = new TZGCMS\Carousel();
+$carousels = $carouselClass->get_carousels('A001');
 
-$carouselClass = new Carousel();
-$carousels = $carouselClass->fetch_all();
+$linkClass = new TZGCMS\Link();
+$links = $linkClass->get_links_bydid(41);
 
+$articleClass = new TZGCMS\Article();
+$articles = $articleClass->laster_articles(13);
 
 
 ?>
@@ -26,7 +24,7 @@ $carousels = $carouselClass->fetch_all();
 <!--<![endif]-->
 
 <head>
-    <title><?php echo SITENAME; ?></title>
+    <title><?php echo $site_info['sitename']; ?></title>
     <link href="plugins/bxslider/jquery.bxslider.min.css" rel="stylesheet">
     <?php require_once('includes/meta.php') ?>
     <meta name=keywords content="">
@@ -37,248 +35,191 @@ $carousels = $carouselClass->fetch_all();
 <body>
     <?php require_once('includes/header.php') ?>
 
-<div class="godown " id="godown">
-    <a href="javascript:void(0);" class="animated infinite fadeInDown delay-0s"><i class="iconfont icon-downarrow"></i></a>
-</div>
-    <div class="page-home">
+    <div class="slider-container">
         <!-- slider start -->
-        <div class="slider">
-            <?php foreach ($carousels as $carousel) { ?>
-                <div class="item" >
-                    <a class="forpc" href="<?php echo $carousel['link']; ?>" title="<?php echo $carousel['title']; ?>" style="background-image:url(<?php echo $carousel['image_url']; ?>)">
-                        
-                    </a>
-                    <a class="formobile" href="<?php echo $carousel['link']; ?>" title="<?php echo $carousel['title']; ?>" style="background-image:url(<?php echo $carousel['image_url_mobile']; ?>)">
-                        
-                        </a>
-                </div>
-               
-            <?php } ?>
+        <div class="slider-wrap">        
+            <div class="slider">
+                <?php foreach ($carousels as $carousel) { ?>
+                    
+                    <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="title wow slideInUp">
+                                    <?php echo $carousel['title']; ?>
+                                </div>
+                                <a href="<?php echo $carousel['link']; ?>" class="btn btn-white wow slideInUp toplink">查 看 详 情 <i class="iconfont icon-right"></i></a>
+                            </div>
+                            <div class="col-lg-8">
+                                <a href="<?php echo $carousel['link']; ?>" title="<?php echo $carousel['title']; ?>" class="linkimg wow slideInUp" >                                     
+                                    <img src="<?php echo $carousel['image_url_mobile']; ?>" srcset="<?php echo $carousel['image_url']; ?> 768w, <?php echo $carousel['image_url_mobile']; ?> 1x" />
+                                </a>
+                                <a href="<?php echo $carousel['link']; ?>" class="btn btn-white wow slideInUp botlink">查 看 详 情 <i class="iconfont icon-right"></i></a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
+            </div>         
+           
         </div>
-
-
         <!-- slider end -->
+        <div class="bg-01"></div>
+   
+    </div>
 
-        <div class="container s1">
-            <h2 class="title se-title  wow slideInUp">以人为本   持续创新</h2>
-            <p class="wow slideInUp p1" data-wow-delay=".3s">微创<sup>®</sup>起源于1998年成立的上海微创医疗器械（集团）有限公司，公司现有员工来自于30多个国家，约6,000名，已上市产品约300个；已进入全球逾10,000家医院，覆盖亚太、欧洲和美洲等主要地区，平均每8秒就有一个微创<sup>®</sup>产品被用于救治患者生命或改善其生活品质或用于帮助其催生新的生命。现已拥有专利（申请）3,500余项（国外2,000项）；5次获得中国国家科学技术进步奖；16个产品进入国家创新医疗器械注册绿色通道。</p>
+  
+    <div class="page-home">
 
-            <section class="row s1-001  ">
-                <div class="col-md-4 wow slideInUp">
-                    <div class="item">
-                        <div class="icon">
-                            <img src="/img/icon-his.png" alt="医院">
+
+        <section class="container s2">
+            <div class="row align-items-center no-gutters">
+                <div class="col-auto">
+                        <div class="txt wow slideInUp">
+                            <h3>研发与产品</h3>
+                            <p>关爱生命 我们从未止步</p>
                         </div>
-                        <div class="title">
-                            <span class="num001">10,000</span><small>家</small>
-                        </div>
-                       <p>全球医院已覆盖</p>
-                       
+                        <ul class="categories wow slideInUp">
+                            <li><a href="/products" >心血管领域</a></li>
+                            <li><a href="/products" >神经退行性病变</a></li>
+                            <li><a href="/products" >肿瘤领域</a></li>                            
+                        </ul>
+                        <div class="more wow fadeInUp"><a href="/products">研发与产品管线 <i class="iconfont icon-right"></i></a> </div>
+                </div>
+                <div class="col">
+                    <div class="pic wow slideInUp">
+                        <img src="/img/img-026.jpg" alt="心血管领域">
                     </div>
                 </div>
-                <div class="col-md-4 wow slideInUp" data-wow-delay=".3s">
-                    <div class="item">
-                        <div class="icon">
-                            <img src="/img/icon-ss.png" alt="医院">
-                        </div>
-                        <div class="title">
-                            <span class="num001">300</span><small>个</small>
-                        </div>
-                       <p>微创<sup>®</sup>已上市产品</p>
-                       
-                    </div>
-                </div>
-                <div class="col-md-4 wow slideInUp" data-wow-delay=".6s">
-                    <div class="item">
-                        <div class="icon">
-                            <img src="/img/icon-zl.png" alt="医院">
-                        </div>
-                        <div class="title">
-                            <span class="num001">3,500</span><small>余项</small>
-                        </div>
-                       <p>国内外专利</p>
-                       
-                    </div>
-                </div>
-            </section>
-
-            <h2 class="title se-title  wow slideInUp">一个属于患者和医生的品牌</h2>
-            <!-- <p class="wow slideInUp" data-wow-delay=".3s">集团始终坚持以人为本在以微创伤为代表的高科技医学领域建设一个属于患者的全球化领先医疗集团。</p> -->
-
-        </div>
-
-        <section class="s2">
-            <div class="item t1 wow fadeInRight">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col">
-                        <h2>临床解决方案</h2>
-                        <p>治愈疾病  更治愈人</p>
-                        <a href="/operation" class="more">了解更多 <i class="iconfont icon-right"></i></a>
-                        </div>
-                    
-                    </div>
+                <div class="col-md-auto last">
+                    <img src="/img/img-027.jpg" class="wow slideInUp" alt="">
                 </div>
             </div>
-            <div class="item t2 wow fadeInLeft">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col">
-                        <h2>患者关爱</h2>
-                        <p>关爱于心  携手同行</p>
-                        <a href="/support" class="more">了解更多 <i class="iconfont icon-right"></i></a>
-                        </div>
-                    
+        </section>
+
+        <section class="s3">
+            <div class="container">
+                <div class="video-container wow slideInUp">
+                    <div class="txt ">
+                        <p class="wow slideInUp p1" data-wow-delay=".3s">视频</p>
+                        <h2 class="wow slideInUp">那些你不曾了解的先通医药核医学</h2>                  
                     </div>
-                </div>
+                    <video id='my-video' class='video-js ' controls preload='auto' style="background-image:url('/uploads/videos/people.jpg')"
+                         data-setup='{}'>
+                        <source src='/uploads/videos/people.mp4' type='video/mp4'>         
+                        <p class='vjs-no-js'>
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+                        </p>
+                    </video>                
             </div>
-            <div class="item t3 wow fadeInRight">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col">
-                        <h2>创新之窗</h2>
-                        <p>追求卓越  永不止步</p>
-                        <a href="/creative" class="more">了解更多 <i class="iconfont icon-right"></i></a>
-                        </div>
-                    
-                    </div>
-                </div>
-            </div>
+           <div class="bg-01 wow slideInUp">
+               <img src="/img/bg_003.png" alt="bg">
+           </div>
         </section>
     
-        <section class="container s1 s3">
-            <h2 class="title se-title  wow slideInUp">中国高端创新医疗解决方案的引领者</h2>
-            <p class="wow slideInUp p1" data-wow-delay=".3s">微创<sup>®</sup>业务已覆盖心血管介入及结构性心脏病医疗、心脏节律管理及电生理医疗、骨科植入与修复、大动脉及外周血管介入、神经介入及脑科学、糖尿病及内分泌管理、泌尿及妇女健康、外科手术、医疗机器人与人工智能等十大业务集群。</p>
+        <section class="container s4">
+            <div class="row">
+                <div class="col-lg-auto">
+                    <div class="importance wow slideInLeft">
+                        我们致力于成为从放射性药物研发、优质生产、临床学术推广为一体的整体解决方案提供者
+                    </div>
+                    <p><img src="/img/logo_v1.png" alt="logo"></p>
+                </div>
+                <div class="col-lg">
+                    <div class="txt wow slideInRight">
+                        北京先通国际医药科技股份有限公司始<strong>创于2004年</strong>，是一家以有效整合放射性药物研发技术平台和单克隆抗体研发药物技术平台为主，以仿制药研发、生产、销售为辅；研究、开发、商业化分子影像引导的靶向药物、精准诊断及精准治疗药物的创新型医药企业。
+                    </div>
+                    <a href="/about" class="more wow slideInRight">关于我们 <i class="iconfont icon-right"></i></a>
+                </div>
+            </div>
         </section>
-        <section class="s4">
 
-           
-                <?php for($i=0;$i<8;$i++){ ?>
-                   <?php if($i==0 || $i==4){ ?>
-                    <div class="item row no-gutters">
-                   <?php } ?>
-                <div class="col-md-6">
-                    <div class="item">
-                        <div class="pic">
-                            <img src="<?php echo $productCategories[$i]['thumbnail2']; ?>" alt="<?php echo $productCategories[$i]['title']; ?>">
+        <section class="container s5">
+            <header class="title title-section">
+                <h2 class="wow slideInLeft">企业动态</h2>
+                <p class="wow slideInRight p1">我们愿意时刻与您分享</p>
+            </header>
+            <?php require_once('views/news/includes/articlelist.php') ?>
+            <div class="more  wow fadeInUp"><a href="/news">查看更多 <i class="iconfont icon-right"></i></a> </div>
+        </section>
+        <section class="s6-links" style="background-image:url('/img/bg-link-002.png')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-auto">
+                        <div class="txt wow slideInUp">
+                            <h3>合作品牌</h3>
+                            <p>将先进的产品和技术引进中国</p>
                         </div>
-                        <a href="/product-list-<?php echo $productCategories[$i]['id']; ?>" class="">
-                        <div class="row align-items-center">
-                            <div class="col wow fadeInUp">
-                                <h3><?php echo $productCategories[$i]['title']; ?></h3>
-                                <div class="more">
-                                    <span>了解更多</span> <i class="iconfont icon-right"></i>
+                    </div>
+                    <div class="col-md">
+                        <div class="row links wow slideInRight" data-wow-delay=".3s">
+                            <?php foreach ($links as $link) { ?>
+                                <div class="col-6 col-md-4 ">
+                                    <a href="<?php echo $link['link']; ?>">
+                                        <img src="<?php echo $link['image_url']; ?>" alt="<?php echo $link['title']; ?>">
+                                    </a>
                                 </div>
-                            </div></div>
-                        </a>                       
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
-                <?php if($i==3 || $i==7){ ?>
-                </div>                
-                   <?php                 
-                   } ?>
-                <?php   
-            } ?>
-
-                
-        </section>
-<section class="container s7">
-    <a href="javascript:void(0);" class="prev001"><i class="iconfont icon-left"></i></a>
-    <div class="navs">
-
-    </div>
- 
-    <a href="javascript:void(0);" class="next001"><i class="iconfont icon-right"></i></a>
-    <a href="/products" class="all">全部产品</a>
-</section>
-        <section class="container s1 s5">
-            <h2 class="title se-title  wow slideInUp">微创<sup>®</sup>在全球</h2>
-            <p class="wow slideInUp p1" data-wow-delay=".3s">微创<sup>®</sup>总部位于中国上海张江科学城，在中国上海、苏州、嘉兴、东莞，美国孟菲斯，法国巴黎近郊，意大利米兰近郊和多米尼加共和国等地均建有主要生产（研发）基地，形成了全球化的研发、生产、营销和服务网络。</p>
-        </section>
-        <section class="s6" style="background-image:url('/uploads/map/map-01.jpg')">
+            </div>
         </section>
     </div>
-
-
 
     <?php require_once('includes/footer.php') ?>
-
-
     <?php require_once('includes/scripts.php') ?>
     <script src="/plugins/bxslider/jquery.bxslider.min.js"></script>
-    
+
     <script src="/js/libs/waypoints.min.js"></script>
-    <script src="/plugins/counterup/jquery.counterup.min.js"></script>
+
     <script>
         $(document).ready(function() {
-            $(".leftnav li:nth-of-type(1) a").addClass("active");
-            $(".mainav li:nth-of-type(1) a").addClass("active");
-
-            $("#godown").click(function(e){
-                e.preventDefault();
-                var srcollto = $(window).height() - $(".site-header").height();
-
-                $("html, body").animate({ scrollTop: srcollto }, 600);
-            })
-
-            $('.slider').height($(window).height());
-
+         
+      
             $('.slider').bxSlider({
                 auto: true,
-                controls: false,
+                controls: true,
                 autoHover: false,
-                onSliderLoad:function(currentIndex){
+                mode:'fade',
+                onSliderLoad: function(currentIndex) {
                     $(".bx-wrapper .bx-pager").addClass("container");
 
                     var total = $(".bx-pager-item").length;
-                    var heji = (currentIndex + 1) + "/" + total;
-                    $(".bx-wrapper .bx-pager").prepend("<div class='num'>"+ heji +"</div>");
+                    var heji = (currentIndex + 1) ;
+                    $(".bx-wrapper .bx-pager").prepend("<div class='num'>" + heji + "</div>");
+                    $(".bx-wrapper .bx-pager").append("<div class='total'>" + total + "</div>")
                 },
-                onSlideAfter:function($slideElement, oldIndex, newIndex){
-                    var total = $(".bx-pager-item").length;
-                    var heji = (newIndex + 1) + "/" + total;
+                onSlideAfter: function($slideElement, oldIndex, newIndex) {
+             
+                    var heji = (newIndex + 1);
                     $(".num").text(heji);
                 }
             });
-            var mySlider = $('.s4').bxSlider({
-               
-                controls: false,
-                pager:false,
-                autoHover: false,
-                onSlideAfter:function($slideElement, oldIndex, newIndex){
-                    $(".navs a").eq(newIndex).addClass("active").siblings().removeClass("active");
-                }
-              
-            });
 
-            var slideQty = mySlider.getSlideCount();
-            for(var i = 0; i<slideQty;i++){
-                var page = i+1;
-                if(i==0){
-                    $(".s7 .navs").append("<a href='javascript:void(0);' class='active'>"+ page +"</a>")
-                }else{
-                    $(".s7 .navs").append("<a href='javascript:void(0);'>"+ page +"</a>")
-                }               
-            }
-            $(".navs a").click(function(e){
-                e.preventDefault();
-                var index = $(this).text();
-                index = parseInt(index)-1;
-                mySlider.goToSlide(index);
-            })
-            $(".prev001").click(function(e){
-                e.preventDefault();
-                mySlider.goToPrevSlide();
-            })
-            $(".next001").click(function(e){
-                e.preventDefault();
-                mySlider.goToNextSlide();
-            })
-
-            $('span.num001').counterUp({
-                delay: 10, // the delay time in ms
-                time: 2000 // the speed time in ms
+            if(navigator.maxTouchPoints === 0) {
+            $('.bx-viewport a').on("mousedown", function(e){
+                var linkUrl = $(this).prop('href');
+                window.location.href = linkUrl;
             });
+        }
+
+            // $(".navs a").click(function(e) {
+            //     e.preventDefault();
+            //     var index = $(this).text();
+            //     index = parseInt(index) - 1;
+            //     mySlider.goToSlide(index);
+            // })
+            // $(".prev001").click(function(e) {
+            //     e.preventDefault();
+            //     mySlider.goToPrevSlide();
+            // })
+            // $(".next001").click(function(e) {
+            //     e.preventDefault();
+            //     mySlider.goToNextSlide();
+            // })
 
         });
     </script>

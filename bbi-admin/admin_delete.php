@@ -1,6 +1,5 @@
 <?php
 require_once('includes/common.php');
-require_once('../config/db.php');
 require_once('data/user.php');
 
 $userClass = new User();

@@ -1,5 +1,4 @@
 <?php
-require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('../config/db.php');
 require_once('data/menu.php');
@@ -36,7 +35,7 @@ $tree = buildTree($categories);
 <html>
 
 <head>
-    <title><?php echo "创建栏目_栏目_组件_后台管理_" . SITENAME; ?></title>
+    <title><?php echo "创建栏目_栏目_组件_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once('includes/meta.php') ?>
 
     <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />

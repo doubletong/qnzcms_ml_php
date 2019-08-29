@@ -1,17 +1,22 @@
 RewriteEngine on                       //on为打开,off为关闭
 
-RewriteRule ^/?([a-z|_|0-9]+)$ $1.php [L]
 
-RewriteRule ^news-detail-(.*)$ /news_detail.php?id=$1 
+RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
+RewriteRule ^about/?([a-z|_|0-9]+)$ /views/about/$1.php [L]
+RewriteRule ^career/?([a-z|_|0-9]+)$ /views/career/$1.php [L]
+RewriteRule ^nuclear_medicine/?([a-z|_|0-9]+)$ /views/nuclear_medicine/$1.php [L]
+RewriteRule ^contact/?([a-z|_|0-9]+)$ /views/contact/$1.php [L]
+RewriteRule ^products/?([a-z|_|0-9]+)$ /views/products/$1.php [L]
+RewriteRule ^/?([a-z|_|0-9]+)$ $1.php [L]
+RewriteRule ^career/salary_and_welfare/detail-([0-9]+)$ /views/career/detail.php?id=$1 
+
+RewriteRule ^news/detail/(.*)$ /views/news/detail.php?id=$1 
 RewriteRule ^meeting/detail-(.*)$ /meeting_detail.php?id=$1
 RewriteRule ^media-list-(.*)$ /media_list.php?id=$1 
 RewriteRule ^media-detail-(.*)$ /media_detail.php?id=$1 
 RewriteRule ^cases-detail-(.*)$ /case_detail.php?id=$1 
 RewriteRule ^story-detail-(.*)$ /story_detail.php?id=$1 
-RewriteRule ^disease-list-(.*)-c-(.*)$ /disease_list.php?id=$1&cid=$2 
-RewriteRule ^disease-list-(.*)$ /disease_list.php?id=$1 
 
-RewriteRule ^disease-detail-(.*)$ /disease_detail.php?id=$1 
 RewriteRule ^operation-detail-(.*)$ /operation_detail.php?id=$1 
 RewriteRule ^events-detail-(.*)$ /event_detail.php?id=$1 
 RewriteRule ^creative-detail-(.*)$ /creative_detail.php?id=$1 

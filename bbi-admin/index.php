@@ -1,8 +1,6 @@
 <?php
-require_once('../includes/common.php');
 require_once('includes/common.php');
 require_once('includes/environment.php');
-require_once('../config/db.php');
 require_once('data/carousel.php');
  require_once('data/link.php');
  require_once('data/product.php');
@@ -11,18 +9,21 @@ require_once('data/meeting.php');
 require_once('data/topics.php');
 require_once('data/page.php');
 require_once('data/team.php');
-
+require_once('data/chronicle.php');
+require_once('data/job.php');
 //实例化操作系统与浏览器信息
 $obj = new OS_BROWSER();
 
-$carouselClass = new Carousel();
- $linkClass = new Link();
-$articleClass = new Article();
+$carouselClass = new TZGCMS\Admin\Carousel();
+ $linkClass = new TZGCMS\Admin\Link();
+$articleClass = new TZGCMS\Admin\Article();
+$chronicleClass = new TZGCMS\Admin\Chronicle();
+$jobClass = new TZGCMS\Admin\Job();
  $meetingClass = new Meeting();
  $topicsClass = new Topics();
  $productClass = new Product();
-$pageClass = new Page();
-$teamClass = new Team();
+$pageClass = new TZGCMS\Admin\Page();
+$teamClass = new TZGCMS\Admin\Team();
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ $teamClass = new Team();
 
 <head>
     <title>
-        <?php echo "后台管理_".$config["site"]["name"];?>
+        <?php echo "后台管理_".$site_info["sitename"];?>
     </title>
     <?php require_once('includes/meta.php') ?>
     <style>
@@ -40,7 +41,11 @@ $teamClass = new Team();
             color: #fff;
             border-radius: 6px;
         }
-
+        .box a{
+         
+            color: #fff;
+            text-decoration: none;
+        }
         .box .iconfont {
             font-size: 2rem;
         }
@@ -95,18 +100,66 @@ $teamClass = new Team();
                         </div> -->
                         <div class="col">
                             <div class="box">
+                            <a href="/bbi-admin/views/articles/index.php?did=1">
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
                                     </div>
                                     <div class="col">
                                         <small>新闻资讯</small>
-                                        <div class="num"><?php echo $articleClass->article_count();?> <span>pcs</span></div>
+                                        <div class="num"><?php echo $articleClass->get_articles_count_v1(1,null,null);?> <span>pcs</span></div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col">
+                            <div class="box">
+                                <a href="/bbi-admin/views/articles/index.php?did=2">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
+                                    </div>
+                                    <div class="col">
+                                        <small>薪酬福利</small>
+                                        <div class="num"><?php echo $articleClass->get_articles_count_v1(2,null,null);?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <a href="/bbi-admin/views/chronicles/index.php">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
+                                    </div>
+                                    <div class="col">
+                                        <small>发展历程</small>
+                                        <div class="num"><?php echo $chronicleClass->get_chronicles_count(null,null);?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="box">
+                                <a href="/bbi-admin/views/jobs/index.php">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
+                                    </div>
+                                    <div class="col">
+                                        <small>招聘岗位</small>
+                                        <div class="num"><?php echo $jobClass->get_jobs_count(null);?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- <div class="col">
                             <div class="box">
                                 <div class="row">
                                     <div class="col-auto">
@@ -118,9 +171,9 @@ $teamClass = new Team();
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>  -->
 
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="box">
                                 <div class="row">
                                     <div class="col-auto">
@@ -132,8 +185,9 @@ $teamClass = new Team();
                                     </div>
                                 </div>
                             </div>
-                        </div> 
-                        <div class="col">
+                        </div>  -->
+
+                        <!-- <div class="col">
                             <div class="box">
                                 <div class="row">
                                     <div class="col-auto">
@@ -145,9 +199,29 @@ $teamClass = new Team();
                                     </div>
                                 </div>
                             </div>
-                        </div> 
-                        <!-- <div class="col">
+                        </div>  -->
+
+                        <div class="w-100"></div>
+                        <div class="col">
                             <div class="box">
+                                <a href="/bbi-admin/views/pages/index.php">
+                                <div class="row">
+
+                                    <div class="col-auto">
+                                        <div class="icon text-center"><i class="iconfont icon-file"></i></div>
+                                    </div>
+                                    <div class="col">
+                                        <small>页面</small>
+                                        <div class="num"><?php echo $pageClass->page_count();?> <span>pcs</span></div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                      
+                        <div class="col">
+                            <div class="box">
+                            <a href="/bbi-admin/views/links/index.php">
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="icon text-center"><i class="iconfont icon-link"></i></div>
@@ -157,25 +231,13 @@ $teamClass = new Team();
                                         <div class="num"><?php echo $linkClass->link_count();?> <span>pcs</span></div>
                                     </div>
                                 </div>
-                            </div>
-
-                        </div> -->
-                        <div class="col">
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-file"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>页面</small>
-                                        <div class="num"><?php echo $pageClass->page_count();?> <span>pcs</span></div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
 
                         </div>
                         <div class="col">
                             <div class="box">
+                            <a href="/bbi-admin/views/carousels/index.php">
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-image"></i></div>
@@ -185,6 +247,7 @@ $teamClass = new Team();
                                         <div class="num"><?php echo $carouselClass->carousel_count();?> <span>pcs</span></div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
 
                         </div>
@@ -199,19 +262,19 @@ $teamClass = new Team();
                                 </h5>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">网站名称：
-                                        <?php echo $config["site"]["name"] ?>
+                                        <?php echo $site_info["sitename"] ?>
                                     </li>
                                     <li class="list-group-item">地址：
-                                        <?php echo $config["site"]["address"] ?>
+                                        <?php echo $site_info["address"] ?>
                                     </li>
                                     <li class="list-group-item">电话：
-                                        <?php echo $config["site"]["phone"] ?>
+                                        <?php echo $site_info["phone"] ?>
                                     </li>
                                     <li class="list-group-item">邮箱：
-                                        <?php echo $config["site"]["email"] ?>
+                                        <?php echo $site_info["email"] ?>
                                     </li>
                                     <li class="list-group-item">备案号：
-                                        <?php echo $config["site"]["web_number"] ?>
+                                        <?php echo $site_info["webnumber"] ?>
                                     </li>
                                 </ul>
                             </div>

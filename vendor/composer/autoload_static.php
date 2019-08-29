@@ -20,11 +20,22 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'J' => 
+        array (
+            'JasonGrimes' => 
+            array (
+                0 => __DIR__ . '/..' . '/jasongrimes/paginator/src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

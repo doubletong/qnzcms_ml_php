@@ -33,6 +33,13 @@ $(document).ready(function() {
         $(".site-header").toggleClass("forSearch");
     });
 
+
+    $(".mainav li.down").hover(function(e){      
+        $(this).find("dl").stop().fadeIn();       
+    },function(e){
+        $(this).find("dl").stop().fadeOut();
+    });
+
     $(".overmenu li.down>a").click(function(e){
         e.preventDefault();
         $(this).next(".subnav").slideToggle();

@@ -1,8 +1,55 @@
 <?php
+namespace TZGCMS{
 class Article{
+   // static $pageSize = 10;
+   // Article::$pageSize 
+    public function get_paged_articles_v1($did,$cid,$keyword,$pageIndex,$pageSize){
+        $param = "%{$keyword}%";        
+        $startIndex = ($pageIndex-1) * $pageSize;
+        $sql = "SELECT a.id, a.title, a.summary, a.thumbnail,  a.pubdate, c.title as category_title FROM articles as a 
+        LEFT JOIN article_categories as c ON a.categoryId = c.id
+        where a.dictionary_id = $did ";
+        if(!empty($cid)){
+            $sql =  $sql. "AND a.categoryId = $cid ";
+        }
+        if(!empty($keyword)){
+            $sql =  $sql. "AND (a.title LIKE :keyword OR a.content LIKE  :keyword) ";
+        }
+        $sql =  $sql." ORDER BY a.pubdate DESC,a.id DESC LIMIT $startIndex, $pageSize ";
+    
+        $query = \db::getInstance()->prepare($sql);      
+     
+        $query->bindValue(":keyword", $param);  
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    //获取总数
+    public function get_articles_count_v1($did,$cid,$keyword){
+        $param = "%{$keyword}%";
+    
+        $sql = "SELECT count(*) as count FROM `articles` where dictionary_id = $did ";
+    
+        if(!empty($cid)){
+            $sql =  $sql. "AND categoryId = $cid ";
+        }
+        if(!empty($keyword)){
+            $sql =  $sql. "AND (title LIKE :keyword OR content LIKE  :keyword)";
+        }
+    
+        $query = \db::getInstance()->prepare($sql);    
+    
+     //  $query->bindValue(":category_id", $cid, PDO::PARAM_INT);  
+        $query->bindValue(":keyword", $param);  
+        $query->execute();        
+        $rows = $query->fetchColumn(); 
+        return $rows;
+    }
+
+
     public function fetch_paged($pageIndex,$pageSize){
         $startIndex = ($pageIndex-1) * $pageSize;
-        $query = db::getInstance()->prepare("SELECT id, title, summary, thumbnail,  pubdate FROM wp_articles  where active=1 ORDER BY pubdate DESC LIMIT $startIndex, $pageSize");       
+        $query = \db::getInstance()->prepare("SELECT id, title, summary, thumbnail,  pubdate FROM articles  where active=1 ORDER BY pubdate DESC LIMIT $startIndex, $pageSize");       
         $query->execute();
 
         return $query->fetchAll();
@@ -10,7 +57,7 @@ class Article{
 
     //获取总数
     public function article_count(){
-        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_articles` where active=1");    
+        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `articles` where active=1");    
         $query->execute();        
         $rows = $query->fetchColumn(); 
         return $rows;
@@ -21,7 +68,7 @@ class Article{
 
         $startIndex = ($pageIndex-1) * $pageSize;
         $query = db::getInstance()->prepare("SELECT id, title, summary, thumbnail,  
-        pubdate FROM wp_articles  where active=1 AND title LIKE :keyword ORDER BY pubdate DESC LIMIT $startIndex, $pageSize");   
+        pubdate FROM articles  where active=1 AND title LIKE :keyword ORDER BY pubdate DESC LIMIT $startIndex, $pageSize");   
         $query->bindValue(":keyword", $param);  
        // $query->bindValue(":id",$id,PDO::PARAM_INT);  
         $query->execute();
@@ -32,7 +79,7 @@ class Article{
     //获取总数
     public function search_count($keyword){
         $param = "%{$keyword}%";
-        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `wp_articles` where active=1 AND title LIKE :keyword ");    
+        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `articles` where active=1 AND title LIKE :keyword ");    
         $query->bindValue(":keyword", $param);  
         $query->execute();        
         $rows = $query->fetchColumn(); 
@@ -40,53 +87,49 @@ class Article{
     }
 
     public function get_all_articles($did){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE active=1 AND dictionary_id = $did ORDER BY pubdate DESC");
+        $query = \db::getInstance()->prepare("SELECT * FROM articles WHERE active=1 AND dictionary_id = $did ORDER BY id Desc");
         $query->execute();
 
         return $query->fetchAll();
     }
 
     public function get_all_years($did){
-        $query = db::getInstance()->prepare("SELECT  DISTINCT DATE_FORMAT(FROM_UNIXTIME(`pubdate`), '%Y') as year FROM wp_articles WHERE active=1 AND dictionary_id = $did ORDER BY year DESC");
+        $query = db::getInstance()->prepare("SELECT  DISTINCT DATE_FORMAT(FROM_UNIXTIME(`pubdate`), '%Y') as year FROM articles WHERE active=1 AND dictionary_id = $did ORDER BY year DESC");
         $query->execute();
 
         return $query->fetchAll();
     }
 
-    // public function fetch_category($categoryId){
-    //     $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE categoryId = :categoryId ORDER BY added_date DESC");
-    //     $query->bindValue(":categoryId",$categoryId,PDO::PARAM_INT);
-    //     $query->execute();
 
-    //     return $query->fetchAll();
-    // }
 
-    public function laster_articles(){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles ORDER BY added_date DESC limit 3");
+    public function laster_articles($cid){
+        $query = \db::getInstance()->prepare("SELECT a.id, a.title, a.summary, a.thumbnail,  a.pubdate, c.title as category_title FROM articles as a 
+        LEFT JOIN article_categories as c ON a.categoryId = c.id WHERE a.categoryId = $cid ORDER BY a.pubdate DESC limit 4");
         $query->execute();
         return $query->fetchAll();
     }
 
 
     public function fetch_data($id){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE id = :id;UPDATE wp_articles SET view_count = view_count + 1 WHERE id =:id ;");
-        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query = \db::getInstance()->prepare("SELECT a.*, c.title as category_title FROM articles as a 
+        LEFT JOIN article_categories as c ON a.categoryId = c.id WHERE a.id = :id;UPDATE articles SET view_count = view_count + 1 WHERE id =:id ;");
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);
         $query->execute();
 
         return $query->fetch();
     }
   //获取前一条记录
     public function fetch_prev_data($id,$did){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE dictionary_id = $did AND id = (SELECT MAX(id) FROM wp_articles WHERE dictionary_id = $did AND id < :id);");
-        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query = \db::getInstance()->prepare("SELECT * FROM articles WHERE dictionary_id = $did AND id = (SELECT MAX(id) FROM articles WHERE dictionary_id = $did AND id < :id);");
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);
         $query->execute();
 
         return $query->fetch();
     }
    //获取下一条记录
     public function fetch_next_data($id,$did){
-        $query = db::getInstance()->prepare("SELECT * FROM wp_articles WHERE dictionary_id = $did AND id = (SELECT MIN(id) FROM wp_articles WHERE dictionary_id = $did AND id > :id);");
-        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query = \db::getInstance()->prepare("SELECT * FROM articles WHERE dictionary_id = $did AND id = (SELECT MIN(id) FROM articles WHERE dictionary_id = $did AND id > :id);");
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);
         $query->execute();
 
         return $query->fetch();
@@ -94,7 +137,7 @@ class Article{
 
 
     public function get_categories($did){     
-        $query = db::getInstance()->prepare("SELECT * FROM  article_categories WHERE dictionary_id = ? ORDER BY importance DESC");
+        $query = \db::getInstance()->prepare("SELECT * FROM  article_categories WHERE dictionary_id = ? ORDER BY importance DESC");
         $query->bindValue(1,$did);
         $query->execute();
 
@@ -123,4 +166,5 @@ class Article{
         $query->execute();
         return $query->fetchAll();
     }
+}
 }

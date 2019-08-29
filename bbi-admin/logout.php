@@ -11,13 +11,13 @@ $result_dest = session_destroy();
 if (!empty($old_user)) {
     if ($result_dest)  {
         // if they were logged in and are now logged out
-        $url = SITEPATH."/index.php";
+        $url = SITEPATH."index.php";
         header("Location: $url");
         exit();
 
     } else {
         // 注销失败
-        $url = SITEPATH."/bbi-admin/index.php";
+        $url = SITEPATH."bbi-admin/index.php";
         header("Location: $url");
         exit();
     }

@@ -46,7 +46,8 @@
     .leftcol .logo img {
       max-height: 30px;
       display: block;
-      margin: 7px auto; }
+      margin: 7px auto;
+      max-width: 100%; }
 
 .rightcol {
   background-color: #f7f7f7;

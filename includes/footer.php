@@ -1,54 +1,76 @@
 <footer class="site-footer">
     <div class="container">
-        <div class="row footer-navs">
-        <?php foreach( $menutree as $menu)
-                        {
-                            ?>
-                           <div class="col-md">
-                <dl>
-                            <dt><?php echo $menu["title"]; ?></dt>
-
-                            <?php if($menu['children']){ 
-                                foreach( $menu['children'] as $subMenuModel){
-                            ?>
-                             
-                                <dd><a href="<?php echo $subMenuModel["url"]; ?>"><?php echo $subMenuModel["title"]; ?></a></dd>
-                            <?php } 
-                    }?>    
-                    </dl>
-            </div> <?php
-                    } ?>                            
-            
-        </div>
-
-        <div class="row f-s2 align-items-center no-gutters wow fadeInUp">
-            <div class="col-md-auto">
-                <nav class="sinawechat">
-                <a href="http://weibo.com/microportchina" title="微博"><i class="iconfont icon-sina"></i></a>
-                <a href="#" title="微信"><i class="iconfont icon-wechat"></i></a>
-                <a href="http://i.youku.com/microport" title="优酷"><i class="iconfont icon-youku1"></i></a>
-                </nav>
-            </div>
-            <div class="col-md">
-                <div class="support"> <a href="#">法律声明</a>   |  <a href="#">招贤纳士</a> <br/>
-                客户支持邮箱：MTS@microport.com
+        <div class="row footer-navs  wow slideInUp">
+            <div class="col-lg-auto">
+                <div class="logo_bot">
+                <img src="/img/logo_bot.png" alt="<?php echo $site_info['sitename']; ?>">
                 </div>
             </div>
-            <div class="col-md-auto logo">
-                <img src="/img/bot_logo.png" alt="logo">
+            <div class="col-lg">
+                <nav>
+                    <?php foreach ($menus_bot as $menu) {
+                        ?>
+                        <a href="<?php echo $menu["url"]; ?>"><?php echo $menu["title"]; ?></a>
+                        <?php
+                        } ?>
+                </nav>
             </div>
+
         </div>
-        <div class="copyright  wow slideInUp">
-            <p>
-            &copy;Copyright 1998-2019, MicroPort Scientific Corporation. All rights reserved.   |   网站备案/许可证号：<a href="http://www.beian.miit.gov.cn">沪ICP备06056186号</a> <span class="designby">
-                Design by:<a href="http://www.inholy.com" target="_blank">HOLY荷勒</a>
-            </span>  
-                 <br/>  互联网药品信息服务资格证书编号：（沪）- 非经营性 - 2016 - 0131
-            </p>
+
+        <div class="row contact  wow slideInUp">
+            <div class="col-md-6 col-lg-auto">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="icon"><i class="iconfont icon-phone"></i></div>
+                    </div>
+                    <div class="col">
+                        <dl>
+                            <dt>联系电话</dt>
+                            <dd><?php echo $site_info['phone']; ?></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-auto">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="icon"><i class="iconfont icon-email"></i></div>
+                    </div>
+                    <div class="col">
+                        <dl>
+                            <dt>联系邮箱</dt>
+                            <dd><?php echo $site_info['email']; ?></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="icon"><i class="iconfont icon-address"></i></div>
+                    </div>
+                    <div class="col">
+                        <dl>
+                            <dt>公司地址</dt>
+                            <dd><?php echo $site_info['address']; ?></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+
+            </div>
         </div>
     </div>
 
+    <div class="copyright  wow slideInUp">
+        <div class="container">
+            ​版权所有: 北京先通国际医药科技股份有限公司 <a href="http://www.beian.miit.gov.cn"><?php echo $site_info['webnumber'] ?></a>
+        </div>
+    </div>
 </footer>
+
 <div class="qqservice">
     <a href="javascript:void(0);" class="bg-linear totop" id="toTop"><i class="iconfont icon-up"></i></a>
 </div>

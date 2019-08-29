@@ -1,3 +1,85 @@
+.banner-contact{
+    position: relative;
+    overflow: hidden;
+    color:#fff;
+    padding-top: 5rem;
+    height: auto;
+    @include respond-above(md) {
+        height: 500px;
+    }
+    .content{      
+        
+        @include respond-above(md) {
+            position: absolute;top: 7rem;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+    }
+    .title-section{
+    
+        color: #fff;
+        text-align: left;
+        font-size: 3rem;
+        position: relative;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.6rem;
+        &::after{
+            position: absolute;
+            content: " ";
+            display: block;
+            background-color: #fff;
+            height: 4px;
+            width: 40px;
+            bottom: 0;
+            left: 0;         
+            z-index: 100;        
+        }
+    }
+    .bg-contact{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        height: 100%;
+        z-index: 0;
+        margin-left: 410px;
+        @include respond-above(sm) {
+            margin-left: 430px;
+        }
+        @include respond-above(md) {
+            margin-left: 300px;
+        }
+        @include respond-above(lg) {
+            margin-left: 390px;
+        }
+        @include respond-above(xlg) {
+            margin-left: 430px;
+        }
+    }
+    .contact{
+        dd{
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+        }
+    }
+    .map_canvas{
+        height: 20rem;
+        border-radius: 6px 6px 0 0;
+        overflow: hidden;
+      
+        @include respond-above(md) {
+            margin-right: 15px;
+            margin-left: 3rem;  height: 25rem;
+        }
+        @include respond-above(lg) {
+            margin-right: 5rem;
+        }
+        img{
+            max-width: none !important;
+        }
+    }
+}
+
 .page-contact{
     padding-top: 2rem; 
     padding-bottom: 2rem; 
@@ -5,8 +87,7 @@
         padding-top:3rem;    
         padding-bottom: 3rem;   
     }
-    @include respond-above(md){
-        padding-left: 30%;
+    @include respond-above(md){      
         padding-top:4rem;    
         padding-bottom: 4rem;   
     }
@@ -16,43 +97,72 @@
     }
 
     .qrcode{
-        max-width: rem(180);
         text-align: center;
         margin: 0 auto 3rem;
-        @include respond-above (sm) {    
-            max-width: rem(295);
-        }
+      
         @include respond-above (md) {    
             margin: 0 auto 3rem 0;
+            margin-left: 5rem;
         }
-        p{
-            margin-top: 0;           
-            @include respond-above (sm) {    
-                letter-spacing: .5rem;
+
+       .title{
+           margin-bottom: 2rem;
+           @include respond-above (md) {    
+            margin-bottom: 4rem;
             }
+       }
+       
+        
+   
+        
+        .qrcontainer{
+            background-color: #F2F2F2;
+            padding-top: 4rem;
+            padding-bottom: 3rem;
         }
+    
     }
 
-    .contact{
-        ul{
-            list-style: none;
-            padding-left:0 ;
-            li{
-                position: relative;
-                padding-left: 1.6rem;
-                .iconfont{
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    z-index: 100;
-                    color: $color-text-weak;
-                }
-            }
-
-
-            &.u1{
-                margin-bottom: 3rem;
+    .contact-form{
+        .title{
+            margin-bottom: 2rem;
+            @include respond-above (md) {    
+                margin-bottom: 4rem;
             }
         }
+        .note{
+            color: #999;
+        }
+       .form-group{
+           margin-bottom: 1.5rem;
+           .form-control{
+               width: 100%;
+               padding: .8rem 1rem;
+               border: 1px #ccc solid;
+               border-radius: 3px;
+           }
+       }
+       .actions{
+           text-align: center;
+           @include respond-above (sm) {    
+            text-align: left;
+        }
+       }
+       .btn-send{
+           padding: 1rem 3rem;
+           background-color: $color-primary;
+           color: #fff;
+           border-radius: rem(25);
+           border:none;
+           cursor: pointer;
+           transition: all .2s;
+           @include respond-above (md) {    
+            padding: 1.6rem 6rem;  border-radius: rem(34);
+            }
+           &:hover{
+               background-color: darken($color-primary,10%);
+               transform: translateX(3px);
+           }
+       }
     }
 }
