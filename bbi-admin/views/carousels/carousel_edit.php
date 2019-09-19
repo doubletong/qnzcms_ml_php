@@ -19,7 +19,7 @@ $positions = $positionClass->get_all();
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "编辑_广告_后台管理_".site_info['sitename'];?></title>
+    <title><?php echo $pageTitle."_广告_后台管理_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
     <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
@@ -151,7 +151,7 @@ $positions = $positionClass->get_all();
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(10)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li.carousels").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
 
         $("#setImageUrl").on("click", function () {
             singleEelFinder.selectActionFunction = SetBackground;

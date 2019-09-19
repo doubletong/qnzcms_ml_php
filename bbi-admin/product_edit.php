@@ -245,6 +245,7 @@ $tree = buildTree($categories);
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
                             <a href="JavaScript:window.history.back()" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
+                           
                         </div>
                     </div>
                 </form>

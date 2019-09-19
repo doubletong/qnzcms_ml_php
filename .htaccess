@@ -25,3 +25,14 @@ RewriteRule ^team-detail-(.*)$ /team_detail.php?id=$1
 RewriteRule ^duty-(.*)$ /duty_detail.php?alias=$1 
 RewriteRule ^product-list-([0-9]+)$ /products.php?cid=$1 
 RewriteRule ^product-detail-(.*)$ /product_detail.php?id=$1 
+
+ErrorDocument 400 /views/error/index.php
+ErrorDocument 401 /views/error/index.php
+ErrorDocument 403 /views/error/index.php
+ErrorDocument 404 /views/error/404.html
+ErrorDocument 405 /views/error/index.php
+ErrorDocument 408 /views/error/index.php
+ErrorDocument 414 /views/error/index.php
+ErrorDocument 500 /views/error/index.php
+ErrorDocument 502 /views/error/index.php
+ErrorDocument 504 /views/error/index.php
