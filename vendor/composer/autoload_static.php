@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
 {
     public static $files = array (
+        '3b5531f8bb4716e1b6014ad7e734f545' => __DIR__ . '/..' . '/illuminate/support/Illuminate/Support/helpers.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,24 +20,11 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         ),
         'P' => 
         array (
-            'Psr\\SimpleCache\\' => 16,
-            'Psr\\Container\\' => 14,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
-        'I' => 
+        'G' => 
         array (
-            'Illuminate\\Support\\' => 19,
-            'Illuminate\\Database\\' => 20,
-            'Illuminate\\Contracts\\' => 21,
-            'Illuminate\\Container\\' => 21,
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Inflector\\' => 26,
-        ),
-        'C' => 
-        array (
-            'Carbon\\' => 7,
+            'Gregwar\\Captcha\\' => 16,
         ),
     );
 
@@ -54,50 +41,52 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
-        'Psr\\SimpleCache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
-        ),
-        'Psr\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
-        'Illuminate\\Support\\' => 
+        'Gregwar\\Captcha\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/support',
-        ),
-        'Illuminate\\Database\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/database',
-        ),
-        'Illuminate\\Contracts\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/contracts',
-        ),
-        'Illuminate\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/container',
-        ),
-        'Doctrine\\Common\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
-        ),
-        'Carbon\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+            0 => __DIR__ . '/..' . '/gregwar/captcha',
         ),
     );
 
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/nesbot/carbon/src',
+    );
+
     public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'UpdateHelper\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/kylekatarnls/update-helper/src',
+            ),
+        ),
         'J' => 
         array (
             'JasonGrimes' => 
             array (
                 0 => __DIR__ . '/..' . '/jasongrimes/paginator/src',
+            ),
+        ),
+        'I' => 
+        array (
+            'Illuminate\\Support' => 
+            array (
+                0 => __DIR__ . '/..' . '/illuminate/support',
+            ),
+            'Illuminate\\Events' => 
+            array (
+                0 => __DIR__ . '/..' . '/illuminate/events',
+            ),
+            'Illuminate\\Database' => 
+            array (
+                0 => __DIR__ . '/..' . '/illuminate/database',
+            ),
+            'Illuminate\\Container' => 
+            array (
+                0 => __DIR__ . '/..' . '/illuminate/container',
             ),
         ),
     );
@@ -112,6 +101,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitab11d57b8138a2850cb7e32841b5f883::$classMap;
 

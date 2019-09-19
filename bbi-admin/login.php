@@ -2,11 +2,12 @@
 require_once('../includes/common.php');
 session_start();
 
+
 if(isset($_POST['username'],$_POST['password'])){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    if($_POST['captcha'] != $_SESSION['digit']) {
+    if($_POST['captcha'] != $_SESSION['phrase']) {
         $error = "验证码不正确";       
     } else{
         if(empty($username) or empty($password)){
@@ -37,7 +38,6 @@ if(isset($_POST['username'],$_POST['password'])){
 
     
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -100,8 +100,8 @@ if(isset($_POST['username'],$_POST['password'])){
                 </div>
                 <input class="form-control"  type="text" name="captcha" placeholder="验证码">
                 <div class="input-group-append">
-                    <span class="input-group-text" style="padding:0 3px; overflow: hidden;">
-                        <img src="../lib/captcha.php" width="120" height="30"  alt="CAPTCHA">
+                    <span class="input-group-text" style="padding:0; overflow: hidden;">                  
+                        <img src="../lib/captcha.php" width="120" height="36"  alt="CAPTCHA">
                     </span>
                 </div>
             </div>
@@ -111,7 +111,7 @@ if(isset($_POST['username'],$_POST['password'])){
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">记住我</label>
         </div>      
-       
+       <?php echo $_SESSION['phrase'] ?>
         <?php if(isset($error)){?>
             <div class="alert alert-danger"><?php echo $error;?></div>
         <?php  } ?>

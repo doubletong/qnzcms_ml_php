@@ -17,7 +17,7 @@ var replace = require('gulp-replace');
 
 
 const files = {     
-    frontScssPath: 'css/styles.scss',
+    frontScssPath: 'assets/css/styles.scss',
     scssPath: 'app/scss/**/*.scss',
     jsPath: 'app/js/**/*.js'
 }
@@ -51,7 +51,7 @@ function adminscss() {
 }
 
 function watchFiles() {
-    gulp.watch(['css/*.scss','css/utilities/*.scss','css/pages/*.scss'], gulp.series(scssTask));
+    gulp.watch(['assets/css/*.scss','assets/css/utilities/*.scss','assets/css/pages/*.scss'], gulp.series(scssTask));
 }
 
 

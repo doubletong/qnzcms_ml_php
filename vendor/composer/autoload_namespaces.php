@@ -6,5 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'UpdateHelper\\' => array($vendorDir . '/kylekatarnls/update-helper/src'),
     'JasonGrimes' => array($vendorDir . '/jasongrimes/paginator/src'),
+    'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
+    'Illuminate\\Events' => array($vendorDir . '/illuminate/events'),
+    'Illuminate\\Database' => array($vendorDir . '/illuminate/database'),
+    'Illuminate\\Container' => array($vendorDir . '/illuminate/container'),
 );
