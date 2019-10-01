@@ -37,7 +37,7 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
         <?php echo "岗位招聘_后台管理_".$site_info['sitename'];?>
     </title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -125,8 +125,6 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
 
     <?php require_once('../../includes/scripts.php'); ?>
 
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/bootbox.js/bootbox.js"></script>
 
     <script>
         $(document).ready(function () {

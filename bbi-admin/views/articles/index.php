@@ -44,7 +44,6 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
 <head>
     <title><?php echo "文章_后台管理_".$site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="wrapper">
@@ -96,7 +95,8 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
                     <?php if($did==="1"){ ?>
                     <th>分类</th>
                     <?php } ?>
-                    <th>显示</th>
+                    <th>阅读次数</th>
+                    <th>状态</th>
                     <th>发布日期</th>
                     <th>操作</th>
                 </tr>
@@ -123,13 +123,44 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
                    }
                     echo "<td>".$row['view_count']."</td>";
                     ?>
+                    <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
                     <td><?php echo date('Y-m-d',$row['pubdate']) ;?></td>
-                    <td><a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm'>
+                    <td>
+
+                              
+                       
+
+                        <a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm' title="编辑">
                             <i class="iconfont icon-edit"></i>
                         </a>
-               
+
+                             
+                 
+                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
+                            <i class="iconfont icon-file-copy"></i>
+                        </button>
+
+                        <?php if($row['active']==1){?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                <i class="iconfont icon-eye-close"></i>
+                            </button>
+                        <?php }else{ ?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                <i class="iconfont icon-eye"></i>
+                            </button>
+                        <?php } ?>   
+
+                        <?php if($row['recommend']==1){?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-grey btn-sm btn-recommend' title="撤消精选">
+                                <i class="iconfont icon-sketch"></i>
+                            </button>
+                        <?php }else{ ?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-recommend' title="精选">
+                                <i class="iconfont icon-sketch"></i>
+                            </button>
+                        <?php } ?>   
                         
-                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete' title="删除">
                             <i class="iconfont icon-delete"></i>
                         </button>
                     </td>
@@ -153,8 +184,7 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/bootbox.js/bootbox.js"></script>
+
 <script>
     $(document).ready(function () {
         //当前菜单
@@ -186,23 +216,105 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
                     var articleId = $that.attr("data-id");
 
                     $.ajax({
-                        url : 'news_delete.php',
+                        url : 'news_actions.php',
                         type : 'POST',
-                        data : {id:articleId},
+                        data : {id:articleId,action:"delete"},
                         success : function(res) {
 
-                            //  $('#resultreturn').prepend(res);
-                            if (res) {
-                                toastr.success('新闻已删除成功！', '删除新闻')
-                                $that.closest("tr").remove();
-                            } else {
-                                toastr.error('新闻删除失败！', '删除新闻')
+                       
+                            var myobj = JSON.parse(res);                    
+                          
+                            if (myobj.status === 1) {
+                                toastr.success(myobj.message);  
+                                $that.closest("tr").remove();                                   
+                            } 
+                            if (myobj.status === 2) {
+                                toastr.error(myobj.message)
+                            }
+                            if (myobj.status === 3) {
+                                toastr.info(myobj.message)
                             }
                         }
                     });
                 }
 
             });
+
+        });
+
+        $(".btn-active").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'news_actions.php',
+                type : 'POST',
+                data : {id:articleId,action:"active"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                    //console.log(myobj.status);
+                    if (myobj.status === 1) {
+                        // toastr.success(myobj.message);                                
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+        $(".btn-recommend").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'news_actions.php',
+                type : 'POST',
+                data : {id:articleId,action:"recommend"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                  
+                    if (myobj.status === 1) {                                            
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+        $(".btn-copy").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'news_actions.php',
+                type : 'POST',
+                data : {id:articleId,action:"copy"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                  
+                    if (myobj.status === 1) {                                            
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
 
         });
 

@@ -23,45 +23,61 @@ if(isset($_GET['id'])){
 <!--<![endif]-->
 
 <head>
-    <title><?php echo $data['title']."-".SITENAME; ?></title>    
+    <title><?php echo $data['title']."-".$site_info['sitename']; ?></title>    
     <?php require_once('../../includes/meta.php') ?>
   
 </head>
 <body class="bg_white">
-<?php require_once('../../includes/header.php') ?>
+<?php require_once('../../includes/leftcol.php') ?>
 
-    <?php //echo $data["content"];?>   
-<!--main-->
+<?php if(!empty($data['image_url'])){ ?>
+    <div class="fullimage">
+        <img src="<?php echo $data['image_url'];?>" alt="<?php echo $data['title'];?>">
+    </div>
+<?php } ?>
+
+    <div class="container">
+        <div class="sitepath">
+            <div class="row">
+<div class="col"><a href="/news">动态资讯</a> &gt; <a href="/news?cid=<?php echo $data['categoryId'];?>"><?php echo $data['category_title'];?></a> &gt; <?php echo $data['title'];?></div>
+            <div class="col-auto">
+                <a href="javascript:history.go(-1);">返回&gt;</a>
+            </div>
+</div>
+            
+        </div>
+    </div>
     <div class="page page-news-detail">
+   
         <div class="container">
             <!--news_detail-->
-           <div class="row">
-               <div class="col-lg-8 ">
-                   <div class="article">
-                       <header class="title-article wow fadeInUp">
-                           <h2>
-                                <?php echo $data['title'];?>
-                            </h2>
-                       </header>
-                       <div class="note wow fadeInUp">
-                       <div class="row ">
+            
+               
+            <div class="article">
+                <header class="title-article wow fadeInUp">
+                    <h2>
+                        <?php echo $data['title'];?>
+                    </h2>
+                </header>
+                <!-- <div class="note wow fadeInUp">
+                    <div class="row ">
                             <div class="col-auto"><?php echo date('Y-m-d',$data['pubdate']) ;?></div>  
                             <div class="col-auto"><strong><?php echo $data['category_title'];?></strong></div> 
                             <div class="col-auto"><strong><?php echo $data['view_count'];?></strong>次浏览</div>
                             <div class="col-md share">
                                 分享到
                             </div>
-                       </div>
-                       </div>
-                       <main class="content wow fadeInUp">
-                            <?php echo $data['content'];?>
-                       </main>
-                   
-                   </div>
+                    </div>
+                </div> -->
+                <main class="content wow fadeInUp">
+                    <?php echo $data['content'];?>
+                </main>
+            
+            </div>
                   
-               </div>
+             
                <!--#####-->
-               <div class="col-lg-4 wow fadeInUp">
+               <!-- <div class="wow fadeInUp">
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <?php if(!empty($prev)){?>
@@ -82,8 +98,8 @@ if(isset($_GET['id'])){
                             <?php } ?>         
                         </div>
                     </div>
-               </div>
-           </div>
+               </div> -->
+          
             <!--news_detail end-->
         </div>
     </div>

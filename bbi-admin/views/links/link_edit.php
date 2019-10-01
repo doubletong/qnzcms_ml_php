@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
 <head>
     <title><?php echo "编辑_链接_组件_后台管理_".$site_info['sitename'];?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+    
 </head>
 
 <body>
@@ -117,9 +117,8 @@ if(isset($_GET['id'])){
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-<script src="/js/vendor/holderjs/holder.min.js"></script>
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+<script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
 

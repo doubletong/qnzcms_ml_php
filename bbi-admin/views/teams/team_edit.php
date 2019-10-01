@@ -21,9 +21,8 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(4);
 <head>
     <title><?php echo $pageTitle."编辑_团队_后台管理_".$site_info['sitename']; ?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="/js/vendor/ckeditor/ckeditor.js"></script>
+    <link href="/assets/js/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
 
 </head>
 
@@ -143,11 +142,11 @@ $dictionaries = $dictionaryClass->get_dictionaries_byid(4);
 
     <?php require_once('../../includes/scripts.php'); ?>
 
-    <script src="/js/vendor/holderjs/holder.min.js"></script>
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="/js/vendor/moment/min/moment-with-locales.min.js"></script>
-    <script type="text/javascript" src="/js/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+    
+    <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/moment/min/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {

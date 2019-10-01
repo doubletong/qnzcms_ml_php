@@ -40,10 +40,8 @@
                             <li><a href="cases.php">案例管理</a></li>
                             <li><a href="case_categories.php">案例分类</a></li>
                         </ul>
-                    </li> -->
-                    
+                    </li> -->                  
                   
-                
             
                     <li class="down-nav articles">
                         <a href="#">
@@ -54,11 +52,31 @@
                             <li><a href="/bbi-admin/views/articles/index.php?did=1">文章列表</a></li>
                             <li><a href="/bbi-admin/views/articles/article_categories.php?did=1">分类</a></li>
                         </ul>
+                    </li>
+
+                    <li class="down-nav majors">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-windows"></i> <span class="nav-text">专业介绍</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="/bbi-admin/views/majors/index.php">专业项目</a></li>
+                            <li class="category"><a href="/bbi-admin/views/majors/categories.php">分类</a></li>
+                        </ul>
                     </li>     
-                    
-                    <li class="salary">
-                        <a href="/bbi-admin/views/articles/index.php?did=2">
-                            <i class="iconfont icon-YUAN-circle-fill"></i> <span class="nav-text">薪酬福利</span>                    
+                    <li class="down-nav schools">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-school"></i> <span class="nav-text">院校管理</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="/bbi-admin/views/schools/index.php">院校列表</a></li>
+                            <li class="category"><a href="/bbi-admin/views/schools/countries.php">国家</a></li>
+                        </ul>
+                    </li>     
+                    <li class="offers">
+                        <a href="/bbi-admin/views/offers/index.php">
+                            <i class="iconfont icon-aliwangwang"></i> <span class="nav-text">学员Offer</span>                    
                         </a>
                     </li>
                   
@@ -156,11 +174,9 @@
                             <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-api"></i> <span class="nav-text">组件</span> 
                         </a>
-                        <ul class="subnav">
-                           
-                            <li class="menus"><a href="/bbi-admin/menus.php"><i class="iconfont icon-menu"></i>栏目</a></li>              
-                            <li class="links"><a href="/bbi-admin/views/links/index.php"><i class="iconfont icon-link"></i> 链接</a></li>                       
-                   
+                        <ul class="subnav">                           
+                            <li class="menus"><a href="/bbi-admin/views/menus/index.php"><i class="iconfont icon-menu"></i>栏目</a></li>              
+                            <li class="links"><a href="/bbi-admin/views/links/index.php"><i class="iconfont icon-link"></i> 链接</a></li>                   
                         </ul>
                     </li>
 

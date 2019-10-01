@@ -124,12 +124,12 @@ $tree = buildTree($categories);
                                           //  var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
                                                 height: 350,
-                                                // filebrowserBrowseUrl: elFinder,
-                                                // filebrowserImageBrowseUrl: elFinder,
-                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
-                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
-                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                // filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                // filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                // filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true       
                                             });
                                         </script>
@@ -141,12 +141,12 @@ $tree = buildTree($categories);
                                             //var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('specifications', {
                                                 height: 350,
-                                                // filebrowserBrowseUrl: elFinder,
-                                                // filebrowserImageBrowseUrl: elFinder,
-                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
-                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
-                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                // filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                // filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                // filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true       
                                             });
                                         </script>
@@ -158,12 +158,12 @@ $tree = buildTree($categories);
                                           //  var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('registration', {
                                                 height: 350,
-                                                // filebrowserBrowseUrl: elFinder,
-                                                // filebrowserImageBrowseUrl: elFinder,
-                                                filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
-                                                filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
-                                                filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                                                filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                                filebrowserBrowseUrl: elFinder,
+                                                filebrowserImageBrowseUrl: elFinder,
+                                                // filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
+                                                // filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
+                                                // filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                                // filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                                 allowedContent: true       
                                             });
                                         </script>
@@ -283,40 +283,40 @@ $tree = buildTree($categories);
           
 
             $("#btnBrowser").on("click", function() {
-                // singleEelFinder.selectActionFunction = SetThumbnail;
-                // singleEelFinder.open();
+                singleEelFinder.selectActionFunction = SetThumbnail;
+                singleEelFinder.open();
                
-                CKFinder.popup( {
-                 chooseFiles: true,
-                 onInit: function( finder ) {
-                     finder.on( 'files:choose', function( evt ) {
-                         var file = evt.data.files.first();                       
-                         SetThumbnail(file.getUrl());
-                     } );
-                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
-                         SetThumbnail(evt.data.resizedUrl);
-                     } );
-                 }
-             } );
+            //     CKFinder.popup( {
+            //      chooseFiles: true,
+            //      onInit: function( finder ) {
+            //          finder.on( 'files:choose', function( evt ) {
+            //              var file = evt.data.files.first();                       
+            //              SetThumbnail(file.getUrl());
+            //          } );
+            //          finder.on( 'file:choose:resizedImage', function( evt ) {                      
+            //              SetThumbnail(evt.data.resizedUrl);
+            //          } );
+            //      }
+            //  } );
 
             });
 
             $("#btnImageUrl").on("click", function() {
-                // singleEelFinder.selectActionFunction = SetImageUrl;
-                // singleEelFinder.open();
+                singleEelFinder.selectActionFunction = SetImageUrl;
+                singleEelFinder.open();
 
-                CKFinder.popup( {
-                 chooseFiles: true,
-                 onInit: function( finder ) {
-                     finder.on( 'files:choose', function( evt ) {
-                         var file = evt.data.files.first();                       
-                         SetImageUrl(file.getUrl());
-                     } );
-                     finder.on( 'file:choose:resizedImage', function( evt ) {                      
-                        SetImageUrl(evt.data.resizedUrl);
-                     } );
-                 }
-            });
+            //     CKFinder.popup( {
+            //      chooseFiles: true,
+            //      onInit: function( finder ) {
+            //          finder.on( 'files:choose', function( evt ) {
+            //              var file = evt.data.files.first();                       
+            //              SetImageUrl(file.getUrl());
+            //          } );
+            //          finder.on( 'file:choose:resizedImage', function( evt ) {                      
+            //             SetImageUrl(evt.data.resizedUrl);
+            //          } );
+            //      }
+            // });
         });
 
             $("form").validate({

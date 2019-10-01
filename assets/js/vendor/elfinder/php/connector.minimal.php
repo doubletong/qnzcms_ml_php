@@ -122,8 +122,8 @@ $opts = array(
 		// Items volume
 		array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-			'path'          => '../../../../uploads/',                 // path to files (REQUIRED)
-			'URL'           => '../../../../uploads/', // URL to files (REQUIRED)
+			'path'          => '../../../../../uploads/',                 // path to files (REQUIRED)
+			'URL'           => '../../../../../uploads/', // URL to files (REQUIRED)
 			'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload

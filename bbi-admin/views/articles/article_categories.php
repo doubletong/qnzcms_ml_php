@@ -38,7 +38,6 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
 <head>
     <title><?php echo "分类 _ 文章 _后台管理_".$site_info['sitename'];?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -123,8 +122,7 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/bootbox.js/bootbox.js"></script>
+
 <script>
     $(document).ready(function () {
         //当前菜单

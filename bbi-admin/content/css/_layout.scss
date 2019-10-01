@@ -3,7 +3,6 @@
     display: grid;
     min-height: 100%;
     grid-template-columns: 200px auto;
-    background-color: aqua;
     transition: all .25s;
 
     &.closeSider {
@@ -15,8 +14,6 @@
 }
 
 .leftcol {
-    background-color: #fff;
-    color: #666;
     min-height: 100%;
     grid-column: 1 / 2;
     grid-row: 1;
@@ -36,7 +33,6 @@
 }
 
 .rightcol {
-    background-color: #f7f7f7;
     grid-column: 2;
     grid-row: 1;
     position: relative;
@@ -46,9 +42,6 @@
     .page-header {
         grid-column: 1;
         grid-row: 1;
-        box-shadow: 0 0 12px rgba(0,0,0,.15);
-        background-color: #fff;
-
         .navbar-brand {
             .iconfont {
                 font-size: 1.6rem;

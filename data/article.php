@@ -101,14 +101,20 @@ class Article{
     }
 
 
-
+    //按分类获取最近新闻
     public function laster_articles($cid){
         $query = \db::getInstance()->prepare("SELECT a.id, a.title, a.summary, a.thumbnail,  a.pubdate, c.title as category_title FROM articles as a 
         LEFT JOIN article_categories as c ON a.categoryId = c.id WHERE a.categoryId = $cid ORDER BY a.pubdate DESC limit 4");
         $query->execute();
         return $query->fetchAll();
     }
-
+    //获取推荐新闻
+    public function get_laster_recommend_articles($count){
+        $query = \db::getInstance()->prepare("SELECT a.id, a.title, a.summary, a.thumbnail, a.pubdate, c.title as category_title FROM articles as a 
+        LEFT JOIN article_categories as c ON a.categoryId = c.id WHERE a.recommend = 1 ORDER BY a.pubdate DESC limit $count");
+        $query->execute();
+        return $query->fetchAll();
+    }
 
     public function fetch_data($id){
         $query = \db::getInstance()->prepare("SELECT a.*, c.title as category_title FROM articles as a 

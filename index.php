@@ -1,6 +1,6 @@
 <?php
 
-require_once("includes/common.php");
+require_once(__DIR__."/includes/common.php");
 require_once("data/carousel.php");
 require_once("data/link.php");
 require_once("data/article.php");
@@ -36,8 +36,8 @@ $page = $pageClass->fetch_data("home");
 </head>
 
 <body>
-    <?php require_once('includes/header.php') ?>
 
+    <?php require_once('includes/leftcol.php') ?>
     <div class="slider-container">
         <!-- slider start -->
         <div class="slider-wrap">        
@@ -74,6 +74,7 @@ $page = $pageClass->fetch_data("home");
 
   
     <div class="page-home">
+  
         <?php echo $page['content']; ?>
 
 

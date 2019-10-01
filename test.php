@@ -1,24 +1,27 @@
 <?php 
 
 require "config/database.php";
-use Models\User;
-use Models\Post;
+use Models\Offer;
 
-User::create(
+
+Offer::create(
  [
   'name' => 'Mark Mike',
-  'email' => 'temp01-email-1@mark.com',
-  'password' => '1234'
+  'schools' => 'temp01-email-1@mark.com',
+  'scholarship' => '1234',
+  'image_url' => '1234',
+  'importance' => '1234',
+  'created_by' => '1234'
  ]
 );
-Post::create(
- [
-  'title' => 'New Blog Post dddddddd',
-  'body' => 'New Blog Content ddddd',
-  'created_by' => 1
- ]
-);
-print_r(User::all());
-print_r(Post::all());
-print_r(User::find(1)->posts);
+// Post::create(
+//     [
+//      'title' => 'New Blog Post12',
+//      'body' => 'New Blog Content21',
+//      'created_by' => 11
+//     ]
+//    );
+// print_r(Offer::all());
+print_r(Offer::all());
+// print_r(User::find(1)->posts);
 

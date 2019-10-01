@@ -19,8 +19,7 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
         <?php echo $pageTitle."_页面_后台管理_".$site_info['sitename'];?>
     </title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="/js/vendor/ckeditor/ckeditor.js"></script>
+    <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -60,7 +59,7 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
 
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo isset($data['content'])?stripslashes($data['content']):''; ?></textarea>
                                 <script>
-                                    var elFinder = '/js/vendor/elfinder/elfinder-cke.php'; 
+                                    var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php'; 
                                     CKEDITOR.replace( 'content', {                                      
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder,     
@@ -135,10 +134,9 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
 
     <?php require_once('../../includes/scripts.php'); ?>
 
-    <script src="/js/vendor/holderjs/holder.min.js"></script>
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="/js/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+    <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/jquery-validation/dist/additional-methods.min.js"></script>
     
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {

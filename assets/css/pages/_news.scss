@@ -1,25 +1,94 @@
 .page-news{
-    padding-top: rem(100);
+    
+
+    .subnav{
+        text-align: center;
+        margin-bottom: 4rem;
+        a{
+            display: inline-block;
+            margin: 0 .1rem;
+            padding: .3rem 1rem;
+            &.active{
+                background-color: $color-primary;
+                color: #fff;
+            }
+        }
+    }
+    .recommed{
+        margin-bottom: 3rem;
+        a{
+            display: block;
+            position: relative;
+            overflow: hidden;
+            img{
+                display: block;
+                transition: all .2s;
+            }
+            h3{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                z-index: 100;
+             padding: .6rem 1rem;
+                font-size: 14px;
+                background-color: rgba(28,90,45,.85);
+                color: #fff;
+                margin: 0;
+                width: 100%;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+
+    
+.list-articles{
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
     @include respond-above(sm) {
-        padding-top: rem(140);
+        margin-bottom: 2rem;
     }
     @include respond-above(md) {
-        padding-top: rem(170);
+        margin-bottom: 3rem;
     }
-    @include respond-above(lg) {
-        padding-top: rem(200);
+    .item{
+       
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        a{
+            color: #666;
+            font-size: rem(20);
+            &:hover{
+                color: $color-primary;
+            }
+        }
+       .pub{
+           line-height: 1.3;
+           border-right: 1px #ddd solid;
+           padding-right: 1.5rem;
+           padding-bottom: .5rem;
+           strong{
+               font-size: 2.5rem;
+           }
+           .small{
+               font-size: 12px;
+           }
+       }
     }
+
+}
 }
 .page-news-detail{
-    padding-top: rem(100);
-    @include respond-above(sm) {
-        padding-top: rem(140);
-    }
-    @include respond-above(md) {
-        padding-top: rem(170);
-    }
-    @include respond-above(lg) {
-        padding-top: rem(200);
+   
+    .fullimage{
+        img{
+            width: 100%;
+        }
     }
     .article{
         text-align: justify;
@@ -32,14 +101,15 @@
                 margin-bottom: 3rem;
             }
             h2{
-                font-size: 24px;
-                color: #222222;
+                font-size: 20px;
+                color: #333;
                 margin-top: 0;   
+                font-weight: bold;
                 @include respond-above(sm) {
-                    font-size: 30px;
+                    font-size: 22px;
                 }
                 @include respond-above(md) {
-                    line-height: 1; font-size: 36px;
+                    font-size: 24px;
                 }
             }
            

@@ -16,7 +16,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     "password" => "root",
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
+    'prefix'    => ''
  ]);
 //Make this Capsule instance available globally. *要让 capsule 能在全局使用
  $capsule->setAsGlobal();

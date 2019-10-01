@@ -5,7 +5,7 @@ namespace TZGCMS\Admin{
         public function get_paged_articles_v1($did,$cid,$keyword,$pageIndex,$pageSize){
             $param = "%{$keyword}%";        
             $startIndex = ($pageIndex-1) * $pageSize;
-            $sql = "SELECT a.id, a.title, a.summary, a.thumbnail, a.view_count, a.recommend, a.dictionary_id,  a.pubdate, c.title as category_title FROM articles as a 
+            $sql = "SELECT a.id, a.title, a.summary, a.thumbnail, a.view_count, a.recommend, a.dictionary_id,  a.pubdate, a.active, c.title as category_title FROM articles as a 
             LEFT JOIN article_categories as c ON a.categoryId = c.id
             where a.dictionary_id = $did ";
             if(!empty($cid)){
@@ -87,6 +87,67 @@ namespace TZGCMS\Admin{
             $rows = $query->fetchColumn(); 
             return $rows;
         }
+
+    //显示或隐藏
+    public function active_article($id) {
+
+        $sql = "UPDATE articles SET  
+            active =ABS(active-1)
+            WHERE id =:id";
+
+        $query = \db::getInstance()->prepare($sql);           
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result>0) {
+            $msg = array ('status'=>1,'message'=>'记录已成功更新。');
+            return json_encode($msg);  
+        } else {
+            $msg = array ('status'=>3,'message'=>'未更新记录。');
+            return json_encode($msg);  
+            
+        }
+    }
+
+    //精华或撤消
+    public function recommend_article($id) {
+
+        $sql = "UPDATE articles SET    
+            recommend =ABS(recommend-1)
+            WHERE id =:id";
+
+        $query = \db::getInstance()->prepare($sql);         
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);  
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result>0) {
+            $msg = array ('status'=>1,'message'=>'记录已成功更新。');
+            return json_encode($msg);  
+        } else {
+            $msg = array ('status'=>3,'message'=>'未更新记录。');
+            return json_encode($msg);  
+            
+        }
+    }
+
+    //拷贝记录
+    public function copy_article($id){
+        $query = \db::getInstance()->prepare("INSERT INTO `articles` (`title`, `content`, `pubdate`, `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, `view_count`, `active`, `recommend`, `added_by`, `thumbnail`, `image_url`, `added_date`, `categoryId`, `summary`)
+                                                     SELECT concat(`title`,'【拷贝】'), `content`, UNIX_TIMESTAMP(now()), `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, 0, 0, 0, `added_by`, `thumbnail`, `image_url`, UNIX_TIMESTAMP(now()), `categoryId`, `summary`  FROM `articles` WHERE id = ? ");
+        $query->bindValue(1,$id);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result>0) {
+            $msg = array ('status'=>1,'message'=>'记录已成功拷贝。');
+            return json_encode($msg);  
+        } else {
+            $msg = array ('status'=>3,'message'=>'未拷贝记录。');
+            return json_encode($msg);              
+        }
+    }
 
     //更新
     public function update_article($id, $title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,

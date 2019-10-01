@@ -31,7 +31,7 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
 <head>
     <title><?php echo "页面_后台管理_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+
 </head>
 <body>
 <div class="wrapper">
@@ -111,8 +111,6 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
 </div>
 <?php require_once('../../includes/scripts.php'); ?> 
 
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/bootbox.js/bootbox.js"></script>
 <script>
     $(document).ready(function () {
         //当前菜单

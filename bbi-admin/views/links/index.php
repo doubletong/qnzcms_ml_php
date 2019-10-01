@@ -45,7 +45,6 @@ $links = $linkClass->get_paged_links($did, $keyword, $currentPage, $itemsPerPage
         <?php echo "链接_组件_后台管理_" . $site_info['sitename']; ?>
     </title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -155,8 +154,6 @@ $links = $linkClass->get_paged_links($did, $keyword, $currentPage, $itemsPerPage
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/bootbox.js/bootbox.js"></script>
 
     <script>
         $(document).ready(function() {

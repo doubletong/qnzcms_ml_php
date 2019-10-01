@@ -1,0 +1,330 @@
+
+
+
+  
+  .page-about {
+   
+    
+    .importance-des{
+        text-align: center;
+        margin-bottom: 1rem;
+    
+        line-height: 1.8;
+        @include respond-above(sm) {
+            font-size: rem(20);
+            margin-bottom: 3rem;
+        }
+        @include respond-above(md) {
+            font-size: rem(22);
+            margin-bottom: 5rem;
+        }
+        @include respond-above(lg) {
+            font-size: rem(24);
+            margin-bottom: 7rem;
+        }
+        strong{
+            color: $color-primary;
+            font-weight: normal;
+        }
+    }
+
+    .intro{
+        text-align: justify;
+        .pic{
+         
+            border-radius: 50%;
+            border:2px 
+            $color-primary solid;
+            width: 250px;
+            height: 250px; 
+            margin: 0 auto 2rem;
+           
+            @include respond-above(md) {
+                width: 380px;
+                height: 380px;       margin-left:-1rem;
+                margin-bottom: -1rem; margin-right: 3rem;
+               
+            }
+            img{
+                margin-top:-1rem;
+                margin-left: 1rem;display: block;
+                @include respond-above(md) {
+                    max-width: none;
+                }
+               
+            }
+        }
+       
+        .txt{
+           
+            @include respond-above(md) {
+                padding: 0 1rem; 
+               
+            }
+            .title{
+                color: $color-primary;
+                font-size: rem(20);
+                margin-top: 0;
+                img{
+                    vertical-align:middle;
+                }
+            }
+        }
+        p{
+            margin-bottom: 2rem;
+            &.p1{
+               
+                @include respond-above(md) {
+                    margin-bottom: 4rem;
+                   
+                }
+            }
+            
+        }
+        .p2{
+           
+            @include respond-above(md) {
+                margin-bottom: 4rem;
+               
+            }
+        }
+    }
+    .teams{
+       
+        .list-teams{
+            
+            .box{
+                margin-top: 3rem;
+            }
+
+            .item{
+                margin-bottom: 30px;
+                background-color: #F2F2F2;
+                text-align: center;
+                padding: 1rem;
+                .pic{
+                    padding: 1.5rem 1rem;
+                    img{
+                        width: 180px;
+                        height: 180px;
+                        object-fit: cover;
+                        object-position: center center;
+                        display: block;
+                        margin: 0 auto;
+                        border-radius: 50%;
+                    }
+                }
+                .txt{
+                    h4{
+                        border-bottom: 2px #fff solid;padding-bottom: 1rem;
+                        margin: 0;
+                        font-size: rem(24);
+                    }
+                    p{
+                        margin: 0;
+                        padding-top: 1.3rem;
+                        padding-bottom: .3rem;
+                        color: #999;
+                    }
+                }
+            }
+        }
+    }
+    .list-chronicles{
+        .item{
+            border-top:2px $color-primary solid;
+            padding-top: 2rem;
+            padding-bottom: 5rem;
+            position: relative;
+            
+            .year{
+                font-size: 1.5rem;color: $color-primary;margin-top: 1rem;
+                margin-bottom: 1rem;
+                @include respond-above(sm) {
+                    font-size: 2rem;  margin-bottom: 1rem;margin-top: 2rem;
+                }
+                @include respond-above(md) {
+                    font-size: 3rem;  margin-bottom:2rem;
+                }
+                @include respond-above(lg) {
+                    font-size: 4rem;  margin-bottom: 3rem;
+                }
+                @include respond-above(xlg) {
+                    font-size: 5rem;  margin-bottom: 4rem;
+                }
+            }
+           
+            .li{
+                margin-bottom: 2rem;
+                .month{
+                    font-size: rem(20);
+                    color: #999;
+                    width: 50px;
+                    @include respond-above(sm) {
+                        width: 60px; font-size: rem(22);
+                    }
+                    @include respond-above(md) {
+                        width: 80px; font-size: rem(24);
+                    }
+                }
+              
+                .des{
+                   text-align: justify;
+                    @include respond-above(sm) {
+                        font-size: rem(18);
+                    }
+                    @include respond-above(md) {
+                        font-size: rem(20);
+                    }
+                }
+            }
+        }
+        .pic{
+          
+            text-align: right;
+            @include respond-above(sm) {
+                width: 360px;
+            }
+        }
+    }
+
+    .s1-xueshi{
+        margin-bottom: 1rem;
+        @include respond-above(sm) {
+            margin-bottom: 2rem;
+        }
+        @include respond-above(md) {
+            margin-bottom: 3rem;
+        }
+        @include respond-above(lg) {
+            margin-bottom: 4rem;
+        }
+        .txt{
+         
+            @include respond-above(sm) {
+                margin-left: 2.5rem;
+            }
+            @include respond-above(md) {
+                margin-left: 5rem;
+            }
+        }
+    }
+    .s2-xueshi{
+        .txt{
+            @include respond-above(sm) {
+                margin-right: 2.5rem;
+            }
+            @include respond-above(md) {
+                margin-right: 5rem;
+            }
+        }
+    }
+    .top-base{
+        background: url(../img/img-015.jpg) no-repeat center top;
+        background-size: auto 240px;      
+        padding-top:rem(200);
+        @include respond-above(sm) {
+            background-size: auto auto;   padding-top:rem(320);
+        }
+        @include respond-above(md) {
+            background: url(../img/img-015.jpg) no-repeat right -3rem top 2.5rem;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        .des{
+            text-align: justify;
+        }
+    }
+    .bot-base{
+        margin-top: 3rem;
+        .item{
+            background-color: #f7f7f7;
+            .des{
+                padding: 1rem;
+                @include respond-above(sm) {
+                    min-height: 310px;
+                }
+                @include respond-above(md) {
+                    min-height: 250px;
+                }
+                @include respond-above(md) {
+                    min-height: 220px;
+                }
+                h4{
+                    text-align: center;
+                    font-size: rem(20);
+                    position: relative;
+                    padding-bottom: 1.5rem;
+                    margin-top: 0;
+                    &::after{
+                        position: absolute;
+                        content: " ";
+                        display: block;
+                        background-color: $color-primary;
+                        height: 2px;
+                        width: 20px;
+                        bottom: 0;
+                        left: 50%;
+                        margin-left: -10px;
+                        z-index: 100;
+                    }
+                }
+                p{
+                    color: #999;
+                }
+            }
+        }
+    }
+    .box-hezuo{
+        margin-bottom: 4rem;
+        @include respond-above(sm) {
+            margin-bottom: 5rem;
+        }
+        @include respond-above(md) {
+            margin-bottom: 6rem;
+        }
+        @include respond-above(lg) {
+            margin-bottom: 7rem;
+        }
+      .importance-des{
+        margin-bottom: 1rem;
+        @include respond-above(sm) {
+            margin-bottom: 2rem;
+        }
+        @include respond-above(md) {
+            margin-bottom: 3rem;
+        }
+      }
+        .txt{
+          
+            text-align: justify;
+          
+            @include respond-above(md) {
+                width: 450px;  margin-right: 5rem;
+            }
+        }
+        .li{
+            text-align: justify;
+        }
+    }
+    .s6-cerveau-links{
+        background-color: yellow;
+
+        .txt{
+           text-align: right;
+           width: auto;
+           margin-bottom: 2rem;
+            h3{
+              
+                &::before{                   
+                    left: auto;
+                    right: 0;
+                }
+            }
+            p{
+                margin-top: .5rem;
+            }
+        }
+    }
+}
+  

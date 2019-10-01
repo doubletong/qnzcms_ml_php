@@ -18,7 +18,8 @@ var replace = require('gulp-replace');
 
 const files = {     
     frontScssPath: 'assets/css/styles.scss',
-    scssPath: 'app/scss/**/*.scss',
+    helpScssPath: 'help/assets/css/styles.scss',
+    themeScssPath: 'bbi-admin/content/css/themes/black.scss',
     jsPath: 'app/js/**/*.js'
 }
 
@@ -33,6 +34,29 @@ function scssTask(){
             return f.base;
         })); // put final CSS in dist folder
 }
+
+// Sass task: compiles the style.scss file into style.css
+function helpScssTask(){    
+    return gulp.src(files.helpScssPath)
+        .pipe(sourcemaps.init()) // initialize sourcemaps first
+        .pipe(sass()) // compile SCSS to CSS
+        .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
+        .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
+        .pipe(gulp.dest(function(f) {
+            return f.base;
+        }));
+}
+
+function themeScssTask(){    
+    return gulp.src(files.themeScssPath)
+        .pipe(sourcemaps.init()) // initialize sourcemaps first
+        .pipe(sass()) // compile SCSS to CSS
+        .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
+        .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
+        .pipe(gulp.dest(function(f) {
+            return f.base;
+        }));
+} 
 
 function scss() {
     return gulp.src(files.frontScssPath)
@@ -53,13 +77,24 @@ function adminscss() {
 function watchFiles() {
     gulp.watch(['assets/css/*.scss','assets/css/utilities/*.scss','assets/css/pages/*.scss'], gulp.series(scssTask));
 }
+function HelpWatchFiles() {
+    gulp.watch(['help/assets/css/*.scss','help/assets/css/utilities/*.scss','help/assets/css/pages/*.scss'], gulp.series(helpScssTask));
+}
 
+function ThemeWatchFiles() {
+    gulp.watch(['bbi-admin/content/css/themes/*.scss'], gulp.series(themeScssTask));
+}
 
 const build = gulp.series(scss);
 const adminbuild = gulp.series(adminscss);
 const watch = gulp.parallel(watchFiles);
+const helpWatch = gulp.parallel(HelpWatchFiles);
+const themeWatch = gulp.parallel(ThemeWatchFiles);
 
 exports.watch = watch;
 exports.scss = scss;
 exports.default = build;
 exports.admin = adminbuild;
+exports.helpWatch = helpWatch;
+exports.themeWatch = themeWatch;
+

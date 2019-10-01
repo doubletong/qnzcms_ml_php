@@ -1,8 +1,11 @@
 RewriteEngine on                       //on为打开,off为关闭
 
 
+
+
 RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
-RewriteRule ^about/?([a-z|_|0-9]+)$ /views/about/$1.php [L]
+
+RewriteRule ^art/?([a-z|_|0-9]+)$ /views/art/$1.php [L]
 RewriteRule ^career/?([a-z|_|0-9]+)$ /views/career/$1.php [L]
 RewriteRule ^nuclear_medicine/?([a-z|_|0-9]+)$ /views/nuclear_medicine/$1.php [L]
 RewriteRule ^contact/?([a-z|_|0-9]+)$ /views/contact/$1.php [L]

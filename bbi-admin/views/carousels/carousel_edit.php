@@ -21,7 +21,6 @@ $positions = $positionClass->get_all();
 <head>
     <title><?php echo $pageTitle."_广告_后台管理_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -134,9 +133,8 @@ $positions = $positionClass->get_all();
 
 <?php require_once('../../includes/scripts.php'); ?> 
 
-<script src="/js/vendor/holderjs/holder.min.js"></script>
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+<script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
 

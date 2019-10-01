@@ -2,21 +2,27 @@
 body {
     -webkit-font-smoothing: antialiased; 
     text-rendering: optimizeLegibility;
-    color: #333;
+    color: #666;
     font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     background-color: #fff;
     line-height: 1.8;
     margin: 0;    
     padding: 0;
+    padding-bottom:1rem;
     @include respond-above (md) {
-        font-size: rem(12)
+        font-size: rem(12);
+        padding-bottom: 2rem;
     }
     @include respond-above (lg) {
-        font-size: rem(14)
+        font-size: rem(14);
+        margin-left: 320px; padding-bottom:3rem;
     }
     @include respond-above (xlg) {
         font-size: 1rem;
+        margin-left: 360px;
+        padding-bottom: 4rem;
     }
+
     
 }
 
@@ -121,53 +127,23 @@ input,textarea,button{
     }
 
     @include respond-above (lg) {
-        height: 460px;
+        height: 560px;
     }
 
     @media  (min-width:1601px){
-        height: 500px;
+        height: 675px;
     }
 
-    &.banner-story {
-        background-image: url(../img/banners/story.jpg);
-    }
-
-    &.banner-support {
-        background-image: url(../img/banners/support.jpg);
-    }
-
-    &.banner-disease {
-        background-image: url(../img/banners/disease.jpg);
-    }
-
-    &.banner-cards {
-        background-image: url(../img/banners/cards.jpg);
-    }
-
-    &.banner-operation {
-        background-image: url(../img/banners/operation.jpg);
-    }
-
-    &.banner-events {
-        background-image: url(../img/banners/events.jpg);
-    }
-
-    &.banner-school {
-        background-image: url(../img/banners/school.jpg);
-    }
-
-    &.banner-creative {
-        background-image: url(../img/banners/creative.jpg);
-    }
+    
 
     .title-page {
         padding-top: 5.5rem;
         color: #fff;
         position: relative;
         height: 100%;
-
+        text-align: center;
         @include respond-above(sm) {
-            padding-top: 7rem;
+            padding-top: 6rem;
         }
 
         @include respond-above(md) {
@@ -175,50 +151,29 @@ input,textarea,button{
         }
 
         @include respond-above(lg) {
-            padding-top: 11rem;
-        }
-        @media  (min-width:1601px){
             padding-top: 13rem;
         }
-        .down {
-            position: absolute;
-            left: 0;
-            padding: 0 15px 1rem;
-            bottom: 0;
-            z-index: 100;
-            line-height: 1.5;
-
-            @include respond-above(sm) {
-                padding: 0 15px 2rem;
-            }
-            @include respond-above(md) {
-                padding: 0 15px 2.5rem;
-            }
-    
-            .date {
-                font-size: 1rem;
-                @include respond-above(sm) {
-                    font-size: rem(24);
-                }
-            }
+        @include respond-above(xlg) {
+            padding-top: 17rem;
         }
+      
 
         h1 {
 
-            margin: 0;
-            font-weight: normal;
-            font-size: rem(20);
-
+            margin: 0;          
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-transform: uppercase;
             @include respond-above(sm) {
-                font-size: rem(32);
+                font-size: 1.6rem
             }
 
             @include respond-above(md) {
-                font-size: rem(40);
+                font-size: 1.8rem
             }
 
             @include respond-above(lg) {
-                font-size: rem(48);
+                font-size: 2rem;
             }
 
         }
@@ -226,14 +181,17 @@ input,textarea,button{
         p {
             margin: 0;
             font-weight: lighter;
-            font-size: rem(12);
+            font-size: rem(14);
 
             @include respond-above(sm) {
-                font-size: rem(14);
+                font-size: 1rem;
             }
 
             @include respond-above(md) {
-                font-size: 1rem;
+                font-size: rem(18);
+            }
+            @include respond-above(lg) {
+                font-size: rem(20);
             }
         }
     }
@@ -281,6 +239,11 @@ input,textarea,button{
         padding-top: 1rem;
         margin-top: 0;
         margin-bottom: 0;
+        font-family: 'DINCond';
+        color: $color-primary;
+        display: inline-block;
+        line-height: 1;
+        text-transform: uppercase;
         @include respond-above(sm) {
             font-size: rem(28);
         }
@@ -290,38 +253,29 @@ input,textarea,button{
         @include respond-above(lg) {
             font-size: rem(36);
         }
-        &::before{
+        &::before,&::after{
             position: absolute;
             content: " ";
             display: block;
             background-color: $color-primary;
-            height: 2px;
-            width: 20px;
-            top: 0;
-            left: 50%;
-            margin-left: -10px;
+            height:1px;
+            width: 50px;
+            top: 2.2rem;
+            left: -60px;          
             z-index: 100;
-            @include respond-above(sm) {
-                height: 4px;
-            }
+          
+        }
+        &::after{
+            left: auto;
+            right: -60px;          
         }
     }
-    p{
-        margin-top: 0;color: #999;
+    h3{
+        color: #333;margin: 0;
+        font-weight: normal;
     }
 
-    &.title-section_v1{
-        text-align: left;
-        h2{
-            &::before{
-             
-                left: 0;
-                margin-left: 0;
-              
-    
-            }
-        }
-    }
+   
     &.title-section_v2{
         
         h2{
@@ -332,178 +286,95 @@ input,textarea,button{
         }
     }
 }
-
-.title-small{
-    text-align: center;
-    color: $color-primary;
-    font-size: 1rem;
-}
-.title-v2{   
-    text-align: center;color: $color-primary;  font-size: rem(24);font-weight: bold;
-}
-.title-v3{   
-    text-align: center;color: $color-primary;  font-size: rem(20); font-weight: bold;
-}
-.s6-links {
-    background: $color-primary url(../img/map_03.jpg) no-repeat center center;
-    background-size: cover;
-  
-    color: #FFFFFF;
-    padding-bottom: 1rem;
-    padding-top: 3rem;
-    @include respond-above(sm) {
-        padding-bottom: 2rem;
-        padding-top: 4rem;
-    }
-    @include respond-above(md) {
-        padding-bottom: 3rem;
-        padding-top: 5rem;
-    }
-    @include respond-above(lg) {
-        padding-bottom: 4rem;
-        padding-top: 6rem;
-    }
-
-
-    .txt{
-    
-        margin-bottom: 2rem;
-        @include respond-above(md) {
-            width: 450px;
-        }
-        h3{
-            font-size: rem(28);
-            position: relative;
-            margin-top: 0;
-            padding-top: 1rem;
-            margin-bottom: 0;
-            @include respond-above(sm) {
-                font-size: rem(32);
-            }
-            @include respond-above(md) {
-                font-size: 36px;
-            }
-            &::before{
-                display: block;
-                content: " ";
-                position: absolute;
-                width: 20px;height: 4px;
-                top: 0;
-                left: 0;z-index: 100;
-                background-color: #fff;
-            }
-        }
-        p{
-            margin-top: .5rem;
-            font-size: rem(12);
-            @include respond-above(md) {
-                font-size: 1rem;
-            }
-        }
-    }
-    .links{
-        a{
-            display: block;background-color: #fff; border-radius: 3px;
-            margin-bottom: 30px;
-            img{
-                display: block;
-            }
-        }
-    }
-}
-
-.subnav{
-    text-align: center;
-    margin:0 auto 3rem;
-    max-width: 880px;  border-bottom: 1px $color-primary solid;
-    padding-bottom: 1rem;
-    @include respond-above(sm) {
-        margin-bottom: 4rem;   
-         padding-bottom: 0;
-    }
-
-    @include respond-above(md) {
-        margin-bottom: 5rem;
-    }
-    @include respond-above(lg) {
-        margin-bottom: 6rem;
-    }
-    nav{           
-      
-        a{
-            display: block;           
-            padding: .2rem 1rem;
-            margin:0 .2rem .4rem;
-            border-radius: 15px; background-color: #eeeeee;
-            font-size: rem(14);
-            @include respond-above(sm) {
-                font-size: 20px;
-                height: 90px;background-color: transparent;
-            }
-            &.active{
-                background-color: $color-primary;color: #fff;
-                @include respond-above(sm) {
-                    background: url(../img/menu_active.png) no-repeat center bottom;color: $color-primary;
-                }
-            }
-            &:hover{
-                color: $color-primary;
-            }
-        }
-    }
-    
-}
-
-
-.list-articles{
-    margin-bottom: 1rem;
-    @include respond-above(sm) {
-        margin-bottom: 2rem;
-    }
-    @include respond-above(md) {
-        margin-bottom: 3rem;
-    }
-    .item{
-        border-bottom: 1px #f7f7f7 solid;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        .category{
-            color: #aaa;
-            font-size: rem(14);
-            @include respond-above(sm) {
-               margin-top: 0;
-            }
-        }
-        h3{
-            font-size: 20px;
-            color: #222222;
-        }
-        p.summary{
-            color: #666;
-            text-align: justify;
-        }
-        .date{
-            color: #999;
-        }
-        .view{
-            color:$color-primary;
-            text-align: right;
-        }
-    }
-    .pic{
-        display: block;
-    
-      
+.title-section-v1{
+    text-align: left;
+    border-left: 8px $color-primary solid;
+    padding-left: .6rem;
+    h2{
+        font-size: rem(24);      
+        font-family: 'DINCond';
+        color: $color-primary;      
+        line-height: 1;
+        margin: 0 0 .6rem;
+        text-transform: uppercase;
         @include respond-above(sm) {
-            width: 200px; 
+            font-size: rem(28);
         }
         @include respond-above(md) {
-            width: 280px;  margin-right: 5rem;
+            font-size: rem(32);
         }
-        img{
+        @include respond-above(lg) {
+            font-size: rem(36);
+        }
+    }
+    h3{
+        margin: 0;line-height: 1;
+        font-size: rem(14);
+        @include respond-above(sm) {
+            font-size: 1rem;
+        }
+        @include respond-above(md) {
+            font-size: rem(18);
+        }
+        @include respond-above(lg) {
+            font-size: rem(20);
+        }
+    }
+}
+.title-section-v2{
+    text-align: center;   
+    margin-bottom: 2rem;
+   
+    h3{
+        margin: 0;line-height: 1;
+        color: #333;
+        font-size: 1rem;
+        display: inline-block;
+        font-weight: bold;
+        position: relative;
+        @include respond-above(sm) {
+            font-size: rem(18);
+        }
+        @include respond-above(md) {
+            font-size: rem(20);
+        }
+        @include respond-above(lg) {
+            font-size: rem(22);
+        }
+        &::before,&::after{
+            position: absolute;
+            content: " ";
             display: block;
-            width: 100%;
+            background-color: $color-primary;
+            height:1px;
+            width: 50px;
+            top: .6rem;
+            left: -110px;          
+            z-index: 100;
           
+        }
+        &::after{
+            left: auto;
+            right: -110px;          
+        }
+    }
+}
+
+.title-node{
+    border-left: 8px $color-primary solid;
+    padding-left: 1rem;
+    font-size: rem(20);
+    line-height: 1.2;
+}
+
+
+.sitepath{
+    padding: 1rem 0;
+    color: #ccc;
+    a{
+        color: #999;
+        &:hover{
+            color: $color-primary;
         }
     }
 }

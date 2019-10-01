@@ -47,25 +47,28 @@ if(isset($_POST['username'],$_POST['password'])){
     <title>
         后台管理-<?php echo $site_info['sitename']; ?>
     </title>
-    <link href="/js/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/js/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="content/iconfonts/iconfont.css" rel="stylesheet" />
- <style>
-     body{
-         background:#333 url(content/img/mosaic_noise.gif);
-     }
-.loginbox{
-    max-width:360px; 
-    margin:0 auto;
-}
-.card-img-top{
-    text-align:center;padding:2rem;
-}
-.card-footer{
-    background-color:#fff;
-}
-.input-group-text{
-    background-color:#fff;
-}
+    <style>
+        body{
+            background:#333 url(content/img/mosaic_noise.gif);
+        }
+        .loginbox{
+            max-width:360px; 
+            margin:0 auto;
+        }
+        .card-img-top{
+            text-align:center;padding:2rem;
+        }
+        .card-footer{
+            background-color:#fff;
+        }
+        .input-group-text{
+            background-color:#fff;
+        }
+        #imgCaptcha{
+            cursor: pointer;
+        }
      </style>
 </head>
 <body class="loginPage">
@@ -101,7 +104,7 @@ if(isset($_POST['username'],$_POST['password'])){
                 <input class="form-control"  type="text" name="captcha" placeholder="验证码">
                 <div class="input-group-append">
                     <span class="input-group-text" style="padding:0; overflow: hidden;">                  
-                        <img src="../lib/captcha.php" width="120" height="36"  alt="CAPTCHA">
+                        <img src="../includes/captcha.php" width="120" height="36" id="imgCaptcha"  alt="CAPTCHA">
                     </span>
                 </div>
             </div>
@@ -111,7 +114,7 @@ if(isset($_POST['username'],$_POST['password'])){
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">记住我</label>
         </div>      
-       <?php echo $_SESSION['phrase'] ?>
+      
         <?php if(isset($error)){?>
             <div class="alert alert-danger"><?php echo $error;?></div>
         <?php  } ?>
@@ -125,8 +128,8 @@ if(isset($_POST['username'],$_POST['password'])){
 </div>
 </form>
 
-<script src="../js/vendor/jquery/dist/jquery.min.js"></script>
-<script src="../js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/js/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../assets/js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
 <script>
@@ -137,6 +140,12 @@ if(isset($_POST['username'],$_POST['password'])){
             $('.loginPage').css('padding-top', paddingTop + 'px');
         }
     }
+
+    var imgCaptcha = document.getElementById("imgCaptcha");
+    imgCaptcha.addEventListener("click",function(){
+        this.src = "../includes/captcha.php?code=" + Math.random();
+    })
+
     $(function () {
 
         loginbox.initialize();

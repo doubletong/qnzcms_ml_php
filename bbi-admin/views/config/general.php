@@ -16,7 +16,6 @@ $data  = json_decode($model['config_values'], true);
 <head>
     <title><?php echo "基本信息_系统_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -65,6 +64,16 @@ $data  = json_decode($model['config_values'], true);
                                         <label for="email_contact">联系表单接收邮箱</label>
                                         <input type="email" class="form-control" id="email_contact" name="email_contact" placeholder="" value="<?php echo !empty($data['email_contact']) ? $data['email_contact'] : ""; ?>">
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email_contact">控制台主题</label>
+                                        <select class="form-control" id="theme" name="theme">
+                                            <option value="black" <?php echo (!empty($data['theme'])&& $data['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
+                                        </select>    
+                                                                    
+                                    </div>
+  
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -119,9 +128,15 @@ $data  = json_decode($model['config_values'], true);
                                 <?php } ?>
                             </div>
 
-
+                          
                             <div class="row align-items-center">
-                                <div class="col">
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="wechat">微信号</label>
+                                        <input type="text" class="form-control" id="wechat" name="wechat" placeholder="" value="<?php echo !empty($data['wechat']) ? $data['wechat'] : ""; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="title">微信二维码</label>
                                         <div class="input-group">
@@ -133,7 +148,7 @@ $data  = json_decode($model['config_values'], true);
                                     </div>
                                 </div>
                                 <?php if (!empty($data['qrcode'])) { ?>
-                                    <div class="col-auto">
+                                    <div class="col--md-1">
                                         <img src="<?php echo $data['qrcode']; ?>" id="img_qrcode" style="max-height:100px;" />
                                     </div>
                                 <?php } ?>
@@ -197,9 +212,8 @@ $data  = json_decode($model['config_values'], true);
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-    <script src="/js/vendor/holderjs/holder.min.js"></script>
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+    <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript">
         function SetLogoUrl(fileUrl) {
             $('#logo').val(fileUrl);

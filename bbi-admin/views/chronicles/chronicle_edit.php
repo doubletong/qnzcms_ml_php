@@ -20,8 +20,8 @@ $pageTitle = isset($_GET['id'])?"编辑事件":"创建事件";
 <head>
     <title><?php echo $pageTitle."_事件_后台管理_" .$site_info['sitename']; ?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="/js/vendor/ckeditor/ckeditor.js"></script>
+    
+    <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -104,9 +104,8 @@ $pageTitle = isset($_GET['id'])?"编辑事件":"创建事件";
 
     <?php require_once('../../includes/scripts.php'); ?>
 
-    <script src="/js/vendor/holderjs/holder.min.js"></script>
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+    <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript">
         function SetImageUrl(fileUrl) {
             $('#image_url').val(fileUrl);

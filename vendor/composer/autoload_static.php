@@ -92,6 +92,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
     );
 
     public static $classMap = array (
+        'Models\\Offer' => __DIR__ . '/../..' . '/Models/Offer.php',
         'Models\\Post' => __DIR__ . '/../..' . '/Models/Post.php',
         'Models\\User' => __DIR__ . '/../..' . '/Models/User.php',
     );

@@ -41,7 +41,6 @@ $teams = $teamClass->get_paged_teams($did, $keyword, $currentPage, $itemsPerPage
 <head>
     <title><?php echo "团队_后台管理_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="wrapper">
@@ -139,8 +138,7 @@ $teams = $teamClass->get_paged_teams($did, $keyword, $currentPage, $itemsPerPage
 </div>
 <?php require_once('../../includes/scripts.php'); ?> 
 
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/bootbox.js/bootbox.js"></script>
+
 <script>
     $(document).ready(function () {
         //当前菜单

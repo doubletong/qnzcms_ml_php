@@ -25,7 +25,7 @@ if (!empty($keyword)) {
 }
 
 $totalItems = $articleClass->get_articles_count_v1($did, $cid, $keyword);  //总记录数
-$itemsPerPage = 12;  // 每页显示数
+$itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
@@ -33,7 +33,7 @@ $paginator->setMaxPagesToShow(6);
 
 $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentPage, $itemsPerPage);
 
-
+$recommendArticles = $articleClass->get_laster_recommend_articles(3);
 
 
 ?>
@@ -50,17 +50,36 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
 
 </head>
 
-<body class="bg_white">
-    <?php require_once('../../includes/header.php') ?>
-
-    <?php //echo $data["content"];
-    ?>
+<body>
+    <?php require_once('../../includes/leftcol.php') ?>
+    <div class="banner banner-news"  style="background-image:url('/assets/img/banners/news.jpg')">
+        <div class="container title-page ">
+            <h1>Dynamic Information</h1>
+            <p>动态资讯</p>
+        </div>
+    </div>
 
 
     <!--main-->
     <div class="page page-news">
         <?php require_once('includes/subnav.php') ?>
         <div class="container">
+            <div class="recommed  wow fadeInUp">
+                <div class="row">
+                    <?php foreach($recommendArticles as $item ){ ?>
+                        <div class="col-md">
+                            <a class="item" href="/news/detail/<?php echo $item['id']; ?>">
+                                <img src="<?php echo empty($item['thumbnail']) ? "/img/news_detail.jpg" : $item['thumbnail']; ?>" alt="<?php echo $item['title'] ?>" />
+                                <h3><?php echo $item['title'] ?></h3>
+                            </a>
+                         
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+         
+           
+
             <?php require_once('includes/articlelist.php') ?>
         </div>
         <!--pagination-->

@@ -1,0 +1,140 @@
+
+.site-footer {
+    background:#fff;
+    padding-top: 3rem;   
+    overflow: hidden;
+    border-top: 1px #eee solid;
+    @include respond-above(sm) {
+        padding-top: 4rem;   
+     }    
+    @include respond-above(md) {
+        border-top: none;
+        padding-top: 5rem;   
+     }      
+
+    a {
+        color: #fff;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .logo_bot{
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .footer-navs {
+        margin-bottom: 2rem;
+        @include respond-above(sm) {
+            margin-bottom: 3rem;
+         }    
+        @include respond-above(md) {
+            margin-bottom: 4rem;
+         }      
+    
+        nav{
+            text-align: center;
+         
+            @include respond-above(md) {
+                text-align: right;
+             }        
+             a{
+                 color:#000;
+                 margin:.5rem 1rem;
+                 @include respond-above(md) {
+                   margin-left: 2rem;
+                 }    
+             }    
+        }
+
+  
+
+    }
+    .contact{
+        margin-bottom: 2rem;
+        @include respond-above(sm) {
+            margin-bottom: 3rem;
+         }    
+        @include respond-above(md) {
+            margin-bottom: 4rem;
+         }      
+    
+        .icon{
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            background-color: $color-primary;
+            color: #fff;
+            text-align: center;
+            line-height: 28px;
+           margin-top: .6rem;
+        }
+        dl{
+            margin: 0 3rem 1rem 0;padding: 0;
+            dt{
+                font-weight:bold;
+                color:#000;
+            }
+            dd{
+                color:rgba(85,85,85,1); margin-left: 0;
+            }
+        }
+    }
+
+    .copyright {
+        color: #fff;
+        background:rgba(136,136,136,1);
+        padding: .5rem 1rem;
+        text-align: center;
+        font-size: rem(14);
+        @include respond-above(md) {
+            text-align: left;
+         }
+         a{
+             margin-left: 2.3rem;
+         }
+    }
+
+}
+
+.qqservice {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 2000;    
+}
+
+.totop {
+    display: block;
+    width: 45px;
+    height: 45px; 
+    line-height: 43px;
+    border: 1px solid #000;   
+    text-align: center;
+    transition: all .2s;
+    background-color: #fff;
+    color: #000;
+    @include respond-above(md) {
+        width: 60px;
+        height: 60px; 
+        line-height: 56px;
+        border: 2px solid #000;  
+     }
+    .iconfont{
+        font-size: 22px;
+        @include respond-above(md) {
+            font-size: 28px;
+         }
+    }
+   
+
+    @include hover {
+        border-color: $color-primary;  
+        color:  $color-primary;  
+    }
+
+    @include respond-above(sm) {
+        bottom: 2rem;
+        right: 2rem;
+    }
+}

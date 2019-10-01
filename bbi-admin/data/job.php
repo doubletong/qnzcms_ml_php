@@ -106,8 +106,7 @@ namespace TZGCMS\Admin{
             return json_encode($msg);  
         } else {
             $msg = array ('status'=>3,'message'=>'未更新记录。');
-            return json_encode($msg);  
-            
+            return json_encode($msg);              
         }
     }
 

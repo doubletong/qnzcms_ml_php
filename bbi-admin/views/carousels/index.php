@@ -40,7 +40,7 @@ $carousels = $carouselClass->get_paged_carousels_v1($keyword,$pid, $currentPage,
 <head>
     <title><?php echo "轮播图_组件_后台管理_".$site_info["sitename"];?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+
 </head>
 <body>
 <div class="wrapper">
@@ -141,8 +141,6 @@ $carousels = $carouselClass->get_paged_carousels_v1($keyword,$pid, $currentPage,
 
 <?php require_once('../../includes/scripts.php'); ?> 
 
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/bootbox.js/bootbox.js"></script>
 
 <script>
     $(document).ready(function () {

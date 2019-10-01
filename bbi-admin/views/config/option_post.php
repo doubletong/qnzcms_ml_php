@@ -39,10 +39,10 @@ switch ($config_type) {
             $email = $_POST['email'];
             $email_contact = $_POST['email_contact'];
             $address = $_POST['address'];
-         
-           
-            $config_values = array("sitename" => $_POST['sitename'], "logo" => $logo,"logo2" => $logo2, "qrcode" =>  $qrcode , "webnumber" =>  $webnumber,
-            "email" =>  $email ,"email_contact"=>$email_contact, "phone" =>  $phone, "address" => $address);
+            $theme = $_POST['theme'];
+            $wechat = $_POST['wechat'];
+            $config_values = array("sitename" => $_POST['sitename'], "logo" => $logo,"logo2" => $logo2,"wechat" =>  $wechat , "qrcode" =>  $qrcode , "webnumber" =>  $webnumber,
+            "email" =>  $email ,"email_contact"=>$email_contact, "phone" =>  $phone, "address" => $address, "theme" => $theme);
 
             $data = $optionClass->get_config($config_name);
 

@@ -1,0 +1,128 @@
+{
+  "id": "1433644",
+  "name": "优普森",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "384279",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "837323",
+      "name": "wechat",
+      "font_class": "wechat",
+      "unicode": "e868",
+      "unicode_decimal": 59496
+    },
+    {
+      "icon_id": "1045535",
+      "name": "yxx_phone",
+      "font_class": "dianhua1",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "1881813",
+      "name": "marker",
+      "font_class": "marker",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "2162705",
+      "name": "comment",
+      "font_class": "comment",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
+      "icon_id": "5700804",
+      "name": "email",
+      "font_class": "email",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "11052817",
+      "name": "icon-05",
+      "font_class": "icon-",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "11052818",
+      "name": "icon-03",
+      "font_class": "icon-1",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "11052819",
+      "name": "icon-01",
+      "font_class": "icon-2",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "11052820",
+      "name": "icon-02",
+      "font_class": "icon-3",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
+    },
+    {
+      "icon_id": "11052821",
+      "name": "icon-04",
+      "font_class": "icon-4",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
+      "icon_id": "11084188",
+      "name": "课程服务版块icon-02",
+      "font_class": "rule",
+      "unicode": "e6b2",
+      "unicode_decimal": 59058
+    },
+    {
+      "icon_id": "11084189",
+      "name": "课程服务版块icon-01",
+      "font_class": "copy",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "11084190",
+      "name": "课程服务版块icon-03",
+      "font_class": "zhuan",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
+      "icon_id": "11084191",
+      "name": "课程服务版块icon-04",
+      "font_class": "course",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "11084192",
+      "name": "课程服务版块icon-06",
+      "font_class": "new",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "11084193",
+      "name": "课程服务版块icon-05",
+      "font_class": "light",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    }
+  ]
+}

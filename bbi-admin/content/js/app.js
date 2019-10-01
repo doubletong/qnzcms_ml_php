@@ -183,7 +183,7 @@ var Common = {
 };
 var singleEelFinder = {
     percent: 70,
-    baseUrl: "/js/vendor/elfinder/elfinder-single.php",
+    baseUrl: "/assets/js/vendor/elfinder/elfinder-single.php",
     selectActionFunction: null,
     elFinderCallback: function(fileUrl) {
         this.selectActionFunction(fileUrl);

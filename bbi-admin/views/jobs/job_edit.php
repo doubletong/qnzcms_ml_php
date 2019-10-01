@@ -21,8 +21,7 @@ $pageTitle = isset($_GET['id'])?"编辑":"创建";
 <head>
     <title><?php echo $pageTitle."_岗位招聘_后台管理_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
-    <script src="/js/vendor/ckeditor/ckeditor.js"></script>
+    <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -104,9 +103,8 @@ $pageTitle = isset($_GET['id'])?"编辑":"创建";
 
 <?php require_once('../../includes/scripts.php'); ?> 
 
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="/js/vendor/ckfinder/ckfinder.js"></script>
+<script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/assets/js/vendor/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
 
 
