@@ -5,21 +5,18 @@ require_once('../../data/dictionary.php');
 $dictionaryClass = new TZGCMS\Admin\Dictionary();
 $dictionaries = $dictionaryClass->get_dictionaries_byid(11);
 
-$linkClass = new TZGCMS\Admin\Link();
+$linkClass = new TZGCMS\Admin\LinkRepository();
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $data = $linkClass->fetch_data($id);
-}else{
-    header('Location: index.php');
-    exit;
+    $data = $linkClass->get_by_id($id);
 }
-
+$pageTitle = isset($_GET['id'])?"编辑链接":"创建链接";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "编辑_链接_组件_后台管理_".$site_info['sitename'];?></title>
+    <title><?php echo $pageTitle."_链接_组件_后台管理_".$site_info['sitename'];?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     
 </head>
@@ -36,17 +33,17 @@ if(isset($_GET['id'])){
         <form   novalidate="novalidate">
     <div class="card">
         <div class="card-header">
-            编辑链接
+            <?php echo $pageTitle ?>
         </div>
         <div class="card-body">
-           
-                <input id="linkId" type="hidden" name="linkId" value="<?php echo $data['id'];?>" />
+        <div class="row">
+            <div class="col-md">
+            <input id="linkId" type="hidden" name="linkId" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
 
 
                 <div class="form-group">
-                    <label for="title">主题</label>
-                 
-                        <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo $data['title'];?>">
+                    <label for="title">主题</label>                 
+                        <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                   
                 </div>
                 <div class="form-group">
@@ -67,23 +64,16 @@ if(isset($_GET['id'])){
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="link" >链接</label>
-                  
-                        <input type="text" class="form-control" id="link" name="link" placeholder="" value="<?php echo $data['link'];?>">
+                    <label for="url" >链接</label>                  
+                    <input type="text" class="form-control" id="url" name="url" placeholder="" value="<?php echo isset($data['url'])?$data['url']:''; ?>">
                 
                 </div>
 
+        
                 <div class="form-group">
-                    <label for="imageUrl">Logo</label>                  
-                        <div class="input-group">
-                            <input id="imageUrl" name="imageUrl"  class="form-control" placeholder="Logo" value="<?php echo $data['image_url'];?>" aria-describedby="setImageUrl">                                
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
-                            </div>
-                        </div>
-                        <small id="emailHelp" class="form-text text-muted">图片尺寸：180*60像素</small>                   
+                    <label for="description">描述</label>
+                    <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
                 </div>
-
        
 
                 <div class="form-group">
@@ -96,10 +86,34 @@ if(isset($_GET['id'])){
 
                 <div class="form-group">
                     <div class="form-check">
-                    <input type="checkbox" class="form-check-input" <?php echo $data['active']?"checked":"";?> id="chkActive" name="active">                          
-                    <label class="form-check-label" for="chkActive">发布</label>
+                        <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
+                        <label class="form-check-label" for="chkActive">发布</label>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" <?php echo (isset($data['recommend']) && $data['recommend']) ? "checked" : ""; ?> id="chkRecommend" name="recommend">
+                        <label class="form-check-label" for="chkRecommend">推荐</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div style="width:300px;  text-align:center;" class="mb-3">
+                    <div class="card">
+                        <div class="card-body" style="background-color:#ccc;">                                           
+                            <img ID="iLogo" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=120X120像素" : $data['image_url']; ?>" class="img-fluid" />
+                            
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 图片...</button>
+                            <input id="image_url" type="hidden" name="image_url" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+                
 
         </div>
         <div class="card-footer text-center">
@@ -122,27 +136,29 @@ if(isset($_GET['id'])){
 <script type="text/javascript">
 
 
-    function SetBackground(fileUrl) {
-        $('#imageUrl').val(fileUrl);
+    function SetThumbnail(fileUrl) {
+        $('#image_url').val(fileUrl);
+        $('#iLogo').attr('src', fileUrl);
     }
+
     $(document).ready(function () {
         //当前菜单
         $(".mainmenu li.plugins").addClass("nav-open").find("ul li.links a").addClass("active");
 
-        $("#setImageUrl").on("click", function () {
-            singleEelFinder.selectActionFunction = SetBackground;
-            singleEelFinder.open();
-            // var finder = new CKFinder();
-            // //   finder.basePath = '/Content/Admin/Plugins/ckfinder/';
-            // finder.selectActionFunction = SetBackground;
-            // finder.popup();
-        });
+       
+        $("#btnBrowser").on("click", function () {         
+            singleEelFinder.selectActionFunction = SetThumbnail;
+            singleEelFinder.open();                
+        });       
 
 
         $("form").validate({
 
             rules: {
                 title: {
+                    required: true
+                },
+                dictionary_id:{
                     required: true
                 },
                 link: {
@@ -157,6 +173,9 @@ if(isset($_GET['id'])){
             messages:{
                 title: {
                     required:"请输入主标题"
+                },
+                dictionary_id:{
+                    required: "请选择分类",
                 },
                 link: {
                     url: "链接格式不正确"

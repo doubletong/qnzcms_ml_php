@@ -15,7 +15,7 @@ require_once('data/job.php');
 $obj = new OS_BROWSER();
 
 $carouselClass = new TZGCMS\Admin\Carousel();
- $linkClass = new TZGCMS\Admin\Link();
+ $linkClass = new TZGCMS\Admin\LinkRepository();
 $articleClass = new TZGCMS\Admin\Article();
 $chronicleClass = new TZGCMS\Admin\Chronicle();
 $jobClass = new TZGCMS\Admin\Job();

@@ -10,7 +10,7 @@ use JasonGrimes\Paginator;
 $dictionaryClass = new TZGCMS\Admin\Dictionary();
 $dictionaries = $dictionaryClass->get_dictionaries_byid(11);
 
-$linkClass = new TZGCMS\Admin\Link();
+$linkClass = new TZGCMS\Admin\LinkRepository();
 
 $urlPattern = "index.php?page=(:num)";
 
@@ -90,7 +90,7 @@ $links = $linkClass->get_paged_links($did, $keyword, $currentPage, $itemsPerPage
                         </form>
                     </div>
                     <div class="col-md-auto">
-                        <a href="link_add.php" class="btn btn-primary">
+                        <a href="link_edit.php" class="btn btn-primary">
                             <i class="iconfont icon-plus"></i> 添加链接
                         </a>
                     </div>
@@ -113,7 +113,7 @@ $links = $linkClass->get_paged_links($did, $keyword, $currentPage, $itemsPerPage
                         foreach ($links as $row) {
                             echo "<tr>";
                             ?>
-                            <td><img src="<?php echo $row['image_url']; ?>" class="img-rounded" style="height:35px;" /></td>
+                            <td style="background-color:#ccc;"><img src="<?php echo $row['image_url']; ?>" class="img-rounded" style="height:35px;" /></td>
                             <td>
                                 <?php echo $row['title']; ?>
                             </td>
@@ -121,12 +121,12 @@ $links = $linkClass->get_paged_links($did, $keyword, $currentPage, $itemsPerPage
                                 <?php echo $row['category']; ?>
                             </td>
                             <td>
-                                <?php echo $row['link']; ?>
+                                <?php echo $row['url']; ?>
                             </td>
                          
                           
                             <td>
-                                <?php echo date('Y-m-d', $row['added_date']); ?>
+                            <?php echo date('Y-m-d',strtotime($row['created_at'])) ;?>
                             </td>
                             <td><a href='link_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm'>
                                     <i class="iconfont icon-edit"></i>

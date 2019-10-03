@@ -1,9 +1,8 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/major_category.php');
-require_once('../../data/major.php');
+require_once('../../data/school.php');
 
-$majorClass = new TZGCMS\Admin\Major();
+$schoolClass = new TZGCMS\Admin\School();
 
 //   echo $content.$productId;
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -12,16 +11,16 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
     switch ($_POST['action']) {
         case "delete": 
-            echo $majorClass->delete_major($id);    
+            echo $schoolClass->delete_school($id);    
             break;   
         case "active":
-            echo $majorClass->active_major($id);  
+            echo $schoolClass->active_school($id);  
             break;
         case "recommend":
-            echo $majorClass->recommend_major($id);  
+            echo $schoolClass->recommend_school($id);  
             break;
         case "copy":
-            echo $majorClass->copy_major($id);  
+            echo $schoolClass->copy_school($id);  
             break;
     }
     
@@ -31,11 +30,11 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 }
 
 //按did获取分类
-if( isset($_GET['did']) ){
+// if( isset($_GET['did']) ){
 
-    $did=$_GET['did'];
-    $categoryClass = new TZGCMS\Admin\MajorCategory();
-    $result = $categoryClass->fetch_all($did);
+//     $did=$_GET['did'];
+//     $categoryClass = new TZGCMS\Admin\SchoolCategory();
+//     $result = $categoryClass->fetch_all($did);
     
-    echo json_encode($result);  
-}
+//     echo json_encode($result);  
+// }

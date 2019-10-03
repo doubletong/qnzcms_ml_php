@@ -16,7 +16,7 @@ class Offer extends Model
    * @var array
    */
    protected $fillable = [
-       'name', 'schools', 'scholarship','image_url',
+       'name', 'schools', 'scholarship','thumbnail','image_url',
        'importance','dictionary_id', 'active','recommend','created_by'
    ];
  }

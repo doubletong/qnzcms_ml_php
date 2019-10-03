@@ -8,6 +8,13 @@ namespace TZGCMS{
     
             return $query->fetchAll();
         }
+
+        public function get_recommend_majors($did,$count){
+            $query = \db::getInstance()->prepare("SELECT * FROM majors WHERE active=1 AND recommend = 1 AND dictionary_id = $did ORDER BY importance, id Desc LIMIT $count");
+            $query->execute();
+    
+            return $query->fetchAll();
+        }
     }
 }
 ?>

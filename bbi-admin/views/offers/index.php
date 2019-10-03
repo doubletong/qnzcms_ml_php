@@ -1,7 +1,7 @@
 <?php
 require_once('../../includes/common.php');
 require_once('../../data/offer.php');
-
+require_once('../../data/dictionary.php');
 require '../../../vendor/autoload.php';
 use JasonGrimes\Paginator;
 
@@ -9,7 +9,7 @@ $offerClass = new TZGCMS\Admin\OfferRepository();
 
 $urlPattern = "index.php?page=(:num)";
 
-
+$did = isset($_GET['did']) ? $_GET['did'] : null;
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
 
 
@@ -17,15 +17,18 @@ if (!empty($keyword)) {
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
-$totalItems = $offerClass->get_offers_count($keyword);  //总记录数
+$totalItems = $offerClass->get_offers_count($did,$keyword);  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$offers = $offerClass->get_paged_offers($keyword, $currentPage, $itemsPerPage);
+$offers = $offerClass->get_paged_offers($did, $keyword, $currentPage, $itemsPerPage);
 
+
+$dicModel = new TZGCMS\Admin\Dictionary();
+$dictionaries =  $dicModel->get_dictionaries_byid(12);
 
 ?>
 <!DOCTYPE html>
@@ -52,18 +55,30 @@ $offers = $offerClass->get_paged_offers($keyword, $currentPage, $itemsPerPage);
                 <div class="row">
                     <div class="col">
                         <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-                            <div class="form-row align-items-center">
+                            <div class="form-row align-items-center  mb-2">
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">搜索</label>
-                                    <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput"
+                                    <input type="text" name="keyword" class="form-control" id="inlineFormInput"
                                         value="<?php echo $keyword ?>" placeholder="关键字">
                                 </div>
+                                <div class="col-md-auto">
+                                        <select class="form-control" id="did" name="did" >
+                                            <option value="0">--请选择栏目--</option>
+                                            <?php foreach( $dictionaries as $dic)
+                                            {
+                                                ?>
+                                                <option value="<?php echo $dic["id"]; ?>"  <?php echo (isset($did) && $did==$dic["id"])?"selected":"" ; ?> ><?php echo $dic["title"]; ?></option>                                             
+                                            <?php  } ?>
+                                                            
+                                        </select>     
+                                    </div>
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                    <button type="submit" class="btn btn-primary">搜索</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+                   
                     <div class="col-auto">
                         <a href="offer_edit.php" class="btn btn-primary">
                             <i class="iconfont icon-plus"></i> 添加Offer

@@ -113,7 +113,7 @@ namespace TZGCMS\Admin{
 
     //精华或撤消
     public function recommend_school($id) {
-
+  
         $sql = "UPDATE schools SET    
             recommend =ABS(recommend-1)
             WHERE id =:id";
@@ -124,10 +124,10 @@ namespace TZGCMS\Admin{
 
         $result = $query->rowCount();;
         if ($result>0) {
-            $msg = array ('status'=>1,'message'=>'记录已成功更新。');
+            $msg = array ('status'=>1,'message'=>'记录已成功更新。' );
             return json_encode($msg);  
         } else {
-            $msg = array ('status'=>3,'message'=>'未更新记录。');
+            $msg = array ('status'=>3,'message'=>'未更新记录。' );
             return json_encode($msg);  
             
         }

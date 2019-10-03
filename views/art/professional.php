@@ -60,7 +60,7 @@ $majors = $majorClass->get_all_majors(44);
                     </a>
                </div>
                <div class="col">
-               <a href="/art/offer">
+               <a href="/art/offers">
                        <div class="icon">
                            <i class="iconfont icon-icon-"></i>
                        </div>

@@ -1,6 +1,9 @@
 <?php
 namespace TZGCMS\Admin{
-    class Link{
+    require $_SERVER['DOCUMENT_ROOT']."/config/database.php";
+    use Models\Link;
+
+    class LinkRepository{
         public function get_paged_links($did,$keyword,$pageIndex,$pageSize){
             $param = "%{$keyword}%";        
             $startIndex = ($pageIndex-1) * $pageSize;
@@ -47,12 +50,8 @@ namespace TZGCMS\Admin{
             return $query->fetchAll();
         }
 
-        public function fetch_data($id){
-            $query = \db::getInstance()->prepare("SELECT * FROM links WHERE id = ?");
-            $query->bindValue(1,$id);
-            $query->execute();
-
-            return $query->fetch();
+        public function get_by_id($id){
+            return  Link::find($id);
         }
 
         public function delete_link($id){     
@@ -80,30 +79,24 @@ namespace TZGCMS\Admin{
             }
 
     //更新产品
-        public function update_link($id,$title,$importance,$imageUrl,$active, $link, $dictionary_id) {
+        public function update_link($id,$title,$description,$importance,$image_url,$active, $recommend, $url, $dictionary_id) {
+        
+            
+            $vm = Link::find($id);
 
-            $sql = "update links
-                set
-                title= :title,
-                dictionary_id = :dictionary_id,
-                importance = :importance,
-                image_url =:imageUrl,
-                link = :link,
-                active =:active
-                where id =:id";
+            $vm ->title = $title;
+            $vm->description = $description;
+            $vm->dictionary_id = $dictionary_id;
+            $vm->image_url = $image_url;
+            $vm->url = $url;
+            $vm->importance = $importance;
+            $vm->active = $active;
+            $vm->recommend = $recommend;
+        
+            $result = $vm->save();
+          
 
-            $query = \db::getInstance()->prepare($sql);
-            $query->bindValue(":title",$title);
-            $query->bindValue(":dictionary_id",$dictionary_id,\PDO::PARAM_INT);  
-            $query->bindValue(":link",$link);
-            $query->bindValue(":importance",$importance,\PDO::PARAM_INT);            
-            $query->bindValue(":imageUrl",$imageUrl);
-            $query->bindValue(":active",$active,\PDO::PARAM_BOOL);
-            $query->bindValue(":id",$id,\PDO::PARAM_INT);
-            $query->execute();
-
-            $result = $query->rowCount();;
-            if ($result>0) {
+            if (isset($result)) {
                 $msg = array ('status'=>1,'message'=>'记录已成功更新。');
                 return json_encode($msg);  
             } else {
@@ -113,27 +106,27 @@ namespace TZGCMS\Admin{
             }
         }
 
+                                    
+        public function insert_link($title,$description, $importance, $image_url, $active,$recommend, $url, $dictionary_id) {
 
-        public function insert_link($title,$importance,$imageUrl,$active,  $link,$dictionary_id) {
-
-            $sql="INSERT INTO links ( title,dictionary_id,importance, image_url,link,active,added_by,added_date)
-                    VALUES (:title,:dictionary_id,:importance, :imageUrl, :link,:active,:added_by,:added_date)";
-
+       
             $username = $_SESSION['valid_user'] ;
-
-            $query = \db::getInstance()->prepare($sql);
-            $query->bindValue(":title",$title);
-            $query->bindValue(":dictionary_id",$dictionary_id,\PDO::PARAM_INT);  
-            $query->bindValue(":link",$link);
-            $query->bindValue(":importance",$importance,\PDO::PARAM_INT);
-            $query->bindValue(":imageUrl",$imageUrl);
-            $query->bindValue(":active",$active,\PDO::PARAM_BOOL);
-            $query->bindValue(":added_by",$username);
-            $query->bindValue(":added_date",time());
-            $query->execute();
-
-            $result = $query->rowCount();;
-            if ($result>0) {
+ 
+            $result = Link::create(
+                [
+                 'title' => $title,
+                 'description' =>  $description,
+                 'dictionary_id' => $dictionary_id,
+                 'image_url' => $image_url,
+                 'url' => $url,
+                 'importance' => $importance,
+                 'active' => $active,
+                 'recommend' => $recommend,
+                 'created_by' => $username
+                ]
+               );
+        
+            if (isset($result)) {
                 $msg = array ('status'=>1,'message'=>'新记录已成功创建。');
                 return json_encode($msg);  
             } else {

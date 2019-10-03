@@ -2,23 +2,24 @@
 require_once('../../includes/common.php');
 require_once('../../data/link.php');
 
-$linkClass = new TZGCMS\Admin\Link();
+$linkClass = new TZGCMS\Admin\LinkRepository();
 
 if (isset( $_POST['title'], $_POST['importance'])) {
     $linkId = isset($_POST['linkId'])?$_POST['linkId']:0;
     $title = $_POST['title'];
+    $description = $_POST['description'];
     $importance = $_POST['importance'];
-    $imageUrl = $_POST['imageUrl'];
-    $link = $_POST['link'];
+    $image_url = $_POST['image_url'];
+    $url = $_POST['url'];
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
+    $recommend = isset($_POST['recommend']) && $_POST['recommend']  ? "1" : "0";
     $dictionary_id = $_POST['dictionary_id'];
 
     //   echo $content.$linkId;
-    if(isset($_POST['linkId'])){
-        echo $linkClass->update_link($linkId,
-            $title, $importance, $imageUrl, $active,  $link, $dictionary_id);
+    if($_POST['linkId']>0){
+        echo $linkClass->update_link($linkId, $title,$description, $importance, $image_url, $active,$recommend,  $url, $dictionary_id);
     }else{
-        echo $linkClass->insert_link($title, $importance, $imageUrl, $active, $link, $dictionary_id);
+        echo $linkClass->insert_link($title,$description, $importance, $image_url, $active,$recommend, $url, $dictionary_id);
     }
 
 }else{

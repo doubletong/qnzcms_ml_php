@@ -170,6 +170,17 @@
             padding-top: 2rem;
             padding-bottom: 3rem;
         }
+
+        .shools{
+            background-color: #efefef;
+            padding: 3rem 0;
+            .item{
+                text-align: center;
+                img{
+                    margin-bottom: 2rem;
+                }
+            }
+        }
     }
     .s5{
         padding-top: 1rem;
@@ -177,6 +188,63 @@
         @include respond-above(lg) {
             padding-top: 2rem;
             padding-bottom: 3rem;
+        }
+
+        .offerlist{
+        
+            padding: 0 1rem 6rem;
+            .swiper-button-next, .swiper-button-prev{
+                top:43%; color: $color-primary;
+            }
+            .swiper-pagination{
+                padding: 2rem 0;
+                .swiper-pagination-bullet{
+                    background-color: transparent;
+                    border:1px #000 solid;
+                    width: 12px;height: 12px;
+                }
+                .swiper-pagination-bullet-active{
+                    background-color: $color-primary;border-color: $color-primary;
+                }
+            }
+            
+        }
+     
+        .thumb{
+            padding-top: 1rem;
+            img{
+                display: block;
+                box-shadow: 0 0 15px rgba(0,0,0,.2);
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+        dl{
+            dd{
+                padding: 0;
+                margin: 0;
+                font-size: rem(14);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        .more{
+         
+        
+            text-align: center;
+            a{
+                display: inline-block;
+                background-color: $color-primary;
+                color: #fff;
+                text-transform: uppercase;
+                padding: .4rem 3rem;
+                font-size: rem(20);
+                &:hover{
+                    box-shadow: 0 0 15px rgba(28,90,45,.3)
+                }
+            }
+        
         }
     }
 }

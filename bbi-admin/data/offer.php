@@ -9,41 +9,37 @@ namespace TZGCMS\Admin{
     class OfferRepository{
         
 
-        public function get_paged_offers($keyword,$pageIndex,$pageSize){
-            // $param = "%{$keyword}%";        
+        public function get_paged_offers($did,$keyword,$pageIndex,$pageSize){
+           
              $startIndex = ($pageIndex-1) * $pageSize;
-            // $sql = "SELECT id,name,	address,department,population,importance,added_date FROM offers WHERE 1=1 ";
-       
-            // if(!empty($keyword)){
-            //     $sql =  $sql. "AND (name LIKE :keyword OR content LIKE :keyword) ";
-            // }
-            // $sql =  $sql." ORDER BY importance DESC,id DESC LIMIT $startIndex, $pageSize ";
 
-            // $query = \db::getInstance()->prepare($sql);      
-        
-            // $query->bindValue(":keyword", $param);  
-            // $query->execute();
-            // return $query->fetchAll();
-            return Offer::orderBy('importance', 'desc')
+            $query = Offer::select('name','importance','schools','scholarship','created_at','active','recommend','image_url','dictionary_id','id');
+
+            if ($did){
+                $query->where('dictionary_id',$did);
+            }
+            if ($keyword){
+                $query->where('name','like','%'+$keyword+'%')->orWhere('schools','like','%'+$keyword+'%');
+            }
+            
+            return $query->orderBy('importance', 'desc')
             ->skip($startIndex)
             ->take($pageSize)
             ->get();
         }
         
         //获取总数
-        public function get_offers_count($keyword){
-            // $param = "%{$keyword}%";
-            // $sql = "SELECT count(*) as count FROM `offers` where 1=1 ";         
-            // if(!empty($keyword)){
-            //     $sql =  $sql. "AND (name LIKE :keyword  OR content LIKE :keyword) ";
-            // }
+        public function get_offers_count($did,$keyword){
+           
+            $query = Offer::select('id');
 
-            // $query = \db::getInstance()->prepare($sql);    
-            // $query->bindValue(":keyword", $param);  
-            // $query->execute();        
-            // $rows = $query->fetchColumn(); 
-            // return $rows;
-            return Offer::count();
+            if ($did){
+                $query->where('dictionary_id',$did);
+            }
+            if ($keyword){
+                $query->where('name','like','%'+$keyword+'%')->orWhere('schools','like','%'+$keyword+'%');
+            }
+            return $query->count();
    
         }
 
@@ -55,22 +51,17 @@ namespace TZGCMS\Admin{
             return $query->fetchAll();
         }
 
-        public function fetch_data($id){
-            $query = \db::getInstance()->prepare("SELECT * FROM offers WHERE id = ?");
-            $query->bindValue(1,$id);
-            $query->execute();
-
-            return $query->fetch();
+        public function fetch_data($id){      
+            return  Offer::find($id);
         }
 
         public function delete_offer($id){
-            $query = \db::getInstance()->prepare("DELETE FROM `offers` WHERE id = ?");
-            $query->bindValue(1,$id);
-            $query->execute();
+      
+            $offer = Offer::find($id);
 
-            $result = $query->rowCount();;
+            $result = $offer->delete();;
             //1-success 2-error 3-info 4-warrning
-            if ($result>0) {
+            if (isset($result)) {
                 $msg = array ('status'=>1,'message'=>'记录已成功删除。');
                 return json_encode($msg);  
             } else {
@@ -124,18 +115,20 @@ namespace TZGCMS\Admin{
 
             
   //更新
-  public function update_offer($id, $name, $schools, $scholarship,$dictionary_id,$image_url , $importance, $active,$recommend) {
+  public function update_offer($id, $name, $schools, $scholarship,$dictionary_id,$thumbnail , $image_url , $importance, $active,$recommend) {
 
   
     $offer = Offer::find($id);
     $offer->name = $name;
     $offer->schools = $schools;
     $offer->scholarship = $scholarship;
+    $offer->thumbnail = $thumbnail;
     $offer->image_url = $image_url;
     $offer->dictionary_id = $dictionary_id;
     $offer->importance = $importance;
     $offer->active = $active;
     $offer->recommend = $recommend;
+
 
     $result = $offer->save();
     if (isset($result)) {
@@ -149,7 +142,7 @@ namespace TZGCMS\Admin{
 }
 
 
-public function insert_offer($name, $schools, $scholarship,$dictionary_id,$image_url, $importance, $active,$recommend) {
+public function insert_offer($name, $schools, $scholarship,$dictionary_id,$thumbnail ,$image_url, $importance, $active,$recommend) {
 
     $username = $_SESSION['valid_user'] ;
     
@@ -158,6 +151,7 @@ public function insert_offer($name, $schools, $scholarship,$dictionary_id,$image
          'name' => $name,
          'schools' =>  $schools,
          'scholarship' => $scholarship,
+         'thumbnail' => $thumbnail,
          'image_url' => $image_url,
          'dictionary_id' => $dictionary_id,
          'importance' => $importance,

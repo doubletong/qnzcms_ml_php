@@ -13,6 +13,13 @@
       "unicode_decimal": 59024
     },
     {
+      "icon_id": "760250",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
       "icon_id": "837323",
       "name": "wechat",
       "font_class": "wechat",
@@ -25,6 +32,20 @@
       "font_class": "dianhua1",
       "unicode": "e63f",
       "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "1177033",
+      "name": "arrow-right-circle-s-o",
+      "font_class": "arrow-right-circle-s-o",
+      "unicode": "e766",
+      "unicode_decimal": 59238
+    },
+    {
+      "icon_id": "1397992",
+      "name": "Down",
+      "font_class": "down",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
     },
     {
       "icon_id": "1881813",

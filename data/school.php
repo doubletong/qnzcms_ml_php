@@ -48,6 +48,13 @@ namespace TZGCMS{
             return $query->fetchAll();
         }
 
+        
+        public function get_recommend_schools($did,$count){
+            $sql = "SELECT *  FROM schools WHERE active = 1 AND recommend=1 AND dictionary_id = $did ORDER BY importance DESC LIMIT $count";
+            $query = \db::getInstance()->prepare($sql); 
+            $query->execute();
+            return $query->fetchAll();
+        }
 
     }
 }

@@ -16,19 +16,33 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 //    $table->timestamps();
 // });
 
-Capsule::schema()->create('offers', function ($table) {
+// Capsule::schema()->create('offers', function ($table) {
+//    $table->increments('id');
+//    $table->string('name',50);
+//    $table->string('schools',250)->nullable();
+//    $table->string('scholarship',100)->nullable();
+//    $table->string('image_url',150)->nullable();
+//    $table->integer('dictionary_id');   
+//    $table->integer('importance')->default(0);
+//    $table->boolean('active')->default('1');
+//    $table->boolean('recommend')->default('0');   
+//    $table->string('created_by');
+//   // $table->timestamps();
+//    $table->timestamp('created_at')->default(Capsule::raw('CURRENT_TIMESTAMP'));
+//    $table->timestamp('updated_at')->default(Capsule::raw('CURRENT_TIMESTAMP'));
+// });
+
+Capsule::schema()->create('links', function ($table) {
    $table->increments('id');
-   $table->string('name',50);
-   $table->string('schools',250)->nullable();
-   $table->string('scholarship',100)->nullable();
+   $table->string('title',100);
+   $table->string('description',250)->nullable();
+   $table->string('url',150)->nullable();
    $table->string('image_url',150)->nullable();
-   $table->integer('dictionary_id');   
+   $table->integer('dictionary_id')->nullable();
    $table->integer('importance')->default(0);
    $table->boolean('active')->default('1');
    $table->boolean('recommend')->default('0');   
    $table->string('created_by');
-  // $table->timestamps();
    $table->timestamp('created_at')->default(Capsule::raw('CURRENT_TIMESTAMP'));
    $table->timestamp('updated_at')->default(Capsule::raw('CURRENT_TIMESTAMP'));
 });
-

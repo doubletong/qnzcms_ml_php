@@ -84,7 +84,7 @@ $schools = $schoolClass->get_paged_schools($did, $cid,  $currentPage, $itemsPerP
                     </a>
                </div>
                <div class="col">
-               <a href="/art/offer">
+               <a href="/art/offers">
                        <div class="icon">
                            <i class="iconfont icon-icon-"></i>
                        </div>

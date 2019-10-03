@@ -57,7 +57,7 @@ $data = $pageClass->fetch_data("about");
                     </a>
                </div>
                <div class="col">
-               <a href="/art/offer">
+               <a href="/art/offers">
                        <div class="icon">
                            <i class="iconfont icon-icon-"></i>
                        </div>

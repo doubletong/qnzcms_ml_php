@@ -1,16 +1,28 @@
 <?php
 require_once("../../includes/common.php");
-require_once("../../data/page.php");
+// require_once("../../data/page.php");
+require_once("../../data/major.php");
+require_once("../../data/offer.php");
+require_once("../../data/school.php");
+// $pageClass = new TZGCMS\Page();
+// $data = $pageClass->fetch_data("about");
 
-$pageClass = new TZGCMS\Page();
-$data = $pageClass->fetch_data("about");
+$offerClass = new TZGCMS\OfferRepository();
+$offers= $offerClass->recommend_type_offers(44,12);
+
+
+$schoolClass = new TZGCMS\School();
+$schools =  $schoolClass->get_recommend_schools(44,4);
+
+$majorClass = new TZGCMS\Major();
+$majors =  $majorClass->get_recommend_majors(44,4);
 
 ?>
 <!doctype html>
 <html class="no-js" lang="zh-CN">
 
 <head>
-    <title><?php echo $data["title"] . "-" . $site_info["sitename"]; ?></title>
+    <title><?php echo "美术专业-" . $site_info["sitename"]; ?></title>
     <?php require_once('../../includes/meta.php') ?>
     <link rel="stylesheet" href="/assets/js/vendor/swiper/package/css/swiper.min.css">
 </head>
@@ -57,7 +69,7 @@ $data = $pageClass->fetch_data("about");
                     </a>
                </div>
                <div class="col">
-                    <a href="/art/offer">
+                    <a href="/art/offers">
                        <div class="icon">
                            <i class="iconfont icon-icon-"></i>
                        </div>
@@ -235,21 +247,76 @@ $data = $pageClass->fetch_data("about");
                 <h2>Hot Majors</h2>
                 <h3>热门专业</h3>
             </div>  
-
-        </section>
-         <section class="s4 container">
-            <div class="title-section-v1 wow slideInUp">
-                <h2>Institutions</h2>
-                <h3>推荐院校</h3>
+            <div class="majors">
+                <div class="row">
+                    <?php foreach($majors as $major){ ?>
+                        <div class="col-6 col-md-3">
+                            <figure>
+                                <img src="<?php echo $major['image_url'] ;?>" alt="<?php echo $major['title'] ;?>">
+                            </figure>
+                        </div>
+                   <?php  } ?>
+                   
+                </div>
             </div>
-            
+        </section>
+         <section class="s4">
+             <div class="container">
+                <div class="title-section-v1 wow slideInUp">
+                    <h2>Institutions</h2>
+                    <h3>推荐院校</h3>
+                </div>
+             </div>
+           
+            <div class="shools">
+                <div class="container">
+                    <div class="row align-items-end">
+                        <?php foreach($schools as $school){ ?>
+                            <div class="col-6 col-md">
+                                <figure class="item">
+                                    <img src="<?php echo $school['image_url'];?>" alt="">
+                                    <figcaption><?php echo $school['title'];?></figcaption>
+                                </figure>
+                            </div>
+                        <?php  }?>
+                      
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="s5 container">
             <div class="title-section-v1 wow slideInUp">
                 <h2>Cuccessful Cases</h2>
                 <h3>学员Offer</h3>
             </div>
-            
+
+            <div class="swiper-container offerlist">
+              
+              <div class="swiper-wrapper ">
+                  <?php foreach($offers as $offer){?>
+                      <div class="swiper-slide">
+                          <div class="thumb wow fadeInUp">
+                              <img src="<?php echo $offer['image_url'] ?>" alt="<?php echo $offer['name'] ?>">
+                          </div>
+                          <dl class="wow fadeInUp">
+                              <dd><?php echo $offer['name'] ?></dd>
+                              <dd>专业方向：<?php echo $offer['dic_title'] ?></dd>
+                              <dd>录取院校：<?php echo $offer['schools'] ?></dd>
+                              <?php if(isset($offer['scholarship'])){?>
+                                  <dd>奖学金总额：<?php echo $offer['scholarship'];?></dd>
+                              <?php } ?>
+                          </dl>
+                      </div>
+                  <?php } ?>             
+                 
+              </div>
+               <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+              <!-- Add Arrows -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+          </div>
+          <div class="more  wow fadeInUp"><a href="/art/offers">more</a> </div>
         </section>
     </div>
 
@@ -273,6 +340,18 @@ $data = $pageClass->fetch_data("about");
                 swiper: galleryThumbs
             }
             });
+
+        var offerSwiper = new Swiper('.offerlist', {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
         $(document).ready(function() {
         
       

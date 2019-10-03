@@ -11,16 +11,17 @@ if (isset($_POST['name'], $_POST['image_url'])) {
     $scholarship = isset($_POST['scholarship']) ? $_POST['scholarship']:"";    
     $dictionary_id = $_POST['dictionary_id'];
     $importance = $_POST['importance'];
+    $thumbnail = isset($_POST['thumbnail']) ? $_POST['thumbnail']:"";   
     $image_url = isset($_POST['image_url']) ? $_POST['image_url']:"";   
     $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
     $recommend = isset($_POST['recommend']) && $_POST['recommend']  ? "1" : "0";
  
     //   echo $content.$productId;
     if($offerId>0){
-        echo $offerClass->update_offer($offerId, $name, $schools, $scholarship, $dictionary_id,  $image_url, $importance, $active,$recommend);
+        echo $offerClass->update_offer($offerId, $name, $schools, $scholarship, $dictionary_id, $thumbnail,  $image_url, $importance, $active,$recommend);
 
     }else{
-        echo $offerClass->insert_offer($name, $schools, $scholarship, $dictionary_id,  $image_url, $importance, $active,$recommend);
+        echo $offerClass->insert_offer($name, $schools, $scholarship, $dictionary_id, $thumbnail,  $image_url, $importance, $active,$recommend);
     }
 
 }else{

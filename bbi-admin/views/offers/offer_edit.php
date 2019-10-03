@@ -100,17 +100,38 @@ $dictionaries =  $dicModel->get_dictionaries_byid(12);
                                 <div class="col-auto">
                                     <div style="width:300px;  text-align:center;" class="mb-3">
                                         <div class="card">
+                                            <div class="card-header">
+                                                缩略图
+                                            </div>
                                             <div class="card-body">                                           
-                                                <img ID="iLogo" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=240X240像素" : $data['image_url']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x240?text=240X240像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                               
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 图片...</button>
+                                                <button type="button" id="btnTumbnail" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 图片...</button>
+                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                 
+                                </div>
+                                <div class="col-md-auto">
+                                    <div style="width:300px;  text-align:center;" class="mb-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                大图
+                                            </div>
+                                            <div class="card-body">                                           
+                                                <img ID="ifullimage" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=240X240像素" : $data['image_url']; ?>" class="img-fluid" />
+                                              
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 选择图片...</button>
                                                 <input id="image_url" type="hidden" name="image_url" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" />
                                             </div>
                                         </div>
                                     </div>
-                                 
                                 </div>
                             </div>
 
@@ -141,19 +162,26 @@ $dictionaries =  $dicModel->get_dictionaries_byid(12);
 
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {
-            $('#image_url').val(fileUrl);
+            $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
    
-
+        function SetImageUrl(fileUrl) {
+            $('#image_url').val(fileUrl);
+            $('#ifullimage').attr('src', fileUrl);
+        }
+   
         $(document).ready(function() {
             //当前菜单
         //    alert("dddd");
             $(".mainmenu>li.offers").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
 
-
-            $("#btnBrowser").on("click", function () {         
+            $("#btnTumbnail").on("click", function () {         
                 singleEelFinder.selectActionFunction = SetThumbnail;
+                singleEelFinder.open();                
+            });   
+            $("#btnBrowser").on("click", function () {         
+                singleEelFinder.selectActionFunction = SetImageUrl;
                 singleEelFinder.open();                
             });       
 
