@@ -20,80 +20,174 @@ require_once("../../includes/common.php");
     <?php require_once('../../includes/header.php') ?>
     <!--banner-->
     <div class="banner banner-contact">
-        <div class="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-auto">
-                        <header class="title title-section wow slideInLeft">
-                            <h2>公司简介</h2>
-                        </header>
-                        <dl class="contact wow slideInUp" data-wow-delay=".3s">
-                            <dt>地址</dt>
-                            <dd><?php echo $site_info['address'] ?></dd>
-                            <dt>电话</dt>
-                            <dd><?php echo $site_info['phone'] ?></dd>
-                            <dt>邮箱</dt>
-                            <dd><?php echo $site_info['email'] ?></dd>
-                        </dl>
-                    </div>
-                    <div class="col-lg">
-                        <div id="map_canvas" class="map_canvas wow slideInUp">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="/img/banners/contact.jpg" class="bg-contact" alt="联系我们">
+       
     </div>
     <!--banner end-->
     <div class="page page-contact">
-
-
         <div class="container">
+            <div class="row t1">
+                <div class="col-md">
+                    <div class="title title-section wow fadeInUp">
+                        <h3>联系我们 <span>Contact us</span></h3>
+                        <p>专业的设备租赁服务平台，提供卓越的设备选择方案！</p>
+                    </div>
+                </div>
+                <div class="col-md-auto align-self-end wow fadeInUp">
+                    您的当前位置：<a href="/">主页</a> > <span class="current">联系我们</span>
+                </div>
+            </div>
+            <main class="maincontent">
             <div class="row">
+                <div class="col-md-auto">
+                        <aside class="navlist">
+                            <a href="#" class="wow fadeInUp">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="wow fadeInUp">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </aside>
+                        <aside class="navlist">
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </aside>
+                    </div>
 
-                <div class="col-md-7">
+
+                <div class="col-md">
+                    <div class="content">
+                      
+                            <div class="title title-section-v1 wow fadeInUp">
+                                    <h3>免费获取策划方案</h3>
+                                </div>
                     <div class="contact-form wow slideInUp">
-                        <h3 class="title">
-                            在线留言
-                        </h3>
-                        
-                        <form class="clear" action="contact_send.php" method="post" id="editform">
+          
+                        <form class="wow fadeInUp" action="contact_send.php" method="post" id="editform">
                             <div class="form-group">
-                                <input name="name" class="form-control" type="text" placeholder="请输入您的姓名*" />
+                                <input name="name" class="form-control" type="text" placeholder="您的称呼" />
                             </div>                     
                             <div class="form-group">
-                                <input name="phone" class="form-control" type="text" placeholder="请输入您的联系方式*" />
+                                <input name="phone" class="form-control" type="text" placeholder="您的电话" />
+                            </div>      
+                            <div class="form-group">
+                                <input name="company" class="form-control" type="text" placeholder="公司或单位名称" />
                             </div>                      
                             <div class="form-group">
-                                <textarea name="message" class="form-control" placeholder="输入内容*" rows="6"></textarea>
+                                <textarea name="message" class="form-control" placeholder="感谢您在百忙之中光临，如果时间允许，可简要地填写您的需求或直接  拨打我司电话（选填）。" rows="6"></textarea>
                             </div>
                             <div class="error"></div>
-                            <div class="row actions">
-                                <div class="col-md-auto">
-                                    <button type="submit" class="btn-send">提 交</button>
-                                </div>
-                                <div class="col-md">
-                                    <p class="note">我们会收到您的留言后，1-2工作日回复到您</p>
-                                </div>
+                            <div class="actions">
+                            
+                                    <button type="submit" class="btn btn-primary">确认提交</button>
+                           
+                            
                             </div>
                         
                         </form>
                     </div>
+               
                 </div>
-                <div class="col-md-5">
-                    <div class="qrcode wow slideInUp">
-                        <h3 class="title">
-                            关注我们
-                        </h3>
-                        <div class="qrcontainer">
-                            <img src="<?php echo $site_info['qrcode']; ?>" alt="公众号">
-                            <p>扫一扫关注微信公众号</p>
+                <div class="content">
+                <div class="box">
+                    <div class="title title-section-v1 class="wow fadeInUp">
+                        <h3>免费获取策划方案</h3>
+                    </div>
+                    <div id="map_canvas" class="map_canvas wow slideInUp"></div>
+                    <div class="row wow fadeInUp">
+                        <div class="col-md">
+                            <dl class="contactlist">
+                                <dd>值班经理手机（24h）：13816723908（邓经理）</dd>
+                                <dd>
+                                电话：0755-8888 8888 / 0755-6666 6666
+                                </dd>
+                                <dd>咨询QQ：2657218519</dd>
+                                <dd>
+                                    总公司地址：深圳市龙岗区布吉街道龙岗大道布吉街道龙岗大道1188-88号
+                                </dd>
+                                <dd>分公司地址：深圳市龙岗区布吉街道龙岗大道布吉街道龙岗大道1188-88号</dd>
+                            </dl>
+                            
+                        </div>
+                        <div class="col-md-auto">
+                            <img src="<?php echo $site_info['qrcode']; ?>" class="qrcode" alt="公众号">
                         </div>
                     </div>
                 </div>
+                </div>
+       
+                </div>
             </div>
+            </main>
         </div>
     </div>
 

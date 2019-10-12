@@ -1,65 +1,57 @@
 .page-news{
     
-
-    .subnav{
-        text-align: center;
-        margin-bottom: 4rem;
-        a{
-            display: inline-block;
-            margin: 0 .1rem;
-            padding: .3rem 1rem;
-            &.active{
-                background-color: $color-primary;
-                color: #fff;
-            }
-        }
-    }
-    .recommed{
-        margin-bottom: 3rem;
-        a{
-            display: block;
-            position: relative;
-            overflow: hidden;
-            img{
-                display: block;
-                transition: all .2s;
-            }
-            h3{
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                z-index: 100;
-             padding: .6rem 1rem;
-                font-size: 14px;
-                background-color: rgba(28,90,45,.85);
-                color: #fff;
-                margin: 0;
-                width: 100%;
-            }
-            &:hover{
-                img{
-                    transform: scale(1.2);
-                }
-            }
-        }
-    }
-
     
 .list-articles{
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+  
+  
     margin-bottom: 1rem;
     @include respond-above(sm) {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
-    @include respond-above(md) {
-        margin-bottom: 3rem;
-    }
+
     .item{
-       
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+       background-color: #fff;
+       margin-bottom: rem(30);
+   .pic{
+       display: block;
+       width: 260px;height: 170px;
+            img{
+            width: 260px;height: 170px;
+            object-fit: cover;
+            object-position: center center; display: block;
+            }
+        }
+        .txt{
+            padding: .8rem 1rem .8rem 0;
+
+            h3{
+                font-size: rem(18);
+                border-bottom: 1px #e5eaeb solid;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                width: 480px;
+                margin: 0;
+                padding-bottom: .4rem;
+                
+            }
+            p{
+                text-align: justify;max-height: 50px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .more{
+                display: inline-block;
+                color: #fff;
+                height: 22px;
+                line-height: 22px;
+                border-radius: 11px;
+                background-color: $color-accent;
+                font-size: 12px;
+                padding: 0 .8rem;
+            }
+        }
+
         a{
             color: #666;
             font-size: rem(20);

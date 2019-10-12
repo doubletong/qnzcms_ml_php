@@ -35,45 +35,43 @@ $data  = json_decode($model['config_values'], true);
                         <div class="card-body">
                             <input type="hidden" name='config_type' value="site_info" />
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="sitename">网站名称</label>
                                         <input type="text" class="form-control" id="sitename" name="sitename" placeholder="" value="<?php echo !empty($data['sitename']) ? $data['sitename'] : ""; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="username">备案号</label>
                                         <input type="text" class="form-control" id="webnumber" name="webnumber" placeholder="" value="<?php echo !empty($data['webnumber']) ? $data['webnumber'] : ""; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="phone">联系电话</label>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="<?php echo !empty($data['phone']) ? $data['phone'] : ""; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="email">企业邮箱</label>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?php echo !empty($data['email']) ? $data['email'] : ""; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="email_contact">联系表单接收邮箱</label>
                                         <input type="email" class="form-control" id="email_contact" name="email_contact" placeholder="" value="<?php echo !empty($data['email_contact']) ? $data['email_contact'] : ""; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="email_contact">控制台主题</label>
                                         <select class="form-control" id="theme" name="theme">
-                                            <option value="black" <?php echo (!empty($data['theme'])&& $data['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
-                                        </select>    
-                                                                    
+                                            <option value="black" <?php echo (!empty($data['theme']) && $data['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
+                                        </select>
                                     </div>
-  
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -84,53 +82,61 @@ $data  = json_decode($model['config_values'], true);
                             </div>
 
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row align-items-center">
 
-                            <div class="row align-items-center">
-
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="title">Logo</label>
-                                        <div class="input-group">
-                                            <input id="logo" name="logo" class="form-control" value="<?php echo !empty($data['logo']) ? $data['logo'] : ""; ?>" aria-describedby="setLogo">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="setLogo" type="button">浏览…</button>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="title">Logo</label>
+                                                <div class="input-group">
+                                                    <input id="logo" name="logo" class="form-control" value="<?php echo !empty($data['logo']) ? $data['logo'] : ""; ?>" aria-describedby="setLogo">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" id="setLogo" type="button">浏览…</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <?php if (!empty($data['logo'])) { ?>
+                                            <div class="col-auto">
+                                                <div style="background-color:#ccc;padding:5px;">
+                                                    <img src="<?php echo $data['logo']; ?>" id="img_logo" style="max-height:80px;" />
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
-                                <?php if (!empty($data['logo'])) { ?>
-                                    <div class="col-auto">
-                                        <div style="background-color:#ccc;padding:5px;">
-                                            <img src="<?php echo $data['logo']; ?>" id="img_logo" style="max-height:80px;" />
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="title">Logo2</label>
-                                        <div class="input-group">
-                                            <input id="logo2" name="logo2" class="form-control" value="<?php echo !empty($data['logo2']) ? $data['logo2'] : ""; ?>" aria-describedby="setLogo2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="setLogo2" type="button">浏览…</button>
+                                <div class="col-md-6">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="title">Logo2</label>
+                                                <div class="input-group">
+                                                    <input id="logo2" name="logo2" class="form-control" value="<?php echo !empty($data['logo2']) ? $data['logo2'] : ""; ?>" aria-describedby="setLogo2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" id="setLogo2" type="button">浏览…</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <?php if (!empty($data['logo2'])) { ?>
+                                            <div class="col-auto">
+                                                <div style="background-color:#ccc;padding:5px;">
+                                                    <img src="<?php echo $data['logo2']; ?>" id="img_logo2" style="max-height:80px;" />
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
-                                <?php if (!empty($data['logo2'])) { ?>
-                                    <div class="col-auto">
-                                        <div style="background-color:#ccc;padding:5px;">
-                                            <img src="<?php echo $data['logo2']; ?>" id="img_logo2" style="max-height:80px;" />
-                                        </div>
-                                    </div>
-                                <?php } ?>
                             </div>
 
-                          
+
+
+
+
+
                             <div class="row align-items-center">
-                            <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="wechat">微信号</label>
                                         <input type="text" class="form-control" id="wechat" name="wechat" placeholder="" value="<?php echo !empty($data['wechat']) ? $data['wechat'] : ""; ?>">
@@ -153,7 +159,7 @@ $data  = json_decode($model['config_values'], true);
                                     </div>
                                 <?php } ?>
                             </div>
-<!-- 
+                            <!-- 
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="form-group">
@@ -196,8 +202,26 @@ $data  = json_decode($model['config_values'], true);
                         
                      
                             </div> -->
-
-
+                            <h3 class="title">
+                                SEO优化
+                            </h3>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="keywords">关键字</label>
+                                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="多个关键字请用英文逗号隔开" value="<?php echo !empty($data['keywords']) ? $data['keywords'] : ""; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="description">描述</label>
+                                        <textarea rows="3" class="form-control" id="description" name="description" ><?php echo !empty($data['description']) ? $data['description'] : ""; ?></textarea>
+                                    </div>
+                                </div>
+                                
+                     
+                            </div>
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
@@ -274,9 +298,9 @@ $data  = json_decode($model['config_values'], true);
                     }
 
                 },
-                messages:{
+                messages: {
                     sitename: {
-                        required:"请输入网站名称"
+                        required: "请输入网站名称"
                     },
                     email: {
                         email: "请输入有效的邮件地址"

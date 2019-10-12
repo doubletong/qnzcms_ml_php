@@ -174,7 +174,7 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
 
 
             <nav aria-label="Page navigation">                
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pager.phtml") ?>                            
+                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
                 </nav>
 
         </div>

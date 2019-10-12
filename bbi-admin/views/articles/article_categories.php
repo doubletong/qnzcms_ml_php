@@ -1,7 +1,6 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once('../../../includes/PDO_Pagination.php');
 require_once('../../data/article_category.php');
 
 require '../../../vendor/autoload.php';
@@ -64,7 +63,7 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
                     </form>
                 </div>
                 <div class="col-auto">
-                    <a href="article_category_add.php?did=<?php echo $did;?>" class="btn btn-primary">               
+                    <a href="article_category_edit.php?did=<?php echo $did;?>" class="btn btn-primary">               
                         <i class="iconfont icon-plus"></i>  添加分类                         
                     </a>
                 </div>
@@ -73,7 +72,7 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
                 <thead>
                 <tr>
           
-                    <!-- <th>图标</th> -->
+                    <th>图标</th>
              
                     <th>标题</th>
                     <th>排序</th>
@@ -87,11 +86,11 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
                 {
                     echo "<tr>";
                 ?>
-                    <!-- <td>
+                    <td>
                         <?php if(!empty($row['thumbnail'])){ ?> 
                             <img src="<?php echo $row['thumbnail'] ;?>" alt="<?php echo $row['title'] ;?>" style="max-height:50px;display:block;">
                         <?php } ?>
-                    </td>  -->
+                    </td> 
                     <td><?php echo $row['title'] ;?></td> 
                     <td><?php echo $row['importance'] ;?></td>         
                     <td><?php echo date("Y-m-d H:i",$row['added_date']);?></td>
@@ -113,7 +112,7 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
 
 
             <nav aria-label="Page navigation">                
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pager.phtml") ?>                            
+                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
                 </nav>
         </div>
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/footer.php'); ?>

@@ -4,31 +4,16 @@ body {
     text-rendering: optimizeLegibility;
     color: #666;
     font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    background-color: #fff;
+    font-size: rem(14);
+    background-color: #f6f6f6;
     line-height: 1.8;
     margin: 0;    
     padding: 0;
-    padding-bottom:1rem;
-    @include respond-above (md) {
-        font-size: rem(12);
-        padding-bottom: 2rem;
-    }
-    @include respond-above (lg) {
-        font-size: rem(14);
-        margin-left: 320px; padding-bottom:3rem;
-    }
-    @include respond-above (xlg) {
-        font-size: 1rem;
-        margin-left: 360px;
-        padding-bottom: 4rem;
-    }
 
-    
 }
-
 a {
     background: transparent;
-    color: #333;
+    color: #666;
     text-decoration: none;
     -webkit-transition: color .2s;
     transition: color .2s;
@@ -227,100 +212,43 @@ input,textarea,button{
 }
 
 
-.title-section{
-    text-align: center;
-    margin-bottom: 1.5rem;
-    @include respond-above(sm) {
-        margin-bottom: 3rem;
-    }
-    h2{
-        font-size: rem(24);
-        position: relative;
-        padding-top: 1rem;
-        margin-top: 0;
-        margin-bottom: 0;
-        font-family: 'DINCond';
-        color: $color-primary;
-        display: inline-block;
-        line-height: 1;
-        text-transform: uppercase;
+.title-section{   
+   
+    h3{
+        font-size: rem(18);     
         @include respond-above(sm) {
-            font-size: rem(28);
+            font-size: rem(20);
         }
         @include respond-above(md) {
-            font-size: rem(32);
+            font-size: rem(22);
         }
-        @include respond-above(lg) {
-            font-size: rem(36);
+        span{
+            font-weight: lighter;
         }
-        &::before,&::after{
-            position: absolute;
-            content: " ";
-            display: block;
-            background-color: $color-primary;
-            height:1px;
-            width: 50px;
-            top: 2.2rem;
-            left: -60px;          
-            z-index: 100;
-          
-        }
-        &::after{
-            left: auto;
-            right: -60px;          
-        }
+        margin: 0;
+       
     }
-    h3{
+    p{
         color: #333;margin: 0;
         font-weight: normal;
     }
 
-   
-    &.title-section_v2{
-        
-        h2{
-            color: #fff;
-            &::before{             
-               background-color: #fff;
-            }
-        }
-    }
+ 
 }
 .title-section-v1{
     text-align: left;
-    border-left: 8px $color-primary solid;
-    padding-left: .6rem;
-    margin-bottom: 3rem;
-    h2{
-        font-size: rem(24);      
-        font-family: 'DINCond';
-        color: $color-primary;      
-        line-height: 1;
-        margin: 0 0 .6rem;
-        text-transform: uppercase;
-        @include respond-above(sm) {
-            font-size: rem(28);
-        }
-        @include respond-above(md) {
-            font-size: rem(32);
-        }
-        @include respond-above(lg) {
-            font-size: rem(36);
-        }
-    }
+   border-bottom: 1px #e5eaeb solid;
+    
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
     h3{
-        margin: 0;line-height: 1;
-        font-size: rem(14);
-        @include respond-above(sm) {
-            font-size: 1rem;
-        }
-        @include respond-above(md) {
-            font-size: rem(18);
-        }
-        @include respond-above(lg) {
-            font-size: rem(20);
-        }
+        font-size: rem(18);      
+        line-height: 1;      
+        text-transform: uppercase;
+        border-left: 8px $color-primary solid;padding-left: .6rem;
+        margin: 0;
     }
+    
 }
 .title-section-v2{
     text-align: center;   
@@ -376,6 +304,68 @@ input,textarea,button{
         color: #999;
         &:hover{
             color: $color-primary;
+        }
+    }
+}
+.t1{
+    margin-bottom: 1rem;
+
+    .current{
+        text-decoration: underline;
+    }
+}
+.navlist{
+    width: 270px;
+    background-color: #fff;
+    margin-bottom: 30px;
+    a{
+        padding: 1.3rem 2.5rem;
+        display: block;
+        border-bottom: 1px #e5eaeb solid;
+     
+        .icon{
+            margin-right: .8rem;           
+            display: bold;
+            width:36px;
+           margin-top: .3rem;
+        }
+        &:last-child{
+            border-bottom: none;
+        }
+       
+        .more{
+            font-size: 12px;
+            border-radius: 10px;
+            height: 20px;line-height: 1;
+            background-color: $color-secondary;
+            color: #fff;
+            padding: 0 .8rem;
+            text-transform: uppercase;
+        }
+        &:hover{
+            .more{
+                
+                background-color:#ff4e4e;
+               
+            }
+        }
+    }
+   
+}
+
+.content{
+    padding: 30px;
+    background-color: #fff;
+    margin-bottom: 30px;
+    .box{
+        margin-bottom: 3rem;
+        p{
+            text-align: justify;
+            text-indent: 2em;
+        }
+        figure{
+            padding: 0;
+            margin: 0;
         }
     }
 }

@@ -11,9 +11,6 @@ $did = isset($_GET['did']) ? $_GET['did'] : "";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = $cateModel->fetch_data($id);
-} else {
-    header('Location: article_categories.php?did=' . $did);
-    exit;
 }
 
 $categories = $cateModel->fetch_all($did);
@@ -72,13 +69,13 @@ if($did==="6"){
                         </div>
 
                         <div class="card-body">
-                            <input id="categoryId" type="hidden" name="categoryId" value="<?php echo $data["id"]; ?>" />
-                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="<?php echo $data["dictionary_id"]; ?>" />
+                            <input id="categoryId" type="hidden" name="categoryId" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="<?php echo $did; ?>" />
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="title">主题</label>
-                                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $data["title"]; ?>">
+                                        <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                                     </div>
                                     <?php if($did=="6"){ ?>
                                     <div class="form-group">
@@ -102,52 +99,36 @@ if($did==="6"){
                                         </select>                          
                                     </div>
 
-                                    <div class="form-group">
-                                            <label for="product_ids">相关产品</label>                                    
-                                            <select class="form-control" id="product_ids" name="product_ids[]" multiple="multiple" >                                               
-                                                <?php foreach( $products as $product)
-                                                {
-                                                    if (in_array($product["id"], $selected)){  
-                                                    ?>
-                                                    <option value="<?php echo $product["id"]; ?>" selected><?php echo $product["title"]; ?></option>         
-                                                    <?php }else { ?>
-                                                        <option value="<?php echo $product["id"]; ?>"><?php echo $product["title"]; ?></option>         
-                                                <?php }  } ?>                                                            
-                                            </select>                          
-                                        </div>  
-
+                              
                                     <?php } ?>
                                     <div class="form-group">
                                         <label for="importance">排序</label>
-                                        <input type="number" class="form-control" id="importance" name="importance" value="<?php echo $data["importance"]; ?>" placeholder="值越大越排前">
+                                        <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance'])?$data['importance']:0; ?>" placeholder="值越大越排前">
                                     </div>
 
                                     <div class="form-group">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" <?php echo $data['active'] ? "checked" : ""; ?> id="chkActive" name="active">
+                                            <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
                                             <label class="form-check-label" for="chkActive">发布</label>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="col-auto">
-                                    <!-- <div style="width:300px; text-align:center;" class="mb-3">
+                                   <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <?php if($did=="6"){ ?>
-                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=580X400像素":$data['thumbnail'];?>" class="img-fluid" />
-                                                <?php }else{ ?>
-                                                    <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/100x100?text=45X45像素":$data['thumbnail'];?>" class="img-fluid" />
-                                                <?php } ?>
-                                           
+   
+                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x240?text=72X72像素":$data['thumbnail'];?>" class="img-fluid" />
+                                       
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
-                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail'];?>" />
+                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- 
                                     <?php if($did=="16"){ ?>
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">

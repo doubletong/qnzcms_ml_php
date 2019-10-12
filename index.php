@@ -42,7 +42,7 @@ $offers= $offerClass->recommend_offers(12);
 
 <body>
 
-    <?php require_once('includes/leftcol.php') ?>
+    <?php require_once('includes/header.php') ?>
 
     <div class="banner-home">
        <div class="about wow fadeInDown">

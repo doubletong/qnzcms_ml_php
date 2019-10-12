@@ -31,16 +31,16 @@
                             <i class="iconfont icon-reconciliation"></i> <span class="nav-text">订单管理</span>                    
                         </a>
                     </li> -->
-                    <!-- <li class="down-nav">
+                    <li class="down-nav cases">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-percentage"></i> <span class="nav-text">案例</span> 
                         </a>
                         <ul class="subnav">
-                            <li><a href="cases.php">案例管理</a></li>
-                            <li><a href="case_categories.php">案例分类</a></li>
+                            <li><a href="/bbi-admin/views/cases/index.php">案例管理</a></li>
+                            <li><a href="/bbi-admin/views/cases/case_categories.php">案例分类</a></li>
                         </ul>
-                    </li> -->                  
+                    </li>                  
                   
             
                     <li class="down-nav articles">
@@ -191,7 +191,6 @@
                             <li class="config_smtp"><a href="/bbi-admin/views/config/config_smtp.php"><i class="iconfont icon-mail-fill"></i> 邮件服务配置</a></li>
                         </ul>
                     </li>
-
                 </ul>
 
 

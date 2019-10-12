@@ -6,57 +6,86 @@
     top: 0;
     z-index: 3000;
     width: 100%;
-    background-color: transparent;
+    background-color: transparent;  background-color: #fff;
+  .topcol{
+      padding-top: rem(20);
+      padding-bottom: rem(20);
+    
+      .biaoyu{
+          border-left: 1px #d5d5d5 solid;
+          margin-left: rem(25);
+          padding-left: rem(25);
 
-  
-    .row-main{
-        height: 45px;
-        @media (min-width: 768px) {
-            padding-top: 10px;
-            height: 72px;
+          p{
+            font-size: 1rem;
+            margin: 0; 
+            color: $color-text-strong;
+            &.p1{
+              letter-spacing: .2px;
+            }
+            &.p2{
+                letter-spacing: 4px;
+            }
+        }
+      }
+     
+      .searchbox {
+        display: block;
+        padding:.4rem 1rem;      
+        background-color: #f6f6f6;
+        margin: 0 rem(20);
+        input {
+            width: 100%;
+            font-size: 1rem;
+            padding: .8rem 0;
+            background-color: transparent;
+            border: none;
+            outline: none;
+          
+        }
+
+        button {
+            background-color: transparent;
+            border: none;   
+            cursor: pointer;
+            padding: .8rem 0;
+
+            .iconfont {
+                font-size: rem(24);
+            }
         }
     }
-    .logo {
-        display: block;  
-        z-index: 9000;
-        width: 180px;height: 20px;
-        background: url(../img/logo.png) no-repeat left center;
-        background-size: cover;
-        @include respond-above(sm) {       
-            width: 228px;height: 27px;
-        }
-        @include respond-above(md) {       
-            margin-right: 2rem;
-        }
+      .contact{
+          .mobile{
+              font-size: rem(34);
+              background: url(../img/zx_03.png) no-repeat left center;
+              padding-left: 35px;
+              color: $color-primary;
+              line-height: 1;
+              margin-bottom: .5rem;
+          }
+          .by{
+              padding:0 0 0 .3rem;
+              background-color: #f1f1f1;
+              letter-spacing: .165rem;
+          }
+      }
+  }
 
+    .logo {
+        display: block;       
         img {
-            max-width: 100%;
-            transition: all .2s;
             display: block;
         }
     }
 
-    .langs{
-      
-        a{
-            color: #fff;
-            display: inline-block;
-            width: 40px;height: 40px;
-            margin-right: 1rem;
-            text-align: center;        
-            background:rgba(232,56,13,.1);
-            border-radius: 2px;
-            line-height: 40px;
-            @include respond-above(md) {       
-                color: $color-primary;
-            }
-        }
-    }
-    .pcmainav{
+    .mainav-container{
+        background-color: $color-primary;
+        height: 44px;
         .mainav {
             @include reset-list;
             display: none;
-
+            text-align: center;
             @include respond-above(md) {
                 display: block;
             }
@@ -69,22 +98,14 @@
                     display: block;
                     color: #fff;
                     position: relative;
-                    padding: .3rem .8rem;
-                    @include respond-above(lg) {
-                        padding: .3rem 1.5rem;
-                    }
+                    height: 44px;
+                    line-height: 44px;
+                    padding: 0 2rem;
+                    font-weight: bold;
+                   
                 }
                 &.active{
-                    &::before{
-                        position: absolute;
-                        content: " ";
-                        display: block;
-                        left: 1.5rem;
-                        top: -1.3rem;
-                        width: 12px;height: 24px;
-                        background: url(../img/menu_current.png) no-repeat center center;
-                        z-index: 100;
-                    }
+                    background-color: lighten($color-primary,10%);
                 }
                 &.down{
                     
@@ -116,18 +137,16 @@
                                 }
                             }
                         }
-                    }
-                  
-                }
-
-              
+                    }                  
+                }              
             }
         }
     }
-    
+   
+  
 
     &.fixheader {
-        background-color: rgba(232, 56, 13,.9);
+     
         position: fixed;
         left: 0;
         top: 0;
@@ -147,135 +166,8 @@
         }
     }
 
-    .searchbox {
-        display: none;
-    }
-
-    &.forSearch {
-        height: 250px;
-        background-color: $color-accent;
-
-        .searchbox {
-            display: block;
-            padding-top: 2.5rem;
-            border-bottom: 1px #fff solid;
-
-            input {
-                width: 100%;
-                font-size: rem(30);
-                padding: .8rem 1rem;
-                background-color: transparent;
-                border: none;
-                outline: none;
-                color: #fff;
-            }
-
-            button {
-                background-color: transparent;
-                border: none;
-                color: #fff;
-                cursor: pointer;
-                padding: .8rem;
-
-                .iconfont {
-                    font-size: rem(30);
-                }
-            }
-        }
-    }
 }
 
-.bg_white{
-    .site-header {  
-        .logo{
-            background: url(../img/logo_v1.png) no-repeat left center;
-            background-size:cover;
-        }
-        .langs{      
-            a{                  
-                background-color: transparent;    
-                color:#333;
-                @include respond-above(md) {
-                    background-color: #eee;    
-                }           
-            }
-        }
-        .pcmainav{
-            .mainav {                
-        
-                &>li {
-                  
-                    &>a {                     
-                            color: #333;                     
-                        }  
-
-                        &.active{
-                            &::before{
-                               
-                                background: url(../img/menu_current_v1.png) no-repeat center center;
-                              
-                            }
-                        }
-                    }
-                   
-                }
-            }
-            .one,
-            .two,
-            .three {
-              
-                background-color: #333;
-               
-            }
-            &.fixheader {
-             
-                .logo{
-                    background: url(../img/logo.png) no-repeat left center;
-                    background-size: cover;
-                }
-                .langs{      
-                    a{                  
-                        background-color: transparent;    
-                        color: $color-primary;  
-                        @include respond-above(md) {
-                            background-color: #eee;  
-                            color:$color-primary;  
-                        }           
-                    }
-                }
-                .pcmainav{
-                    .mainav {
-                      
-                        &>li {                           
-                        
-                            &>a {                          
-                                color: #fff;                     
-                            }
-                            &.active{
-                                &::before{                                   
-                                    background: url(../img/menu_current.png) no-repeat center center;                                   
-                                }
-                            }
-                           
-            
-                        }
-                    }
-                }
-                .one,
-                .two,
-                .three {
-                  
-                    background-color: #fff;
-                   
-                }
-        
-        
-            }
-       
-
-
-    }
-}
 
 
 .menu-col{

@@ -151,11 +151,7 @@ $tree = buildTree($categories);
                                             var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
                                                 filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder,
-                                                // filebrowserBrowseUrl: '/js/vendor/ckfinder/ckfinder.html',
-                                                // filebrowserImageBrowseUrl: '/js/vendor/ckfinder/ckfinder.html?type=Images',
-                                                // filebrowserUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                                                // filebrowserImageUploadUrl: '/js/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                                filebrowserImageBrowseUrl: elFinder,                                  
                                                 allowedContent: true                  
                                             });
                                         </script>

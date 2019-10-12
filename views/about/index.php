@@ -15,118 +15,140 @@ $data = $pageClass->fetch_data("about");
 </head>
 
 <body>
-    <?php require_once('../../includes/leftcol.php') ?>
-    <div class="banner banner-about"  style="background-image:url('/assets/img/banners/about.jpg')">
-        <div class="container title-page ">
-            <h1>ABOUT UPERCENT</h1>
-            <p>关于我们</p>
-        </div>
+    <?php require_once('../../includes/header.php') ?>
+    <div class="banner banner-about" style="background-image:url('/assets/img/banners/about.jpg')">
+
     </div>
-       <!-- <?php  echo $data["content"]; ?> -->
-    <div class="page page-about">       
-        <section class="s1 container"> 
-            <div class="logo wow fadeInUp">
-                <img src="/assets/img/logo_min.png" alt="天艺•优普森">
-            </div>
-           <div class="intro wow fadeInUp">
-               <p >
-                    <strong>天艺•优普森国际艺术学院</strong>（T-world Upercent），是深圳广电集团与TCL集团联合成立的，深圳地区唯一一家<strong>具有官方背景的艺术学院</strong>。学院是依托深圳广电集团10大电视频道、4大电台频率、TCL集团3000万智能电视所组成的融媒体播出平台，通过覆盖全国9亿以上家庭人群，充分发挥双方集团强大的内容制作、宣传播出、演艺经营、影视文娱教育投资产业链综合实力，所全力打造的国际青少年艺术教育高端平台。
-               </p>
-           </div>     
-        </section>
-        <section class="s2">
-            <div class="container">
-                <div class="title-section-v1 wow slideInUp">
-                    <h2>CONTACT US</h2>
-                    <h3>联系我们</h3>
-                </div>
-                <div class="contacts">
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="item wow fadeInUp">
-                                <div class="icon">
-                                    <i class="iconfont icon-marker"></i>                                 
-                                </div>
-                                <div class="t1">地址</div>
-                                <p><?php echo $site_info['address']; ?></p>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="item wow fadeInUp"  data-wow-delay=".2s">
-                                <div class="icon">
-                                    <i class="iconfont icon-dianhua1"></i>
-                                    
-                                </div>
-                                <div class="t1">联系电话</div>
-                                    <p><?php echo $site_info['phone']; ?></p>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="item wow fadeInUp" data-wow-delay=".4s">
-                                <div class="icon">
-                                    <i class="iconfont icon-wechat"></i>
-                                    
-                                </div>
-                                <div class="t1">微信</div>
-                                    <p><?php echo $site_info['wechat']; ?></p>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="item wow fadeInUp" data-wow-delay=".6s">
-                                <div class="icon">
-                                    <i class="iconfont icon-email"></i>
-                                   
-                                </div>
-                                <div class="t1">邮箱</div>
-                                    <p><?php echo $site_info['email']; ?></p>
-                            </div>
-                        </div>
+    <!-- <?php // echo $data["content"]; ?> -->
+    <div class="page page-about">
+        <section class="container">
+            <div class="row t1">
+                <div class="col-md">
+                    <div class="title title-section">
+                        <h3>公司简介 <span>Company Profile</span></h3>
+                        <p>专业的设备租赁服务平台，提供卓越的设备选择方案！</p>
                     </div>
+                </div>
+                <div class="col-md-auto align-self-end">
+                    您的当前位置：<a href="/">主页</a> > <span class="current">公司简介</span>
                 </div>
             </div>
 
-        </section>
-        <section class="s3 container">
-            <div class="title-section-v1 wow slideInUp">
-                <h2>JOIN US</h2>
-                <h3>加入我们</h3>
-            </div>
-            <div class="join">
+            <main class="maincontent">
                 <div class="row">
+                    <div class="col-md-auto">
+                        <aside class="navlist">
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </aside>
+                        <aside class="navlist">
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto">
+                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
+                                    </div>
+                                    <div class="col">
+                                        灯光音箱
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="more">more</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </aside>
+                    </div>
                     <div class="col-md">
-                        <div class="txt-bg  wow slideInUp">
-                            <div class="txt">
-                                <p>浓厚的艺术氛围、轻松舒适的工作环境，年轻富有激情的团队…… 给你带来不一样的工作体验。</p>
-                                <p>如对以下职位感兴趣，欢迎邮件联系 hr@upercent.net，请在求职邮件中注明应聘职位并附上个人简历。温暖的 U%大家庭等着你喔！</p>
+                        <div class="content">
+                            <div class="box">
+                                <div class="title title-section-v1">
+                                    <h3>关于红橡树</h3>
+                                </div>
+                                <figure>
+                                    <img src="/assets/img/about_01.jpg" alt="">
+                                </figure>
+                                <p>上海轩悦视听设备有限公司总部位于上海，专注于为演出和高端会议提供一站式的AV设备租赁与技术支持。轩悦视听在北京、广州和深圳设有分公司，当地拥有大型仓库和技术团队，提供灯光音响租赁、LED屏租赁、投影机租赁、同传设备租赁在内的视听和会议设备的租赁，以及从进场彩排、现场执行到结束撤场的完善技术服务，是您举办演出、年会、发布会、国际论坛和峰会的理想合作伙伴。</p>
+                                <p>公司用于租赁的设备均为进口和国际高端品牌，每年数百场次的执行经验是您活动顺利完成的重要保证。轩悦视听致力于为客户的活动打造完美的视听盛宴，在选用国际一线品牌设备的前提下，我们严把技术和执行环节，从场地测量、方案设计、现场协调和技术执行均采用严格流程，根据项目活动安排对口的技术骨干全程负责，以服务和现场效果赢得客户对我们的长期信赖。</p>
+                            </div>
+                            <div class="box">
+                                <div class="title title-section-v1">
+                                    <h3>红橡树的优势</h3>
+                                </div>
+                                <figure>
+                                    <img src="/assets/img/about_01.jpg" alt="">
+                                </figure>
+                                <p>上海轩悦视听设备有限公司总部位于上海，专注于为演出和高端会议提供一站式的AV设备租赁与技术支持。轩悦视听在北京、广州和深圳设有分公司，当地拥有大型仓库和技术团队，提供灯光音响租赁、LED屏租赁、投影机租赁、同传设备租赁在内的视听和会议设备的租赁，以及从进场彩排、现场执行到结束撤场的完善技术服务，是您举办演出、年会、发布会、国际论坛和峰会的理想合作伙伴。</p>
                             </div>
                         </div>
-                      
                     </div>
-                    <div class="col-md">
-                        <div class="job  wow slideInUp"   data-wow-delay=".2s">
-                            <h3>艺术导师：</h3>
-                            <dl>
-                                <dt>岗位职责： </dt>
-                                <dd>1.根据U%艺术教育课程体系教授艺术相关课程；</dd>
-                                <dd>2.指导、帮助学生完成其专业方向的作品集；</dd>
-                                <dd>3.帮助学生整理完成相关申请资料等。</dd>
-                            </dl>
-                            
-                            <dl>
-                                <dt>任职要求： </dt>
-                                <dd>1.教育背景：海外留学艺术专业背景，MA为主，BA能力强者； </dd>
-                                <dd>2.形象气质良好，有较强的亲和力和表达能力； </dd>
-                                <dd>3.有相关教学经验优先。</dd>
-                            </dl>
- 
-                        </div>
-                    </div>
+
                 </div>
-            </div>
-        </section>
-        <section class="s4  wow slideInUp" id="map_canvas">
+            </main>
 
         </section>
+
     </div>
 
 
@@ -135,17 +157,16 @@ $data = $pageClass->fetch_data("about");
     <?php require_once('../../includes/scripts.php') ?>
     <script src="http://api.map.baidu.com/api?v=2.0&ak=G7h0sKsr60IFU3OrHRmKTRzD"></script>
     <script>
-
-         // 百度地图API功能
-         var map = new BMap.Map("map_canvas");
+        // 百度地图API功能
+        var map = new BMap.Map("map_canvas");
 
 
         map.addControl(new BMap.NavigationControl());
         map.enableScrollWheelZoom(); //启用滚轮放大缩小，默认禁用
         map.enableContinuousZoom(); //启用地图惯性拖拽，默认禁用
 
-        map.centerAndZoom(new BMap.Point(113.933831,22.579872), 12);
-        var point = new BMap.Point(113.933831,22.579872);
+        map.centerAndZoom(new BMap.Point(113.933831, 22.579872), 12);
+        var point = new BMap.Point(113.933831, 22.579872);
 
         //var myIcon = new BMap.Icon("/Content/img/marker.png", new BMap.Size(132, 132));
         //var marker1 = new BMap.Marker(point, { icon: myIcon });  // 创建标注
@@ -166,8 +187,8 @@ $data = $pageClass->fetch_data("about");
         //marker1.openInfoWindow(infoWindow1);
 
         $(document).ready(function() {
-        
-      
+
+
         });
     </script>
 </body>
