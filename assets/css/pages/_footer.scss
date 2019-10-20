@@ -1,137 +1,222 @@
 
-.site-footer {   
-    padding-top: 3rem;     
-    background-color: #fff;
-    .top{
-        margin-bottom: 3rem;
-    }
-    .title{
-        font-weight: bold;
-        font-size: rem(14);
-        color: $color-text-strong;  margin-bottom: .6rem;
-        text-transform: uppercase;
-        &::after{
-            content: " ";
-            display: block;
-            width: 42px;height: 2px;
-            background-color: $color-primary;
-            margin-top: .4rem;
-          
-        }
-    }
-    .nav1{
-        margin-bottom: 1rem;
-       
-    }
-    .contact{
-        border-bottom: 1px #e5eaeb solid;
-        margin-bottom: 1rem;
-        .phone{          
-            font-size: 22.228px;            
-            color: $color-primary;
-            font-weight: lighter;        
-            line-height: 1;   
-            margin-bottom: 0;            
-        }
-    }
-    .qrcode{
-        display: block;
-        border:1px $color-secondary solid;
-        width: 95px;height: 95px;
-    }
-    .formcontact{
-        max-width: 406px;
-        input{
-            width: 100%;
-            border:1px $color-secondary solid;
-            border-radius: 13px;
-            height: 26px;
-            margin-bottom: .6rem;
-            padding: 0 .8rem;
-            outline: none;
-        }
-        button{
-            width: 100%; border-radius: 13px; outline: none;
-            height: 26px;
-            background-color: $color-primary;
+.site-footer {
+    background:$color-primary;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+clear: both;
+    color: #afbef4;
+    overflow: hidden;
+
+    a {
+        color: #94acce;
+        &:hover {
             color: #fff;
-            border:none;
-            cursor: pointer;
-            &:hover{
-                background-color: darken($color-primary,10%);
+        }
+    }
+    .designby{
+        margin-left: .6rem;
+    }
+    .footer-navs {
+        margin-bottom: 1.5rem;
+        display: none;
+        @include respond-above(md) {
+           display: flex;
+        }
+        dl{
+            margin: 0;
+            dt{
+                font-size: rem(18);
+                color:#e3eeff;
+                margin-bottom: 1.5rem;
+            }
+            dd{
+                margin: 0;
+                font-size: rem(14);
+                margin-bottom: .8rem;
             }
         }
+
+  
+
     }
-    nav{
+
+.f-s2{
+    margin-bottom: 2rem;
+    text-align: center;
+    @include respond-above(md) {
+        text-align: left;
+     }
+}
+
+    .sinawechat{
         a{
             display: inline-block;
-            &::after{
-                content: "/";
-                display: inline-block;
-                margin: 0 .4rem 0 .5rem;
-                color: $color-text-weak;
+            width: 36px;
+            height: 36px; line-height: 36px;
+            border-radius: 3px;
+            background-color: #6b8ac7;
+            color: #050823;
+            text-align: center;
+            margin: 0 .4rem 1rem; 
+            @include respond-above(md) {
+                width: 50px;
+                height: 50px; line-height: 50px;
+                border-radius: 6px;  margin: 0 .4rem 0; 
+                
+             }
+            .iconfont{
+                font-size: rem(18);
+                @include respond-above(md) {
+                    font-size: rem(36); 
+                 }
             }
-            &:last-child{
-                &::after{
-                   display: none;
+
+            &.wechat{
+                position: relative;
+                .qr{
+                    position: absolute;
+                    width: 120px;bottom: 58px;
+                    left: 50%;
+                    margin-left: -60px;
+                    z-index: 200;
+                    display: none;
+                    transition: all .2s;
+                    img{
+                        width: 120px;
+                        display: block;
+                    }
+                    &::after{
+                        display: block;
+                        content: " ";
+                        position: absolute;
+                        width:0;bottom:0;
+                        height: 0;
+                        left: 50%;
+                        margin-bottom: -12px;
+                        margin-left: -6px;
+                        border: #fff 6px solid;
+                        border-bottom-color: transparent;
+                        border-left-color: transparent;
+                        border-right-color: transparent;
+                        z-index: 200;
+                    }
                 }
+
+                &:hover{
+                    .qr{
+                        display: block;
+                    }
+                }
+                
             }
         }
     }
-    dd{
-        margin: 0;
+
+    .copyright {
+        border-top: 1px #afbef4 solid;
+        text-align: center;
+        padding-top: 1rem;   font-size: rem(12);
+        @include respond-above(md) {
+            font-size: rem(14);
+         }
     }
-    .bot{
-        background-color: $color-text-strong;
-        color:#fff;
-        padding: .6rem 0;
-        a{
-            color: #fff;
-            &:hover{
-                color: $color-primary;
-            }
-        }
-    }
+
 }
 
 .qqservice {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    z-index: 2000;    
+    z-index: 2000;
+    width: 3rem;
 }
 
 .totop {
     display: block;
-    width: 45px;
-    height: 45px; 
-    line-height: 43px;
-    border: 1px solid #000;   
+    width: 3rem;
+    height: 3rem;
     text-align: center;
-    transition: all .2s;
-    background-color: #fff;
-    color: #000;
-    @include respond-above(md) {
-        width: 60px;
-        height: 60px; 
-        line-height: 56px;
-        border: 2px solid #000;  
-     }
-    .iconfont{
-        font-size: 22px;
-        @include respond-above(md) {
-            font-size: 28px;
-         }
-    }
-   
+    line-height: 3rem;
 
-    @include hover {
-        border-color: $color-primary;  
-        color:  $color-primary;  
+    border-radius: 50%;
+    opacity: .5;
+    transition: opacity .2s;
+    background-color: $color-primary;
+    color: #000;
+
+    &:hover {
+        opacity: 1;
     }
 
     @include respond-above(sm) {
         bottom: 2rem;
         right: 2rem;
+    }
+}
+.over001{
+    position: fixed;
+    background-color: rgba(0,0,0,.6);
+    top: 0; left:0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    display: none;
+    .mesbox{
+       padding: 2rem 3rem;
+            background-color: rgb(56, 81, 147);
+            box-shadow: 0px 4px 60px 0px rgba(0, 10, 26, 0.3);
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            margin-left: -430px;
+            width: 859px;
+            height: 467px;
+            z-index: 5;
+            h3.title-msg{
+                font-size: rem(36);
+                color: rgb(95, 215, 255);
+                margin-top: 0;
+                   
+            }
+          
+            p{
+                font-size: rem(18);
+                color:#fff;
+                font-weight: lighter;
+                margin-bottom: 1.5rem;
+            }
+            .btnCloseMsg{
+                position: absolute; top: 1rem;
+                right: 1rem;
+                z-index: 100;
+              
+                line-height: 1;
+                .iconfont{
+                    font-size: 1.375rem;
+                }
+            }
+          .actions{
+              text-align: center;
+              a{
+               
+                    border-width: 1px;
+                    border-color: rgb(93, 242, 255);
+                    border-style: solid;
+                    border-radius: 4px;            
+                    width: 136px;
+                    height: 47px;
+                display: inline-block;
+                line-height: 45px;
+                color: rgb(93, 242, 255);
+                margin: 2rem 2rem;
+
+                @include hover{
+                    background-color:  rgb(93, 242, 255);
+                    color:  rgb(56, 81, 147);
+                }
+                
+                  
+              }
+          }
     }
 }

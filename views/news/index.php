@@ -133,7 +133,7 @@ $recommendArticles = $articleClass->get_laster_recommend_articles(3);
                       
                     </div>
                 </div>
-        </div>
+</main>
 
 
 

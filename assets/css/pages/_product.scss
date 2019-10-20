@@ -1,172 +1,116 @@
-.page-platform{
-    p{
-        text-align: justify;
-    }
-    .title-v1{
-        color: $color-primary;
-        font-size: rem(24);
-    }
-    .txt{
-      
-        @include respond-above(md) {
-            padding-left: 5rem;
-        }
-    }
-    .txt_v1{
-    
-        @include respond-above(md) {
-            padding-right: 5rem;
-        }
-    }
-
-    .box{
-        margin-bottom: 2rem;
-        @include respond-above(sm) {
-            margin-bottom: 3rem;
-        }
-        @include respond-above(md) {
-            margin-bottom: 4rem;
-        }
-        @include respond-above(lg) {
-            margin-bottom: 5rem;
-        }
-    }
-    .title-v2{
-        margin-bottom: 5rem;    
-        @include respond-above(sm) {
-            margin-bottom: 9rem;    
-        }   
-    }
-    .box_v1{
-        background-color: $color-primary;
-        padding-top: 1px;
-        padding-bottom: 3rem; color: #fff;
-       
-        .logos{
-            margin-top: -50px;
-            margin-bottom: 1.5rem;
-            @include respond-above(sm) {
-                margin-top: -101px;   margin-bottom: 3rem;
-            }
-        }
-        p{
-            line-height: 2;
-        }
-    }
-    .box_v2{
-        margin-bottom: 3rem;
-        @include respond-above(sm) {
-            margin-bottom: 6rem;
-        }
-        @include respond-above(md) {
-            margin-bottom: 7rem;
-        }
-        @include respond-above(lg) {
-            margin-bottom: 8rem;
-        }
-    }
-}
-.page-research{
-    .intro{
-      
-        margin-bottom: 2rem;
-        @include respond-above(sm) {
-            margin-bottom: 3rem;  padding-top: 1rem;
-        }
-        @include respond-above(md) {
-            margin-bottom: 4rem;
-        }
-        @include respond-above(lg) {
-            margin-bottom: 5rem;
-        }
-        p{
-            margin-bottom: 2rem;
-        }
-        .actions{
-            text-align: center;
-            a{
-                margin: 1rem 1rem;
-                @include respond-above(sm) {
-                    margin: 1.5rem 1rem;
+.page-service{
+    .projectlist{
+        margin-top: 2rem;
+        .item{
+            margin-bottom: rem(30);
+            background-color: #fff;
+            .txt{
+                display: block;
+                padding: 1rem 2rem;
+                h3{
+                    font-size: rem(18);
+                    border-bottom: #eee solid 1px;
+                    padding-bottom: .5rem;
+                    margin-top: .5rem;
+                    span{
+                        font-weight: lighter;
+                        margin-left: 1rem;
+                    }
                 }
-                @include respond-above(md) {
-                    margin: 2rem 2rem;
-                }
-                @include respond-above(lg) {
-                    margin: 3rem 3.6rem;
+                .more{
+                    display: inline-block;
+                    padding: 0 1.5rem;
+                    border:1px #000 solid;
+                    height: 25px;
+                    line-height: 23px;
+                    border-radius: 13px;
+                    font-size: 12px;
                 }
             }
         }
     }
-}
-.page-pipeline{
-    .pic{
-        margin-bottom: 2rem;
-        @include respond-above(sm) {
-            margin-bottom: 3rem;
-        }
-        @include respond-above(md) {
-            margin-bottom: 4rem;
-        }
-        @include respond-above(lg) {
-            margin-bottom: 6rem;
-        }
+    .navlist{
+        margin-bottom: 0;
     }
-    .title-v4{
-        text-align: center;
-        font-size: rem(24);
-        margin-bottom: 4rem;
-    }
-    .title-v3{
-        margin-bottom: 1rem;
-        @include respond-above(sm) {
-            margin-bottom: 2rem;
-        }
-        @include respond-above(md) {
-            margin-bottom: 3rem;
-        }
-    }
-    .list-products{
-        background-color: #F6F6F6;
-        padding: 1rem 0;
-        margin-bottom: 2rem;
-        @include respond-above(sm) {
-            margin-bottom: 3rem;    padding:2rem 0;
-        }
-        @include respond-above(md) {
-            margin-bottom: 4rem;    padding: 3rem 0;
-        }
-        @include respond-above(lg) {
-            margin-bottom: 6rem;
-        }
+    .pro-content{
+        background-color: #fff;
+        padding: 2rem;
+        height: 100%;
         .title{
-            font-weight: rem(20);
-            color: #F49C00;
+            border-bottom: 1px #ddd solid;
+
+          h3{
+            padding-left: 1rem;   font-size: rem(18);  border-left:8px $color-primary solid;
+            line-height: 1.3;
+          }
         }
-        .title-sub{
-            font-weight: rem(20);
-        }
-        .pic{
-            text-align: center;
-            @include respond-above(md) {
-                text-align: right;
+
+    }
+    .maincontent{
+        margin-bottom: rem(30);
+    }
+    .productlist{
+        background-color: #fff;
+        padding: rem(30);
+        .title{
+            padding-bottom: .5rem;
+            border-bottom: 1px #eee solid;
+            margin-bottom: 1rem;
+            h3{
+                border-left: 8px $color-primary solid; padding-left: 1rem; line-height: 1.2;
+                margin: 0;
             }
         }
-        p{
-            line-height:2;
+        .item{
+            text-align: center;
+            margin-bottom: 1rem;
+            .pic{
+                overflow: hidden;
+                margin-bottom: .5rem;
+                img{
+                    display: block;
+                    transition: all .2s;
+                }
+            }
+            &:hover{
+                .pic{
+                    img{
+                        transform: scale(1.1);
+                    }
+                }
+            }
         }
     }
-    .img-container{
-        overflow-x: scroll;
-        @include respond-above(md) {
-            overflow-x: auto;
+    .title-case-v1{
+        h1{
+            border-left: 8px $color-primary solid;
+            padding-left: 1rem;
+            line-height: 1.3;
+            font-size: rem(18);
         }
-        img{
-            width: auto;
-            max-width: none;
-            @include respond-above(md) {
-                max-width: 100%;
+    }
+    article{
+        padding-top: 1rem;
+        .art-top{
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px #ddd solid;
+            .pic{
+                max-width: 310px;
+                border:1px #999 solid;
+                img{
+                    display: block;
+                }
+              
+            }
+            ul{
+                @include reset-list;
             }
         }
+     
+    }
+   
+    .back{
+        margin-top: 2rem;
     }
 }

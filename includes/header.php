@@ -67,7 +67,7 @@ $uri = $_SERVER['REQUEST_URI'];
            
                 <ul class="mainav">
                     <?php foreach ($menutree as $menu) { ?>
-                        <li class="<?php echo isset($menu['children']) ? 'down' : ''; ?> <?php echo  $uri == $menu["url"] ? "active" : ""; ?>">
+                        <li class="<?php echo isset($menu['children']) ? 'down' : ''; ?> <?php echo (startsWith($uri,$menu["url"]) && $menu["url"] != "/") || $uri == $menu["url"] ? "active" : ""; ?>">
                             <a href="<?php echo $menu["url"]; ?>"><?php echo $menu["title"]; ?></a>
                             <?php if (isset($menu['children'])) { ?>
                                 <dl>

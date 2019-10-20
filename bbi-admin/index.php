@@ -21,7 +21,7 @@ $chronicleClass = new TZGCMS\Admin\Chronicle();
 $jobClass = new TZGCMS\Admin\Job();
  $meetingClass = new Meeting();
  $topicsClass = new Topics();
- $productClass = new Product();
+ $productClass = new TZGCMS\Admin\Product();
 $pageClass = new TZGCMS\Admin\Page();
 $teamClass = new TZGCMS\Admin\Team();
 

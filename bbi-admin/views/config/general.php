@@ -49,6 +49,20 @@ $data  = json_decode($model['config_values'], true);
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label for="email_contact">控制台主题</label>
+                                        <select class="form-control" id="theme" name="theme">
+                                            <option value="black" <?php echo (!empty($data['theme']) && $data['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="hotPhone">400热线</label>
+                                        <input type="text" class="form-control" id="hotPhone" name="hotPhone" placeholder="" value="<?php echo !empty($data['hotPhone']) ? $data['hotPhone'] : ""; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label for="phone">联系电话</label>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="<?php echo !empty($data['phone']) ? $data['phone'] : ""; ?>">
                                     </div>
@@ -65,12 +79,11 @@ $data  = json_decode($model['config_values'], true);
                                         <input type="email" class="form-control" id="email_contact" name="email_contact" placeholder="" value="<?php echo !empty($data['email_contact']) ? $data['email_contact'] : ""; ?>">
                                     </div>
                                 </div>
+                         
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="email_contact">控制台主题</label>
-                                        <select class="form-control" id="theme" name="theme">
-                                            <option value="black" <?php echo (!empty($data['theme']) && $data['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
-                                        </select>
+                                        <label for="company">公司名称</label>
+                                        <input type="text" class="form-control" id="company" name="company" placeholder="" value="<?php echo !empty($data['company']) ? $data['company'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -135,7 +148,7 @@ $data  = json_decode($model['config_values'], true);
 
 
 
-                            <div class="row align-items-center">
+                            <div class="row align-items-center mb-4">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="wechat">微信号</label>
@@ -202,6 +215,31 @@ $data  = json_decode($model['config_values'], true);
                         
                      
                             </div> -->
+                            <h3 class="title">
+                                招聘设置
+                            </h3>
+                            <hr/>
+                            <div class="row mb-4">
+                                <div class="col-md">
+                                <div class="form-group">
+                                <label for="username">招聘邮箱</label>
+                                <input type="text" class="form-control" id="hremail" name="hremail" placeholder="" value="<?php echo !empty($data['hremail']) ? $data['hremail'] : ""; ?>">
+                            </div>
+                                </div>
+                                <div class="col-md">
+                                <div class="form-group">
+                                <label for="username">联系人</label>
+                                <input type="text" class="form-control" id="hrcontact" name="hrcontact" placeholder="" value="<?php echo !empty($data['hrcontact']) ? $data['hrcontact'] : ""; ?>">
+                            </div> 
+                                </div>
+                                <div class="col-md">
+                                <div class="form-group">
+                                <label for="username">联系电话</label>
+                                <input type="text" class="form-control" id="hrphone" name="hrphone" placeholder="" value="<?php echo !empty($data['hrphone']) ? $data['hrphone'] : ""; ?>">
+                            </div>
+                                </div>
+                            </div>
+
                             <h3 class="title">
                                 SEO优化
                             </h3>

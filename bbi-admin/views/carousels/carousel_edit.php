@@ -76,7 +76,7 @@ $positions = $positionClass->get_all();
                         </div>
                     <?php } ?>                     
                     <div class="input-group">
-                        <input id="imageUrl" name="imageUrl"  class="form-control" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" aria-describedby="setImageUrl">
+                        <input id="image_url" name="imageUrl"  class="form-control" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" aria-describedby="setImageUrl">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                         </div>
@@ -139,11 +139,13 @@ $positions = $positionClass->get_all();
 
 
     function SetBackground(fileUrl) {
-        $('#imageUrl').val(fileUrl);
+        $('#image_url').val(fileUrl);
+        $("#img_image_url").attr("src",fileUrl)
     }
 
     function SetImageUrlMobile(fileUrl) {
         $('#image_url_mobile').val(fileUrl);
+        $("#img_image_url_mobile").attr("src",fileUrl)
     }
 
 

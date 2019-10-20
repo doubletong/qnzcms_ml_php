@@ -191,7 +191,7 @@ $tree = buildTree($categories);
                                     <div class="form-group">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" <?php echo (isset($data['recommend']) && $data['recommend']) ? "checked" : ""; ?> id="chkRecommend" name="recommend">
-                                            <label class="form-check-label" for="chkRecommend">精选</label>
+                                            <label class="form-check-label" for="chkRecommend">推荐</label>
                                         </div>
                                     </div>
 

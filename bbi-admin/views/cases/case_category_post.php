@@ -4,7 +4,7 @@ require_once('../../data/case_category.php');
 
 $caseClass = new TZGCMS\Admin\CaseCategory();
 
-if (isset($_POST['title'], $_POST['title_en'])) {
+if (isset($_POST['title'])) {
     $categoryId = $_POST['categoryId'];
     $title = $_POST['title'];
     $title_en = isset( $_POST['title_en'])?$_POST['title_en']:"";
@@ -17,7 +17,6 @@ if (isset($_POST['title'], $_POST['title_en'])) {
 
     }else{
         echo $caseClass->insert_case($title, $title_en, $imageurl,$importance,$active);
-
     }
 
 }else{

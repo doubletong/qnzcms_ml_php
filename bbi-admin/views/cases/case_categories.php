@@ -68,7 +68,7 @@ $categories = $categoryClass->get_paged_categories($keyword, $currentPage, $item
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                    <!-- <th>缩略图</th> -->
+                    <th>图标</th>
                     <th>标题</th>
                     <th>排序</th>
                     <th>创建时间</th>
@@ -81,7 +81,7 @@ $categories = $categoryClass->get_paged_categories($keyword, $currentPage, $item
                 {
                     echo "<tr>";
                 ?>
-                    <!-- <td><img src="<?php echo $row['imageurl'];?>" class="img-rounded" style="height:35px;"/></td> -->
+                    <td><img src="<?php echo $row['imageurl'];?>" class="img-rounded" style="height:35px;"/></td>
                     <td><?php echo $row['title'] ;?> </td> 
                     <td><?php echo $row['importance'] ;?></td>         
                     <td><?php echo date("Y-m-d H:i",$row['added_date']);?></td>

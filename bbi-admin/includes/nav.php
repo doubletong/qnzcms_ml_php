@@ -10,18 +10,18 @@
                             <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
                         </a>
                     </li>
-                    <li class="down-nav products" hidden>
+                    <li class="down-nav products">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
                             <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
                         </a>
                         <ul class="subnav">
                             <li class="list">
-                                <a href="/bbi-admin/products.php?did=4">
+                                <a href="/bbi-admin/views/products/index.php">
                                     产品列表
                                 </a>
                             </li>
-                            <li class="category"><a href="/bbi-admin/product_categories.php?did=4">分类</a></li>
+                            <li class="category"><a href="/bbi-admin/views/products/product_categories.php">分类</a></li>
                         </ul>
                     </li>
                  

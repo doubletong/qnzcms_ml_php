@@ -8,7 +8,7 @@ body {
     background-color: #f6f6f6;
     line-height: 1.8;
     margin: 0;    
-    padding: 0;
+    padding:150px 0 0;
 
 }
 a {
@@ -17,6 +17,9 @@ a {
     text-decoration: none;
     -webkit-transition: color .2s;
     transition: color .2s;
+    &:hover{
+        color: $color-primary;
+    }
 }
 
 img {
@@ -368,4 +371,12 @@ input,textarea,button{
             margin: 0;
         }
     }
+}
+.sidead{
+    max-width: 270px;
+    display: block;
+}
+
+.sitepath{
+    margin-bottom: 1.5rem;
 }

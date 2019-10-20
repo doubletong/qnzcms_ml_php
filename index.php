@@ -23,6 +23,8 @@ $offerClass = new TZGCMS\OfferRepository();
 $offers= $offerClass->recommend_offers(12);
 
 
+
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
