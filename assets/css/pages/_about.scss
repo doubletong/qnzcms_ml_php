@@ -3,8 +3,159 @@
 
   
   .page-about {
-  
-    
+   background: url(../img/about_01.jpg) no-repeat center bottom;
+    padding-bottom: 530px;
+    text-align: justify;
+ 
     
 }
   
+.page-speech{
+  background: url(../img/about_02.jpg) no-repeat center center;
+  text-align: justify;
+min-height: 1020px;
+  .box{
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 30px;
+    max-width: 870px;
+    box-shadow: 0 0 24px rgba(0,0,0,.15);
+ 
+    .profile{
+      margin-bottom: 2rem;
+      .avatar{
+        margin: 0 1.5rem;
+      }
+    }
+    .title-v2{
+      
+        background-color: rgb(21, 93, 194);
+     color: #fff;
+        width: 128px;
+        height: 40px;
+      padding: 0 2rem;
+ 
+      font-size: rem(18);
+      line-height: 40px;
+      border-radius: 20px;
+    }
+    .des{
+      font-size: rem(26);
+    }
+  }
+}
+
+.page-chronicle{
+  .container{
+    position: relative;
+    &::before{
+      position: absolute;
+      content: " ";
+      display: block;
+      width: 1px;
+      height: 100%;
+      background-color: $color-secondary;
+      left: 1.5rem;
+      top: 0;
+      z-index: 100;
+    }
+  }
+  .list-chronicles{
+    padding-left: 2rem;
+    .year{
+      font-size: rem(36);
+      color: $color-secondary;
+      position: relative;
+      &::before{
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        background-color: rgb(0, 68, 160);
+        position: absolute;
+        left: -1.6rem;
+        top: 1.7rem;
+        width: 7px;
+        height: 7px;
+        z-index: 281;
+       
+      }
+      &::after {
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        background-color: rgb(0, 68, 160);
+        opacity: 0.302;
+        position: absolute;
+        left: -1.85rem;
+        top: 1.45rem;
+        width: 15px;
+        height: 15px;
+        z-index: 280;
+      }
+      
+    }
+    ul{
+      @include reset-list;
+      li{
+        margin-bottom: 2rem;
+        position: relative;
+        span{
+          color: #999;
+        }
+        &::after{
+          content: " ";
+          display: block;
+          border-radius: 50%;
+          background-color: rgb(0, 68, 160);
+          position: absolute;
+          left: -1.55rem;
+          top: .7rem;
+          width: 5px;
+          height: 5px;
+          z-index: 285;
+        }
+        
+      }
+    }
+    
+  }
+
+}
+
+.page-culture{
+  .item{
+    text-align: center;
+    
+    h3{
+      font-weight: bold;
+    }
+    p{
+      max-width: 160px;
+      margin: 0 auto;
+      font-size: rem(14);
+    }
+  }
+  .title-photo{
+    position: relative;
+    text-align: center;
+    margin-bottom: 2rem;
+    &::after{
+      content: " ";
+      display: block;
+      border-radius: 50%;
+      background-color: #ddd;
+      position: absolute;
+      left: 0;
+      top:4.2rem;
+      width: 100%;
+      height: 1px;
+      z-index: -1;
+    }
+    h3{
+      background-color: #fff;
+      width: 200px;
+    display: inline-block;
+    font-size: rem(34);
+    }
+  }
+}

@@ -34,14 +34,33 @@
                     <li class="down-nav cases">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
-                            <i class="iconfont icon-percentage"></i> <span class="nav-text">案例</span> 
+                            <i class="iconfont icon-percentage"></i> <span class="nav-text">应用案例</span> 
                         </a>
                         <ul class="subnav">
                             <li><a href="/bbi-admin/views/cases/index.php">案例管理</a></li>
                             <li><a href="/bbi-admin/views/cases/case_categories.php">案例分类</a></li>
                         </ul>
                     </li>                  
-                  
+                    <li class="down-nav applications">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-file-copy"></i> <span class="nav-text">应用领域</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="/bbi-admin/views/articles/index.php?did=6">文章列表</a></li>
+                            <li><a href="/bbi-admin/views/articles/article_categories.php?did=6">分类</a></li>
+                        </ul>
+                    </li>
+                    <li class="down-nav tech">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-file-copy"></i> <span class="nav-text">核心技术</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="/bbi-admin/views/articles/index.php?did=3">文章列表</a></li>
+                            <li><a href="/bbi-admin/views/articles/article_categories.php?did=3">分类</a></li>
+                        </ul>
+                    </li>
             
                     <li class="down-nav articles">
                         <a href="#">

@@ -46,6 +46,12 @@ class Product{
         return $query->fetchAll();
     }
 
+    public function get_all_products(){
+        $query = \db::getInstance()->prepare("SELECT id,title,thumbnail,category_id FROM products WHERE active=1 ORDER BY importance DESC");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
     public function get_products_bycid($id){
         $query = \db::getInstance()->prepare("SELECT * FROM products WHERE active=1 AND category_id = $id ORDER BY importance DESC");
         $query->execute();

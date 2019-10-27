@@ -61,8 +61,8 @@ $tree = buildTree($categories);
                             编辑产品
                         </h5>
                         <div class="card-body">
-                            <input id="productId" type="hidden" name="productId" value="<?php echo $data['id']; ?>" />
-                            <input type="hidden" name="dictionary_id" value="<?php echo $data['dictionary_id']; ?>">
+                            <input id="productId" type="hidden" name="productId" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <!-- <input type="hidden" name="dictionary_id" value="<?php // echo $data['dictionary_id']; ?>"> -->
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
@@ -70,7 +70,7 @@ $tree = buildTree($categories);
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="title">产品名称</label>
-                                                <input type="text" class="form-control" id="title" name="title" value="<?php echo $data['title']; ?>" placeholder="">
+                                                <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>" placeholder="">
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -79,12 +79,16 @@ $tree = buildTree($categories);
 
                                                 <select class="form-control" id="category_id" name="category_id" placeholder="">
                                                     <option value="">--请选择分类--</option>
-                                                    <?php foreach ($categories as $category) {
-                                                        ?>
-                                                        <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $data["category_id"] ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
+                                                    <?php foreach( $categories as $model)
+                                            {
+                                                if(isset($data['category_id']) && $model["id"]=== $data["category_id"]){
+                                                ?>
+                                                        <option value="<?php echo $model["id"]; ?>" selected><?php echo $model["title"]; ?></option>
 
+                                            <?php }else{?>
 
-                                                    <?php } ?>
+                                                <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?> </option>
+                                                <?php } } ?>                                                
 
                                                 </select>
                                             </div>
@@ -104,7 +108,7 @@ $tree = buildTree($categories);
 
                                     <div class="form-group">
                                         <label for="content">产品描述</label>
-                                        <textarea class="form-control" id="content" name="content" placeholder=""><?php echo stripslashes($data['content']); ?></textarea>
+                                        <textarea class="form-control" id="content" name="content" placeholder=""><?php echo isset($data['content'])?stripslashes($data['content']):''; ?></textarea>
                                         <script>
                                             var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
                                             CKEDITOR.replace('content', {
@@ -116,7 +120,7 @@ $tree = buildTree($categories);
                                         </script>
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="specifications">参数规格</label>
                                         <textarea class="form-control" id="specifications" name="specifications" placeholder=""><?php echo stripslashes($data['specifications']); ?></textarea>
                                         <script>
@@ -127,7 +131,7 @@ $tree = buildTree($categories);
 
                                             });
                                         </script>
-                                    </div>
+                                    </div> -->
 
 
 
@@ -135,33 +139,24 @@ $tree = buildTree($categories);
                                     <div class="form-group">
                                         <label for="summary">摘要</label>
 
-                                        <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo $data['summary']; ?></textarea>
+                                        <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo isset($data['summary'])?$data['summary']:''; ?></textarea>
 
                                     </div>
 
 
 
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" <?php echo $data['active'] ? "checked" : ""; ?> id="chkActive" name="active">
-                                                    <label class="form-check-label" for="chkActive">发布</label>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
+                                            <label class="form-check-label" for="chkActive">发布</label>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" <?php echo $data['recommend'] ? "checked" : ""; ?> id="chkRecommend" name="recommend">
-                                                    <label class="form-check-label" for="chkRecommend">推荐</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
                                     </div>
-
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" <?php echo (isset($data['recommend']) && $data['recommend']) ? "checked" : ""; ?> id="chkRecommend" name="recommend">
+                                            <label class="form-check-label" for="chkRecommend">推荐</label>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="col-auto">
@@ -172,18 +167,18 @@ $tree = buildTree($categories);
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
-                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo $data['thumbnail']; ?>" />
+                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
                                             </div>
                                         </div>
                                     </div>
                                     <div style="width:300px;text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="image_url_show" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=620X620像素" : $data['image_url']; ?>" class="img-fluid" />
+                                                <img ID="image_url_show" src="<?php echo empty($data['image_url']) ? "holder.js/240x85?text=1598X500像素" : $data['image_url']; ?>" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnImageUrl" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大图...</button>
-                                                <input id="image_url" type="hidden" name="image_url" value="<?php echo $data['image_url']; ?>" />
+                                                <input id="image_url" type="hidden" name="image_url" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -195,13 +190,13 @@ $tree = buildTree($categories);
                                             <div class="form-group">
                                                 <label for="description">SEO描述</label>
 
-                                                <textarea class="form-control" id="description" name="description" placeholder=""><?php echo $data['description']; ?></textarea>
+                                                <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="keywords">关键字</label>
 
-                                                <input type="text" class="form-control" id="keywords" name="keywords" value="<?php echo $data['keywords']; ?>" placeholder="">
+                                                <input type="text" class="form-control" id="keywords" name="keywords" value="<?php echo isset($data['keywords'])?$data['keywords']:''; ?>" placeholder="">
 
                                             </div>
                                         </div>

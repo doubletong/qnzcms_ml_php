@@ -18,12 +18,12 @@ if (isset($_POST['category_id'], $_POST['title'], $_POST['importance'])) {
     $category_id = $_POST['category_id'];       
     $description = $_POST['description'];
     $content = stripslashes($_POST['content']);
-    $specifications = stripslashes($_POST['specifications']);
+    $specifications = isset($_POST['specifications']) ? stripslashes($_POST['specifications']):"";
     $registration = isset($_POST['registration']) ? stripslashes($_POST['registration']):"";
-    $dictionary_id = $_POST['dictionary_id'];
+    $dictionary_id =  isset($_POST['dictionary_id']) ? $_POST['dictionary_id']:0;
 
  //   echo $content.$productId;
-    if(isset($_POST['productId'])){
+    if($_POST['productId']>0){
         echo $productClass->update_product($productId, $title,  $importance, $thumbnail, $image_url, $keywords,$recommend, $active,$summary, 
             $description, $content, $specifications,$registration, $category_id,$dictionary_id); 
 

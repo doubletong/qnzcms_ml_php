@@ -86,8 +86,14 @@ class Article{
         return $rows;
     }
 
+    public function get_articles_bycategory($cid){
+        $query = \db::getInstance()->prepare("SELECT id,title,categoryId,summary,thumbnail  FROM articles WHERE active=1 AND categoryId = $cid ORDER BY pubdate DESC, id Desc");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
     public function get_all_articles($did){
-        $query = \db::getInstance()->prepare("SELECT * FROM articles WHERE active=1 AND dictionary_id = $did ORDER BY id Desc");
+        $query = \db::getInstance()->prepare("SELECT id,title,categoryId FROM articles WHERE active=1 AND dictionary_id = $did ORDER BY pubdate DESC, id Desc");
         $query->execute();
 
         return $query->fetchAll();
@@ -112,6 +118,14 @@ class Article{
     public function get_laster_recommend_articles($count){
         $query = \db::getInstance()->prepare("SELECT a.id, a.title, a.summary, a.thumbnail, a.pubdate, c.title as category_title FROM articles as a 
         LEFT JOIN article_categories as c ON a.categoryId = c.id WHERE a.recommend = 1 ORDER BY a.pubdate DESC limit $count");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    //按分类获取推荐新闻
+    public function get_recommend_articles_bycategory($cid,$count){
+        $query = \db::getInstance()->prepare("SELECT a.id, a.title, a.summary, a.thumbnail,a.background_image, a.pubdate, c.title as category_title FROM articles as a 
+        LEFT JOIN article_categories as c ON a.categoryId = c.id WHERE a.recommend = 1 AND  a.categoryId = $cid ORDER BY a.pubdate DESC limit $count");
         $query->execute();
         return $query->fetchAll();
     }
@@ -159,8 +173,8 @@ class Article{
 
     
     public function get_category_byid($id){
-        $query = db::getInstance()->prepare("SELECT * FROM article_categories WHERE id = :id;");
-        $query->bindValue(":id",$id,PDO::PARAM_INT);
+        $query = \db::getInstance()->prepare("SELECT * FROM article_categories WHERE id = :id;");
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);
         $query->execute();
 
         return $query->fetch();

@@ -27,68 +27,78 @@ $uri = $_SERVER['REQUEST_URI'];
 
 <header class="site-header" id="site-header">
     <div class="container">
-        <div class="row topcol no-gutters align-items-center">
+        <div class="row topcol no-gutters align-items-end">
             <div class="col-auto">
-                <a href="/" class="logo"><img src="/assets/img/logo.png" alt="<?php echo $site_info['sitename']; ?>"></a>
+                <a href="/" class="logo"><img id="logo" src="/assets/img/logo.png" alt="<?php echo $site_info['sitename']; ?>"></a>
             </div>
-            <div class="col-auto">
-                <div class="biaoyu">
-                    <p class="p1">2000场活动案例，10年行业经验</p>
-                    <p class="p2">一站式演出设备租赁服务商</p>
-                </div>
-            </div>
-            <div class="col">
-                <div id="searchbox" class="searchbox">
-                    <form action="/search" method="get">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col">
-                                <input type="search" name="keyword" id="keyword" />
+            <div class="col">            
+               <div class="topcol">
+                   <div class="row">
+                       <div class="col">
+                        <div id="searchbox" class="searchbox">
+                                <form action="/search" method="get">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col">
+                                            <input type="search" name="keyword" id="keyword" placeholder="请输入您想搜索的内容" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit"><i class="iconfont icon-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="col-auto">
-                                <button type="submit"><i class="iconfont icon-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="contact">
-                    <div class="mobile">138-8888 8888</div>
-                    <div class="by">超10年行业经验的服务专员为您服务</div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="mainav-container">
-        <div class="container">
-
-           
-                <ul class="mainav">
-                    <?php foreach ($menutree as $menu) { ?>
-                        <li class="<?php echo isset($menu['children']) ? 'down' : ''; ?> <?php echo (startsWith($uri,$menu["url"]) && $menu["url"] != "/") || $uri == $menu["url"] ? "active" : ""; ?>">
-                            <a href="<?php echo $menu["url"]; ?>"><?php echo $menu["title"]; ?></a>
-                            <?php if (isset($menu['children'])) { ?>
-                                <dl>
-                                    <?php
-                                            foreach ($menu['children'] as $subMenuModel) {
-                                                ?>
-                                        <dd><a href="<?php echo $subMenuModel["url"]; ?>" class="<?php echo $uri === $subMenuModel["url"] ? "active" : ""; ?>"><?php echo $subMenuModel["title"]; ?></a></dd>
+                       </div>
+                       <div class="col-auto">
+                           <a href="#">EN</a>
+                       </div>
+                   </div>
+               </div>
+               
+               <div class="row no-gutters align-items-center">
+                   <div class="col">
+                        <ul class="mainav">
+                            <?php foreach ($menutree as $menu) { ?>
+                                <li class="<?php echo isset($menu['children']) ? 'down' : ''; ?> <?php echo (startsWith($uri,$menu["url"]) && $menu["url"] != "/") || $uri == $menu["url"] ? "active" : ""; ?>">
+                                    <a href="<?php echo $menu["url"]; ?>"><?php echo $menu["title"]; ?></a>
+                                    <?php if (isset($menu['children'])) { ?>
+                                        <dl>
+                                            <?php
+                                                    foreach ($menu['children'] as $subMenuModel) {
+                                                        ?>
+                                                <dd><a href="<?php echo $subMenuModel["url"]; ?>" class="<?php echo $uri === $subMenuModel["url"] ? "active" : ""; ?>"><?php echo $subMenuModel["title"]; ?></a></dd>
+                                            <?php } ?>
+                                        </dl>
                                     <?php } ?>
-                                </dl>
+                                </li>
+
                             <?php } ?>
-                        </li>
-
-                    <?php } ?>
-                </ul>
-        
-
+                        </ul>
+                   </div>
+                   <div class="col-auto sj">
+                       <div class="shejiao">
+                           <a href="#">
+                               <i class="iconfont icon-wechat"></i>                         
+                           </a>
+                           <a href="#">
+                               <i class="iconfont icon-qq"></i>                         
+                           </a>
+                           <a href="#">
+                               <i class="iconfont icon-phone"></i>                         
+                           </a>
+                           <a href="#">
+                               <i class="iconfont icon-youxiang"></i>                         
+                           </a>
+                       </div>
+                   </div>
+               </div>
+                
+            </div>
+          
         </div>
 
 
-
     </div>
+
 
     <!-- <div class="col-auto menu-col">
             <div class="menu-toggle">

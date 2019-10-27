@@ -57,7 +57,7 @@ $pageTitle = isset($_GET['id']) ? "编辑案例" : "创建案例";
                                         <select class="form-control" id="categoryid" name="categoryid" placeholder="">
                                             <option value="">--请选择分类--</option>
                                             <?php foreach ($categories as $model) {
-                                                if (isset($data['categoryi']) && $model["id"] === $data["categoryid"]) {
+                                                if (isset($data['categoryid']) && $model["id"] === $data["categoryid"]) {
                                                     ?>
                                                     <option value="<?php echo $model["id"]; ?>" selected><?php echo $model["title"]; ?></option>
 
@@ -118,7 +118,7 @@ $pageTitle = isset($_GET['id']) ? "编辑案例" : "创建案例";
                                         <div class="card">
                                             <div class="card-body">
 
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=380X275像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=590X376像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>

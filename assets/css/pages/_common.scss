@@ -4,11 +4,11 @@ body {
     text-rendering: optimizeLegibility;
     color: #666;
     font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: rem(14);
-    background-color: #f6f6f6;
+    background-color: #fff;
     line-height: 1.8;
     margin: 0;    
-    padding:150px 0 0;
+    padding: 0;
+    overflow-x: hidden;
 
 }
 a {
@@ -63,7 +63,7 @@ input,textarea,button{
 }
 
 .page {
-    overflow: hidden;
+  
     padding-top: 2rem;
     padding-bottom: 2rem;
 
@@ -119,121 +119,63 @@ input,textarea,button{
     }
 
     @media  (min-width:1601px){
-        height: 675px;
+        height: 600px;
     }
 
-    
-
-    .title-page {
-        padding-top: 5.5rem;
-        color: #fff;
-        position: relative;
+    .container{
         height: 100%;
-        text-align: center;
-        @include respond-above(sm) {
-            padding-top: 6rem;
-        }
-
-        @include respond-above(md) {
-            padding-top: 10rem;
-        }
-
-        @include respond-above(lg) {
-            padding-top: 13rem;
-        }
-        @include respond-above(xlg) {
-            padding-top: 17rem;
-        }
-      
-
-        h1 {
-
+        position: relative;
+        .title-page {
+            position: absolute;
+            left: 15px;
+            bottom: rem(115);
             margin: 0;          
-            font-size: 1.4rem;
-            font-weight: bold;
+            font-size: rem(24);
+         
             text-transform: uppercase;
+            color: #fff;
             @include respond-above(sm) {
-                font-size: 1.6rem
+                font-size: rem(36);
             }
 
             @include respond-above(md) {
-                font-size: 1.8rem
+                font-size: rem(48);
             }
 
             @include respond-above(lg) {
-                font-size: 2rem;
+                font-size: rem(56);
             }
-
-        }
-
-        p {
-            margin: 0;
-            font-weight: lighter;
-            font-size: rem(14);
-
-            @include respond-above(sm) {
-                font-size: 1rem;
-            }
-
-            @include respond-above(md) {
-                font-size: rem(18);
-            }
-            @include respond-above(lg) {
-                font-size: rem(20);
+            @include respond-above(xlg) {
+                font-size: rem(60);
             }
         }
     }
-    .circle{
-        position: absolute;
-        z-index: 200;     
-        right: -110px;
-        bottom: -160px;  
-        width:216px;
-        @include respond-above(sm) {
-            width: 286px; 
-            right: -130px;
-            bottom: -220px;  
-        }
 
-        @include respond-above(md) {
-            width: 336px;
-            right: -160px;
-            bottom: -250px;  
-        }
-
-        @include respond-above(lg) {
-            right: -180px;
-            bottom: -270px;
-            width: 406px;
-        }
-        @include respond-above(xlg) {
-            right: -220px;
-            bottom: -340px;
-            width: 476px;
-        }
-    }
+   
+   
 }
 
 
 .title-section{   
-   
-    h3{
-        font-size: rem(18);     
+    margin-bottom: 1.5rem;
+    h2{
+        font-size: rem(24);   margin: 0;  
+        text-align: center; 
         @include respond-above(sm) {
-            font-size: rem(20);
+            font-size: rem(28);
         }
         @include respond-above(md) {
-            font-size: rem(22);
+            font-size: rem(32);
         }
-        span{
-            font-weight: lighter;
+        @include respond-above(lg) {
+            font-size: rem(36);
         }
-        margin: 0;
+        @include respond-above(xlg) {
+            font-size: rem(40);
+        }
        
-    }
-    p{
-        color: #333;margin: 0;
-        font-weight: normal;
+       
+       
     }
 
  
@@ -299,84 +241,43 @@ input,textarea,button{
     line-height: 1.2;
 }
 
-
-.sitepath{
-    padding: 1rem 0;
-    color: #ccc;
-    a{
-        color: #999;
-        &:hover{
-            color: $color-primary;
-        }
-    }
+.title-v1{
+    font-size: rem(36);
+    margin: 0;
 }
-.t1{
-    margin-bottom: 1rem;
 
-    .current{
-        text-decoration: underline;
-    }
-}
-.navlist{
-    width: 270px;
-    background-color: #fff;
-    margin-bottom: 30px;
+.subnav{
+    background-color: #eee;
+    
     a{
-        padding: 1.3rem 2.5rem;
         display: block;
-        border-bottom: 1px #e5eaeb solid;
-     
-        .icon{
-            margin-right: .8rem;           
-            display: bold;
-            width:36px;
-           margin-top: .3rem;
-        }
-        &:last-child{
-            border-bottom: none;
-        }
-       
-        .more{
-            font-size: 12px;
-            border-radius: 10px;
-            height: 20px;line-height: 1;
-            background-color: $color-secondary;
-            color: #fff;
-            padding: 0 .8rem;
-            text-transform: uppercase;
-        }
-        &:hover{
-            .more{
-                
-                background-color:#ff4e4e;
-               
-            }
-        }
-    }
-   
-}
-
-.content{
-    padding: 30px;
-    background-color: #fff;
-    margin-bottom: 30px;
-    .box{
-        margin-bottom: 3rem;
-        p{
-            text-align: justify;
-            text-indent: 2em;
-        }
-        figure{
-            padding: 0;
-            margin: 0;
-        }
+        padding: 1rem 1.5rem;
+        text-align: center;
+        border-bottom: 2px solid transparent;
+       @include hover{
+        border-bottom: 2px solid $color-secondary;
+       }
+       &.active{
+        border-bottom: 2px solid $color-secondary;
+        color:$color-secondary;
+       }
     }
 }
-.sidead{
-    max-width: 270px;
-    display: block;
-}
 
-.sitepath{
-    margin-bottom: 1.5rem;
+.table-container{
+    overflow-x: auto;
+    
+}
+.table{
+    width: 100%;
+    margin: 0 0 1rem 0;
+    th{
+        background-color: #80a4e4;
+        color:#fff;
+        padding: 3px;
+        white-space: nowrap;
+    }
+    td{
+        background-color: #d6e2f7;   padding: 4px 1rem;       
+    }
 }

@@ -68,7 +68,7 @@ $tree = buildTree($categories);
                                         <label for="title">标题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                                     </div>
-                                    <?php if($did=="1"){ ?>
+                             
                                     <div class="form-group">
                                         <label for="categoryId">分类</label>                                   
                                         <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
@@ -86,7 +86,7 @@ $tree = buildTree($categories);
                                                             
                                         </select>  
                                     </div>
-                                <?php } ?>
+                            
 
                                 <!-- <?php if($did=="6"){ ?>
                             <div class="form-group">
@@ -113,7 +113,7 @@ $tree = buildTree($categories);
                         <?php } ?> -->
 
                                 
-                        <?php if($did=="1"){ ?>                   
+                                    
                             <div class="form-group">
                             <label for="imageUrl">
                                 图片</label>
@@ -125,21 +125,20 @@ $tree = buildTree($categories);
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*480像素</small>                              
                             </div>                          
-                        <?php } ?>
-            
-
-                        <!-- <div class="form-group">
-                            <label for="background_image">
-                                背景图</label>
-                                <div class="input-group">
-                                    <input id="background_image" name="background_image"  class="form-control" placeholder="背景图" value="<?php echo isset($data['background_image'])?$data['background_image']:'';  ?>" aria-describedby="setBackgroundImage">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" id="setBackgroundImage" type="button" >浏览…</button>                                 
+                   
+                            <?php if($did=="3"){ ?>
+                            <div class="form-group">
+                                <label for="background_image">
+                                    背景图</label>
+                                    <div class="input-group">
+                                        <input id="background_image" name="background_image"  class="form-control" placeholder="背景图" value="<?php echo isset($data['background_image'])?$data['background_image']:'';  ?>" aria-describedby="setBackgroundImage">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" id="setBackgroundImage" type="button" >浏览…</button>                                 
+                                        </div>
                                     </div>
-                                </div>
-                                <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*480像素</small>                              
-                        </div> -->
-
+                                    <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*500像素</small>                              
+                            </div> 
+                            <?php } ?>
 
 
 
@@ -205,8 +204,8 @@ $tree = buildTree($categories);
                                             <?php if($did=="1"){ ?>
                                                 <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x200?text=377X304像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                               
-                                            <?php }elseif($did=="2"){?>
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x240?text=300x300像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                            <?php }elseif($did=="6"){?>
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=590x376像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                               
                                             <?php }else{?>
                                                 <img ID="iLogo" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=370x278像素" : $data['thumbnail']; ?>" class="img-fluid" />
@@ -283,8 +282,8 @@ $tree = buildTree($categories);
             if("1"==<?php echo $did; ?>){
             $(".mainmenu>li.articles").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
-        if("2"==<?php echo $did; ?>){
-            $(".mainmenu>li.salary").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        if("6"==<?php echo $did; ?>){
+            $(".mainmenu>li.applications").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("3"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");

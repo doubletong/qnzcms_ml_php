@@ -8,20 +8,20 @@
     color: #666;
     transition: all .25s;
     background-color: #eee;
-    border-radius: 25px;
+    border-radius: 6px;
     @include respond-above(sm) {
     
         padding: .3rem 2rem;
-        font-size: 1rem; border-radius: 34px;      
+        font-size: 1rem; 
     }
     @include respond-above(md) {
        
-        padding: .4rem 2.5rem;
-        font-size: 1rem; border-radius: 30px;      
+        padding: .4rem 2rem;
+        font-size: 1rem;
     }
     @include respond-above(lg) {  
-        padding: .5rem 3.5rem;
-        font-size: 1rem; border-radius: 34px;      
+        padding: 1rem 3rem;
+        font-size: 1rem; 
     }
     
     &:hover {
@@ -43,10 +43,10 @@
   
 .btn-primary {
     color: #fff;
-    background-color: $color-accent;
+    background-color: $color-primary;
     border: none;
     &:hover {
-        background-color: darken($color-accent, 6%);
+        background-color: darken($color-primary, 6%);
         color: #fff;
         border-color: #000;
     }

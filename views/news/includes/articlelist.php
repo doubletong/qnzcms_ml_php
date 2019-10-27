@@ -9,22 +9,17 @@
                 </div>
                 <div class="col-md">
                     <div class="txt">
-                        <h3>
+                        <h3 class="title">
                             <a href="/news/detail/<?php echo $article['id']; ?>">
                                 <?php echo $article['title'] ?>
                             </a>
                         </h3>
-                        <p>ED Par灯、面光灯、光束灯、图案灯、追光灯、成像灯、观众灯、聚光灯、灯控台、硅箱、烟雾机、泡泡机、TRUSS架...调音台、功放、全频音箱、低音音箱、线阵音箱、手持话筒……</p>
-                        <div class="row">
-                            <div class="col">
-                                <!-- <div class="small">
-                                <?php echo date('Y-m-d', $article['pubdate']); ?>
-                            </div> -->
-                            </div>
-                            <div class="col-auto">
-                                <span class="more">更多详情</span>
-                            </div>
-                        </div>
+                        <time><?php echo date('Y-m-d',$article['pubdate']) ;?></time>                      
+                          <p><?php echo $article['summary']; ?></p>
+                        
+                                <span class="more">查看详情 ></span>
+                        
+                      
 
                     </div>
 

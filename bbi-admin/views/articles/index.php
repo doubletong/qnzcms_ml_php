@@ -92,9 +92,9 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
                 <tr>
                     <th>缩略图</th>
                     <th>标题</th>
-                    <?php if($did==="1"){ ?>
+                 
                     <th>分类</th>
-                    <?php } ?>
+               
                     <th>阅读次数</th>
                     <th>状态</th>
                     <th>发布日期</th>
@@ -118,9 +118,9 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
                    
                     <?php
                  
-                   if($did==="1"){
+              
                     echo "<td>".$row['category_title']."</td>";
-                   }
+              
                     echo "<td>".$row['view_count']."</td>";
                     ?>
                     <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
@@ -196,10 +196,10 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
             $(".mainmenu>li.salary").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(6)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li.tech").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("6"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $(".mainmenu>li.applications").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
         }
         if("16"==<?php echo $did; ?>){
             $(".mainmenu>li:nth-of-type(8)").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");

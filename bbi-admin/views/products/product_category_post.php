@@ -7,7 +7,7 @@ $caseClass = new  TZGCMS\Admin\ProductCategory();
 if (isset($_POST['title'])) {
     $categoryId = $_POST['categoryId'];
     $title = $_POST['title'];
-    $title_en = $_POST['title_en'];
+    $title_en = isset($_POST['title_en']) ?$_POST['title_en']:""; 
     $intro = $_POST['intro'];
     $thumbnail = isset($_POST['thumbnail']) ?$_POST['thumbnail']:""; 
     $thumbnail2 = isset($_POST['thumbnail2']) ?$_POST['thumbnail2']:""; 

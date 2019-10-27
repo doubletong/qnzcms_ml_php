@@ -44,99 +44,27 @@ $recommendArticles = $articleClass->get_laster_recommend_articles(3);
 <!--<![endif]-->
 
 <head>
-    <title><?php echo "新闻动态-" . $site_info['sitename']; ?></title>
+    <title><?php echo "资讯中心-" . $site_info['sitename']; ?></title>
     <?php require_once('../../includes/meta.php') ?>
 
 </head>
 
 <body>
     <?php require_once('../../includes/header.php') ?>
-    <div class="banner banner-news" style="background-image:url('/assets/img/banners/news.jpg')">
-        <div class="container title-page ">
-            <h1>Dynamic Information</h1>
-            <p>动态资讯</p>
-        </div>
-    </div>
+    <?php require_once('includes/header.php') ?>
 
 
     <!--main-->
-    <div class="page page-news">
-
-        <div class="container">
-            <div class="row t1">
-                <div class="col-md">
-                    <div class="title title-section">
-                        <h3>公司简介 <span>Company Profile</span></h3>
-                        <p>专业的设备租赁服务平台，提供卓越的设备选择方案！</p>
-                    </div>
-                </div>
-                <div class="col-md-auto align-self-end">
-                    您的当前位置：<a href="/">主页</a> > <span class="current">公司简介</span>
-                </div>
+    <div class="page page-news container">           
+                      
+            <?php require_once('includes/articlelist.php') ?>
+        
+            <!--pagination-->
+            <div class="wow fadeInUp">
+                <?php include("../../vendor/jasongrimes/paginator/examples/pager.phtml") ?>
             </div>
-
-            <main class="maincontent">
-                <div class="row">
-                    <div class="col-md-auto">
-                        <?php require_once('includes/subnav.php') ?>
-                        <aside class="navlist">
-                            <a href="#">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col-auto">
-                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
-                                    </div>
-                                    <div class="col">
-                                        灯光音箱
-                                    </div>
-                                    <div class="col-auto">
-                                        <span class="more">more</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col-auto">
-                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
-                                    </div>
-                                    <div class="col">
-                                        灯光音箱
-                                    </div>
-                                    <div class="col-auto">
-                                        <span class="more">more</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col-auto">
-                                        <img src="/assets/img/icon_1.png" alt="" class="icon">
-                                    </div>
-                                    <div class="col">
-                                        灯光音箱
-                                    </div>
-                                    <div class="col-auto">
-                                        <span class="more">more</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </aside>
-                    </div>
-                    <div class="col-md">
-                      
-                            <?php require_once('includes/articlelist.php') ?>
-                     
-                            <!--pagination-->
-                            <div class="wow fadeInUp">
-                                <?php include("../../vendor/jasongrimes/paginator/examples/pager.phtml") ?>
-                            </div>
-                            <!--pagination end-->
-                      
-                    </div>
-                </div>
-</main>
-
-
-
+            <!--pagination end-->      
+       
     </div>
 
     </div>
@@ -148,8 +76,7 @@ $recommendArticles = $articleClass->get_laster_recommend_articles(3);
 
     <script>
         $(document).ready(function() {
-            // $(".mainav li:nth-of-type(4)").addClass("active");
-            // $(".subnav li:nth-of-type(2) a").addClass("active");
+
         });
     </script>
 </body>

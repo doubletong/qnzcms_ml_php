@@ -69,10 +69,10 @@ $tree = buildTree($categories);
                                         <label for="title">主题</label>
                                         <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="title">主题【英文】</label>
                                         <input type="text" class="form-control" id="title_en" name="title_en" value="<?php echo isset($data['title_en'])?$data['title_en']:''; ?>">
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="parent_id">分类</label>                           
                                     
@@ -128,19 +128,17 @@ $tree = buildTree($categories);
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x240?text=72X72像素":$data['thumbnail'];?>" class="img-fluid" />
+                                                <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x55?text=1453X300像素":$data['thumbnail'];?>" class="img-fluid" />
                                                 
-                                             
-                                           
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 图标...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 背景...</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
                                                                                         
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="width:300px; text-align:center;" class="mb-3">
+                                    <!-- <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">      
                                                 <img ID="iLogo2" src="<?php echo empty($data['thumbnail2'])?"holder.js/240x120?text=393X210像素":$data['thumbnail2'];?>" class="img-fluid" />
@@ -151,7 +149,7 @@ $tree = buildTree($categories);
                                                 <input id="thumbnail2" type="hidden" name="thumbnail2" value="<?php echo isset($data['thumbnail2'])?$data['thumbnail2']:''; ?>"/>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>  -->
                                 </div>
                             </div>
 

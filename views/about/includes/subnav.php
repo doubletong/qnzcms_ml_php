@@ -24,27 +24,12 @@ $subnav = search($menutree, "title", "关于我们");
             $about_nav = $subnav[0]['children'];
             foreach($about_nav as $nav){
                 ?>
-            <div class="col-4 col-md">
+            <div class="col">
                 <a href="<?php echo $nav['url'];?>" class="<?php echo $_SERVER['REQUEST_URI']===$nav["url"]?"active":""; ?>"><?php echo $nav['title'];?></a>
             </div>
            <?php } ?>
-        <?php } ?>
-        
-        <!-- <div class="col-4 col-md">
-            <a href="/about/team">领导团队</a>
-        </div>
-        <div class="col-4 col-md">
-            <a href="/about/chronicle">发展历程</a>
-        </div>
-        <div class="col-4 col-md">
-            <a href="/about/academic_promotion">学术推广</a>
-        </div>
-        <div class="col-4 col-md">
-            <a href="/about/base">生产基地</a>
-        </div>
-        <div class="col-4 col-md">
-            <a href="/about/international_cooperation">国际合作</a>
-        </div> -->
+        <?php } ?>       
+     
     </nav>
     </div>
 </div>

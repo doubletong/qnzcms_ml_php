@@ -22,55 +22,42 @@ $years = $chronicleClass->get_years();
 <body>
     <?php require_once('../../includes/header.php') ?>
     <?php require_once('includes/header_about.php') ?>
-    <?php // echo $data["content"];
-    ?>
+  
 
 
     <!--main-->
-    <div class="page page-about">
-        <?php require_once('includes/subnav.php') ?>
+    <div class="page page-chronicle">
 
-        <div class="container">
-            <header class="title title-section">
-                <h2 class=" wow fadeInUp">发展历程</h2>
-            </header>
+
+        <div class="container">          
 
             <div class="list list-chronicles">
                 <?php foreach ($years as $year) { ?>
                     <div class="item">
-                        <div class="row">
-                            <div class="col-md">
+                      
+                         
                                 <h3 class="year"><?php echo $year['year']; ?></h3>
+                                <ul>
                                 <?php foreach ($chronicles as $course) {
                                     if ($year['year'] === $course['year']) {
                                         ?>
-                                        <div class="row li align-items-center">
-                                            <div class="col-auto">
-                                                <div class="month">
+                                        <li>
+                                        
+                                                <span class="month">
                                                     <?php echo $course['month']; ?>月
-                                                </div>                                                
-                                            </div>
-                                            <div class="col">
-                                                <div class="des">
+                                                </span>                                                
+                                         
+                                             
                                                 <?php echo $course['description'] ?>
-                                                </div>
-                                            </div>
-                                        </div>
+                                              
+                                         
+                                    </li>
                                     <?php } ?>
                                 <?php } ?>
-                            </div>
-                            <div class="col-md-auto">
-                                <div class="pic">
-                                <?php foreach ($chronicles as $course) {
-                                    if ($year['year'] === $course['year'] && !empty($course['image_url'])) {
-                                        ?>
-                                         <img src=" <?php echo $course['image_url']; ?>" />                                       
-                                    <?php } ?>
-                                <?php } ?>
-                                   
-                                </div>
-                            </div>
-                        </div>
+                                </ul>
+                      
+                          
+                      
                     </div>
                 <?php } ?>
 

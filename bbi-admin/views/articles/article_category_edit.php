@@ -33,10 +33,7 @@ function buildTree(array $elements, $parentId = 0) {
 $tree = buildTree($categories);
 
 if($did==="6"){
-    $productModel = new Product();
-    $products = $productModel->fetch_all();
 
-    $selected = explode(",", $data['product_ids']); 
    
 }
 
@@ -107,6 +104,11 @@ if($did==="6"){
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="description">描述</label>
+                                        <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
+                                    </div>
+
+                                    <div class="form-group">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
                                             <label class="form-check-label" for="chkActive">发布</label>
@@ -118,9 +120,16 @@ if($did==="6"){
                                    <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">
-   
+                                            <?php if($did=="1"){ ?>
                                                   <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x240?text=72X72像素":$data['thumbnail'];?>" class="img-fluid" />
-                                       
+                                                  <?php } ?>
+                                            <?php if($did=="6"){ ?>
+                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=590X380像素":$data['thumbnail'];?>" class="img-fluid" />
+                                                  <?php } ?>
+                                           
+                                            <?php if($did=="3"){ ?>
+                                                  <img ID="iLogo" src="<?php echo empty($data['thumbnail'])?"holder.js/240x180?text=780X468像素":$data['thumbnail'];?>" class="img-fluid" />
+                                                  <?php } ?>
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>

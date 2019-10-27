@@ -1,116 +1,130 @@
-.page-service{
-    .projectlist{
+.page-product{
+    .product-list{
         margin-top: 2rem;
         .item{
-            margin-bottom: rem(30);
-            background-color: #fff;
-            .txt{
+            
+            background-color: $color-primary;
+            height: 300px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #fff;
+            a{
                 display: block;
-                padding: 1rem 2rem;
-                h3{
-                    font-size: rem(18);
-                    border-bottom: #eee solid 1px;
-                    padding-bottom: .5rem;
-                    margin-top: .5rem;
-                    span{
-                        font-weight: lighter;
-                        margin-left: 1rem;
+                height: 100%;
+                padding-left: 138px;   color: #fff;
+                font-size: rem(44);
+                line-height: 300px;
+                .iconfont{
+                    font-size: rem(38);
+                    display: inline-block; transition: all .2s;
+                }
+            }
+
+            &.open{
+                a{
+                    .iconfont{
+                        transform: rotate(-90deg);
                     }
                 }
-                .more{
-                    display: inline-block;
-                    padding: 0 1.5rem;
-                    border:1px #000 solid;
-                    height: 25px;
-                    line-height: 23px;
-                    border-radius: 13px;
-                    font-size: 12px;
-                }
             }
         }
-    }
-    .navlist{
-        margin-bottom: 0;
-    }
-    .pro-content{
-        background-color: #fff;
-        padding: 2rem;
-        height: 100%;
-        .title{
-            border-bottom: 1px #ddd solid;
 
-          h3{
-            padding-left: 1rem;   font-size: rem(18);  border-left:8px $color-primary solid;
-            line-height: 1.3;
-          }
-        }
-
-    }
-    .maincontent{
-        margin-bottom: rem(30);
-    }
-    .productlist{
-        background-color: #fff;
-        padding: rem(30);
-        .title{
-            padding-bottom: .5rem;
-            border-bottom: 1px #eee solid;
-            margin-bottom: 1rem;
-            h3{
-                border-left: 8px $color-primary solid; padding-left: 1rem; line-height: 1.2;
-                margin: 0;
-            }
-        }
-        .item{
-            text-align: center;
-            margin-bottom: 1rem;
-            .pic{
-                overflow: hidden;
-                margin-bottom: .5rem;
-                img{
+        .prolist{
+            margin-bottom: rem(30);
+            .box{
+                padding: 2rem 5rem;
+                background-color: #dde9ff;
+                display: none;
+                .product{
+                    position: relative;
+                    background-color: $color-primary;
                     display: block;
-                    transition: all .2s;
-                }
-            }
-            &:hover{
-                .pic{
                     img{
-                        transform: scale(1.1);
+                        display: block;   transition: all .2s;
+                    }
+                    .title{
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        z-index: 100;
+                        width: 100%;
+                        height: 100%;
+                        color: #fff;
+                        text-align: center;
+                        opacity: 0;
+                        transition: all .2s;
+                      p{
+                          @include vertical-align;
+                          margin: 0;
+                          font-size: rem(24);
+                      }
+                    }
+                    &:hover{
+                        img{
+                            opacity: .23;
+                        }
+                        .title{
+                            opacity: 1;
+                        }
                     }
                 }
             }
         }
-    }
-    .title-case-v1{
-        h1{
-            border-left: 8px $color-primary solid;
-            padding-left: 1rem;
-            line-height: 1.3;
-            font-size: rem(18);
-        }
-    }
-    article{
-        padding-top: 1rem;
-        .art-top{
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px #ddd solid;
-            .pic{
-                max-width: 310px;
-                border:1px #999 solid;
-                img{
-                    display: block;
-                }
-              
-            }
-            ul{
-                @include reset-list;
-            }
-        }
-     
     }
    
-    .back{
-        margin-top: 2rem;
+    
+
+}
+.page-product-detail{
+    .se{
+        .card{
+            background-color: #d6e2f7;
+            margin-bottom: rem(30);
+            .card-header{
+                background-color: #80a4e4;
+                color: #fff;
+                text-align: center;
+                font-size: rem(20);
+            }
+            .card-body{
+                padding: 1rem;
+            }
+        }
+        .box{
+            margin-bottom: rem(30);
+            box-shadow: 0 0 12px rgba(0,0,0,.15);
+            padding: 1rem;
+        }
+        .app{
+            margin-bottom: rem(30);
+            box-shadow: 0 0 12px rgba(0,0,0,.15);
+            background-color: #fff;
+            .txt{
+                padding: 1rem 3rem;
+               
+                h4{
+                    font-size: rem(24);
+                    margin: 0;
+                }
+                ul{
+                    list-style-image: url(../img/dot.png);
+                  padding-left: .9rem;
+                 
+                }
+            }
+            img{
+                display: block;
+
+            }
+        }
+        .clients{
+            text-align: center;            
+            margin: 0;
+            img{
+                display: block;
+                margin: 0 auto;
+            }
+        }
     }
 }

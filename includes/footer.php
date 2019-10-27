@@ -1,12 +1,4 @@
 
-<?php 
-require_once("data/link.php");
-$linkClass = new TZGCMS\Link();
-$links = $linkClass->get_links_bydid(41);
-
-
-
-?>
 <footer class="site-footer">
     <div class="container">
         <div class="row footer-navs">

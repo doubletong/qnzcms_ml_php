@@ -12,14 +12,15 @@ if (isset($_POST['title'], $_POST['dictionary_id'])) {
     $dictionary_id =  $_POST['dictionary_id'];
     $parent_id = isset($_POST['parent_id']) ?$_POST['parent_id']:0;
     $importance = $_POST['importance'];
+    $description =  isset($_POST['description']) ?$_POST['description']:""; 
     $active = $_POST['active'];
    
     //   echo $content.$productId;
     if($categoryId>0){
-        echo  $caseClass->update_category($categoryId, $title,$thumbnail, $thumbnail2, $dictionary_id,$parent_id, $importance,$active);
+        echo  $caseClass->update_category($categoryId, $title,$thumbnail, $thumbnail2, $dictionary_id,$parent_id, $importance,$description,$active);
 
     }else{
-        echo $caseClass->insert_category($title,$thumbnail, $thumbnail2, $dictionary_id,$parent_id,  $importance,$active);
+        echo $caseClass->insert_category($title,$thumbnail, $thumbnail2, $dictionary_id,$parent_id,  $importance,$description,$active);
     }
 
 }else{

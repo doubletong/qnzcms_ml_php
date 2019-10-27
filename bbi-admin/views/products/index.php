@@ -80,7 +80,6 @@ $products = $productClass->get_paged_products($cid, $keyword, $currentPage, $ite
             <?php require_once('../../includes/header.php'); ?>
 
             <div class="container-fluid maincontent">
-
                 <div class="row  mb-2">
                     <div class="col">
                         <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
@@ -94,16 +93,15 @@ $products = $productClass->get_paged_products($cid, $keyword, $currentPage, $ite
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">分类</label>
                                      <select class="form-control" id="cid" name="cid" placeholder="">
-                                                    <option value="">--请选择分类--</option>
+                                        <option value="">--请选择分类--</option>
 
-                                                    <?php foreach ($categories as $category) {
-                                                        ?>                                                       
-                                                            <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $cid  ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
+                                        <?php foreach ($categories as $category) {
+                                            ?>                                                       
+                                                <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $cid  ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
 
-                                                    <?php } ?>
-                                                   
-                                              
-                                                </select>
+                                        <?php } ?>                                                  
+                                    
+                                    </select>
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary">搜索</button>
@@ -112,7 +110,7 @@ $products = $productClass->get_paged_products($cid, $keyword, $currentPage, $ite
                         </form>
                     </div>
                     <div class="col-auto">
-                        <a href="product_add.php" class="btn btn-primary">
+                        <a href="product_edit.php" class="btn btn-primary">
                             <i class="iconfont icon-plus"></i> 添加产品
                         </a>
                     </div>
@@ -148,7 +146,7 @@ $products = $productClass->get_paged_products($cid, $keyword, $currentPage, $ite
                         <i class='iconfont  icon-like-fill'></i></span>   
                       
                         <?php } ?>
-                    </td>;                      
+                    </td>                      
                        
 
 

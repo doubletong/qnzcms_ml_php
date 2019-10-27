@@ -1,95 +1,117 @@
-
 .site-footer {
-    background:$color-primary;
+    background-color: $color-secondary;
     padding-top: 3rem;
     padding-bottom: 2rem;
-clear: both;
+    clear: both;
     color: #afbef4;
     overflow: hidden;
 
     a {
         color: #94acce;
+
         &:hover {
             color: #fff;
         }
     }
-    .designby{
+
+    .designby {
         margin-left: .6rem;
     }
+
     .footer-navs {
         margin-bottom: 1.5rem;
         display: none;
+
         @include respond-above(md) {
-           display: flex;
+            display: flex;
         }
-        dl{
+
+        dl {
             margin: 0;
-            dt{
+
+            dt {
                 font-size: rem(18);
-                color:#e3eeff;
+                color: #e3eeff;
                 margin-bottom: 1.5rem;
             }
-            dd{
+
+            dd {
                 margin: 0;
                 font-size: rem(14);
                 margin-bottom: .8rem;
             }
         }
 
-  
+
 
     }
 
-.f-s2{
-    margin-bottom: 2rem;
-    text-align: center;
-    @include respond-above(md) {
-        text-align: left;
-     }
-}
+    .f-s2 {
+        margin-bottom: 2rem;
+        text-align: center;
 
-    .sinawechat{
-        a{
+        @include respond-above(md) {
+            text-align: left;
+        }
+    }
+
+    .sinawechat {
+        a {
             display: inline-block;
             width: 36px;
-            height: 36px; line-height: 36px;
+            height: 36px;
+            line-height: 36px;
             border-radius: 3px;
             background-color: #6b8ac7;
-            color: #050823;
+            color: $color-secondary;
             text-align: center;
-            margin: 0 .4rem 1rem; 
+            margin: 0 .4rem 1rem;
+
             @include respond-above(md) {
                 width: 50px;
-                height: 50px; line-height: 50px;
-                border-radius: 6px;  margin: 0 .4rem 0; 
-                
-             }
-            .iconfont{
-                font-size: rem(18);
-                @include respond-above(md) {
-                    font-size: rem(36); 
-                 }
+                height: 50px;
+                line-height: 50px;
+                border-radius: 6px;
+                margin: 0 .4rem 0;
+
             }
 
-            &.wechat{
+            .iconfont {
+                font-size: rem(18);
+
+                @include respond-above(md) {
+                    font-size: rem(28);
+                }
+            }
+            &:hover {
+                background-color: #fff;
+               
+            }
+
+            &.wechat {
                 position: relative;
-                .qr{
+
+                .qr {
                     position: absolute;
-                    width: 120px;bottom: 58px;
+                    width: 120px;
+                    bottom: 58px;
                     left: 50%;
                     margin-left: -60px;
                     z-index: 200;
                     display: none;
                     transition: all .2s;
-                    img{
+
+                    img {
                         width: 120px;
                         display: block;
                     }
-                    &::after{
+
+                    &::after {
                         display: block;
                         content: " ";
                         position: absolute;
-                        width:0;bottom:0;
+                        width: 0;
+                        bottom: 0;
                         height: 0;
                         left: 50%;
                         margin-bottom: -12px;
@@ -102,12 +124,13 @@ clear: both;
                     }
                 }
 
-                &:hover{
-                    .qr{
+                &:hover {
+                  
+                    .qr {
                         display: block;
                     }
                 }
-                
+
             }
         }
     }
@@ -115,10 +138,12 @@ clear: both;
     .copyright {
         border-top: 1px #afbef4 solid;
         text-align: center;
-        padding-top: 1rem;   font-size: rem(12);
+        padding-top: 1rem;
+        font-size: rem(12);
+
         @include respond-above(md) {
             font-size: rem(14);
-         }
+        }
     }
 
 }
@@ -153,70 +178,79 @@ clear: both;
         right: 2rem;
     }
 }
-.over001{
+
+.over001 {
     position: fixed;
-    background-color: rgba(0,0,0,.6);
-    top: 0; left:0;
+    background-color: rgba(0, 0, 0, .6);
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     z-index: 10000;
     display: none;
-    .mesbox{
-       padding: 2rem 3rem;
-            background-color: rgb(56, 81, 147);
-            box-shadow: 0px 4px 60px 0px rgba(0, 10, 26, 0.3);
+
+    .mesbox {
+        padding: 2rem 3rem;
+        background-color: rgb(56, 81, 147);
+        box-shadow: 0px 4px 60px 0px rgba(0, 10, 26, 0.3);
+        position: absolute;
+        left: 50%;
+        top: 150px;
+        margin-left: -430px;
+        width: 859px;
+        height: 467px;
+        z-index: 5;
+
+        h3.title-msg {
+            font-size: rem(36);
+            color: rgb(95, 215, 255);
+            margin-top: 0;
+
+        }
+
+        p {
+            font-size: rem(18);
+            color: #fff;
+            font-weight: lighter;
+            margin-bottom: 1.5rem;
+        }
+
+        .btnCloseMsg {
             position: absolute;
-            left: 50%;
-            top: 150px;
-            margin-left: -430px;
-            width: 859px;
-            height: 467px;
-            z-index: 5;
-            h3.title-msg{
-                font-size: rem(36);
-                color: rgb(95, 215, 255);
-                margin-top: 0;
-                   
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+
+            line-height: 1;
+
+            .iconfont {
+                font-size: 1.375rem;
             }
-          
-            p{
-                font-size: rem(18);
-                color:#fff;
-                font-weight: lighter;
-                margin-bottom: 1.5rem;
-            }
-            .btnCloseMsg{
-                position: absolute; top: 1rem;
-                right: 1rem;
-                z-index: 100;
-              
-                line-height: 1;
-                .iconfont{
-                    font-size: 1.375rem;
-                }
-            }
-          .actions{
-              text-align: center;
-              a{
-               
-                    border-width: 1px;
-                    border-color: rgb(93, 242, 255);
-                    border-style: solid;
-                    border-radius: 4px;            
-                    width: 136px;
-                    height: 47px;
+        }
+
+        .actions {
+            text-align: center;
+
+            a {
+
+                border-width: 1px;
+                border-color: rgb(93, 242, 255);
+                border-style: solid;
+                border-radius: 4px;
+                width: 136px;
+                height: 47px;
                 display: inline-block;
                 line-height: 45px;
                 color: rgb(93, 242, 255);
                 margin: 2rem 2rem;
 
-                @include hover{
-                    background-color:  rgb(93, 242, 255);
-                    color:  rgb(56, 81, 147);
+                @include hover {
+                    background-color: rgb(93, 242, 255);
+                    color: rgb(56, 81, 147);
                 }
-                
-                  
-              }
-          }
+
+
+            }
+        }
     }
 }

@@ -107,7 +107,7 @@ if(isset($_GET['id'])){
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li:nth-of-type(2)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        $(".mainmenu>li.cases").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         
 
         $("#btnBrowser").on("click", function () {         

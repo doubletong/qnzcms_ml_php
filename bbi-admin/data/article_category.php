@@ -82,9 +82,10 @@ namespace TZGCMS\Admin{
             }
 
         //更新
-        public function update_category($id, $title,$thumbnail,$thumbnail2, $dictionary_id, $parent_id, $importance,$active) {
+        public function update_category($id, $title,$thumbnail,$thumbnail2, $dictionary_id, $parent_id, $importance,$description,$active) {
 
                 $sql = "UPDATE `article_categories` SET title= :title,
+                description = :description,
                 thumbnail= :thumbnail,
                 thumbnail2= :thumbnail2,
                 dictionary_id =:dictionary_id,         
@@ -95,7 +96,9 @@ namespace TZGCMS\Admin{
 
                 $query = \db::getInstance()->prepare($sql);
 
+          
                 $query->bindValue(":title",$title);
+                $query->bindValue(":description",$description);
                 $query->bindValue(":thumbnail",$thumbnail);      
                 $query->bindValue(":thumbnail2",$thumbnail2);      
                 $query->bindValue(":dictionary_id",$dictionary_id,\PDO::PARAM_INT);   
@@ -118,16 +121,17 @@ namespace TZGCMS\Admin{
             }
 
 
-            public function insert_category($title, $thumbnail, $thumbnail2, $dictionary_id,$parent_id, $importance,$active) {
+            public function insert_category($title, $thumbnail, $thumbnail2, $dictionary_id,$parent_id, $importance,$description,$active) {
 
             
-                $sql="INSERT INTO `article_categories`(`title`, `thumbnail`,`thumbnail2`, `dictionary_id`,   `parent_id`,  `importance`, `active`,`added_date`) 
-                VALUES (:title,:thumbnail, :thumbnail2, :dictionary_id, :parent_id, :importance, :active,:added_date)";
+                $sql="INSERT INTO `article_categories`(`title`, `description`,  `thumbnail`,`thumbnail2`, `dictionary_id`,   `parent_id`,  `importance`,  `active`,`added_date`) 
+                VALUES (:title,:description,:thumbnail, :thumbnail2, :dictionary_id, :parent_id, :importance, :active,:added_date)";
 
             // $username = $_SESSION['valid_user'] ;
 
                 $query = \db::getInstance()->prepare($sql);
                 $query->bindValue(":title",$title);
+                $query->bindValue(":description",$description);
                 $query->bindValue(":thumbnail",$thumbnail);     
                 $query->bindValue(":thumbnail2",$thumbnail2);      
                 $query->bindValue(":dictionary_id",$dictionary_id,\PDO::PARAM_INT);   

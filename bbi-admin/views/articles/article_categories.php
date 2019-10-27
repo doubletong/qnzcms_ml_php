@@ -128,11 +128,11 @@ $categories = $categoryClass->get_paged_categories($did, $keyword, $currentPage,
         if("1"==<?php echo $did; ?>){
             $(".mainmenu>li.articles").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
-        if("2"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(4)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+        if("6"==<?php echo $did; ?>){
+            $(".mainmenu>li.applications").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
         if("3"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+            $(".mainmenu>li.tech").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
         //确认框默认语言
         bootbox.setDefaults({
