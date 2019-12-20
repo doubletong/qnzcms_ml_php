@@ -45,12 +45,12 @@ if (isset($_GET['cid'])) {
             <?php foreach ($articles as $article) { ?>
                 <div class="item">
                 <div class="row no-gutters align-items-center">
-                    <div class="col-md">
+                    <div class="col-lg">
                         <div class="thumb">
                             <img src="<?php echo $article['thumbnail']; ?>" alt="<?php echo $article['title']; ?>">
                         </div>
                     </div>
-                    <div class="col-md">
+                    <div class="col-lg">
                         <div class="txt">
                             <h3 class="title title-art"><?php echo $article['title']; ?></h3>
                             <p class="summary"><?php echo $article['summary']; ?></p>

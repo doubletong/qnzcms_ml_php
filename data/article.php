@@ -67,7 +67,7 @@ class Article{
         $param = "%{$keyword}%";
 
         $startIndex = ($pageIndex-1) * $pageSize;
-        $query = db::getInstance()->prepare("SELECT id, title, summary, thumbnail,  
+        $query = \db::getInstance()->prepare("SELECT id, title, summary, thumbnail,  
         pubdate FROM articles  where active=1 AND title LIKE :keyword ORDER BY pubdate DESC LIMIT $startIndex, $pageSize");   
         $query->bindValue(":keyword", $param);  
        // $query->bindValue(":id",$id,PDO::PARAM_INT);  
@@ -79,7 +79,7 @@ class Article{
     //获取总数
     public function search_count($keyword){
         $param = "%{$keyword}%";
-        $query = db::getInstance()->prepare("SELECT count(*) as count FROM `articles` where active=1 AND title LIKE :keyword ");    
+        $query = \db::getInstance()->prepare("SELECT count(*) as count FROM `articles` where active=1 AND title LIKE :keyword ");    
         $query->bindValue(":keyword", $param);  
         $query->execute();        
         $rows = $query->fetchColumn(); 

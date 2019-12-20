@@ -38,6 +38,45 @@ class Document{
         return $rows;
     }
 
+    
+ //显示或隐藏
+ public function active_document($id) {
+
+    $sql = "UPDATE `documents` SET  
+        active =ABS(active-1)
+        WHERE id =:id";
+
+    $query = \db::getInstance()->prepare($sql);           
+    $query->bindValue(":id",$id,\PDO::PARAM_INT);
+    $query->execute();
+
+    $result = $query->rowCount();;
+    if ($result>0) {
+        $msg = array ('status'=>1,'message'=>'记录已成功更新。');
+        return json_encode($msg);  
+    } else {
+        $msg = array ('status'=>3,'message'=>'未更新记录。');
+        return json_encode($msg);  
+        
+    }
+}
+    //拷贝记录
+public function copy_document($id){
+    $query = \db::getInstance()->prepare("INSERT INTO `documents` (`title`, `description`, `file_url`, `thumbnail`, `file_size`, `dictionary_id`,  `importance`,  `active`,  `added_by`, `added_date`)
+                                                 SELECT concat(`title`,'【拷贝】'), `description`,  `file_url`,`thumbnail`, `file_size`, `dictionary_id`,  `importance`,  0,  `added_by`,  UNIX_TIMESTAMP(now())  FROM `documents` WHERE id = ? ");
+    $query->bindValue(1,$id);
+    $query->execute();
+
+    $result = $query->rowCount();;
+    if ($result>0) {
+        $msg = array ('status'=>1,'message'=>'记录已成功拷贝。');
+        return json_encode($msg);  
+    } else {
+        $msg = array ('status'=>3,'message'=>'未拷贝记录。');
+        return json_encode($msg);              
+    }
+}
+
 //更新
    public function update_document($id, $title,$description, $file_url,$file_size,$thumbnail,$importance,$dictionary_id, $active) {
 

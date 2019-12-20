@@ -29,35 +29,52 @@ $products = $productClass->get_all_products();
     <div class="page page-product container">
 
         <div class="product-list">
-            
-                <?php foreach($categories as $category){?>
-                    <div class="item  wow fadeInUp" style="background-image:url('<?php echo $category['thumbnail']; ?>')">                       
-                        <a href="javascript:void(0);">                           
-                            <?php echo $category['title']; ?> <i class="iconfont icon-down"></i>
-                        </a> 
-                    </div>
-                    <div class="prolist  wow fadeInUp">
-                        <div class="box">
-                        <div class="row">
-                        <?php foreach($products as $product){  
-                            if($product['category_id'] == $category['id']){                           
-                            ?>
-                            <div class="col-md-4">
-                                <a href="/products/detail/<?php echo $product['id']; ?>" class="product">
-                                    <img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>">
-                                    <div class="title">
-                                        <p><?php echo $product['title']; ?> &gt;</p>
-                                       
-                                    </div>
-                                </a>
+            <div class="row">
+            <?php foreach($products as $product){   ?>  
+                <?php if($product['category_id'] == 2){                           
+                    ?>
+                    <div class="col-6 col-md-4">
+                        <a href="/products/detail/<?php echo $product['id']; ?>" class="product">
+                        <div class="pic">
+                            <img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>">
                             </div>
-                            <?php  }
+                            <div class="title">
+                                <p><?php echo $product['title']; ?> &gt;</p>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <?php  } ?>  
 
-                        } ?>   
-                        </div>
-                        </div>
-                    </div> 
-                <?php } ?>   
+            <?php } ?>  
+            </div>
+
+            <div class="title title-list">
+                <h3>配套产品</h3>
+            </div>
+
+          
+                <div class="row">
+                <?php foreach($products as $product){  
+                    if($product['category_id'] == 5){                           
+                    ?>
+                    <div class="col-6 col-md-4">
+                        <a href="/products/detail/<?php echo $product['id']; ?>" class="product">
+                            <div class="pic">
+                            <img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>">
+                            </div>
+                            <div class="title">
+                                <p><?php echo $product['title']; ?> &gt;</p>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <?php  }
+
+                } ?>   
+                </div>
+             
+    
         </div>
 
     </div>

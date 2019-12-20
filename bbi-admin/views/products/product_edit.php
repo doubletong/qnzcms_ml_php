@@ -73,6 +73,14 @@ $tree = buildTree($categories);
                                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>" placeholder="">
                                             </div>
                                         </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="subtitle">英文名称</label>
+                                                <input type="text" class="form-control" id="subtitle" name="subtitle" value="<?php echo isset($data['subtitle'])?$data['subtitle']:''; ?>" placeholder="">
+                                            </div>
+                                        </div>
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="categoryId">分类</label>

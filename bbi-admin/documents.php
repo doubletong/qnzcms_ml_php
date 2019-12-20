@@ -115,10 +115,25 @@ else
                     echo "<td>".$row['importance']."</td>";
                     ?>
                     <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
-                    <td><a href='document_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                    <td><a href='document_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm' title="编辑">
                             <i class="iconfont icon-edit"></i>
                         </a>
-                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+
+                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
+                            <i class="iconfont icon-file-copy"></i>
+                        </button>
+
+                        <?php if($row['active']==1){?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                <i class="iconfont icon-eye-close"></i>
+                            </button>
+                        <?php }else{ ?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                <i class="iconfont icon-eye"></i>
+                            </button>
+                        <?php } ?>   
+
+                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete' title="删除">
                             <i class="iconfont icon-delete"></i>
                         </button>
                     </td>

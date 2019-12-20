@@ -174,8 +174,8 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
 
 
             <nav aria-label="Page navigation">                
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
-                </nav>
+                <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+            </nav>
 
         </div>
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/footer.php'); ?>

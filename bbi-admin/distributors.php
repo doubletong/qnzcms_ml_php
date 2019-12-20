@@ -13,7 +13,7 @@ if(isset($_REQUEST["search"]) && $_REQUEST["search"] != "")
     $pagination->param = "&search=$search";
     $pagination->rowCount("SELECT * FROM distributors WHERE address LIKE '%$search%' OR name LIKE '%$search%' ");
     $pagination->config(6, 10);
-    $sql = "SELECT id, name,thumbnail, homepage, importance,added_date FROM distributors WHERE address LIKE '%$search%' OR name LIKE '%$search%' ORDER BY  importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id, name,thumbnail, homepage,active, importance,added_date FROM distributors WHERE address LIKE '%$search%' OR name LIKE '%$search%' ORDER BY  importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -26,7 +26,7 @@ else
 {
     $pagination->rowCount("SELECT * FROM distributors");
     $pagination->config(6,10);
-    $sql = "SELECT id, name,thumbnail, homepage, importance, added_date FROM distributors ORDER BY importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
+    $sql = "SELECT id, name,thumbnail, homepage, importance,active, added_date FROM distributors ORDER BY importance DESC  LIMIT $pagination->start_row, $pagination->max_rows";
     $query =db::getInstance()->prepare($sql);
     $query->execute();
     $model = array();
@@ -45,7 +45,7 @@ else
         <?php echo "子公司信息_后台管理_".SITENAME;?>
     </title>
     <?php require_once('includes/meta.php') ?>
-    <link href="../js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -88,7 +88,7 @@ else
             <th>名称</th>           
             <th>官网</th>
             <th>排序</th>
-         
+            <th>状态</th>
             <th>创建日期</th>
             <th>操作</th>
         </tr>
@@ -104,12 +104,29 @@ else
            
             <td><?php echo $row['name'];?></td>
             <td><?php echo $row['homepage'];?></td>
-            <td><?php echo $row['importance'];?></td>            
+            <td><?php echo $row['importance'];?></td>  
+            <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                 
             <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
-            <td><a href='distributor_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+            <td>
+            <a href='distributor_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm' title="编辑">
                     <span class="iconfont icon-edit"></span>
                 </a>
-                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                
+                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
+                            <i class="iconfont icon-file-copy"></i>
+                        </button>
+
+                        <?php if($row['active']==1){?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                <i class="iconfont icon-eye-close"></i>
+                            </button>
+                        <?php }else{ ?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                <i class="iconfont icon-eye"></i>
+                            </button>
+                        <?php } ?>   
+
+                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete' title="删除">
                     <span class="iconfont icon-delete"></span>
                 </button>
             </td>
@@ -134,8 +151,8 @@ else
     </div>
 <?php require_once('includes/scripts.php'); ?>
 
-<script src="../js/vendor/toastr/toastr.min.js"></script>
-<script src="../js/vendor/bootbox.js/bootbox.js"></script>
+<script src="/assets/js/vendor/toastr/toastr.min.js"></script>
+<script src="/assets/js/vendor/bootbox.js/bootbox.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -144,6 +161,56 @@ else
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"
+        });
+        $(".btn-active").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'distributor_actions.php',
+                type : 'POST',
+                data : {id:articleId,action:"active"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                    //console.log(myobj.status);
+                    if (myobj.status === 1) {
+                        // toastr.success(myobj.message);                                
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+        $(".btn-copy").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'distributor_actions.php',
+                type : 'POST',
+                data : {id:articleId,action:"copy"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                  
+                    if (myobj.status === 1) {                                            
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
         });
 
         $(".btn-delete").click(function(){

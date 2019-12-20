@@ -107,46 +107,73 @@ input,textarea,button{
     overflow: hidden;
     
     @include respond-above (sm) {
-        height: 280px;
+        height: 250px;
     }
 
     @include respond-above (md) {
-        height: 400px;
+        height: 350px;
     }
 
     @include respond-above (lg) {
-        height: 560px;
+        height: 450px;
     }
 
-    @media  (min-width:1601px){
-        height: 600px;
+    @include respond-above (xlg) {
+        height: 500px;
     }
 
     .container{
-        height: 100%;
+        height: auto;
         position: relative;
+        @include vertical-align(); 
+        color: #fff;
+        text-align: center;
+        padding-top: 6rem;
         .title-page {
-            position: absolute;
-            left: 15px;
-            bottom: rem(115);
+            font-weight: bold;
             margin: 0;          
-            font-size: rem(24);
-         
+            font-size: rem(20);         
             text-transform: uppercase;
-            color: #fff;
+        
             @include respond-above(sm) {
-                font-size: rem(36);
-            }
+                font-size: rem(24);             }
 
             @include respond-above(md) {
-                font-size: rem(48);
+                font-size: rem(34);
             }
 
             @include respond-above(lg) {
-                font-size: rem(56);
+                font-size: rem(42);
             }
             @include respond-above(xlg) {
-                font-size: rem(60);
+                font-size: rem(50);
+            }
+        }
+        p{
+            font-size: rem(24);
+            position: relative;
+            display: inline-block;
+          margin-top: 0;
+            &::before{
+                content: ' ';
+                display: inline-block;
+                width: 84px;
+                border-top:1px #fff solid;
+                top: 1.5rem;
+              z-index: 100;
+                position: absolute;
+                left: -95px;
+            }
+            &::after{
+                content: ' ';
+                display: inline-block;
+                width: 84px;
+                border-top:1px #fff solid;
+                z-index: 100;
+                position: absolute;
+                right: -95px;
+                top: 1.5rem;
+
             }
         }
     }
@@ -242,21 +269,39 @@ input,textarea,button{
 }
 
 .title-v1{
-    font-size: rem(36);
+    font-size: rem(24);
     margin: 0;
+    @include respond-above(sm) {
+        font-size: rem(36);
+    }
 }
-
+.title-v2{
+    font-size: rem(24);
+    margin: 0 0 1rem;
+    text-align: center;
+    @include respond-above(sm) {
+        font-size: rem(36);  margin: 0 0 2rem;
+    }
+}
 .subnav{
     background-color: #eee;
     
     a{
         display: block;
-        padding: 1rem 1.5rem;
+        padding: .5rem 1rem;
         text-align: center;
         border-bottom: 2px solid transparent;
+    
        @include hover{
         border-bottom: 2px solid $color-secondary;
+       
        }
+       @include respond-above(sm) {
+            padding: 1rem 1rem;
+        }
+        @include respond-above(md) {
+            padding: 1rem 1.5rem;
+        }
        &.active{
         border-bottom: 2px solid $color-secondary;
         color:$color-secondary;

@@ -35,12 +35,18 @@
     .opentr{
         display: block;
         background-color:#6798ef;
-        padding: 1rem;
+        padding:.5rem 1rem;
        
-        color: #fff;        
+        color: #fff;    
+        @include respond-above(sm) {
+            padding: 1rem;
+        }   
     }
     .job-body{
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        @include respond-above(sm) {
+            margin-bottom: 2rem;
+        }   
         .post-body{
             padding: 1rem;   background-color:#e0ebff;
         }

@@ -10,7 +10,7 @@ $data = $pageClass->fetch_data("environmental");
 <html class="no-js" lang="zh-CN">
 
 <head>
-    <title><?php echo $data["title"] . "-" . $site_info["sitename"]; ?></title>
+    <title><?php echo $data["title"] .  "-环境服务-"  . $site_info["sitename"]; ?></title>
     <?php require_once('../../includes/meta.php') ?>
 </head>
 

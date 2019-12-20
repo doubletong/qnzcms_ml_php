@@ -17,7 +17,7 @@ class Job{
         $startIndex = ($pageIndex-1) * $pageSize;
         $sql = "SELECT * FROM jobs  where 1 = 1 ";
         if(!empty($city)){
-            $sql =  $sql. "AND address = '$city' ";
+            $sql =  $sql. "AND department = '$city' ";
         }
         if(!empty($keyword)){
             $sql =  $sql. "AND (title LIKE :keyword OR content LIKE  :keyword) ";
@@ -38,7 +38,7 @@ class Job{
         $sql = "SELECT count(*) as count FROM `jobs` where 1 = 1 ";
     
         if(!empty($city)){
-            $sql =  $sql. "AND address = '$city' ";
+            $sql =  $sql. "AND department = '$city' ";
         }
         if(!empty($keyword)){
             $sql =  $sql. "AND (title LIKE :keyword OR content LIKE  :keyword)";

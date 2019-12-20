@@ -60,7 +60,7 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
                         
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
+                                    <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?>  id="chkActive" name="active">
                                     <label class="form-check-label" for="chkActive">发布</label>
                                 </div>
                             </div>

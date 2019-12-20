@@ -42,13 +42,11 @@ if (isset($_GET['id'])) {
 
 
     <!--main-->
-    <div class="page page-news-detail page-product-detail container">
-
+    <div class="page page-news-detail page-product-detail ">
+<div class="container">
         <header class="title title-app wow fadeInUp">
             <h1 class="t1"><?php echo $data['title']; ?></h1>
-            <div class="bg">
-                <img src="<?php echo $data['image_url']; ?>" alt="<?php echo $data['title']; ?>">
-            </div>
+            <h4><?php echo $data['subtitle']; ?></h4>     
         </header>
 
        
@@ -59,7 +57,7 @@ if (isset($_GET['id'])) {
             
         </div>
 
-    </div>
+    </div></div>
     <!--main end-->
 
     <?php require_once('../../includes/footer.php') ?>

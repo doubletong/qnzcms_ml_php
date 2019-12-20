@@ -7,6 +7,7 @@ $articleClass = new TZGCMS\Admin\Article();
 if (isset($_POST['title'], $_POST['content'])) {
     $articleId = $_POST['articleId'];
     $title = $_POST['title'];
+    $subtitle = $_POST['subtitle'];
     $categoryId = isset($_POST['categoryId']) ? $_POST['categoryId']:0; 
     $dictionary_id = $_POST['dictionary_id'];
     $thumbnail = $_POST['thumbnail'];
@@ -25,10 +26,10 @@ if (isset($_POST['title'], $_POST['content'])) {
 
     //   echo $content.$productId;
     if($articleId>0){
-        echo $articleClass->update_article($articleId, $title,$categoryId,$dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active,$recommend, $description, $content,$summary,$pubdate);
+        echo $articleClass->update_article($articleId, $title, $subtitle, $categoryId,$dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active,$recommend, $description, $content,$summary,$pubdate);
 
     }else{
-        echo $articleClass->insert_article($title,$categoryId, $dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active,$recommend, $description, $content,$summary,$pubdate);
+        echo $articleClass->insert_article($title, $subtitle, $categoryId, $dictionary_id, $thumbnail, $imageUrl,$background_image,$author,$source,$source_url, $keywords, $active,$recommend, $description, $content,$summary,$pubdate);
     }
 
 }else{

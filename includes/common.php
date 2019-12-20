@@ -6,7 +6,7 @@ $siteOptionClass = new SiteOption();
 $SiteOptionModel = $siteOptionClass->get_config("site_info");
 $site_info  = json_decode($SiteOptionModel['config_values'], true);
 
-define('SITEPATH', 'http://tzgcmsphp.com:83/');
+// define('SITEPATH', 'http://tzgcmsphp.com:83/');
 
 // Set default timezone
 //date_default_timezone_set('UTC');

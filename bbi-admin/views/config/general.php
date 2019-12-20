@@ -192,7 +192,7 @@ $data  = json_decode($model['config_values'], true);
                                 <?php } ?>
                             </div> -->
 
-                            <!-- <h3 class="text-center">社交帐号</h3>
+                            <h3 class="text-center">社交帐号</h3>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -200,12 +200,12 @@ $data  = json_decode($model['config_values'], true);
                                         <input type="text" class="form-control" id="qq" name="qq" placeholder="" value="<?php echo !empty($data['qq']) ? $data['qq'] : ""; ?>">
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <!-- <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="bilibili">哔哩哔哩</label>
                                         <input type="text" class="form-control" id="bilibili" name="bilibili" placeholder="" value="<?php echo !empty($data['bilibili']) ? $data['bilibili'] : ""; ?>">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="weibo">微博</label>
@@ -214,7 +214,8 @@ $data  = json_decode($model['config_values'], true);
                                 </div>
                         
                      
-                            </div> -->
+                            </div> 
+                            <div class="hidden">
                             <h3 class="title">
                                 招聘设置
                             </h3>
@@ -239,7 +240,8 @@ $data  = json_decode($model['config_values'], true);
                             </div>
                                 </div>
                             </div>
-
+                            </div>
+                            
                             <h3 class="title">
                                 SEO优化
                             </h3>
@@ -367,11 +369,16 @@ $data  = json_decode($model['config_values'], true);
                         data: $(form).serialize(),
                         success: function(res) {
 
-                            //  $('#resultreturn').prepend(res);
-                            if (res) {
-                                toastr.success('基本信息已保存成功！', '编辑基本信息')
-                            } else {
-                                toastr.error('基本信息保存失败！', '编辑基本信息')
+                            var myobj = JSON.parse(res);                    
+                            //console.log(myobj.status);
+                            if (myobj.status === 1) {
+                                toastr.success(myobj.message);                                        
+                            } 
+                            if (myobj.status === 2) {
+                                toastr.error(myobj.message)
+                            }
+                            if (myobj.status === 3) {
+                                toastr.info(myobj.message)
                             }
                         }
                     });

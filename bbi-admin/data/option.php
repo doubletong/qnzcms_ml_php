@@ -27,9 +27,11 @@ namespace TZGCMS\Admin{
 
             $result = $query->rowCount();;
             if ($result>0) {
-                return true;
+                $msg = array ('status'=>1,'message'=>'记录已成功更新。');
+                return json_encode($msg);  
             } else {
-                return false;
+                $msg = array ('status'=>3,'message'=>'未更新记录。');
+                return json_encode($msg);                
             }
         }
 
@@ -51,10 +53,12 @@ namespace TZGCMS\Admin{
             $query->execute();
 
             $result = $query->rowCount();;
-            if ($result>0) {
-                return true;
+            if ($result > 0) {
+                $msg = array('status' => 1, 'message' => '新记录已成功创建。');
+                return json_encode($msg);
             } else {
-                return false;
+                $msg = array('status' => 3, 'message' => '未创建新记录。');
+                return json_encode($msg);
             }
         }
 

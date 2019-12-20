@@ -8,6 +8,7 @@ if (isset($_POST['category_id'], $_POST['title'], $_POST['importance'])) {
 
     $productId = isset($_POST['productId']) ? $_POST['productId']:0;
     $title = $_POST['title'];
+    $subtitle = $_POST['subtitle'];
     $importance = $_POST['importance'];
     $thumbnail = $_POST['thumbnail'];
     $image_url = $_POST['image_url'];
@@ -24,11 +25,11 @@ if (isset($_POST['category_id'], $_POST['title'], $_POST['importance'])) {
 
  //   echo $content.$productId;
     if($_POST['productId']>0){
-        echo $productClass->update_product($productId, $title,  $importance, $thumbnail, $image_url, $keywords,$recommend, $active,$summary, 
+        echo $productClass->update_product($productId, $title, $subtitle,  $importance, $thumbnail, $image_url, $keywords,$recommend, $active,$summary, 
             $description, $content, $specifications,$registration, $category_id,$dictionary_id); 
 
     }else{
-        echo $productClass->insert_product($title,  $importance, $thumbnail, $image_url, $keywords,$recommend, $active,$summary, 
+        echo $productClass->insert_product($title,  $subtitle, $importance, $thumbnail, $image_url, $keywords,$recommend, $active,$summary, 
         $description, $content, $specifications,$registration,$category_id,$dictionary_id);
     }
 

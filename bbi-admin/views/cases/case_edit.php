@@ -125,8 +125,6 @@ $pageTitle = isset($_GET['id']) ? "编辑案例" : "创建案例";
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail']) ? $data['thumbnail'] : ''; ?>" />
                                             </div>
                                         </div>
-
-
                                     </div>
                                     <div class="card">
                                         <div class="card-header">SEO</div>

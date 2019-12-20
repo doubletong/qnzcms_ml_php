@@ -134,8 +134,8 @@ namespace TZGCMS\Admin{
 
     //拷贝记录
     public function copy_article($id){
-        $query = \db::getInstance()->prepare("INSERT INTO `articles` (`title`, `content`, `pubdate`, `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, `view_count`, `active`, `recommend`, `added_by`, `thumbnail`, `image_url`, `added_date`, `categoryId`, `summary`)
-                                                     SELECT concat(`title`,'【拷贝】'), `content`, UNIX_TIMESTAMP(now()), `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, 0, 0, 0, `added_by`, `thumbnail`, `image_url`, UNIX_TIMESTAMP(now()), `categoryId`, `summary`  FROM `articles` WHERE id = ? ");
+        $query = \db::getInstance()->prepare("INSERT INTO `articles` (`title`, `subtitle`,`content`, `pubdate`, `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, `view_count`, `active`, `recommend`, `added_by`, `thumbnail`, `image_url`, `added_date`, `categoryId`, `summary`)
+                                                     SELECT concat(`title`,'【拷贝】'), `subtitle`,`content`, UNIX_TIMESTAMP(now()), `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, 0, 0, 0, `added_by`, `thumbnail`, `image_url`, UNIX_TIMESTAMP(now()), `categoryId`, `summary`  FROM `articles` WHERE id = ? ");
         $query->bindValue(1,$id);
         $query->execute();
 
@@ -150,10 +150,11 @@ namespace TZGCMS\Admin{
     }
 
     //更新
-    public function update_article($id, $title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,
+    public function update_article($id, $title,$subtitle,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,$author,$source,$source_url,
     $keywords,$active, $recommend,$description, $content,$summary,$pubdate) {
 
             $sql = "UPDATE articles SET title= :title,
+            subtitle=:subtitle,
             categoryId =:categoryId,
             dictionary_id = :dictionary_id,
             thumbnail =:thumbnail,
@@ -176,6 +177,7 @@ namespace TZGCMS\Admin{
             $publish = $date->getTimestamp();
 
             $query->bindValue(":title",$title);
+            $query->bindValue(":subtitle",$subtitle);      
         $query->bindValue(":categoryId",$categoryId);
         $query->bindValue(":dictionary_id",$dictionary_id);
         $query->bindValue(":thumbnail",$thumbnail);
@@ -206,11 +208,11 @@ namespace TZGCMS\Admin{
         }
 
 
-        public function insert_article($title,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,
+        public function insert_article($title,$subtitle,$categoryId,$dictionary_id,$thumbnail,$imageUrl,$background_image,
         $author,$source,$source_url,$keywords,$active, $recommend, $description, $content,$summary,$pubdate) {
 
-            $sql="INSERT INTO articles (title,categoryId,dictionary_id,thumbnail,image_url,background_image,author,source,source_url,keywords, description,content,summary,pubdate,active,recommend,added_by,added_date)
-                    VALUES (:title,:categoryId,:dictionary_id,:thumbnail,:imageUrl,:background_image,:author,:source,:source_url,:keywords, :description,:content, :summary,:pubdate,:active,:recommend,:added_by,:added_date)";
+            $sql="INSERT INTO articles (title,subtitle,categoryId,dictionary_id,thumbnail,image_url,background_image,author,source,source_url,keywords, description,content,summary,pubdate,active,recommend,added_by,added_date)
+                    VALUES (:title,:subtitle,:categoryId,:dictionary_id,:thumbnail,:imageUrl,:background_image,:author,:source,:source_url,:keywords, :description,:content, :summary,:pubdate,:active,:recommend,:added_by,:added_date)";
 
             $username = $_SESSION['valid_user'] ;
 
@@ -219,6 +221,7 @@ namespace TZGCMS\Admin{
 
             $query = \db::getInstance()->prepare($sql);
             $query->bindValue(":title",$title);
+            $query->bindValue(":subtitle",$subtitle);          
             $query->bindValue(":categoryId",$categoryId);
             $query->bindValue(":dictionary_id",$dictionary_id);
             $query->bindValue(":thumbnail",$thumbnail);

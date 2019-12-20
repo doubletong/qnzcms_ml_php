@@ -123,8 +123,8 @@ public function recommend_product($id) {
 
 
     public function copy_product($id){
-        $query = \db::getInstance()->prepare("INSERT INTO `products` (title, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,dictionary_id)
-                                                     SELECT '新记录', summary, description,content,specifications,registration,0,thumbnail,image_url,keywords,recommend,active,added_by,UNIX_TIMESTAMP(now()),category_id,dictionary_id FROM `products` WHERE id = ? ");
+        $query = \db::getInstance()->prepare("INSERT INTO `products` (title, subtitle,  summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,dictionary_id)
+                                                     SELECT concat(`title`,'【拷贝】'), subtitle, summary, description,content,specifications,registration,0,thumbnail,image_url,keywords,recommend,active,added_by,UNIX_TIMESTAMP(now()),category_id,dictionary_id FROM `products` WHERE id = ? ");
         $query->bindValue(1,$id);
         $query->execute();
 
@@ -147,11 +147,12 @@ public function recommend_product($id) {
     }
 
 //更新
-   public function update_product($id, $title,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, 
+   public function update_product($id, $title,$subtitle,$importance,$thumbnail,$image_url,$keywords,$recommend,$active,$summary, 
    $description, $content,$specifications,$registration, $category_id,$dictionary_id) {
 
         $sql = "UPDATE products SET           
              title= :title,
+             subtitle= :subtitle,
              summary = :summary,         
              content = :content,   
              specifications = :specifications,  
@@ -171,7 +172,8 @@ public function recommend_product($id) {
 
         $query = \db::getInstance()->prepare($sql);
    
-        $query->bindValue(":title",$title);    
+        $query->bindValue(":title",$title);  
+        $query->bindValue(":subtitle",$subtitle);    
         $query->bindValue(":summary",$summary);      
         $query->bindValue(":content",$content);
         $query->bindValue(":specifications",$specifications);     
@@ -201,18 +203,18 @@ public function recommend_product($id) {
     }
 
 
-    public function insert_product( $title, $importance,$thumbnail,
+    public function insert_product( $title, $subtitle, $importance,$thumbnail,
                                    $image_url,$keywords,$recommend,$active,$summary, $description, $content,$specifications,$registration,$category_id,$dictionary_id) {
 
-        $sql="INSERT INTO products (title, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,dictionary_id)
-                VALUES (:title,:summary, :description,:content,:specifications, :registration,:importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id,:dictionary_id)";
+        $sql="INSERT INTO products (title,subtitle, summary, description,content,specifications,registration,importance,thumbnail,image_url,keywords,recommend,active,added_by,added_date,category_id,dictionary_id)
+                VALUES (:title,:subtitle,:summary, :description,:content,:specifications, :registration,:importance,:thumbnail,:image_url,:keywords,:recommend,:active,:added_by,:added_date,:category_id,:dictionary_id)";
 
         $username = $_SESSION['valid_user'] ;
 
         $query = \db::getInstance()->prepare($sql);
      
         $query->bindValue(":title",$title);
-      
+        $query->bindValue(":subtitle",$subtitle);    
         $query->bindValue(":summary",$summary);
         $query->bindValue(":description",$description);        
         $query->bindValue(":content",$content);     

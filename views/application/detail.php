@@ -33,15 +33,13 @@ if (isset($_GET['id'])) {
     <?php require_once('includes/header.php') ?>
 
 
-    <div class="page page-news-detail container">
+    <div class="page page-news-detail ">
 
-
+    <div class="container">
 
         <header class="title title-app wow fadeInUp">
-            <h1 class="t1"><?php echo $data['title']; ?></h1>
-            <div class="bg">
-                <img src="<?php echo $data['image_url']; ?>" alt="<?php echo $data['title']; ?>">
-            </div>
+            <h1 class="t1"><?php echo $data['title']; ?></h1>    
+            <h4><?php echo $data['subtitle']; ?></h4>     
         </header>
 
         <div class="article">
@@ -51,7 +49,7 @@ if (isset($_GET['id'])) {
 
         </div>
 
-
+        </div>
 
 
     </div>

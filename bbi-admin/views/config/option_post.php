@@ -46,6 +46,8 @@ switch ($config_type) {
         $hrcontact = $_POST['hrcontact'];
         $hrphone = $_POST['hrphone'];
 
+        $qq = $_POST['qq'];
+        $weibo = $_POST['weibo'];
 
         $keywords = $_POST['keywords'];
         $description = $_POST['description'];
@@ -54,7 +56,7 @@ switch ($config_type) {
             "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2, "wechat" =>  $wechat,
             "qrcode" =>  $qrcode, "webnumber" =>  $webnumber, "company"=>$company,
             "email" =>  $email, "email_contact" => $email_contact,"hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
-            "keywords" => $keywords, "description" => $description, "hremail" =>  $hremail,
+            "keywords" => $keywords, "description" => $description, "hremail" =>  $hremail, "qq" => $qq, "weibo" =>  $weibo,
             "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone
         );
 

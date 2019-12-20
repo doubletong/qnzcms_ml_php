@@ -47,8 +47,7 @@
     }
 
     .f-s2 {
-        margin-bottom: 2rem;
-        text-align: center;
+        margin-bottom: 2rem;       
 
         @include respond-above(md) {
             text-align: left;
@@ -65,7 +64,7 @@
             background-color: #6b8ac7;
             color: $color-secondary;
             text-align: center;
-            margin: 0 .4rem 1rem;
+         
 
             @include respond-above(md) {
                 width: 50px;
@@ -167,7 +166,7 @@
     opacity: .5;
     transition: opacity .2s;
     background-color: $color-primary;
-    color: #000;
+    color: #fff;
 
     &:hover {
         opacity: 1;

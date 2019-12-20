@@ -5,7 +5,7 @@ namespace TZGCMS\Admin{
         public function get_paged_jobs($keyword,$pageIndex,$pageSize){
             $param = "%{$keyword}%";        
             $startIndex = ($pageIndex-1) * $pageSize;
-            $sql = "SELECT id,title,	address,department,population,importance,added_date FROM jobs WHERE 1=1 ";
+            $sql = "SELECT id,title,active,	address,department,population,importance,added_date FROM jobs WHERE 1=1 ";
        
             if(!empty($keyword)){
                 $sql =  $sql. "AND (title LIKE :keyword OR content LIKE :keyword) ";
@@ -78,8 +78,49 @@ namespace TZGCMS\Admin{
             }
 
 
+            //显示或隐藏
+    public function active_job($id)
+    {
+
+        $sql = "UPDATE `jobs` SET  
+        active =ABS(active-1)
+        WHERE id =:id";
+
+        $query = \db::getInstance()->prepare($sql);
+        $query->bindValue(":id", $id, \PDO::PARAM_INT);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result > 0) {
+            $msg = array('status' => 1, 'message' => '记录已成功更新。');
+            return json_encode($msg);
+        } else {
+            $msg = array('status' => 3, 'message' => '未更新记录。');
+            return json_encode($msg);
+        }
+    }
+
+
+    public function copy_job($id)
+    {
+        $query = \db::getInstance()->prepare("INSERT INTO `jobs` (title, department, address, population,content, importance,active,added_by,added_date)
+                                                         SELECT '新记录', department, address, population,content, importance,active,added_by,UNIX_TIMESTAMP(now()) FROM `jobs` WHERE id = ? ");
+        $query->bindValue(1, $id);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result>0) {
+            $msg = array ('status'=>1,'message'=>'记录已成功拷贝。');
+            return json_encode($msg);  
+        } else {
+            $msg = array ('status'=>3,'message'=>'未拷贝记录。');
+            return json_encode($msg);              
+        }
+    }
+
+
     //更新
-    public function update_job($id,$title, $department, $address, $population, $content,$importance) {
+    public function update_job($id,$title, $department, $address, $population, $content,$importance,$active) {
 
         $sql="UPDATE `jobs` SET       
         `title`=:title,
@@ -87,7 +128,8 @@ namespace TZGCMS\Admin{
         `address`=:address,
         `population`=:population,
         `content`=:content,
-        `importance`=:importance
+        `importance`=:importance,
+        `active`=:active
             WHERE `id`=:id";
 
         $query = \db::getInstance()->prepare($sql);
@@ -96,6 +138,7 @@ namespace TZGCMS\Admin{
         $query->bindValue(":address",$address);
         $query->bindValue(":content",$content);
         $query->bindValue(":importance",$importance,\PDO::PARAM_INT);
+        $query->bindValue(":active",$active,\PDO::PARAM_INT);
         $query->bindValue(":population",$population,\PDO::PARAM_INT);
         $query->bindValue(":id",$id,\PDO::PARAM_INT);
         $query->execute();
@@ -111,12 +154,12 @@ namespace TZGCMS\Admin{
     }
 
 
-    public function insert_job($title, $department, $address, $population, $content,  $importance) {
+    public function insert_job($title, $department, $address, $population, $content,  $importance,$active) {
 
 
 
-    $sql="INSERT INTO jobs(title, department, address, population, content, importance, added_date, added_by) 
-    VALUES (:title, :department, :address, :population, :content,  :importance,  :added_date, :added_by)";
+    $sql="INSERT INTO jobs(title, department, address, population, content, importance,active, added_date, added_by) 
+    VALUES (:title, :department, :address, :population, :content,  :importance, :active, :added_date, :added_by)";
 
         $username = $_SESSION['valid_user'] ;
 
@@ -127,6 +170,7 @@ namespace TZGCMS\Admin{
         $query->bindValue(":content",$content);
         $query->bindValue(":importance",$importance,\PDO::PARAM_INT);
         $query->bindValue(":population",$population,\PDO::PARAM_INT);
+        $query->bindValue(":active",$active,\PDO::PARAM_INT);
         $query->bindValue(":added_by",$username);
         $query->bindValue(":added_date",time());
         $query->execute();

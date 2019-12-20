@@ -68,7 +68,12 @@ $tree = buildTree($categories);
                                         <label for="title">标题</label>
                                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                                     </div>
-                             
+
+                                    <div class="form-group">
+                                        <label for="title">副标题</label>
+                                        <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="" value="<?php echo isset($data['subtitle'])?$data['subtitle']:''; ?>">
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="categoryId">分类</label>                                   
                                         <select class="form-control" id="categoryId" name="categoryId" placeholder="" >
@@ -183,7 +188,7 @@ $tree = buildTree($categories);
 
                                     <div class="form-group">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
+                                            <input type="checkbox" class="form-check-input"  <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
                                             <label class="form-check-label" for="chkActive">发布</label>
                                         </div>
                                     </div>

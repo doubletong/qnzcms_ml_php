@@ -22,7 +22,7 @@
         </div>
 
         <div class="row f-s2 align-items-center no-gutters wow fadeInUp">
-            <div class="col-md">
+            <div class="col">
                 <nav class="sinawechat">
                     <a href="javascript:void(0);" title="微信" class="wechat"><i class="iconfont icon-wechat"></i>
                         <div class="qr">
@@ -30,12 +30,12 @@
                         </div>
                     </a>
                  
-                    <a href="http://weibo.com/microportchina" title="微博"><i class="iconfont icon-sina"></i></a>
+                    <a href="<?php echo $site_info['weibo'];?>" title="微博"><i class="iconfont icon-sina"></i></a>
                   
                 </nav>
             </div>
       
-            <div class="col-md-auto text-right">
+            <div class="col-auto text-right">
             联系方式：<?php echo $site_info['phone'] ?> <br/>
             三达净水：<?php echo $site_info['hotPhone'] ?>
             </div>

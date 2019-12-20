@@ -45,12 +45,12 @@ $caseCategories = $caseClass->get_all_categories();
             foreach ($categories as $category) { ?>
                 <div class="item">
                     <div class="row no-gutters">
-                        <div class="col-md">
+                        <div class="col-lg">
                             <div class="thumb">
                                 <img src="<?php echo $category['thumbnail']; ?>" alt="<?php echo $category['title']; ?>">
                             </div>
                         </div>
-                        <div class="col-md <?php echo $n%2==0 ? "order-md-first":""; ?>">
+                        <div class="col-lg <?php echo $n%2==0 ? "order-lg-first":""; ?>">
                             <div class="txt">
                                 <h3 class="title"><?php echo $category['title']; ?></h3>
                                 <ul>
@@ -79,12 +79,12 @@ $caseCategories = $caseClass->get_all_categories();
         
         <div class="item">
             <div class="row no-gutters">
-                <div class="col-md">
+                <div class="col-lg">
                     <div class="thumb">
                         <img src="<?php echo isset($caseCarousels[0])?$caseCarousels[0]["image_url"]:""; ?>" alt="<?php echo isset($caseCarousels[0])?$caseCarousels[0]["title"]:""; ?>">
                     </div>
                 </div>
-                <div class="col-md order-md-first">
+                <div class="col-lg order-lg-first">
                     <div class="txt">
                         <h3 class="title"><?php echo isset($caseCarousels[0])?$caseCarousels[0]["title"]:""; ?></h3>
                         <ul>

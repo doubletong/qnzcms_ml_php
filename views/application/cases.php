@@ -64,7 +64,7 @@ $cases = $caseClass->get_paged_cases($cid, $keyword, $currentPage, $itemsPerPage
                 <a href="/application/cases" class="<?php echo empty($cid) ? "active" : ""; ?>">全部案例</a>
             </div>
             <?php foreach ($categories as $category) { ?>
-                <div class="col-md">
+                <div class="col-6 col-md">
                     <a href="/application/cases/<?php echo $category['id']; ?>" class="<?php echo $cid == $category['id'] ? "active" : ""; ?>">
                         <?php echo $category['title']; ?>
                     </a>
@@ -77,12 +77,12 @@ $cases = $caseClass->get_paged_cases($cid, $keyword, $currentPage, $itemsPerPage
             <?php foreach ($cases as $case) { ?>
                 <div class="item">
                 <div class="row no-gutters align-items-center">
-                    <div class="col-md">
+                    <div class="col-lg">
                         <div class="thumb">
                             <img src="<?php echo $case['thumbnail']; ?>" alt="<?php echo $case['title']; ?>">
                         </div>
                     </div>
-                    <div class="col-md">
+                    <div class="col-lg">
                         <div class="txt">
                             <h3 class="title title-art"><?php echo $case['title']; ?></h3>
                             <p class="summary"><?php echo $case['summary']; ?></p>

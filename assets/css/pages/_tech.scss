@@ -1,48 +1,80 @@
 .page-tech {
     .item {
-        background-position: left center;
+        background-position: center top;
         background-repeat: no-repeat;
-        background-size: auto 100%;
-        height: 470px;
-        margin-bottom: 4rem;
-
+        background-size: auto 240px;
+        padding-top: 240px;
+        margin-bottom: 1rem;
+      
+        @include respond-above(sm) {
+            padding-top: 0;
+            background-size: auto 100%;
+            background-position: left center;
+            height: 370px; margin-bottom: 4rem;
+        }
+        @include respond-above(md) {          
+            height: 430px; 
+        }
+        @include respond-above(lg) {          
+            height: 470px; 
+        }
         .txt {
-            background-color: #fff;
-            width: 60%;
-            margin: auto 0 auto auto;
-
+            background-color: #fff;  
             background-color: rgb(255, 255, 255);
-            box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.2);
-
-            @include vertical-align;
-            padding: 3rem 4rem;
-
+            box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+          
+         
+           
+            @include respond-above(sm) {
+                width: 60%;
+                margin: auto 0 auto auto;   @include vertical-align; padding: 1.5rem;  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.2);
+            }
+            @include respond-above(md) {
+                padding: 2rem 3rem;  
+            }
+            @include respond-above(lg) {
+                padding: 3rem 4rem;  
+            }
             .title {
-                font-size: rem(36);
+                font-size: rem(24);
                 margin: 0;
                 line-height: 1;
+                @include respond-above(sm) {
+                    font-size: rem(28);
+                }
+                @include respond-above(md) {
+                    font-size: rem(32);
+                }
+                @include respond-above(lg) {
+                    font-size: rem(36);
+                }
             }
 
             .more {
 
                 background-color: rgb(73, 130, 217);
-
-                width: 154px;
-                height: 60px;
+                width: 120px;
+                height: 45px; line-height: 45px;
                 display: inline-block;
                 text-align: center;
-                line-height: 60px;
+               
                 color: #fff;
-                border-radius: 30px;
+                border-radius: 23px;
+                @include respond-above(sm) {
+                    height: 60px; line-height: 60px;  width: 154px;  border-radius: 30px;
+                }
             }
         }
 
         &.item-odd {
-            background-position: right center;
-
+           
+            @include respond-above(sm) {
+                background-position: right center;
+            }
             .txt {
                 margin: auto auto auto 0;
-
+               
             }
         }
     }

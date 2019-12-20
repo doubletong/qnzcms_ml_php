@@ -111,7 +111,7 @@ $positions = $positionClass->get_all();
 
                 <div class="form-group">
                     <div class="form-check">
-                    <input type="checkbox" class="form-check-input" <?php echo (isset($data['active']) && $data['active']) ?"checked":"";?> id="chkActive" name="active">                          
+                    <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">                          
                     <label class="form-check-label" for="chkActive">发布</label>
                     </div>
                 </div>

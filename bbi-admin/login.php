@@ -2,10 +2,10 @@
 require_once('../includes/common.php');
 session_start();
 
-
 if(isset($_POST['username'],$_POST['password'])){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
+
 
     if($_POST['captcha'] != $_SESSION['phrase']) {
         $error = "验证码不正确";       
@@ -104,16 +104,16 @@ if(isset($_POST['username'],$_POST['password'])){
                 <input class="form-control"  type="text" name="captcha" placeholder="验证码">
                 <div class="input-group-append">
                     <span class="input-group-text" style="padding:0; overflow: hidden;">                  
-                        <img src="../includes/captcha.php" width="120" height="36" id="imgCaptcha"  alt="CAPTCHA">
+                        <img src="/includes/captcha.php" width="120" height="36" id="imgCaptcha"  alt="CAPTCHA">
                     </span>
                 </div>
             </div>
         </div>
         
-        <div class="form-group form-check">
+        <!-- <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">记住我</label>
-        </div>      
+        </div>       -->
       
         <?php if(isset($error)){?>
             <div class="alert alert-danger"><?php echo $error;?></div>

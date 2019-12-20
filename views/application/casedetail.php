@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
                     <a href="/application/cases" class="<?php echo empty($data['categoryid']) ? "active" : ""; ?>">全部案例</a>
                 </div>
                 <?php foreach ($categories as $category) { ?>
-                    <div class="col-md">
+                    <div class="col-6 col-md">
                         <a href="/application/cases/<?php echo $category['id']; ?>" class="<?php echo $data['categoryid'] == $category['id'] ? "active" : ""; ?>">
                             <?php echo $category['title']; ?>
                         </a>

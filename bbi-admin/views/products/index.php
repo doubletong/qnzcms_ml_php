@@ -175,7 +175,7 @@ $products = $productClass->get_paged_products($cid, $keyword, $currentPage, $ite
                                     <i class="iconfont icon-image"></i>
                                 </a>
                            -->
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy'>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="复制">
                                 <i class="iconfont icon-file-copy"></i>
                             </button>
 
@@ -200,7 +200,7 @@ $products = $productClass->get_paged_products($cid, $keyword, $currentPage, $ite
                         <?php } ?>   
 
 
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete' title="删除">
                                 <i class="iconfont icon-delete"></i>
                             </button>
                         </td>

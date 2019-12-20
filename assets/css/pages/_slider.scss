@@ -1,4 +1,21 @@
 .slider{
+    height: 350px;
+    @include respond-above (sm) {
+        height: 450px;
+    }
+
+    @include respond-above (md) {
+        height: 500px;
+    }
+
+    @include respond-above (lg) {
+        height: 550px;
+    }
+
+    @include respond-above (xlg) {
+        height: 600px;
+    }
+
     div.swiper-slide{
         height: 100%;
       
@@ -8,6 +25,40 @@
            background-position: center center;
            background-size: cover;
            display: none;
+           .txt{
+               text-align: center;
+               color: #fff;
+               @include vertical-align(); 
+               h1{
+                   font-size: rem(20);
+                   margin: 0;
+                   @include respond-above (sm) {    
+                    font-size: rem(30);
+                }
+                @include respond-above (md) {    
+                    font-size: rem(40);
+                }
+                   @include respond-above (lg) {    
+                    font-size: rem(50);
+                }
+                @include respond-above (xlg) {    
+                    font-size: rem(60);
+                }
+               }
+               p{
+                font-size: rem(12);
+                @include respond-above (sm) {    
+                    font-size: rem(14);
+                }
+                @include respond-above (md) {    
+                    font-size: rem(16);
+                }
+                   @include respond-above (lg) {    
+                    font-size: rem(18);
+                }
+             
+               }
+           }
            &.forpc{
             @media only screen and (orientation: landscape) {
                 display: block;

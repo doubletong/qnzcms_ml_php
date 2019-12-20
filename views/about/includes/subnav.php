@@ -19,13 +19,13 @@ $subnav = search($menutree, "title", "关于我们");
 <div class="subnav">
     <div class="container-fluid">
     <nav class="row no-gutters">
-      
+   
         <?php if(isset($subnav)){
             $about_nav = $subnav[0]['children'];
             foreach($about_nav as $nav){
                 ?>
             <div class="col">
-                <a href="<?php echo $nav['url'];?>" class="<?php echo $_SERVER['REQUEST_URI']===$nav["url"]?"active":""; ?>"><?php echo $nav['title'];?></a>
+                <a href="<?php echo $nav['url'];?>" class="<?php echo (startsWith($_SERVER['REQUEST_URI'],$nav["url"]) || $_SERVER['REQUEST_URI']===$nav["url"])?"active":""; ?>"><?php echo $nav['title'];?></a>
             </div>
            <?php } ?>
         <?php } ?>       

@@ -1,6 +1,11 @@
 <?php
 require_once("../../includes/common.php");
 
+session_start();
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+$token = $_SESSION['token'];
 
 ?>
 <!DOCTYPE html>
@@ -132,7 +137,8 @@ require_once("../../includes/common.php");
                                 </div>
                     <div class="contact-form wow slideInUp">
           
-                        <form class="wow fadeInUp" action="contact_send.php" method="post" id="editform">
+                        <form class="wow fadeInUp" action="send.php" method="post" id="editform">
+                            <input type="hidden" name="token" value="<?php echo $token; ?>">
                             <div class="form-group">
                                 <input name="name" class="form-control" type="text" placeholder="您的称呼" />
                             </div>                     

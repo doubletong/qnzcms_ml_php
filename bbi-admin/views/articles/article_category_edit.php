@@ -137,20 +137,20 @@ if($did==="6"){
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- 
-                                    <?php if($did=="16"){ ?>
+                                  
+                                    <?php if($did=="6"){ ?>
                                     <div style="width:300px; text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">      
-                                                <img ID="iLogo2" src="<?php echo empty($data['thumbnail2'])?"holder.js/240x160?text=580X304像素":$data['thumbnail2'];?>" class="img-fluid" />                                                                                     
+                                                <img ID="iLogo2" src="<?php echo empty($data['thumbnail2'])?"holder.js/240x160?text=1590X620像素":$data['thumbnail2'];?>" class="img-fluid" />                                                                                     
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser2" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
-                                                <input id="thumbnail2" type="hidden" name="thumbnail2" />
+                                                <input id="thumbnail2" type="hidden" name="thumbnail2" value="<?php echo isset($data['thumbnail2'])?$data['thumbnail2']:''; ?>"/>
                                             </div>
                                         </div>
                                     </div>  
-                                    <?php } ?> -->
+                                    <?php } ?> 
 
                                 </div>
                             </div>
@@ -197,7 +197,7 @@ if($did==="6"){
                 $(".mainmenu>li:nth-of-type(5)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
             }
             if("6"==<?php echo $did; ?>){
-            $(".mainmenu>li:nth-of-type(7)").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+            $(".mainmenu>li.applications").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
         }
         if("16"==<?php echo $did; ?>){
             $(".mainmenu>li.medialist").addClass("nav-open").find("ul>li.category a").addClass("active");

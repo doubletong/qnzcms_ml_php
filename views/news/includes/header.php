@@ -24,7 +24,8 @@ $subnav = search($menutree, "title", "资讯中心");
    
     <div class="banner banner-about" style="background-image:url('<?php echo isset($carousels[0])?$carousels[0]["image_url"]:""; ?>')">
         <div class="container">      
-                <h1 class="title-page wow fadeInLeft"><?php echo isset($carousels[0])?$carousels[0]["title"]:""; ?></h1> 
+            <h1 class="title-page wow fadeInUp"><?php echo isset($carousels[0])?$carousels[0]["description"]:""; ?></h1> 
+            <p class="wow fadeInUp"><?php echo isset($carousels[0])?$carousels[0]["title"]:""; ?></p>
         </div>
       
     </div>

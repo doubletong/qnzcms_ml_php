@@ -3,6 +3,7 @@ require_once('../../includes/common.php');
 require_once('../../data/job.php');
 
 require '../../../vendor/autoload.php';
+
 use JasonGrimes\Paginator;
 
 $jobClass = new TZGCMS\Admin\Job();
@@ -34,10 +35,10 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
 
 <head>
     <title>
-        <?php echo "岗位招聘_后台管理_".$site_info['sitename'];?>
+        <?php echo "岗位招聘_后台管理_" . $site_info['sitename']; ?>
     </title>
     <?php require_once('../../includes/meta.php') ?>
-    
+
 </head>
 
 <body>
@@ -56,8 +57,7 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">搜索</label>
-                                    <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput"
-                                        value="<?php echo $keyword ?>" placeholder="关键字">
+                                    <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary mb-2">搜索</button>
@@ -71,52 +71,64 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                         </a>
                     </div>
                 </div>
-               
+
 
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                        <th>序号</th>
-                            <th>职位</th>                        
-                            <th>工作地点</th>
+                            <th>序号</th>
+                            <th>职位</th>
+                            <th>招聘类型</th>
                             <th>人数</th>
-                      
+                            <th>显示?</th>
                             <th style="min-width:120px;">创建日期</th>
                             <th style="min-width:120px;">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-        foreach($jobs as $row)
-        {
-          
-            ?>
-            <tr>
-            <td><?php echo $row['importance']; ?></td>
-                <td><?php echo $row['title']; ?></td>             
-                <td><?php echo $row['address']; ?></td>
-                <td><?php echo $row['population']; ?></td>
-                
-                <td>
-                    <?php echo date('Y-m-d',$row['added_date']) ;?>
-                </td>
-                <td><a href='job_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
-                        <i class="iconfont icon-edit"></i>
-                    </a>
-                    <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
-                        <i class="iconfont icon-delete"></i>
-                    </button>
-                </td>
-                </tr>
-                <?php            
-        }
-        ?>
+                        foreach ($jobs as $row) {
+
+                            ?>
+                            <tr>
+                                <td><?php echo $row['importance']; ?></td>
+                                <td><?php echo $row['title']; ?></td>
+                                <td><?php echo $row['department']; ?></td>
+                                <td><?php echo $row['population']; ?></td>
+                                <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
+                                <td>
+                                    <?php echo date('Y-m-d', $row['added_date']); ?>
+                                </td>
+                                <td>
+                                    <a href='job_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm' title="编辑">
+                                        <i class="iconfont icon-edit"></i>
+                                    </a>
+                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-copy' title="复制">
+                                        <i class="iconfont icon-file-copy"></i>
+                                    </button>
+                                    <?php if ($row['active'] == 1) { ?>
+                                        <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                            <i class="iconfont icon-eye-close"></i>
+                                        </button>
+                                    <?php } else { ?>
+                                        <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                            <i class="iconfont icon-eye"></i>
+                                        </button>
+                                    <?php } ?>
+                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-danger btn-sm btn-delete' title="删除">
+                                        <i class="iconfont icon-delete"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
 
 
-                <nav aria-label="Page navigation">                
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                <nav aria-label="Page navigation">
+                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>
                 </nav>
             </div>
             <?php require_once('../../includes/footer.php'); ?>
@@ -127,7 +139,7 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
 
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             //当前菜单
             $(".mainmenu>li.jobs").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass(
                 "active");
@@ -137,9 +149,9 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                 locale: "zh_CN"
             });
 
-            $(".btn-delete").click(function () {
+            $(".btn-delete").click(function() {
                 var $that = $(this);
-                bootbox.confirm("删除后招聘岗位将无法恢复，您确定要删除吗？", function (result) {
+                bootbox.confirm("删除后招聘岗位将无法恢复，您确定要删除吗？", function(result) {
                     if (result) {
                         var productId = $that.attr("data-id");
 
@@ -149,14 +161,14 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                             data: {
                                 id: productId
                             },
-                            success: function (res) {
+                            success: function(res) {
 
-                                var myobj = JSON.parse(res);                    
+                                var myobj = JSON.parse(res);
                                 console.log(myobj.status);
                                 if (myobj.status === 1) {
-                                    toastr.success(myobj.message);  
-                                    $that.closest("tr").remove();                                   
-                                } 
+                                    toastr.success(myobj.message);
+                                    $that.closest("tr").remove();
+                                }
                                 if (myobj.status === 2) {
                                     toastr.error(myobj.message)
                                 }
@@ -171,6 +183,64 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
 
                 });
 
+
+            });
+
+            $(".btn-active").click(function() {
+                var $that = $(this);
+                var jobId = $that.attr("data-id");
+
+                $.ajax({
+                    url: 'job_actions.php',
+                    type: 'POST',
+                    data: {
+                        id: jobId,
+                        action: "active"
+                    },
+                    success: function(res) {
+                        var myobj = JSON.parse(res);
+                        //console.log(myobj.status);
+                        if (myobj.status === 1) {
+                            // toastr.success(myobj.message);                                
+                            location.reload();
+                        }
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
+                    }
+                });
+
+            });
+
+
+            $(".btn-copy").click(function() {
+                var $that = $(this);
+                var jobId = $that.attr("data-id");
+
+                $.ajax({
+                    url: 'job_actions.php',
+                    type: 'POST',
+                    data: {
+                        id: jobId,
+                        action: "copy"
+                    },
+                    success: function(res) {
+                        var myobj = JSON.parse(res);
+
+                        if (myobj.status === 1) {
+                            location.reload();
+                        }
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
+                    }
+                });
 
             });
 

@@ -38,7 +38,7 @@ $subnav = search($menutree, "title", "加入三达");
             $about_nav = $subnav[0]['children'];
             foreach($about_nav as $nav){
                 ?>
-            <div class="col-6 col-md-2">
+            <div class="col col-md-2">
                 <a href="<?php echo $nav['url'];?>" class="<?php echo $_SERVER['REQUEST_URI']===$nav["url"]?"active":""; ?>"><?php echo $nav['title'];?></a>
             </div>
            <?php } ?>
