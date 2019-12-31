@@ -4,7 +4,7 @@ class Position{
     public function get_paged_positions($keyword,$pageIndex,$pageSize){
         $param = "%{$keyword}%";        
         $startIndex = ($pageIndex-1) * $pageSize;
-        $sql = "SELECT id,title,importance,code,added_date FROM positions WHERE 1=1 ";
+        $sql = "SELECT id,title,importance,code,created_at FROM positions WHERE 1=1 ";
    
         if(!empty($keyword)){
             $sql =  $sql. "AND (title LIKE :keyword OR content LIKE :keyword) ";

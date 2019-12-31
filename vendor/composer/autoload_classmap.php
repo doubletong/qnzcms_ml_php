@@ -6,8 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Models\\Advertisement' => $baseDir . '/Models/Advertisement.php',
+    'Models\\AdvertisingSpace' => $baseDir . '/Models/AdvertisingSpace.php',
+    'Models\\Carousel' => $baseDir . '/Models/Carousel.php',
+    'Models\\Country' => $baseDir . '/Models/country.php',
     'Models\\I18N' => $baseDir . '/Models/I18N.php',
     'Models\\Link' => $baseDir . '/Models/Link.php',
     'Models\\Offer' => $baseDir . '/Models/Offer.php',
+    'Models\\Position' => $baseDir . '/Models/Position.php',
+    'Models\\Region' => $baseDir . '/Models/region.php',
+    'Models\\Reseller' => $baseDir . '/Models/reseller.php',
     'Models\\User' => $baseDir . '/Models/User.php',
 );

@@ -1,147 +1,44 @@
 .site-footer {
     background-color: $color-secondary;
     padding-top: 3rem;
-    padding-bottom: 2rem;
-    clear: both;
-    color: #afbef4;
-    overflow: hidden;
+    padding-bottom: 3rem;
+    color: #9699ac;
 
     a {
-        color: #94acce;
-
+        color: #fff;
         &:hover {
-            color: #fff;
+            text-decoration: underline;
         }
     }
 
-    .designby {
-        margin-left: .6rem;
-    }
-
-    .footer-navs {
-        margin-bottom: 1.5rem;
-        display: none;
-
-        @include respond-above(md) {
-            display: flex;
-        }
-
-        dl {
-            margin: 0;
-
-            dt {
-                font-size: rem(18);
-                color: #e3eeff;
-                margin-bottom: 1.5rem;
-            }
-
-            dd {
-                margin: 0;
-                font-size: rem(14);
-                margin-bottom: .8rem;
-            }
-        }
 
 
-
-    }
-
-    .f-s2 {
-        margin-bottom: 2rem;       
-
-        @include respond-above(md) {
-            text-align: left;
-        }
-    }
-
-    .sinawechat {
-        a {
+    .botnav{
+        text-align: center;
+        margin-bottom: 2rem;
+        a{
             display: inline-block;
-            width: 36px;
-            height: 36px;
-            line-height: 36px;
-            border-radius: 3px;
-            background-color: #6b8ac7;
-            color: $color-secondary;
-            text-align: center;
-         
-
+            padding: 0 1.3rem;
+            border-right: 1px #fff solid;
+            line-height: 1;
+            font-size: 1rem;
             @include respond-above(md) {
-                width: 50px;
-                height: 50px;
-                line-height: 50px;
-                border-radius: 6px;
-                margin: 0 .4rem 0;
-
-            }
-
-            .iconfont {
                 font-size: rem(18);
-
-                @include respond-above(md) {
-                    font-size: rem(28);
-                }
             }
-            &:hover {
-                background-color: #fff;
-               
-            }
-
-            &.wechat {
-                position: relative;
-
-                .qr {
-                    position: absolute;
-                    width: 120px;
-                    bottom: 58px;
-                    left: 50%;
-                    margin-left: -60px;
-                    z-index: 200;
-                    display: none;
-                    transition: all .2s;
-
-                    img {
-                        width: 120px;
-                        display: block;
-                    }
-
-                    &::after {
-                        display: block;
-                        content: " ";
-                        position: absolute;
-                        width: 0;
-                        bottom: 0;
-                        height: 0;
-                        left: 50%;
-                        margin-bottom: -12px;
-                        margin-left: -6px;
-                        border: #fff 6px solid;
-                        border-bottom-color: transparent;
-                        border-left-color: transparent;
-                        border-right-color: transparent;
-                        z-index: 200;
-                    }
-                }
-
-                &:hover {
-                  
-                    .qr {
-                        display: block;
-                    }
-                }
-
+            &:last-child{
+                border-right:none;
             }
         }
     }
+
+
 
     .copyright {
-        border-top: 1px #afbef4 solid;
-        text-align: center;
-        padding-top: 1rem;
+        text-align: center;      
         font-size: rem(12);
 
         @include respond-above(md) {
-            font-size: rem(14);
+            font-size: 1rem;
         }
     }
 

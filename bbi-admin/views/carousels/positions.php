@@ -1,27 +1,38 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/position.php');
+require_once('../../../config/database.php');
 require '../../../vendor/autoload.php';
+
+use Models\AdvertisingSpace;
 use JasonGrimes\Paginator;
 
-$positionClass = new TZGCMS\Admin\Position();
-
 $urlPattern = "index.php?page=(:num)";
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
+ //文章表实例化
+ $position = new AdvertisingSpace;
+ //搜索条件判断
+ $query = $position;
 
+ $keyword = null;
+if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
+{
+    $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
-if (!empty($keyword)) {
+    $query = $query->where('title','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
-$totalItems = $positionClass->get_positions_count($keyword);  //总记录数
+
+$totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$pages = $positionClass->get_paged_positions($keyword, $currentPage, $itemsPerPage);
+$pages =  $query->orderBy('importance', 'DESC')
+        ->skip(($currentPage-1)*$itemsPerPage)
+        ->take($itemsPerPage)
+        ->get();
 
 
 
@@ -85,7 +96,8 @@ $pages = $positionClass->get_paged_positions($keyword, $currentPage, $itemsPerPa
                     echo "<td>".$row['code']."</td>";
                   
                     ?>
-                    <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
+                
+                    <td><?php  echo date('Y-m-d',strtotime($row['created_at'])) ;?></td>
                     <td><a href='position_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>

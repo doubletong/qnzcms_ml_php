@@ -26,78 +26,41 @@ $uri = $_SERVER['REQUEST_URI'];
 ?>
 
 <header class="site-header" id="site-header">
-    <div class="container">
-        <div class="topcol">
+    <div class="container-fluid">   
             <div class="row align-items-center">
                 <div class="col-auto">
                     <a href="/" class="logo"><img id="logo" src="/assets/img/logo.png" alt="<?php echo $site_info['sitename']; ?>"></a>
                 </div>
                 <div class="col">
-                    <div id="searchbox" class="searchbox">
-                        <form action="/search" method="get">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col">
-                                    <input type="search" name="keyword" id="keyword" placeholder="请输入您想搜索的内容" />
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit"><i class="iconfont icon-search"></i></button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="topnav">
+                        <a href="/jobs">招贤纳士</a>
+                        <a href="#">商务入口</a>
+                        <a href="#">简体中文</a>
                     </div>
-
-                </div>
-                <div class="col-auto searchicon">
-                    <a href="/search"><i class="iconfont icon-search"></i></a>
-                </div>
-                <div class="col-auto lang">
-                    <a href="#">EN</a>
-                </div>
-                <div class="col-auto menu-col">
-                    <div class="menu-toggle">
-                        <div class="one"></div>
-                        <div class="two"></div>
-                        <div class="three"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mainav-container">
-            <div class="row no-gutters align-items-center">
-                <div class="col">
+            
                     <ul class="mainav" id="mainav">
                         <?php foreach ($menutree as $menu) { ?>
                             <li class="<?php echo (startsWith($uri, $menu["url"]) && $menu["url"] != "/") || $uri == $menu["url"] ? "active" : ""; ?>">
                                 <a href="<?php echo $menu["url"]; ?>" class="<?php echo isset($menu['children']) ? 'down' : ''; ?>" data-id="nav<?php echo $menu["id"]; ?>"><?php echo $menu["title"]; ?></a>
                             </li>
                         <?php } ?>
+                        <li class="last"><a href="/search"><i class="iconfont icon-search"></i></a></li>
                     </ul>
-                </div>
-                <div class="col-auto sj">
-                    <div class="shejiao">
-                        <a href="javascript:void(0);" class="phone wechat">
-                            <i class="iconfont icon-wechat"></i>
-                            <div>
-                                <img src="<?php echo $site_info['qrcode']; ?>" alt="">
-                            </div>
-                        </a>
 
-                        <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $site_info['qq']; ?>&amp;site=qq&amp;menu=yes">
-                            <i class="iconfont icon-qq"></i>
-                        </a>
-                        <a href="tel:<?php echo $site_info['phone']; ?>" class="phone">
-                            <i class="iconfont icon-phone"></i>
-                            <div><?php echo $site_info['phone']; ?></div>
-                        </a>
-                        <a href="mailto:<?php echo $site_info['email']; ?>">
-                            <i class="iconfont icon-youxiang"></i>
-                        </a>
-                    </div>
                 </div>
+                <!-- <div class="col-auto searchicon">
+                    <a href="/search"><i class="iconfont icon-search"></i></a>
+                </div>
+              
+                <div class="col-auto menu-col">
+                    <div class="menu-toggle">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                    </div>
+                </div> -->
             </div>
         </div>
-    </div>
 
     <?php foreach ($menutree as $menu) { ?>
         <div class="menu-over" id="nav<?php echo $menu["id"]; ?>">

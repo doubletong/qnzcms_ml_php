@@ -1,14 +1,19 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once('../../data/position.php');
+//require_once('../../data/position.php');
+require_once('../../../config/database.php');
 
-$pageClass = new TZGCMS\Admin\Position();
-if(isset($_GET['id'])){
+use Models\AdvertisingSpace;
+
+
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = $pageClass->fetch_data($id);
+    $data = AdvertisingSpace::find($id);
 }
-$pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
+
+$pageTitle = isset($_GET['id'])?"编辑文告位":"创建文告位";
+$action = isset($_GET['id'])?"update":"create";
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +44,9 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
                         <div class="card-body">
                         <div class="row">
                                 <div class="col">
-                            <input id="positionId" type="hidden" name="positionId" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input type="hidden" name="action" value="<?php echo $action; ?>" />
+
                             <div class="form-group">
                                 <label for="title">标题</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
@@ -55,7 +62,11 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance'])?$data['importance']:'0'; ?>" placeholder="值越大越排前">
                             </div>
 
-                    
+                            <div class="form-group">
+                                <label for="description">描述</label>
+                                <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
+                            </div>
+
                        
                         
                             <div class="form-group">
@@ -135,14 +146,14 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
                             dataType: "JSON",
                             data: {
                                 id: function () {
-                                    return $("#positionId").val();
+                                    return $("#id").val();
                                 },
                                 code: function () {
                                     return $("#code").val();
                                 }
                             },
                             dataFilter: function (data) {
-                                if (!data) {
+                                if (data==0) {
                                     // jquery validate remote method
                                     // accepts only "true" value
                                     // to successfully validate field 

@@ -2,18 +2,19 @@
 
 require_once('../../includes/common.php');
 require_once('../../data/carousel.php');
-require_once('../../data/position.php');
+require_once('../../../config/database.php');
 
-$carouselClass = new TZGCMS\Admin\Carousel();
+use Models\Advertisement;
+use Models\AdvertisingSpace;
+// $carouselClass = new TZGCMS\Admin\Carousel();
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $data = $carouselClass->fetch_data($id);
+    $data = Advertisement::find($id);
 }
 $pageTitle = isset($_GET['id'])?"编辑广告":"创建广告";
-
-$positionClass = new TZGCMS\Admin\Position();
-$positions = $positionClass->get_all();
+$action = isset($_GET['id'])?"update":"create";
+$positions = AdvertisingSpace::All();
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +22,7 @@ $positions = $positionClass->get_all();
 <head>
     <title><?php echo $pageTitle."_广告_后台管理_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
+    <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -39,7 +41,8 @@ $positions = $positionClass->get_all();
         </div>
         <div class="card-body">
          
-                <input id="carouselId" type="hidden" name="carouselId" value="<?php echo isset($data['id'])?$data['id']:0;?>" />
+                <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0;?>" />
+                <input type="hidden" name="action" value="<?php echo $action; ?>" />
 
                 <div class="form-group">
                     <label for="title">主题</label>                  
@@ -47,12 +50,12 @@ $positions = $positionClass->get_all();
                   
                 </div>
                 <div class="form-group">
-                    <label for="categoryId">广告位</label>                                   
-                    <select class="form-control" id="position_id" name="position_id">
+                    <label for="space_id">广告位</label>                                   
+                    <select class="form-control" id="space_id" name="space_id">
                         <option value="">--请选择广告位--</option>
                         <?php foreach( $positions as $model)
                         {
-                            if(isset($data['position_id']) && $model["id"]=== $data["position_id"]){
+                            if(isset($data['space_id']) && $model["id"]=== $data["space_id"]){
                             ?>
                                     <option value="<?php echo $model["id"]; ?>" selected><?php echo $model["title"]; ?></option>
 
@@ -76,7 +79,7 @@ $positions = $positionClass->get_all();
                         </div>
                     <?php } ?>                     
                     <div class="input-group">
-                        <input id="image_url" name="imageUrl"  class="form-control" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" aria-describedby="setImageUrl">
+                        <input id="image_url" name="image_url"  class="form-control" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" aria-describedby="setImageUrl">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                         </div>
@@ -103,7 +106,19 @@ $positions = $positionClass->get_all();
                     <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['importance'])?"0":$data['importance'];?>" placeholder="">
                   
                 </div>
+                <div class="form-group">
+                    <label for="content">内容</label>
 
+                    <textarea class="form-control" id="content" name="content" placeholder=""><?php echo isset($data['content'])?stripslashes($data['content']):''; ?></textarea>
+                    <script>
+                        var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
+                        CKEDITOR.replace('content', {
+                            filebrowserBrowseUrl: elFinder,
+                            filebrowserImageBrowseUrl: elFinder,                                  
+                            allowedContent: true                  
+                        });
+                    </script>
+                </div>
                 <div class="form-group">
                     <label for="description">描述</label>                   
                     <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>                 

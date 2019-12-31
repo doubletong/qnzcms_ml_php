@@ -121,9 +121,16 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
     );
 
     public static $classMap = array (
+        'Models\\Advertisement' => __DIR__ . '/../..' . '/Models/Advertisement.php',
+        'Models\\AdvertisingSpace' => __DIR__ . '/../..' . '/Models/AdvertisingSpace.php',
+        'Models\\Carousel' => __DIR__ . '/../..' . '/Models/Carousel.php',
+        'Models\\Country' => __DIR__ . '/../..' . '/Models/country.php',
         'Models\\I18N' => __DIR__ . '/../..' . '/Models/I18N.php',
         'Models\\Link' => __DIR__ . '/../..' . '/Models/Link.php',
         'Models\\Offer' => __DIR__ . '/../..' . '/Models/Offer.php',
+        'Models\\Position' => __DIR__ . '/../..' . '/Models/Position.php',
+        'Models\\Region' => __DIR__ . '/../..' . '/Models/region.php',
+        'Models\\Reseller' => __DIR__ . '/../..' . '/Models/reseller.php',
         'Models\\User' => __DIR__ . '/../..' . '/Models/User.php',
     );
 

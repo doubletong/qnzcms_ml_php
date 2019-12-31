@@ -19,171 +19,21 @@
     @include respond-above(lg) {
         height: 120px;
         padding-bottom: .8rem;
+        padding-top: 1rem;
     }
 
-    .container {
-        height: 100%;
-        position: relative;
-        .logo{
-            display: block;
-            img{
-                height: 30px;
-                @include respond-above(md) {      
-                    height: 50px;
-                }
-            }
-            
-        }
-  
-    }
-
-    .topcol {
-        color: #fff;
-        height: 45px;
-        @include respond-above(sm) {      
-            height: 70px;
-        }
-        .row{
-            height: 100%;
-        }
-
-        a {
-            color: #fff;
-        }
-
-        .searchicon {
-
-            @include respond-above(sm) {
-                display: none;
-            }
-        }
-
-        .searchbox {
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 199px;
-            height: 26px;
-            border-radius: 13px;
-            margin: 0 0 0 auto;
-            padding-left: 1rem;
-            display: none;
-
-            @include respond-above(sm) {
-                display: block;
-            }
-
-            input {
-                width: 100%;
-
-                color: #fff;
-                background-color: transparent;
-                border: none;
-                outline: none;
-                font-size: 12px;
-                display: block;
-                height: 26px;
-
-                &::-webkit-input-placeholder {
-                    /* WebKit browsers */
-                    color: #6b99fc;
-                }
-
-                &:-moz-placeholder {
-                    /* Mozilla Firefox 4 to 18 */
-                    color: #6b99fc;
-                }
-
-                &::-moz-placeholder {
-                    /* Mozilla Firefox 19+ */
-                    color: #6b99fc;
-                }
-
-                &:-ms-input-placeholder {
-                    /* Internet Explorer 10+ */
-                    color: #6b99fc;
-                }
-
-            }
-
-            button {
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                color: #fff;
-            }
+    .topnav{
+        text-align: right;
+        padding-right: 2.3rem;
+        a{
+            color: $color-primary;
+            margin-left: 1.5rem;
+            font-size: rem(14);
         }
     }
+    
 
-    .sj {
-        display: none;
 
-        @include respond-above(lg) {
-            display: block;
-        }
-    }
-
-    .shejiao {
-        padding-left: 1.5rem;
-
-        a {
-            margin-left: 6px;
-            color: #fff;
-            display: inline-block;
-            position: relative;
-            &.phone{
-                div{
-                    position: absolute;
-                    top: 50px;
-                    left: 50%;
-                    width: 150px;
-                    margin-left: -75px;
-                    z-index: 1000;
-                    border-radius: 3px;
-                    background-color: #fff;
-                    color: #333;
-                    padding:.5rem 1rem;
-                    text-align: center;
-                    box-shadow: 0 0 12px rgba(0,0,0,.15);
-                    display: none;
-                    &::before{
-                        content: " ";
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        position: absolute;
-                        left: 50%;
-                        margin-left: -5px;
-                        border: 5px #fff solid;
-                        border-left-color: transparent;
-                        border-right-color: transparent;
-                        border-top-color: transparent;
-                        top: -10px;
-                     
-                  
-                    }
-                }
-               
-
-                &:hover{
-                    div{
-                        display: block;
-                    }
-                }
-
-                &.wechat{
-                    div{
-                        width: 120px;
-                        margin-left: -60px; padding:0;
-                        img{
-                            display: block;
-                            max-width: none;
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-           
-        }
-    }
 
     .one,
     .two,
@@ -201,24 +51,25 @@
 
     .mainav {
         @include reset-list;
+       
         display: none;
      
         @include respond-above(lg) {
-            display: block;
+            display: block; text-align: right;
         }
 
         &>li {
             display: inline-block;
             position: relative;
-            margin-right: 2.5rem;
+           
 
             &>a {
                 display: block;
                 color: #fff;
                 position: relative;
-                height: 50px;
-                line-height: 50px;
-                padding: 0;
+                height: 40px;
+                line-height: 40px;
+                padding: 0 1rem;
                 &::after {
                     content: " ";
                     display: block;
@@ -244,10 +95,13 @@
                     &::after {
                         opacity: 1;
                     }
-                }
-
+                } 
             }
-
+            &.last{
+                a{
+                    padding: 0;
+                }
+            }
             &.active {
                 a{
                     border-bottom:3px #fff solid;

@@ -10,7 +10,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  $capsule->addConnection([
     "driver" => "mysql",
     "host" =>"localhost",
-    "port" => 3307,
+    "port" => 3306,
     "database" => "tzgcms_php",
     "username" => "root",
     "password" => "root",

@@ -1,39 +1,57 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/carousel.php');
+//require_once('../../data/carousel.php');
 require_once('../../data/position.php');
+require_once('../../../config/database.php');
 require '../../../vendor/autoload.php';
+
+use Models\Advertisement;
+use Models\AdvertisingSpace;
 use JasonGrimes\Paginator;
 
-$carouselClass = new TZGCMS\Admin\Carousel();
+//$carouselClass = new TZGCMS\Admin\Carousel();
+//$pid = isset($_GET['pid']) ? $_GET['pid'] : null;
+//$positionClass = new TZGCMS\Admin\Position();
 
-$pid = isset($_GET['pid']) ? $_GET['pid'] : null;
-
-$positionClass = new TZGCMS\Admin\Position();
-$positions = $positionClass->get_all();
+$positions = AdvertisingSpace::all();
 
 $urlPattern = "index.php?page=(:num)";
+ //文章表实例化
+ $ads = new Advertisement;
+ //搜索条件判断
+ $query = $ads->with('advertising_space');
 
 
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
+ $keyword = null;
+ $space = null;
+ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
+ {
+     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
+ 
+     $query = $query->where('title','like','%'.$keyword.'%');
+     $urlPattern = $urlPattern . "&keyword=$keyword";
+ }
+ if(isset($_REQUEST["space"]) && $_REQUEST["space"] != "")
+ {
+     $space = htmlspecialchars($_REQUEST["space"],ENT_QUOTES);
+ 
+     $query = $query->where('space_id','=',$space);
+     $urlPattern = $urlPattern . "&space=$space";
+ }
 
-
-if (!empty($keyword)) {
-    $urlPattern = $urlPattern . "&keyword=$keyword";
-}
-
-$totalItems = $carouselClass->get_carousels_count_v1($keyword,$pid);  //总记录数
+$totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$carousels = $carouselClass->get_paged_carousels_v1($keyword,$pid, $currentPage, $itemsPerPage);
+$carousels =  $query->orderBy('importance', 'DESC')
+            ->skip(($currentPage-1)*$itemsPerPage)
+            ->take($itemsPerPage)
+            ->get();
 
-
-
-
+//print_r($carousels);
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,11 +82,11 @@ $carousels = $carouselClass->get_paged_carousels_v1($keyword,$pid, $currentPage,
            
             <div class="col-auto">
                 <label class="sr-only" for="inlineFormInput">广告位</label>
-                    <select class="form-control" id="pid" name="pid">
+                    <select class="form-control" id="space" name="space">
                     <option value="">--广告位过滤--</option>
                     <?php foreach ($positions as $position) {
                         ?>                                                       
-                            <option value="<?php echo $position["id"]; ?>" <?php echo  $position["id"] == $pid  ? "selected" : ""; ?>><?php echo $position["title"]; ?></option>
+                            <option value="<?php echo $position["id"]; ?>" <?php echo  $position["id"] == $space  ? "selected" : ""; ?>><?php echo $position["title"]; ?></option>
 
                     <?php } ?>     
                 </select>
@@ -109,15 +127,27 @@ $carousels = $carouselClass->get_paged_carousels_v1($keyword,$pid, $currentPage,
             <?php
 
             echo "<td>".$row['title']."</td>";
-            echo "<td>".$row['position_title']."</td>";            
+            echo "<td>".$row['advertising_space']['title']."</td>";            
             echo "<td>".$row['link']."</td>";
             ?>
              <td><?php echo $row['importance'];?></td>
           
-            <td><?php echo $row['added_date'];?></td>
+             <td><?php  echo date('Y-m-d',strtotime($row['created_at'])) ;?></td>
             <td><a href='carousel_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                     <i class="iconfont icon-edit"></i>
                 </a>
+                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
+                    <i class="iconfont icon-file-copy"></i>
+                </button>
+                <?php if ($row['active'] == 1) { ?>
+                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                        <i class="iconfont icon-eye-close"></i>
+                    </button>
+                <?php } else { ?>
+                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
+                        <i class="iconfont icon-eye"></i>
+                    </button>
+                <?php } ?>
                 <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                     <i class="iconfont icon-delete"></i>
                 </button>
@@ -151,6 +181,58 @@ $carousels = $carouselClass->get_paged_carousels_v1($keyword,$pid, $currentPage,
         bootbox.setDefaults({
             locale: "zh_CN"
         });
+
+        $(".btn-active").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'carousel_post.php',
+                type : 'POST',
+                data : {id:articleId,action:"active"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                    //console.log(myobj.status);
+                    if (myobj.status === 1) {
+                        // toastr.success(myobj.message);                                
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+        $(".btn-copy").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'carousel_post.php',
+                type : 'POST',
+                data : {id:articleId,action:"copy"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                  
+                    if (myobj.status === 1) {                                            
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
 
         $(".btn-delete").click(function(){
             var $that = $(this);

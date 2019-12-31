@@ -91,10 +91,18 @@ $page = $pageClass->fetch_data("home");
 
             </div>
             <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="footer-pagination">
+                <div class="container-fluid">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto"><div class="swiper-button-prev"></div></div>
+                        <div class="col-auto"><div class="swiper-pagination"></div></div>                    
+                        <div class="col-auto"><div class="swiper-button-next"></div></div>
+                    </div>      
+                </div>          
+            </div>
             <!-- Add Arrows -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            
+            
         </div>
         <?php // echo $page['content']; 
         ?>
