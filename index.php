@@ -25,14 +25,10 @@ $page = $pageClass->fetch_data("home");
 
 
 ?>
-<!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
-<!--[if IE 9]>         <html class="no-js gt-ie9 ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js gt-ie9">
-<!--<![endif]-->
-
+<!doctype html>
+<html class="no-js" lang="">
 <head>
+  <meta charset="utf-8">
     <title><?php echo $site_info['sitename']; ?></title>
 
     <?php require_once('includes/meta.php') ?>

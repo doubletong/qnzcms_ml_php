@@ -21,7 +21,9 @@ a {
         color: $color-primary;
     }
 }
-
+figure{
+    padding: 0;margin:2rem 0;
+}
 img {
     height: auto;
     max-width: 100%;
@@ -65,30 +67,35 @@ input,textarea,button{
     max-width: 1780px;
 }
 
-.page {
-  
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.page {  
+  height: 100%;
+    display: flex;
+    align-items: stretch;
+   
 
-    @include respond-above (sm) {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+    .leftcol{
+        width: 22%;
+        background-color: #f6f6f6;
+     
     }
-
-    @include respond-above (md) {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+    .maincontent{
+        width: 78%;
+        padding-top: 15rem;
+        padding-left: 130px ;
+        padding-right: 130px;
+        @include respond-above(lg) {
+            padding-left:180px ;
+            padding-right: 180px;  padding-top: 25rem;
+        }
+        @include respond-above(xl) {
+            padding-left: 230px ;
+            padding-right: 230px;   padding-top: 35rem;
+        }
+        .wrap{
+            max-width: 1080px;        
+            margin: 0 auto;
+        }
     }
-
-    @include respond-above (lg) {
-        padding-top: rem(70);
-        padding-bottom: rem(70);
-    }
-    @include respond-above (xlg) {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-    }
- 
 }
 
 .title {
@@ -101,86 +108,62 @@ input,textarea,button{
 }
 
 .banner {
-    background-color: $color-primary;
-    background-size: cover;
-    height: 200px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
-    
-    @include respond-above (sm) {
-        height: 250px;
-    }
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 
-    @include respond-above (md) {
-        height: 350px;
-    }
-
-    @include respond-above (lg) {
-        height: 450px;
-    }
-
-    @include respond-above (xlg) {
-        height: 500px;
-    }
-
-    .container{
-        height: auto;
-        position: relative;
-        @include vertical-align(); 
-        color: #fff;
-        text-align: center;
-        padding-top: 6rem;
-        .title-page {
-            font-weight: bold;
-            margin: 0;          
-            font-size: rem(20);         
-            text-transform: uppercase;
-        
-            @include respond-above(sm) {
-                font-size: rem(24);             }
-
-            @include respond-above(md) {
-                font-size: rem(34);
-            }
-
+   img{
+       width: 100%;
+       max-width: none;
+   }
+   .title-page{
+       width: 300px;
+       height: 309px;
+       background: url('../img/bg_title.png') no-repeat center center;
+       background-size: contain;
+       position: absolute;
+       left: 22%;
+       margin-left: -150px;
+       bottom: -140px;
+       z-index: 100;     
+       color: #fff;
+       @include respond-above(lg) {
+            width: 400px;
+            height: 412px;bottom: -200px; margin-left: -238px;
+        }
+        @include respond-above(xl) {
+            width: 477px;
+            height: 492px;  bottom: -200px; margin-left: -238px;
+        }
+       .txt{
+        @include vertical-align();   padding-left: 3rem;
+        margin-top: -0.5rem;
+        @include respond-above(lg) {
+            padding-left: 4.5rem;   margin-top: -0.8rem;
+        }
+        @include respond-above(xl) {
+            padding-left: 6rem;   margin-top: -1rem;
+        }
+        h2{
+            font-size: rem(40);
+            font-family: 'DINCond_Book';
+            line-height: 1; margin: 0;
             @include respond-above(lg) {
-                font-size: rem(42);
-            }
-            @include respond-above(xlg) {
                 font-size: rem(50);
             }
-        }
-        p{
-            font-size: rem(24);
-            position: relative;
-            display: inline-block;
-          margin-top: 0;
-            &::before{
-                content: ' ';
-                display: inline-block;
-                width: 84px;
-                border-top:1px #fff solid;
-                top: 1.5rem;
-              z-index: 100;
-                position: absolute;
-                left: -95px;
-            }
-            &::after{
-                content: ' ';
-                display: inline-block;
-                width: 84px;
-                border-top:1px #fff solid;
-                z-index: 100;
-                position: absolute;
-                right: -95px;
-                top: 1.5rem;
-
+              @include respond-above(xl) {
+                font-size: rem(60);
             }
         }
-    }
-
+        h3{
+            font-size: rem(20);
+            margin: 0;
+        }
+       }
+    
+   }
    
    
 }

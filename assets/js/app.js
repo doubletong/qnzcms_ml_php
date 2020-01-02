@@ -1,13 +1,16 @@
 new WOW().init();
 function header(){
-
-    if(40 < $(window).scrollTop()){
-        $("#site-header").addClass("fixheader");
-        $("#logo").attr("src","/assets/img/logo_color.png");
-    } else{
-        $("#site-header").removeClass("fixheader");
-        $("#logo").attr("src","/assets/img/logo.png");
+    var isfullpage = $("#fullpage").length;
+    if(!isfullpage){
+        if(40 < $(window).scrollTop()){
+            $("#site-header").addClass("fixheader");
+            $("#logo").attr("src","/assets/img/logo_color.png");
+        } else{
+            $("#site-header").removeClass("fixheader");
+            $("#logo").attr("src","/assets/img/logo.png");
+        }
     }
+
 }
 
 header();

@@ -56,11 +56,12 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
         <div class="container-fluid maincontent">
             <div class="row mb-2">
                 <div class="col">
-                    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                    <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                    <input type="hidden" name="did" value="<?php echo $did; ?>">
                         <div class="form-row align-items-center">
                             <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">搜索</label>
-                            <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
+                            <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword; ?>" placeholder="关键字">
                             </div>
                             <?php if($did==="1"){ ?>
                                 <div class="col-auto">

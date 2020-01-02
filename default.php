@@ -1,39 +1,60 @@
 <?php
-use Phpfastcache\CacheManager;
-use Phpfastcache\Config\ConfigurationOption;
+require_once(__DIR__ . "/includes/common.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/data/article.php");
 
-require_once 'vendor/autoload.php';
+use Models\AdvertisingSpace;
+$articleClass = new TZGCMS\Article();
 
-CacheManager::setDefaultConfig(new ConfigurationOption([
-    'path' => 'assets/caches/tmp', // or in windows "C:/tmp/"
-]));
+//twig 模板设置
+$loader = new \Twig\Loader\FilesystemLoader(array('assets/templates'));
 
-// In your class, function, you can call the Cache
-$InstanceCache = CacheManager::getInstance('files');
+if($site_info['enableCaching']=="1"){
 
-$key = "product_page";
-$CachedString = $InstanceCache->getItem($key);
+    $twig = new \Twig\Environment($loader, [
+        'cache' => 'assets/caches',
+    ]);
+    // In your class, function, you can call the Cache
+    $InstanceCache = CacheManager::getInstance('files');
 
-$your_product_data = date('m/d/Y h:i:s a', time());
+    $key = "home";
+    $CachedString = $InstanceCache->getItem($key);
 
-if (!$CachedString->isHit()) {
-    $CachedString->set($your_product_data)->expiresAfter(5000);//in seconds, also accepts Datetime
-    $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
+   
 
-    echo 'FIRST LOAD // WROTE OBJECT TO CACHE // RELOAD THE PAGE AND SEE // ';
-    echo $CachedString->get();
+    if (!$CachedString->isHit()) {
 
-} else {
-    echo 'READ FROM CACHE // ';
-    echo $CachedString->get()[0];// Will print 'First product'
+        $carousels = AdvertisingSpace::with("advertisements")->where('code','=','A001')->first()->advertisements;
+        $recommendArticles = $articleClass->get_recommend_articles_bycategory(45, 3);
+
+        $home_data = ['carousels' => $carousels,'articles' => $recommendArticles];
+
+        $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
+        $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
+
+ 
+        //echo $CachedString->get();
+
+    }
+
+    $result = $CachedString->get();
+
+}else{
+    $twig = new \Twig\Environment($loader);  
+
+    $carousels = AdvertisingSpace::with("advertisements")->where('code','=','A001')->first()->advertisements;
+    $recommendArticles = $articleClass->get_recommend_articles_bycategory(45, 3);
+
+    $result = ['carousels' => $carousels,'articles' => $recommendArticles];
 }
 
 
-$loader = new \Twig\Loader\FilesystemLoader('assets/templates');
-$twig = new \Twig\Environment($loader, [
-    'cache' => 'assets/caches',
-]);
+$twig->addGlobal('site', $site_info);
+$twig->addGlobal('menus', $menutree);
+$twig->addGlobal('navbot', $menus_bot);
+$twig->addGlobal('uri', $uri);
 
-echo $twig->render('index.html', ['name' => $CachedString->get()]);
+
+echo $twig->render('index.html', $result);
 
 ?>

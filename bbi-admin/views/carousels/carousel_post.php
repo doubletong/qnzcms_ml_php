@@ -53,7 +53,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['name'], $_POST['importance'])) {   
+            if (!isset($_POST['title'], $_POST['importance'])) {   
 
                 $result = array ('status'=>2,'message'=>'名称不能为空！');
                 echo json_encode($result);  

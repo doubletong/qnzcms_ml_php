@@ -92,6 +92,14 @@ $data  = json_decode($model['config_values'], true);
                                         <input type="text" class="form-control" id="address" name="address" placeholder="" value="<?php echo !empty($data['address']) ? $data['address'] : ""; ?>">
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"  <?php echo isset($data['enableCaching']) ? ($data['enableCaching']?"checked":"") : "checked"; ?> id="enableCaching" name="enableCaching">
+                                            <label class="form-check-label" for="enableCaching">开启缓存</label>
+                                        </div>
+                                    </div>                             
+                                </div>
                             </div>
 
 
@@ -142,9 +150,6 @@ $data  = json_decode($model['config_values'], true);
                                     </div>
                                 </div>
                             </div>
-
-
-
 
 
 

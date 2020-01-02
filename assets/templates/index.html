@@ -1,12 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Hello {{ name }}!</h2>
-</body>
-</html>
+
+{% extends "shared/layoutForHome.html" %}
+
+{% block title %}首页{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/assets/js/vendor/fullpage/fullpage.min.css">
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/package/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+    <div class="fullpage" id="fullpage">
+        <section class="section">
+            <!-- slider -->
+            <div class="swiper-container slider">
+                <div class="swiper-wrapper ">
+                {% for carousel in carousels %}
+
+                        <div class="swiper-slide">
+                                <div class="forpc" style="background-image:url('{{carousel.image_url}}');">
+                                    <div class="container-fluid">
+                                    <div class="txt">
+                                        <h2>
+                                            SEE THE WORLD WITH GALAXYCORE
+                                        </h2>
+                                        <h3>格科微电子  用芯看世界</h3>
+                                        <p>致力于CMOS图像传感器芯片、LCD/TDDI/AMOLED 显示驱动芯片、高端嵌入式多媒体SOC芯片及应用系统的设计、开发、测试和销售。</p>
+                                        <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="formobile" style="background-image:url('{{carousel.image_url_mobile}}');">
+                                    <div class="container-fluid">
+                                    <div class="txt">
+                                        <h2>
+                                            SEE THE WORLD WITH GALAXYCORE
+                                        </h2>
+                                        <h3>格科微电子  用芯看世界</h3>
+                                        <p>致力于CMOS图像传感器芯片、LCD/TDDI/AMOLED 显示驱动芯片、高端嵌入式多媒体SOC芯片及应用系统的设计、开发、测试和销售。</p>
+                                        <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
+                                    </div>
+                                </div>
+                                </div>
+                        
+                        </div>
+
+                {% endfor %}
+
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="footer-pagination">
+                <div class="container-fluid">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto"><div class="swiper-button-prev"></div></div>
+                        <div class="col-auto"><div class="swiper-pagination"></div></div>                    
+                        <div class="col-auto"><div class="swiper-button-next"></div></div>
+                    </div>      
+                </div>          
+            </div>              
+            
+        </div>
+        </section>
+        <section class="section s2" style="background: #fff url('/assets/img/home_bg_r.png') no-repeat right center;">
+            <div class="pictxt animated" data-animate="fadeInLeft" style="background:  url('/assets/img/home_bg_l.png') no-repeat center 40%;">
+                <div class="aboutinfo">
+                    <ul class="tabheader" id="tabheader">
+                        <li class="active">CIS</li>
+                        <li>DDI</li>
+                        <li>ISP</li>
+                    </ul>
+                    <div class="tabcontent" id="tabcontent">
+                        <div class="conbox active">
+                            <h3>CIS</h3>
+                            <p>将光信号转换成电信号的图像传感器芯片，广泛应用在移动终端、安防监控、汽车后装、生物识别等各个领域</p>
+                        </div>
+                        <div class="conbox">
+                            <h3>DDI</h3>
+                            <p>用于各种显示产品上显示模组的驱动芯片，如TFT-LCD AMOLED,PMOLED等。</p>
+                        </div>
+                        <div class="conbox">
+                            <h3>ISP</h3>
+                            <p>专为智能手机应用定制的ISP图像处理桥接芯片，在紧跟市场的同时，充分发挥单摄及多摄传感器潜能，为用户提供高质量的拍照及视频体验。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="txt animated"  data-animate="fadeInRight">
+                <div class="content">
+                    <h2>ABOUT GALAXYCORE</h2>
+                    <h3>关于格科</h3>
+                    <p>格科微电子（上海）有限公司创立于2003年，是中国领先的图像传感器芯片设计公司，目标瞄准全球移动设备及消费电子市场。</p> 
+                    <p>我们的核心实力是创新设计能力、高效及灵活的制造工序以及和供货商(例如代工厂及封装厂)、CMOS摄像模块制造商、LCD模块制造商、终端设备制造商及设计公司等业界参与者建立关系。</p>                     
+                    <p>我们对未来的增长信心十足，不断提升整体竞争力，巩固图像传感器行业以及LCD驱动行业的领先地位。</p>
+                    <a href="/about" title="关于格科" class="more">SEE MORE</a>
+                </div>
+            </div>
+        </section>
+        <section class="section s3" style="background: #1f3665 url('/assets/img/home_bg_l2.png') no-repeat left center;">
+            <div class="pictxt animated" data-animate="fadeInRight" style="background:  url('/assets/img/home_bg_r2.png') no-repeat center 40%;">
+                fdsf
+            </div>
+            <div class="txt animated"  data-animate="fadeInLeft">
+                <div class="content content1">
+                    <h2>AUTOMOTIVE ELECTRONICS</h2>
+                    <h3>汽车电子</h3>
+                    <p>为您的驾驶提供保驾护航，减少行驶过程中的事故和纠纷。<br/>目前产品有行车记录仪、车内监控、360度环视、倒车后视、驾驶员疲脑检测。</p>
+                    <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
+                </div>
+            </div>
+        </section>
+        <section class="section s4" style="background: #fff url('/assets/img/home_bg_r.png') no-repeat right center;">
+            <div class="pictxt animated" data-animate="fadeInLeft" style="background:  url('/assets/img/home_bg_l3.png') no-repeat center 40%;">
+                <div class="content newsinfo">
+                    <h2>NEWS AND EVENTS</h2>
+                    <h3>新闻与动态</h3>
+                    <p>第一时间了解我们的实时新闻与最新动态！</p>
+                    <a href="/news" title="新闻与动态" class="more">SEE MORE</a>
+                </div>
+            </div>
+            <div class="container-fluid">
+            <div class="row txt justify-content-end">
+                <div class="col-lg-6">
+                <div class="list">
+                    {% for article in articles %}
+                    <div class="box animated" data-animate="fadeInRight">           
+                        <img src="{{article.thumbnail}}" alt="{{article.title}}" class="thumb">          
+                        <div class="newstxt">
+                            <time>{{article.pubdate|date("F j, Y H:i") }}</time>
+                            <h3 class="title"><a href="/news/detail-{{article.id}}">{{article.title}}</a></h3>
+                        </div>
+                   </div>
+                    {% endfor %}
+                   
+                </div>
+            </div>
+            </div>
+        
+        </section>
+        <section class="section s5 fp-auto-height">
+            <div class="join">
+                <div class="container-fluid animated" data-animate="fadeInLeft">
+                    <div class="content">
+                        <h2>JOIN US</h2>
+                        <h3>未来有你，更多可能！</h3>
+                        <p>模拟电路设计工程师 | 数字电路设计工程师 | 数字后端设计工程师 | DRAM电路设计工程师 | 图像算法工程师 | 工艺工程师 | 产品工程师 | 硬件工程师 | 产品测试工程师 | 产品应用工程师</p>
+                        <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
+                    </div>
+                </div>
+            </div>
+            {{ include('shared/footerForHome.html') }}
+        </section>
+        
+        
+    </div>    
+  
+{% endblock %}
+
+{% block footer %}
+<script src="/assets/js/vendor/swiper/package/js/swiper.min.js"></script>
+<script src="/assets/js/vendor/fullpage/vendors/easings.min.js"></script>
+<script src="/assets/js/vendor/fullpage/vendors/scrolloverflow.min.js"></script>
+<script src="/assets/js/vendor/fullpage/fullpage.min.js"></script>
+<script src="/assets/js/vendor/fullpage/fullpage.extensions.min.js"></script>
+
+
+    <script>
+        $("#godown").click(function(e) {
+            e.preventDefault();
+            var srcollto = $(window).height() - $(".site-header").height();
+
+            $("html, body").animate({
+                scrollTop: srcollto
+            }, 600);
+        })
+
+       // $('.slider').height($(window).height());
+
+        var swiper = new Swiper('.slider', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+     
+
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                //options here
+                licenseKey: "750A6298-E6DA42F7-9B37E662-7341082F",
+                autoScrolling: true,
+                scrollHorizontally: true,
+                navigation: false,
+                slidesNavigation: true,
+                scrollOverflow: true,
+                afterLoad: function (origin, destination, direction) {
+                    var loadedSection = this;
+                    console.log($('.section')[destination.index]);
+                    //console.log(origin);
+                    //console.log(destination);
+                    //console.log(direction);
+                    //使用 index
+                    var els = $($('.section')[destination.index]).find(".animated");
+                    let list = Array.prototype.slice.call(els);
+                    addAnimate(list)
+
+                    var oels = $($('.section')[origin.index]).find(".animated");
+                    let olist = Array.prototype.slice.call(oels);
+                    removeAnimate(olist);
+
+                      //  alert(destination.index);
+                    if(destination.index>0){
+                        $("#site-header").addClass("fixheader");
+                        $("#logo").attr("src","/assets/img/logo_color.png");
+                    } else{
+                        $("#site-header").removeClass("fixheader");
+                        $("#logo").attr("src","/assets/img/logo.png");
+                    }
+                
+                }
+            });
+    
+            //methods
+            $.fn.fullpage.setAllowScrolling(true);
+
+            function addAnimate(list){
+                list.forEach(function (item, index, arr) {
+                    var ani = $(item).attr("data-animate");
+                   $(item).addClass(ani);
+                });
+            }
+            function removeAnimate(list){
+                list.forEach(function (item, index, arr) {
+                    var ani = $(item).attr("data-animate");
+                   $(item).removeClass(ani);
+                });
+            }
+
+            $("#tabheader li").click(function(e){
+
+                var i =  $("#tabheader li").index($(this));
+                $(this).addClass("active").siblings().removeClass("active");
+                $("#tabcontent .conbox").eq(i).addClass("active").siblings().removeClass("active");
+            })
+
+           
+        });
+    </script>
+    {% endblock %}

@@ -5,7 +5,6 @@ require_once("../../data/annal.php");
 $annalClass = new TZGCMS\Annal();
 
 $did=isset($_GET['did'])?$_GET['did']:13;
-
 $annals = $annalClass->get_all_annals($did);
 
 ?>

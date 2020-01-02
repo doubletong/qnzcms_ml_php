@@ -51,13 +51,13 @@ switch ($config_type) {
 
         $keywords = $_POST['keywords'];
         $description = $_POST['description'];
-
+        $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
         $config_values = array(
             "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2, "wechat" =>  $wechat,
             "qrcode" =>  $qrcode, "webnumber" =>  $webnumber, "company"=>$company,
             "email" =>  $email, "email_contact" => $email_contact,"hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
             "keywords" => $keywords, "description" => $description, "hremail" =>  $hremail, "qq" => $qq, "weibo" =>  $weibo,
-            "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone
+            "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone, "enableCaching" => $enableCaching
         );
 
         $data = $optionClass->get_config($config_name);

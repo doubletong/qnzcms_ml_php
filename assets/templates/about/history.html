@@ -1,0 +1,94 @@
+{% extends "shared/layout.html" %}
+{% block title %}发展历程-关于我们{% endblock %}
+{% block head %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/package/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+    <div class="banner">
+        <img src="/assets/img/banners/about.png" alt="">
+        <div class="title-page">
+            <div class="txt">
+           <h2>ABOUT GALAXYCORE</h2>
+           <h3>关于格科</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-about">
+        <aside class="leftcol">
+            <nav>
+                <ul class="leftnav">
+                    <li><a href="/about">企业简介</a></li>
+                    <li><a href="/about/history" class="active">发展历程</a></li>
+                    <li><a href="/about/honor">企业荣誉</a></li>
+                    <li><a href="/about/contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section class="maincontent">
+            <div class="wrap about">
+                <h1 class="title">SINCE 2013</h1>
+                <h2 class="title-sub">
+                    自2013年始，格科不断前行
+                </h2>
+
+                <div class="years">
+                    <div class="swiper-container  gallery-thumbs">
+                        <div class="swiper-wrapper">
+                            {% for annal in annals %}                          
+                                <div class="swiper-slide">{{annal.year}}</div>
+                            {% endfor %}        
+                        </div>
+                       
+                    </div>
+                    <div class="swiper-button-next "></div>
+                    <div class="swiper-button-prev "></div>
+                </div>
+             
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                        {% for annal in annals %} 
+                        <div class="swiper-slide">                        
+                                {{annal.description|raw}}                      
+                        </div>
+                        {% endfor %}      
+                       
+    
+                    </div>
+                    <!-- Add Arrows -->
+                    <!-- <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div> -->
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    <script src="/assets/js/vendor/swiper/package/js/swiper.min.js"></script>
+    <script>
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 20,
+            slidesPerView: 6,
+            loop: true,
+            freeMode: true,
+            loopedSlides: 5, //looped slides should be the same
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 10,     
+            loop:true,
+            loopedSlides: 5, //looped slides should be the same      
+            thumbs: {
+                swiper: galleryThumbs
+            }
+        });
+    </script>
+    {% endblock %}

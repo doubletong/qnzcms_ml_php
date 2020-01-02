@@ -1,0 +1,37 @@
+<header class="site-header" id="site-header">
+    <div class="container-fluid">   
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <a href="/" class="logo"><img id="logo" src="/assets/img/logo.png" alt="{{ site.sitename }}"></a>
+                </div>
+                <div class="col">
+                    <div class="topnav">
+                        <a href="/jobs">招贤纳士</a>
+                        <a href="#">商务入口</a>
+                        <a href="#">简体中文</a>
+                    </div>
+              
+                    <ul class="mainav" id="mainav">
+                        {% for menu in menus %}
+                            <li class="{{ (menu.url != "/" and  uri starts with menu.url) ? 'active' : '' }}">
+                                <a href="{{ menu.url }}" class="{{ menu.children ? 'down' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
+                            </li>
+                        {% endfor %}
+                        <li class="last"><a href="/search"><i class="iconfont icon-search"></i></a></li>
+                    </ul>
+
+                </div>
+                <!-- <div class="col-auto searchicon">
+                    <a href="/search"><i class="iconfont icon-search"></i></a>
+                </div>
+              
+                <div class="col-auto menu-col">
+                    <div class="menu-toggle">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+</header>

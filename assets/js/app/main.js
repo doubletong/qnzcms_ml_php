@@ -50,11 +50,11 @@ require(["jquery", "jquery.bbiSlider"], function ($) {
             var offset = 0;
            // var duration = 500;
             $(window).scroll(function () {
-                if ($(this).scrollTop() > offset) {
-                    $('.page-header').addClass("fixed-header");
-                } else {
-                    $('.page-header').removeClass("fixed-header");
-                }
+                // if ($(this).scrollTop() > offset) {
+                //     $('.page-header').addClass("fixed-header");
+                // } else {
+                //     $('.page-header').removeClass("fixed-header");
+                // }
             });
             /*var pathname = (window.location.pathname.match(/[^\/]+$/)[0]);
                 $('.mainmenu li a').each(function() {

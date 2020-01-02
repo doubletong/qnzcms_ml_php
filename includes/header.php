@@ -37,7 +37,7 @@ $uri = $_SERVER['REQUEST_URI'];
                         <a href="#">商务入口</a>
                         <a href="#">简体中文</a>
                     </div>
-            
+                
                     <ul class="mainav" id="mainav">
                         <?php foreach ($menutree as $menu) { ?>
                             <li class="<?php echo (startsWith($uri, $menu["url"]) && $menu["url"] != "/") || $uri == $menu["url"] ? "active" : ""; ?>">
