@@ -16,12 +16,12 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
 
-    $key = "about";
+    $key = "about_contact";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
 
-        $page = $pageClass->fetch_data("about");   
+        $page = $pageClass->fetch_data("contact");   
         $home_data = ['page' => $page];
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
@@ -34,7 +34,7 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
-    $page = $pageClass->fetch_data("about");   
+    $page = $pageClass->fetch_data("contact");   
     $result = ['page' => $page];
 }
 
@@ -45,6 +45,6 @@ $twig->addGlobal('navbot', $menus_bot);
 $twig->addGlobal('uri', $uri);
 
 
-echo $twig->render('products/index.html', $result);
+echo $twig->render('about/contact.html', $result);
 
 ?>

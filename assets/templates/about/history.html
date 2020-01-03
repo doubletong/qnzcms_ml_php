@@ -37,7 +37,11 @@
                     <div class="swiper-container  gallery-thumbs">
                         <div class="swiper-wrapper">
                             {% for annal in annals %}                          
-                                <div class="swiper-slide">{{annal.year}}</div>
+                                <div class="swiper-slide">
+                                    <div class="year">
+                                        {{annal.year}}
+                                    </div>
+                                </div>
                             {% endfor %}        
                         </div>
                        
@@ -46,7 +50,7 @@
                     <div class="swiper-button-prev "></div>
                 </div>
              
-                <div class="swiper-container gallery-top">
+                <div class="swiper-container gallery-top chronicle">
                     <div class="swiper-wrapper">
                         {% for annal in annals %} 
                         <div class="swiper-slide">                        

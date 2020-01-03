@@ -1,301 +1,372 @@
- 
-.page-about {
-    .leftcol{
-      padding: 34rem 0 0;
-      @include respond-above(lg) {
-        padding: 48rem 0 0;
-    }
-      @include respond-above(xl) {
-        padding: 56rem 0 0;
-    }
-      .leftnav{
-        text-align: right;
-        @include reset-list;
-        li{
-          a{
-            display: inline-block;
-            padding: .6rem 2rem .6rem 3rem;
-            position: relative;
-            color: $color-accent;
-            font-size: 1rem;
-            @include respond-above(lg) {
-              font-size: rem(18);     padding: .8rem 2rem .8rem 3rem;
-          }
-            @include respond-above(xl) {
-              font-size: rem(20);     padding: 1rem 3rem;
-          }
-            &::before{
-              display: block;
-              position: absolute;
-              left: 1rem;
-              top: 1.5rem;
-              z-index: 100;
-              height: 1px;
-              width: 1rem;
-              background-color: $color-accent;
-              content: " ";
-              transition: all .2s;
-              @include respond-above(lg) {
-                top: 1.8rem;
-            }
-              @include respond-above(xl) {
-                top: 2.1rem;
-            }
-            }
+ .page-about {
+   .leftcol {
+     padding: 34rem 0 0;
 
-            &:hover,&.active{
-              color: $color-primary;
-              &::before{               
-                left: -1rem;            
-                width: 3rem;        background-color: $color-primary;      
-              }
-            }
-          }
-        }
-      }
-    }
+     @include respond-above(lg) {
+       padding: 48rem 0 0;
+     }
 
-    .maincontent{
-      background: url('../img/WAFER.png') no-repeat right top;
-      background-size:500px auto;
-      @include respond-above(lg) {
-        background-size:700px auto;
-      }
-      @include respond-above(xl) {
-        background-size: auto;
-      }
-    }
-    
-    .about{
-      padding: 10rem 1rem 5rem;
-      text-align: justify;
-   
-      h1.title{
-     font-family: 'DINCond';
-        line-height: 1;
-        margin: 0;
-        color: $color-accent;
-        font-size: rem(32);
-        @include respond-above(lg) {
-          font-size: rem(42);
-      }
-      @include respond-above(xl) {
-        font-size: rem(60);
-      }
-      }
-      h2.title-sub{
-        color: $color-primary;
-        font-size: rem(20);
-        margin: 0;
-        @include respond-above(lg) {
-          font-size: rem(22);
-      }
-      @include respond-above(xl) {
-        font-size: rem(24);
-      }
-      }
-    }
-}
- 
-.page-chronicle{
-  .container{
-    position: relative;   
-  }
-  .gallery-thumbs{
-    margin-bottom: 2rem;
-    .swiper-slide{
-      font-size: rem(20);
-      @include respond-above(sm) {
-        font-size: rem(24);
-      }
-      @include respond-above(md) {
-        font-size: rem(28);
-      }
-      @include respond-above(lg) {
-        font-size: rem(32);
-      }
-      text-align: center;
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-      cursor: pointer;
+     @include respond-above(xl) {
+       padding: 56rem 0 0;
+     }
+    nav{
       position: relative;
-      font-weight: lighter;
+      height: 100%;
     }
-    .swiper-slide-thumb-active{
-      color: $color-primary;
-      &::after{
-        content: " ";
-        display: block;
-        position: absolute;
-        width: 0;
-        height: 0;
-        border:8px solid $color-primary;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        left: 50%;
-        bottom: 0;
-        margin-left: -8px;
+     .leftnav {
+       text-align: right;
+       position: -webkit-sticky;
+      position: sticky;
+      top: 150px;
+       @include reset-list;
+
+       li {
+         a {
+           display: inline-block;
+           padding: .6rem 2rem .6rem 3rem;
+           position: relative;
+           color: $color-accent;
+           font-size: 1rem;
+
+           @include respond-above(lg) {
+             font-size: rem(18);
+             padding: .8rem 2rem .8rem 3rem;
+           }
+
+           @include respond-above(xl) {
+             font-size: rem(20);
+             padding: 1rem 3rem;
+           }
+
+           &::before {
+             display: block;
+             position: absolute;
+             left: 1rem;
+             top: 1.5rem;
+             z-index: 100;
+             height: 1px;
+             width: 1rem;
+             background-color: $color-accent;
+             content: " ";
+             transition: all .2s;
+
+             @include respond-above(lg) {
+               top: 1.8rem;
+             }
+
+             @include respond-above(xl) {
+               top: 2.1rem;
+             }
+           }
+
+           &:hover,
+           &.active {
+             color: $color-primary;
+
+             &::before {
+               left: -1rem;
+               width: 3rem;
+               background-color: $color-primary;
+             }
+           }
+         }
+       }
+     }
+   }
+
+   .maincontent {
+     background: url('../img/WAFER.png') no-repeat right top;
+     background-size: 500px auto;
+
+     @include respond-above(lg) {
+       background-size: 700px auto;
+     }
+
+     @include respond-above(xl) {
+       background-size: auto;
+     }
+
+     &.honorcontent{
+       padding-right: 0;
+       .wrap{
+         max-width: none;
+         &.about{
+           padding-right: 0;
+         }
+       }
+     }
+     &.contactcontent{
+       padding:15rem 0 0;
+       @include respond-above(lg) {
+        padding:20rem 0 0;
       }
-    }
-  }
-
-  .gallery-top{
-    ul{
-      li{
-        margin-bottom: 1rem;
+ 
+      @include respond-above(xl) {
+        padding:26rem 0 0;
       }
-    }
-  }
-
-  .swiper-button-next, .swiper-button-prev{
-    color: #999;
-  }
-  .swiper-button-next:after, .swiper-button-prev:after{
-    font-size: 24px;
-  }
-}
-
-.page-strength{
-  background-color: #f7f7f7;
-}
-.page-links{
-  .linklist{
-    .item{
-      margin-bottom: 2rem;
-    }
-  }
-}
-.page-culture{
-  .item{
-    text-align: center;
-    margin-bottom: 2rem;
-    @include respond-above(sm) {
-      margin-bottom: 0;
-    }
-    h3{
-      font-weight: bold;
-    }
-    p{
-     
-      max-width: 250px;
-      margin: 0 auto;
-      @include respond-above(sm) {
-        max-width: 160px;  font-size: rem(14);   
-      }
-    }
-  }
-  .title-photo{
-    position: relative;
-    text-align: center;
-    margin-bottom: 2rem;
-    &::after{
-      content: " ";
-      display: block;
-      border-radius: 50%;
-      background-color: #ddd;
-      position: absolute;
-      left: 0;
-      top:4.2rem;
-      width: 100%;
-      height: 1px;
-      z-index: -1;
-    }
-    h3{
-      background-color: #fff;
-      width: 200px;
-    display: inline-block;
-    font-size: rem(34);
-    }
-  }
-}
-
-.page-honor{
-  .honor-nav{
-    margin-bottom: 3rem;
-    a{
-      font-size: rem(30);
-      border-bottom: 1px #ddd solid;
-      display: block;
-      position: relative;
-      text-align: center;
-      padding-bottom: 2rem;
-      color: #333;
-      &.active{
-        &::after{
-          content:" ";
-          display: block;
-          position: absolute;
-          left: 0;
-          bottom: -2px;
-          height: 4px;
-          background-color: $color-primary;
+        img.top{
           width: 100%;
         }
-      }
-    }
-  }
-  .years{
-   position: relative;
-   padding: 0 5rem;
+ 
+     }
+   }
 
-    div{
-      text-align: center;
-      padding: 1rem;
-      font-size: rem(30);
-      &.swiper-slide-thumb-active{
-        color: $color-primary;
-        position: relative;
+   .about {
+     padding: 10rem 1rem 5rem;
+     text-align: justify;
+
+     h1.title {
+       font-family: 'DINCond';
+       line-height: 1;
+       margin: 0;
+       color: $color-accent;
+       font-size: rem(32);
+       text-align: left;
+
+       @include respond-above(lg) {
+         font-size: rem(42);
+       }
+
+       @include respond-above(xl) {
+         font-size: rem(60);
+       }
+     }
+
+     h2.title-sub {
+       color: $color-primary;
+       font-size: rem(20);
+       margin: 0;
+
+       @include respond-above(lg) {
+         font-size: rem(22);
+       }
+
+       @include respond-above(xl) {
+         font-size: rem(24);
+       }
+     }
+
+     
+    .years{
+      position: relative;
+      padding: 0 5rem;  
+      margin-top: 3rem;
+      &::before{
+        content: " ";
+        display: block;      
+        height: 2px;
+        position: absolute;
+        left: 0;
+        top: .6rem;   
+        z-index: 0;
+        background-color: $color-accent;
+        width: 100%;
+    
+      }
+      .year{
+        text-align: center;
+        padding:2rem 1rem;
+        font-size: rem(20);
+        font-family: 'DINCond';
+        color: $color-accent;
+        cursor: pointer;
         &::after{
           content: " ";
           display: block;
-          width: 0;
-          height: 0;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
           position: absolute;
           left: 50%;
-          bottom: 0;
-          margin-left: -6px;
-          border: 6px $color-primary solid;
-          border-left-color:transparent;
-          border-right-color:transparent;
-          border-bottom-color:transparent;
+          top: 0;
+          margin-left: -8px;
+          border: 2px $color-accent solid;
+          background-color: #fff;
+          z-index: 2002;
+      
+        }
+    
+      }
+      .swiper-button-prev,.swiper-button-next  {
+        top: 18px;
+        background-color: $color-accent;
+        width:30px;
+        height: 30px;
+        border-radius: 50%;
+        &::after{
+          font-size: 1rem;
+          color: #fff;
         }
       }
+      .swiper-button-prev{
+        left: 0;
+      }
+      .swiper-button-next{
+        right: 0;
+      }
     }
-  }
 
-  .honor-content{
-    .txtlist{
- 
-      padding-top: 3rem;
-      margin-bottom: 3rem;
-      .item{
-        padding: 1rem 2rem 2rem;
-        background-color: #fff;
+    .swiper-slide-thumb-active{
+      color: $color-primary;
+      position: relative;
+      .year{
+        color: $color-primary;
+        &::after{
+          background-color: $color-primary;
+          border-color: $color-primary;
+        }
+      }
     
-        margin-bottom: rem(30);
-  
-          box-shadow: 0px 4px 30px 0px rgba(0, 14, 35, 0.2);
-  
+    }
+
+    .chronicle{
+      ul{
+        list-style-image: url('../img/dot.png');      
+        line-height: 2.5;
+        padding-left: 1.5rem;
+      }
+    }
+
+    .honors{
+      position: relative;
+      .swiper-wrapper{
+        padding-top: 2rem;
+        padding-bottom: 5rem;
+      }
+   
+      .swiper-slide{
+        width: 350px;
+      }
+      .honor{
+        
+          background-color: rgb(255, 255, 255);
+          box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.16); 
+          height: 520px;
+         
+     
         
         .title{
-          color: #333;
-          font-size: rem(26);
+          font-family: 'DINCond';
+          height: 60px;
+          text-align: center;
+          line-height: 60px;
+          font-size: rem(34);
+          background-color: $color-primary;
+          color: #fff;
         }
-        ul{
-          @include reset-list();
+        .list{
+          height: 460px;
+          overflow-y: auto;
+          padding-right: 1.5rem;
+          ul{
+            list-style-image: url('../img/dot.png');      
+           li{
+             margin-bottom: 1.5rem;
+           }
+          }
         }
       }
-    }
-   
 
-    .holist{
-      .item{
-        margin-bottom: rem(30);
-        img{
-          display: block;
+      .swiper-button-prev,.swiper-button-next  {
+        top: auto;
+        bottom: 0;
+        background-color: #eee;
+        width:41px;
+        height:41px;
+        border-radius: 50%;
+        &::after{
+          font-size: 1rem;
+          color: #666;
         }
       }
+      .swiper-button-prev{
+        left: 0;
+      }
+      .swiper-button-next{
+        left: 4rem;
+        right: auto;
+      }
     }
-  }
-}
+   }
+
+
+   .contact{
+        padding-left: 130px ;
+        padding-right: 130px;
+        @include respond-above(lg) {
+            padding-left:180px ;
+            padding-right: 180px; 
+        }
+        @include respond-above(xl) {
+            padding-left: 230px ;
+            padding-right: 230px; 
+        }
+
+        .title-section{
+          text-align: center;
+          position: relative;
+          font-size: rem(24);
+          margin: 0 0 4rem;
+          padding-bottom: 1rem;
+          font-weight: bold;
+          &::after{
+            content: " ";
+            display: block;
+            height: 2px;
+            width: 38px;
+            position: absolute;
+            left: 50%;
+            margin-left: -19px;
+            bottom: 0;
+            background-color: #333;
+          }
+        }
+        .offices{
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+          .box{
+            height: 330px;
+              background-color: rgb(255, 255, 255);
+              box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.16);
+              margin-bottom: rem(30);
+            .box-header{
+              padding: 0 2rem;
+              line-height: 60px;
+              height: 60px;
+              color: #fff;
+              background-color: $color-primary;
+              font-size: rem(24);
+           
+            }
+            .box-body{
+              padding: 1rem;
+              @include respond-above(lg) {
+                padding: 1rem 2rem;
+              }
+              ul{
+                list-style-image: url('../img/dot.png');  
+                padding-left: 1.5rem;    
+                li{
+                  margin-bottom: 1rem;
+                }
+
+                &.u1{
+                  padding-left: 1rem;
+                  border-left: 1px #eee solid;
+                  @include respond-above(lg) {
+                    padding-left: 3rem;
+                  }
+                }
+              }
+            }
+       
+            
+          }
+        }
+   }
+ }
+
+
+
+
+ 

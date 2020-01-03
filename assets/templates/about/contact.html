@@ -1,0 +1,156 @@
+{% extends "shared/layout.html" %}
+{% block title %}联系我们-关于我们{% endblock %}
+
+{% block content %}
+    <div class="banner">
+        <img src="/assets/img/banners/about.png" alt="">
+        <div class="title-page">
+            <div class="txt">
+           <h2>ABOUT GALAXYCORE</h2>
+           <h3>关于格科</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-about">
+        <aside class="leftcol">
+            <nav>
+                <ul class="leftnav">
+                    <li><a href="/about" class="active">企业简介</a></li>
+                    <li><a href="/about/history">发展历程</a></li>
+                    <li><a href="/about/honor">企业荣誉</a></li>
+                    <li><a href="/about/contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section class="maincontent contactcontent">
+            <img src="/assets/img/contact_bg.jpg" alt="" class="top">
+            <div class="contact">
+             
+                    {{page.content|raw }}
+                  <div class="offices">
+                      <div class="title title-section">
+                        我们的联系方式
+                      </div>
+                      <div class="row">
+                          <div class="col-12">
+                            <div class="box">
+                                <div class="box-header">
+                                  中国上海总部
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md">
+                                        <ul>
+                                            <li>
+                                              办公地址：中国上海市浦东新区张江高科技园区盛夏路560号2幢11－12层
+                                            </li>
+                                            <li>
+                                              邮编：201203                                        
+                                            </li>
+                                            <li>电话：+86 21 5108 3755</li>
+                                            <li>传真：+86 21 5896 8522</li>
+                                        </ul>
+                                      </div>
+                                      <div class="col-md-auto">
+                                          <ul class="u1">
+                                              <li>
+                                                  产品与服务<br/>
+                                                  Email: sales@gcoreinc.com
+                                              </li>
+                                              <li>
+                                                  技术支持<br/>
+                                                  Email: support@gcoreinc.com
+                                              </li>
+                                              <li> 
+                                                  媒体联络<br/>
+                                                  Email: pr@gcoreinc.com
+                                              </li>
+                                              
+                                          </ul>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    中国深圳分公司
+                                </div>
+                                <div class="box-body">                                  
+                                <ul>
+                                    <li>
+                                        办公地址：深圳市福田区车公庙泰然科技园301栋5楼
+                                    </li>
+                                    <li>                                            
+                                        邮编：518042                                                                        
+                                    </li>
+                                    <li>
+                                        电话：+86 0755 8339 0307
+                                        </li>
+                                    <li>
+                                        传真：+86 0755 8339 0306</li>
+                                </ul>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    中国香港办事处
+                                </div>
+                                <div class="box-body">                                  
+                                <ul>
+                                    <li>
+                                        办公地址：香港新界 葵興，葵昌路8號，萬泰中1704-1707室                                      
+                                    </li>
+                                    <li>                                            
+                                        电话：+86 0852 2428 3678                                                               
+                                    </li>
+                                  
+                                </ul>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    中国北京办事处
+                                </div>
+                                <div class="box-body">                                  
+                                <ul>
+                                    <li>
+                                        办公地址：北京市丰台区开阳路8号悦秀城B1101                                        
+                                    </li>
+                                    <li>                                            
+                                        邮编：100071                                                                                                      
+                                    </li>
+                                    <li>
+                                        电话：+86 010 5922 6323</li>
+                                </ul>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    中国台北办事处
+                                </div>
+                                <div class="box-body">                                  
+                                <ul>
+                                    <li>
+                                        办公地址：台北市內湖区文德路210巷30弄6号9楼之八</li>
+                                </ul>
+                                </div>    
+                            </div>
+                        </div>
+
+                      </div>
+                      
+                  </div>
+           
+            </div>
+           
+        </section>
+    </div>
+{% endblock %}

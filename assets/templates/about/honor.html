@@ -1,0 +1,83 @@
+{% extends "shared/layout.html" %}
+{% block title %}企业荣誉-关于我们{% endblock %}
+{% block head %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/package/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+    <div class="banner">
+        <img src="/assets/img/banners/about.png" alt="">
+        <div class="title-page">
+            <div class="txt">
+           <h2>ABOUT GALAXYCORE</h2>
+           <h3>关于格科</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-about">
+        <aside class="leftcol">
+            <nav>
+                <ul class="leftnav">
+                    <li><a href="/about">企业简介</a></li>
+                    <li><a href="/about/history">发展历程</a></li>
+                    <li><a href="/about/honor" class="active">企业荣誉</a></li>
+                    <li><a href="/about/contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section class="maincontent honorcontent">
+            <div class="wrap about">
+                <h1 class="title">GALAXYCORE HONOR</h1>
+                <h2 class="title-sub">
+                    2019年度中国IC设计成就奖之十大IC中国设计公司
+                </h2>
+
+                <div class="honors">
+                    <div class="swiper-container  honors-container">
+                        <div class="swiper-wrapper">
+                            {% for annal in annals %}                          
+                                <div class="swiper-slide">
+                                    <div class="honor">
+                                        <div class="title">
+                                            {{annal.year}} HONOR
+                                        </div>
+                                        <div class="list">
+                                            {{annal.description|raw}}        
+                                        </div>
+                                    </div>   
+                                </div>
+                            {% endfor %}        
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                   
+                </div>
+             
+              
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    <script src="/assets/js/vendor/swiper/package/js/swiper.min.js"></script>
+    <script>
+        var galleryThumbs = new Swiper('.honors-container', {
+            spaceBetween: 20,
+            slidesPerView: 'auto',
+            loop: true,
+            freeMode: true,
+         
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
+    
+    </script>
+    {% endblock %}

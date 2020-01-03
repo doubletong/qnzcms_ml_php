@@ -91,6 +91,7 @@ input,textarea,button{
             padding-left: 230px ;
             padding-right: 230px;   padding-top: 35rem;
         }
+       
         .wrap{
             max-width: 1080px;        
             margin: 0 auto;
@@ -137,6 +138,9 @@ input,textarea,button{
             width: 477px;
             height: 492px;  bottom: -200px; margin-left: -238px;
         }
+        &.title-page-product{
+            background-image: url('../img/bg_title_product.png')
+        }
        .txt{
         @include vertical-align();   padding-left: 3rem;
         margin-top: -0.5rem;
@@ -146,6 +150,10 @@ input,textarea,button{
         @include respond-above(xl) {
             padding-left: 6rem;   margin-top: -1rem;
         }
+
+
+
+
         h2{
             font-size: rem(40);
             font-family: 'DINCond_Book';
@@ -301,14 +309,16 @@ input,textarea,button{
 }
 .table{
     width: 100%;
-    margin: 0 0 1rem 0;
+    margin:  0;
+    border-collapse: collapse;
     th{
-        background-color: #80a4e4;
-        color:#fff;
-        padding: 3px;
+     text-align: center;
+        color:#333;
+        padding:10px 3px;
         white-space: nowrap;
+        border-bottom: 2px #e5e5e5 solid;
     }
     td{
-        background-color: #d6e2f7;   padding: 4px 1rem;       
+        padding: 10px 1rem;       
     }
-}
+}  

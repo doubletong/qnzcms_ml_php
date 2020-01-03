@@ -16,7 +16,7 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
 
-    $key = "home";
+    $key = "about_history";
     $CachedString = $InstanceCache->getItem($key);
 
    
