@@ -15,11 +15,18 @@
                         {% for menu in menus %}
                             <li class="{{ (menu.url != "/" and  uri starts with menu.url) ? 'active' : '' }}">
                                 <a href="{{ menu.url }}" class="{{ menu.children ? 'down' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
+                                {% if(menu.children) %}
+                                  <ul class="subnav">
+                                    {% for subnav in menu.children %}
+                                        <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
                             </li>
                         {% endfor %}
                         <li class="last"><a href="/search"><i class="iconfont icon-search"></i></a></li>
                     </ul>
-
+                    
                 </div>
                 <!-- <div class="col-auto searchicon">
                     <a href="/search"><i class="iconfont icon-search"></i></a>
