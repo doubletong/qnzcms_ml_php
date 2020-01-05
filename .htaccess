@@ -1,0 +1,49 @@
+RewriteEngine on                       //on为打开,off为关闭
+
+RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
+RewriteRule ^([a-z|_|0-9]+)/([a-z|_|0-9]+)$ /views/$1/$2.php [L]
+
+RewriteRule ^application/list/([0-9]+)$ /views/application/list.php?cid=$1 
+RewriteRule ^application/detail/([0-9]+)$ /views/application/detail.php?id=$1 
+RewriteRule ^application/cases/([0-9]+)$ /views/application/cases.php?cid=$1 
+RewriteRule ^application/case_detail/([0-9]+)$ /views/application/casedetail.php?id=$1 
+RewriteRule ^products/detail/([0-9]+)$ /views/products/detail.php?id=$1 
+
+RewriteRule ^technology/list/([0-9]+)$ /views/technology/list.php?cid=$1 
+RewriteRule ^technology/detail/([0-9]+)$ /views/technology/detail.php?id=$1 
+
+RewriteRule ^career/?([a-z|_|0-9]+)$ /views/career/$1.php [L]
+RewriteRule ^nuclear_medicine/?([a-z|_|0-9]+)$ /views/nuclear_medicine/$1.php [L]
+RewriteRule ^contact/?([a-z|_|0-9]+)$ /views/contact/$1.php [L]
+
+RewriteRule ^/?([a-z|_|0-9]+)$ $1.php [L]
+RewriteRule ^career/salary_and_welfare/detail-([0-9]+)$ /views/career/detail.php?id=$1 
+RewriteRule ^cases/detail/(.*)$ /views/cases/detail.php?id=$1 
+RewriteRule ^service/projects/([0-9]+)$ /views/service/projects.php?cid=$1 
+RewriteRule ^service/project-detail/([0-9]+)$ /views/service/detail.php?id=$1 
+
+RewriteRule ^news/detail/(.*)$ /views/news/detail.php?id=$1 
+RewriteRule ^meeting/detail-(.*)$ /meeting_detail.php?id=$1
+RewriteRule ^media-list-(.*)$ /media_list.php?id=$1 
+RewriteRule ^media-detail-(.*)$ /media_detail.php?id=$1 
+
+
+RewriteRule ^events-detail-(.*)$ /event_detail.php?id=$1 
+RewriteRule ^creative-detail-(.*)$ /creative_detail.php?id=$1 
+RewriteRule ^branch-detail-(.*)$ /branch_detail.php?id=$1 
+RewriteRule ^team-detail-(.*)$ /team_detail.php?id=$1 
+RewriteRule ^duty-(.*)$ /duty_detail.php?alias=$1 
+
+
+
+ErrorDocument 400 /views/error/index.php
+ErrorDocument 401 /views/error/index.php
+ErrorDocument 403 /views/error/index.php
+ErrorDocument 404 /views/error/404.html
+ErrorDocument 405 /views/error/index.php
+ErrorDocument 408 /views/error/index.php
+ErrorDocument 414 /views/error/index.php
+ErrorDocument 500 /views/error/index.php
+ErrorDocument 502 /views/error/index.php
+ErrorDocument 504 /views/error/index.php
+

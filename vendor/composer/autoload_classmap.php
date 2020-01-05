@@ -6,15 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Models\\Advertisement' => $baseDir . '/Models/Advertisement.php',
-    'Models\\AdvertisingSpace' => $baseDir . '/Models/AdvertisingSpace.php',
-    'Models\\Carousel' => $baseDir . '/Models/Carousel.php',
-    'Models\\Country' => $baseDir . '/Models/country.php',
-    'Models\\I18N' => $baseDir . '/Models/I18N.php',
-    'Models\\Link' => $baseDir . '/Models/Link.php',
-    'Models\\Offer' => $baseDir . '/Models/Offer.php',
-    'Models\\Position' => $baseDir . '/Models/Position.php',
-    'Models\\Region' => $baseDir . '/Models/region.php',
-    'Models\\Reseller' => $baseDir . '/Models/reseller.php',
-    'Models\\User' => $baseDir . '/Models/User.php',
+    'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+    'Models\\Advertisement' => $baseDir . '/src/Models/Advertisement.php',
+    'Models\\AdvertisingSpace' => $baseDir . '/src/Models/AdvertisingSpace.php',
+    'Models\\Carousel' => $baseDir . '/src/Models/Carousel.php',
+    'Models\\Country' => $baseDir . '/src/Models/country.php',
+    'Models\\I18N' => $baseDir . '/src/Models/I18N.php',
+    'Models\\Link' => $baseDir . '/src/Models/Link.php',
+    'Models\\Offer' => $baseDir . '/src/Models/Offer.php',
+    'Models\\Page' => $baseDir . '/src/Models/Page.php',
+    'Models\\Position' => $baseDir . '/src/Models/Position.php',
+    'Models\\Region' => $baseDir . '/src/Models/region.php',
+    'Models\\Reseller' => $baseDir . '/src/Models/reseller.php',
+    'Models\\User' => $baseDir . '/src/Models/User.php',
 );

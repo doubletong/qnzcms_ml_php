@@ -6,11 +6,13 @@
         "gregwar/captcha": "1.*",
         "twig/twig": "3.0",
         "phpfastcache/phpfastcache": "^7.1"
-   
     },
     "autoload": {
         "classmap": [
-            "Models" 
+            "src/Models" 
          ]
+    },
+    "require-dev": {
+        "composer/composer": "^1.9"
     }
 }
