@@ -1,0 +1,42 @@
+{% extends "shared/layout.html" %}
+{% block title %}招贤纳士{% endblock %}
+
+{% block content %}
+    <div class="banner">
+        <img src="/assets/img/banners/about.png" alt="">
+        <div class="title-page">
+            <div class="txt">
+           <h2>ABOUT GALAXYCORE</h2>
+           <h3>招贤纳士</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-about">
+        <aside class="leftcol">
+            <nav>
+                <ul class="leftnav">
+                    <li><a href="/about" class="active">企业简介</a></li>
+                    <li><a href="/about/history">发展历程</a></li>
+                    <li><a href="/about/honor">企业荣誉</a></li>
+                    <li><a href="/about/contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section class="maincontent">
+            <div class="wrap about">
+                {{page.content|raw }}
+                <!-- <h1 class="title">BRIEF INTRODUCTION OF GALAXYCORE</h1>
+                <h2 class="title-sub">
+                    中国领先的图像传感器芯片设计公司
+                </h2>
+                <p>格科微电子（上海）有限公司创立于2003年，是中国领先的图像传感器芯片设计公司，目标瞄准全球移动设备及消费电子市场。</p>
+                <p>我们设计、开发及销售具成本优势的高质量CMOS图像传感器芯片，该芯片可采集光学图像并转换成数字图像输出信号。我们的图像传感器主要用于功能手机、智能手机及平板计算机等移动终端。我们亦设计、开发及销售LCD驱动芯片，该装置可驱动LCD面板将图像数据显示于屏幕上。</p>
+                <p>我们的核心实力是创新设计能力、高效及灵活的制造工序以及和供货商(例如代工厂及封装厂)、CMOS摄像模块制造商、LCD模块制造商、终端设备制造商及设计公司等业界参与者建立关系。</p>
+                <p>我们对未来的增长信心十足，不断提升整体竞争力，巩固图像传感器行业以及LCD驱动行业的领先地位。</p>
+                <figure>
+                    <img src="/assets/img/about_01.jpg" alt="">
+                </figure> -->
+            </div>
+        </section>
+    </div>
+{% endblock %}

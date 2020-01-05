@@ -44,6 +44,6 @@ $twig->addGlobal('menus', $menutree);
 $twig->addGlobal('navbot', $menus_bot);
 $twig->addGlobal('uri', $uri);
 
-echo $twig->render('support/index.html', $result);
+echo $twig->render('solution/index.html', $result);
 
 ?>

@@ -15,7 +15,7 @@ if($site_info['enableCaching']=="1"){
     ]);
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
-    
+
     $key = "about";
     $CachedString = $InstanceCache->getItem($key);   
 
@@ -44,6 +44,7 @@ $twig->addGlobal('menus', $menutree);
 $twig->addGlobal('navbot', $menus_bot);
 $twig->addGlobal('uri', $uri);
 
-echo $twig->render('news/index.html', $result);
+
+echo $twig->render('join/index.html', $result);
 
 ?>
