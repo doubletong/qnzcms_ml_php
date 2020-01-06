@@ -165,9 +165,7 @@
                         margin: 0;
                         line-height: 1;
                     }
-                    p{
-
-                    }
+                 
                     &.active{
                         display: block;
                     }
@@ -188,6 +186,72 @@
 
 
     .s3 {
+        .c{
+            width: 730px;
+            height: 730px;
+            @include vertical-align();
+            margin: 110px auto 0;
+            position: relative;
+            .tabheader{
+                @include reset-list();
+              position: absolute;
+              top: -55px;
+              left: -40px;
+              z-index: 600;
+                li{
+                    margin-bottom: 25px;
+                    border-width: 1px;
+                    color: rgb(32, 197, 233);
+                    border-color: rgb(32, 197, 233);
+                    border-style: solid;
+                    border-radius: 50%;
+                    background-color: rgb(18, 38, 80);          
+                    width: 98px;
+                    height: 98px;
+                    text-align: center;
+                    line-height: 96px;
+                    cursor: pointer;
+                 
+                    &:nth-of-type(1), &:nth-of-type(5){
+                        margin-left: 7.2rem;
+                    }
+                    &:nth-of-type(2), &:nth-of-type(4){
+                        margin-left: 2rem;
+                    }
+                    &:nth-of-type(3), &:nth-of-type(2){
+                        margin-bottom: 3rem;
+                    }
+                    .iconfont{
+                        font-size: 3rem;
+                    }
+                    &:hover,&.active{
+                        background-color: rgb(32, 197, 233);     
+                        color:  rgb(18, 38, 80);  
+                    }
+                      
+                }
+               
+            }
+            .cs{
+                width: 520px;
+                height: 520px;
+                margin: 0 auto;
+                @include vertical-align();
+                padding: 1rem 4rem 0;
+                color: #fff;
+                h2.title{
+                   font-size:  rem(66);
+                   color: rgb(32, 197, 233);    
+                }
+                h3{
+                    color: rgb(32, 197, 233);    
+                    font-size:  rem(20);margin-bottom: 1rem;
+                }
+                p{
+                    text-align: justify;
+                }
+            }
+        }
         .pictxt{
             min-width: 1191px;
             position: absolute;

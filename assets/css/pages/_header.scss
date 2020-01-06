@@ -43,6 +43,7 @@
     .mainav {
         @include reset-list;
         display: none;
+     
         @include respond-above(lg) {
             display: block;
             text-align: right;
@@ -50,13 +51,15 @@
         &>li {
             display: inline-block;
             position: relative;
+
             &>a {
                 display: block;
                 color: #fff;
                 position: relative;
-                height:66px;
+                height: 66px;
                 line-height: 40px;
                 padding: 0 1rem;
+        
                 &::after {
                     content: " ";
                     display: block;
