@@ -9,6 +9,7 @@ if(isset($_GET['id'])){
     $data = $pageClass->fetch_data($id);
 }
 $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
+$action = isset($_GET['id'])?"update":"create";
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +39,8 @@ $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
                         <div class="card-body">
                         <div class="row">
                                 <div class="col">
-                            <input id="pageId" type="hidden" name="pageId" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             <div class="form-group">
                                 <label for="title">标题</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">

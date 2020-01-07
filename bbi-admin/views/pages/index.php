@@ -47,8 +47,8 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
                     <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                         <div class="form-row align-items-center">
                             <div class="col-auto">
-                            <label class="sr-only" for="inlineFormInput">搜索</label>
-                            <input type="text" name="search" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
+                            <label class="sr-only" for="keyword">搜索</label>
+                            <input type="text" name="keyword" class="form-control mb-2" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
                             </div>
 
                             <div class="col-auto">
@@ -68,6 +68,7 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
                 <tr>                  
                     <th>标题</th>
                     <th>别名</th>
+                    <th>排序</th>
                     <th>显示</th>
                     <th>创建日期</th>
                     <th>操作</th>
@@ -83,12 +84,22 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
                     <?php
                     echo "<td>".$row['title']."</td>";                   
                     echo "<td>".$row['alias']."</td>";
+                    echo "<td>".$row['importance']."</td>";
                     echo "<td>".$row['view_count']."</td>";
                     ?>
                     <td><?php echo date('Y-m-d',$row['added_date']) ;?></td>
                     <td><a href='page_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
+                        <?php if($row['active']==1){?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                <i class="iconfont icon-eye-close"></i>
+                            </button>
+                        <?php }else{ ?>
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                <i class="iconfont icon-eye"></i>
+                            </button>
+                        <?php } ?>   
                         <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                             <i class="iconfont icon-delete"></i>
                         </button>
@@ -120,6 +131,32 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
             locale: "zh_CN"
         });
 
+        $(".btn-active").click(function(){
+            var $that = $(this);           
+            var productId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'page_post.php',
+                type : 'POST',
+                data : {id:productId,action:"active"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                    //console.log(myobj.status);
+                    if (myobj.status === 1) {
+                        // toastr.success(myobj.message);                                
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
         $(".btn-delete").click(function(){
             var $that = $(this);
             bootbox.confirm("删除后页面将无法恢复，您确定要删除吗？", function (result) {
@@ -127,9 +164,9 @@ $pages = $pageClass->get_paged_pages($keyword, $currentPage, $itemsPerPage);
                     var pageId = $that.attr("data-id");
 
                     $.ajax({
-                        url : 'page_delete.php',
+                        url : 'page_post.php',
                         type : 'POST',
-                        data : {id:pageId},
+                        data : {id:pageId,action:"delete"},
                         success : function(res) {
 
                             var myobj = JSON.parse(res);                    

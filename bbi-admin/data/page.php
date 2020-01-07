@@ -4,7 +4,7 @@ class Page{
     public function get_paged_pages($keyword,$pageIndex,$pageSize){
         $param = "%{$keyword}%";        
         $startIndex = ($pageIndex-1) * $pageSize;
-        $sql = "SELECT id,title,importance,alias,view_count,added_date FROM pages WHERE 1=1 ";
+        $sql = "SELECT id,title,importance,alias,active,view_count,added_date FROM pages WHERE 1=1 ";
    
         if(!empty($keyword)){
             $sql =  $sql. "AND (title LIKE :keyword OR content LIKE :keyword) ";
@@ -45,6 +45,29 @@ class Page{
 
         return $query->fetch();
     }
+
+    //显示或隐藏
+    public function active_page($id)
+    {
+
+        $sql = "UPDATE `pages` SET  
+        active =ABS(active-1)
+        WHERE id =:id";
+
+        $query = \db::getInstance()->prepare($sql);
+        $query->bindValue(":id", $id, \PDO::PARAM_INT);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result > 0) {
+            $msg = array('status' => 1, 'message' => '记录已成功更新。');
+            return json_encode($msg);
+        } else {
+            $msg = array('status' => 3, 'message' => '未更新记录。');
+            return json_encode($msg);
+        }
+    }
+
 
     public function delete_page($id){
         $query = \db::getInstance()->prepare("DELETE FROM `pages` WHERE id = ?");
