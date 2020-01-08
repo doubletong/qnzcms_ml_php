@@ -92,28 +92,23 @@
 }
 
 .prevnext {
+    .icon{        
+            border-radius: 50%;
+            background-color: rgb(238, 238, 238);  
+            width: 41px;
+            height: 41px;      
+            text-align: center;
+            line-height: 41px;    
+    }
     a {
-        display: block;
-        padding: 0 2rem;
-        background-color: rgb(215, 221, 235);
-        color: #666;
-        text-align: center;       
-        transition: all .2s;
-        max-width: 720px;
-        height: 45px;
-        border-radius: 23px;
-        margin: 0 auto 2rem;
-        line-height: 45px;overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        @include respond-above(md) {
-            height: 60px;
-            border-radius: 30px;line-height: 60px;
-        }
+        display: inline-block;
+        padding: 0 1rem;  
         &:hover {
-            background-color: $color-primary;
-            color: #fff;
+            color:$color-primary;
         }
+    }
+    .rc{
+        text-align: right;
     }
 }
 

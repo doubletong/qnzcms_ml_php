@@ -1,0 +1,52 @@
+{% extends "shared/layout.html" %}
+{% block title %}新闻资讯{% endblock %}
+{% block content %}
+    <div class="banner">
+        <img src="/assets/img/banners/news.png" alt="">
+        <div class="title-page title-page-news">
+            <div class="txt">
+           <h2>NEWS</h2>
+           <h3>新闻中心</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-about page-news-detail">
+        <aside class="leftcol">
+            <nav>
+                <ul class="leftnav">
+                    <li><a href="/news" class="active">新闻中心</a></li>                
+                </ul>
+            </nav>
+        </aside>
+        <section class="maincontent">
+            <div class="wrap about ">
+              
+                <h1 class="title">{{article.title}}</h1>
+                <h2 class="title-sub">
+                    {{article.pubdate|date('Y.m.d')}}
+                </h2>
+                
+                <article class="newsdetail">
+                    {{article.content|raw}}
+                </article>
+              
+                <div class="prevnext">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row no-gutters">
+                                <div class="col-auto"><div class="icon"><i class="iconfont icon-left"></i></div></div>
+                                <div class="col lc"><a href="/news/detail-{{prevArticle.id}}">{{prevArticle.title}}</a></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row no-gutters">                             
+                                <div class="col rc"><a href="/news/detail-{{nextArticle.id}}">{{nextArticle.title}}</a></div>
+                                <div class="col-auto"><div class="icon"><i class="iconfont icon-right"></i></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </section>
+    </div>
+{% endblock %}

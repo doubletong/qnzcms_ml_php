@@ -3,6 +3,8 @@ RewriteEngine on                       //on为打开,off为关闭
 RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
 RewriteRule ^([a-z|_|0-9]+)/([a-z|_|0-9]+)$ /views/$1/$2.php [L]
 
+RewriteRule ^news/detail-([0-9]+)$ /views/news/detail.php?id=$1 
+
 RewriteRule ^application/list/([0-9]+)$ /views/application/list.php?cid=$1 
 RewriteRule ^application/detail/([0-9]+)$ /views/application/detail.php?id=$1 
 RewriteRule ^application/cases/([0-9]+)$ /views/application/cases.php?cid=$1 
@@ -22,8 +24,7 @@ RewriteRule ^cases/detail/(.*)$ /views/cases/detail.php?id=$1
 RewriteRule ^service/projects/([0-9]+)$ /views/service/projects.php?cid=$1 
 RewriteRule ^service/project-detail/([0-9]+)$ /views/service/detail.php?id=$1 
 
-RewriteRule ^news/detail/(.*)$ /views/news/detail.php?id=$1 
-RewriteRule ^meeting/detail-(.*)$ /meeting_detail.php?id=$1
+
 RewriteRule ^media-list-(.*)$ /media_list.php?id=$1 
 RewriteRule ^media-detail-(.*)$ /media_detail.php?id=$1 
 
