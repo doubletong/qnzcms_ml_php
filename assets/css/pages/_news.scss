@@ -1,36 +1,36 @@
 .page-news {
-    .list-articles {
-        margin-bottom: 1rem;
-
-        @include respond-above(sm) {
-            margin-bottom: 1.5rem;
+    .list-container {
+        padding-top: 4rem;
+                  
+        @include respond-above(xl) {
+            margin-left: -2rem;
+            margin-right: -2rem;
         }
-
         .item {
-            background-color: #fff;
-            margin-bottom: rem(30);
+            
+            margin-bottom: 2rem;
 
-            .pic {
-                display: block;
-
-                img {
-                    display: block;
-                    @include respond-above(sm) {
-                        width: 200px;
-                    }
-                    @include respond-above(md) {
-                        width: auto;
-                    }
-                }
+            @include respond-above(md) {
+                margin-bottom: 3rem;
             }
-
-            .txt {
-
+            @include respond-above(lg) {
+                margin-bottom: 4rem;
+            }
+            @include respond-above(xl) {
+                margin-bottom: 5rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+           
 
                 h3 {
-                    font-size: rem(24);
-                    margin: 0;
-                    padding-bottom: .4rem;
+                    font-size: rem(20);
+                    margin: .2rem 0;
+                 color: $color-accent;
+                 height: 5rem;
+                 overflow: hidden;
+                 text-overflow: ellipsis;
+                 line-height: 1.3;
 
                     a {
                         color: #333;
@@ -38,44 +38,24 @@
                 }
 
                 time {
-                    color: #ccc;
+                    color: #333;
                 }
 
                 p {
                     text-align: justify;
                     color: #999;
+                    height: 5.7rem;
+                    overflow: hidden;
+                    line-height: 1.5;
                 }
 
-                .more {
-                    font-size: 14px;
-                }
-            }
 
-            a {
-                color: #666;
-                font-size: rem(20);
 
-                &:hover {
-                    color: $color-primary;
-                }
-            }
-
-            .pub {
-                line-height: 1.3;
-                border-right: 1px #ddd solid;
-                padding-right: 1.5rem;
-                padding-bottom: .5rem;
-
-                strong {
-                    font-size: 2.5rem;
-                }
-
-                .small {
-                    font-size: 12px;
-                }
-            }
         }
 
+    }
+    .pagination-container{
+        margin-top: -3rem;
     }
 }
 

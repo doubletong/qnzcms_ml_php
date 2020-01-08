@@ -192,7 +192,7 @@ $action = isset($_GET['id'])?"update":"create";
                             dataType: "JSON",
                             data: {
                                 id: function () {
-                                    return $("#pageId").val();
+                                    return $("#id").val();
                                 },
                                 alias: function () {
                                     return $("#alias").val();

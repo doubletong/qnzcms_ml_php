@@ -141,6 +141,14 @@ input,textarea,button{
         &.title-page-product{
             background-image: url('../img/bg_title_product.png')
         }
+        &.title-page-support{
+            background-image: url('../img/bg_title_support.png')
+        }
+        &.title-page-news{
+            background-image: url('../img/bg_title_news.png')
+        }
+
+
        .txt{
         @include vertical-align();   padding-left: 3rem;
         margin-top: -0.5rem;

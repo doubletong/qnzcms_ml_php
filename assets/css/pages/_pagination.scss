@@ -1,5 +1,5 @@
 .pagination {
-    text-align: center;  list-style: none;
+    text-align: right;  list-style: none;
     padding: 1rem 0;
     font-size: rem(14);
     color: $color-text-weak;
@@ -16,16 +16,14 @@
 
             a {
                 display: block;
-                border-width: 1px;
-                border-color: rgb(191, 191, 191);
-                border-style: solid;
+                
                 border-radius: 14px;
                 height: 28px;
                 line-height: 26px;
               
                 padding: 0 .56rem;
 
-                background-color: #fff;
+                background-color: #f1f1f1;
                 text-align: center;
                 color: $color-text-weak;
 
