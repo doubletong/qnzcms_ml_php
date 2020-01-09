@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 08, 2020 at 10:51 AM
--- Server version: 5.7.24-log
+-- Generation Time: Jan 09, 2020 at 11:13 PM
+-- Server version: 5.7.24
 -- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -118,6 +118,37 @@ INSERT INTO `annals` (`id`, `year`, `month`, `image_url`, `description`, `dictio
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `application_areas`
+--
+
+CREATE TABLE `application_areas` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sub_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `intro` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `cases` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `importance` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `added_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `application_areas`
+--
+
+INSERT INTO `application_areas` (`id`, `title`, `sub_title`, `intro`, `cases`, `importance`, `active`, `added_by`, `created_at`, `updated_at`) VALUES
+(1, '移动设备', 'MOBILE DEVICES', '<p>test</p>\r\n', '<p>test</p>\r\n', 0, 1, 'admin', '2020-01-09 14:16:51', '2020-01-09 14:39:56'),
+(2, '安防监控', 'SECURITY MONITORING', '<p>test</p>\r\n', '<p>test</p>\r\n', 0, 1, 'admin', '2020-01-09 14:29:27', '2020-01-09 14:39:31'),
+(3, '汽车电子', 'AUTOMOTIVE ELECTRONICS', '<p>dd</p>\r\n', '<p>ddd</p>\r\n', 0, 1, 'admin', '2020-01-09 14:41:00', '2020-01-09 14:41:00'),
+(4, 'USB camera', 'USB CAMERA', '<p>fs</p>\r\n', '<p>fds</p>\r\n', 0, 1, 'admin', '2020-01-09 14:41:35', '2020-01-09 14:41:35'),
+(5, '智慧屏电视', 'SMART SCREEN TV', '<p>fs</p>\r\n', '<p>fds</p>\r\n', 0, 1, 'admin', '2020-01-09 14:42:18', '2020-01-09 14:42:18'),
+(6, '生物识别&扫码', 'BIOMETRIC & SCAN THE CODE', '<p>fs</p>\r\n', '<p>fds</p>\r\n', 0, 1, 'admin', '2020-01-09 14:42:53', '2020-01-09 14:42:53');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `articles`
 --
 
@@ -150,14 +181,14 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `title`, `subtitle`, `content`, `pubdate`, `description`, `keywords`, `dictionary_id`, `background_image`, `author`, `source`, `source_url`, `view_count`, `active`, `recommend`, `added_by`, `thumbnail`, `image_url`, `added_date`, `categoryId`, `summary`) VALUES
-(1, '药政周报20190517期', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1564675200, '', '', 1, '', '', '', '', 4, 1, 1, 'admin', '/uploads/images/news/n12.jpg', '', 1564736597, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
-(2, '第13届全国放射性药物与标记化合物学术交流会', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1564675200, '', '', 1, '', '', '', '', 73, 1, 0, 'admin', '/uploads/images/news/n11.jpg', '', 1564736666, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
-(4, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569427200, '', '', 1, '', '', '', '', 1, 1, 0, 'admin', '/uploads/images/news/n13.jpg', '', 1569463379, 38, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
-(3, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569427200, '', '', 1, '', '', '', '', 3, 0, 1, 'admin', '/uploads/images/news/n13.jpg', '', 1569462752, 13, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
-(5, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569427200, '', '', 1, '', '', '', '', 21, 1, 1, 'admin', '/uploads/images/news/n12.jpg', '/uploads/news/n-d-01.jpg', 1569463418, 38, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
-(6, '药政周报20190517期', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1569600000, '', '', 1, '', '', '', '', 1, 1, 0, 'admin', '/uploads/images/news/n13.jpg', '', 1569684252, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
-(7, '第13届全国放射性药物与标记化合物学术交流会', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1569600000, '', '', 1, '', '', '', '', 20, 1, 0, 'admin', '/uploads/images/news/n11.jpg', '', 1569684262, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
-(8, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开【拷贝】', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569600000, '', '', 1, '', '', '', '', 7, 1, 0, 'admin', '/uploads/images/news/n12.jpg', '', 1569684325, 38, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
+(1, '药政周报20190517期', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1564675200, '', '', 1, '', '', '', '', 5, 1, 1, 'admin', '/uploads/images/news/n12.jpg', '', 1564736597, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
+(2, '第13届全国放射性药物与标记化合物学术交流会', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1564675200, '', '', 1, '', '', '', '', 74, 1, 0, 'admin', '/uploads/images/news/n11.jpg', '', 1564736666, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
+(4, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569427200, '', '', 1, '', '', '', '', 2, 1, 0, 'admin', '/uploads/images/news/n13.jpg', '', 1569463379, 38, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
+(3, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569427200, '', '', 1, '', '', '', '', 4, 0, 1, 'admin', '/uploads/images/news/n13.jpg', '', 1569462752, 13, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
+(5, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569427200, '', '', 1, '', '', '', '', 23, 1, 1, 'admin', '/uploads/images/news/n12.jpg', '/uploads/news/n-d-01.jpg', 1569463418, 38, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
+(6, '药政周报20190517期', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1569600000, '', '', 1, '', '', '', '', 18, 1, 0, 'admin', '/uploads/images/news/n13.jpg', '', 1569684252, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
+(7, '第13届全国放射性药物与标记化合物学术交流会', NULL, '<p>先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予&ldquo;治疗转移性去势抵抗前列腺癌的放腺癌&hellip;&hellip;</p>\r\n', 1569600000, '', '', 1, '', '', '', '', 22, 1, 0, 'admin', '/uploads/images/news/n11.jpg', '', 1569684262, 13, '先通医药首席技术官张裕民博士发布了北京先通国际医药科技股份有限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放限公司获得美国国立卫生研究院授予“治疗转移性去势抵抗前列腺癌的放腺癌……'),
+(8, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开【拷贝】', NULL, '<p>世界级美术馆管理者与艺术教育者的针锋相对？&ldquo;未来的设计&rdquo;讲座成功在UPERENT召开</p>\r\n', 1569600000, '', '', 1, '', '', '', '', 9, 1, 0, 'admin', '/uploads/images/news/n12.jpg', '', 1569684325, 38, '世界级美术馆管理者与艺术教育者的针锋相对？“未来的设计”讲座成功在UPERENT召开'),
 (9, '海水淡化', NULL, '<p>海水中含有大量盐类和多种元素，其中许多元素是人体所需要的。但海水中各种物质浓度太高，远远超过饮用水卫生标准，如果大量饮用，会导致某些元素过量进入人体，影响人体正常的生理功能，还会导致人体脱水...</p>\r\n', 1571673600, '', '', 6, '', '', '', '', 0, 1, 0, 'admin', '/uploads/images/application/appdetail1.jpg', '', 1571704598, 40, '海水中含有大量盐类和多种元素，其中许多元素是人体所需要的。但海水中各种物质浓度太高，远远超过饮用水卫生标准，如果大量饮用，会导致某些元素过量进入人体，影响人体正常的生理功能，还会导致人体脱水...'),
 (10, '农村污水处理', NULL, '<p>随着我国中小城镇建设的步伐明显加快，城镇污水排放量也不断增加。我国城市污水排放量年年急剧增长，据报道大约会以年增24亿m3的速度蔓延。与此同时，我国相应的污水处理能力相对有限，远远不能适应过快增长...</p>\r\n', 1571673600, '', '', 6, '', '', '', '', 1, 1, 0, 'admin', '/uploads/images/application/appdetail2.jpg', '', 1571704726, 40, '随着我国中小城镇建设的步伐明显加快，城镇污水排放量也不断增加。我国城市污水排放量年年急剧增长，据报道大约会以年增24亿m3的速度蔓延。与此同时，我国相应的污水处理能力相对有限，远远不能适应过快增长...'),
 (11, '市政污水提标', NULL, '<p>膜技术是清洁生产、水资源再生、水循环利用的最佳手段之一，它对于有效减少污染物排放和实现污水资源化有着重要意义。三达应用MBR技术改造传统污水处理厂，应用超滤、纳滤技术提标自来水厂。三达开发适合中小...</p>\r\n', 1571673600, '', '', 6, '', '', '', '', 0, 1, 0, 'admin', '/uploads/images/application/appdetail3.jpg', '', 1571704749, 40, '膜技术是清洁生产、水资源再生、水循环利用的最佳手段之一，它对于有效减少污染物排放和实现污水资源化有着重要意义。三达应用MBR技术改造传统污水处理厂，应用超滤、纳滤技术提标自来水厂。三达开发适合中小...'),
@@ -997,7 +1028,7 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `alias`, `importance`, `content`, `background_image`, `view_count`, `active`, `added_by`, `added_date`, `keywords`, `description`) VALUES
-(52, '关于格科', 'about', 0, '<h1 class=\"title\">BRIEF INTRODUCTION OF GALAXYCORE</h1>\r\n\r\n<h2 class=\"title-sub\">中国领先的图像传感器芯片设计公司</h2>\r\n\r\n<p>格科微电子（上海）有限公司创立于2003年，是中国领先的图像传感器芯片设计公司，目标瞄准全球移动设备及消费电子市场。</p>\r\n\r\n<p>我们设计、开发及销售具成本优势的高质量CMOS图像传感器芯片，该芯片可采集光学图像并转换成数字图像输出信号。我们的图像传感器主要用于功能手机、智能手机及平板计算机等移动终端。我们亦设计、开发及销售LCD驱动芯片，该装置可驱动LCD面板将图像数据显示于屏幕上。</p>\r\n\r\n<p>我们的核心实力是创新设计能力、高效及灵活的制造工序以及和供货商(例如代工厂及封装厂)、CMOS摄像模块制造商、LCD模块制造商、终端设备制造商及设计公司等业界参与者建立关系。</p>\r\n\r\n<p>我们对未来的增长信心十足，不断提升整体竞争力，巩固图像传感器行业以及LCD驱动行业的领先地位。</p>\r\n\r\n<figure><img alt=\"\" src=\"/assets/img/about_01.jpg\" /></figure>\r\n', '', 87, 1, 'admin', 1577955104, '', ''),
+(52, '关于格科', 'about', 100, '<h1 class=\"title\">BRIEF INTRODUCTION OF GALAXYCORE</h1>\r\n\r\n<h2 class=\"title-sub\">中国领先的图像传感器芯片设计公司</h2>\r\n\r\n<p>格科微电子（上海）有限公司创立于2003年，是中国领先的图像传感器芯片设计公司，目标瞄准全球移动设备及消费电子市场。</p>\r\n\r\n<p>我们设计、开发及销售具成本优势的高质量CMOS图像传感器芯片，该芯片可采集光学图像并转换成数字图像输出信号。我们的图像传感器主要用于功能手机、智能手机及平板计算机等移动终端。我们亦设计、开发及销售LCD驱动芯片，该装置可驱动LCD面板将图像数据显示于屏幕上。</p>\r\n\r\n<p>我们的核心实力是创新设计能力、高效及灵活的制造工序以及和供货商(例如代工厂及封装厂)、CMOS摄像模块制造商、LCD模块制造商、终端设备制造商及设计公司等业界参与者建立关系。</p>\r\n\r\n<p>我们对未来的增长信心十足，不断提升整体竞争力，巩固图像传感器行业以及LCD驱动行业的领先地位。</p>\r\n\r\n<figure><img alt=\"\" src=\"/assets/img/about_01.jpg\" /></figure>\r\n', '', 116, 1, 'admin', 1577955104, '', ''),
 (50, '污水提标', 'sewage', 0, '<div class=\"page page-env \">\r\n<div class=\"container\">\r\n建设中...\r\n</div>\r\n</div>\r\n', '', 2, 1, 'admin', 1573109893, '', ''),
 (51, '核心技术', 'technology', 0, '<div class=\"page\">\r\n<div class=\"container\">编辑内容</div>\r\n</div>\r\n', '', 1, 1, 'admin', 1574264681, '', ''),
 (42, '招聘联系方式与员工福利', 'recruitment', 0, ' <div class=\"welfare\">\r\n                <h3 class=\"title\">\r\n                    联系方式\r\n                </h3>\r\n                <hr>\r\n                <dl>\r\n                    <dt>简历投递\r\n                    </dt>\r\n                    <dd>请有意者将个人简历以电子邮件方式发送至hr@suntar.com，主题请注明应聘岗位，简历以附件上传。\r\n                    </dd>\r\n                    <dt>招聘热线\r\n                    </dt>\r\n                    <dd>18030078191 0592-6778170 陈小姐</dd>\r\n                </dl>\r\n\r\n                <h3 class=\"title\">\r\n                    员工福利\r\n                </h3>\r\n                <hr>\r\n                <p>公司将为每一位三达人提供丰厚的福利，心动的话就投简历来吧~</p>\r\n                <dl>\r\n                    <dt>刚性福利\r\n\r\n                    </dt>\r\n                    <dd>五险+商业险、住房公积金、带薪年假、通讯补贴、双休、免费通勤车\r\n\r\n                    </dd>\r\n                    <dt>柔性福利\r\n\r\n                    </dt>\r\n                    <dd>补贴式工作餐、婚育等礼金、婚育丧假期、考试假、提升培训、全勤奖\r\n                    </dd>\r\n                    <dt>特别福利\r\n                    </dt>\r\n                    <dd>年度体检、年度旅游、中秋博饼、“三八”妇女节活动、绩效奖金、年终表彰会、每周1小时运动时间、健身房/篮球场/网球场/图书室</dd>\r\n                </dl>\r\n            </div>', '', 14, 1, 'admin', 1560917298, '', ''),
@@ -1006,7 +1037,7 @@ INSERT INTO `pages` (`id`, `title`, `alias`, `importance`, `content`, `backgroun
 (45, '投资者公告', 'investor', 94, '<div class=\"container page\">\r\n    <h1>暂无内容</h1>\r\n    <p>暂无内容</p>\r\n</div>', '', 33, 1, 'admin', 1560918360, '', ''),
 (46, '企业文化', 'culture', 98, '<div class=\"page page-culture container\">\r\n<div class=\"row\">\r\n<div class=\"col-md\">\r\n<div class=\"item\">\r\n<div class=\"icon\"><img alt=\"愿景\" src=\"/assets/img/about_10.png\" /></div>\r\n\r\n<h3>愿景</h3>\r\n\r\n<p>成为应用先进膜技术发展环保水务、清洁生产与循环经济的全球领先企业</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"col-md\">\r\n<div class=\"item\">\r\n<div class=\"icon\"><img alt=\"使命\" src=\"/assets/img/about_09.png\" /></div>\r\n\r\n<h3>使命</h3>\r\n\r\n<p>开发水技术，解决水问题科普水知识，弘扬水文化</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"col-md\">\r\n<div class=\"item\">\r\n<div class=\"icon\"><img alt=\"理念\" src=\"/assets/img/about_08.png\" /></div>\r\n\r\n<h3>理念</h3>\r\n\r\n<p>与股东、员工、合作伙伴共创价值、共享成果、共谋发展</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"photos\">\r\n<header class=\"title title-photo\">\r\n<h3>员工风采</h3>\r\n</header>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md\"><img alt=\"员工风采\" src=\"/assets/img/about_11.jpg\" /></div>\r\n\r\n<div class=\"col-md\"><img alt=\"员工风采\" src=\"/assets/img/about_12.jpg\" /></div>\r\n</div>\r\n</div>\r\n</div>\r\n', '', 38, 1, 'admin', 1560918560, '', ''),
 (47, '研发实力', 'strength', 99, ' <div class=\"page page-strength\">\r\n        <div class=\"container \">\r\n            <h1 class=\"title title-v2\">研发实力</h1>\r\n            <p class=\"wow slideInUp\">三达膜科技拥有博士后科研工作站和福建省膜分离工程技术研究中心，公司的研发团队研发水平高、实践经验丰富。</p>\r\n\r\n            <p class=\"wow slideInUp\">博士后科研工作分站于2002年10月成立，致力于探索和研究膜分离技术、新型膜材料开发、移动床分离技术、膜生物反应器、膜污染、环保水处理等技术与产品开发。福建省膜分离工程技术中心是以三达膜科技为依托，组建了一支高层次、多学科结合的科技队伍。截至目前，中心完成的工艺开发大部分成功应用到制药、食品、化工、染料、冶金、水处理等领域。</p>\r\n\r\n            <div class=\"row wow slideInUp text-center\">\r\n                <div class=\"col-md\"><img src=\"/assets/img/about_04.jpg\" /></div>\r\n\r\n                <div class=\"col-md\"><img src=\"/assets/img/about_05.jpg\" /></div>\r\n\r\n                <div class=\"col-md\"><img src=\"/assets/img/about_06.png\" /></div>\r\n\r\n                <div class=\"col-md\"><img src=\"/assets/img/about_07.jpg\" /></div>\r\n            </div>\r\n        </div>\r\n    </div>', '', 26, 1, 'admin', 1560918812, '', ''),
-(48, '董事长寄语', 'speech', 121, '<div class=\"page page-speech\">\r\n<div class=\"container\">\r\n<div class=\"row\">\r\n<div class=\"col-lg-9\">\r\n<div class=\"box\">\r\n<div class=\"row align-items-center profile\">\r\n<div class=\"col-auto\">\r\n<div class=\"avatar\"><img alt=\"董事长\" src=\"/assets/img/about_03.jpg\" /></div>\r\n</div>\r\n\r\n<div class=\"col\">\r\n<h1 class=\"title-v2\">董事长寄语</h1>\r\n\r\n<p class=\"des\">成为应用先进膜技术发展环保水务、清洁生产与循环经济的全球领先企业</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"intro\">\r\n<p>三达膜环境技术股份有限公司（以下简称&ldquo;三达膜&rdquo;或&ldquo;公司&rdquo;）是国内知名的以膜技术应用为核心的工业分离纯化和膜法水处理综合解决方案提供商和水务投资运营商。</p>\r\n\r\n<p>在膜技术应用领域，三达膜能够根据客户的差异化需求提供综合解决方案：工业分离业务方面，主要帮助食品饮料、医药、生物发酵、化工、石化等行业客户，提高产品质量，降低生产成本，减少废物排放。在膜法水处理业务方面，公司应用膜技术为市政、工业、家庭用户提供供水净化、废水处理、中水回用等综合解决方案。</p>\r\n\r\n<p>在水务投资运营领域，公司通过BOT、TOT和委托运营方式在全国范围内多个地区投资和运营市政污水处理厂。</p>\r\n\r\n<p>三达膜科技（厦门）有限公司（以下简称&ldquo;三达膜科技&rdquo;）创建于1996年，是三达膜环境技术股份有限公司全资子公司。专业为生物、化工、制药、食品饮料等行业提供过滤及纯化综合解决方案，以及为工业、市政、民用环保等领域提供水处理解决方案，满足不同客户的高度差异化需求。业务领域集膜软件开发、工程设计、设备制造、系统集成、现场安装与售后服务为一体。</p>\r\n\r\n<p>三达膜科技经过多年的研究与实践，成功开发出一系列膜应用技术与工艺，帮助客户进行生产工艺的上下游技术整合与创新，实现清洁生产、节能环保。三达膜科技作为中国过滤纯化的知名企业，为客户承担分离提纯工艺的关键技术。</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n', '', 108, 1, 'admin', 1560919065, '', ''),
+(48, '技术支持', 'support', 99, '<h1 class=\"title\">TECHNICAL SUPPORT</h1>\r\n\r\n<h2 class=\"title-sub\">技术支持</h2>\r\n\r\n<p>您在使用格科微产品中遇到任何问题请联系我们，我们有专业的团队会第一时间协助解决您的问题，请按需要联系格科微各地区的销售窗口。</p>\r\n\r\n<p><a class=\"btn btn-primary\" href=\"/about/contact\">联系我们</a></p>\r\n', '', 111, 1, 'admin', 1560919065, '', ''),
 (49, '水务运营', 'operation', 0, '<div class=\"page page-env container\">\r\n        <p>三达旗下拥有国家人事部授予博士后科研工作站和福建省膜分离工 程研究中心，拥有各种膜分离与废水处理实验仪器及设备，并长期与国内 外多所知名高校与科研院所合作，从事各种新型水处理技术研究，可为客户提供“供水-污水-中水”的整体解决方案。</p>\r\n        <p>公司通过自主创新和持续技术积累，已掌握多项基础性市政水处理技术，所建设的污水厂主要应用的二级生物处理工艺有：AO+MBR膜工艺、外置式超滤膜+臭氧工艺、卡鲁塞尔氧化沟、CASS工艺和AAO工艺等技术，这些技术在公司运营的污水处理厂中得到了充分的利用。</p>\r\n\r\n\r\n        <div class=\"title title-list\">\r\n            <h3>商务模式</h3>\r\n        </div>\r\n\r\n        <p>三达经营模式灵活多样，可以根据用户的要求及实际情况制定不同的经营模式。主要有EPC、 BOT、BT及TOT等多种方式。</p>\r\n\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-6\">\r\n                <div class=\"card\">\r\n                    <div class=\"card-header\">\r\n                        <div class=\"row align-items-center\">\r\n                            <div class=\"col\">\r\n                                <h3>BOT</h3>\r\n                            </div>\r\n                            <div class=\"col-auto\">建设-经营-移交</div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card-body\">\r\n                        <h4>出资方式：</h4>\r\n                        <p>由三达全额投资</p>\r\n                        <h4>责任：</h4>\r\n                        <ol>\r\n                            <li>工艺设计：由三达负责工艺设计及施工建设工作</li>\r\n                            <li>管理及运营：由三达负责日常管理及运营，并收取一定的运营费用</li>\r\n                            <li>项目移交：特许经营期满后，三达将项目无偿移交给地方政府/业主</li>\r\n                        </ol>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-6\">\r\n                <div class=\"card\">\r\n                    <div class=\"card-header\">\r\n                        <div class=\"row align-items-center\">\r\n                            <div class=\"col\">\r\n                                <h3>TOT</h3>\r\n                            </div>\r\n                            <div class=\"col-auto\">移交-经营-移交</div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card-body\">\r\n                        <h4>出资方式：</h4>\r\n                        <p>由三达采取收购特许经营权方式，并全额投资</p>\r\n                        <h4>责任：</h4>\r\n                        <ol>\r\n                            <li>工艺设计：由三达根据实际运营情况，优化或改进工艺设计\r\n                            </li>\r\n                            <li>维护及改造：三达负责对设施等进行维护改造\r\n                            </li>\r\n                            <li>管理及运营：由三达负责日常管理及运营，并收取一定的运营费用\r\n                            </li>\r\n                            <li>项目移交：在双方约定的特许经营期结束后，三达讲项目无偿移交给当地政\r\n                                府/业主</li>\r\n                        </ol>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-6\">\r\n                <div class=\"card\">\r\n                    <div class=\"card-header\">\r\n                        <div class=\"row align-items-center\">\r\n                            <div class=\"col\">\r\n                                <h3>EPC</h3>\r\n                            </div>\r\n                            <div class=\"col-auto\">工程总承包</div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card-body\">\r\n                        <h4>出资方式：</h4>\r\n                        <p>由政府/业主全额投资</p>\r\n                        <h4>责任：</h4>\r\n                        <ol>\r\n                            <li>工艺设计：采用三达的技术，由三达进行工艺设计</li>\r\n                            <li>施工建设：政府/业主对三达提供的设计方案进行会审，通过后由三达全权负责工程建设（包括土建、设备采购、及安装、绿化等）</li>\r\n                            <li>工程调试：工程建设竣工后，由三达进行调试，保证达到合同规定的标准</li>\r\n                            <li>技术培训：由三达专家对项目操作人员进行业务技能培训</li>\r\n                            <li>工程移交：政府/业主组织项目验收，三达将工程项目全部移交给政府/业主</li>\r\n                        </ol>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-6\">\r\n                <div class=\"card\">\r\n                    <div class=\"card-header\">\r\n                        <div class=\"row align-items-center\">\r\n                            <div class=\"col\">\r\n                                <h3>委托运营</h3>\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card-body\">\r\n                        <h4>出资方式：</h4>\r\n                        <p>由政府/业主将已建成的项目委托于三达，由三达进行专业化运营</p>\r\n                        <h4>责任：</h4>\r\n                        <ol>\r\n                            <li>项目维护：由三达负责对项目设施进行维护\r\n                            </li>\r\n                            <li>管理及运营：由三达负责项目日常管理及运营，并收取运营费用，保证项目稳定运营\r\n                            </li>\r\n                            <li>项目移交：在双方约定的委托运营期结束后，三达讲项目无偿归还给政府/业主\r\n                            </li>\r\n\r\n                        </ol>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"title title-list\">\r\n            <h3>市政水务项目</h3>\r\n        </div>\r\n        <!-- 暂缺地图 -->\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n                <div class=\"project-v1\">\r\n                    <div class=\"pic\">\r\n                        <img src=\"/assets/img/env06.jpg\" alt=\"四平：四平市污水处理厂\">\r\n                    </div>\r\n                    <div class=\"txt\">\r\n                        <h3 class=\"title\">四平：四平市污水处理厂</h3>\r\n                        <p>吉林省四平市污水处理厂设计总处理规模日处理污水18万立方米，主体采用A/O 处理工艺。项目于2001 年开工建设，2003 年完工。2006 年由我公司以TOT模式投资运营，经改造调试后，该厂运营稳定，出水达到设计标准，对四平市水环境的改善起到了重要作用。</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <div class=\"project-v1\">\r\n                    <div class=\"pic\">\r\n                        <img src=\"/assets/img/env07.jpg\" alt=\"吉安：骡子山污水处理厂\">\r\n                    </div>\r\n                    <div class=\"txt\">\r\n                        <h3 class=\"title\">许昌：许昌县污水处理厂</h3>\r\n                        <p>许昌县污水处理厂设计总规模日处理污水4万立方米，采用氧化沟+深度处理工艺。项目以BOT模式建设运营,于2009年建设投产。</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <div class=\"project-v1\">\r\n                    <div class=\"pic\">\r\n                        <img src=\"/assets/img/env08.jpg\" alt=\"吉安：骡子山污水处理厂\">\r\n                    </div>\r\n                    <div class=\"txt\">\r\n                        <h3 class=\"title\">吉安：骡子山污水处理厂</h3>\r\n                        <p>吉安市螺子山污水处理厂设计总规模日处理污水8万立方米，采用卡鲁塞尔氧化沟工艺，项目以BOT模式建设运营，于2007 年建成投产。</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <div class=\"project-v1\">\r\n                    <div class=\"pic\">\r\n                        <img src=\"/assets/img/env09.jpg\" alt=\"巨野：巨野县污水处理厂\">\r\n                    </div>\r\n                    <div class=\"txt\">\r\n                        <h3 class=\"title\">巨野：巨野县污水处理厂</h3>\r\n                        <p>巨野县污水处理厂总设计日处理污水8万立方米，采用百乐克工艺，2006 年由我公司以TOT 模式投资运营。2010年我司对项目进行了升级改造，保证了该厂的运营稳定性。</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <div class=\"project-v1\">\r\n                    <div class=\"pic\">\r\n                        <img src=\"/assets/img/env10.jpg\" alt=\"白城：白城市污水处理厂\">\r\n                    </div>\r\n                    <div class=\"txt\">\r\n                        <h3 class=\"title\">白城：白城市污水处理厂</h3>\r\n                        <p>白城市污水处理厂设计建设总规模为日处理污水量10万立方米，采用微曝氧化沟工艺，项目以BOT模式建设运营，于2010 年建成投产。</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"col-md-6\">\r\n                <div class=\"project-v1\">\r\n                    <div class=\"pic\">\r\n                        <img src=\"/assets/img/env11.jpg\" alt=\"四平：四平市污水处理厂\">\r\n                    </div>\r\n                    <div class=\"txt\">\r\n                        <h3 class=\"title\">武平：武平县污水处理厂</h3>\r\n                        <p>武平县污水处理厂总设计日处理污水4万立方米，采用改良型卡鲁塞尔氧化沟工艺。项目以BOT模式建设运营，于2009 年建成投产。</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n\r\n    </div>', '', 864, 1, 'admin', 1567057374, '', '');
 
 -- --------------------------------------------------------
@@ -1236,53 +1267,6 @@ INSERT INTO `teams` (`id`, `name`, `post`, `photo`, `fullphoto`, `content`, `dic
 (17, '张三', '非执行董事', '/uploads/images/teams/team-member-1.jpg', '', '<p>test</p>\r\n', 2, 'admin', 1564817037, 0),
 (19, 'test', 'werew', '/uploads/images/teams/team-member-2.jpg', '', '<p>rewrewrew</p>\r\n', 2, 'admin', 1564817127, 0),
 (20, 'doubletong', 'fds', '/uploads/images/teams/team-member-3.jpg', '', '<p>fdsfds</p>\r\n', 2, 'admin', 1564817145, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test001`
---
-
-CREATE TABLE `test001` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `test001`
---
-
-INSERT INTO `test001` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Mark Mike', 'temp-email-1@mark.com', '1234', '2019-09-16 14:24:33', '2019-09-16 14:24:33'),
-(4, 'Mark Mike', 'temp01-email-1@mark.com', '1234', '2019-09-17 01:58:52', '2019-09-17 01:58:52');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test002`
---
-
-CREATE TABLE `test002` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `body` text NOT NULL,
-  `created_by` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `test002`
---
-
-INSERT INTO `test002` (`id`, `title`, `body`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'New Blog Post', 'New Blog Content', 1, '2019-09-16 14:24:33', '2019-09-16 14:24:33'),
-(2, 'New Blog Post dddddddd', 'New Blog Content ddddd', 1, '2019-09-17 01:58:52', '2019-09-17 01:58:52'),
-(3, 'New Blog Post12', 'New Blog Content21', 11, '2019-09-30 17:41:12', '2019-09-30 17:41:12');
 
 -- --------------------------------------------------------
 
@@ -2486,6 +2470,12 @@ ALTER TABLE `annals`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `application_areas`
+--
+ALTER TABLE `application_areas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `articles`
 --
 ALTER TABLE `articles`
@@ -2673,19 +2663,6 @@ ALTER TABLE `teams`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `test001`
---
-ALTER TABLE `test001`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `test001_email_unique` (`email`);
-
---
--- Indexes for table `test002`
---
-ALTER TABLE `test002`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `topics`
 --
 ALTER TABLE `topics`
@@ -2748,6 +2725,12 @@ ALTER TABLE `advertising_spaces`
 --
 ALTER TABLE `annals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `application_areas`
+--
+ALTER TABLE `application_areas`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `articles`
@@ -2867,7 +2850,7 @@ ALTER TABLE `meetings`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `menus_temp`
@@ -2922,18 +2905,6 @@ ALTER TABLE `schools`
 --
 ALTER TABLE `teams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `test001`
---
-ALTER TABLE `test001`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `test002`
---
-ALTER TABLE `test002`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `topics`
