@@ -9,6 +9,7 @@ return array(
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Models\\Advertisement' => $baseDir . '/src/Models/Advertisement.php',
     'Models\\AdvertisingSpace' => $baseDir . '/src/Models/AdvertisingSpace.php',
+    'Models\\ApplicationArea' => $baseDir . '/src/Models/ApplicationArea.php',
     'Models\\Carousel' => $baseDir . '/src/Models/Carousel.php',
     'Models\\Country' => $baseDir . '/src/Models/country.php',
     'Models\\I18N' => $baseDir . '/src/Models/I18N.php',

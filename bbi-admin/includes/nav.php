@@ -40,17 +40,8 @@
                             <li><a href="/bbi-admin/views/cases/index.php">案例管理</a></li>
                             <li><a href="/bbi-admin/views/cases/case_categories.php">案例分类</a></li>
                         </ul>
-                    </li>                  
-                    <li class="down-nav applications">
-                        <a href="#">
-                            <i class="iconfont icon-left float-right"></i>   
-                            <i class="iconfont icon-deploymentunit"></i> <span class="nav-text">应用领域</span> 
-                        </a>
-                        <ul class="subnav">
-                            <li><a href="/bbi-admin/views/articles/index.php?did=6">文章列表</a></li>
-                            <li><a href="/bbi-admin/views/articles/article_categories.php?did=6">分类</a></li>
-                        </ul>
-                    </li>
+                    </li>    
+                    <!--  
                     <li class="down-nav tech">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
@@ -61,7 +52,7 @@
                             <li><a href="/bbi-admin/views/articles/article_categories.php?did=3">分类</a></li>
                         </ul>
                     </li>
-            
+                    -->
                     <li class="down-nav articles">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
@@ -73,7 +64,13 @@
                         </ul>
                     </li>
 
-                    <!-- <li class="down-nav majors">
+                    <li class="applications">
+                        <a href="/bbi-admin/views/applications/index.php">
+                            <i class="iconfont icon-deploymentunit"></i> <span class="nav-text">应用领域</span>                    
+                        </a>
+                    </li>
+
+                   <li class="down-nav majors">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
                             <i class="iconfont icon-windows"></i> <span class="nav-text">专业介绍</span> 
@@ -108,7 +105,7 @@
                         <a href="meetings.php">
                             <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">会议信息</span>                    
                         </a>
-                    </li> -->
+                    </li>
                     <!-- <li class="down-nav" hidden>
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
@@ -138,16 +135,16 @@
                         </a>
                     </li>
                   
-                    <!-- <li hidden>
+                    <li hidden>
                         <a href="subscriptions.php">
                             <i class="iconfont icon-mail"></i> <span class="nav-text">邮件订阅</span>                    
                         </a>
-                    </li>  -->
-                    <!-- <li>
+                    </li>
+                   <li>
                         <a href="cases.php">
                             <i class="iconfont icon-antdesign"></i> <span class="nav-text">解决方案</span>                    
                         </a>
-                    </li> -->
+                    </li>
                     <li class="pages">
                         <a href="/bbi-admin/views/pages/index.php">
                             <i class="iconfont icon-file"></i> <span class="nav-text">页面</span>                    
@@ -155,17 +152,17 @@
                     </li>
                
                    
-                    <!-- <li class="teams">
+                    <li class="teams">
                         <a href="/bbi-admin/views/teams/index.php">
                             <i class="iconfont icon-team"></i> <span class="nav-text">团队管理</span>                    
                         </a>
-                    </li> -->
+                    </li>
                     <li class="jobs">
                         <a href="/bbi-admin/views/jobs/index.php">
                             <i class="iconfont icon-user"></i> <span class="nav-text">岗位招聘</span>                    
                         </a>
                     </li>
-                    <!-- <li class="agent" hidden>
+                   <li class="agent" hidden>
                         <a href="/bbi-admin/distributors.php">
                             <i class="iconfont icon-heatmap"></i> <span class="nav-text">经销售信息</span>                    
                         </a>
@@ -179,7 +176,7 @@
                         <a href="/bbi-admin/documents.php">
                             <i class="iconfont icon-download"></i> <span class="nav-text">下载中心</span>                    
                         </a>
-                    </li> -->
+                    </li>
                     <li class="down-nav carousels">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   

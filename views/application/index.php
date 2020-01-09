@@ -3,7 +3,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/data/page.php");
 
-$pageClass = new TZGCMS\Page();
+use Models\ApplicationArea;
+
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -21,10 +22,14 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $page = $pageClass->fetch_data("about");   
-        $home_data = ['page' => $page];
+        $applicationAreas = ApplicationArea::select('id','title')
+            ->where("active","=",1)
+            ->orderBy('importance', 'DESC')->get();
+        $applicationArea = ApplicationArea::where("active","=",1)->orderBy('importance', 'DESC')->first();
 
-        $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
+        $apparea_data = ['applicationAreas' => $applicationAreas,'applicationArea'=>$applicationArea];
+
+        $CachedString->set($apparea_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
  
         //echo $CachedString->get();
@@ -34,8 +39,13 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
-    $page = $pageClass->fetch_data("about");   
-    $result = ['page' => $page];
+
+    $applicationAreas = ApplicationArea::select('id','title')
+            ->where("active","=",1)
+            ->orderBy('importance', 'DESC')->get();
+        $applicationArea = ApplicationArea::where("active","=",1)->orderBy('importance', 'DESC')->first();
+        
+    $result =  ['applicationAreas' => $applicationAreas,'applicationArea'=>$applicationArea];
 }
 
 

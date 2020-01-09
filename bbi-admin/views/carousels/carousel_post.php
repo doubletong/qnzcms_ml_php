@@ -81,7 +81,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $reseller->description =  $description;          
             $reseller->content = stripslashes($content);
             $reseller->importance = $importance;
-            $reseller->added_by = $username;
+          //  $reseller->added_by = $username;
 
             $result = $reseller->save();
             if($result==true){

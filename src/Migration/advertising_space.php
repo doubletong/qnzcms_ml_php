@@ -1,5 +1,5 @@
 <?php 
-require "../config/database.php";
+require "../../config/database.php";
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 Capsule::schema()->create('advertising_spaces', function ($table) {

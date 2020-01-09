@@ -217,6 +217,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Models\\Advertisement' => __DIR__ . '/../..' . '/src/Models/Advertisement.php',
         'Models\\AdvertisingSpace' => __DIR__ . '/../..' . '/src/Models/AdvertisingSpace.php',
+        'Models\\ApplicationArea' => __DIR__ . '/../..' . '/src/Models/ApplicationArea.php',
         'Models\\Carousel' => __DIR__ . '/../..' . '/src/Models/Carousel.php',
         'Models\\Country' => __DIR__ . '/../..' . '/src/Models/country.php',
         'Models\\I18N' => __DIR__ . '/../..' . '/src/Models/I18N.php',

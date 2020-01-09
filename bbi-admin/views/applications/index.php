@@ -3,21 +3,23 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
 require_once('../../includes/common.php');
 require_once('../../../config/database.php');
 // require_once('../../data/option.php');
-use Models\Country;
+use Models\ApplicationArea;
 use JasonGrimes\Paginator;
 
-$urlPattern = "countries.php?page=(:num)";
+$urlPattern = "index.php?page=(:num)";
  //文章表实例化
- $country = new Country;
+ $applicationArea = new ApplicationArea;
  //搜索条件判断
- $query = $country;
+ $query = $applicationArea->select('id','title','sub_title','importance','active','created_at');
 
 $keyword = null;
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
-    $query = $query->where('title','like','%'.$keyword.'%');
+    $query = $query->where('title','like','%'.$keyword.'%')
+            ->orWhere('sub_title','like','%'.$keyword.'%')
+            ->orWhere('intro','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
@@ -40,9 +42,9 @@ $countries = $query->orderBy('importance', 'DESC')
 <html>
 
 <head>
-    <title><?php echo "国家_后台管理_" . SITENAME; ?></title>
+    <title><?php echo "应用领域_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -69,7 +71,7 @@ $countries = $query->orderBy('importance', 'DESC')
                     </form>
                 </div>
                 <div class="col-auto">
-                    <a href="country_edit.php" class="btn btn-primary">               
+                    <a href="applicationArea_edit.php" class="btn btn-primary">               
                         <i class="iconfont icon-plus"></i>  添加
                     </a>
                 </div>
@@ -78,9 +80,11 @@ $countries = $query->orderBy('importance', 'DESC')
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>          
-                    <th>国家</th>
+                    <th>主题</th>
+                    <th>副主题</th>
                     <th>排序</th>
                     <th>创建时间</th>
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -92,12 +96,25 @@ $countries = $query->orderBy('importance', 'DESC')
                 ?>
                   
                     <td><?php echo $row['title'] ;?></td> 
+                    <td><?php echo $row['sub_title'] ;?></td> 
                     <td><?php echo $row['importance'] ;?></td>         
-                    <td><?php echo date_format($row['created_at'],"Y-m-d H:i");?></td>
-                   
-                    <td><a href='country_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                    <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
+                    <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
+                    <td><a href='applicationArea_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
+                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
+                    <i class="iconfont icon-file-copy"></i>
+                </button>
+                <?php if ($row['active'] == 1) { ?>
+                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                        <i class="iconfont icon-eye-close"></i>
+                    </button>
+                <?php } else { ?>
+                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
+                        <i class="iconfont icon-eye"></i>
+                    </button>
+                <?php } ?>
                         <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                             <i class="iconfont icon-delete"></i>
                         </button>
@@ -127,8 +144,8 @@ $countries = $query->orderBy('importance', 'DESC')
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-    <script src="/js/vendor/toastr/toastr.min.js"></script>
-    <script src="/js/vendor/bootbox.js/bootbox.js"></script>
+    <script src="/assets/js/vendor/toastr/toastr.min.js"></script>
+    <script src="/assets/js/vendor/bootbox.js/bootbox.js"></script>
 
     <script type="text/javascript">
     
@@ -141,6 +158,59 @@ $countries = $query->orderBy('importance', 'DESC')
                 locale: "zh_CN"
             });
 
+            $(".btn-active").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'applicationArea_post.php',
+                type : 'POST',
+                data : {id:articleId,action:"active"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                    //console.log(myobj.status);
+                    if (myobj.status === 1) {
+                        //toastr.success(myobj.message);                                
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+        $(".btn-copy").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'applicationArea_post.php',
+                type : 'POST',
+                data : {id:articleId,action:"copy"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                  
+                    if (myobj.status === 1) {                                            
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+
+
             $(".btn-delete").click(function(){
                 var $that = $(this);
                 bootbox.confirm("删除后将无法恢复，您确定要删除吗？", function (result) {
@@ -148,7 +218,7 @@ $countries = $query->orderBy('importance', 'DESC')
                         var id = $that.attr("data-id");
 
                         $.ajax({
-                            url : 'country_post.php',
+                            url : 'applicationArea_post.php',
                             type : 'POST',
                             data : {id:id,action:"delete"},
                             success : function(res) {
