@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
 <html>
 
 <head>
-    <title><?php echo $pagetitle."_后台管理_" . SITENAME; ?></title>
+    <title><?php echo $pagetitle."_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
     <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>

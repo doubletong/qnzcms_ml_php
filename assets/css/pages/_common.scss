@@ -271,18 +271,10 @@ input,textarea,button{
 }
 
 .title-v1{
-    font-size: rem(24);
-    margin: 0;
-    @include respond-above(sm) {
-        font-size: rem(36);
-    }
-}
-.title-v2{
-    font-size: rem(24);
-    margin: 0 0 1rem;
-    text-align: center;
-    @include respond-above(sm) {
-        font-size: rem(36);  margin: 0 0 2rem;
+    font-size: rem(18);   
+    color: #222;
+    @include respond-above(lg) {
+        font-size: rem(20);
     }
 }
 

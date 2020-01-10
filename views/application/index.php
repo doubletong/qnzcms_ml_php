@@ -25,7 +25,13 @@ if($site_info['enableCaching']=="1"){
         $applicationAreas = ApplicationArea::select('id','title')
             ->where("active","=",1)
             ->orderBy('importance', 'DESC')->get();
-        $applicationArea = ApplicationArea::where("active","=",1)->orderBy('importance', 'DESC')->first();
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $applicationArea = ApplicationArea::where("active","=",1)->where('id','=',$id)->first();
+        } else {
+            $applicationArea = ApplicationArea::where("active","=",1)->orderBy('importance', 'DESC')->first();
+        }    
 
         $apparea_data = ['applicationAreas' => $applicationAreas,'applicationArea'=>$applicationArea];
 
@@ -43,8 +49,13 @@ if($site_info['enableCaching']=="1"){
     $applicationAreas = ApplicationArea::select('id','title')
             ->where("active","=",1)
             ->orderBy('importance', 'DESC')->get();
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $applicationArea = ApplicationArea::where("active","=",1)->where('id','=',$id)->first();
+    } else {
         $applicationArea = ApplicationArea::where("active","=",1)->orderBy('importance', 'DESC')->first();
-        
+    }
+
     $result =  ['applicationAreas' => $applicationAreas,'applicationArea'=>$applicationArea];
 }
 

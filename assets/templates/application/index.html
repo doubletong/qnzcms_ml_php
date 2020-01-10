@@ -10,15 +10,15 @@
         </div>
     </div>
 </div>
-<div class="page page-about">
+<div class="page page-about page-application">
     <aside class="leftcol">
         <nav>
             <ul class="leftnav">
                 {% for item in applicationAreas %}
                     {% if applicationArea.id == item.id %}
-                        <li><a href="/application/{{item.id}}" class="active">{{item.title}}</a></li>
+                        <li><a href="/application/index-{{item.id}}" class="active">{{item.title}}</a></li>
                     {% else %}
-                        <li><a href="/application/{{item.id}}">{{item.title}}</a></li>
+                        <li><a href="/application/index-{{item.id}}">{{item.title}}</a></li>
                     {% endif %}                   
                 {% endfor %}           
             </ul>
@@ -38,12 +38,15 @@
                 <div class="content">
                     {{applicationArea.intro|raw}}
                 </div>
-                <h3 class="title-v1">
-                    应用案例：
-                </h3>
-                <div class="content">
-                    {{applicationArea.cases|raw}}
-                </div>
+                {% if(applicationArea.cases) %}                    
+                    <h3 class="title-v1">
+                        应用案例：
+                    </h3>
+                    <div class="content">
+                        {{applicationArea.cases|raw}}
+                    </div>                    
+                {% endif %}
+               
                 
         </div>
     </section>
