@@ -1,0 +1,61 @@
+{% extends "shared/layout.html" %}
+{% block title %}搜索{% endblock %}
+{% block content %}
+    <div class="banner">
+        <img src="/assets/img/banners/news.png" alt="">
+        <div class="title-page title-page-news">
+            <div class="txt">
+           <h2>SEARCH</h2>
+           <h3>搜索</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-about page-search">
+        <aside class="leftcol" style="background-color:transparent;">
+            <!-- <nav>
+                <ul class="leftnav">
+                    <li><a href="/news" class="active">新闻中心</a></li>                
+                </ul>
+            </nav> -->
+        </aside>
+        <section class="maincontent">
+            <div class="wrap about search">
+              
+                <div id="searchbox2" class="searchbox">
+                    <form action="/search" method="get">
+                        <div class="row no-gutters">
+                            <div class="col">                                                         
+                                <input type="search" name="keyword" id="keyword" value="{{keyword}}" placeholder="搜索关键词" />  
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                {% if (articles) %}
+                <div class="total">
+                    总计找到<strong>{{articleCount}}</strong>条记录
+                </div>
+                <ul class="list-search">            
+                    {% for article in articles %}
+                    <li>                            
+                        <div class="row">
+                            <div class="col"><a href="/news/detail-{{article.id}}">{{article.title}}</a> </div>
+                            <div class="col-auto"><time>{{article.pubdate|date('Y年m月d日')}}</time></div>                                   
+                        </div>                         
+                    </li>
+                    {% endfor %}
+                
+                </ul>           
+                    
+                {% endif %}
+
+               
+        
+              
+            </div>
+        </section>
+    </div>
+{% endblock %}

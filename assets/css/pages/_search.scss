@@ -1,135 +1,43 @@
-.banner-search{
-    padding-top: 6rem;
-    height: 200px;
-    @include respond-above(sm) {
-        height: 250px; padding-top: 8rem;
-    }
-    @include respond-above(md) {
-        height: 300px; padding-top: 10rem;
-    }
-    .search-container{
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
-    .searchbox{
-           
-        
-        border-bottom: 1px #fff solid;
+.page-search{
+  .searchbox{   
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.14);     
+        height: 53px;     
         input{
             width: 100%;
-            font-size: rem(22);
-            padding: .8rem 1rem;
-            background-color: transparent;
-            border:none;
-            outline: none;
-            color:#fff;
-            &::placeholder { 
-                color: lighten($color-primary,30%);
-             }
-             @include respond-above(sm) {
-                font-size: rem(30);
-            }
-        }
+            height: 53px;
+            border: none;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }   
         button{
-            background-color: transparent;
-            border:none;
+            background-color: $color-primary;
             color: #fff;
-            cursor: pointer;
-            padding: .8rem;
-            .iconfont{
-                font-size: rem(22);
-                @include respond-above(sm) {
-                    font-size: rem(30);
-                }
-            }
-        }
+            height: 53px;padding: 0 3rem;
+            border: none;
+            font-size: rem(18);
+        }  
+  }
+    .total{
+        text-align: center;
+        padding: 2rem;
     }
-}
-
-.page-search{
-    padding-top: 1rem;
-    .note{
-        margin-bottom: 2rem;
-    }
-    .list-articles {
+    .list-search {
+        @include reset-list();
         margin-bottom: 1rem;
-
+     
+      
         @include respond-above(sm) {
             margin-bottom: 1.5rem;
         }
-
-        .item {
-            background-color: #fff;
-            margin-bottom: rem(30);
-
-            .pic {
-                display: block;
-
-                img {
-                    display: block;
-                    @include respond-above(sm) {
-                        width: 200px;
-                    }
-                    @include respond-above(md) {
-                        width:350px;
-                    }
-                }
-            }
-
-            .txt {
-
-
-                h3 {
-                    font-size: rem(24);
-                    margin: 0;
-                    padding-bottom: .4rem;
-
-                    a {
-                        color: #333;
-                        strong{
-                            color: $color-primary;
-                        }
-                    }
-                }
-
-                time {
-                    color: #ccc;
-                }
-
-                p {
-                    text-align: justify;
-                    color: #999;
-                }
-
-                .more {
-                    font-size: 14px;
-                }
-            }
-
-            a {
-                color: #666;
-                font-size: rem(20);
-
-                &:hover {
-                    color: $color-primary;
-                }
-            }
-
-            .pub {
-                line-height: 1.3;
-                border-right: 1px #ddd solid;
-                padding-right: 1.5rem;
-                padding-bottom: .5rem;
-
-                strong {
-                    font-size: 2.5rem;
-                }
-
-                .small {
-                    font-size: 12px;
-                }
-            }
+      
+        li{
+            border-bottom: 1px #ddd solid;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+           time{
+               color: #999;
+           }
         }
 
     }
