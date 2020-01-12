@@ -10,7 +10,8 @@
                             <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
                         </a>
                     </li>
-                    <li class="down-nav products">
+                    <!--  常规产品模块  -->
+                    <!-- <li class="down-nav products">
                         <a href="#">
                             <i class="iconfont icon-left   float-right"></i>                             
                             <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
@@ -22,6 +23,22 @@
                                 </a>
                             </li>
                             <li class="category"><a href="/bbi-admin/views/products/product_categories.php">分类</a></li>
+                        </ul>
+                    </li>  -->
+
+                 <!--  自定义产品属性产品模块  -->
+                 <li class="down-nav products_v1">
+                        <a href="#">
+                            <i class="iconfont icon-left   float-right"></i>                             
+                            <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
+                        </a>
+                        <ul class="subnav">
+                            <li class="list">
+                                <a href="/bbi-admin/views/products_v1/index.php">
+                                    产品列表
+                                </a>
+                            </li>
+                            <li class="category"><a href="/bbi-admin/views/products_v1/categories.php">分类</a></li>
                         </ul>
                     </li> 
                  

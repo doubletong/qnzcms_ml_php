@@ -7,25 +7,45 @@ use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-Capsule::schema()->create('application_areas', function ($table) {
+// Capsule::schema()->create('product_categories_v1', function ($table) {
+
+//    $table->increments('id');
+//    $table->string('title', 100);
+//    $table->integer('parent')->unsigned()->nullable();
+//    $table->foreign('parent')->references('id')->on('product_categories_v1');    
+//    $table->integer('importance');
+//    $table->boolean('active');
+//    $table->string('added_by', 100);       
+//    $table->nullableTimestamps();
+
+// });
+
+Capsule::schema()->create('products_v1', function ($table) {
    $table->increments('id');
-   $table->string('title',100);
-   $table->string('sub_title',100);
-   $table->longText('intro');    
-   $table->longText('cases');    
+   $table->string('title', 100);
+   $table->longText('content');       
+   $table->string('pdf', 150)->nullable();
    $table->integer('importance');
+   $table->integer('category_id')->unsigned();     
+   $table->foreign('category_id')->references('id')->on('product_categories_v1')->onDelete('cascade');
    $table->boolean('active');
    $table->string('added_by', 100);       
-   $table->timestamps();
+   $table->nullableTimestamps();
 });
 
-// Capsule::schema()->create('test002', function ($table) {
+// Capsule::schema()->create('application_areas', function ($table) {
 //    $table->increments('id');
-//    $table->string('title');
-//    $table->text('body');
-//    $table->integer('created_by')->unsigned();
+//    $table->string('title',100);
+//    $table->string('sub_title',100);
+//    $table->longText('intro');    
+//    $table->longText('cases');    
+//    $table->integer('importance');
+//    $table->boolean('active');
+//    $table->string('added_by', 100);       
 //    $table->timestamps();
 // });
+
+
 
 // Capsule::schema()->create('offers', function ($table) {
 //    $table->increments('id');

@@ -1,9 +1,13 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
-require_once($_SERVER['DOCUMENT_ROOT'] ."/data/page.php");
 
-$pageClass = new TZGCMS\Page();
+
+use Models\Product;
+use Models\ProductCategory;
+
+$cid= isset($_GET['cid'])?$_GET['cid']:null;
+$subcid= isset($_GET['subcid'])?$_GET['subcid']:null;
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -16,13 +20,24 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
 
-    $key = "about";
+    $key = "products";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
 
-        $page = $pageClass->fetch_data("about");   
-        $home_data = ['page' => $page];
+        $categories = ProductCategory::where("active","=",1)->where('parent','=',null)->orderBy('importance', 'DESC')->get();   
+        $category = isset($cid)?
+                ProductCategory::with('children')->where("active","=",1)->where('id','=',$cid)->first()
+                :ProductCategory::with('children')->where("active","=",1)->where('parent','=',null)->orderBy('importance', 'DESC')->first();
+
+        $subCategories = $category->children;   
+        
+        $subcid = isset($subcid)?$subcid:($subCategories->isNotEmpty()?$subCategories->first()->id:null);
+        $products = isset($subcid)?
+                Product::where("active","=",1)->where('category_id','=',$subcid)->orderby('importance','DESC')->get()
+                :(Product::where("active","=",1)->where('category_id','=',$category->id)->orderby('importance','DESC')->get()); 
+        
+        $home_data = ['categories' => $categories,'category'=>$category,'subCategories'=>$subCategories,'products'=>$products,'subcid'=>$subcid];
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -34,8 +49,20 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
-    $page = $pageClass->fetch_data("about");   
-    $result = ['page' => $page];
+   
+    $categories = ProductCategory::where("active","=",1)->where('parent','=',null)->orderBy('importance', 'DESC')->get();   
+    $category = isset($cid)?
+            ProductCategory::with('children')->where("active","=",1)->where('id','=',$cid)->first()
+            :ProductCategory::with('children')->where("active","=",1)->where('parent','=',null)->orderBy('importance', 'DESC')->first();
+
+    $subCategories = $category->children;   
+    
+    $subcid = isset($subcid)?$subcid:($subCategories->isNotEmpty()?$subCategories->first()->id:null);
+    $products = isset($subcid)?
+            Product::where("active","=",1)->where('category_id','=',$subcid)->orderby('importance','DESC')->get()
+            :(Product::where("active","=",1)->where('category_id','=',$category->id)->orderby('importance','DESC')->get());    
+   
+    $result = ['categories' => $categories,'category'=>$category,'subCategories'=>$subCategories,'products'=>$products,'subcid'=>$subcid];
 }
 
 

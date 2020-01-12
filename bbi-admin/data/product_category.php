@@ -29,6 +29,29 @@ class ProductCategory{
         return $query->fetch();
     }
 
+    
+  //显示或隐藏
+  public function active_category($id) {
+
+        $sql = "UPDATE product_categories SET  
+            active =ABS(active-1)
+            WHERE id =:id";
+
+        $query = \db::getInstance()->prepare($sql);           
+        $query->bindValue(":id",$id,\PDO::PARAM_INT);
+        $query->execute();
+
+        $result = $query->rowCount();;
+        if ($result>0) {
+            $msg = array ('status'=>1,'message'=>'记录已成功更新。');
+            return json_encode($msg);  
+        } else {
+            $msg = array ('status'=>3,'message'=>'未更新记录。');
+            return json_encode($msg);  
+            
+        }
+    }
+
     public function delete_category($id){
         $query = \db::getInstance()->prepare("DELETE FROM `product_categories` WHERE id = ?");
         $query->bindValue(1,$id);
@@ -42,7 +65,7 @@ class ProductCategory{
         } else {
             $msg = array ('status'=>3,'message'=>'未删除记录。');
             return json_encode($msg);  
-        }
+        }      
     }
 
     

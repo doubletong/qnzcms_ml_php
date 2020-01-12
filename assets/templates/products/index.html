@@ -6,7 +6,7 @@
         <img src="/assets/img/banners/products.png" alt="">
         <div class="title-page title-page-product">
             <div class="txt">
-           <h2>ABOUT GALAXYCORE</h2>
+           <h2>OUR PRODUCT</h2>
            <h3>关于格科</h3>
         </div>
         </div>
@@ -15,207 +15,54 @@
         <aside class="leftcol">
             <nav>
                 <ul class="leftnav">
-                    <li><a href="/products/cis" class="active">CIS</a></li>
-                    <li><a href="/products/ddi">DDI</a></li>
-                    <li><a href="/products/isf">ISF</a></li>             
+                {% for item in categories %}
+                    {% if category.id == item.id %}
+                         <li><a href="/products/index?cid={{item.id}}" class="active">{{item.title}}</a></li>
+                    {% else %}
+                         <li><a href="/products/index?cid={{item.id}}">{{item.title}}</a></li>
+                    {% endif %}
+                {% endfor %}                              
                 </ul>
             </nav>
         </aside>
         <section class="maincontent">
             <div class="wrap about productlist">
              
-                <h1 class="title">CIS</h1>
+                <h1 class="title">{{category.title}}</h1>
                 <div class="filters">
-                    <a href="#" class="active">
-                        800万-1300万像素
-                    </a>
-                    <a href="#">
-                        200万-500万像素
-                    </a>
-                    <a href="#">
-                        100万像素以下
-                    </a>
+                   {% for item in subCategories %}
+                       {% if item.id==subcid %}
+                            <a href="/products/index?cid={{category.id}}&subcid={{item.id}}" class="active">
+                                {{item.title}}
+                            </a>
+                       {% else %}
+                             <a href="/products/index?cid={{category.id}}&subcid={{item.id}}">
+                                {{item.title}}
+                            </a>
+                       {% endif %}
+                   {% endfor %}
+             
                 </div>
-                <div class="box">
-                    <div class="box-header">
-                        <div class="row align-items-center">
-                            <div class="col">GC13053</div>
-                            <div class="col-auto"><a href="#" class="down">下载PDF</a></div>
-                        </div>
-                   
-                    </div>
-                    <div class="box-body">
-                        <div class="table-container">                 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            像素
-                                        </th>
-                                        <th>
-                                            光学尺寸
-                                        </th>
-                                        <th>
-                                            输出格式
-                                        </th>
-                                        <th>
-                                            帧率
-                                        </th>
-                                        <th>
-                                            数据接口
-                                        </th>
-                                        <th>
-                                            像素尺寸
-                                        </th>
-                                        <th>
-                                            像素技术
-                                        </th>
-                                        <th>
-                                            色彩阵列
-                                        </th>
-                                        <th>
-                                            封装
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13M</td>
-                                        <td>1/3.06"</td>
-                                        <td>RAW</td>
-                                        <td>Full Size @ 30 FPS</td>
-                                        <td>MIPI</td>
-                                        <td>1.12µm</td>
-                                        <td>BSI</td>
-                                        <td>RGB Bayer</td>
-                                        <td>COB/ TPLCC</td>                                 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+               
+               <div class="plist-container">
 
-                <div class="box">
-                    <div class="box-header">
-                        <div class="row align-items-center">
-                            <div class="col">GC8054</div>
-                            <div class="col-auto"><a href="#" class="down">下载PDF</a></div>
+                {% for item in products %}                    
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="row align-items-center">
+                                <div class="col">{{item.title}}</div>
+                                <div class="col-auto"><a href="{{item.pdf}}" class="down">下载PDF</a></div>
+                            </div>
+                    
                         </div>
-                   
-                    </div>
-                    <div class="box-body">
-                        <div class="table-container">                 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            像素
-                                        </th>
-                                        <th>
-                                            光学尺寸
-                                        </th>
-                                        <th>
-                                            输出格式
-                                        </th>
-                                        <th>
-                                            帧率
-                                        </th>
-                                        <th>
-                                            数据接口
-                                        </th>
-                                        <th>
-                                            像素尺寸
-                                        </th>
-                                        <th>
-                                            像素技术
-                                        </th>
-                                        <th>
-                                            色彩阵列
-                                        </th>
-                                        <th>
-                                            封装
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13M</td>
-                                        <td>1/3.06"</td>
-                                        <td>RAW</td>
-                                        <td>Full Size @ 30 FPS</td>
-                                        <td>MIPI</td>
-                                        <td>1.12µm</td>
-                                        <td>BSI</td>
-                                        <td>RGB Bayer</td>
-                                        <td>COB/ TPLCC</td>                                 
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="box-body">
+                            <div class="table-container">                 
+                                {{item.content|raw}}
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="box-header">
-                        <div class="row align-items-center">
-                            <div class="col">GC8034</div>
-                            <div class="col-auto"><a href="#" class="down">下载PDF</a></div>
-                        </div>
-                   
-                    </div>
-                    <div class="box-body">
-                        <div class="table-container">                 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            像素
-                                        </th>
-                                        <th>
-                                            光学尺寸
-                                        </th>
-                                        <th>
-                                            输出格式
-                                        </th>
-                                        <th>
-                                            帧率
-                                        </th>
-                                        <th>
-                                            数据接口
-                                        </th>
-                                        <th>
-                                            像素尺寸
-                                        </th>
-                                        <th>
-                                            像素技术
-                                        </th>
-                                        <th>
-                                            色彩阵列
-                                        </th>
-                                        <th>
-                                            封装
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13M</td>
-                                        <td>1/3.06"</td>
-                                        <td>RAW</td>
-                                        <td>Full Size @ 30 FPS</td>
-                                        <td>MIPI</td>
-                                        <td>1.12µm</td>
-                                        <td>BSI</td>
-                                        <td>RGB Bayer</td>
-                                        <td>COB/ TPLCC</td>                                 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-              
+                    </div>                    
+                {% endfor %}   
+                 </div>
             </div>
         </section>
     </div>

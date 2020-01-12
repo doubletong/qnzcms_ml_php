@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-use Models\ApplicationArea;
+
+use Models\ProductCategory;
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -18,18 +19,14 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }
                      
             $title = $_POST['title'];
-            $sub_title = $_POST['sub_title'];
-            $intro = stripslashes($_POST['intro']);
-            $cases = stripslashes($_POST['cases']);
             $importance = $_POST['importance'];
+            $parent = isset($_POST['parent']) && $_POST['parent']?$_POST['parent']:null;
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
-            $region = new ApplicationArea();
+            $region = new ProductCategory();
             $region->title = $title;
-            $region->sub_title = $sub_title;
+            $region->parent = $parent;
             $region->importance = $importance;
-            $region->intro = $intro;          
-            $region->cases = $cases;
             $region->active = $active;
             $region->added_by = $username;
 
@@ -51,19 +48,18 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
           
             $title = $_POST['title'];
-            $sub_title = $_POST['sub_title'];
-            $intro = stripslashes($_POST['intro']);
-            $cases = stripslashes($_POST['cases']);
             $importance = $_POST['importance'];
-            $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";   
+            $parent = isset($_POST['parent']) && $_POST['parent']?$_POST['parent']:null;
+            $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
-            $region = ApplicationArea::find($id);
+
+            $region = ProductCategory::find($id);
             $region->title = $title;
-            $region->sub_title = $sub_title;
+            $region->parent = $parent;
             $region->importance = $importance;
-            $region->intro = $intro;          
-            $region->cases = $cases;
             $region->active = $active;
+            $region->added_by = $username;
+
             $result = $region->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
@@ -74,7 +70,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             // echo json_encode($result);  
             break;   
         case "delete": 
-            $region = ApplicationArea::find($id);
+            $region = ProductCategory::find($id);
             $result = $region->delete();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
@@ -83,7 +79,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;   
         case "active":
-            $region = ApplicationArea::find($id);
+            $region = ProductCategory::find($id);
             $region->active = ($region->active)==1?"0":1;
             $result = $region->save();
             if($result==true){
@@ -95,17 +91,9 @@ if( isset($_POST['action']) && isset($_POST['id'])){
         // // case "recommend":
         // //     echo $distributorClass->recommend_distributor($id);  
         // //     break;
-        case "copy":
-            $item = ApplicationArea::find($id);
-            $new_item = $item->replicate(); //copy attributes
-            $new_item->title = $new_item->title."【拷贝】";
-            $result = $new_item->push(); //save model before you recreate relations (so it has an id)
-            if($result==true){
-                echo json_encode(array ('status'=>1,'message'=>'拷贝成功'));  
-            }else{
-                echo json_encode(array ('status'=>2,'message'=>'拷贝失败'));  
-            }   
-            break;
+        // case "copy":
+        //     echo $distributorClass->copy_distributor($id);  
+        //     break;
     }
     
 }else{

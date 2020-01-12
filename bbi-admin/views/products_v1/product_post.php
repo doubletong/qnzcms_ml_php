@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-use Models\ApplicationArea;
+use Models\Product;
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -18,18 +18,18 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }
                      
             $title = $_POST['title'];
-            $sub_title = $_POST['sub_title'];
-            $intro = stripslashes($_POST['intro']);
-            $cases = stripslashes($_POST['cases']);
+            $category_id = $_POST['category_id'];
+            $pdf = $_POST['pdf'];
+            $content = stripslashes($_POST['content']);          
             $importance = $_POST['importance'];
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
-            $region = new ApplicationArea();
+            $region = new Product();
             $region->title = $title;
-            $region->sub_title = $sub_title;
+            $region->category_id = $category_id;
+            $region->content = $content;
             $region->importance = $importance;
-            $region->intro = $intro;          
-            $region->cases = $cases;
+            $region->pdf = $pdf;                
             $region->active = $active;
             $region->added_by = $username;
 
@@ -51,19 +51,21 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
           
             $title = $_POST['title'];
-            $sub_title = $_POST['sub_title'];
-            $intro = stripslashes($_POST['intro']);
-            $cases = stripslashes($_POST['cases']);
+            $pdf = $_POST['pdf'];
+            $content = stripslashes($_POST['content']);          
             $importance = $_POST['importance'];
-            $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";   
+            $category_id = $_POST['category_id'];
+            $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
-            $region = ApplicationArea::find($id);
+            $region = Product::find($id);
             $region->title = $title;
-            $region->sub_title = $sub_title;
+            $region->category_id = $category_id;
+            $region->content = $content;
             $region->importance = $importance;
-            $region->intro = $intro;          
-            $region->cases = $cases;
+            $region->pdf = $pdf;                
             $region->active = $active;
+            $region->added_by = $username;
+
             $result = $region->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
@@ -74,7 +76,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             // echo json_encode($result);  
             break;   
         case "delete": 
-            $region = ApplicationArea::find($id);
+            $region = Product::find($id);
             $result = $region->delete();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
@@ -83,7 +85,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;   
         case "active":
-            $region = ApplicationArea::find($id);
+            $region = Product::find($id);
             $region->active = ($region->active)==1?"0":1;
             $result = $region->save();
             if($result==true){
@@ -96,7 +98,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
         // //     echo $distributorClass->recommend_distributor($id);  
         // //     break;
         case "copy":
-            $item = ApplicationArea::find($id);
+            $item = Product::find($id);
             $new_item = $item->replicate(); //copy attributes
             $new_item->title = $new_item->title."【拷贝】";
             $result = $new_item->push(); //save model before you recreate relations (so it has an id)

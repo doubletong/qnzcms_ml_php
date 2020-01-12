@@ -99,15 +99,7 @@ $tree = buildTree($categories);
                                     <div class="form-group">
                                         <label for="intro">描述</label>
                                         <textarea class="form-control" id="intro" name="intro" placeholder=""><?php echo isset($data['intro'])?stripslashes($data['intro']):''; ?></textarea>
-                                        <script>
-                                            var elFinder = '/js/vendor/elfinder/elfinder-cke.php';
-                                            CKEDITOR.replace('intro', {
-                                                height:350,
-                                                filebrowserBrowseUrl: elFinder,
-                                                filebrowserImageBrowseUrl: elFinder,
-                                    
-                                            });
-                                        </script>
+                                     
                                     </div>
 
 
@@ -132,7 +124,8 @@ $tree = buildTree($categories);
                                                 
                                             </div>
                                             <div class="card-footer">
-                                                <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 背景...</button>
+                                                <button type="button" id="btnBrowser" class="btn btn-info"><i class="iconfont icon-image"></i> 背景...</button>
+                                                <button type="button" id="btnRemove" class="btn btn-danger"><i class="iconfont icon-delete"></i> 删除</button>
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
                                                                                         
                                             </div>
@@ -191,8 +184,17 @@ $tree = buildTree($categories);
             $("#btnBrowser").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail;
                 singleEelFinder.open();
-
             });
+            $("#btnRemove").on('click',function(){
+                $('#thumbnail').val("");
+                
+                $("#iLogo").attr('src',"holder.js/240x55?text=1453X300像素");
+                var myImage = document.getElementById('iLogo');
+                Holder.run({
+                    images: myImage
+                });
+            })
+
             $("#btnBrowser2").on("click", function() {
                 singleEelFinder.selectActionFunction = SetThumbnail2;
                 singleEelFinder.open();

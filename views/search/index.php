@@ -28,13 +28,10 @@ if($site_info['enableCaching']=="1"){
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
+           
+        $articles = !empty($_GET['keyword'])?$articleClass->search_paged($keyword,1,PHP_INT_MAX):null;
+        $articleCount = !empty($_GET['keyword'])?$articleClass->search_count($keyword):0;
 
-        if(!empty($_GET['keyword'])){
-          
-            $articles = $articleClass->search_paged($keyword,1,PHP_INT_MAX);
-            $articleCount = $articleClass->search_count($keyword);
-        }       
-        
         $news_data = ['articles' => $articles,'articleCount' => $articleCount,'keyword'=>$keyword];
 
         $CachedString->set($news_data)->expiresAfter(5000);//in seconds, also accepts Datetime
@@ -47,14 +44,12 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
+    
+    $articles = !empty($_GET['keyword'])?$articleClass->search_paged($keyword,1,PHP_INT_MAX):null;
+    $articleCount = !empty($_GET['keyword'])?$articleClass->search_count($keyword):0;  
 
-    if(!empty($_GET['keyword'])){
-          
-        $articles = $articleClass->search_paged($keyword,1,PHP_INT_MAX);
-        $articleCount = $articleClass->search_count($keyword);
-    }   
- 
     $result = ['articles' => $articles,'articleCount' => $articleCount,'keyword'=>$keyword];
+    
 }
 
 

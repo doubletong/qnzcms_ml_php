@@ -225,6 +225,8 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Offer' => __DIR__ . '/../..' . '/src/Models/Offer.php',
         'Models\\Page' => __DIR__ . '/../..' . '/src/Models/Page.php',
         'Models\\Position' => __DIR__ . '/../..' . '/src/Models/Position.php',
+        'Models\\Product' => __DIR__ . '/../..' . '/src/Models/Product.php',
+        'Models\\ProductCategory' => __DIR__ . '/../..' . '/src/Models/ProductCategory.php',
         'Models\\Region' => __DIR__ . '/../..' . '/src/Models/region.php',
         'Models\\Reseller' => __DIR__ . '/../..' . '/src/Models/reseller.php',
         'Models\\User' => __DIR__ . '/../..' . '/src/Models/User.php',

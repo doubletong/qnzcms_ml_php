@@ -17,6 +17,8 @@ return array(
     'Models\\Offer' => $baseDir . '/src/Models/Offer.php',
     'Models\\Page' => $baseDir . '/src/Models/Page.php',
     'Models\\Position' => $baseDir . '/src/Models/Position.php',
+    'Models\\Product' => $baseDir . '/src/Models/Product.php',
+    'Models\\ProductCategory' => $baseDir . '/src/Models/ProductCategory.php',
     'Models\\Region' => $baseDir . '/src/Models/region.php',
     'Models\\Reseller' => $baseDir . '/src/Models/reseller.php',
     'Models\\User' => $baseDir . '/src/Models/User.php',
