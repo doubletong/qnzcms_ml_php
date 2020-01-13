@@ -1,13 +1,14 @@
 new WOW().init();
-function header(){
+
+function header() {
     var isfullpage = $("#fullpage").length;
-    if(!isfullpage){
-        if(40 < $(window).scrollTop()){
+    if (!isfullpage) {
+        if (40 < $(window).scrollTop()) {
             $("#site-header").addClass("fixheader");
-            $("#logo").attr("src","/assets/img/logo_color.png");
-        } else{
+            $("#logo").attr("src", "/assets/img/logo_color.png");
+        } else {
             $("#site-header").removeClass("fixheader");
-            $("#logo").attr("src","/assets/img/logo.png");
+            $("#logo").attr("src", "/assets/img/logo.png");
         }
     }
 
@@ -15,35 +16,43 @@ function header(){
 
 header();
 $(document).ready(function() {
-   
-    $(window).on("scroll",function(){       
+
+    $(window).on("scroll", function() {
         header();
     });
 
-    $("#toTop").click(function(e) { 
-        e.preventDefault(), 
-        $("html, body").animate({ scrollTop: 0 }, 600);
+    $("#toTop").click(function(e) {
+        e.preventDefault(),
+            $("html, body").animate({ scrollTop: 0 }, 600);
     });
 
-    $(".weixincode").click(function(e) { 
-        e.preventDefault(), 
-        jQuery(".over").fadeIn(); 
+    $(".weixincode").click(function(e) {
+        e.preventDefault(),
+            jQuery(".over").fadeIn();
     });
     $(".over").click(function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         $(this).fadeOut();
-     });
+    });
 
-    
+
     $(".menu-toggle").on('click', function() {
         $(this).toggleClass("on");
         $("#overmenu").slideToggle();
     });
-    $(".subnav a").on("touchstart", function(e) {
+
+    $(".mobilenav a.down").on("click", function(e) {
         "use strict";
-        var link = $(this).attr("href");
-        location.href = link;
+        e.preventDefault();
+        $(this).next('.subnav').slideToggle();
+
     });
+
+    // $(".subnav a").on("touchstart", function(e) {
+    //     "use strict";
+    //     var link = $(this).attr("href");
+    //     location.href = link;
+    // });
 
 
 
@@ -64,49 +73,49 @@ $(document).ready(function() {
 
     });
 
-    $("#btnSearch").click(function(e){
+    $("#btnSearch").click(function(e) {
         $(".site-header").toggleClass("forSearch");
     });
 
 
-    $("#mainav a.down").hover(function(e){      
-        $that =  $(this);
+    $("#mainav a.down").hover(function(e) {
+        $that = $(this);
         $("#mainav a.hover").removeClass("hover");
-        var cursubnav =  $("#mainav a.hover").attr("data-id");
+        var cursubnav = $("#mainav a.hover").attr("data-id");
         $("#" + cursubnav).fadeOut();
 
         var subnav = $(this).attr("data-id");
-        $("#"+subnav).fadeIn(600,function(){
+        $("#" + subnav).fadeIn(600, function() {
             $that.addClass("hover");
         });
-       
-    },function(e){
+
+    }, function(e) {
         var subnav = $(this).attr("data-id");
-        $("#"+subnav).stop().fadeOut(600,function(){
-            $("a[data-id='"+ subnav +"']").removeClass("hover");
+        $("#" + subnav).stop().fadeOut(600, function() {
+            $("a[data-id='" + subnav + "']").removeClass("hover");
         });
-     
-        $("#"+subnav).hover(function(e){
-            $("#"+subnav).stop().fadeIn(600,function(){
-                $("a['data-id'='"+ subnav +"']").addClass("hover");
+
+        $("#" + subnav).hover(function(e) {
+            $("#" + subnav).stop().fadeIn(600, function() {
+                $("a['data-id'='" + subnav + "']").addClass("hover");
             });
-         
-        },function(e){
-            $("#"+subnav).stop().fadeOut(600,function(){
-                $("a[data-id='"+subnav+"']").removeClass("hover");
+
+        }, function(e) {
+            $("#" + subnav).stop().fadeOut(600, function() {
+                $("a[data-id='" + subnav + "']").removeClass("hover");
             });
-          
+
         });
-      
+
     });
 
-    $(".menu-over a.more").click(function(e){
+    $(".menu-over a.more").click(function(e) {
         var ul = $(this).prev("ul");
         ul.find(".hidden").removeClass("hidden");
         $(this).hide();
     });
 
-    $(".overmenu li.down>a").click(function(e){
+    $(".overmenu li.down>a").click(function(e) {
         e.preventDefault();
         $(this).next(".subnav").slideToggle();
         $(this).closest("li").toggleClass("open");

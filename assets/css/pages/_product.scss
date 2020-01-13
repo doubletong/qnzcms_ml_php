@@ -3,13 +3,29 @@
         padding-top: 1rem;
     }
     .filters {
-        padding: 2rem 0;
+        padding: 1rem 0;
+        text-align: left;
+        @include respond-above(md) {
+            padding: 2rem 0;
+        }
         a {
             display: inline-block;
-            padding: .6rem 2rem;
+            padding: .3rem 1.2rem;
+            margin-bottom: 5px;
             background-color: #eee;
-            font-size: rem(20);
+            font-size: rem(14);
             border-radius: 3px;
+            @include respond-above(sm) {
+                font-size: rem(16);
+            }
+            @include respond-above(md) {
+                font-size: rem(18);
+                padding: .4rem 1.5rem;
+            }
+            @include respond-above(lg) {
+                font-size: rem(20);
+                padding: .6rem 2rem;
+            }
             &.active {
                 background-color: $color-primary;
                 color: #fff;
@@ -30,6 +46,7 @@
         background-color: rgb(255, 255, 255);
         box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.14);
         margin-bottom: rem(30);
+        width: 100%;
         .box-header {
             background-color: #f6e7dc;
             color: $color-primary;
@@ -40,11 +57,19 @@
         }
         .box-body {
             padding: 1rem 1.5rem;
+            width: 100%;
+            table {
+                min-width: 960px;
+            }
         }
     }
     .plist-container {
-        margin-left: -7rem;
-        margin-right: -7rem;
+        width: 100%;
+        @include respond-above(md) {
+            margin-left: -7rem;
+            margin-right: -7rem;
+            width: auto;
+        }
         @include respond-above(lg) {
             margin-left: -7rem;
             margin-right: -7rem;

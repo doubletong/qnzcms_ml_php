@@ -1,13 +1,13 @@
 <header class="site-header" id="site-header">
     <div class="container-fluid">   
             <div class="row align-items-center">
-                <div class="col-auto">
+                <div class="col col-lg-auto">
                     <a href="/" class="logo"><img id="logo" src="/assets/img/logo.png" alt="{{ site.sitename }}"></a>
                 </div>
-                <div class="col">
+                <div class="col allmenu">
                     <div class="topnav">
-                        <a href="/join">招贤纳士</a>
-                        <a href="#">商务入口</a>
+                        <a href="https://gcoreinc.gllue.com/portal/campus?gql=&page=1">招贤纳士</a>
+                        <a href="https://scm.wochacha.com/#/login">商务入口</a>
                         <a href="#">简体中文</a>
                     </div>
               
@@ -28,17 +28,39 @@
                     </ul>
                     
                 </div>
-                <!-- <div class="col-auto searchicon">
+                <div class="col-auto searchicon">
                     <a href="/search"><i class="iconfont icon-search"></i></a>
                 </div>
               
-                <div class="col-auto menu-col">
+                <div class="col-auto mobilemenu">
                     <div class="menu-toggle">
                         <div class="one"></div>
                         <div class="two"></div>
                         <div class="three"></div>
                     </div>
-                </div> -->
+                </div> 
             </div>
+        </div>
+        <div class="menu-over" id="overmenu">
+            <ul class="mobilenav" >
+                {% for menu in menus %}
+                    <li class="{{ (menu.url != "/" and  uri starts with menu.url) ? 'active' : '' }}">
+                        <a href="{{ menu.url }}" class="{{ menu.children ? 'down' : '' }}" data-id="nav{{menu.id}}">
+                            {{menu.title}}
+                            {% if menu.children %}    
+                                <i class="iconfont icon-cc-right"></i>    
+                            {% endif %}                                                   
+                        </a>
+                        {% if(menu.children) %}
+                            <ul class="subnav">
+                            {% for subnav in menu.children %}
+                                <li class="{{ uri == subnav.url ? 'active' : '' }}"><a href="{{subnav.url}}">{{subnav.title}}</a></li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+           
+            </ul>
         </div>
 </header>

@@ -65,7 +65,7 @@ button {
 }
 
 .container {
-    @include respond-above (xlg) {
+    @include respond-above (xl) {
         max-width: 1200px;
     }
 }
@@ -76,17 +76,29 @@ button {
 
 .page {
     height: 100%;
-    display: flex;
-    align-items: stretch;
+    @include respond-above (md) {
+        display: flex;
+        align-items: stretch;
+    }
     .leftcol {
-        width: 22%;
-        background-color: #f6f6f6;
+        display: none;
+        @include respond-above (md) {
+            display: block;
+            width: 22%;
+            background-color: #f6f6f6;
+        }
     }
     .maincontent {
-        width: 78%;
         padding-top: 15rem;
-        padding-left: 130px;
-        padding-right: 130px;
+        @include respond-above (sm) {
+            padding-top: 22rem;
+        }
+        @include respond-above (md) {
+            padding-left: 130px;
+            padding-right: 130px;
+            width: 78%;
+            padding-top: 15rem;
+        }
         @include respond-above(lg) {
             padding-left: 180px;
             padding-right: 180px;
@@ -126,15 +138,15 @@ button {
         object-fit: cover;
         object-position: left top;
         @include respond-above(sm) {
-            height: 500px;
+            height: 400px;
         }
         @include respond-above(md) {
             height: auto;
         }
     }
     .title-page {
-        width: 180px;
-        height: 189px;
+        width: 200px;
+        height: 209px;
         background: url('../img/bg_title.png') no-repeat center center;
         background-size: contain;
         position: absolute;
@@ -144,14 +156,14 @@ button {
         z-index: 100;
         color: #fff;
         @include respond-above(sm) {
-            bottom: -100px;
+            margin-left: -100px;
             bottom: -60px;
-            width: 200px;
-            height: 209px;
+            width: 250px;
+            height: 259px;
         }
         @include respond-above(md) {
-            bottom: -140px;
-            bottom: -80px;
+            margin-left: -155px;
+            bottom: -130px;
             width: 300px;
             height: 309px;
         }
@@ -184,8 +196,17 @@ button {
         }
         .txt {
             @include vertical-align();
-            padding-left: 3rem;
+            padding-left: 2rem;
             margin-top: -0.5rem;
+            padding-right: 1.5rem;
+            @include respond-above(sm) {
+                padding-left: 3rem;
+                margin-top: -0.5rem;
+            }
+            @include respond-above(md) {
+                padding-left: 3rem;
+                margin-top: -0.5rem;
+            }
             @include respond-above(lg) {
                 padding-left: 4.5rem;
                 margin-top: -0.8rem;
@@ -196,10 +217,16 @@ button {
                 padding-right: 3rem;
             }
             h2 {
-                font-size: rem(40);
+                font-size: rem(24);
                 font-family: 'DINCond_Book';
                 line-height: 1;
                 margin: 0;
+                @include respond-above(sm) {
+                    font-size: rem(32);
+                }
+                @include respond-above(md) {
+                    font-size: rem(40);
+                }
                 @include respond-above(lg) {
                     font-size: rem(50);
                 }
@@ -208,7 +235,16 @@ button {
                 }
             }
             h3 {
-                font-size: rem(20);
+                font-size: rem(14);
+                @include respond-above(sm) {
+                    font-size: rem(16);
+                }
+                @include respond-above(md) {
+                    font-size: rem(18);
+                }
+                @include respond-above(lg) {
+                    font-size: rem(20);
+                }
                 margin: 0;
             }
         }
