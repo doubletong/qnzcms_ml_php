@@ -17,6 +17,7 @@
         }
         .box-body{
         padding: 1rem;
+        text-align: left;
         @include respond-above(lg) {
             padding: 1.5rem 2rem;
         }
@@ -25,7 +26,11 @@
             margin-bottom: 1rem;
             li{
                 display: inline-block;
-                margin-right: 1rem;
+             
+                margin-bottom: 5px;
+                @include respond-above(lg) {
+                    padding: 1.5rem 2rem; margin-right: 1rem;
+                }
                 a{
                     display: block;
                     padding: .2rem 1rem;

@@ -194,6 +194,9 @@ button {
         &.title-page-solution {
             background-image: url('../img/bg_title_solution.png')
         }
+        &.title-page-search{
+            background-image: url('../img/bg_title_search.png')
+        }
         .txt {
             @include vertical-align();
             padding-left: 2rem;

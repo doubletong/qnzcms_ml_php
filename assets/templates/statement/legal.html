@@ -1,0 +1,22 @@
+{% extends "shared/layout.html" %}
+{% block title %}法律声明{% endblock %}
+
+{% block content %}
+    <div class="banner-law">
+
+        <div class="title-page">
+            <div class="txt">
+           <h2>LEGAL NOTICES</h2>
+           <h3>法律声明</h3>
+        </div>
+        </div>
+    </div>
+    <div class="page page-law">        
+        <section class="container">
+           
+            {{page.content|raw }}
+            
+                    
+        </section>
+    </div>
+{% endblock %}

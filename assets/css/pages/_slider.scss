@@ -11,14 +11,18 @@
                 max-width: 660px;
                 color: #fff;
                 @include vertical-align();
-                padding: 1rem 0;
-
+                padding: 1rem 3rem 1rem 2rem;
+            
+                @include respond-above (md) {
+                    font-size: rem(50);
+                    padding: 1rem 0;
+                }
                 h2 {
-                    font-size: rem(30);
+                    font-size: rem(40);
                     margin: 0; font-family: 'DINCond';
-
+                    line-height: 1.2;
                     @include respond-above (sm) {
-                        font-size: rem(40);
+                        font-size: rem(60);
                         line-height: 1.2;
                     }
 
@@ -61,16 +65,23 @@
                     border-width: 1px;
                     border-color: $color-primary;
                     border-style: solid;
-                    padding: 0 2.5rem;
-                    height: 48px;
-                    line-height: 48px;
+                    padding: 0 1.5rem;
+                    height:32px;
+                    line-height: 30px;
                     display: inline-block;
-                    border-radius: 24px;
+                    border-radius: 16px;
                     color: $color-primary;
+                    font-size: 12px;
                     &:hover{
                         background-color: $color-primary;
                         color: #fff;
                     }
+                    @include respond-above (sm) {
+                        height: 48px;
+                        line-height: 48px;  padding: 0 2.5rem;           border-radius: 24px;
+                        font-size: 1rem;
+                    }
+
                 }
 
             }

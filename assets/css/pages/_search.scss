@@ -2,24 +2,34 @@
     .searchbox {
         background-color: rgb(255, 255, 255);
         box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.14);
-        height: 53px;
-        input {
-            width: 100%;
+        height: 45px;
+        @include respond-above(md) {
             height: 53px;
+        }
+        input {
+            width: 100%;           
             border: none;
             padding-left: 1rem;
             padding-right: 1rem;
+            height: 45px;
+            @include respond-above(md) {
+                height: 53px;
+            }
         }
         button {
             background-color: $color-primary;
-            color: #fff;
-            height: 53px;
-            padding: 0 3rem;
+            color: #fff;         
+            padding: 0 2rem;
             border: none;
-            font-size: rem(18);
+            font-size: rem(16);
+            height: 45px;
+            @include respond-above(md) {
+                height: 53px;     font-size: rem(18);   padding: 0 3rem;
+            }
         }
     }
     .search {
+        min-height: 350px;
         @include respond-above(lg) {
             min-height: 450px;
         }
