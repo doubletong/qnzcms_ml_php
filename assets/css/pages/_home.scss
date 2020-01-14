@@ -539,7 +539,7 @@
                     width: 400px; 
                 }
                 @include respond-above (lg) {
-                    width: 450px; 
+                    width: 450px; padding: 0 4rem;
                 }
             }
             
@@ -582,8 +582,8 @@
                 height: 170px;
             }
             @include respond-above (xl) {
-                background-size: auto 98px ;
-                padding-left: 260px;   
+                background-size: auto ;
+                padding-left: 260px;    padding-top: 2rem;
                 height: 234px;
             }
                .thumb{
