@@ -1,59 +1,62 @@
 # 青鸟内容管理系统【QNZCMS】
 
 ### 文件目录：
-├── README.md
-├── build
-│   ├── build.js
-│   ├── check-versions.js
-│   ├── dev-client.js
-│   ├── dev-server.js
-│   ├── utils.js
-│   ├── webpack.base.conf.js
-│   ├── webpack.dev.conf.js
-│   └── webpack.prod.conf.js
-├── config
-│   ├── dev.env.js
-│   ├── index.js
-│   └── prod.env.js
-├── docs
-│   ├── index.html
-│   └── static
-│       ├── css
-│       └── js
-├── git.sh
-├── index.html
-├── npm-debug.log
-├── open
-├── package.json
-├── src
-│   ├── App.vue
-│   ├── assets
-│   │   ├── list.scss
-│   │   ├── logo.png
-│   │   ├── search-btn.png
-│   │   └── style.scss
-│   ├── components
-│   │   ├── Hello.vue
-│   │   ├── Spinner.vue
-│   │   └── header.vue
-│   ├── main.js
-│   ├── router.js
-│   ├── store
-│   │   ├── api.js
-│   │   ├── modules
-│   │   ├── store.js
-│   │   └── types.js
-│   └── views
-│       ├── book
-│       ├── index.vue
-│       ├── movie
-│       └── vuex-demo.vue
-├── static
-└── tree.md
 
 
+```
+project
+│   README.md
+│   file001.txt    
+│
+└───folder1
+│   │   file011.txt
+│   │   file012.txt
+│   │
+│   └───subfolder1
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   
+└───folder2
+    │   file021.txt
+    │   file022.txt
+```
+
+.. code::
+.
+|-- ContentStore
+|   |-- de-DE
+|   |   |-- art.mshc
+|   |   |-- artnoloc.mshc
+|   |   |-- clientserver.mshc
+|   |   |-- noarm.mshc
+|   |   |-- resources.mshc
+|   |   `-- windowsclient.mshc
+|   `-- en-US
+|       |-- art.mshc
+|       |-- artnoloc.mshc
+|       |-- clientserver.mshc
+|       |-- noarm.mshc
+|       |-- resources.mshc
+|       `-- windowsclient.mshc
+`-- IndexStore
+    |-- de-DE
+    |   |-- art.mshi
+    |   |-- artnoloc.mshi
+    |   |-- clientserver.mshi
+    |   |-- noarm.mshi
+    |   |-- resources.mshi
+    |   `-- windowsclient.mshi
+    `-- en-US
+        |-- art.mshi
+        |-- artnoloc.mshi
+        |-- clientserver.mshi
+        |-- noarm.mshi
+        |-- resources.mshi
+        `-- windowsclient.mshi
 
 ### 引用第三方类库：
+
   - phpmailer/phpmailer 6.0    【邮箱服务】
   - jasongrimes/paginator 1.0    【分页组件】
   - illuminate/database": "*"   【ORM】
