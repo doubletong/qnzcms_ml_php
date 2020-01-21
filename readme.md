@@ -6,54 +6,59 @@
 ```
 project
 │   README.md
-│   file001.txt    
+│   index.php    //homepage
+|   .htaccess     //apache 重写路径│
+└───app_data    //数据文件
+│       qnzcms_php.sql   //数据备份   
 │
-└───folder1
+└───assets    //资源文件
 │   │   file011.txt
 │   │   file012.txt
 │   │
-│   └───subfolder1
-│       │   file111.txt
-│       │   file112.txt
-│       │   ...
+│   └───css   //样式表
+│   │      styles.scss
+│   │      ...
+│   │   
+│   └───img   //图片
+|   └───fonts
+│   └───js
+|   └───caches   //缓存路径
+|   └───templates    //模版路径
+|
+└───bbi-admin    //控制台目录
 │   
-└───folder2
-    │   file021.txt
-    │   file022.txt
+└───config
+|      db.php   //pdo 联接-过度阶段，目前正一步步转向 Eloquent ORM 方式
+|      database.php   //Eloquent ORM 联接方式
+|   
+└───data    //仓储类
+|      ...
+|      
+└───help   //帮助手册
+|      ...
+|      
+└───includes   //局布组件
+|      ...
+|      
+└───src
+|   └───Migration
+|   └───Models   //Eloquent ORM 模型定义
+|   
+└───uploads    //上传目录
+|       ...
+|  
+└───Utils    //常用类
+|      ...
+|      
+└───vendor   //composer 引用
+|      ...
+|   
+└───views   //视图控制
+       ...
+
+
 ```
 
-.. code::
-.
-|-- ContentStore
-|   |-- de-DE
-|   |   |-- art.mshc
-|   |   |-- artnoloc.mshc
-|   |   |-- clientserver.mshc
-|   |   |-- noarm.mshc
-|   |   |-- resources.mshc
-|   |   `-- windowsclient.mshc
-|   `-- en-US
-|       |-- art.mshc
-|       |-- artnoloc.mshc
-|       |-- clientserver.mshc
-|       |-- noarm.mshc
-|       |-- resources.mshc
-|       `-- windowsclient.mshc
-`-- IndexStore
-    |-- de-DE
-    |   |-- art.mshi
-    |   |-- artnoloc.mshi
-    |   |-- clientserver.mshi
-    |   |-- noarm.mshi
-    |   |-- resources.mshi
-    |   `-- windowsclient.mshi
-    `-- en-US
-        |-- art.mshi
-        |-- artnoloc.mshi
-        |-- clientserver.mshi
-        |-- noarm.mshi
-        |-- resources.mshi
-        `-- windowsclient.mshi
 
 ### 引用第三方类库：
 
