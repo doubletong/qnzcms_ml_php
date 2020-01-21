@@ -1,1 +1,0 @@
-https://laravel.com/docs/6.x/migrations#creating-tables
