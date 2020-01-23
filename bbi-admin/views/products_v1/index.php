@@ -186,7 +186,7 @@ function recursive($items, $level, $cid){
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.agent").addClass("nav-open").find("ul>li.countries a").addClass("active");     
+            $(".mainmenu>li.products_v1").addClass("nav-open").find("ul>li.countries a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"
