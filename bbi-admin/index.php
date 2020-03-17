@@ -1,7 +1,6 @@
 <?php
 require_once('includes/common.php');
 require_once('includes/environment.php');
-require_once('data/carousel.php');
  require_once('data/link.php');
  require_once('data/product.php');
 require_once('data/article.php');
@@ -14,7 +13,8 @@ require_once('data/job.php');
 //实例化操作系统与浏览器信息
 $obj = new OS_BROWSER();
 
-$carouselClass = new TZGCMS\Admin\Carousel();
+use Models\Advertisement;
+$adsCount = Advertisement::count();
  $linkClass = new TZGCMS\Admin\LinkRepository();
 $articleClass = new TZGCMS\Admin\Article();
 $chronicleClass = new TZGCMS\Admin\Chronicle();
@@ -244,7 +244,7 @@ $teamClass = new TZGCMS\Admin\Team();
                                     </div>
                                     <div class="col">
                                         <small>轮播图</small>
-                                        <div class="num"><?php echo $carouselClass->carousel_count();?> <span>pcs</span></div>
+                                        <div class="num"><?php echo $adsCount;?> <span>pcs</span></div>
                                     </div>
                                 </div>
                                 </a>
