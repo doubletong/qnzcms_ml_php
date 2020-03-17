@@ -13,6 +13,7 @@ return array(
     'Models\\Carousel' => $baseDir . '/src/Models/Carousel.php',
     'Models\\Country' => $baseDir . '/src/Models/country.php',
     'Models\\EmailTemplate' => $baseDir . '/src/Models/EmailTemplate.php',
+    'Models\\Exhibition' => $baseDir . '/src/Models/Exhibition.php',
     'Models\\I18N' => $baseDir . '/src/Models/I18N.php',
     'Models\\Link' => $baseDir . '/src/Models/Link.php',
     'Models\\Metadata' => $baseDir . '/src/Models/Metadata.php',

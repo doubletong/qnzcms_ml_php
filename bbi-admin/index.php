@@ -1,12 +1,10 @@
 <?php
 require_once('includes/common.php');
 require_once('includes/environment.php');
- require_once('data/link.php');
- require_once('data/product.php');
+require_once('data/link.php');
+require_once('data/product.php');
 require_once('data/article.php');
-require_once('data/meeting.php');
 require_once('data/topics.php');
-require_once('data/page.php');
 require_once('data/team.php');
 require_once('data/chronicle.php');
 require_once('data/job.php');
@@ -14,15 +12,19 @@ require_once('data/job.php');
 $obj = new OS_BROWSER();
 
 use Models\Advertisement;
+use Models\Exhibition;
+use Models\Page;
+
 $adsCount = Advertisement::count();
+$pageCount = Page::count();
+$exhCount = Exhibition::count();
+
  $linkClass = new TZGCMS\Admin\LinkRepository();
 $articleClass = new TZGCMS\Admin\Article();
 $chronicleClass = new TZGCMS\Admin\Chronicle();
 $jobClass = new TZGCMS\Admin\Job();
- $meetingClass = new Meeting();
  $topicsClass = new Topics();
  $productClass = new TZGCMS\Admin\Product();
-$pageClass = new TZGCMS\Admin\Page();
 $teamClass = new TZGCMS\Admin\Team();
 
 ?>
@@ -159,19 +161,19 @@ $teamClass = new TZGCMS\Admin\Team();
                                 </a>
                             </div>
                         </div>
-                        <!-- <div class="col">
+                       <div class="col">
                             <div class="box">
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="icon text-center"><i class="iconfont icon-deploymentunit"></i></div>
                                     </div>
                                     <div class="col">
-                                        <small>会议信息</small>
-                                        <div class="num"><?php echo $meetingClass->meeting_count();?> <span>pcs</span></div>
+                                        <small>展会信息</small>
+                                        <div class="num"><?php echo $exhCount ;?> <span>pcs</span></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>  -->
+                        </div> 
 
                         <!-- <div class="col">
                             <div class="box">
@@ -212,7 +214,7 @@ $teamClass = new TZGCMS\Admin\Team();
                                     </div>
                                     <div class="col">
                                         <small>页面</small>
-                                        <div class="num"><?php echo $pageClass->page_count();?> <span>pcs</span></div>
+                                        <div class="num"><?php echo $pageCount;?> <span>pcs</span></div>
                                     </div>
                                 </div>
                                 </a>

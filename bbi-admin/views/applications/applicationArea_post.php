@@ -93,8 +93,8 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;
         // // case "recommend":
-        // //     echo $distributorClass->recommend_distributor($id);  
-        // //     break;
+        // // echo $distributorClass->recommend_distributor($id);  
+        // // break;
         case "copy":
             $item = ApplicationArea::find($id);
             $new_item = $item->replicate(); //copy attributes

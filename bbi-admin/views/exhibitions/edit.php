@@ -3,20 +3,18 @@
 require_once('../../includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 
-
-use Models\Page;
+use Models\Exhibition;
 use Models\Metadata;
 
 $pagetitle = isset($_GET['id'])?"编辑页面":"创建页面";
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $data = Page::find($id);
+    $data = Exhibition::find($id);
 
-    $module = ModuleType::URL();
-    $url = '/pages/'.$data['alias'];
-    $metadata = Metadata::where('module_type',$module)->where('key_value',$url)->first();
+    $module = ModuleType::EXHIBITION();   
+    $metadata = Metadata::where('module_type',$module)->where('key_value',$id)->first();
 }
-$pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
+$pageTitle = isset($_GET['id'])?"编辑":"创建";
 $action = isset($_GET['id'])?"update":"create";
 
 ?>
@@ -25,7 +23,7 @@ $action = isset($_GET['id'])?"update":"create";
 
 <head>
     <title>
-        <?php echo $pageTitle."_页面_后台管理_".$site_info['sitename'];?>
+        <?php echo $pageTitle."_展会信息_后台管理_".$site_info['sitename'];?>
     </title>
     <?php require_once('../../includes/meta.php') ?>
     <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
@@ -55,10 +53,16 @@ $action = isset($_GET['id'])?"update":"create";
                             </div>
 
                             <div class="form-group">
-                                <label for="title">别名</label>
-                                <input type="text" class="form-control" id="alias" name="alias" value="<?php echo isset($data['alias'])?$data['alias']:''; ?>"
+                                <label for="title">开始日期</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo isset($data['start_date'])?date_format(date_create($data['start_date']),"Y-m-d"):date("Y-m-d"); ?>"
                                     placeholder="必填">
                             </div>
+                            <div class="form-group">
+                                <label for="title">结束日期</label>
+                                <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo isset($data['end_date'])?date_format(date_create($data['end_date']),"Y-m-d"):date("Y-m-d"); ?>"
+                                    placeholder="必填">
+                            </div>
+
                             <div class="form-group">
                                 <label for="importance">排序</label>
                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance'])?$data['importance']:'0'; ?>" placeholder="值越大越排前">
@@ -79,28 +83,37 @@ $action = isset($_GET['id'])?"update":"create";
                                 </script>
                             </div>
                        
-                        
+                            <div class="form-group">
+                                <label for="summary">摘要</label>
+                                <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo isset($data['summary'])?$data['summary']:''; ?></textarea>
+                            </div>
+
                             <div class="form-group">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
                                     <label class="form-check-label" for="chkActive">发布</label>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" <?php echo isset($data['recommend']) ? ($data['recommend']?"checked":"") : "checked"; ?> id="chkRecommend" name="recommend">
+                                    <label class="form-check-label" for="chkRecommend">推荐</label>
+                                </div>
+                            </div>
                             </div>
                                 <div class="col-auto">
                                     <div style="width:300px;  text-align:center;" class="mb-3">
                                         <div class="card">
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=1920X550像素" src="<?php echo empty($data['background_image']) ? "holder.js/240x180?text=1920X550像素" : $data['background_image']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=1920X550像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=1920X550像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnBrowser" class="btn btn-info"><i class="fa fa-picture-o"></i> 背景图...</button>
-                                                <?php if(!empty($data['background_image'])){ ?>
+                                                <?php if(!empty($data['thumbnail'])){ ?>
                                                 <button type="button" id="btnImgDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
                                             <?php } ?>
-                                                <input id="background_image" type="hidden" name="background_image" value="<?php echo isset($data['background_image'])?$data['background_image']:''; ?>" />
+                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -150,28 +163,19 @@ $action = isset($_GET['id'])?"update":"create";
 
     <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="/assets/js/vendor/jquery-validation/dist/additional-methods.min.js"></script>
     
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {
-            $('#background_image').val(fileUrl);
+            $('#thumbnail').val(fileUrl);
             $('#iLogo').attr('src', fileUrl);
         }
 
      
 
-        $.validator.addMethod(
-        "regex",
-        function(value, element, regexp) {
-            var re = new RegExp(regexp);
-            return this.optional(element) || re.test(value);
-        },
-        "输入的格式不正确，只支持小写英文与下划线输入！"
-    );
 
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li.pages").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass(
+            $(".mainmenu>li.exhibitions").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass(
                 "active");
 
             $("#btnBrowser").on("click", function () {
@@ -180,7 +184,7 @@ $action = isset($_GET['id'])?"update":"create";
             });
 
             $("#btnImgDelete").on("click", function() {
-                $('#background_image').val("");
+                $('#thumbnail').val("");
                 $('#iLogo').attr('src', $('#iLogo').attr('data-default-src'));
                 var myImage = document.getElementById('iLogo');
                 Holder.run({
@@ -195,48 +199,23 @@ $action = isset($_GET['id'])?"update":"create";
                     title: {
                         required: true
                     },
-                    alias: {
-                        required: true,
-                        regex:"^[a-z0-9_-]+$",
-                        remote: {
-                            url: "page_post.php",
-                            type: "post",
-                            dataType: "JSON",
-                            data: {
-                                id: function () {
-                                    return $("#id").val();
-                                },
-                                alias: function () {
-                                    return $("#alias").val();
-                                },
-                                action:function(){
-                                    return 'checkcode';
-                                }
-                            },
-                            dataFilter: function (data) {
-                                if (data==="0") {
-                                    // jquery validate remote method
-                                    // accepts only "true" value
-                                    // to successfully validate field 
-                                    return '"true"';
-                                } else {
-                                    // error message, everything that isn't "true"
-                                    // is understood as failure message
-                                    return '"别名已存在！"';
-                                }
-                            }
-                        }
+                    start_date: {
+                        required: true
+                    },
+                    end_date: {
+                        required: true
                     }
                 },
                 messages: {
                     title: {
                         required: "请输入主标题"
                     },
-                    alias: {
-                        required: "请输入别名"
-
+                    start_date: {
+                        required: "请输入开始日期"
+                    },
+                    end_date: {
+                        required: "请输入结束日期"
                     }
-
                 },
 
                 errorClass: "invalid-feedback",
@@ -262,7 +241,7 @@ $action = isset($_GET['id'])?"update":"create";
                     });
 
                     $.ajax({
-                        url: 'page_post.php',
+                        url: 'post.php',
                         type: 'POST',
                         data: values,
                         success: function (res) {

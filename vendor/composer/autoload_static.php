@@ -229,6 +229,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Carousel' => __DIR__ . '/../..' . '/src/Models/Carousel.php',
         'Models\\Country' => __DIR__ . '/../..' . '/src/Models/country.php',
         'Models\\EmailTemplate' => __DIR__ . '/../..' . '/src/Models/EmailTemplate.php',
+        'Models\\Exhibition' => __DIR__ . '/../..' . '/src/Models/Exhibition.php',
         'Models\\I18N' => __DIR__ . '/../..' . '/src/Models/I18N.php',
         'Models\\Link' => __DIR__ . '/../..' . '/src/Models/Link.php',
         'Models\\Metadata' => __DIR__ . '/../..' . '/src/Models/Metadata.php',

@@ -118,9 +118,9 @@
                             <i class="iconfont icon-question-circle-fill"></i> <span class="nav-text">常见问题</span>                    
                         </a>
                     </li>
-                   <li hidden>
-                        <a href="meetings.php">
-                            <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">会议信息</span>                    
+                   <li class="exhibitions">
+                        <a href="/bbi-admin/views/exhibitions/index.php">
+                            <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">展会信息</span>                    
                         </a>
                     </li>
                     <!-- <li class="down-nav" hidden>
