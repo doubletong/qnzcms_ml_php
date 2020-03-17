@@ -42,6 +42,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
             'Phpfastcache\\' => 13,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'M' => 
+        array (
+            'MyCLabs\\Enum\\' => 13,
+        ),
         'J' => 
         array (
             'JsonSchema\\' => 11,
@@ -149,6 +153,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
+        'MyCLabs\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
+        ),
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
@@ -220,8 +228,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\ApplicationArea' => __DIR__ . '/../..' . '/src/Models/ApplicationArea.php',
         'Models\\Carousel' => __DIR__ . '/../..' . '/src/Models/Carousel.php',
         'Models\\Country' => __DIR__ . '/../..' . '/src/Models/country.php',
+        'Models\\EmailTemplate' => __DIR__ . '/../..' . '/src/Models/EmailTemplate.php',
         'Models\\I18N' => __DIR__ . '/../..' . '/src/Models/I18N.php',
         'Models\\Link' => __DIR__ . '/../..' . '/src/Models/Link.php',
+        'Models\\Metadata' => __DIR__ . '/../..' . '/src/Models/Metadata.php',
         'Models\\Offer' => __DIR__ . '/../..' . '/src/Models/Offer.php',
         'Models\\Page' => __DIR__ . '/../..' . '/src/Models/Page.php',
         'Models\\Position' => __DIR__ . '/../..' . '/src/Models/Position.php',

@@ -1,14 +1,16 @@
 <?php
 
-use Models\ApplicationArea;
+use Models\EmailTemplate;
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
 require_once('../../includes/common.php');
+require_once('../../../config/database.php');
 
-$pagetitle = isset($_GET['id'])?"编辑应用领域":"创建应用领域";
+$pagetitle = isset($_GET['id'])?"编辑邮件模板":"创建邮件模板";
 $action = isset($_GET['id'])?"update":"create";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = ApplicationArea::find($id);
+    $data = EmailTemplate::find($id);
     //$data = $cateModel->fetch_data($id);
 }
 
@@ -38,56 +40,40 @@ if (isset($_GET['id'])) {
                             <?php echo $pagetitle;?>
                         </div>
                         <div class="card-body">
-                            <input type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input type="hidden" id="id" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             
                             <div class="form-group">
                                 <label for="title">主题</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                             </div>
+                         
                             <div class="form-group">
-                                <label for="sub_title">副主题</label>
-                                <input type="text" class="form-control" id="sub_title" name="sub_title" value="<?php echo isset($data['sub_title'])?$data['sub_title']:''; ?>">
+                                <label for="title">代码</label>
+                                <input type="text" class="form-control" id="code" name="code" value="<?php echo isset($data['code'])?$data['code']:''; ?>"
+                                    placeholder="必填">
                             </div>
-
+                        
                             <div class="form-group">
                                 <label for="importance">排序</label>
                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance'])?$data['importance']:0; ?>" placeholder="值越大越排前">
                             </div>
 
                             <div class="form-group">
-                                <label for="intro">应用概述：</label>
+                                <label for="htmlbody">邮件模板</label>
 
-                                <textarea class="form-control" id="intro" name="intro" placeholder=""><?php echo isset($data['intro'])?stripslashes($data['intro']):''; ?></textarea>
+                                <textarea class="form-control" id="htmlbody" name="htmlbody" placeholder=""><?php echo isset($data['htmlbody'])?stripslashes($data['htmlbody']):''; ?></textarea>
                                 <script>
                                     var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
-                                    CKEDITOR.replace('intro', {
+                                    CKEDITOR.replace('htmlbody', {
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder,                                  
                                         allowedContent: true                  
                                     });
                                 </script>
-                            </div>
-                            <div class="form-group">
-                                <label for="cases">应用概述：</label>
+                            </div>                         
 
-                                <textarea class="form-control" id="cases" name="cases" placeholder=""><?php echo isset($data['cases'])?stripslashes($data['cases']):''; ?></textarea>
-                                <script>
-                                    var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
-                                    CKEDITOR.replace('cases', {
-                                        filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder,                                  
-                                        allowedContent: true                  
-                                    });
-                                </script>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
-                                    <label class="form-check-label" for="chkActive">发布</label>
-                                </div>
-                            </div>
+                 
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
@@ -103,24 +89,61 @@ if (isset($_GET['id'])) {
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
-    <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
     <script src="/assets/js/vendor/toastr/toastr.min.js"></script>
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/jquery-validation/dist/additional-methods.min.js"></script>
     <script type="text/javascript">
 
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.agent").addClass("nav-open").find("ul>li.regions a").addClass("active");     
+            $(".mainmenu>li.emails").addClass("nav-open").find("ul>li.template a").addClass("active");     
 
+            $.validator.addMethod("regex",
+                function(value, element, regexp) {
+                    var re = new RegExp(regexp);
+                    return this.optional(element) || re.test(value);
+                },
+                "输入的格式不正确，只支持小写英文与下划线输入！"
+            );
+           
             $("form").validate({
 
                 rules: {
                     title: {
                         required: true
                     },
-                    sub_title: {
-                        required: true
+                    code: {
+                        required: true,
+                        regex:"^[a-zA-Z0-9_-]+$",
+                        remote: {
+                            url: "post.php",
+                            type: "post",
+                            dataType: "JSON",
+                            data: {
+                                id: function () {
+                                    return $("#id").val();
+                                },
+                                code: function () {
+                                    return $("#code").val();
+                                },
+                                action: function(){
+                                    return "checkcode";
+                                }
+                            },
+                            dataFilter: function (data) {
+                                if (data==0) {
+                                    // jquery validate remote method
+                                    // accepts only "true" value
+                                    // to successfully validate field 
+                                    return '"true"';
+                                } else {
+                                    // error message, everything that isn't "true"
+                                    // is understood as failure message
+                                    return '"编号已存在！"';
+                                }
+                            }
+                        }
                     },
                     importance: {
                         required: true,
@@ -132,17 +155,16 @@ if (isset($_GET['id'])) {
                     title: {
                         required:"请输入主题"
                     },
-                    sub_title: {
-                        required:"请输入副主题"
-                    },
-                 
+                    code: {
+                        required: "请输入别名"
+                    },                 
                     importance: {
                         required: "请输入排序",
                         digits:"请输入有效的整数"
                     }
 
                 },
-
+               
                 errorClass: "invalid-feedback",
                 errorElement: "div",
                 highlight: function(element, errorClass, validClass) {
@@ -154,6 +176,7 @@ if (isset($_GET['id'])) {
                     $(element).addClass('is-valid');
                 },
                 submitHandler: function(form) {
+                 
                     var values = {};
                     var fields = {};
                     for (var instanceName in CKEDITOR.instances) {
@@ -165,7 +188,7 @@ if (isset($_GET['id'])) {
                     });
 
                     $.ajax({
-                        url: 'applicationArea_post.php',
+                        url: 'post.php',
                         type: 'POST',
                         data: values,
                         success: function(res) {

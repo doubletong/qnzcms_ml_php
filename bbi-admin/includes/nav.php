@@ -157,11 +157,7 @@
                             <i class="iconfont icon-mail"></i> <span class="nav-text">邮件订阅</span>                    
                         </a>
                     </li>
-                   <li>
-                        <a href="cases.php">
-                            <i class="iconfont icon-antdesign"></i> <span class="nav-text">解决方案</span>                    
-                        </a>
-                    </li>
+                  
                     <li class="pages">
                         <a href="/bbi-admin/views/pages/index.php">
                             <i class="iconfont icon-file"></i> <span class="nav-text">页面</span>                    
@@ -207,6 +203,17 @@
                         
                     </li>
 
+                    <li class="down-nav emails">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-mail-fill"></i> <span class="nav-text">邮件服务</span> 
+                        </a>
+                        <ul class="subnav">
+                            <li class="config_smtp"><a href="/bbi-admin/views/config/config_smtp.php">邮件服务配置</a></li>
+                            <li class="template"><a href="/bbi-admin/views/email_templates/index.php">邮件模板</a></li>
+                        </ul>
+                    </li>     
+
                     <li class="down-nav plugins">
                         <a href="#">
                             <i class="iconfont icon-left float-right"></i>   
@@ -226,7 +233,7 @@
                             <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i> 基本设置</a></li>
                             <li class="manager"><a href="/bbi-admin/administrators.php"><i class="iconfont icon-team"></i> 管理员</a></li>
                             <li class="manager_add"><a href="/bbi-admin/admin_add.php"><i class="iconfont icon-adduser"></i> 创建管理员</a></li>
-                            <li class="config_smtp"><a href="/bbi-admin/views/config/config_smtp.php"><i class="iconfont icon-mail-fill"></i> 邮件服务配置</a></li>
+                            
                             <li class="backup"><a href="/bbi-admin/views/backup/index.php"><i class="iconfont icon-database"></i> 备份数据库</a></li>
                         </ul>
                     </li>

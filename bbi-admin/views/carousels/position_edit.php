@@ -111,12 +111,12 @@ $action = isset($_GET['id'])?"update":"create";
         }     
 
         $.validator.addMethod("regex",
-        function(value, element, regexp) {
-            var re = new RegExp(regexp);
-            return this.optional(element) || re.test(value);
-        },
-        "输入的格式不正确，只支持小写英文与下划线输入！"
-    );
+            function(value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
+            },
+            "输入的格式不正确，只支持小写英文与下划线输入！"
+        );
 
         $(document).ready(function () {
             //当前菜单

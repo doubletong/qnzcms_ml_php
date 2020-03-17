@@ -84,7 +84,7 @@ $data  = json_decode($model['config_values'],true);
    
     $(document).ready(function () {
         //当前菜单        
-        $(".mainmenu>li.system").addClass("nav-open").find("ul>li.config_smtp a").addClass("active");
+        $(".mainmenu>li.emails").addClass("nav-open").find("ul>li.config_smtp a").addClass("active");
 
         $("form").validate({
 

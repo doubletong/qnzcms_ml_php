@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
 require_once('../../includes/common.php');
 require_once('../../../config/database.php');
-// require_once('../../data/option.php');
+
 use Models\ApplicationArea;
 use JasonGrimes\Paginator;
 
@@ -159,30 +159,30 @@ $countries = $query->orderBy('importance', 'DESC')
             });
 
             $(".btn-active").click(function(){
-            var $that = $(this);           
-            var articleId = $that.attr("data-id");
+                var $that = $(this);           
+                var articleId = $that.attr("data-id");
 
-            $.ajax({
-                url : 'applicationArea_post.php',
-                type : 'POST',
-                data : {id:articleId,action:"active"},
-                success : function(res) {                                                   
-                    var myobj = JSON.parse(res);                    
-                    //console.log(myobj.status);
-                    if (myobj.status === 1) {
-                        //toastr.success(myobj.message);                                
-                        location.reload();                                  
-                    } 
-                    if (myobj.status === 2) {
-                        toastr.error(myobj.message)
+                $.ajax({
+                    url : 'applicationArea_post.php',
+                    type : 'POST',
+                    data : {id:articleId,action:"active"},
+                    success : function(res) {                                                   
+                        var myobj = JSON.parse(res);                    
+                        //console.log(myobj.status);
+                        if (myobj.status === 1) {
+                            //toastr.success(myobj.message);                                
+                            location.reload();                                  
+                        } 
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
                     }
-                    if (myobj.status === 3) {
-                        toastr.info(myobj.message)
-                    }
-                }
-            });          
+                });          
 
-        });
+            });
 
         $(".btn-copy").click(function(){
             var $that = $(this);           

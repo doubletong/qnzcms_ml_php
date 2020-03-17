@@ -1,12 +1,20 @@
 <?php
 
 require_once('../../includes/common.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 require_once('../../data/page.php');
 
-$pageClass = new TZGCMS\Admin\Page();
+use Models\Page;
+use Models\Metadata;
+
+$pagetitle = isset($_GET['id'])?"编辑页面":"创建页面";
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $data = $pageClass->fetch_data($id);
+    $data = Page::find($id);
+
+    $module = ModuleType::URL();
+    $url = '/pages/'.$data['alias'];
+    $metadata = Metadata::where('module_type',$module)->where('key_value',$url)->first();
 }
 $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
 $action = isset($_GET['id'])?"update":"create";
@@ -39,8 +47,8 @@ $action = isset($_GET['id'])?"update":"create";
                         <div class="card-body">
                         <div class="row">
                                 <div class="col">
-                            <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
-                            <input type="hidden" name="action" value="<?php echo $action; ?>" />
+                            <input id="id" type="hidden" id='id' name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+                            <input type="hidden" id="action" name="action" value="<?php echo $action; ?>" />
                             <div class="form-group">
                                 <label for="title">标题</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
@@ -100,15 +108,19 @@ $action = isset($_GET['id'])?"update":"create";
                                         <div class="card-header">SEO</div>
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <label for="description">SEO描述</label>
+                                                <label for="title">SEO标题</label>
+                                                <input type="text" class="form-control" id="seotitle" name="seotitle" placeholder="" value="<?php echo isset($metadata['title'])?$metadata['title']:''; ?>">
+                                            </div>
 
-                                                <textarea class="form-control" id="description" name="description" rows="6" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
+                                            <div class="form-group">
+                                                <label for="description">SEO描述</label>
+                                                <textarea class="form-control" id="seodescription" name="seodescription" rows="6" placeholder=""><?php echo isset($metadata['description'])?$metadata['description']:''; ?></textarea>
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="keywords">关键字</label>
 
-                                                <input type="text" class="form-control" id="keywords" name="keywords" placeholder="" value="<?php echo isset($data['keywords'])?$data['keywords']:'';  ?>">
+                                                <input type="text" class="form-control" id="seokeywords" name="seokeywords" placeholder="" value="<?php echo isset($metadata['keywords'])?$metadata['keywords']:'';  ?>">
 
                                             </div>
                                         </div>
@@ -187,7 +199,7 @@ $action = isset($_GET['id'])?"update":"create";
                         required: true,
                         regex:"^[a-z0-9_-]+$",
                         remote: {
-                            url: "page_check_alias.php",
+                            url: "page_post.php",
                             type: "post",
                             dataType: "JSON",
                             data: {
@@ -196,10 +208,13 @@ $action = isset($_GET['id'])?"update":"create";
                                 },
                                 alias: function () {
                                     return $("#alias").val();
+                                },
+                                action:function(){
+                                    return 'checkcode';
                                 }
                             },
                             dataFilter: function (data) {
-                                if (!data) {
+                                if (data==="0") {
                                     // jquery validate remote method
                                     // accepts only "true" value
                                     // to successfully validate field 

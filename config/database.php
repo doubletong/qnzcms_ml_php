@@ -11,12 +11,12 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     "driver" => "mysql",
     "host" =>"localhost",
     "port" => 3306,
-    "database" => "tzgcms_php",
+    "database" => "qnzcms_php",
     "username" => "root",
     "password" => "root",
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix'    => ''
+    'prefix'    => 'qnz_'
  ]);
 //Make this Capsule instance available globally. *要让 capsule 能在全局使用
  $capsule->setAsGlobal();

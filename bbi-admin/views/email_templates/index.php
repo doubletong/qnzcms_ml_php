@@ -1,24 +1,23 @@
 <?php
 require_once('../../includes/common.php');
+require_once('../../../config/database.php');
 require '../../../vendor/autoload.php';
 
+use Models\EmailTemplate;
 use JasonGrimes\Paginator;
-use Models\Page;
-
 
 $urlPattern = "index.php?page=(:num)";
  //文章表实例化
-$pageClass = new Page;
+ $template = new EmailTemplate;
  //搜索条件判断
-$query = $pageClass->select('id','title','alias','view_count','importance','active','created_at');
+ $query = $template;
 
-$keyword = null;
+ $keyword = null;
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
-    $query = $query->where('title','like','%'.$keyword.'%')
-            ->orWhere('content','like','%'.$keyword.'%');
+    $query = $query->where('title','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
@@ -30,10 +29,10 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$pages = $query->orderBy('importance', 'DESC')
-            ->skip(($currentPage-1)*$itemsPerPage)
-            ->take($itemsPerPage)
-            ->get();
+$pages =  $query->orderBy('importance', 'DESC')
+        ->skip(($currentPage-1)*$itemsPerPage)
+        ->take($itemsPerPage)
+        ->get();
 
 
 
@@ -41,9 +40,9 @@ $pages = $query->orderBy('importance', 'DESC')
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo "页面_后台管理_".$site_info['sitename'];?></title>
+    <title><?php echo "邮件模板_邮件_".$site_info['sitename'];?></title>
     <?php require_once('../../includes/meta.php') ?>
-
+    <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
 <div class="wrapper">
@@ -59,8 +58,8 @@ $pages = $query->orderBy('importance', 'DESC')
                     <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                         <div class="form-row align-items-center">
                             <div class="col-auto">
-                            <label class="sr-only" for="keyword">搜索</label>
-                            <input type="text" name="keyword" class="form-control mb-2" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
+                            <label class="sr-only" for="inlineFormInput">搜索</label>
+                            <input type="text" name="search" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
                             </div>
 
                             <div class="col-auto">
@@ -70,8 +69,8 @@ $pages = $query->orderBy('importance', 'DESC')
                     </form>
                 </div>
                 <div class="col-auto">
-                        <a href="page_edit.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i>  添加页面
+                        <a href="edit.php" class="btn btn-primary">
+                            <i class="iconfont icon-plus"></i>  添加
                         </a>
                 </div>
             </div>
@@ -79,9 +78,7 @@ $pages = $query->orderBy('importance', 'DESC')
                 <thead>
                 <tr>                  
                     <th>标题</th>
-                    <th>别名</th>
-                    <th>排序</th>
-                    <th>显示</th>
+                    <th>编号</th>                  
                     <th>创建日期</th>
                     <th>操作</th>
                 </tr>
@@ -95,23 +92,14 @@ $pages = $query->orderBy('importance', 'DESC')
                   
                     <?php
                     echo "<td>".$row['title']."</td>";                   
-                    echo "<td>".$row['alias']."</td>";
-                    echo "<td>".$row['importance']."</td>";
-                    echo "<td>".$row['view_count']."</td>";
+                    echo "<td>".$row['code']."</td>";
+                  
                     ?>
-                    <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
-                    <td><a href='page_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                
+                    <td><?php  echo date('Y-m-d',strtotime($row['created_at'])) ;?></td>
+                    <td><a href='edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
-                        <?php if($row['active']==1){?>
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
-                                <i class="iconfont icon-eye-close"></i>
-                            </button>
-                        <?php }else{ ?>
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
-                                <i class="iconfont icon-eye"></i>
-                            </button>
-                        <?php } ?>   
                         <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
                             <i class="iconfont icon-delete"></i>
                         </button>
@@ -124,16 +112,9 @@ $pages = $query->orderBy('importance', 'DESC')
                 </tbody>
             </table>
             
-                <div class="row">
-                    <div class="col-md">
-                        <nav aria-label="Page navigation">                
-                            <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
-                        </nav>
-                    </div>
-                    <div class="col-md-auto">
-                        总记<strong><?php echo $totalItems; ?></strong>条记录
-                    </div>
-                </div>
+            <nav aria-label="Page navigation">                
+                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                </nav>
 
         </div>
         <?php require_once('../../includes/footer.php'); ?> 
@@ -141,51 +122,28 @@ $pages = $query->orderBy('importance', 'DESC')
 </div>
 <?php require_once('../../includes/scripts.php'); ?> 
 
+<script src="/assets/js/vendor/toastr/toastr.min.js"></script>
+    <script src="/assets/js/vendor/bootbox.js/bootbox.js"></script>
+
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li.pages").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li.emails").addClass("nav-open").find("ul>li.template a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"
         });
 
-        $(".btn-active").click(function(){
-            var $that = $(this);           
-            var productId = $that.attr("data-id");
-
-            $.ajax({
-                url : 'page_post.php',
-                type : 'POST',
-                data : {id:productId,action:"active"},
-                success : function(res) {                                                   
-                    var myobj = JSON.parse(res);                    
-                    //console.log(myobj.status);
-                    if (myobj.status === 1) {
-                        // toastr.success(myobj.message);                                
-                        location.reload();                                  
-                    } 
-                    if (myobj.status === 2) {
-                        toastr.error(myobj.message)
-                    }
-                    if (myobj.status === 3) {
-                        toastr.info(myobj.message)
-                    }
-                }
-            });          
-
-        });
-
         $(".btn-delete").click(function(){
             var $that = $(this);
-            bootbox.confirm("删除后页面将无法恢复，您确定要删除吗？", function (result) {
+            bootbox.confirm("删除后将无法恢复，您确定要删除吗？", function (result) {
                 if (result) {
                     var pageId = $that.attr("data-id");
 
                     $.ajax({
-                        url : 'page_post.php',
+                        url : 'template_delete.php',
                         type : 'POST',
-                        data : {id:pageId,action:"delete"},
+                        data : {id:pageId},
                         success : function(res) {
 
                             var myobj = JSON.parse(res);                    

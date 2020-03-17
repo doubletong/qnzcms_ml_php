@@ -1,5 +1,7 @@
 RewriteEngine on                       //on为打开,off为关闭
 
+RewriteRule ^pages/(.*)$ /views/pages/index.php?alias=$1 
+
 RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
 RewriteRule ^([a-z|_|0-9]+)/([a-z|_|0-9]+)$ /views/$1/$2.php [L]
 
@@ -28,14 +30,14 @@ RewriteRule ^events-detail-(.*)$ /event_detail.php?id=$1
 RewriteRule ^creative-detail-(.*)$ /creative_detail.php?id=$1 
 RewriteRule ^branch-detail-(.*)$ /branch_detail.php?id=$1 
 RewriteRule ^team-detail-(.*)$ /team_detail.php?id=$1 
-RewriteRule ^duty-(.*)$ /duty_detail.php?alias=$1 
+
 
 
 
 ErrorDocument 400 /views/error/index.php
 ErrorDocument 401 /views/error/index.php
 ErrorDocument 403 /views/error/index.php
-ErrorDocument 404 /views/error/404.html
+ErrorDocument 404 /pages/nofound
 ErrorDocument 405 /views/error/index.php
 ErrorDocument 408 /views/error/index.php
 ErrorDocument 414 /views/error/index.php
