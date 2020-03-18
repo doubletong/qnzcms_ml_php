@@ -1,18 +1,15 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/job.php');
-require_once('../../data/dictionary.php');
-$JobClass = new TZGCMS\Admin\Job();
+
+use Models\Job;
+
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = $JobClass->fetch_data($id);
+    $data = Job::find($id);    
 }
 
-$dictionaryClass = new TZGCMS\Admin\Dictionary();
-$cities = $dictionaryClass->get_dictionaries_byid(9);
-$worktypes = $dictionaryClass->get_dictionaries_byid(10);
-
+$action = isset($_GET['id'])?"update":"create";
 $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
 
 ?>
@@ -41,36 +38,24 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                             <?php echo $pageTitle . "岗位"; ?>
                         </div>
                         <div class="card-body">
-                            <input id="jobId" type="hidden" name="jobId" value="<?php echo isset($data['id']) ? $data['id'] : 0; ?>" />
-
+                            <input id="id" type="hidden" name="id" value="<?php echo isset($data['id']) ? $data['id'] : 0; ?>" />
+                            <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             <div class="form-group">
                                 <label for="title">招聘岗位</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title']) ? $data['title'] : ''; ?>" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="department">招聘类型</label>
-                                <select class="form-control" id="department" name="department">
-                                    <option value="">--请选择招聘类型--</option>
-                                    <?php foreach ($worktypes as $worktype) {
-                                        ?>
-                                        <option value="<?php echo $worktype["title"]; ?>" <?php echo (isset($data['department']) && $worktype["title"] == $data["department"]) ? "selected" : ""; ?>><?php echo $worktype["title"]; ?></option>
-
-                                    <?php } ?>
-                                </select>
+                                <label for="title">部门</label>
+                                <input type="text" class="form-control" id="department" name="department" value="<?php echo isset($data['department']) ? $data['department'] : ''; ?>" placeholder="">
                             </div>
 
-                            <!-- <div class="form-group">
-                    <label for="address">工作城市</label>
-                    <select class="form-control" id="address" name="address">
-                        <option value="">--请选择工作城市--</option>
-                        <?php foreach ($cities as $city) {
-                            ?>
-                            <option value="<?php echo $city["title"]; ?>" <?php echo (isset($data['address']) && $city["title"] == $data["address"]) ? "selected" : ""; ?> ><?php echo $city["title"]; ?></option>
+                            <div class="form-group">
+                                <label for="title">城市</label>
+                                <input type="text" class="form-control" id="city" name="city" value="<?php echo isset($data['city']) ? $data['city'] : ''; ?>" placeholder="">
+                            </div>
 
-                        <?php } ?>
-                    </select>                  
-                </div> -->
+                     
 
                             <div class="form-group">
                                 <label for="population">招聘人数</label>
@@ -81,11 +66,24 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance']) ? $data['importance'] : '0'; ?>" placeholder="">
                             </div>
                             <div class="form-group">
-                                <label for="content">岗位描述</label>
-                                <textarea class="form-control" id="content" name="content" placeholder=""><?php echo isset($data['content']) ? $data['content'] : ''; ?></textarea>
+                                <label for="responsibilities">岗位描述</label>
+                                <textarea class="form-control" id="responsibilities" name="responsibilities" placeholder=""><?php echo isset($data['responsibilities']) ? $data['responsibilities'] : ''; ?></textarea>
                                 <script>
                                     var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
-                                    CKEDITOR.replace('content', {
+                                    CKEDITOR.replace('responsibilities', {
+                                        filebrowserBrowseUrl: elFinder,
+                                        filebrowserImageBrowseUrl: elFinder,
+                                        allowedContent: true                       
+
+                                    });
+                                </script>
+                            </div>
+                            <div class="form-group">
+                                <label for="requirement">岗位要求</label>
+                                <textarea class="form-control" id="requirement" name="requirement" placeholder=""><?php echo isset($data['requirement']) ? $data['requirement'] : ''; ?></textarea>
+                                <script>
+                                    var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
+                                    CKEDITOR.replace('requirement', {
                                         filebrowserBrowseUrl: elFinder,
                                         filebrowserImageBrowseUrl: elFinder,
                                         allowedContent: true                       
@@ -118,7 +116,7 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
     <?php require_once('../../includes/scripts.php'); ?>
 
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="/assets/js/vendor/ckfinder/ckfinder.js"></script>
+ 
     <script type="text/javascript">
         $(document).ready(function() {
             //当前菜单
@@ -132,9 +130,6 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                         required: true
                     },
 
-                    department: {
-                        required: true
-                    },
                     population: {
                         required: true,
                         digits: true
@@ -150,9 +145,7 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                         required: "请输入招聘岗位"
                     },
 
-                    department: {
-                        required: "请选择招聘类型"
-                    },
+                 
                     population: {
                         required: "请输入招聘人数",
                         digits: "请输入有效的整数"

@@ -1,32 +1,40 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/job.php');
 
-require '../../../vendor/autoload.php';
-
+use Models\Job;
 use JasonGrimes\Paginator;
 
-$jobClass = new TZGCMS\Admin\Job();
+
+//文章表实例化
+$jobClass = new Job;
+//搜索条件判断
+$query = $jobClass->select('id','title','city','department','importance','active','created_at');
 
 $urlPattern = "index.php?page=(:num)";
 
+$keyword = null;
+if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
+{
+    $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
-
-
-if (!empty($keyword)) {
+    $query = $query->where('title','like','%'.$keyword.'%')
+            ->orWhere('responsibilities','like','%'.$keyword.'%')
+            ->orWhere('requirement','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
-$totalItems = $jobClass->get_jobs_count($keyword);  //总记录数
+
+$totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
-
+$jobs = $query->orderBy('importance', 'DESC')
+            ->skip(($currentPage-1)*$itemsPerPage)
+            ->take($itemsPerPage)
+            ->get();
 
 
 ?>
@@ -67,7 +75,7 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                     </div>
                     <div class="col-auto">
                         <a href="job_edit.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i> 添加招聘岗位
+                            <i class="iconfont icon-plus"></i> 添加
                         </a>
                     </div>
                 </div>
@@ -78,8 +86,8 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                         <tr>
                             <th>序号</th>
                             <th>职位</th>
-                            <th>招聘类型</th>
-                            <th>人数</th>
+                            <th>工作地点</th>
+                            <th>部门</th>
                             <th>显示?</th>
                             <th style="min-width:120px;">创建日期</th>
                             <th style="min-width:120px;">操作</th>
@@ -93,11 +101,11 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                             <tr>
                                 <td><?php echo $row['importance']; ?></td>
                                 <td><?php echo $row['title']; ?></td>
+                                <td><?php echo $row['city']; ?></td>
                                 <td><?php echo $row['department']; ?></td>
-                                <td><?php echo $row['population']; ?></td>
-                                <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
+                                <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
                                 <td>
-                                    <?php echo date('Y-m-d', $row['added_date']); ?>
+                                    <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>
                                 </td>
                                 <td>
                                     <a href='job_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm' title="编辑">
@@ -149,26 +157,24 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                 locale: "zh_CN"
             });
 
-            $(".btn-delete").click(function() {
+            $(".btn-delete").click(function(){
                 var $that = $(this);
-                bootbox.confirm("删除后招聘岗位将无法恢复，您确定要删除吗？", function(result) {
+                bootbox.confirm("删除后将无法恢复，您确定要删除吗？", function (result) {
                     if (result) {
-                        var productId = $that.attr("data-id");
+                        var id = $that.attr("data-id");
 
                         $.ajax({
-                            url: 'job_delete.php',
-                            type: 'POST',
-                            data: {
-                                id: productId
-                            },
-                            success: function(res) {
+                            url : 'job_post.php',
+                            type : 'POST',
+                            data : {id:id,action:"delete"},
+                            success : function(res) {
 
-                                var myobj = JSON.parse(res);
-                                console.log(myobj.status);
+                                var myobj = JSON.parse(res);                    
+                                //console.log(myobj.status);
                                 if (myobj.status === 1) {
-                                    toastr.success(myobj.message);
-                                    $that.closest("tr").remove();
-                                }
+                                    toastr.success(myobj.message);  
+                                    $that.closest("tr").remove();                                   
+                                } 
                                 if (myobj.status === 2) {
                                     toastr.error(myobj.message)
                                 }
@@ -177,21 +183,20 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
                                 }
                             }
                         });
-
                     }
-
 
                 });
 
-
             });
+
+         
 
             $(".btn-active").click(function() {
                 var $that = $(this);
                 var jobId = $that.attr("data-id");
 
                 $.ajax({
-                    url: 'job_actions.php',
+                    url: 'job_post.php',
                     type: 'POST',
                     data: {
                         id: jobId,
@@ -215,34 +220,31 @@ $jobs = $jobClass->get_paged_jobs($keyword, $currentPage, $itemsPerPage);
 
             });
 
+            $(".btn-copy").click(function(){
+            var $that = $(this);           
+            var id = $that.attr("data-id");
 
-            $(".btn-copy").click(function() {
-                var $that = $(this);
-                var jobId = $that.attr("data-id");
-
-                $.ajax({
-                    url: 'job_actions.php',
-                    type: 'POST',
-                    data: {
-                        id: jobId,
-                        action: "copy"
-                    },
-                    success: function(res) {
-                        var myobj = JSON.parse(res);
-
-                        if (myobj.status === 1) {
-                            location.reload();
-                        }
-                        if (myobj.status === 2) {
-                            toastr.error(myobj.message)
-                        }
-                        if (myobj.status === 3) {
-                            toastr.info(myobj.message)
-                        }
+            $.ajax({
+                url : 'job_post.php',
+                type : 'POST',
+                data : {id:id,action:"copy"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                  
+                    if (myobj.status === 1) {                                            
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
                     }
-                });
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
 
-            });
+        });
+            
 
         });
     </script>

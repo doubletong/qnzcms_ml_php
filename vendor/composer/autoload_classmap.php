@@ -15,6 +15,7 @@ return array(
     'Models\\EmailTemplate' => $baseDir . '/src/Models/EmailTemplate.php',
     'Models\\Exhibition' => $baseDir . '/src/Models/Exhibition.php',
     'Models\\I18N' => $baseDir . '/src/Models/I18N.php',
+    'Models\\Job' => $baseDir . '/src/Models/Job.php',
     'Models\\Link' => $baseDir . '/src/Models/Link.php',
     'Models\\Metadata' => $baseDir . '/src/Models/Metadata.php',
     'Models\\Offer' => $baseDir . '/src/Models/Offer.php',

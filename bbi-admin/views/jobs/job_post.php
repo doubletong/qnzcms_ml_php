@@ -1,27 +1,120 @@
 <?php
-require_once('../../includes/common.php');
-require_once('../../data/job.php');
 
-$jobClass = new TZGCMS\Admin\Job();
+require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+use Models\Job;
 
-if (isset( $_POST['title'], $_POST['department'])) {
-    $jobId = $_POST['jobId'];
-    $title = $_POST['title'];
-    $department = isset($_POST['department'])?$_POST['department']:"";
-    $address =  isset($_POST['address'])?$_POST['address']:""; 
-    $population = $_POST['population'];
-    $content = stripslashes($_POST['content']);
-    $importance = $_POST['importance'];
-    $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
-    if($_POST['jobId']>0){
-        echo $jobClass->update_job($jobId,$title, $department, $address, $population, $content,$importance, $active);
-    }else{
-        echo $jobClass->insert_job($title, $department, $address, $population, $content,$importance, $active);
+if( isset($_POST['action']) && isset($_POST['id'])){
+
+    $id=$_POST['id'];
+    $username = $_SESSION['valid_user'] ;
+
+    switch ($_POST['action']) {
+        case "create": 
+            if (!isset($_POST['title'], $_POST['responsibilities'])) {   
+
+                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+                echo json_encode($result);  
+                return;
+            }
+            
+          
+            $item = new Job();
+            $item->title = $_POST['title'];
+            $item->city = $_POST['city'];
+            $item->department = $_POST['department'];
+            $item->responsibilities = stripslashes($_POST['responsibilities']);
+            $item->requirement = stripslashes($_POST['requirement']);
+            $item->population = $_POST['population'];
+            $item->importance = $_POST['importance'];
+            $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
+            $item->added_by = $username;
+
+     
+            $result = $item->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
+            }   
+
+            break;   
+        case "update": 
+            if (!isset($_POST['title'], $_POST['responsibilities'])) {   
+
+                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+                echo json_encode($result);  
+                return;
+            }
+          
+        
+            $item = Job::find($id);
+            $item->title = $_POST['title'];
+            $item->city = $_POST['city'];
+            $item->department = $_POST['department'];
+            $item->responsibilities = stripslashes($_POST['responsibilities']);
+            $item->requirement = stripslashes($_POST['requirement']);
+            $item->population = $_POST['population'];
+            $item->importance = $_POST['importance'];
+            $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
+            
+            $result = $item->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
+            }   
+         
+            break;   
+        case "delete": 
+            $item = Job::find($id);
+            $result = $item->delete();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'删除失败'));  
+            }   
+            break;   
+        case "active":
+            $item = Job::find($id);
+            $item->active = ($item->active)==1?0:1;
+            $result = $item->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
+            }   
+            break;
+        case "recommend":
+            $item = Job::find($id);
+            $item->recommend = ($item->recommend)==1?0:1;
+            $result = $item->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
+            }   
+            break;
+        case "copy":
+            $item = Job::find($id);
+            $new_item = $item->replicate(); //copy attributes
+            $new_item->title = $new_item->title."【拷贝】";
+            $result = $new_item->push(); //save model before you recreate relations (so it has an id)
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'拷贝成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'拷贝失败'));  
+            }   
+            break;
     }
-
+    
 }else{
-    $result = array ('status'=>2,'message'=>'主题与类型不能为空！');
+    $result = array ('status'=>2,'message'=>'未传递Id或操作命令');
     echo json_encode($result);  
 }
+
+
+
+
 

@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 use Models\Page;
 use Models\Metadata;
 
-$alias = 'about';  // $_GET['alias'];
+$alias = 'qualifications';  // $_GET['alias'];
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -19,7 +19,7 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
 
-    $key = "/pages/about";
+    $key = "/pages/qualifications";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
@@ -56,3 +56,4 @@ $twig->addGlobal('uri', $uri);
 echo $twig->render('about/index.html', $result);
 
 ?>
+

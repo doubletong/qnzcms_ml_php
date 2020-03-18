@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
+
 require_once('../../includes/common.php');
-require_once('../../../config/database.php');
+
 
 use Models\ApplicationArea;
 use JasonGrimes\Paginator;

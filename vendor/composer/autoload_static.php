@@ -231,6 +231,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\EmailTemplate' => __DIR__ . '/../..' . '/src/Models/EmailTemplate.php',
         'Models\\Exhibition' => __DIR__ . '/../..' . '/src/Models/Exhibition.php',
         'Models\\I18N' => __DIR__ . '/../..' . '/src/Models/I18N.php',
+        'Models\\Job' => __DIR__ . '/../..' . '/src/Models/Job.php',
         'Models\\Link' => __DIR__ . '/../..' . '/src/Models/Link.php',
         'Models\\Metadata' => __DIR__ . '/../..' . '/src/Models/Metadata.php',
         'Models\\Offer' => __DIR__ . '/../..' . '/src/Models/Offer.php',
