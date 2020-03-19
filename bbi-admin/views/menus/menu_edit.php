@@ -1,35 +1,43 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/menu.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 
-$cateModel = new TZGCMS\Admin\Menu();
-$did = isset($_GET['did']) ? $_GET['did'] : "";
+use Models\Menu;
+use Models\Metadata;
+
+$did = isset($_GET['gid']) ? $_GET['gid'] : "";
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = $cateModel->fetch_data($id);
+    $data = Menu::find($id);
+
+    $module = ModuleType::URL();
+    $url = $data['url'];
+    $metadata = Metadata::where('module_type',$module)->where('key_value',$url)->first();
 }
 
 $pageTitle = isset($_GET['id'])?"编辑栏目":"创建栏目";
+$action = isset($_GET['id'])?"update":"create";
 
-$categories = $cateModel->fetch_all($did);
-function buildTree(array $elements, $parentId = 0) {
-    $branch = array();
+$menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orderBy('importance', 'DESC')->get();
 
-    foreach ($elements as $element) {
-        if ($element['parent_id'] == $parentId) {
-            $children = buildTree($elements, $element['id']);
-            if ($children) {
-                $element['children'] = $children;
-            }         
-            $branch[] = $element;
-        }
-    }
+// function buildTree(array $elements, $parentId = 0) {
+//     $branch = array();
 
-    return $branch;
-}
+//     foreach ($elements as $element) {
+//         if ($element['parent'] == $parentId) {
+//             $children = buildTree($elements, $element['id']);
+//             if ($children) {
+//                 $element['children'] = $children;
+//             }         
+//             $branch[] = $element;
+//         }
+//     }
 
-$tree = buildTree($categories);
+//     return $branch;
+// }
+
+// $tree = $categories->count()>0 ? buildTree($categories) : null;
 
 
 
@@ -61,8 +69,9 @@ $tree = buildTree($categories);
                         </div>
 
                         <div class="card-body">
-                            <input id="menu_id" type="hidden" name="menu_id" value="<?php echo isset($data['id'])?$data['id']:0;?>" />
-                            <input id="dictionary_id" type="hidden" name="dictionary_id" value="<?php echo $did; ?>" />
+                            <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0;?>" />
+                            <input id="group_id" type="hidden" name="group_id" value="<?php echo $did; ?>" />
+                            <input type="hidden" id="action" name="action" value="<?php echo $action; ?>" />
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -78,15 +87,19 @@ $tree = buildTree($categories);
                                         <input type="text" class="form-control" id="url" name="url" value="<?php echo isset($data['url'])?$data['url']:''; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="parent_id">父链接</label>                                     
-                                        <select class="form-control" id="parent_id" name="parent_id" placeholder="" >
+                                        <label for="title">图标</label>
+                                        <input type="text" class="form-control" id="icon" name="icon" value="<?php echo isset($data['icon'])?$data['icon']:''; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent">父链接</label>                                     
+                                        <select class="form-control" id="parent" name="parent" placeholder="" >
                                             <option value="0">--请选择父链接--</option>
-                                            <?php foreach( $tree as $model)
+                                            <?php foreach( $menus as $model)
                                             {
                                                
-                                                  if(isset($data['parent_id']) && $model["id"]=== $data["parent_id"]){
+                                                  if(isset($data['parent']) && $model["id"]=== $data["parent"]){
                                                 ?>
-                                                    <option value="<?php echo $model["id"]; ?>"  <?php echo $model["id"]==$data["parent_id"]?"selected":""; ?> ><?php echo $model["title"]; ?></option>
+                                                    <option value="<?php echo $model["id"]; ?>"  <?php echo $model["id"]==$data["parent"]?"selected":""; ?> ><?php echo $model["title"]; ?></option>
 
                                                   <?php } else{  ?>
                                                     <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
@@ -95,9 +108,9 @@ $tree = buildTree($categories);
 
                                                     if($model['children']){ 
                                                         foreach( $model['children'] as $subModel){
-                                                            if(isset($data['parent_id']) && $subModel["id"]=== $data["parent_id"]){
+                                                            if(isset($data['parent']) && $subModel["id"]=== $data["parent"]){
                                                                 ?>
-                                                    <option value="<?php echo $subModel["id"]; ?>" <?php echo $subModel["id"]==$data["parent_id"]?"selected":""; ?> > - <?php echo $subModel["title"]; ?></option>
+                                                    <option value="<?php echo $subModel["id"]; ?>" <?php echo $subModel["id"]==$data["parent"]?"selected":""; ?> > - <?php echo $subModel["title"]; ?></option>
 
                                                 <?php  } else{?>
                                                     <option value="<?php echo $subModel["id"]; ?>" > - <?php echo $subModel["title"]; ?></option>
@@ -124,6 +137,30 @@ $tree = buildTree($categories);
                                             <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">
                                             <label class="form-check-label" for="chkActive">发布</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">                                   
+                                    <div class="card" style="width:300px;">
+                                        <div class="card-header">SEO</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="title">SEO标题</label>
+                                                <input type="text" class="form-control" id="seotitle" name="seotitle" placeholder="" value="<?php echo isset($metadata['title'])?$metadata['title']:''; ?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="description">SEO描述</label>
+                                                <textarea class="form-control" id="seodescription" name="seodescription" rows="6" placeholder=""><?php echo isset($metadata['description'])?$metadata['description']:''; ?></textarea>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="keywords">关键字</label>
+
+                                                <input type="text" class="form-control" id="seokeywords" name="seokeywords" placeholder="" value="<?php echo isset($metadata['keywords'])?$metadata['keywords']:'';  ?>">
+
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                

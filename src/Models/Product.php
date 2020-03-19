@@ -9,14 +9,14 @@ class Product extends Model
     *
     * @var string
     */
-    protected $table = "products_v1";
+    protected $table = "products";
   /**
    * fields allowed to be inserted
    *
    * @var array
    */
    protected $fillable = [
-       'title','content','pdf', 'importance', 'active','added_by','category_id'
+       'title','content','thumbnail', 'importance', 'active','added_by','category_id'
    ];
 
     public function category()

@@ -16,21 +16,36 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 echo json_encode($result);  
                 return;
             }
+            $image_url = "";
+            if(!empty($_POST['image_url01'])){
+                $image_url = $_POST['image_url01'];
+            }
+            if(!empty($_POST['image_url02'])){
+                $image_url += '|'. $_POST['image_url02'];
+            }
+            if(!empty($_POST['image_url03'])){
+                $image_url += '|'. $_POST['image_url03'];
+            }
+            if(!empty($_POST['image_url04'])){
+                $image_url += '|'. $_POST['image_url04'];
+            }
                      
-            $title = $_POST['title'];
-            $category_id = $_POST['category_id'];
-            $pdf = $_POST['pdf'];
-            $content = stripslashes($_POST['content']);          
-            $importance = $_POST['importance'];
-            $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
             $region = new Product();
-            $region->title = $title;
-            $region->category_id = $category_id;
-            $region->content = $content;
-            $region->importance = $importance;
-            $region->pdf = $pdf;                
-            $region->active = $active;
+            $region->title = $_POST['title'];
+            $region->category_id = $_POST['category_id'];
+            $region->content = stripslashes($_POST['content']);
+            $region->feature = stripslashes($_POST['feature']);
+            $region->reference = stripslashes($_POST['reference']);
+            $region->application = stripslashes($_POST['application']);
+            $region->code = stripslashes($_POST['code']);
+            $region->downloads = stripslashes($_POST['downloads']);
+
+            $region->importance = $_POST['importance'];
+            $region->thumbnail = $_POST['thumbnail'];
+            $region->image_url = $image_url;
+            $region->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
+
             $region->added_by = $username;
 
             $result = $region->save();
@@ -50,21 +65,35 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }
 
           
-            $title = $_POST['title'];
-            $pdf = $_POST['pdf'];
-            $content = stripslashes($_POST['content']);          
-            $importance = $_POST['importance'];
-            $category_id = $_POST['category_id'];
-            $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
+            $image_url = "";
+            if(!empty($_POST['image_url01'])){
+                $image_url = $_POST['image_url01'];
+            }
+            if(!empty($_POST['image_url02'])){
+                $image_url = $image_url.'|'. $_POST['image_url02'];
+            }
+            if(!empty($_POST['image_url03'])){
+                $image_url = $image_url.'|'. $_POST['image_url03'];
+            }
+            if(!empty($_POST['image_url04'])){
+                $image_url = $image_url.'|'. $_POST['image_url04'];
+            }
+                     
 
             $region = Product::find($id);
-            $region->title = $title;
-            $region->category_id = $category_id;
-            $region->content = $content;
-            $region->importance = $importance;
-            $region->pdf = $pdf;                
-            $region->active = $active;
-            $region->added_by = $username;
+            $region->title = $_POST['title'];
+            $region->category_id = $_POST['category_id'];
+            $region->content = stripslashes($_POST['content']);
+            $region->feature = stripslashes($_POST['feature']);
+            $region->reference = stripslashes($_POST['reference']);
+            $region->application = stripslashes($_POST['application']);
+            $region->code = stripslashes($_POST['code']);
+            $region->downloads = stripslashes($_POST['downloads']);
+
+            $region->importance = $_POST['importance'];
+            $region->thumbnail = $_POST['thumbnail'];
+            $region->image_url = $image_url;
+            $region->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
             $result = $region->save();
             if($result==true){

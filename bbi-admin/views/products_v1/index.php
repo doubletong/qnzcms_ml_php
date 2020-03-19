@@ -12,7 +12,7 @@ $urlPattern = "index.php?page=(:num)";
  //搜索条件判断
  $query = $product->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'content', 'category_id','importance','active','created_at');
+}])->select('id','title', 'thumbnail', 'category_id','importance','active','created_at');
 
 $keyword = null;
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
@@ -114,6 +114,7 @@ function recursive($items, $level, $cid){
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>          
+                    <th>缩略图</th>
                     <th>主题</th>
                     <th>分类</th>
                     <th>排序</th>
@@ -128,7 +129,7 @@ function recursive($items, $level, $cid){
                 {
                     echo "<tr>";
                 ?>
-                  
+                   <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
                     <td><?php echo $row['title'] ;?></td> 
                     <td><?php echo $row['category']['title'] ;?></td> 
                     <td><?php echo $row['importance'] ;?></td>         
@@ -186,7 +187,7 @@ function recursive($items, $level, $cid){
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.products_v1").addClass("nav-open").find("ul>li.countries a").addClass("active");     
+            $(".mainmenu>li.products_v1").addClass("nav-open").find("ul>li.list a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"

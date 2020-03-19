@@ -1,6 +1,5 @@
 <?php
 require_once('../../includes/common.php');
-require '../../../vendor/autoload.php';
 
 use JasonGrimes\Paginator;
 use Models\Page;

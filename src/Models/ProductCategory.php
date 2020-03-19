@@ -8,7 +8,7 @@ class ProductCategory extends Model
     *
     * @var string
     */
-    protected $table = "product_categories_v1";
+    protected $table = "product_categories";
    /**
     * fields allowed to be inserted
     *

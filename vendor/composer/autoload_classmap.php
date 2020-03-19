@@ -17,6 +17,7 @@ return array(
     'Models\\I18N' => $baseDir . '/src/Models/I18N.php',
     'Models\\Job' => $baseDir . '/src/Models/Job.php',
     'Models\\Link' => $baseDir . '/src/Models/Link.php',
+    'Models\\Menu' => $baseDir . '/src/Models/Menu.php',
     'Models\\Metadata' => $baseDir . '/src/Models/Metadata.php',
     'Models\\Offer' => $baseDir . '/src/Models/Offer.php',
     'Models\\Page' => $baseDir . '/src/Models/Page.php',
