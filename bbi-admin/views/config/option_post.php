@@ -1,8 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/data/option.php');
 
-$optionClass = new \TZGCMS\Admin\SiteOption();
+use Models\Option;
 
 $config_type = $_POST['config_type'];
 
@@ -16,14 +15,33 @@ switch ($config_type) {
         $port = $_POST['port'];
         $SMTPSecure = isset($_POST['SMTPSecure']) && $_POST['SMTPSecure']  ? "1" : "0";
 
-        $config_values = array("host" => $host, "username" =>  $username, "password" =>  $password, "port" =>  $port, "SMTPSecure" =>  $SMTPSecure);
+        $email_contact = $_POST['email_contact'];
 
-        $data = $optionClass->get_config($config_name);
+        $config_values = array("host" => $host, "username" =>  $username, "password" =>  $password, "port" =>  $port, "SMTPSecure" =>  $SMTPSecure, "email_contact" => $email_contact);
 
-        if (!empty($data)) {
-            echo $optionClass->update_config($config_name, $config_values);
+        $data = Option::find($config_name);
+        
+        if (isset($data)) {
+            $data->config_values = $config_values;         
+            $result = $data->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
+            }   
+            
         } else {
-            echo $optionClass->insert_config($config_name, $config_values);
+            $option = new Option();
+            $option -> config_name = $config_name;
+            $option->config_values = $config_values;
+            $result = $option->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
+            }   
+
+            //echo $optionClass->insert_config($config_name, $config_values);
         }
 
         break;
@@ -37,7 +55,7 @@ switch ($config_type) {
         $hotPhone = $_POST['hotPhone'];
         $phone = $_POST['phone'];
         $email = $_POST['email'];
-        $email_contact = $_POST['email_contact'];
+       
         $address = $_POST['address'];
         $theme = $_POST['theme'];
         $wechat = $_POST['wechat'];
@@ -55,17 +73,35 @@ switch ($config_type) {
         $config_values = array(
             "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2, "wechat" =>  $wechat,
             "qrcode" =>  $qrcode, "webnumber" =>  $webnumber, "company"=>$company,
-            "email" =>  $email, "email_contact" => $email_contact,"hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
+            "email" =>  $email, "hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
             "keywords" => $keywords, "description" => $description, "hremail" =>  $hremail, "qq" => $qq, "weibo" =>  $weibo,
             "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone, "enableCaching" => $enableCaching
         );
 
-        $data = $optionClass->get_config($config_name);
+        $data = Option::find($config_name);
+        //$optionClass->get_config($config_name);
 
-        if (!empty($data)) {
-            echo $optionClass->update_config($config_name, $config_values);
+        if (isset($data)) {
+            $data->config_values = $config_values;         
+            $result = $data->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
+            }   
+            
         } else {
-            echo $optionClass->insert_config($config_name, $config_values);
+            $option = new Option();
+            $option -> config_name = $config_name;
+            $option->config_values = $config_values;
+            $result = $option->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
+            }   
+
+            //echo $optionClass->insert_config($config_name, $config_values);
         }
         break;
     default:

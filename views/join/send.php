@@ -1,6 +1,7 @@
 <?php
 require_once("../../includes/common.php");
-require_once('../../data/option.php');
+
+use Models\Option;
 
 session_start();
 
@@ -16,8 +17,8 @@ use PHPMailer\PHPMailer\Exception;
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Checking that the posted phrase match the phrase stored in the session
   
-        $model = $siteOptionClass->get_config("smtp");
-        $data  = json_decode($model['config_values'],true);
+        $model = Option::find("smtp");
+        $data  = json_decode($model->config_values,true);
 
 
         // Instantiation and passing `true` enables exceptions

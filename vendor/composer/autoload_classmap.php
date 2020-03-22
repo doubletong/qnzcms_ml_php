@@ -20,6 +20,7 @@ return array(
     'Models\\Menu' => $baseDir . '/src/Models/Menu.php',
     'Models\\Metadata' => $baseDir . '/src/Models/Metadata.php',
     'Models\\Offer' => $baseDir . '/src/Models/Offer.php',
+    'Models\\Option' => $baseDir . '/src/Models/Option.php',
     'Models\\Page' => $baseDir . '/src/Models/Page.php',
     'Models\\Position' => $baseDir . '/src/Models/Position.php',
     'Models\\Product' => $baseDir . '/src/Models/Product.php',

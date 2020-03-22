@@ -7,22 +7,23 @@ require_once('data/article.php');
 require_once('data/topics.php');
 require_once('data/team.php');
 require_once('data/chronicle.php');
-require_once('data/job.php');
+
 //实例化操作系统与浏览器信息
 $obj = new OS_BROWSER();
 
 use Models\Advertisement;
 use Models\Exhibition;
 use Models\Page;
+use Models\Job;
 
 $adsCount = Advertisement::count();
 $pageCount = Page::count();
 $exhCount = Exhibition::count();
+$jobCount = Job::count();
 
  $linkClass = new TZGCMS\Admin\LinkRepository();
 $articleClass = new TZGCMS\Admin\Article();
 $chronicleClass = new TZGCMS\Admin\Chronicle();
-$jobClass = new TZGCMS\Admin\Job();
  $topicsClass = new Topics();
  $productClass = new TZGCMS\Admin\Product();
 $teamClass = new TZGCMS\Admin\Team();
@@ -155,7 +156,7 @@ $teamClass = new TZGCMS\Admin\Team();
                                     </div>
                                     <div class="col">
                                         <small>招聘岗位</small>
-                                        <div class="num"><?php echo $jobClass->get_jobs_count(null);?> <span>pcs</span></div>
+                                        <div class="num"><?php echo $jobCount;?> <span>pcs</span></div>
                                     </div>
                                 </div>
                                 </a>

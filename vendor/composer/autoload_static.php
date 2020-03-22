@@ -236,6 +236,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Menu' => __DIR__ . '/../..' . '/src/Models/Menu.php',
         'Models\\Metadata' => __DIR__ . '/../..' . '/src/Models/Metadata.php',
         'Models\\Offer' => __DIR__ . '/../..' . '/src/Models/Offer.php',
+        'Models\\Option' => __DIR__ . '/../..' . '/src/Models/Option.php',
         'Models\\Page' => __DIR__ . '/../..' . '/src/Models/Page.php',
         'Models\\Position' => __DIR__ . '/../..' . '/src/Models/Position.php',
         'Models\\Product' => __DIR__ . '/../..' . '/src/Models/Product.php',

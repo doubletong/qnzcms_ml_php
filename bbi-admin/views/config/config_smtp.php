@@ -1,12 +1,10 @@
 <?php
 require_once('../../includes/common.php');
-require_once('../../data/option.php');
 
+use Models\Option;
 
-$optionClass = new SiteOption();
-$model = $optionClass->get_config("smtp");
-
-$data  = json_decode($model['config_values'],true);
+$option = Option::find("smtp");
+$data  = json_decode($option->config_values,true);
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +12,7 @@ $data  = json_decode($model['config_values'],true);
 <head>
     <title><?php echo "邮件服务配置_组件_后台管理_".$site_info['sitename'];?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/meta.php') ?>
-    <link href="/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+    <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -33,31 +31,44 @@ $data  = json_decode($model['config_values'],true);
         </div>
         <div class="card-body">
             <input type="hidden" name='config_type' value="smtp" />
-                <div class="form-group">
-                    <label for="title">smtp主机</label>                  
-                    <input type="text" class="form-control" id="host" name="host" placeholder="" value="<?php echo $data['host'];?>">                  
-                </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="title">smtp主机</label>                  
+                        <input type="text" class="form-control" id="host" name="host" placeholder="" value="<?php echo $data['host'];?>">                  
+                    </div>
 
-                <div class="form-group">
-                    <label for="username">帐号</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="" value="<?php echo $data['username'];?>">                   
-                </div>
-                <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="" value="<?php echo $data['password'];?>">                   
-                </div>
+                    <div class="form-group">
+                        <label for="username">帐号</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="" value="<?php echo $data['username'];?>">                   
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="" value="<?php echo $data['password'];?>">                   
+                    </div>
 
-                <div class="form-group">
-                    <label for="port">端口</label>
-                    <input type="number" class="form-control" id="port" name="port" value="<?php echo $data['port']; ?>" placeholder="">                 
-                </div>
+                    <div class="form-group">
+                        <label for="port">端口</label>
+                        <input type="number" class="form-control" id="port" name="port" value="<?php echo $data['port']; ?>" placeholder="">                 
+                    </div>
 
-                <div class="form-group">
-                    <div class="form-check">
-                    <input type="checkbox" class="form-check-input" <?php echo $data['SMTPSecure']?"checked":"";?> id="chkActive" name="SMTPSecure">                          
-                    <label class="form-check-label" for="chkActive">SSL</label>
+                    <div class="form-group">
+                        <div class="form-check">
+                        <input type="checkbox" class="form-check-input" <?php echo $data['SMTPSecure']?"checked":"";?> id="chkActive" name="SMTPSecure">                          
+                        <label class="form-check-label" for="chkActive">SSL</label>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+             
+                    <div class="form-group">
+                        <label for="email_contact">联系表单接收邮箱</label>
+                        <input type="email" class="form-control" id="email_contact" name="email_contact" placeholder="" value="<?php echo !empty($data['email_contact']) ? $data['email_contact'] : ""; ?>">
+                    </div>
+                             
+                </div>
+            </div>
+                
 
              
 
@@ -75,9 +86,9 @@ $data  = json_decode($model['config_values'],true);
 
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/scripts.php'); ?> 
 
-<script src="/js/vendor/holderjs/holder.min.js"></script>
-<script src="/js/vendor/toastr/toastr.min.js"></script>
-<script src="/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/assets/js/vendor/holderjs/holder.min.js"></script>
+<script src="/assets/js/vendor/toastr/toastr.min.js"></script>
+<script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
 

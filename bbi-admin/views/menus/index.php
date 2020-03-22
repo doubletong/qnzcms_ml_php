@@ -116,7 +116,7 @@ function build_menu($rows, $parent = 0)
                                         <h4 style="margin:0;">页底导航</h4>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="menu_add.php?gid=<?php echo $group_id2; ?>" class="btn btn-primary">
+                                        <a href="menu_edit.php?gid=<?php echo $group_id2; ?>" class="btn btn-primary">
                                             <i class="iconfont icon-plus"></i> 添加栏目
                                         </a>
                                     </div>
