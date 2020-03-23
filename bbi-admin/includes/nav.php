@@ -185,10 +185,17 @@
                             <i class="iconfont icon-video"></i> <span class="nav-text">视频中心</span>                    
                         </a>
                     </li>
-                    <li class="downloads" hidden>
-                        <a href="/bbi-admin/documents.php">
-                            <i class="iconfont icon-download"></i> <span class="nav-text">下载中心</span>                    
+            
+
+                    <li class="down-nav downloads">
+                        <a href="#">
+                            <i class="iconfont icon-left float-right"></i>   
+                            <i class="iconfont icon-download"></i> <span class="nav-text">下载中心</span> 
                         </a>
+                        <ul class="subnav">
+                           <li class="list"><a href="/bbi-admin/views/downloads/index.php">下载列表</a></li> 
+                           <li class="categories"><a href="/bbi-admin/views/downloads/categories.php">分类</a></li>                  
+                       </ul>                        
                     </li>
                     <li class="down-nav carousels">
                         <a href="#">

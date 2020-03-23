@@ -46,9 +46,11 @@ if($site_info['enableCaching']=="1"){
     $result = ['metadata' => $metadata,'page' => $data];
 }
 
+//print_r($menutree);
 
 $twig->addGlobal('site', $site_info);
-$twig->addGlobal('menus', $menutree);
+$twig->addGlobal('menus', $menutree['mainav']);
+$twig->addGlobal('breadcrumb', $menutree['breadcrumb']);
 $twig->addGlobal('navbot', $menus_bot);
 $twig->addGlobal('uri', $uri);
 

@@ -12,6 +12,8 @@ return array(
     'Models\\ApplicationArea' => $baseDir . '/src/Models/ApplicationArea.php',
     'Models\\Carousel' => $baseDir . '/src/Models/Carousel.php',
     'Models\\Country' => $baseDir . '/src/Models/country.php',
+    'Models\\Download' => $baseDir . '/src/Models/Download.php',
+    'Models\\DownloadCategory' => $baseDir . '/src/Models/DownloadCategory.php',
     'Models\\EmailTemplate' => $baseDir . '/src/Models/EmailTemplate.php',
     'Models\\Exhibition' => $baseDir . '/src/Models/Exhibition.php',
     'Models\\I18N' => $baseDir . '/src/Models/I18N.php',

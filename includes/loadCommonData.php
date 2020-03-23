@@ -1,37 +1,21 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/Utils/common.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 use Phpfastcache\CacheManager;
 use Phpfastcache\Config\ConfigurationOption;
 use Models\Menu;
 
+$commonClass = new QNZ\Utils\Common();
+
 CacheManager::setDefaultConfig(new ConfigurationOption([
     'path' => $_SERVER['DOCUMENT_ROOT'].'/assets/caches/tmp', // 缓存路径 or in windows "C:/tmp/"
 ]));
 
-//获取公用数据
-// require_once($_SERVER['DOCUMENT_ROOT'] . "/data/menu.php");
 
-// $menuClass = new Menu();
 
 $uri = $_SERVER['REQUEST_URI'];
 
-
-//构建树形导航
-// function buildMenuTree(array $elements, $parentId = 0)
-// {
-//     $branch = array();
-//     foreach ($elements as $element) {
-//         if ($element['parent_id'] == $parentId) {
-//             $children = buildMenuTree($elements, $element['id']);
-//             if ($children) {
-//                 $element['children'] = $children;
-//             }
-//             $branch[] = $element;
-//         }
-//     }
-//     return $branch;
-// }
 
 //缓存设置
 if($site_info['enableCaching']=="1"){
@@ -41,12 +25,16 @@ if($site_info['enableCaching']=="1"){
     $keyMainav = "mainav";  //主导航
     $Cached_mainav = $InstanceCache->getItem($keyMainav);
   
-    if (!$Cached_mainav->isHit()) {
-   
-        //$menus = $menuClass->get_all_menu(32);     
-        $menutree = Menu::with('children')->where('active',1)
-            ->where('group_id',1)
-            ->where('parent',0)->orderBy('importance', 'DESC')->get();
+    if (!$Cached_mainav->isHit()) {   
+    
+        $menus = Menu::where('active',1)->where('group_id',1)->orderBy('importance', 'DESC')->get();
+        $menutree = $commonClass->buildMenuTree($menus->toArray(),0);
+
+
+        $currentMenu =  $menus->where('url',$uri)->first();
+        $breadcrumb = $commonClass->breadcrumb($menus->toArray(),$currentMenu->id);
+
+        $menutree =  ['mainav' => $menutree,'breadcrumb'=>$breadcrumb];
 
         $Cached_mainav->set($menutree)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($Cached_mainav);    // Save the cache item just like you do with doctrine and entities       
@@ -67,9 +55,15 @@ if($site_info['enableCaching']=="1"){
     $menus_bot = $Cached_botnav->get();
 
 }else{
-   // $menus = $menuClass->get_all_menu(32);     
-    $menutree = Menu::with('children')->where('active',1)->where('group_id',1)
-        ->where('parent',0)->orderBy('importance', 'DESC')->get();
+     
+    $menus = Menu::where('active',1)->where('group_id',1)->orderBy('importance', 'DESC')->get();
+    $menutree = $commonClass->buildMenuTree($menus->toArray(),0);
+   
+    $currentMenu =  $menus->where('url',$uri)->first();
+    $breadcrumb = $commonClass->breadcrumb($menus->toArray(),$currentMenu->id);
+
+    $menutree =  ['mainav' => $menutree,'breadcrumb'=>$breadcrumb];
+
     $menus_bot = Menu::with('children')->where('active',1)->where('group_id',2)->orderBy('importance', 'DESC')->get();
 }
 

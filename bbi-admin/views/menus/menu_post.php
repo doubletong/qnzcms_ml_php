@@ -50,6 +50,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $item->group_id =  $_POST['group_id'];
             $item->importance = $_POST['importance']; 
             $item->parent = isset($_POST['parent'])?$_POST['parent']:0; 
+            $item->new_window = isset($_POST['new_window']) && $_POST['new_window']  ? "1" : "0";
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
             $item->added_by = $username;
 
@@ -92,6 +93,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $item->group_id =  $_POST['group_id'];
             $item->importance = $_POST['importance']; 
             $item->parent = isset($_POST['parent'])?$_POST['parent']:0; 
+            $item->new_window = isset($_POST['new_window']) && $_POST['new_window']  ? "1" : "0";
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
             
 

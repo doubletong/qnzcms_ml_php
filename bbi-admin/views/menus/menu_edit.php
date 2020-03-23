@@ -131,7 +131,13 @@ $menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orde
                                         <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance'])?$data['importance']:0;?>" placeholder="值越大越排前">
                                     </div>
 
-                                   
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" <?php echo isset($data['new_window']) ? ($data['new_window']?"checked":"") : ""; ?> id="chkActive" name="new_window">
+                                            <label class="form-check-label" for="chkActive">新窗口打开</label>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" <?php echo isset($data['active']) ? ($data['active']?"checked":"") : "checked"; ?> id="chkActive" name="active">

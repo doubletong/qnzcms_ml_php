@@ -12,6 +12,7 @@ Capsule::schema()->create('menus', function ($table) {
        $table->integer('parent')->unsigned();  
        $table->integer('group_id')->unsigned();  
        $table->integer('importance')->unsigned();  
+       $table->boolean('new_window');
        $table->boolean('active');
        $table->string('added_by', 100);   
 
