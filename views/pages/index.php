@@ -53,9 +53,11 @@ if($site_info['enableCaching']=="1"){
 
 
 $twig->addGlobal('site', $site_info);
-$twig->addGlobal('menus', $menutree);
+$twig->addGlobal('menus', $menutree['mainav']);
+$twig->addGlobal('breadcrumb', $menutree['breadcrumb']);
 $twig->addGlobal('navbot', $menus_bot);
 $twig->addGlobal('uri', $uri);
+
 
 echo $twig->render('pages/index.html', $result);
 

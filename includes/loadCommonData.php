@@ -32,7 +32,7 @@ if($site_info['enableCaching']=="1"){
 
 
         $currentMenu =  $menus->where('url',$uri)->first();
-        $breadcrumb = $commonClass->breadcrumb($menus->toArray(),$currentMenu->id);
+        $breadcrumb = isset($currentMenu) ? $commonClass->breadcrumb($menus->toArray(),$currentMenu->id) : null;
 
         $menutree =  ['mainav' => $menutree,'breadcrumb'=>$breadcrumb];
 
@@ -60,11 +60,21 @@ if($site_info['enableCaching']=="1"){
     $menutree = $commonClass->buildMenuTree($menus->toArray(),0);
    
     $currentMenu =  $menus->where('url',$uri)->first();
-    $breadcrumb = $commonClass->breadcrumb($menus->toArray(),$currentMenu->id);
+    $breadcrumb =  isset($currentMenu) ? $commonClass->breadcrumb($menus->toArray(),$currentMenu->id) : null;
 
     $menutree =  ['mainav' => $menutree,'breadcrumb'=>$breadcrumb];
 
     $menus_bot = Menu::with('children')->where('active',1)->where('group_id',2)->orderBy('importance', 'DESC')->get();
+}
+
+function loadCommonDate(){
+    $menus = Menu::where('active',1)->where('group_id',1)->orderBy('importance', 'DESC')->get();
+    $menutree = $commonClass->buildMenuTree($menus->toArray(),0);
+   
+    $currentMenu =  $menus->where('url',$uri)->first();
+    $breadcrumb =  isset($currentMenu) ? $commonClass->breadcrumb($menus->toArray(),$currentMenu->id) : null;
+
+    return  ['mainav' => $menutree,'breadcrumb'=>$breadcrumb];
 }
 
 
