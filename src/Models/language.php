@@ -2,21 +2,23 @@
 
 namespace Models;
 use Illuminate\Database\Eloquent\Model;
-class I18N extends Model
+class Language extends Model
 {
    /**
     * 对应的数据表
     *
     * @var string
     */
-    protected $table = "i18n";
+    protected $table = "languages";
+    protected $primaryKey = 'code'; // or null
+    public $incrementing = false;
   /**
    * 允许插入的字段
    *
    * @var array
    */
    protected $fillable = [
-       'keyword', '	translation',	'created_by'
+       'code', 'name','issys','default','importance','active'
    ];
  }
 

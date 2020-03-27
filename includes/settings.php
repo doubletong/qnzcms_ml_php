@@ -5,7 +5,7 @@ return [
         'developer'=>'荷勒互动',
         'homepage'=>'http://www.inholy.com',
         'email' => 'twotong@gmail.com',
-        'version' => '1.1'
+        'version' => '1.2'
     ]
 ]
 ?>

@@ -3,6 +3,24 @@
 $config = include $_SERVER['DOCUMENT_ROOT'].'/includes/settings.php';
 require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
 
+$GLOBALS['Lang'] = include $_SERVER['DOCUMENT_ROOT'] .'/resources/admin.php';
+
+//print_r($GLOBALS['Lang']);
+ // 多语言函数
+ function lang($string)
+ {
+	 if(isset($GLOBALS['Lang'][$string]))
+	 {
+		 return $GLOBALS['Lang'][$string];
+	 }
+	 else
+	 {
+		 // 语言配置不存在原样输出
+		 return $string;
+	 }
+ }
+
+
 use Models\Metadata;
 
 session_start();

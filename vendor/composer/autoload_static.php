@@ -232,8 +232,8 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\DownloadCategory' => __DIR__ . '/../..' . '/src/Models/DownloadCategory.php',
         'Models\\EmailTemplate' => __DIR__ . '/../..' . '/src/Models/EmailTemplate.php',
         'Models\\Exhibition' => __DIR__ . '/../..' . '/src/Models/Exhibition.php',
-        'Models\\I18N' => __DIR__ . '/../..' . '/src/Models/I18N.php',
         'Models\\Job' => __DIR__ . '/../..' . '/src/Models/Job.php',
+        'Models\\Language' => __DIR__ . '/../..' . '/src/Models/language.php',
         'Models\\Link' => __DIR__ . '/../..' . '/src/Models/Link.php',
         'Models\\Menu' => __DIR__ . '/../..' . '/src/Models/Menu.php',
         'Models\\Metadata' => __DIR__ . '/../..' . '/src/Models/Metadata.php',
@@ -245,6 +245,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\ProductCategory' => __DIR__ . '/../..' . '/src/Models/ProductCategory.php',
         'Models\\Region' => __DIR__ . '/../..' . '/src/Models/region.php',
         'Models\\Reseller' => __DIR__ . '/../..' . '/src/Models/reseller.php',
+        'Models\\Resource' => __DIR__ . '/../..' . '/src/Models/resource.php',
         'Models\\User' => __DIR__ . '/../..' . '/src/Models/User.php',
     );
 

@@ -204,10 +204,8 @@
                         </a>
                         <ul class="subnav">
                            <li class="ads"><a href="/bbi-admin/views/carousels/index.php">广告</a></li> 
-                           <li class="position"><a href="/bbi-admin/views/carousels/positions.php">广告位</a></li>                       
-                  
-                       </ul>
-                        
+                           <li class="position"><a href="/bbi-admin/views/carousels/positions.php">广告位</a></li>                     
+                       </ul>                        
                     </li>
 
                     <li class="down-nav emails">
@@ -238,6 +236,8 @@
                             <i class="iconfont icon-setting"></i>  <span class="nav-text">系统</span> </a>
                             <ul class="subnav">
                             <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i> 基本设置</a></li>
+                            <li class="language"><a href="/bbi-admin/views/languages/index.php"><i class="iconfont icon-language"></i> 语言设置</a></li>
+                            <li class="resource"><a href="/bbi-admin/views/resources/index.php"><i class="iconfont icon-language"></i> 语言资源</a></li>
                             <li class="manager"><a href="/bbi-admin/administrators.php"><i class="iconfont icon-team"></i> 管理员</a></li>
                             <li class="manager_add"><a href="/bbi-admin/admin_add.php"><i class="iconfont icon-adduser"></i> 创建管理员</a></li>
                             

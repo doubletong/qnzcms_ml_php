@@ -1,6 +1,6 @@
 <?php
 require_once('includes/common.php');
-require_once('includes/environment.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/environment.php');
 require_once('data/link.php');
 require_once('data/product.php');
 require_once('data/article.php');
@@ -9,7 +9,7 @@ require_once('data/team.php');
 require_once('data/chronicle.php');
 
 //实例化操作系统与浏览器信息
-$obj = new OS_BROWSER();
+$obj = new QNZ\Utils\OS_BROWSER();
 
 use Models\Advertisement;
 use Models\Exhibition;
@@ -261,7 +261,7 @@ $teamClass = new TZGCMS\Admin\Team();
                         <div class="col-4">
                             <div class="card">
                                 <h5 class="card-header">
-                                    基本信息
+                                    <?php echo lang('General Information'); ?>
                                 </h5>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">网站名称：
@@ -286,7 +286,7 @@ $teamClass = new TZGCMS\Admin\Team();
                         <div class="col-4">
                             <div class="card">
                                 <h5 class="card-header">
-                                    系统环境
+                                    <?php echo lang('System Environments'); ?>
                                 </h5>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">操作系统：
@@ -312,7 +312,7 @@ $teamClass = new TZGCMS\Admin\Team();
                         <div class="col-4">
                             <div class="card">
                                 <h5 class="card-header">
-                                    系统信息
+                                    <?php echo lang('System Information'); ?>
                                 </h5>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">系统名称：

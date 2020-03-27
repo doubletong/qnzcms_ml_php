@@ -16,8 +16,8 @@ return array(
     'Models\\DownloadCategory' => $baseDir . '/src/Models/DownloadCategory.php',
     'Models\\EmailTemplate' => $baseDir . '/src/Models/EmailTemplate.php',
     'Models\\Exhibition' => $baseDir . '/src/Models/Exhibition.php',
-    'Models\\I18N' => $baseDir . '/src/Models/I18N.php',
     'Models\\Job' => $baseDir . '/src/Models/Job.php',
+    'Models\\Language' => $baseDir . '/src/Models/language.php',
     'Models\\Link' => $baseDir . '/src/Models/Link.php',
     'Models\\Menu' => $baseDir . '/src/Models/Menu.php',
     'Models\\Metadata' => $baseDir . '/src/Models/Metadata.php',
@@ -29,5 +29,6 @@ return array(
     'Models\\ProductCategory' => $baseDir . '/src/Models/ProductCategory.php',
     'Models\\Region' => $baseDir . '/src/Models/region.php',
     'Models\\Reseller' => $baseDir . '/src/Models/reseller.php',
+    'Models\\Resource' => $baseDir . '/src/Models/resource.php',
     'Models\\User' => $baseDir . '/src/Models/User.php',
 );

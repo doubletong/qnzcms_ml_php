@@ -53,6 +53,21 @@ class Str
         return (substr($haystack, -$length) === $needle);
     }
 
+
+    /**
+     * 栓测email格式
+     * @param $address
+     * @return bool
+     */
+    function valid_email($address) {
+        // check an email address is possibly valid
+        if (ereg('^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$', $address)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * 文件大小格式化
      *
