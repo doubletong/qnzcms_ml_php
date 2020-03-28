@@ -12,15 +12,24 @@ $pageClass = new Page;
 $query = $pageClass->select('id','title','alias','view_count','importance','active','created_at');
 
 $keyword = null;
+$orderby = $_GET['orderby'];
+$sort=$_GET['sort'];
+
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
     $query = $query->where('title','like','%'.$keyword.'%')
             ->orWhere('content','like','%'.$keyword.'%');
+
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
+if(!empty($orderby) && !empty($sort)){
+    $query = $query->orderBy($orderby, $sort);
+}else{
+    $query = $query->orderBy('importance', 'DESC');
+}
 
 $totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
@@ -29,8 +38,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$pages = $query->orderBy('importance', 'DESC')
-            ->skip(($currentPage-1)*$itemsPerPage)
+$pages = $query->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();
 
@@ -45,43 +53,107 @@ $pages = $query->orderBy('importance', 'DESC')
 
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
     <!-- nav start -->
     <?php require_once('../../includes/nav.php'); ?>
     <!-- /nav end -->
-    <section class="rightcol">            
+    <section class="rightcol" id="rightcol">      
         <?php require_once('../../includes/header.php'); ?>
 
-        <div class="container-fluid maincontent">
-            <div class="row">
-                <div class="col">
-                    <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                            <label class="sr-only" for="keyword">搜索</label>
-                            <input type="text" name="keyword" class="form-control mb-2" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
-                            </div>
-
-                            <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-2">搜索</button>
-                            </div>
+        <div class="main-content"> 
+            <div class="breadcrumb-container">
+                <div class="row">
+                    <div class="col-md">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="#">页面</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">列表</li>
+                        </ol>
+                    </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                </div>
+            </div> 
+            <div class="card">
+                <header class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-title-v1"> <i class="iconfont icon-link"></i>页面管理</div>
                         </div>
-                    </form>
+                        <div class="col-auto">
+                            <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                        </div>
+                    </div>
+                </header>
+                <section class="card-body">
+                <div class="card-toolbar mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                                <div class="form-row align-items-center">
+                                    <div class="col-auto">
+                                    <label class="sr-only" for="keyword">搜索</label>
+                                    <input type="text" name="keyword" class="form-control mb-2" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
+                                    </div>
+
+                                    <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-auto">
+                                <a href="page_edit.php" class="btn btn-primary">
+                                    <i class="iconfont icon-plus"></i>  添加页面
+                                </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-auto">
-                        <a href="page_edit.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i>  添加页面
-                        </a>
-                </div>
-            </div>
-            <table class="table table-hover table-bordered table-striped">
+                <div class="table-responsive">                 
+            <table class="table table-hover table-bordered table-striped box-table">
                 <thead>
                 <tr>                  
-                    <th>标题</th>
-                    <th>别名</th>
-                    <th>排序</th>
-                    <th>显示</th>
-                    <th>创建日期</th>
+                    <th>
+                    <?php if($orderby=='title'){ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=<?php echo $sort=='asc'?'desc':'asc';?>">标题<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                        <?php }else{ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
+                        <?php } ?>                    
+                    </th>
+                    </th>
+                    <th>
+                    <?php if($orderby=='alias'){ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=alias&sort=<?php echo $sort=='asc'?'desc':'asc';?>">别名<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                        <?php }else{ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=alias&sort=asc">别名<i class="iconfont icon-orderby"></i></a>
+                        <?php } ?>
+                    
+                    </th>
+                    <th>
+                        <?php if($orderby=='importance'){ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                        <?php }else{ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
+                        <?php } ?>
+                    </th>
+                    <th>
+                        <?php if($orderby=='view_count'){ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=view_count&sort=<?php echo $sort=='asc'?'desc':'asc';?>">显示<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                        <?php }else{ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=view_count&sort=asc">显示<i class="iconfont icon-orderby"></i></a>
+                        <?php } ?>
+                    
+                    </th>
+                    <th>
+                    <?php if($orderby=='created_at'){ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                        <?php }else{ ?>
+                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>
+                        <?php } ?>
+                    </th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -122,18 +194,22 @@ $pages = $query->orderBy('importance', 'DESC')
                 ?>
                 </tbody>
             </table>
-            
-                <div class="row">
-                    <div class="col-md">
-                        <nav aria-label="Page navigation">                
-                            <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
-                        </nav>
+            </div>
+       
+                </section>
+                <footer class="card-footer">
+                    <div class="row table-pager">
+                        <div class="col-sm">
+                            <nav aria-label="Page navigation">                
+                                <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                            </nav>
+                        </div>
+                        <div class="col-sm-auto">
+                        <p class="pagecount"> 总记<strong><?php echo $totalItems; ?></strong>条记录</p>
+                        </div>
                     </div>
-                    <div class="col-md-auto">
-                        总记<strong><?php echo $totalItems; ?></strong>条记录
-                    </div>
+                </footer>
                 </div>
-
         </div>
         <?php require_once('../../includes/footer.php'); ?> 
             </section>

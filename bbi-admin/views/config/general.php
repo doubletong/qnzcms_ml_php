@@ -1,8 +1,7 @@
 <?php
 
-require_once('../../includes/common.php');
+require_once '../../includes/common.php';
 //require_once('../../data/option.php');
-
 
 //$optionClass = new \TZGCMS\Admin\SiteOption();
 //$model = $optionClass->get_config("site_info");
@@ -15,24 +14,45 @@ require_once('../../includes/common.php');
 
 <head>
     <title><?php echo "基本信息_系统_后台管理_" . $site_info['sitename']; ?></title>
-    <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php'?>
 </head>
 
 <body>
-    <div class="wrapper">
-        <!-- nav start -->
-        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
-        <!-- /nav end -->
-        <section class="rightcol">
-            <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
-            <div class="container-fluid maincontent">
-
+    <div class="wrapper" id="wrapper">
+    <!-- nav start -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php';?>
+    <!-- /nav end -->
+    <section class="rightcol" id="rightcol">
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php';?>
+        <div class="main-content">
+            <div class="breadcrumb-container">
+                <div class="row">
+                    <div class="col-md">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="#">系统</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">基本信息</li>
+                        </ol>
+                    </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                </div>
+            </div>
                 <form novalidate="novalidate">
                     <div class="card">
-                        <div class="card-header">
-                            基本设置
+                    <header class="card-header">
+                        <div class="row">
+                        <div class="col">基本设置</div>
+                        <div class="col-auto">
+                            <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#" style="display: none;"><i class="iconfont icon-shrink"></i></a></div>
                         </div>
-                        <div class="card-body">
+                        </div>
+                    </header>
+
+                        <section class="card-body">
                             <input type="hidden" name='config_type' value="site_info" />
                             <div class="row">
                                 <div class="col-md-4">
@@ -79,8 +99,8 @@ require_once('../../includes/common.php');
                                         <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?php echo !empty($site_info['email']) ? $site_info['email'] : ""; ?>">
                                     </div>
                                 </div>
-                              
-                              
+
+
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="address">联系地址</label>
@@ -90,10 +110,10 @@ require_once('../../includes/common.php');
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input"  <?php echo isset($site_info['enableCaching']) ? ($site_info['enableCaching']?"checked":"") : "checked"; ?> id="enableCaching" name="enableCaching">
+                                            <input type="checkbox" class="form-check-input"  <?php echo isset($site_info['enableCaching']) ? ($site_info['enableCaching'] ? "checked" : "") : "checked"; ?> id="enableCaching" name="enableCaching">
                                             <label class="form-check-label" for="enableCaching">开启缓存</label>
                                         </div>
-                                    </div>                             
+                                    </div>
                                 </div>
                             </div>
 
@@ -113,13 +133,13 @@ require_once('../../includes/common.php');
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php if (!empty($site_info['logo'])) { ?>
+                                        <?php if (!empty($site_info['logo'])) {?>
                                             <div class="col-auto">
                                                 <div style="background-color:#ccc;padding:5px;">
                                                     <img src="<?php echo $site_info['logo']; ?>" id="img_logo" style="max-height:80px;" />
                                                 </div>
                                             </div>
-                                        <?php } ?>
+                                        <?php }?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -135,13 +155,13 @@ require_once('../../includes/common.php');
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php if (!empty($site_info['logo2'])) { ?>
+                                        <?php if (!empty($site_info['logo2'])) {?>
                                             <div class="col-auto">
                                                 <div style="background-color:#ccc;padding:5px;">
                                                     <img src="<?php echo $site_info['logo2']; ?>" id="img_logo2" style="max-height:80px;" />
                                                 </div>
                                             </div>
-                                        <?php } ?>
+                                        <?php }?>
                                     </div>
                                 </div>
                             </div>
@@ -166,13 +186,13 @@ require_once('../../includes/common.php');
                                         </div>
                                     </div>
                                 </div>
-                                <?php if (!empty($site_info['qrcode'])) { ?>
+                                <?php if (!empty($site_info['qrcode'])) {?>
                                     <div class="col--md-1">
                                         <img src="<?php echo $site_info['qrcode']; ?>" id="img_qrcode" style="max-height:100px;" />
                                     </div>
-                                <?php } ?>
+                                <?php }?>
                             </div>
-                            <!-- 
+                            <!--
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="form-group">
@@ -185,11 +205,11 @@ require_once('../../includes/common.php');
                                         </div>
                                     </div>
                                 </div>
-                                <?php if (!empty($site_info['qrcode2'])) { ?>
+                                <?php if (!empty($site_info['qrcode2'])) {?>
                                     <div class="col-auto">
                                         <img src="<?php echo $site_info['qrcode2']; ?>" id="img_qrcode2" style="max-height:100px;" />
                                     </div>
-                                <?php } ?>
+                                <?php }?>
                             </div> -->
 
                             <h3 class="text-center">社交帐号</h3>
@@ -212,9 +232,9 @@ require_once('../../includes/common.php');
                                         <input type="text" class="form-control" id="weibo" name="weibo" placeholder="" value="<?php echo !empty($site_info['weibo']) ? $site_info['weibo'] : ""; ?>">
                                     </div>
                                 </div>
-                        
-                     
-                            </div> 
+
+
+                            </div>
                             <div class="hidden">
                             <h3 class="title">
                                 招聘设置
@@ -231,7 +251,7 @@ require_once('../../includes/common.php');
                                 <div class="form-group">
                                 <label for="username">联系人</label>
                                 <input type="text" class="form-control" id="hrcontact" name="hrcontact" placeholder="" value="<?php echo !empty($site_info['hrcontact']) ? $site_info['hrcontact'] : ""; ?>">
-                            </div> 
+                            </div>
                                 </div>
                                 <div class="col-md">
                                 <div class="form-group">
@@ -241,40 +261,21 @@ require_once('../../includes/common.php');
                                 </div>
                             </div>
                             </div>
-                            
-                            <h3 class="title">
-                                SEO优化
-                            </h3>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="keywords">关键字</label>
-                                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="多个关键字请用英文逗号隔开" value="<?php echo !empty($site_info['keywords']) ? $site_info['keywords'] : ""; ?>">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="description">描述</label>
-                                        <textarea rows="3" class="form-control" id="description" name="description" ><?php echo !empty($site_info['description']) ? $site_info['description'] : ""; ?></textarea>
-                                    </div>
-                                </div>
-                                
+
                      
-                            </div>
-                        </div>
+                        </section>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/footer.php'); ?>
+            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/footer.php';?>
         </section>
 
     </div>
 
-    <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php';?>
 
     <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -301,7 +302,7 @@ require_once('../../includes/common.php');
         }
 
         $(document).ready(function() {
-            //当前菜单        
+            //当前菜单
             $(".mainmenu>li.system").addClass("nav-open").find("ul>li.general a").addClass("active");
 
             $("#setLogo").on("click", function() {
@@ -369,11 +370,11 @@ require_once('../../includes/common.php');
                         data: $(form).serialize(),
                         success: function(res) {
 
-                            var myobj = JSON.parse(res);                    
+                            var myobj = JSON.parse(res);
                             //console.log(myobj.status);
                             if (myobj.status === 1) {
-                                toastr.success(myobj.message);                                        
-                            } 
+                                toastr.success(myobj.message);
+                            }
                             if (myobj.status === 2) {
                                 toastr.error(myobj.message)
                             }

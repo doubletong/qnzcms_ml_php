@@ -37,143 +37,100 @@ $teamClass = new TZGCMS\Admin\Team();
         <?php echo "后台管理_".$site_info["sitename"];?>
     </title>
     <?php require_once('includes/meta.php') ?>
-    <style>
-        .box {
-            background-color: #029DFF;
-            margin-bottom: 1rem;
-            color: #fff;
-            border-radius: 6px;
-        }
-        .box a{
-         
-            color: #fff;
-            text-decoration: none;
-        }
-        .box .iconfont {
-            font-size: 2rem;
-        }
-
-        .box .icon {
-            border-radius: 6px 0 0 6px;
-            background-color: #0082F6;
-            height:70px;
-            padding:10px 12px;
-        }
-
-        .box small {
-            display: block;
-            padding-top: 10px;
-        }
-
-        .box .num {
-            font-size: 1.5rem;
-        }
-
-        .box .num span {
-            font-size: .875rem;
-        }
-    </style>
+   
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once('includes/nav.php'); ?>
         <!-- /nav end -->
 
-        <section class="rightcol">
+        <section class="rightcol" id="rightcol">
             <?php require_once('includes/header.php'); ?>
 
-            <div class="main-content">
-                <div style="padding:2rem;">
+            <div class="main-content">     
+                <div class="breadcrumb-container">
                     <div class="row">
-                        <!-- <div class="col">
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="icon text-center"><i class="iconfont icon-appstore"></i></div>
-                                    </div>
-                                    <div class="col-8">
-                                        <small>产品</small>
-                                        <div class="num"><?php echo $productClass->product_count();?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> -->
-                        <div class="col">
-                            <div class="box">
-                            <a href="/bbi-admin/views/articles/index.php?did=1">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>新闻资讯</small>
-                                        <div class="num"><?php echo $articleClass->get_articles_count_v1(1,null,null);?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
+                        <div class="col-md">
+                            <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Data</li>
+                            </ol>
+                            </nav>
                         </div>
-                        <div class="col">
-                            <div class="box">
-                                <a href="/bbi-admin/views/articles/index.php?did=2">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>薪酬福利</small>
-                                        <div class="num"><?php echo $articleClass->get_articles_count_v1(2,null,null);?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
                         </div>
+                    </div>
+                </div>    
+                <div class="page page-home"> 
+                    <div class="row mb-4">
+                 
                         <div class="col">
-                            <div class="box">
-                                <a href="/bbi-admin/views/chronicles/index.php">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>发展历程</small>
-                                        <div class="num"><?php echo $chronicleClass->get_chronicles_count(null,null);?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
+                            <a href="/bbi-admin/views/articles/index.php?did=1" class="box">
+                            <h3 class="title"><?php echo $articleClass->get_articles_count_v1(1,null,null);?> <small>篇</small></h3>
+                            <p>新闻资讯</p><i class="iconfont icon-newspaper"></i>
+                            </a>
                         </div>
 
                         <div class="col">
-                            <div class="box">
-                                <a href="/bbi-admin/views/jobs/index.php">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-file-copy"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>招聘岗位</small>
-                                        <div class="num"><?php echo $jobCount;?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
+                            <a href="/bbi-admin/views/pages/index.php" class="box b2">
+                            <h3 class="title"><?php echo $pageCount;?> <small>个</small></h3>
+                            <p>页面</p><i class="iconfont icon-file-text"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                        <a href="/bbi-admin/views/products/index.php" class="box b3">
+                            <h3 class="title"><?php echo $productClass->product_count();?> <small>个</small></h3>
+                            <p>产品展示</p><i class="iconfont icon-windows"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="/bbi-admin/views/carousels/index.php" class="box b4">
+                            <h3 class="title"><?php echo $adsCount;?> <small>个</small></h3>
+                            <p>广告位</p><i class="iconfont icon-image"></i>
+                            </a>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">                           
+                            <a href="/bbi-admin/views/articles/index.php?did=2"  class="box b2">                             
+                                <h3 class="title">
+                                <?php echo $articleClass->get_articles_count_v1(2,null,null);?> <small>pcs</small>
+                                </h3>
+                                <p>薪酬福利</p><i class="iconfont icon-file-copy"></i>                                   
+                            </a>
+                        </div>
+                        <div class="col">
+                          
+                            <a href="/bbi-admin/views/chronicles/index.php"  class="box">
+                                <h3 class="title">                                       
+                                    <?php echo $chronicleClass->get_chronicles_count(null,null);?> <small>pcs</small>
+                                </h3>
+                                <p>发展历程</p><i class="iconfont icon-file-copy"></i>                            
+                            </a>
+                            
+                        </div>
+
+                        <div class="col">
+                          
+                            <a href="/bbi-admin/views/jobs/index.php" class="box b4">
+                                <h3 class="title">                                       
+                                    <?php echo $jobCount;?> <small>pcs</small>
+                                </h3>
+                                <p>招聘岗位</p><i class="iconfont icon-file-copy"></i>                                
+                            </a>
+                        
                         </div>
                        <div class="col">
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-deploymentunit"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>展会信息</small>
-                                        <div class="num"><?php echo $exhCount ;?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="/bbi-admin/views/exhitions/index.php" class="box b3">
+                                <h3 class="title">                                       
+                                    <?php echo $exhCount; ?> <small>pcs</small>
+                                </h3>
+                                <p>展会信息</p><i class="iconfont icon-deploymentunit"></i>                                
+                            </a>                            
                         </div> 
 
                         <!-- <div class="col">
@@ -205,55 +162,17 @@ $teamClass = new TZGCMS\Admin\Team();
                         </div>  -->
 
                         <div class="w-100"></div>
-                        <div class="col">
-                            <div class="box">
-                                <a href="/bbi-admin/views/pages/index.php">
-                                <div class="row">
-
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-file"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>页面</small>
-                                        <div class="num"><?php echo $pageCount;?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
-                        </div>
                       
-                        <div class="col">
-                            <div class="box">
-                            <a href="/bbi-admin/views/links/index.php">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="icon text-center"><i class="iconfont icon-link"></i></div>
-                                    </div>
-                                    <div class="col-8">
-                                        <small>链接</small>
-                                        <div class="num"><?php echo $linkClass->link_count();?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
-
+                      
+                        <div class="col-3">
+                            <a href="/bbi-admin/views/links/index.php" class="box b3">
+                                <h3 class="title">                                       
+                                    <?php echo $linkClass->link_count(); ?> <small>pcs</small>
+                                </h3>
+                                <p>链接</p><i class="iconfont icon-link"></i>                                
+                            </a>   
                         </div>
-                        <div class="col">
-                            <div class="box">
-                            <a href="/bbi-admin/views/carousels/index.php">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-image"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>轮播图</small>
-                                        <div class="num"><?php echo $adsCount;?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
-
-                        </div>
+                    
                     </div>
 
 

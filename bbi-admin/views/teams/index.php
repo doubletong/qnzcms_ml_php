@@ -43,21 +43,50 @@ $teams = $teamClass->get_paged_teams($did, $keyword, $currentPage, $itemsPerPage
     <?php require_once('../../includes/meta.php') ?>
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
     <!-- nav start -->
     <?php require_once('../../includes/nav.php'); ?>
     <!-- /nav end -->
-    <section class="rightcol">            
+    <section class="rightcol" id="rightcol">    
         <?php require_once('../../includes/header.php'); ?>
 
-        <div class="container-fluid maincontent">
+        <div class="main-content">
+            <div class="breadcrumb-container">
+                <div class="row">
+                    <div class="col-md">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                        <li class="breadcrumb-item"><a href="#">团队</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">团队列表</li>
+                        </ol>
+                    </nav>
+                    </div>
+                    <div class="col-md-auto">
+                    <time id="sitetime"></time>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+            <header class="card-header">
+              <div class="row">
+                <div class="col">
+                  <div class="card-title-v1"> <i class="iconfont icon-link"></i>团队列表</div>
+                </div>
+                <div class="col-auto">
+                  <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                </div>
+              </div>
+            </header>
+            <section class="card-body">
+            <div class="card-toolbar mb-3">
             <div class="row">
                 <div class="col">
                     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                         <div class="form-row align-items-center">
                             <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">搜索</label>
-                            <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
+                            <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
                             </div>
                             <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInput">类别</label>
@@ -78,7 +107,7 @@ $teams = $teamClass->get_paged_teams($did, $keyword, $currentPage, $itemsPerPage
                                     
                                 </div>
                             <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                            <button type="submit" class="btn btn-primary">搜索</button>
                             </div>
                         </div>
                     </form>
@@ -87,6 +116,7 @@ $teams = $teamClass->get_paged_teams($did, $keyword, $currentPage, $itemsPerPage
                         <a href="team_edit.php" class="btn btn-primary">
                             <i class="iconfont icon-plus"></i>  添加团队
                         </a>
+                </div>
                 </div>
             </div>
             <table class="table table-hover table-bordered table-striped">
@@ -127,11 +157,21 @@ $teams = $teamClass->get_paged_teams($did, $keyword, $currentPage, $itemsPerPage
                 ?>
                 </tbody>
             </table>
-
-
-            <nav aria-label="Page navigation">                
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pager.phtml") ?>                            
-                </nav>
+            </section>
+            <footer class="card-footer">
+              <div class="row table-pager">
+                <div class="col-sm">
+                    <nav aria-label="Page navigation">                
+                        <?php include("../../../vendor/jasongrimes/paginator/examples/pager.phtml") ?>                            
+                    </nav>
+                </div>
+              
+                <div class="col-sm-auto">
+                    <p class="pagecount"> 总记<strong><?php echo $totalItems; ?></strong>条记录</p>
+                </div>
+              </div>
+            </footer>
+           
         </div>
         <?php require_once('../../includes/footer.php'); ?> 
             </section>

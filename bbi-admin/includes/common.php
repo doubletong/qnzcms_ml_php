@@ -1,6 +1,5 @@
 <?php
 
-$config = include $_SERVER['DOCUMENT_ROOT'].'/includes/settings.php';
 require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
 
 $GLOBALS['Lang'] = include $_SERVER['DOCUMENT_ROOT'] .'/resources/admin.php';

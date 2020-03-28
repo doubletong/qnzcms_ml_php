@@ -67,14 +67,13 @@ switch ($config_type) {
         $qq = $_POST['qq'];
         $weibo = $_POST['weibo'];
 
-        $keywords = $_POST['keywords'];
-        $description = $_POST['description'];
+      
         $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
         $config_values = array(
             "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2, "wechat" =>  $wechat,
             "qrcode" =>  $qrcode, "webnumber" =>  $webnumber, "company"=>$company,
             "email" =>  $email, "hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
-            "keywords" => $keywords, "description" => $description, "hremail" =>  $hremail, "qq" => $qq, "weibo" =>  $weibo,
+            "hremail" =>  $hremail, "qq" => $qq, "weibo" =>  $weibo,
             "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone, "enableCaching" => $enableCaching
         );
 

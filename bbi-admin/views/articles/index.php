@@ -46,141 +46,184 @@ $articles = $articleClass->get_paged_articles_v1($did, $cid, $keyword, $currentP
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
    <!-- nav start -->
    <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
         <!-- /nav end -->
-        <section class="rightcol">
+        <section class="rightcol" id="rightcol">
             <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
 
-        <div class="container-fluid maincontent">
-            <div class="row mb-2">
-                <div class="col">
-                    <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-                    <input type="hidden" name="did" value="<?php echo $did; ?>">
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                            <label class="sr-only" for="inlineFormInput">搜索</label>
-                            <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword; ?>" placeholder="关键字">
-                            </div>
-                            <?php if($did==="1"){ ?>
-                                <div class="col-auto">
-                                    <label class="sr-only" for="inlineFormInput">分类</label>
-                                     <select class="form-control" id="cid" name="cid">
-                                        <option value="">--请选择分类--</option>
-                                        <?php foreach ($categories as $category) {
-                                            ?>                                                       
-                                                <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $cid  ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
-
-                                        <?php } ?>     
-                                    </select>
-                                </div>
-                            <?php } ?>
-                            <div class="col-auto">
-                            <button type="submit" class="btn btn-primary ">搜索</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-auto">
-                        <a href="news_edit.php?did=<?php echo $did;?>" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i>  添加文章
-                        </a>
+            <div class="main-content">  
+            <div class="breadcrumb-container">
+                <div class="row">
+                    <div class="col-md">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                        <li class="breadcrumb-item"><a href="#">新闻</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">新闻列表</li>
+                        </ol>
+                    </nav>
+                    </div>
+                    <div class="col-md-auto">
+                    <time id="sitetime"></time>
+                    </div>
                 </div>
             </div>
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>缩略图</th>
-                    <th>标题</th>
-                 
-                    <th>分类</th>
-               
-                    <th>阅读次数</th>
-                    <th>状态</th>
-                    <th>发布日期</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                foreach($articles as $row)
-                {
-                    echo "<tr>";
-                ?>
-                    <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
-                    <td><?php echo $row['title']; ?>  
-                    <?php if($row['recommend']){
-                        ?>
-                       <span class="badge badge-primary">
-                        <i class='iconfont  icon-like-fill'></i></span>   
-                      
-                        <?php } ?></td>
-                   
+            <div class="card">
+            <header class="card-header">
+              <div class="row">
+                <div class="col">
+                  <div class="card-title-v1"> <i class="iconfont icon-link"></i>新闻列表</div>
+                </div>
+                <div class="col-auto">
+                  <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                </div>
+              </div>
+            </header>
+            <section class="card-body">
+                <div class="card-toolbar mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                            <input type="hidden" name="did" value="<?php echo $did; ?>">
+                                <div class="form-row align-items-center">
+                                    <div class="col-auto">
+                                    <label class="sr-only" for="inlineFormInput">搜索</label>
+                                    <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword; ?>" placeholder="关键字">
+                                    </div>
+                                    <?php if($did==="1"){ ?>
+                                        <div class="col-auto">
+                                            <label class="sr-only" for="inlineFormInput">分类</label>
+                                            <select class="form-control" id="cid" name="cid">
+                                                <option value="">--请选择分类--</option>
+                                                <?php foreach ($categories as $category) {
+                                                    ?>                                                       
+                                                        <option value="<?php echo $category["id"]; ?>" <?php echo  $category["id"] == $cid  ? "selected" : ""; ?>><?php echo $category["title"]; ?></option>
+
+                                                <?php } ?>     
+                                            </select>
+                                        </div>
+                                    <?php } ?>
+                                    <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary ">搜索</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-auto">
+                                <a href="news_edit.php?did=<?php echo $did;?>" class="btn btn-primary">
+                                    <i class="iconfont icon-plus"></i>  添加文章
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover box-table">
+                    <thead>
+                    <tr>
+                        <th>缩略图</th>
+                        <th>标题</th>
+                    
+                        <th>分类</th>
+                
+                        <th>阅读次数</th>
+                        <th>状态</th>
+                        <th>发布日期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <?php
-                 
-              
-                    echo "<td>".$row['category_title']."</td>";
-              
-                    echo "<td>".$row['view_count']."</td>";
+                    foreach($articles as $row)
+                    {
+                        echo "<tr>";
                     ?>
-                    <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
-                    <td><?php echo date('Y-m-d',$row['pubdate']) ;?></td>
-                    <td>
-
-                              
-                       
-
-                        <a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm' title="编辑">
-                            <i class="iconfont icon-edit"></i>
-                        </a>
-
-                             
-                 
-                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
-                            <i class="iconfont icon-file-copy"></i>
-                        </button>
-
-                        <?php if($row['active']==1){?>
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
-                                <i class="iconfont icon-eye-close"></i>
-                            </button>
-                        <?php }else{ ?>
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
-                                <i class="iconfont icon-eye"></i>
-                            </button>
-                        <?php } ?>   
-
-                        <?php if($row['recommend']==1){?>
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-grey btn-sm btn-recommend' title="撤消精选">
-                                <i class="iconfont icon-sketch"></i>
-                            </button>
-                        <?php }else{ ?>
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-recommend' title="精选">
-                                <i class="iconfont icon-sketch"></i>
-                            </button>
-                        <?php } ?>   
+                        <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
+                        <td><?php echo $row['title']; ?>  
+                        <?php if($row['recommend']){
+                            ?>
+                        <span class="badge badge-primary">
+                            <i class='iconfont  icon-like-fill'></i></span>   
                         
-                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete' title="删除">
-                            <i class="iconfont icon-delete"></i>
-                        </button>
-                    </td>
-                    <?php
+                            <?php } ?></td>
+                    
+                        <?php
+                    
+                
+                        echo "<td>".$row['category_title']."</td>";
+                
+                        echo "<td>".$row['view_count']."</td>";
+                        ?>
+                        <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
+                        <td><?php echo date('Y-m-d',$row['pubdate']) ;?></td>
+                        <td>
 
-                    echo "</tr>";
-                }
-                ?>
-                </tbody>
-            </table>
+                                
+                        
 
+                            <a href='news_edit.php?id=<?php echo $row['id'];?>&did=<?php echo $row['dictionary_id'];?>' class='btn btn-primary btn-sm' title="编辑">
+                                <i class="iconfont icon-edit"></i>
+                            </a>
 
-            <nav aria-label="Page navigation">                
-                <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
-            </nav>
+                                
+                    
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
+                                <i class="iconfont icon-file-copy"></i>
+                            </button>
 
+                            <?php if($row['active']==1){?>
+                                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                    <i class="iconfont icon-eye-close"></i>
+                                </button>
+                            <?php }else{ ?>
+                                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                    <i class="iconfont icon-eye"></i>
+                                </button>
+                            <?php } ?>   
+
+                            <?php if($row['recommend']==1){?>
+                                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-grey btn-sm btn-recommend' title="撤消精选">
+                                    <i class="iconfont icon-sketch"></i>
+                                </button>
+                            <?php }else{ ?>
+                                <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-recommend' title="精选">
+                                    <i class="iconfont icon-sketch"></i>
+                                </button>
+                            <?php } ?>   
+                            
+                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete' title="删除">
+                                <i class="iconfont icon-delete"></i>
+                            </button>
+                        </td>
+                        <?php
+
+                        echo "</tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+
+            
+            </section>
+            <footer class="card-footer">
+              <div class="row table-pager">
+                <div class="col-sm">
+                    <nav aria-label="Page navigation">                
+                        <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                    </nav>
+                </div>
+                <div class="col-sm-auto">
+                  <p class="pagecount">显示1-10条，总计10页，记录数<?php echo $totalItems; ?>条</p>
+                </div>
+              </div>
+            </footer>
+            </div>
         </div>
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/footer.php'); ?>
         </section>
+     
     </div>
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
