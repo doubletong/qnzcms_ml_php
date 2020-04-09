@@ -1,8 +1,6 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once('../../data/carousel.php');
-require_once('../../../config/database.php');
 
 use Models\Advertisement;
 use Models\AdvertisingSpace;
@@ -241,13 +239,21 @@ $positions = AdvertisingSpace::All();
                 $(element).addClass('is-valid');
             },
             submitHandler: function(form) {
-                //form.submit();
+                var values = {};
+                var fields = {};
+                for (var instanceName in CKEDITOR.instances) {
+                    CKEDITOR.instances[instanceName].updateElement();
+                }
+
+                $.each($(form).serializeArray(), function(i, field) {
+                    values[field.name] = field.value;
+                });
 
 
                 $.ajax({
                     url : 'carousel_post.php',
                     type : 'POST',
-                    data : $(form).serialize(),
+                    data : values,
                     success : function(res) {
                         var myobj = JSON.parse(res);                    
                         //console.log(myobj.status);

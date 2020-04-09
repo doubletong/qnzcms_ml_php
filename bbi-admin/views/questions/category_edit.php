@@ -1,12 +1,12 @@
 <?php
 require_once('../../includes/common.php');
 
-use Models\DownloadCategory;
+use Models\QuestionCategory;
 
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = DownloadCategory::find($id);    
+    $data = QuestionCategory::find($id);    
 }
 
 $action = isset($_GET['id'])?"update":"create";
@@ -139,20 +139,12 @@ $pageTitle = isset($_GET['id']) ? "编辑分类" : "创建分类";
                 },
                 submitHandler: function(form) {
                     //form.submit();
-                    var values = {};
-                    var fields = {};
-                    for (var instanceName in CKEDITOR.instances) {
-                        CKEDITOR.instances[instanceName].updateElement();
-                    }
-
-                    $.each($(form).serializeArray(), function(i, field) {
-                        values[field.name] = field.value;
-                    });
+               
 
                     $.ajax({
                         url: 'category_post.php',
                         type: 'POST',
-                        data: values,
+                        data: $(form).serialize(),
                         success: function(res) {
                             var myobj = JSON.parse(res);
                             //console.log(myobj.status);

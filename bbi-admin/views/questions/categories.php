@@ -1,12 +1,12 @@
 <?php
 require_once('../../includes/common.php');
 
-use Models\DownloadCategory;
+use Models\QuestionCategory;
 use JasonGrimes\Paginator;
 
 
 //文章表实例化
-$categoryClass = new DownloadCategory;
+$categoryClass = new QuestionCategory;
 //搜索条件判断
 $query = $categoryClass->select('id','title','description','importance','active','created_at');
 

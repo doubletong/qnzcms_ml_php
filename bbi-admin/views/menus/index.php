@@ -85,7 +85,23 @@ function build_menu($rows, $parent = 0)
         <section class="rightcol">
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
 
-            <div class="container-fluid maincontent">
+        <div class="main-content"> 
+            <div class="breadcrumb-container">
+                <div class="row">
+                    <div class="col-md">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                          
+                            <li class="breadcrumb-item active" aria-current="page">栏目</li>
+                        </ol>
+                    </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                </div>
+            </div> 
 
                 <div class="row">
                     <div class="col-md-6">

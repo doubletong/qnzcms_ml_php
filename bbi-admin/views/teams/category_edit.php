@@ -1,23 +1,23 @@
 <?php
 require_once('../../includes/common.php');
 
-use Models\DownloadCategory;
+use Models\TeamCategory;
 
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = DownloadCategory::find($id);    
+    $data = TeamCategory::find($id);    
 }
 
 $action = isset($_GET['id'])?"update":"create";
-$pageTitle = isset($_GET['id']) ? "编辑分类" : "创建分类";
+$pageTitle = isset($_GET['id']) ? "编辑" : "创建";
 
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title><?php echo $pageTitle . "_下载_后台管理_" . $site_info['sitename']; ?></title>
+    <title><?php echo $pageTitle . "_团_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once('../../includes/meta.php') ?>
     <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
 </head>
@@ -30,28 +30,12 @@ $pageTitle = isset($_GET['id']) ? "编辑分类" : "创建分类";
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
 
-            <div class="main-content"> 
-                <div class="breadcrumb-container">
-                    <div class="row">
-                        <div class="col-md">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="/bbi-admin/views/downloads/index.php">下载中心</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><?php echo $pageTitle; ?></li>
-                            </ol>
-                        </nav>
-                        </div>
-                        <div class="col-md-auto">
-                            <time id="sitetime"></time>
-                        </div>
-                    </div>
-                </div> 
+            <div class="container-fluid maincontent">
 
                 <form novalidate="novalidate">
                     <div class="card">
                         <div class="card-header">
-                            <?php echo $pageTitle; ?>
+                            <?php echo $pageTitle . "分类"; ?>
                         </div>
                         <div class="card-body">
                             <input id="id" type="hidden" name="id" value="<?php echo isset($data['id']) ? $data['id'] : 0; ?>" />
@@ -60,6 +44,7 @@ $pageTitle = isset($_GET['id']) ? "编辑分类" : "创建分类";
                                 <label for="title">分类名称</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title']) ? $data['title'] : ''; ?>" placeholder="">
                             </div>
+
 
                             <div class="form-group">
                                 <label for="importance">排序</label>

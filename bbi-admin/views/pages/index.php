@@ -12,8 +12,9 @@ $pageClass = new Page;
 $query = $pageClass->select('id','title','alias','view_count','importance','active','created_at');
 
 $keyword = null;
-$orderby = $_GET['orderby'];
-$sort=$_GET['sort'];
+
+$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
+$sort= isset($_GET['sort'])?$_GET['sort']:null;
 
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
@@ -30,6 +31,9 @@ if(!empty($orderby) && !empty($sort)){
 }else{
     $query = $query->orderBy('importance', 'DESC');
 }
+
+
+
 
 $totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
@@ -66,8 +70,8 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                     <div class="col-md">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">控制面板</a></li>
-                            <li class="breadcrumb-item"><a href="#">页面</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/views/pages/index.php">页面</a></li>
                             <li class="breadcrumb-item active" aria-current="page">列表</li>
                         </ol>
                     </nav>
@@ -96,11 +100,11 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                                 <div class="form-row align-items-center">
                                     <div class="col-auto">
                                     <label class="sr-only" for="keyword">搜索</label>
-                                    <input type="text" name="keyword" class="form-control mb-2" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
+                                    <input type="text" name="keyword" class="form-control" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
                                     </div>
 
                                     <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                    <button type="submit" class="btn btn-primary">搜索</button>
                                     </div>
                                 </div>
                             </form>
@@ -148,7 +152,7 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                     
                     </th>
                     <th>
-                    <?php if($orderby=='created_at'){ ?>
+                        <?php if($orderby=='created_at'){ ?>
                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
                         <?php }else{ ?>
                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>

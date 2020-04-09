@@ -1,9 +1,8 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
-
-use Models\Team;
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+use Models\TeamCategory;
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -13,25 +12,20 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
     switch ($_POST['action']) {
         case "create": 
-            if (!isset($_POST['name'], $_POST['photo'])) {   
+            if (!isset($_POST['title'], $_POST['importance'])) {   
 
-                $result = array ('status'=>2,'message'=>'姓名与照片不能为空！');
+                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
             
           
-            $item = new Team();
-            $item->name = $_POST['name'];
-            $item->post = $_POST['post'];
-            $item->fullphoto = $_POST['fullphoto'];
-            $item->content = stripslashes($_POST['content']);
-            $item->category_id = stripslashes($_POST['category_id']);
-            $item->photo = $_POST['photo'];
+            $item = new TeamCategory();
+            $item->title = $_POST['title'];
+            $item->description = $_POST['description'];       
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             $item->added_by = $username;
-
 
      
             $result = $item->save();
@@ -43,25 +37,19 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['name'], $_POST['photo'])) {   
+            if (!isset($_POST['title'], $_POST['importance'])) {   
 
-                $result = array ('status'=>2,'message'=>'姓名与照片不能为空！');
+                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
           
         
-            $item = Team::find($id);
-            $item->name = $_POST['name'];
-            $item->post = $_POST['post'];
-            $item->fullphoto = $_POST['fullphoto'];
-            $item->content = stripslashes($_POST['content']);
-            $item->category_id = stripslashes($_POST['category_id']);
-            $item->photo = $_POST['photo'];
+            $item = TeamCategory::find($id);
+            $item->title = $_POST['title'];
+            $item->description = $_POST['description'];           
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
-            $item->added_by = $username;
-
             
             $result = $item->save();
             if($result==true){
@@ -72,7 +60,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
          
             break;   
         case "delete": 
-            $item = Team::find($id);
+            $item = TeamCategory::find($id);
             $result = $item->delete();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
@@ -81,7 +69,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;   
         case "active":
-            $item = Team::find($id);
+            $item = TeamCategory::find($id);
             $item->active = ($item->active)==1?0:1;
             $result = $item->save();
             if($result==true){
@@ -91,7 +79,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;
         case "recommend":
-            $item = Team::find($id);
+            $item = TeamCategory::find($id);
             $item->recommend = ($item->recommend)==1?0:1;
             $result = $item->save();
             if($result==true){
@@ -101,9 +89,9 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;
         case "copy":
-            $item = Team::find($id);
+            $item = TeamCategory::find($id);
             $new_item = $item->replicate(); //copy attributes
-            $new_item->name = $new_item->name."【拷贝】";
+            $new_item->title = $new_item->title."【拷贝】";
             $result = $new_item->push(); //save model before you recreate relations (so it has an id)
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'拷贝成功'));  

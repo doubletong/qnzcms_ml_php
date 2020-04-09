@@ -1,12 +1,12 @@
 <?php
 require_once('../../includes/common.php');
 
-use Models\DownloadCategory;
+use Models\TeamCategory;
 use JasonGrimes\Paginator;
 
 
 //文章表实例化
-$categoryClass = new DownloadCategory;
+$categoryClass = new TeamCategory;
 //搜索条件判断
 $query = $categoryClass->select('id','title','description','importance','active','created_at');
 
@@ -15,13 +15,13 @@ $urlPattern = "categories.php?page=(:num)";
 $keyword = null;
 $orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
 $sort= isset($_GET['sort'])?$_GET['sort']:null;
+
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
     $query = $query->where('title','like','%'.$keyword.'%')
-            ->orWhere('responsibilities','like','%'.$keyword.'%')
-            ->orWhere('requirement','like','%'.$keyword.'%');
+            ->orWhere('description','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
@@ -30,7 +30,6 @@ if(!empty($orderby) && !empty($sort)){
 }else{
     $query = $query->orderBy('importance', 'DESC');
 }
-
 
 $totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
@@ -51,7 +50,7 @@ $categorys = $query->orderBy('importance', 'DESC')
 
 <head>
     <title>
-        <?php echo "岗位招聘_后台管理_" . $site_info['sitename']; ?>
+        <?php echo "团队_后台管理_" . $site_info['sitename']; ?>
     </title>
     <?php require_once('../../includes/meta.php') ?>
 
@@ -71,9 +70,9 @@ $categorys = $query->orderBy('importance', 'DESC')
                         <div class="col-md">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="/bbi-admin/views/downloads/index.php">下载中心</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">分类</li>
+                                <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="#">页面</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">列表</li>
                             </ol>
                         </nav>
                         </div>
@@ -82,11 +81,12 @@ $categorys = $query->orderBy('importance', 'DESC')
                         </div>
                     </div>
                 </div> 
+
                 <div class="card">
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>下载分类</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>成员分类</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -95,7 +95,6 @@ $categorys = $query->orderBy('importance', 'DESC')
                     </header>
                     <section class="card-body">
                         <div class="card-toolbar mb-3">
-
                             <div class="row">
                                 <div class="col">
                                     <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
@@ -117,35 +116,35 @@ $categorys = $query->orderBy('importance', 'DESC')
                                 </div>
                             </div>
                         </div>
-
+                    
                         <div class="table-responsive">                 
                             <table class="table table-hover table-bordered table-striped box-table">
                                 <thead>
                                     <tr>
                                     
                                         <th>
-                                        <?php if($orderby=='title'){ ?>
-                                        <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=<?php echo $sort=='asc'?'desc':'asc';?>">标题<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
-                                    <?php }else{ ?>
-                                        <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
-                                    <?php } ?>        
+                                            <?php if($orderby=='title'){ ?>
+                                                <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=<?php echo $sort=='asc'?'desc':'asc';?>">标题<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                            <?php }else{ ?>
+                                                <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
+                                            <?php } ?> 
                                         </th>
                                         <th>描述</th>                        
                                         <th>
-                                        <?php if($orderby=='importance'){ ?>
-                                        <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
-                                    <?php }else{ ?>
-                                        <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
-                                    <?php } ?>
+                                            <?php if($orderby=='importance'){ ?>
+                                                <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                            <?php }else{ ?>
+                                                <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
+                                            <?php } ?>
                                         </th>
                                         <th>显示?</th>
                                         <th style="min-width:120px;">
-                                        <?php if($orderby=='created_at'){ ?>
-                                        <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
-                                    <?php }else{ ?>
-                                        <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>
-                                    <?php } ?>
-                                    </th>
+                                            <?php if($orderby=='created_at'){ ?>
+                                                <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                            <?php }else{ ?>
+                                                <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>
+                                            <?php } ?>
+                                        </th>
                                         <th style="min-width:120px;">操作</th>
                                     </tr>
                                 </thead>
@@ -190,6 +189,7 @@ $categorys = $query->orderBy('importance', 'DESC')
                                 </tbody>
                             </table>
                         </div>
+
                     </section>
                     <footer class="card-footer">
                         <div class="row table-pager">
@@ -203,7 +203,8 @@ $categorys = $query->orderBy('importance', 'DESC')
                             </div>
                         </div>
                     </footer>
-               
+                    
+                </div>
             </div>
             <?php require_once('../../includes/footer.php'); ?>
         </section>
@@ -215,7 +216,7 @@ $categorys = $query->orderBy('importance', 'DESC')
     <script>
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu>li.downloads").addClass("nav-open").find("ul>li.categories a").addClass("active");
+            $(".mainmenu>li.teams").addClass("nav-open").find("ul>li.categories a").addClass("active");
 
             //确认框默认语言
             bootbox.setDefaults({

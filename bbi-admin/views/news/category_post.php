@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 
-use Models\ProductCategory;
+use Models\NewsCategory;
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -23,7 +23,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $parent = isset($_POST['parent']) && $_POST['parent']?$_POST['parent']:null;
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
-            $region = new ProductCategory();
+            $region = new NewsCategory();
             $region->title = $title;
             $region->parent = $parent;
             $region->importance = $importance;
@@ -53,7 +53,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
 
-            $region = ProductCategory::find($id);
+            $region = NewsCategory::find($id);
             $region->title = $title;
             $region->parent = $parent;
             $region->importance = $importance;
@@ -70,7 +70,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             // echo json_encode($result);  
             break;   
         case "delete": 
-            $region = ProductCategory::find($id);
+            $region = NewsCategory::find($id);
             $result = $region->delete();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
@@ -79,7 +79,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;   
         case "active":
-            $region = ProductCategory::find($id);
+            $region = NewsCategory::find($id);
             $region->active = ($region->active)==1?"0":1;
             $result = $region->save();
             if($result==true){

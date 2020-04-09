@@ -25,7 +25,7 @@ if($site_info['enableCaching']=="1"){
     if (!$CachedString->isHit()) {
 
         $data = Page::where('alias',$alias)->where('active',1)->first();
-        $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias);       
+        $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();          
 
         $home_data = ['metadata' => $metadata,'page' => $data];
 
@@ -41,9 +41,11 @@ if($site_info['enableCaching']=="1"){
     $twig = new \Twig\Environment($loader);  
 
     $data = Page::where('alias',$alias)->where('active',1)->first();
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias);     
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
 
     $result = ['metadata' => $metadata,'page' => $data];
+
+    //echo $metadata;
 }
 
 //print_r($menutree);

@@ -56,32 +56,71 @@ function recursive($items, $level){
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
 
-            <div class="container-fluid maincontent">
-                <div class="mb-2 text-right">
-                    <a href="category_edit.php" class="btn btn-primary">
-                        <i class="iconfont icon-plus"></i> 添加分类
-                    </a>
-                </div>
-                <table class="table table-hover table-bordered table-striped">
-                    <thead>
-                        <tr>                         
-                            <th>标题</th>
-                            <th>排序</th>
-                            <th>激活？</th>
-                            <th>创建时间</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php               
-                            recursive($categories, $level)
-                        ?>
+            <div class="main-content"> 
+                <div class="breadcrumb-container">
+                    <div class="row">
+                        <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/products/index.php">产品</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">分类</li>
+                            </ol>
+                        </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="card">
+                    <header class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>成员分类</div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <section class="card-body">
+                        <div class="card-toolbar mb-3">
+                            <div class="text-right">
+                                <a href="category_edit.php" class="btn btn-primary">
+                                    <i class="iconfont icon-plus"></i> 添加分类
+                                </a>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>                         
+                                    <th>标题</th>
+                                    <th>排序</th>
+                                    <th>激活？</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php               
+                                    recursive($categories, $level)
+                                ?>
+                            
+                            </tbody>
+                        </table>
+                    </section>
+                    <footer class="card-footer">
                        
-                    </tbody>
-                </table>
-
-
-
+                           
+                            <div class="text-right">
+                                总记<strong><?php echo ProductCategory::count(); ?></strong>条记录
+                            </div>
+                      
+                    </footer>
+                </div>
             </div>
             <?php require_once('../../includes/footer.php'); ?>
         </section>

@@ -2,19 +2,23 @@
 
 require_once('../../includes/common.php');
 
-use Models\ProductCategory;
-use Models\Product;
+use Models\NewsCategory;
+use Models\News;
 use JasonGrimes\Paginator;
 
 $urlPattern = "index.php?page=(:num)";
  //文章表实例化
- $product = new Product;
+ $news = new News;
  //搜索条件判断
- $query = $product->with(['category' => function ($query) {
+ $query = $news->with(['category' => function ($query) {
     $query->select('id', 'title');
 }])->select('id','title', 'thumbnail', 'category_id','importance','active','created_at');
 
 $keyword = null;
+$cid = null;
+$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
+$sort= isset($_GET['sort'])?$_GET['sort']:null;
+
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {    
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
@@ -24,10 +28,16 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 }
 if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
     $cid = htmlspecialchars($_REQUEST["cid"],ENT_QUOTES);
-    $querycateogries = ProductCategory::where('parent','=',$cid)->orwhere('id','=',$cid)->select('id')->get();
+    $querycateogries = NewsCategory::where('parent','=',$cid)->orwhere('id','=',$cid)->select('id')->get();
     $query = $query->whereIn('category_id',$querycateogries);         
       
     $urlPattern = $urlPattern . "&cid=$cid";
+}
+
+if(!empty($orderby) && !empty($sort)){
+    $query = $query->orderBy($orderby, $sort);
+}else{
+    $query = $query->orderBy('importance', 'DESC');
 }
 
 $totalItems = $query->count();  //总记录数
@@ -43,7 +53,7 @@ $countries = $query->orderBy('importance', 'DESC')
             ->get();
 
 
-$categories = ProductCategory::with("children")->where(["parent" => null])->orderby('importance','desc')->get();
+$categories = NewsCategory::with("children")->where(["parent" => null])->orderby('importance','desc')->get();
 
 
 $level = 0;
@@ -69,7 +79,7 @@ function recursive($items, $level, $cid){
 <html>
 
 <head>
-    <title><?php echo "产品_后台管理_" . $site_info['sitename']; ?></title>
+    <title><?php echo "新闻资讯_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
@@ -135,7 +145,7 @@ function recursive($items, $level, $cid){
                                 </form>
                             </div>
                             <div class="col-auto">
-                                <a href="product_edit.php" class="btn btn-primary">               
+                                <a href="news_edit.php" class="btn btn-primary">               
                                     <i class="iconfont icon-plus"></i>  添加
                                 </a>
                             </div>
@@ -146,10 +156,28 @@ function recursive($items, $level, $cid){
                             <thead>
                             <tr>          
                                 <th>缩略图</th>
-                                <th>主题</th>
+                                <th>
+                                <?php if($orderby=='title'){ ?>
+                                    <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=title&sort=<?php echo $sort=='asc'?'desc':'asc';?>">标题<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                <?php }else{ ?>
+                                    <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
+                                <?php } ?>   
+                                </th>
                                 <th>分类</th>
-                                <th>排序</th>
-                                <th>创建时间</th>
+                                <th>
+                                    <?php if($orderby=='importance'){ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                    <?php }else{ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
+                                    <?php } ?>
+                                </th>
+                                <th>
+                                    <?php if($orderby=='created_at'){ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=pubdate&sort=<?php echo $sort=='asc'?'desc':'asc';?>">发布日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                    <?php }else{ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=pubdate&sort=asc">发布日期<i class="iconfont icon-orderby"></i></a>
+                                    <?php } ?>
+                                </th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -164,9 +192,9 @@ function recursive($items, $level, $cid){
                                 <td><?php echo $row['title'] ;?></td> 
                                 <td><?php echo $row['category']['title'] ;?></td> 
                                 <td><?php echo $row['importance'] ;?></td>         
-                                <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
+                                <td><?php echo date_format(date_create($row['pubdate']),"Y-m-d");?></td>
                                 <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
-                                <td><a href='product_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                                <td><a href='news_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                                         <i class="iconfont icon-edit"></i>
                                     </a>
                                     <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
@@ -226,7 +254,7 @@ function recursive($items, $level, $cid){
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.products_v1").addClass("nav-open").find("ul>li.list a").addClass("active");     
+            $(".mainmenu>li.news").addClass("nav-open").find("ul>li.list a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"
@@ -237,7 +265,7 @@ function recursive($items, $level, $cid){
             var articleId = $that.attr("data-id");
 
             $.ajax({
-                url : 'product_post.php',
+                url : 'news_post.php',
                 type : 'POST',
                 data : {id:articleId,action:"active"},
                 success : function(res) {                                                   
@@ -263,7 +291,7 @@ function recursive($items, $level, $cid){
             var articleId = $that.attr("data-id");
 
             $.ajax({
-                url : 'product_post.php',
+                url : 'news_post.php',
                 type : 'POST',
                 data : {id:articleId,action:"copy"},
                 success : function(res) {                                                   
@@ -292,7 +320,7 @@ function recursive($items, $level, $cid){
                         var id = $that.attr("data-id");
 
                         $.ajax({
-                            url : 'product_post.php',
+                            url : 'news_post.php',
                             type : 'POST',
                             data : {id:id,action:"delete"},
                             success : function(res) {

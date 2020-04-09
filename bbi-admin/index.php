@@ -2,10 +2,8 @@
 require_once('includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/environment.php');
 require_once('data/link.php');
-require_once('data/product.php');
 require_once('data/article.php');
 require_once('data/topics.php');
-require_once('data/team.php');
 require_once('data/chronicle.php');
 
 //实例化操作系统与浏览器信息
@@ -15,18 +13,20 @@ use Models\Advertisement;
 use Models\Exhibition;
 use Models\Page;
 use Models\Job;
+use Models\Product;
+use Models\Team;
 
 $adsCount = Advertisement::count();
 $pageCount = Page::count();
 $exhCount = Exhibition::count();
 $jobCount = Job::count();
+$productCount = Product::count();
+$teamtCount = Team::count();
 
  $linkClass = new TZGCMS\Admin\LinkRepository();
 $articleClass = new TZGCMS\Admin\Article();
 $chronicleClass = new TZGCMS\Admin\Chronicle();
  $topicsClass = new Topics();
- $productClass = new TZGCMS\Admin\Product();
-$teamClass = new TZGCMS\Admin\Team();
 
 ?>
 <!DOCTYPE html>
@@ -84,7 +84,7 @@ $teamClass = new TZGCMS\Admin\Team();
                         </div>
                         <div class="col">
                         <a href="/bbi-admin/views/products/index.php" class="box b3">
-                            <h3 class="title"><?php echo $productClass->product_count();?> <small>个</small></h3>
+                            <h3 class="title"><?php echo $productCount;?> <small>个</small></h3>
                             <p>产品展示</p><i class="iconfont icon-windows"></i>
                             </a>
                         </div>
@@ -133,19 +133,7 @@ $teamClass = new TZGCMS\Admin\Team();
                             </a>                            
                         </div> 
 
-                        <!-- <div class="col">
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-camera"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>媒体关注</small>
-                                        <div class="num"><?php echo $topicsClass->topics_count();?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  -->
+                       
 
                         <!-- <div class="col">
                             <div class="box">
@@ -155,7 +143,7 @@ $teamClass = new TZGCMS\Admin\Team();
                                     </div>
                                     <div class="col">
                                         <small>团队人员</small>
-                                        <div class="num"><?php echo $teamClass->team_count();?> <span>pcs</span></div>
+                                        <div class="num"><?php echo $teamCount;?> <span>pcs</span></div>
                                     </div>
                                 </div>
                             </div>

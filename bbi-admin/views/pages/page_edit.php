@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
     $data = Page::find($id);
 
     $module = ModuleType::URL();
-    $url = '/pages/'.$data['alias'];
+    $url = $data['alias'];
     $metadata = Metadata::where('module_type',$module)->where('key_value',$url)->first();
 }
 $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
@@ -38,7 +38,24 @@ $action = isset($_GET['id'])?"update":"create";
         <!-- /nav end -->
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
-            <div class="container-fluid maincontent">
+            <div class="main-content">         
+                <div class="breadcrumb-container">
+                    <div class="row">
+                    <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/views/pages/index.php">页面</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $pagetitle; ?></li>
+                        </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                    </div>
+                </div>
+
                 <form novalidate="novalidate" id="editform">
                     <div class="card">
                         <div class="card-header">

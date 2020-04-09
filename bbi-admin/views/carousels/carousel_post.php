@@ -28,9 +28,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $link = $_POST['link'];
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
             $description = $_POST['description'];
-            $content = $_POST['content'];
-
-         
+ 
 
             $reseller = new Advertisement();          
             $reseller->title = $title;
@@ -40,7 +38,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $reseller->link =  $link;
             $reseller->active =  $active;
             $reseller->description =  $description;          
-            $reseller->content =  stripslashes($content);
+            $reseller->content =  stripslashes($_POST['content']);;
             $reseller->importance = $importance;
             $reseller->added_by = $username;
             $result = $reseller->save();
@@ -69,7 +67,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $link = $_POST['link'];
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
             $description = $_POST['description'];
-            $content = $_POST['content'];         
+         
 
             $reseller = Advertisement::find($id);  
             $reseller->title = $title;
@@ -79,7 +77,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $reseller->link =  $link;
             $reseller->active =  $active;
             $reseller->description =  $description;          
-            $reseller->content = stripslashes($content);
+            $reseller->content = stripslashes($_POST['content']);;
             $reseller->importance = $importance;
           //  $reseller->added_by = $username;
 

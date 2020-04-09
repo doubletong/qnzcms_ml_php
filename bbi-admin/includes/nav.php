@@ -8,37 +8,32 @@
                             <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
                         </a>
                     </li>
-                    <!--  常规产品模块  -->
-                    <!-- <li class="down-nav products">
-                        <a href="#">
-                            <i class="iconfont icon-left   float-right"></i>                             
-                            <i class="iconfont icon-appstore"></i> <span class="nav-text">产品</span>
-                        </a>
-                       <ul class="submenu">
-                            <li class="list">
-                                <a href="/bbi-admin/views/products/index.php">
-                                    产品列表
-                                </a>
-                            </li>
-                            <li class="category"><a href="/bbi-admin/views/products/product_categories.php">分类</a></li>
-                        </ul>
-                    </li>  -->
+             
 
-                 <!--  自定义产品属性产品模块  -->
+                 <!--  常规产品模块  -->
                  <li class="down-nav products_v1">
                         <a href="#">                                                       
                             <i class="iconfont icon-appstore"></i> 产品 <i class="arrow iconfont icon-down"></i>
                         </a>
                         <ul class="submenu">
                             <li class="list">
-                                <a href="/bbi-admin/views/products_v1/index.php">
+                                <a href="/bbi-admin/views/products/index.php">
                                     产品列表
                                 </a>
                             </li>
-                            <li class="category"><a href="/bbi-admin/views/products_v1/categories.php">分类</a></li>
+                            <li class="category"><a href="/bbi-admin/views/products/categories.php">分类</a></li>
                         </ul>
                     </li> 
-                 
+                    <li class="down-nav news">
+                        <a href="#">
+                        
+                            <i class="iconfont icon-file-copy"></i> 新闻资讯<i class="arrow iconfont icon-down"></i>
+                        </a>
+                       <ul class="submenu">
+                            <li class="list"><a href="/bbi-admin/views/news/index.php?did=1">新闻列表</a></li>
+                            <li class="category"><a href="/bbi-admin/views/news/categories.php?did=1">分类</a></li>
+                        </ul>
+                    </li>
                     <!-- 
                     <li hidden>
                         <a href="orders.php">
@@ -55,28 +50,19 @@
                             <li><a href="/bbi-admin/views/cases/case_categories.php">案例分类</a></li>
                         </ul>
                     </li>    
-                    <!--  
-                    <li class="down-nav tech">
-                        <a href="#">
-                            <i class="iconfont icon-left float-right"></i>   
-                            <i class="iconfont icon-experiment"></i> <span class="nav-text">核心技术</span> 
-                        </a>
-                       <ul class="submenu">
-                            <li><a href="/bbi-admin/views/articles/index.php?did=3">文章列表</a></li>
-                            <li><a href="/bbi-admin/views/articles/article_categories.php?did=3">分类</a></li>
-                        </ul>
-                    </li>
-                    -->
+               
                     <li class="down-nav articles">
                         <a href="#">
                         
-                            <i class="iconfont icon-file-copy"></i> 新闻资讯<i class="arrow iconfont icon-down"></i>
+                            <i class="iconfont icon-file-copy"></i> 文章<i class="arrow iconfont icon-down"></i>
                         </a>
                        <ul class="submenu">
                             <li><a href="/bbi-admin/views/articles/index.php?did=1">文章列表</a></li>
                             <li><a href="/bbi-admin/views/articles/article_categories.php?did=1">分类</a></li>
                         </ul>
                     </li>
+
+
 
                     <li class="applications">
                         <a href="/bbi-admin/views/applications/index.php">
@@ -108,34 +94,22 @@
                         </a>
                     </li>
                   
-                    <li class="fqa" hidden>
-                        <a href="/bbi-admin/questions.php">
-                            <i class="iconfont icon-question-circle-fill"></i> <span class="nav-text">常见问题</span>                    
+                  
+                    <li class="down-nav faq">
+                        <a href="#">                         
+                            <i class="iconfont icon-question-circle-fill"></i> 常见问题<i class="arrow iconfont icon-down"></i>
                         </a>
+                       <ul class="submenu">
+                           <li class="list"><a href="/bbi-admin/views/questions/index.php">问题列表</a></li> 
+                           <li class="categories"><a href="/bbi-admin/views/questions/categories.php">分类</a></li>                  
+                       </ul>                        
                     </li>
                    <li class="exhibitions">
                         <a href="/bbi-admin/views/exhibitions/index.php">
                             <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">展会信息</span>                    
                         </a>
                     </li>
-                    <!-- <li class="down-nav" hidden>
-                        <a href="#">
-                            <i class="iconfont icon-left   float-right"></i>                             
-                            <i class="iconfont icon-camera"></i> <span class="nav-text">媒体关注</span>
-                        </a>
-                       <ul class="submenu">
-                            <li>
-                                <a href="media.php">
-                                    媒体关注链接
-                                </a>
-                            </li>
-                            <li>
-                                <a href="topics.php">
-                                   主题管理
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
+                  
                     <li class="chronicles">
                         <a href="/bbi-admin/views/chronicles/index.php" >
                             <i class="iconfont icon-reloadtime"></i> <span class="nav-text">发展历程</span>                    
@@ -159,12 +133,16 @@
                         </a>
                     </li>
                
-                   
-                    <li class="teams">
-                        <a href="/bbi-admin/views/teams/index.php">
-                            <i class="iconfont icon-team"></i> <span class="nav-text">团队管理</span>                    
+                    <li class="down-nav teams">
+                        <a href="#">                         
+                            <i class="iconfont icon-team"></i> 团队<i class="arrow iconfont icon-down"></i>
                         </a>
+                       <ul class="submenu">
+                           <li class="list"><a href="/bbi-admin/views/teams/index.php">团队成员</a></li> 
+                           <li class="categories"><a href="/bbi-admin/views/teams/categories.php">分类</a></li>                  
+                       </ul>                        
                     </li>
+
                     <li class="jobs">
                         <a href="/bbi-admin/views/jobs/index.php">
                             <i class="iconfont icon-user"></i> <span class="nav-text">岗位招聘</span>                    
