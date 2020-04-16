@@ -10,4 +10,6 @@ return array(
     '0d59ee240a4cd96ddbb4ff164fccea4d' => $vendorDir . '/symfony/polyfill-php73/bootstrap.php',
     '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
     '72579e7bd17821bb1321b87411366eae' => $vendorDir . '/illuminate/support/helpers.php',
+    'dfc9e5dd545737efbb98020db79bfa08' => $vendorDir . '/mos/cimage/defines.php',
+    '507fe79d3e285fab95fad400b8d42245' => $vendorDir . '/mos/cimage/functions.php',
 );

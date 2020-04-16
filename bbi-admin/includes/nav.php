@@ -158,7 +158,16 @@
                             <i class="iconfont icon-video"></i> <span class="nav-text">视频中心</span>                    
                         </a>
                     </li>
-            
+
+                    <li class="down-nav albums">
+                        <a href="#">                         
+                            <i class="iconfont icon-image"></i> 相册<i class="arrow iconfont icon-down"></i>
+                        </a>
+                       <ul class="submenu">
+                           <li class="photos"><a href="/bbi-admin/views/albums/photos.php">图片列表</a></li> 
+                           <li class="list"><a href="/bbi-admin/views/albums/index.php">相册集</a></li>                  
+                       </ul>                        
+                    </li>
 
                     <li class="down-nav downloads">
                         <a href="#">                         
@@ -207,8 +216,7 @@
                             <li class="language"><a href="/bbi-admin/views/languages/index.php"><i class="iconfont icon-language"></i> 语言设置</a></li>
                             <li class="resource"><a href="/bbi-admin/views/resources/index.php"><i class="iconfont icon-language"></i> 语言资源</a></li>
                             <li class="manager"><a href="/bbi-admin/administrators.php"><i class="iconfont icon-team"></i> 管理员</a></li>
-                            <li class="manager_add"><a href="/bbi-admin/admin_add.php"><i class="iconfont icon-adduser"></i> 创建管理员</a></li>
-                            
+                            <li class="manager_add"><a href="/bbi-admin/admin_add.php"><i class="iconfont icon-adduser"></i> 创建管理员</a></li>                            
                             <li class="backup"><a href="/bbi-admin/views/backup/index.php"><i class="iconfont icon-database"></i> 备份数据库</a></li>
                         </ul>
                     </li>

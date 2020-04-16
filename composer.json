@@ -6,7 +6,8 @@
         "gregwar/captcha": "1.*",
         "twig/twig": "3.0",
         "phpfastcache/phpfastcache": "^7.1",
-        "myclabs/php-enum": "^1.7"
+        "myclabs/php-enum": "^1.7",
+        "mos/cimage": "^0.7.21"
     },
     "autoload": {
         "classmap": [

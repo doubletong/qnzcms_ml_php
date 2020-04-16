@@ -6,9 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CAsciiArt' => $vendorDir . '/mos/cimage/CAsciiArt.php',
+    'CCache' => $vendorDir . '/mos/cimage/CCache.php',
+    'CFastTrackCache' => $vendorDir . '/mos/cimage/CFastTrackCache.php',
+    'CHttpGet' => $vendorDir . '/mos/cimage/CHttpGet.php',
+    'CImage' => $vendorDir . '/mos/cimage/CImage.php',
+    'CRemoteImage' => $vendorDir . '/mos/cimage/CRemoteImage.php',
+    'CWhitelist' => $vendorDir . '/mos/cimage/CWhitelist.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Models\\Advertisement' => $baseDir . '/src/Models/Advertisement.php',
     'Models\\AdvertisingSpace' => $baseDir . '/src/Models/AdvertisingSpace.php',
+    'Models\\Album' => $baseDir . '/src/Models/Album.php',
     'Models\\ApplicationArea' => $baseDir . '/src/Models/ApplicationArea.php',
     'Models\\Carousel' => $baseDir . '/src/Models/Carousel.php',
     'Models\\Country' => $baseDir . '/src/Models/country.php',
@@ -26,6 +34,7 @@ return array(
     'Models\\Offer' => $baseDir . '/src/Models/Offer.php',
     'Models\\Option' => $baseDir . '/src/Models/Option.php',
     'Models\\Page' => $baseDir . '/src/Models/Page.php',
+    'Models\\Photo' => $baseDir . '/src/Models/Photo.php',
     'Models\\Position' => $baseDir . '/src/Models/Position.php',
     'Models\\Product' => $baseDir . '/src/Models/Product.php',
     'Models\\ProductCategory' => $baseDir . '/src/Models/ProductCategory.php',

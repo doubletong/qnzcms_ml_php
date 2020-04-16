@@ -11,6 +11,8 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        'dfc9e5dd545737efbb98020db79bfa08' => __DIR__ . '/..' . '/mos/cimage/defines.php',
+        '507fe79d3e285fab95fad400b8d42245' => __DIR__ . '/..' . '/mos/cimage/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -222,9 +224,17 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
     );
 
     public static $classMap = array (
+        'CAsciiArt' => __DIR__ . '/..' . '/mos/cimage/CAsciiArt.php',
+        'CCache' => __DIR__ . '/..' . '/mos/cimage/CCache.php',
+        'CFastTrackCache' => __DIR__ . '/..' . '/mos/cimage/CFastTrackCache.php',
+        'CHttpGet' => __DIR__ . '/..' . '/mos/cimage/CHttpGet.php',
+        'CImage' => __DIR__ . '/..' . '/mos/cimage/CImage.php',
+        'CRemoteImage' => __DIR__ . '/..' . '/mos/cimage/CRemoteImage.php',
+        'CWhitelist' => __DIR__ . '/..' . '/mos/cimage/CWhitelist.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Models\\Advertisement' => __DIR__ . '/../..' . '/src/Models/Advertisement.php',
         'Models\\AdvertisingSpace' => __DIR__ . '/../..' . '/src/Models/AdvertisingSpace.php',
+        'Models\\Album' => __DIR__ . '/../..' . '/src/Models/Album.php',
         'Models\\ApplicationArea' => __DIR__ . '/../..' . '/src/Models/ApplicationArea.php',
         'Models\\Carousel' => __DIR__ . '/../..' . '/src/Models/Carousel.php',
         'Models\\Country' => __DIR__ . '/../..' . '/src/Models/country.php',
@@ -242,6 +252,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Offer' => __DIR__ . '/../..' . '/src/Models/Offer.php',
         'Models\\Option' => __DIR__ . '/../..' . '/src/Models/Option.php',
         'Models\\Page' => __DIR__ . '/../..' . '/src/Models/Page.php',
+        'Models\\Photo' => __DIR__ . '/../..' . '/src/Models/Photo.php',
         'Models\\Position' => __DIR__ . '/../..' . '/src/Models/Position.php',
         'Models\\Product' => __DIR__ . '/../..' . '/src/Models/Product.php',
         'Models\\ProductCategory' => __DIR__ . '/../..' . '/src/Models/ProductCategory.php',

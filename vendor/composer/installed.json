@@ -768,6 +768,68 @@
         ]
     },
     {
+        "name": "mos/cimage",
+        "version": "v0.7.21",
+        "version_normalized": "0.7.21.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mosbth/cimage.git",
+            "reference": "c563275ed5c4052b45e0737f665fd4110f67ea0f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mosbth/cimage/zipball/c563275ed5c4052b45e0737f665fd4110f67ea0f",
+            "reference": "c563275ed5c4052b45e0737f665fd4110f67ea0f",
+            "shasum": ""
+        },
+        "require": {
+            "ext-gd": "*",
+            "php": ">=5.3"
+        },
+        "suggest": {
+            "ext-curl": "*",
+            "ext-exif": "*",
+            "ext-imagick": "*"
+        },
+        "time": "2020-01-15T15:51:39+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "defines.php",
+                "functions.php"
+            ],
+            "classmap": [
+                "CImage.php",
+                "CHttpGet.php",
+                "CRemoteImage.php",
+                "CWhitelist.php",
+                "CAsciiArt.php",
+                "CCache.php",
+                "CFastTrackCache.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mikael Roos",
+                "email": "me@mikaelroos.se",
+                "homepage": "http://mikaelroos.se",
+                "role": "Developer"
+            }
+        ],
+        "description": "Process, scale, resize, crop and filter images.",
+        "homepage": "http://dbwebb.se/opensource/cimage",
+        "keywords": [
+            "gd",
+            "image",
+            "imageprocessing"
+        ]
+    },
+    {
         "name": "myclabs/php-enum",
         "version": "1.7.6",
         "version_normalized": "1.7.6.0",
