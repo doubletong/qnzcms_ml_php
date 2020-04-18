@@ -57,7 +57,7 @@ function recursive($items, $level, $parent){
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
         <!-- /nav end -->
@@ -264,7 +264,7 @@ function recursive($items, $level, $parent){
                                         <div class="card">
                                         <div class="card-header">缩略图</div>
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/100x100?text=600X600像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/100x100?text=600X600像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/240x120?text=280X142像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x120?text=280X142像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">

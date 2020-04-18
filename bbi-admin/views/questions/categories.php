@@ -51,14 +51,14 @@ $categorys = $query->orderBy('importance', 'DESC')
 
 <head>
     <title>
-        <?php echo "岗位招聘_后台管理_" . $site_info['sitename']; ?>
+        <?php echo "问题分类_后台管理_" . $site_info['sitename']; ?>
     </title>
     <?php require_once('../../includes/meta.php') ?>
 
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once('../../includes/nav.php'); ?>
         <!-- /nav end -->
@@ -72,7 +72,7 @@ $categorys = $query->orderBy('importance', 'DESC')
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="/bbi-admin/views/downloads/index.php">下载中心</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/questions/index.php">常见问题</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">分类</li>
                             </ol>
                         </nav>
@@ -86,7 +86,7 @@ $categorys = $query->orderBy('importance', 'DESC')
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>下载分类</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-appstore"></i>问题分类</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -215,7 +215,7 @@ $categorys = $query->orderBy('importance', 'DESC')
     <script>
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu>li.downloads").addClass("nav-open").find("ul>li.categories a").addClass("active");
+            $(".mainmenu>li.faq").addClass("nav-open").find("ul>li.categories a").addClass("active");
 
             //确认框默认语言
             bootbox.setDefaults({

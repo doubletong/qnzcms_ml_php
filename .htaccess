@@ -5,14 +5,16 @@ RewriteRule ^pages/(.*)$ /views/pages/index.php?alias=$1
 RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
 RewriteRule ^([a-z|_|0-9]+)/([a-z|_|0-9]+)$ /views/$1/$2.php [L]
 
+RewriteRule ^services/detail-([0-9]+)$ /views/services/detail.php?id=$1 
+RewriteRule ^resource/blog-detail-([0-9]+)$ /views/resource/blog_detail.php?id=$1 
 RewriteRule ^news/detail-([0-9]+)$ /views/news/detail.php?id=$1 
 RewriteRule ^application/index-([0-9]+)$ /views/application/index.php?id=$1 
 
 RewriteRule ^technology/list/([0-9]+)$ /views/technology/list.php?cid=$1 
 RewriteRule ^technology/detail/([0-9]+)$ /views/technology/detail.php?id=$1 
 
-RewriteRule ^career/?([a-z|_|0-9]+)$ /views/career/$1.php [L]
-RewriteRule ^nuclear_medicine/?([a-z|_|0-9]+)$ /views/nuclear_medicine/$1.php [L]
+
+
 RewriteRule ^contact/?([a-z|_|0-9]+)$ /views/contact/$1.php [L]
 
 RewriteRule ^/?([a-z|_|0-9]+)$ $1.php [L]

@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}} - 关于我们
+    {{page.title}}
  {% endif %}
 
 {% endblock %}
@@ -13,11 +13,7 @@
     <meta name="description" content="{{metadata.description}}">
 {% endblock %}
 {% block content %}
-    <div class="banner banner-about wow fadeInUp" style="background-image:url('{{page.background_image}}')"></div>
 
-
-    <div class="page page-about">
-        {{page.content|raw }}        
-    </div>
+    {{page.content|raw }}        
 
 {% endblock %}

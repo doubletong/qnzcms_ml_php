@@ -32,7 +32,7 @@ $action = isset($_GET['id'])?"update":"create";
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once('../../includes/nav.php'); ?>
         <!-- /nav end -->

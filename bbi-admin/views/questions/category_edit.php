@@ -23,7 +23,7 @@ $pageTitle = isset($_GET['id']) ? "编辑分类" : "创建分类";
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once('../../includes/nav.php'); ?>
         <!-- /nav end -->

@@ -1,269 +1,206 @@
 
-{% extends "shared/layoutForHome.html" %}
+{% extends "shared/layout.html" %}
 
 {% block title %}首页{% endblock %}
 {% block head %}
     {{ parent() }}
-    <link rel="stylesheet" href="/assets/js/vendor/fullpage/fullpage.min.css">
-    <link rel="stylesheet" href="/assets/js/vendor/swiper/package/css/swiper.min.css">
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
 {% endblock %}
 {% block content %}
-    <div class="fullpage" id="fullpage">
-        <section class="section">
-            <!-- slider -->
-            <div class="swiper-container slider">
-                <div class="swiper-wrapper ">
-                {% for carousel in carousels %}
 
-                        <div class="swiper-slide">
-                                <div class="forpc" style="background-image:url('{{carousel.image_url}}');">
-                                    <div class="container-fluid">
-                                    <div class="txt">
-                                        <h2>
-                                            SEE THE WORLD WITH GALAXYCORE
-                                        </h2>
-                                        <h3>格科微电子  用芯看世界</h3>
-                                        <p>致力于CMOS图像传感器芯片、LCD/TDDI/AMOLED 显示驱动芯片、高端嵌入式多媒体SOC芯片及应用系统的设计、开发、测试和销售。</p>
-                                        <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="formobile" style="background-image:url('{{carousel.image_url_mobile}}');">
-                                    <div class="container-fluid">
-                                    <div class="txt">
-                                        <h2>
-                                            SEE THE WORLD WITH GALAXYCORE
-                                        </h2>
-                                        <h3>格科微电子  用芯看世界</h3>
-                                        <p>致力于CMOS图像传感器芯片、LCD/TDDI/AMOLED 显示驱动芯片、高端嵌入式多媒体SOC芯片及应用系统的设计、开发、测试和销售。</p>
-                                        <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
-                                    </div>
-                                </div>
-                                </div>
-                        
-                        </div>
-
-                {% endfor %}
-
-
+ <div class="page page-home"> 
+      <div class="s1">
+        <div class="container">
+          <div class="txt"> 
+            <h2>At premium parts, </h2>
+            <p>we ensure customer to receive, accurate, fast, on time, sufficient support and services</p>
+            <div class="row actions align-items-center">
+              <div class="col-auto"><a href="#"> <i class="iconfont icon-play"></i></a></div>
+              <div class="col"><a class="quote" href="javascript:void(0);">Request A Quote</a></div>
             </div>
-            <!-- Add Pagination -->
-            <div class="footer-pagination">
-                <div class="container-fluid">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-auto"><div class="swiper-button-prev"></div></div>
-                        <div class="col-auto"><div class="swiper-pagination"></div></div>                    
-                        <div class="col-auto"><div class="swiper-button-next"></div></div>
-                    </div>      
-                </div>          
-            </div>              
-            
+          </div>
         </div>
-        </section>
-        <section class="section s2" style="background: #fff url('/assets/img/home_bg_r.png') no-repeat right center;">
-            <div class="pictxt animated" data-animate="fadeInLeft" style="background-image:  url('/assets/img/home_bg_l.png');">
-
-                <div class="aboutinfo">
-                    <ul class="tabheader" id="tabheader">
-                        <li class="active">CIS</li>
-                        <li>DDI</li>
-                        <li>ISP</li>
-                    </ul>
-                    <div class="tabcontent" id="tabcontent">
-                        <div class="conbox active">
-                            <h3>CIS</h3>
-                            <p>将光信号转换成电信号的图像传感器芯片，广泛应用在移动终端、安防监控、汽车后装、生物识别等各个领域</p>
-                        </div>
-                        <div class="conbox">
-                            <h3>DDI</h3>
-                            <p>用于各种显示产品上显示模组的驱动芯片，如TFT-LCD AMOLED,PMOLED等。</p>
-                        </div>
-                        <div class="conbox">
-                            <h3>ISP</h3>
-                            <p>专为智能手机应用定制的ISP图像处理桥接芯片，在紧跟市场的同时，充分发挥单摄及多摄传感器潜能，为用户提供高质量的拍照及视频体验。</p>
-                        </div>
-                    </div>
-                </div>
+      </div>
+      <section class="s2">           
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-auto">
+              <div class="pic wow fadeInLeft"><img src="/assets/img/about_01.jpg" alt=""></div>
             </div>
-            <div class="txt animated"  data-animate="fadeInRight">
-                <div class="content">
-                    <h2>ABOUT GALAXYCORE</h2>
-                    <h3>关于格科</h3>
-                    <p>格科微电子（上海）有限公司创立于2003年，是中国领先的图像传感器芯片设计公司，目标瞄准全球移动设备及消费电子市场。</p> 
-                    <p>我们的核心实力是创新设计能力、高效及灵活的制造工序以及和供货商(例如代工厂及封装厂)、CMOS摄像模块制造商、LCD模块制造商、终端设备制造商及设计公司等业界参与者建立关系。</p>                     
-                    <p>我们对未来的增长信心十足，不断提升整体竞争力，巩固图像传感器行业以及LCD驱动行业的领先地位。</p>
-                    <a href="/about" title="关于格科" class="more">SEE MORE</a>
+            <div class="col-md">
+              <div class="intro">
+                <div class="title-section wow fadeInUp">
+                  <h2>ABOUT US</h2>
                 </div>
+                <p>At  Premium Part, our core competencies and focus revolves around quality service delivery. We strive to provide each and every client with a truly rapid manufacturing process that will yield premium, functional parts through the most cost-effective approach.</p>
+                <p>Premium Parts specializes in a wide array of services for both low-volume and mass production quantities. Our array of services include rapid prototyping, low-volume manufacturing, CNC Machining, 3D Printing, Urethane ...</p>
+                <div class="more"><a class="btn btn-primary-outline" href="/about">MORE</a></div>
+              </div>
             </div>
-        </section>
-        <section class="section s3" style="background: #1f3665 url('/assets/img/home_bg_l2.png') no-repeat left center;">
-            <div class="s3-box">
-            <div class="pictxt animated" data-animate="fadeInRight" style="background-image:  url('/assets/img/home_bg_r2.png') ">
-                <div class="c">
-                    <ul class="tabheader">
-                        <li class="active"><i class="iconfont icon-mobile"></i></li>
-                        <li><i class="iconfont icon-car"></i></li>
-                        <li><i class="iconfont icon-camera"></i></li>
-                        <li><i class="iconfont icon-laptop"></i></li>
-                        <li><i class="iconfont icon-watch"></i></li>
-                    </ul>
-                    <div class="cs content">
-                        <h2 class="title">APPLICATION</h2>
-                        <h3>应用领域</h3>
-                        <p>格科认识到每个终端市场都有其独特的应用需求，无法用单一方案来解决问题。 我们的产品开发团队通过与合作供应商和客户的紧密合作，使格科可针对每个目标市场量身打造独特并且适用的CMOS图像传感器技术。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="txt animated"  data-animate="fadeInLeft">
-                <div class="content content1">
-                    <h2>AUTOMOTIVE ELECTRONICS</h2>
-                    <h3>汽车电子</h3>
-                    <p>为您的驾驶提供保驾护航，减少行驶过程中的事故和纠纷。<br/>目前产品有行车记录仪、车内监控、360度环视、倒车后视、驾驶员疲脑检测。</p>
-                    <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
-                </div>
-            </div>
+          </div>
         </div>
-        </section>
-        <section class="section s4" style="background: #fff url('/assets/img/home_bg_r.png') no-repeat right center;">
-            <div class="pictxt animated" data-animate="fadeInLeft" style="background-image:  url('/assets/img/home_bg_l3.png') ;">
-                <div class="content newsinfo">
-                    <h2>NEWS AND EVENTS</h2>
-                    <h3>新闻与动态</h3>
-                    <p>第一时间了解我们的实时新闻与最新动态！</p>
-                    <a href="/news" title="新闻与动态" class="more">SEE MORE</a>
-                </div>
+      </section>
+      <section class="s3">
+        <div class="title-section wow fadeInUp">
+          <h2 class="text-center">What we can do?</h2>
+        </div>
+        <div class="row no-gutters">   
+
+          {% for item in serviceItems  %}
+            <div class="col-md-6 col-lg-4"><a class="item wow fadeInUp" href="/services/detail-{{item.id}}">
+                <div class="pic"><img src="{{item.thumbnail}}"></div>
+                <div class="des">     
+                  <h3 class="title">{{item.title}}</h3>
+                  <p>{{item.summary}}</p>
+                  <div class="btn btn-default-outline">MORE</div>
+                </div></a></div>
+          {% endfor %}              
+          
+        </div>
+      </section>
+      <div class="section s4">
+        <div class="container">
+          <div class="title-section-v2 wow fadeInUp">
+            <h2 class="text-center">Why choose premium parts?</h2>
+            <p class="text-center">Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.</p>
+          </div>
+          <div class="tab-header wow fadeInUp">
+            <div class="row">
+              <div class="col-4 col-md-2"><a class="item active" href="#sl01">
+                  <div class="icon"><img src="/assets/img/icon-01.png" srcset="/assets/img/icon-01.png, img/icon-01@2x.png 2x" alt="Manufacturing capabilities"></div>
+                  <div class="txt">Manufacturing <br>capabilities</div></a></div>
+              <div class="col-4 col-md-2"><a class="item" href="#sl02">
+                  <div class="icon"><img src="/assets/img/icon-02.png" srcset="/assets/img/icon-02.png, img/icon-02@2x.png 2x" alt="Manufacturing capabilities"></div>
+                  <div class="txt">Garanteed on time <br>delivery</div></a></div>
+              <div class="col-4 col-md-2"><a class="item" href="#sl03">
+                  <div class="icon"><img src="/assets/img/icon-03.png" srcset="/assets/img/icon-03.png, img/icon-03@2x.png 2x" alt="Manufacturing capabilities"></div>
+                  <div class="txt">Outstanding <br>team</div></a></div>
+              <div class="col-4 col-md-2"><a class="item" href="#sl04">
+                  <div class="icon"><img src="/assets/img/icon-04.png" srcset="/assets/img/icon-04.png, img/icon-04@2x.png 2x" alt="Manufacturing capabilities"></div>
+                  <div class="txt">Money back quality<br>garantee</div></a></div>
+              <div class="col-4 col-md-2"><a class="item" href="#sl05">
+                  <div class="icon"><img src="/assets/img/icon-05.png" srcset="/assets/img/icon-05.png, img/icon-05@2x.png 2x" alt="Manufacturing capabilities"></div>
+                  <div class="txt">One Stop <br>Service</div></a></div>
+              <div class="col-4 col-md-2"><a class="item" href="#sl06">
+                  <div class="icon"><img src="/assets/img/icon-06.png" srcset="/assets/img/icon-06.png, img/icon-06@2x.png 2x" alt="Manufacturing capabilities"></div>
+                  <div class="txt">Affordable <br>price</div></a></div>
             </div>
-            <div class="container-fluid">
-            <div class="row txt justify-content-end">
-                <div class="col-lg-6">
-                <div class="list">
-                    {% for article in articles %}
-                    <div class="box animated" data-animate="fadeInRight">           
-                        <img src="{{article.thumbnail}}" alt="{{article.title}}" class="thumb">          
-                        <div class="newstxt">
-                            <time>{{article.pubdate|date("Y年m月d日") }}</time>
-                            <h3 class="title"><a href="/news/detail-{{article.id}}">{{article.title}}</a></h3>
-                        </div>
-                   </div>
-                    {% endfor %}
-                   
-                </div>
-            </div>
-            </div>
-        
-        </section>
-        <section class="section s5 fp-auto-height">
-            <div class="join">
-                <div class="container-fluid animated" data-animate="fadeInLeft">
-                    <div class="content">
-                        <h2>JOIN US</h2>
-                        <h3>未来有你，更多可能！</h3>
-                        <p>模拟电路设计工程师 | 数字电路设计工程师 | 数字后端设计工程师 | DRAM电路设计工程师 | 图像算法工程师 | 工艺工程师 | 产品工程师 | 硬件工程师 | 产品测试工程师 | 产品应用工程师</p>
-                        <a href="{{carousel.url}}" title="{{carousel.title}}" class="more">SEE MORE</a>
+          </div>
+        </div>
+        <div class="swiperel wow fadeInUp">
+          <div class="container">
+            <div class="swiper01 swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" data-hash="sl01">
+                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
+                    <div class="txt">
+                      <div class="txtwrap">
+                        <h3>Quick Turnaround</h3>
+                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
+                      </div>
                     </div>
+                  </div>
                 </div>
+                <div class="swiper-slide" data-hash="sl02">
+                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
+                    <div class="txt">
+                      <div class="txtwrap">
+                        <h3>Quick Turnaround</h3>
+                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-hash="sl03">
+                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
+                    <div class="txt">
+                      <div class="txtwrap">
+                        <h3>Quick Turnaround</h3>
+                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-hash="sl04">
+                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
+                    <div class="txt">
+                      <div class="txtwrap">
+                        <h3>Quick Turnaround</h3>
+                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-hash="sl05">
+                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
+                    <div class="txt">
+                      <div class="txtwrap">
+                        <h3>Quick Turnaround</h3>
+                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-hash="sl06">
+                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
+                    <div class="txt">
+                      <div class="txtwrap">
+                        <h3>Quick Turnaround</h3>
+                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            {{ include('shared/footerForHome.html') }}
-        </section>
-        
-        
-    </div>    
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+      <section class="s5">
+        <div class="row no-gutters">
+          <div class="col-6 col-md-3 col-xl-2"><a class="item material wow fadeInUp" href="/material"> 
+              <div class="module">Select the material</div></a></div>
+          <div class="col-6 col-md-3 col-xl-2"><a class="item blog wow fadeInUp" href="/resource/blog"> 
+              <div class="module">BLOG</div></a></div>
+          <div class="col-md-6 col-xl-8"><a class="item faq wow fadeInUp" href="/resource/faq"> 
+              <div class="des"> 
+                <h3>FAQs</h3>
+                <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain </p>
+                <div class="more">more</div>
+              </div></a></div>
+        </div>
+      </section>
+    </div>
+
+
+  
   
 {% endblock %}
 
 {% block footer %}
-<script src="/assets/js/vendor/swiper/package/js/swiper.min.js"></script>
-<script src="/assets/js/vendor/fullpage/vendors/easings.min.js"></script>
-<script src="/assets/js/vendor/fullpage/vendors/scrolloverflow.min.js"></script>
-<script src="/assets/js/vendor/fullpage/fullpage.min.js"></script>
-<script src="/assets/js/vendor/fullpage/fullpage.extensions.min.js"></script>
-
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
 
     <script>
-        $("#godown").click(function(e) {
-            e.preventDefault();
-            var srcollto = $(window).height() - $(".site-header").height();
-
-            $("html, body").animate({
-                scrollTop: srcollto
-            }, 600);
-        })
-
-       // $('.slider').height($(window).height());
-
-        var swiper = new Swiper('.slider', {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            pagination: {
-                el: '.swiper-pagination',
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-     
-
-        $(document).ready(function() {
-            $('#fullpage').fullpage({
-                //options here
-                licenseKey: "750A6298-E6DA42F7-9B37E662-7341082F",
-                autoScrolling: true,
-                scrollHorizontally: true,
-                navigation: false,
-                slidesNavigation: true,
-                scrollOverflow: true,
-                afterLoad: function (origin, destination, direction) {
-                    var loadedSection = this;
-                    console.log($('.section')[destination.index]);
-                    //console.log(origin);
-                    //console.log(destination);
-                    //console.log(direction);
-                    //使用 index
-                    var els = $($('.section')[destination.index]).find(".animated");
-                    let list = Array.prototype.slice.call(els);
-                    addAnimate(list)
-
-                    var oels = $($('.section')[origin.index]).find(".animated");
-                    let olist = Array.prototype.slice.call(oels);
-                    removeAnimate(olist);
-
-                      //  alert(destination.index);
-                    if(destination.index>0){
-                        $("#site-header").addClass("fixheader");
-                        $("#logo").attr("src","/assets/img/logo_color.png");
-                    } else{
-                        $("#site-header").removeClass("fixheader");
-                        $("#logo").attr("src","/assets/img/logo.png");
-                    }
-                
-                }
-            });
-    
-            //methods
-            $.fn.fullpage.setAllowScrolling(true);
-
-            function addAnimate(list){
-                list.forEach(function (item, index, arr) {
-                    var ani = $(item).attr("data-animate");
-                   $(item).addClass(ani);
-                });
-            }
-            function removeAnimate(list){
-                list.forEach(function (item, index, arr) {
-                    var ani = $(item).attr("data-animate");
-                   $(item).removeClass(ani);
-                });
-            }
-
-            $("#tabheader li").click(function(e){
-
-                var i =  $("#tabheader li").index($(this));
-                $(this).addClass("active").siblings().removeClass("active");
-                $("#tabcontent .conbox").eq(i).addClass("active").siblings().removeClass("active");
-            })
-
-           
-        });
+        var galleryTop = new Swiper('.swiper01', {
+          spaceBetween: 0,
+          navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+          hashNavigation: {
+              watchState: true,
+          }
+         
+      });
+      
+      $(".tab-header .item").eq(galleryTop.activeIndex).addClass("active");
+      galleryTop.on('slideChange', function () {
+        
+          $(".tab-header .active").removeClass("active");
+          $(".tab-header .item").eq(this.activeIndex).addClass("active");
+      });
     </script>
     {% endblock %}

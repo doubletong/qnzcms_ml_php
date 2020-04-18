@@ -54,7 +54,7 @@ function recursive($items, $level, $parent)
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php';?>
         <!-- /nav end -->

@@ -3,7 +3,7 @@ use Models\Album;
 use Models\Photo;
 require_once('../../includes/common.php');
 
-$pagetitle = isset($_GET['id'])?"编辑产品":"创建产品";
+$pagetitle = isset($_GET['id'])?"编辑图片":"创建图片";
 $action = isset($_GET['id'])?"update":"create";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -116,7 +116,7 @@ function recursive($items, $level, $parent){
                                         <div class="card">
                                         <div class="card-header">缩略图</div>
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=360X240像素" src="<?php echo empty($data['image_url']) ? "holder.js/240x180?text=360X240像素" : $data['image_url']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=800X600像素" src="<?php echo empty($data['image_url']) ? "holder.js/240x180?text=800X600像素" : $data['image_url']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">

@@ -3,7 +3,7 @@ use Models\DownloadCategory;
 use Models\Download;
 require_once('../../includes/common.php');
 
-$pagetitle = isset($_GET['id'])?"编辑产品":"创建产品";
+$pagetitle = isset($_GET['id'])?"编辑文档":"创建文档";
 $action = isset($_GET['id'])?"update":"create";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -137,7 +137,7 @@ function recursive($items, $level, $parent){
                                         <div class="card">
                                         <div class="card-header">缩略图</div>
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/100x100?text=600X600像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/100x100?text=600X600像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/180x240?text=280X380像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/180x240?text=280X380像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">

@@ -3,7 +3,7 @@ use Models\NewsCategory;
 use Models\News;
 require_once('../../includes/common.php');
 
-$pagetitle = isset($_GET['id'])?"编辑新闻":"创建新闻";
+$pagetitle = isset($_GET['id'])?"编辑文章":"创建文章";
 $action = isset($_GET['id'])?"update":"create";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -70,7 +70,7 @@ function recursive($items, $level, $parent){
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                            <li class="breadcrumb-item"><a href="/bbi-admin/views/newss/index.php">产品</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/views/news/index.php">文章</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><?php echo $pagetitle; ?></li>
                         </ol>
                         </nav>
@@ -156,7 +156,7 @@ function recursive($items, $level, $parent){
                                         <div class="card">
                                         <div class="card-header">缩略图</div>
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/100x100?text=600X600像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/100x100?text=600X600像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=380X250像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=380X250像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">

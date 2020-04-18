@@ -27,10 +27,10 @@
                     <li class="down-nav news">
                         <a href="#">
                         
-                            <i class="iconfont icon-file-copy"></i> 新闻资讯<i class="arrow iconfont icon-down"></i>
+                            <i class="iconfont icon-file-copy"></i> 文章<i class="arrow iconfont icon-down"></i>
                         </a>
                        <ul class="submenu">
-                            <li class="list"><a href="/bbi-admin/views/news/index.php?did=1">新闻列表</a></li>
+                            <li class="list"><a href="/bbi-admin/views/news/index.php?did=1">文章列表</a></li>
                             <li class="category"><a href="/bbi-admin/views/news/categories.php?did=1">分类</a></li>
                         </ul>
                     </li>
@@ -51,18 +51,7 @@
                         </ul>
                     </li>    
                
-                    <li class="down-nav articles">
-                        <a href="#">
-                        
-                            <i class="iconfont icon-file-copy"></i> 文章<i class="arrow iconfont icon-down"></i>
-                        </a>
-                       <ul class="submenu">
-                            <li><a href="/bbi-admin/views/articles/index.php?did=1">文章列表</a></li>
-                            <li><a href="/bbi-admin/views/articles/article_categories.php?did=1">分类</a></li>
-                        </ul>
-                    </li>
-
-
+                 
 
                     <li class="applications">
                         <a href="/bbi-admin/views/applications/index.php">
@@ -70,15 +59,12 @@
                         </a>
                     </li>
 
-                   <li class="down-nav majors">
-                        <a href="#">                         
-                            <i class="iconfont icon-windows"></i> 专业介绍<i class="arrow iconfont icon-down"></i>
+                    <li class="services">
+                        <a href="/bbi-admin/views/services/index.php">
+                            <i class="iconfont icon-windows"></i> <span class="nav-text">服务项目</span>                    
                         </a>
-                       <ul class="submenu">
-                            <li><a href="/bbi-admin/views/majors/index.php">专业项目</a></li>
-                            <li class="category"><a href="/bbi-admin/views/majors/categories.php">分类</a></li>
-                        </ul>
-                    </li>     
+                    </li>
+                    
                     <li class="down-nav schools">
                         <a href="#">                             
                             <i class="iconfont icon-school"></i> 院校管理<i class="arrow iconfont icon-down"></i>

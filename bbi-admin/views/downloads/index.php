@@ -183,7 +183,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                                 {
                                     echo "<tr>";
                                 ?>
-                                <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
+                                <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:50px;"/></td>
                                     <td><?php echo $row['title'] ;?></td> 
                                     <td><?php echo $row['category']['title'] ;?></td> 
                                     <td><?php echo $strClass->formatSizeUnits($row['file_size']);?></td>

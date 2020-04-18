@@ -1,0 +1,56 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+    gallery
+{% endblock %}
+
+{% block head %}
+    {{ parent() }} 
+    <link href="/assets/js/vendor/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  
+<div class="page_subnav">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md">
+          <div class="title">Resource</div>
+        </div>
+        <div class="col-md-auto">
+          <nav class="subnav"><a href="/resource">Technical Specification</a><a href="/resource/blog">Blog</a><a class="active" href="/resource/gallery">Gallery</a><a href="/resource/faq">FAQs</a></nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page page-gallery">
+    <section class="gallery container"> 
+      <div class="row">      
+        {% for item in photos %}
+            <div class="col-md-6 col-lg-4"><a class="item wow fadeInUp" href="{{item.image_url}}" data-lightbox="roadtrip"> 
+                <div class="pic"> <img src="/img.php?src={{item.image_url}}&amp;w=380&amp;h=250&amp;crop-to-fit" alt="{{item.title}}">
+                <div class="over"></div>
+                </div>
+                <div class="des">{{item.title}}</div></a>
+            </div>
+
+        {% endfor %}                            
+        
+      
+      </div>
+    </section>
+  </div>
+
+    
+{% endblock %}
+
+
+{% block footer %}
+    <script src="/assets/js/vendor/lightbox2/dist/js/lightbox.min.js"></script>
+    <script>
+       lightbox.option({
+          'resizeDuration': 200,
+           'wrapAround': true
+      })
+    </script>
+{% endblock %}

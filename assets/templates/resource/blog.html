@@ -1,0 +1,73 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+    Blog
+{% endblock %}
+
+{% block content %}
+  
+<div class="page_subnav">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md">
+          <div class="title">Resource</div>
+        </div>
+        <div class="col-md-auto">
+          <nav class="subnav"><a href="/resource">Technical Specification</a><a class="active" href="/resource/blog">Blog</a><a href="/resource/gallery">Gallery</a><a href="/resource/faq">FAQs</a></nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page page-blog">      
+    <section class="container">
+      <figure class="banner-blog"><img src="/assets/img/temp/banner-blog.jpg" alt=""></figure>
+      <div class="s1">
+        <div class="years"><i class="iconfont icon-down"></i>TIME</div>
+        <div class="blog-list">
+
+            {% for item in news %}         
+
+
+            <div class="item">
+                <div class="row align-items-center">
+                  <div class="col-md-4">               
+                      <a class="pic wow fadeInLeft" href="/resource/blog-detail-{{item.id}}"><img src="{{item.thumbnail}}"></a></div>
+                  <div class="col-md-8"><a class="txt wow fadeInRight" href="/resource/blog-detail-{{item.id}}"> 
+                      <h3 class="title">{{item.title}}</h3>
+                      <p class="des">{{item.summary}}</p>
+                      <div class="note">
+                        <time>{{item.pubdate|date('j. F Y')}}</time><span class="category">{{item.category.title}}</span>
+                      </div>
+                      <div class="more">more</div></a></div>
+                </div>
+              </div>
+        {% endfor %}              
+
+        </div>
+        <footer class="blog-footer">      
+            {% if paginator.numPages > 1 %}
+            <ul class="pagination">
+                {% if paginator.prevUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">&laquo;</a></li>
+                {% endif %}
+
+                {% for page in paginator.pages %}
+                    {% if page.url %}
+                        <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.nextUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  
+{% endblock %}

@@ -43,6 +43,7 @@ return array(
     'Models\\Region' => $baseDir . '/src/Models/region.php',
     'Models\\Reseller' => $baseDir . '/src/Models/reseller.php',
     'Models\\Resource' => $baseDir . '/src/Models/resource.php',
+    'Models\\ServiceItem' => $baseDir . '/src/Models/ServiceItem.php',
     'Models\\Team' => $baseDir . '/src/Models/Team.php',
     'Models\\TeamCategory' => $baseDir . '/src/Models/TeamCategory.php',
     'Models\\User' => $baseDir . '/src/Models/User.php',

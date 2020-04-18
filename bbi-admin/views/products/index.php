@@ -15,6 +15,9 @@ $urlPattern = "index.php?page=(:num)";
 }])->select('id','title', 'thumbnail', 'category_id','importance','active','created_at');
 
 $keyword = null;
+$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
+$sort= isset($_GET['sort'])?$_GET['sort']:null;
+
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {    
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
@@ -30,6 +33,14 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
     $urlPattern = $urlPattern . "&cid=$cid";
 }
 
+
+if(!empty($orderby) && !empty($sort)){
+    $query = $query->orderBy($orderby, $sort);
+}else{
+    $query = $query->orderBy('importance', 'DESC');
+}
+
+
 $totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
@@ -37,8 +48,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$countries = $query->orderBy('importance', 'DESC')
-            ->skip(($currentPage-1)*$itemsPerPage)
+$countries = $query->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();
 
@@ -75,7 +85,7 @@ function recursive($items, $level, $cid){
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
         <!-- /nav end -->
@@ -103,7 +113,7 @@ function recursive($items, $level, $cid){
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>页面管理</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-appstore"></i>产品列表</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -146,10 +156,28 @@ function recursive($items, $level, $cid){
                             <thead>
                             <tr>          
                                 <th>缩略图</th>
-                                <th>主题</th>
+                                <th>
+                                    <?php if($orderby=='title'){ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=<?php echo $sort=='asc'?'desc':'asc';?>">标题<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                    <?php }else{ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
+                                    <?php } ?>     
+                                </th>
                                 <th>分类</th>
-                                <th>排序</th>
-                                <th>创建时间</th>
+                                <th>
+                                    <?php if($orderby=='importance'){ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                    <?php }else{ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
+                                    <?php } ?>
+                                </th>
+                                <th>
+                                    <?php if($orderby=='created_at'){ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
+                                    <?php }else{ ?>
+                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>
+                                    <?php } ?>
+                                </th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>

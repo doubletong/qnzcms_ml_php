@@ -2,7 +2,6 @@
 require_once('includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/environment.php');
 require_once('data/link.php');
-require_once('data/article.php');
 require_once('data/topics.php');
 require_once('data/chronicle.php');
 
@@ -15,6 +14,8 @@ use Models\Page;
 use Models\Job;
 use Models\Product;
 use Models\Team;
+use Models\News;
+use Models\ServiceItem;
 
 $adsCount = Advertisement::count();
 $pageCount = Page::count();
@@ -22,11 +23,12 @@ $exhCount = Exhibition::count();
 $jobCount = Job::count();
 $productCount = Product::count();
 $teamtCount = Team::count();
+$newsCount = News::count();
+$serviceCount = ServiceItem::count();
 
- $linkClass = new TZGCMS\Admin\LinkRepository();
-$articleClass = new TZGCMS\Admin\Article();
+$linkClass = new TZGCMS\Admin\LinkRepository();
 $chronicleClass = new TZGCMS\Admin\Chronicle();
- $topicsClass = new Topics();
+$topicsClass = new Topics();
 
 ?>
 <!DOCTYPE html>
@@ -71,7 +73,7 @@ $chronicleClass = new TZGCMS\Admin\Chronicle();
                  
                         <div class="col">
                             <a href="/bbi-admin/views/articles/index.php?did=1" class="box">
-                            <h3 class="title"><?php echo $articleClass->get_articles_count_v1(1,null,null);?> <small>篇</small></h3>
+                            <h3 class="title"><?php echo $newsCount;?> <small>篇</small></h3>
                             <p>新闻资讯</p><i class="iconfont icon-newspaper"></i>
                             </a>
                         </div>
@@ -98,9 +100,9 @@ $chronicleClass = new TZGCMS\Admin\Chronicle();
                         <div class="col">                           
                             <a href="/bbi-admin/views/articles/index.php?did=2"  class="box b2">                             
                                 <h3 class="title">
-                                <?php echo $articleClass->get_articles_count_v1(2,null,null);?> <small>pcs</small>
+                                <?php echo $serviceCount;?> <small>pcs</small>
                                 </h3>
-                                <p>薪酬福利</p><i class="iconfont icon-file-copy"></i>                                   
+                                <p>服务项目</p><i class="iconfont icon-file-copy"></i>                                   
                             </a>
                         </div>
                         <div class="col">

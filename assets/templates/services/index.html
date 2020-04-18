@@ -1,0 +1,32 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+     Service
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+{% block content %}
+
+<div class="page page-service">
+    {% for item in serviceItems %}
+        <div class="item {{loop.index%2==0?'tr':''}}" style="background-image:url('{{item.image_url}}');">
+            <div class="container">          
+            <div class="txt {{loop.index%2==0?'wow fadeInRight':'wow fadeInLeft'}}">
+                <h2>{{item.title}}</h2>
+                <p>{{item.summary}}</p><a class="btn btn-default-outline" href="/services/detail-{{item.id}}">EXPLORE</a>
+            </div>
+            </div>
+        </div>
+    {% endfor %}    
+
+  </div>
+     
+
+{% endblock %}

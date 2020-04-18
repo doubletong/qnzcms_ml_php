@@ -98,7 +98,7 @@ function recursive($items, $level, $cid){
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="#">页面</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/news/index.php">文章</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">列表</li>
                             </ol>
                         </nav>
@@ -113,7 +113,7 @@ function recursive($items, $level, $cid){
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>页面管理</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-file-copy"></i>文章列表</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>

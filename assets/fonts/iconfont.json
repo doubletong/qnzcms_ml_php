@@ -1,79 +1,30 @@
 {
-  "id": "1599601",
-  "name": "格科",
+  "id": "1734881",
+  "name": "精密仪器",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "372109",
-      "name": "cc-arrow-up",
-      "font_class": "up",
-      "unicode": "e60f",
-      "unicode_decimal": 58895
+      "icon_id": "760239",
+      "name": "down",
+      "font_class": "down",
+      "unicode": "e634",
+      "unicode_decimal": 58932
     },
     {
-      "icon_id": "372912",
-      "name": "cc-right",
-      "font_class": "cc-right",
-      "unicode": "e6c4",
-      "unicode_decimal": 59076
+      "icon_id": "1298319",
+      "name": "bu-map-marker-o",
+      "font_class": "marker",
+      "unicode": "e683",
+      "unicode_decimal": 59011
     },
     {
-      "icon_id": "6242355",
-      "name": "arrow",
-      "font_class": "right",
-      "unicode": "e7b9",
-      "unicode_decimal": 59321
-    },
-    {
-      "icon_id": "10267591",
-      "name": "search",
-      "font_class": "search",
-      "unicode": "e600",
-      "unicode_decimal": 58880
-    },
-    {
-      "icon_id": "12681737",
-      "name": "mobile",
-      "font_class": "mobile",
-      "unicode": "e6b6",
-      "unicode_decimal": 59062
-    },
-    {
-      "icon_id": "12681738",
-      "name": "car",
-      "font_class": "car",
-      "unicode": "e6b7",
-      "unicode_decimal": 59063
-    },
-    {
-      "icon_id": "12681739",
-      "name": "laptop",
-      "font_class": "laptop",
-      "unicode": "e6b8",
-      "unicode_decimal": 59064
-    },
-    {
-      "icon_id": "12681740",
-      "name": "camera",
-      "font_class": "camera",
-      "unicode": "e6b9",
-      "unicode_decimal": 59065
-    },
-    {
-      "icon_id": "12681741",
-      "name": "watch",
-      "font_class": "watch",
-      "unicode": "e6ba",
-      "unicode_decimal": 59066
-    },
-    {
-      "icon_id": "12738739",
-      "name": "arrow",
-      "font_class": "left",
-      "unicode": "e7ba",
-      "unicode_decimal": 59322
+      "icon_id": "6687360",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
     }
   ]
 }

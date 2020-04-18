@@ -261,6 +261,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Region' => __DIR__ . '/../..' . '/src/Models/region.php',
         'Models\\Reseller' => __DIR__ . '/../..' . '/src/Models/reseller.php',
         'Models\\Resource' => __DIR__ . '/../..' . '/src/Models/resource.php',
+        'Models\\ServiceItem' => __DIR__ . '/../..' . '/src/Models/ServiceItem.php',
         'Models\\Team' => __DIR__ . '/../..' . '/src/Models/Team.php',
         'Models\\TeamCategory' => __DIR__ . '/../..' . '/src/Models/TeamCategory.php',
         'Models\\User' => __DIR__ . '/../..' . '/src/Models/User.php',

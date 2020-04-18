@@ -1,0 +1,62 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+    FAQ
+{% endblock %}
+
+{% block content %}
+  
+<div class="page_subnav">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md">
+          <div class="title">Resource</div>
+        </div>
+        <div class="col-md-auto">
+          <nav class="subnav"><a href="/resource">Technical Specification</a><a  href="/resource/blog">Blog</a><a href="/resource/gallery">Gallery</a><a class="active" href="/resource/faq">FAQs</a></nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="page page-faq">
+    <section class="s1 container">   
+        {% for item in categories %}
+        <div class="title-section-v5">
+            <h2>{{item.title}}</h2><img class="line" src="img/line.png" alt="">
+          </div>
+
+          <div class="faqlist">   
+                {% for question in item.questions %}
+                <div class="box"><a class="title wow fadeInUp" href="#"> <span>{{loop.index}}.</span>{{question.title}}
+                    <div class="icon"></div></a>
+                    <p class="answer">
+                      {{question.answer}}
+                    </p>
+                </div>
+                {% endfor %}   
+          </div>
+            
+        {% endfor %}     
+      
+      
+  
+    </section>
+  </div>
+
+
+  
+  
+{% endblock %}
+
+{% block footer %}
+    <script>
+      $('.box a.title').click(function(e){  
+          e.preventDefault();
+          $(this).next().slideToggle()
+          $(this).find('.icon').toggleClass('open');        
+          //$(this).next().slideDown();
+      })
+    </script>
+{% endblock %}

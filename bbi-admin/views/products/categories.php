@@ -2,6 +2,7 @@
 require_once('../../includes/common.php');
 
 use Models\ProductCategory;
+
 $categories = ProductCategory::with("children")->where(["parent" => null])->orderby('importance','desc')->get();
 
 //$tree = buildTree($categories);
@@ -49,7 +50,7 @@ function recursive($items, $level){
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once('../../includes/nav.php'); ?>
         <!-- /nav end -->

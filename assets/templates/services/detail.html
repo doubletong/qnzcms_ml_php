@@ -1,0 +1,32 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{service.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+{% block content %}
+ <div class="banner banner-service" style="background-image:url('{{service.banner}}');">
+    <div class="container">
+      <div class="breadcrumb"> <a href="/services">service</a>-{{service.title}}</div>
+    </div>
+  </div>
+
+  <div class="page page-service-detail">
+    <section class="container">
+        <div class="header-ser">
+            <h1>{{service.title}}</h1>
+            <p>{{service.summary}}</p>
+        </div>
+          
+        {{service.content|raw}}     
+    </section>
+  </div>
+{% endblock %}

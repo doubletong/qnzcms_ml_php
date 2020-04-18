@@ -1,0 +1,26 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+    {% if metadata.title %}
+        {{metadata.title}}     
+    {% else %}
+        {{page.title}}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="breadcrumb"> <a href="/">Home</a>/ Request a quote</div>
+  </div>
+  <div class="page page-quote">      
+    <section class="s1 container">
+      <div class="header-quote">
+        <h2>Request A Quote</h2>
+        <p>To provide you with quality service, adhere to the principle of customer first.</p><img src="img/form.png" alt="">
+      </div>
+      {{ include('shared/quote.html') }}
+    </section>
+  </div>
+
+   
+{% endblock %}

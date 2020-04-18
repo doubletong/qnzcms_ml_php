@@ -4,7 +4,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/data/article.php");
 
 use Models\AdvertisingSpace;
-$articleClass = new TZGCMS\Article();
+use Models\ServiceItem;
+
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('assets/templates'));
@@ -25,9 +26,10 @@ if($site_info['enableCaching']=="1"){
     if (!$CachedString->isHit()) {
 
         $carousels = AdvertisingSpace::with("advertisements")->where('code','=','A001')->first()->advertisements;
-        $recommendArticles = $articleClass->get_recommend_articles_bycategory(45, 3);
+        $serviceItems = ServiceItem::select('id','title','thumbnail','summary')
+                ->where('active',1)->where('active',1)->orderBy('importance','DESC')->get();
 
-        $home_data = ['carousels' => $carousels,'articles' => $recommendArticles];
+        $home_data = ['carousels' => $carousels,'serviceItems' => $serviceItems];
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -43,9 +45,10 @@ if($site_info['enableCaching']=="1"){
     $twig = new \Twig\Environment($loader);  
 
     $carousels = AdvertisingSpace::with("advertisements")->where('code','=','A001')->first()->advertisements;
-    $recommendArticles = $articleClass->get_recommend_articles_bycategory(45, 3);
+    $serviceItems = ServiceItem::select('id','title','thumbnail','summary')
+                ->where('active',1)->where('active',1)->orderBy('importance','DESC')->get();
 
-    $result = ['carousels' => $carousels,'articles' => $recommendArticles];
+    $result = ['carousels' => $carousels,'serviceItems' => $serviceItems];
 }
 
 

@@ -1,0 +1,59 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+    Material
+{% endblock %}
+
+{% block content %}
+<div class="page page-material">
+    <section class="s1 container">        
+      <div class="row">
+        <div class="col-md-3">
+          <aside class="list row no-gutters">
+              {% for item in products %}
+              <div class="col-6 col-md-12"><a class="item {{item.id==productId?'active':''}}" href="/material?page={{pageIndex}}&amp;id={{item.id}}"><img src="{{item.thumbnail}}" alt="">
+                <div class="des"> 
+                  <div class="title">{{item.title}}</div>
+                </div></a>
+                </div>
+              {% endfor %}      
+          </aside>
+        </div>
+        <div class="col-md-9">
+            {{product.content|raw}}          
+        </div>
+      </div>
+    </section>
+    <footer class="container material-footer">      
+        {% if paginator.numPages > 1 %}
+            <ul class="pagination">
+                {% if paginator.prevUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">&laquo;</a></li>
+                {% endif %}
+
+                {% for page in paginator.pages %}
+                    {% if page.url %}
+                        <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.nextUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+     
+    </footer>
+    <section class="s2">
+      <div class="container">
+        <div class="title-section-v4">
+          <h2>Request a quote</h2>
+        </div>
+        {{ include('shared/quote.html') }}
+      </div>
+    </section>
+  </div>
+
+      
+{% endblock %}

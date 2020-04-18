@@ -66,13 +66,13 @@ $categories = QuestionCategory::orderby('importance','desc')->get();
 <html>
 
 <head>
-    <title><?php echo "产品_后台管理_" . $site_info['sitename']; ?></title>
+    <title><?php echo "常见问题_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper" id="wrapper">
         <!-- nav start -->
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
         <!-- /nav end -->
@@ -100,7 +100,7 @@ $categories = QuestionCategory::orderby('importance','desc')->get();
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>问题列表</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-question-circle-fill"></i>问题列表</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -245,7 +245,7 @@ $categories = QuestionCategory::orderby('importance','desc')->get();
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.questions").addClass("nav-open").find("ul>li.list a").addClass("active");     
+            $(".mainmenu>li.faq").addClass("nav-open").find("ul>li.list a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"
