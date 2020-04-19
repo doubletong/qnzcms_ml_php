@@ -47,4 +47,6 @@ return array(
     'Models\\Team' => $baseDir . '/src/Models/Team.php',
     'Models\\TeamCategory' => $baseDir . '/src/Models/TeamCategory.php',
     'Models\\User' => $baseDir . '/src/Models/User.php',
+    'Models\\Video' => $baseDir . '/src/Models/Video.php',
+    'Models\\VideoCategory' => $baseDir . '/src/Models/VideoCategory.php',
 );

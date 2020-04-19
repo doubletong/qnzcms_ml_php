@@ -8,29 +8,29 @@ class User extends Model
     *
     * @var string
     */
-    protected $table = "test001";
+    protected $table = "users";
    /**
     * 允许插入的字段
     *
     * @var array
     */
     protected $fillable = [
-        'name', 'email', 'password'
+        'username', 'email', 'passwordhash'
     ];
    /**
     * 需要被隐藏的字段
     *
     * @var array
     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password', 'remember_token',
+    // ];
    /*
     * 给 User 类添加方法
     *
     */
-    public function posts()
-    {
-        return $this->hasMany(Post::class, 'created_by');
-    }
+    // public function posts()
+    // {
+    //     return $this->hasMany(Post::class, 'created_by');
+    // }
 }

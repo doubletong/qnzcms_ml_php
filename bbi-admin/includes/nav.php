@@ -90,6 +90,7 @@
                            <li class="categories"><a href="/bbi-admin/views/questions/categories.php">分类</a></li>                  
                        </ul>                        
                     </li>
+
                    <li class="exhibitions">
                         <a href="/bbi-admin/views/exhibitions/index.php">
                             <i class="iconfont  icon-deploymentunit"></i> <span class="nav-text">展会信息</span>                    
@@ -139,10 +140,16 @@
                             <i class="iconfont icon-heatmap"></i> <span class="nav-text">经销售信息</span>                    
                         </a>
                     </li>
-                    <li hidden>
-                        <a href="/bbi-admin/videos.php">
-                            <i class="iconfont icon-video"></i> <span class="nav-text">视频中心</span>                    
+               
+
+                    <li class="down-nav videos">
+                        <a href="#">                         
+                            <i class="iconfont icon-video"></i> 视频<i class="arrow iconfont icon-down"></i>
                         </a>
+                       <ul class="submenu">
+                           <li class="list"><a href="/bbi-admin/views/videos/index.php">列表</a></li> 
+                           <li class="categories"><a href="/bbi-admin/views/videos/categories.php">分类</a></li>                  
+                       </ul>                        
                     </li>
 
                     <li class="down-nav albums">
@@ -184,6 +191,8 @@
                         </ul>
                     </li>     
 
+                   
+
                     <li class="down-nav plugins">
                         <a href="#">                           
                             <i class="iconfont icon-api"></i> 组件<i class="arrow iconfont icon-down"></i>
@@ -201,8 +210,7 @@
                             <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i> 基本设置</a></li>
                             <li class="language"><a href="/bbi-admin/views/languages/index.php"><i class="iconfont icon-language"></i> 语言设置</a></li>
                             <li class="resource"><a href="/bbi-admin/views/resources/index.php"><i class="iconfont icon-language"></i> 语言资源</a></li>
-                            <li class="manager"><a href="/bbi-admin/administrators.php"><i class="iconfont icon-team"></i> 管理员</a></li>
-                            <li class="manager_add"><a href="/bbi-admin/admin_add.php"><i class="iconfont icon-adduser"></i> 创建管理员</a></li>                            
+                            <li class="users"><a href="/bbi-admin/views/users/index.php"><i class="iconfont icon-team"></i> 帐号</a></li>                                               
                             <li class="backup"><a href="/bbi-admin/views/backup/index.php"><i class="iconfont icon-database"></i> 备份数据库</a></li>
                         </ul>
                     </li>

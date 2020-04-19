@@ -265,6 +265,8 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Team' => __DIR__ . '/../..' . '/src/Models/Team.php',
         'Models\\TeamCategory' => __DIR__ . '/../..' . '/src/Models/TeamCategory.php',
         'Models\\User' => __DIR__ . '/../..' . '/src/Models/User.php',
+        'Models\\Video' => __DIR__ . '/../..' . '/src/Models/Video.php',
+        'Models\\VideoCategory' => __DIR__ . '/../..' . '/src/Models/VideoCategory.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

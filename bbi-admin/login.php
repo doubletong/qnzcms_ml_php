@@ -1,10 +1,13 @@
 <?php
 require_once '../includes/common.php';
+
+use Models\User;
 session_start();
 
 if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password']; 
+    
 
     if ($_POST['captcha'] != $_SESSION['phrase']) {
         $error = "验证码不正确";
@@ -13,18 +16,11 @@ if (isset($_POST['username'], $_POST['password'])) {
             $error = '请输入用户名与密码！';
         } else {
 
-            $query = db::getInstance()->prepare("SELECT * FROM wp_users WHERE username=:username AND password =:password");
-            $array = array(
-                'username' => $username,
-                'password' => $password,
-            );
-            //   $query->bindValue(':username',$username);
-            //   $query->bindValue(':password',$password);
+            $user = User::where('active',1)->where('username',$username)->first();
+            $result = password_verify($password, $user->passwordhash);           
+          
 
-            $query->execute($array);
-            $num = $query->rowCount();
-            // echo  $num;
-            if ($num == 1) {
+            if ($result) {
                 $_SESSION['logged_in'] = true;
                 $_SESSION['valid_user'] = $username;
                 header('Location: index.php');

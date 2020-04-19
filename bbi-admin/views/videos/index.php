@@ -3,19 +3,19 @@
 require_once('../../includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Str.php');
 
-use Models\DownloadCategory;
-use Models\Download;
+use Models\VideoCategory;
+use Models\Video;
 use JasonGrimes\Paginator;
 
 $strClass = new QNZ\Utils\Str;
 
 $urlPattern = "index.php?page=(:num)";
  //文章表实例化
- $download = new Download;
+ $video = new Video;
  //搜索条件判断
- $query = $download->with(['category' => function ($query) {
+ $query = $video->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'thumbnail', 'file_url', 'file_size','down_count', 'category_id','importance','active','created_at');
+}])->select('id','title', 'poster', 'file_url', 'file_size', 'category_id','importance','active','created_at');
 
 $keyword = null;
 
@@ -57,7 +57,7 @@ $countries = $query->orderBy('importance', 'DESC')
             ->get();
 
 
-$categories = DownloadCategory::orderby('importance','desc')->get();
+$categories = VideoCategory::orderby('importance','desc')->get();
 
 
 
@@ -69,6 +69,36 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
     <title><?php echo "产品_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+    <style>
+        .card.item{
+            margin-bottom:2rem;
+            border-radius: 0;
+            
+        }
+        @media only screen and (min-width: 1201px) {
+            .card.item{
+                width:220px;                
+            }            
+        }
+        .card.item .card-header {           
+            background-color:#fff;
+        }
+        .card.item .card-footer {
+            text-align:center;
+            background-color:#fff;
+        }
+        .card.item .card-body{
+            padding:5px; 
+        }
+        .card.item .card-body video{
+            display:block;
+            margin:0 auto;
+            width:100%;
+        }
+        .card.item .card-footer .btn{
+            margin:0 .1rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -85,7 +115,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="#">下载中心</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/videos/index.php">视频</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">列表</li>
                             </ol>
                         </nav>
@@ -100,7 +130,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-download"></i>下载列表</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-video"></i>视频列表</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -138,85 +168,54 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                                     </form>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="download_edit.php" class="btn btn-primary">               
+                                    <a href="video_edit.php" class="btn btn-primary">               
                                         <i class="iconfont icon-plus"></i>  添加
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">                 
-                            <table class="table table-hover table-bordered table-striped box-table">
-                                <thead>
-                                <tr>          
-                                    <th>缩略图</th>
-                                    <th>
-                                    <?php if($orderby=='title'){ ?>
-                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=<?php echo $sort=='asc'?'desc':'asc';?>">标题<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
-                                    <?php }else{ ?>
-                                        <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
-                                    <?php } ?>     
-                                    </th>
-                                    <th>分类</th>
-                                    <th>文件大小</th>
-                                    <th>下载次数</th>
-                                    <th>
-                                        <?php if($orderby=='importance'){ ?>
-                                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
-                                        <?php }else{ ?>
-                                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
-                                        <?php } ?>
-                                    </th>
-                                    <th>
-                                        <?php if($orderby=='created_at'){ ?>
-                                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
-                                        <?php }else{ ?>
-                                            <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>
-                                        <?php } ?>
-                                    </th>
-                                    <th>状态</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                        <div class="list">
+                            <div class="row">          
+                           
+                              
                                 <?php
                                 foreach($countries as $row)
                                 {
-                                    echo "<tr>";
+                                 
                                 ?>
-                                <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:50px;"/></td>
-                                    <td><?php echo $row['title'] ;?></td> 
-                                    <td><?php echo $row['category']['title'] ;?></td> 
-                                    <td><?php echo $strClass->formatSizeUnits($row['file_size']);?></td>
-                                    <td><?php echo $row['down_count'] ;?></td>         
-                                    <td><?php echo $row['importance'] ;?></td>         
-                                    <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
-                                    <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
-                                    <td><a href='download_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
-                                            <i class="iconfont icon-edit"></i>
-                                        </a>
-                                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
-                                    <i class="iconfont icon-file-copy"></i>
-                                </button>
-                                <?php if ($row['active'] == 1) { ?>
-                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
-                                        <i class="iconfont icon-eye-close"></i>
-                                    </button>
-                                <?php } else { ?>
-                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
-                                        <i class="iconfont icon-eye"></i>
-                                    </button>
-                                <?php } ?>
-                                        <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
-                                            <i class="iconfont icon-delete"></i>
+                                <div class="col-md-6 col-lg-4 col-xl-auto">
+                                    <div class="card item">
+                                    <div class="card-header">
+                                        <input type="checkbox" value=""> <?php echo $row['title'] ;?> [<?php echo $row['category']['title'] ;?>]
+                                    </div>
+                                    <div class="card-body">
+                                        <video src="<?php echo $row['file_url'];?>" controls="controls" poster="<?php echo $row['poster'];?>"></video>                                      
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-info btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="<?php echo $row['description'];?>"><i class="iconfont icon-ellipsis"></i></button>
+                                        <a href='video_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                                                <i class="iconfont icon-edit"></i>
+                                            </a>
+                                        <?php if ($row['active'] == 1) { ?>
+                                        <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                            <i class="iconfont icon-eye-close"></i>
                                         </button>
-                                    </td>
-                                    <?php
+                                    <?php } else { ?>
+                                        <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                            <i class="iconfont icon-eye"></i>
+                                        </button>
+                                    <?php } ?>
+                                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                                                <i class="iconfont icon-delete"></i>
+                                            </button>
+                                    </div>
+                                    </div>
+                                </div>
 
-                                    echo "</tr>";
-                                }
-                                ?>
-                                </tbody>
-                            </table>
+
+
+                                    <?php } ?>
+                            </div>
                         </div>
                     </section>
                     <footer class="card-footer">
@@ -248,7 +247,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.downloads").addClass("nav-open").find("ul>li.list a").addClass("active");     
+            $(".mainmenu>li.videos").addClass("nav-open").find("ul>li.list a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"
@@ -259,7 +258,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
             var articleId = $that.attr("data-id");
 
             $.ajax({
-                url : 'download_post.php',
+                url : 'video_post.php',
                 type : 'POST',
                 data : {id:articleId,action:"active"},
                 success : function(res) {                                                   
@@ -285,7 +284,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
             var articleId = $that.attr("data-id");
 
             $.ajax({
-                url : 'download_post.php',
+                url : 'video_post.php',
                 type : 'POST',
                 data : {id:articleId,action:"copy"},
                 success : function(res) {                                                   
@@ -314,7 +313,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                         var id = $that.attr("data-id");
 
                         $.ajax({
-                            url : 'download_post.php',
+                            url : 'video_post.php',
                             type : 'POST',
                             data : {id:id,action:"delete"},
                             success : function(res) {
