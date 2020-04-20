@@ -5998,6 +5998,7 @@ img {
 
 .page-blog {
   padding-top: 0;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -6162,29 +6163,6 @@ img {
 
 .page-blog-detail .main {
   margin-bottom: 5rem;
-}
-
-.quoteform .form-group {
-  margin-bottom: 1.875rem;
-}
-
-.quoteform .form-control {
-  width: 100%;
-  padding: .8rem 1rem;
-  border: 1px #ccc solid;
-}
-
-.quoteform .upload-el {
-  padding: 3rem;
-  text-align: center;
-  border: 1px #ccc solid;
-  margin-bottom: 2rem;
-}
-
-.quoteform .upload-el button {
-  background-color: #f7f7f7;
-  border: none;
-  padding: 1rem 2rem;
 }
 
 .page-material .s1 .list {
@@ -6506,21 +6484,52 @@ img {
   color: #fff;
 }
 
-.page-quote .header-quote {
+.header-quote {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.page-quote .header-quote h2 {
+.header-quote h2 {
   font-size: 2.125rem;
   color: #e52e2e;
   text-transform: uppercase;
 }
 
-.page-quote .header-quote p {
+.header-quote p {
   font-size: 0.8125rem;
   color: #999;
   margin-bottom: 2rem;
+}
+
+.quoteform .invalid-feedback {
+  color: red;
+}
+
+.quoteform .hasfile {
+  padding: .5rem;
+  background-color: #f1f1f1;
+  border-radius: .3rem;
+}
+
+.quoteform .form-group {
+  margin-bottom: 1.875rem;
+}
+
+.quoteform .form-control {
+  width: 100%;
+  padding: .8rem 1rem;
+  border: 1px #ccc solid;
+}
+
+.quoteform .upload-el {
+  padding: 3rem;
+  text-align: center;
+  border: 1px #ccc solid;
+  margin-bottom: .2rem;
+}
+
+.quoteform .btn {
+  margin-top: 2rem;
 }
 
 .page-search .searchbox {

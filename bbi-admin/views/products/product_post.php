@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+
 use Models\Product;
 
 
@@ -48,9 +50,16 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             $region->added_by = $username;
 
+            $seotitle = $_POST['seotitle'];
+            $seokeywords = $_POST['seokeywords'];
+            $seodescription = $_POST['seodescription'];
+
             $result = $region->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
+                $module = ModuleType::PRODUCT();
+                $url = $region->id;
+                metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
             }   
@@ -95,9 +104,17 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $region->image_url = $image_url;
             $region->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
+            $seotitle = $_POST['seotitle'];
+            $seokeywords = $_POST['seokeywords'];
+            $seodescription = $_POST['seodescription'];
+            
+
             $result = $region->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
+                $module = ModuleType::PRODUCT();
+                $url = $id;
+                metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
             }   

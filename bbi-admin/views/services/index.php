@@ -12,9 +12,18 @@ $pageClass = new ServiceItem;
 $query = $pageClass->select('id','title','thumbnail','view_count','importance','recommend','active','created_at');
 
 $keyword = null;
+$orderby = null;
+$sort= null;
 
-$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
-$sort= isset($_GET['sort'])?$_GET['sort']:null;
+if(isset($_GET['orderby'])){
+    $orderby = $_GET['orderby'];
+    $urlPattern = $urlPattern . "&orderby=$orderby";
+}
+
+if(isset($_GET['sort'])){
+    $sort = $_GET['sort'];
+    $urlPattern = $urlPattern . "&sort=$sort";
+}
 
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
@@ -28,10 +37,7 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
-}else{
-    $query = $query->orderBy('importance', 'DESC');
 }
-
 
 
 
@@ -42,7 +48,7 @@ $currentServiceItem = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在�
 $paginator = new Paginator($totalItems, $itemsPerServiceItem, $currentServiceItem, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$pages = $query->skip(($currentServiceItem-1)*$itemsPerServiceItem)
+$pages = $query->orderBy('id', 'DESC')->skip(($currentServiceItem-1)*$itemsPerServiceItem)
             ->take($itemsPerServiceItem)
             ->get();
 

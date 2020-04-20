@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 use Models\Photo;
 use Models\Metadata;
 
-
+$metaKey = "/resource/gallery";
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
 
@@ -23,10 +23,8 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
      
-        $photos = Photo::where('active',1)->orderBy('importance', 'DESC')->get();
-        // $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();       
         
-        $news_detail_data = ['photos' => $photos];
+        $news_detail_data =  loadDate($metaKey);
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -37,13 +35,22 @@ if($site_info['enableCaching']=="1"){
     $result = $CachedString->get();
 
 }else{
-    $twig = new \Twig\Environment($loader);  
-
-    $photos = Photo::where('active',1)->orderBy('importance', 'DESC')->get();
+    $twig = new \Twig\Environment($loader);     
    
-    $result =  ['photos' => $photos];
+    $result =  loadDate($metaKey);
 
 }
+
+
+//load data
+function loadDate($metaKey){
+
+    $photos = Photo::where('active',1)->orderBy('importance', 'DESC')->get();
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();       
+
+    return  ['photos' => $photos,'metadata'=>$metadata];
+}
+
 
 
 $twig->addGlobal('site', $site_info);

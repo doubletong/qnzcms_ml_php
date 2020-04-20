@@ -13,7 +13,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-
+$metaKey = $id;
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -31,10 +31,8 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $data = ServiceItem::find($id); 
-        $metadata = Metadata::where('module_type',ModuleType::SERVICE())->where('key_value',$id)->first();       
-
-        $news_detail_data = ['service' => $data,'metadata' => $metadata];
+    
+        $news_detail_data = loadDate($id,$metaKey);  
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -46,14 +44,20 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
-
-    $data = ServiceItem::find($id);        
-    $metadata = Metadata::where('module_type',ModuleType::SERVICE())->where('key_value',"$id")->first();       
-
-    $result =  ['service' => $data,'metadata' => $metadata];
-
   
+    $result =  loadDate($id,$metaKey);  
 }
+
+
+//load data
+function loadDate($id,$metaKey){
+
+    $data = ServiceItem::find($id);   
+    $metadata = Metadata::where('module_type',ModuleType::SERVICE())->where('key_value',$metaKey)->first();       
+
+    return  ['service' => $data,'metadata' => $metadata];
+}
+
 
 
 $twig->addGlobal('site', $site_info);

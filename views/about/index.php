@@ -41,6 +41,9 @@ if($site_info['enableCaching']=="1"){
     $twig = new \Twig\Environment($loader);  
 
     $data = Page::where('alias',$alias)->where('active',1)->first();
+    $data->view_count = $data->view_count + 1;
+    $data->save();
+    
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
 
     $result = ['metadata' => $metadata,'page' => $data];

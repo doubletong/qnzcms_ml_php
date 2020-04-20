@@ -79,7 +79,7 @@ $pages =  $query->orderBy('importance', 'DESC')
                 <header class="card-header">
                     <div class="row">
                         <div class="col">
-                            <div class="card-title-v1"> <i class="iconfont icon-link"></i>广告位</div>
+                            <div class="card-title-v1"> <i class="iconfont icon-appstore"></i>广告位</div>
                         </div>
                         <div class="col-auto">
                             <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>

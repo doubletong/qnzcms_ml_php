@@ -1,6 +1,5 @@
 <?php
 require_once("includes/common.php");
-require_once("config/db.php");
 require_once('data/option.php');
 $optionClass = new SiteOption();
 $model = $optionClass->get_config("smtp");
@@ -12,6 +11,7 @@ $data  = json_decode($model['config_values'],true);
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Models\EmailTemplate;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';

@@ -1,0 +1,20 @@
+<div class="page_subnav">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md">
+          <div class="title">Resource</div>
+        </div>
+        <div class="col-md-auto">
+          <nav class="subnav">
+            {% for item in menus %}         
+              {% if item.title == 'Resource' %}
+                {% for nav in item.children %}
+                  <a class="{{ (nav.url != "/resource" and  uri starts with nav.url) or  uri == nav.url ? 'active' : '' }}" href="{{nav.url}}">{{nav.title}}</a>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>

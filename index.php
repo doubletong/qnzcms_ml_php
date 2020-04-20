@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
-require_once($_SERVER['DOCUMENT_ROOT'] ."/data/article.php");
+
 
 use Models\AdvertisingSpace;
 use Models\ServiceItem;

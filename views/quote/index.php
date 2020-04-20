@@ -6,10 +6,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 use Models\Page;
 use Models\Metadata;
 
-// if (!isset($_GET['alias'])) {
-//     header('Location: /');
-//     exit;
-// } 
+session_start();
+
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+$token = $_SESSION['token'];
+
 
 $alias = "quote";
 
@@ -32,7 +35,7 @@ if($site_info['enableCaching']=="1"){
         $data = Page::where('alias',$alias)->where('active',1)->first();
         $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();       
         
-        $news_detail_data = ['metadata' => $metadata,'page' => $data];
+        $news_detail_data = ['metadata' => $metadata,'page' => $data,'token'=>$token];
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -48,7 +51,7 @@ if($site_info['enableCaching']=="1"){
     $data = Page::where('alias',$alias)->where('active',1)->first();
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();   
    
-    $result =  ['metadata' => $metadata,'page' => $data];
+    $result =  ['metadata' => $metadata,'page' => $data,'token'=>$token];
 }
 
 

@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
 use Models\QuestionCategory;
 use Models\Metadata;
 
-
+$metaKey = "/resource/faq";
  //文章表实例化
 $newsQuery = new QuestionCategory;
  //搜索条件判断
@@ -28,11 +28,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-       
-        $categories = $query->orderBy('importance', 'DESC')->get();
-        // $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();       
-        
-        $news_detail_data = ['categories' => $categories];
+        $news_detail_data = loadDate($metaKey,$query);
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -44,11 +40,19 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
+   
+    $result =  loadDate($metaKey,$query);
+
+}
+
+
+//load data
+function loadDate($metaKey,$query){
 
     $categories = $query->orderBy('importance', 'DESC')->get();
-   
-    $result =  ['categories' => $categories];
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();       
 
+    return  ['categories' => $categories,'metadata'=>$metadata];
 }
 
 

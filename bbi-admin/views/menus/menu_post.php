@@ -76,12 +76,8 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             if(isset($_POST['url'])){
                 $seotitle = $_POST['seotitle'];
                 $seokeywords = $_POST['seokeywords'];
-                $seodescription = $_POST['seodescription'];
+                $seodescription = $_POST['seodescription'];    
               
-    
-                $module = ModuleType::URL();
-                $url = $_POST['url'];
-                metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
             }                 
 
 
@@ -100,6 +96,11 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $result = $item->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
+
+                $module = ModuleType::URL();
+                $url = $_POST['url'];                
+                metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
+                
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
             }   

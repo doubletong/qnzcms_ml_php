@@ -1,4 +1,5 @@
-<form class="quoteform" action="#">
+<form class="quoteform" id="quoteform" method="POST" action="#">
+  <input type="hidden" name="token" value="{{token}}">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -38,12 +39,14 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
+          <label>Delivery Due Day:</label>
           <input class="form-control" type="date" name="delivery" placeholder="Delivery Due Day:">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <input class="form-control" type="date" name="expected" placeholder="Expected total price:">
+          <label>Expected total price:</label>
+          <input class="form-control" type="number" name="expected" placeholder="Expected total price:">
         </div>
       </div>
     </div>
@@ -57,9 +60,13 @@
         <li>The maximum uploaded file size is 2MB</li>
       </ol>
     </div>
-    <div class="upload-el">
-      <button>Upload Document</button>
+    <div class="dropzone upload-el" id="mydropzone">
+    
     </div>
+    <input type="hidden" name="attachments" id="attachments" value="">
+    <div id="attlist"></div>
+      <!-- <button>Upload Document</button> -->
+   
     <div class="text-center">
       <button class="btn btn-primary" type="submit">SEND</button>
     </div>

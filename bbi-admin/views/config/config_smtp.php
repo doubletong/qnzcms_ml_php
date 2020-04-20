@@ -16,19 +16,43 @@ $data  = json_decode($option->config_values,true);
 </head>
 
 <body>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
     <!-- nav start -->
     <?php require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/nav.php'); ?>
     <!-- /nav end -->
     <section class="rightcol">            
     <?php require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/header.php'); ?>
-        <div class="container-fluid maincontent">
+    <div class="main-content"> 
+            <div class="breadcrumb-container">
+                <div class="row">
+                    <div class="col-md">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="#">邮件服务</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">邮件服务配置</li>
+                        </ol>
+                    </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                </div>
+            </div> 
 
         <form  novalidate="novalidate">
     <div class="card">
-        <div class="card-header">
-            编辑邮件服务配置
-        </div>
+        <header class="card-header">
+            <div class="row">
+                <div class="col">
+                    <div class="card-title-v1"> <i class="iconfont icon-mail"></i>编辑邮件服务配置</div>
+                </div>
+                <div class="col-auto">
+                    <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                </div>
+            </div>
+        </header>
+     
         <div class="card-body">
             <input type="hidden" name='config_type' value="smtp" />
             <div class="row">

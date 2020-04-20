@@ -1,8 +1,17 @@
 {% extends "shared/layout.html" %}
 {% block title %}
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
     Material
+  {% endif %}
+    
 {% endblock %}
-
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
 {% block content %}
 <div class="page page-material">
     <section class="s1 container">        

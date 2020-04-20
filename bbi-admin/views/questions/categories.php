@@ -13,8 +13,17 @@ $query = $categoryClass->select('id','title','description','importance','active'
 $urlPattern = "categories.php?page=(:num)";
 
 $keyword = null;
-$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
-$sort= isset($_GET['sort'])?$_GET['sort']:null;
+$orderby = null;
+$sort= null;
+if(isset($_GET['orderby'])){
+    $orderby = $_GET['orderby'];
+    $urlPattern = $urlPattern . "&orderby=$orderby";
+}
+
+if(isset($_GET['sort'])){
+    $sort = $_GET['sort'];
+    $urlPattern = $urlPattern . "&sort=$sort";
+}
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
@@ -27,8 +36,6 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
-}else{
-    $query = $query->orderBy('importance', 'DESC');
 }
 
 
@@ -39,7 +46,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$categorys = $query->orderBy('importance', 'DESC')
+$categorys = $query->orderBy('id', 'DESC')
             ->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();

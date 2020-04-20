@@ -6,6 +6,14 @@
         {{page.title}}
     {% endif %}
 {% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+    <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet"/>
+    <link href="/assets/js/vendor/dropzone/min/dropzone.min.css" rel="stylesheet"/>
+{% endblock %}
+
 
 {% block content %}
 
@@ -14,13 +22,165 @@
   </div>
   <div class="page page-quote">      
     <section class="s1 container">
-      <div class="header-quote">
-        <h2>Request A Quote</h2>
-        <p>To provide you with quality service, adhere to the principle of customer first.</p><img src="img/form.png" alt="">
-      </div>
+      {{page.content|raw}}
+      
       {{ include('shared/quote.html') }}
+      
+    
     </section>
   </div>
 
    
+{% endblock %}
+
+{% block footer %}
+    <script src="/assets/js/vendor/toastr/toastr.min.js"></script>
+    <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/blockUI/jquery.blockUI.min.js"></script>
+    <script src="/assets/js/vendor/dropzone/min/dropzone.min.js"></script>
+    <script>
+       
+      $(document).ready(function() {
+
+        Dropzone.autoDiscover = false;
+        // Dropzone class:
+        var myDropzone = new Dropzone("div#mydropzone", { 
+            url: "/upload.php",
+            maxFiles: 1,
+            maxFilesize: 2, // MB
+            // autoProcessQueue: false,
+            acceptedFiles:".png,.jpg,.gif,.zip,.rar,.jpeg",
+            init: function(){
+               
+                this.on("complete", function(){
+                    if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+                    {
+                        var _this = this;
+                        _this.removeAllFiles();
+                    
+                    }
+                  
+                });
+            },
+            success : function(file, response) {
+                // console.log(file);
+                $('#attachments').val("/" + response);
+                $('#attlist').html('<i class="iconfont icon-attachment"></i> '+ response).addClass('hasfile');
+                //console.log(response);
+               
+            }
+        });
+
+        
+
+      //$(".mainav li:nth-of-type(6)").addClass("active");
+
+      $("#quoteform").validate({
+
+          rules: {
+              name: {
+                  required: true
+              },           
+              company: {
+                  required: true
+              },        
+              email: {
+                  required: true,
+                  email:true
+              },        
+                      
+              phone: {
+                  required: true
+              },              
+              country: {
+                  required: true
+              },             
+              industry: {
+                  required: true
+              },             
+              delivery: {
+                  required: true
+              },     
+              expected: {
+                  required: true
+              },               
+              message: {
+                  required: true
+              }
+
+          },
+          messages:{
+              name: {
+                  required:"Please enter your name"
+              },   
+              company: {
+                  required: "Please enter your company"
+              },        
+              email: {
+                  required: "Please enter your email",
+                  email:"Your email address is not valid"
+              },        
+        
+              phone: {
+                  required: "Please enter your phone"
+              },              
+              country: {
+                  required: "Please enter your country"
+              },             
+              industry: {
+                  required: "Please enter your industry"
+              },             
+              delivery: {
+                  required: "Please enter delivery due day"
+              },     
+              expected: {
+                  required: "Please enter expected total price"
+              },               
+             
+              message: {
+                  required:  "Please enter message"
+              }
+
+          },
+          errorClass: "invalid-feedback",
+          errorElement: "div",
+          highlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-valid');
+              $(element).addClass('is-invalid');
+          },
+          unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+              $(element).addClass('is-valid');
+          },
+          submitHandler: function(form) {
+              $.blockUI({ css: { backgroundColor: 'transparent', color: '#fff',fontSize:'14px',padding:'1rem',border:'none' } });
+
+              $.ajax({
+                  url : '/quote/send',
+                  type : 'POST',
+                  data : $(form).serialize(),
+                  success : function(res) {
+                      //  console.log(res);
+                      var myobj = JSON.parse(res);
+                      //  $('#resultreturn').prepend(res);
+                      //console.log(myobj.status);
+                      if (myobj.status == 1) {
+                          toastr.success(myobj.message, '发送邮件');
+                          $("input[type='text'],textarea").val("");
+                      } else {
+                          toastr.error(myobj.message, '发送邮件')
+                      }
+                  },
+                  complete:function(xhr){
+                      $.unblockUI();
+                      $("#captcha").attr("src","captcha.php");
+                  }
+              });
+
+
+          }
+      });
+
+      });
+    </script>
 {% endblock %}

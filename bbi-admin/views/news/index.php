@@ -16,8 +16,17 @@ $urlPattern = "index.php?page=(:num)";
 
 $keyword = null;
 $cid = null;
-$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
-$sort= isset($_GET['sort'])?$_GET['sort']:null;
+$orderby = null;
+$sort= null;
+if(isset($_GET['orderby'])){
+    $orderby = $_GET['orderby'];
+    $urlPattern = $urlPattern . "&orderby=$orderby";
+}
+
+if(isset($_GET['sort'])){
+    $sort = $_GET['sort'];
+    $urlPattern = $urlPattern . "&sort=$sort";
+}
 
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {    
@@ -36,8 +45,6 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
 
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
-}else{
-    $query = $query->orderBy('importance', 'DESC');
 }
 
 $totalItems = $query->count();  //总记录数
@@ -47,7 +54,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$countries = $query->orderBy('importance', 'DESC')
+$countries = $query->orderBy('id', 'DESC')
             ->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();

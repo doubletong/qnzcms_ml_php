@@ -1,22 +1,22 @@
 {% extends "shared/layout.html" %}
 {% block title %}
-    Technical Specification
-{% endblock %}
 
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    Technical Specification
+  {% endif %}
+    
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
 {% block content %}
   
-<div class="page_subnav">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md">
-          <div class="title">Resource</div>
-        </div>
-        <div class="col-md-auto">
-          <nav class="subnav"><a class="active" href="/resource">Technical Specification</a><a href="/resource/blog">Blog</a><a href="/resource/gallery">Gallery</a><a href="/resource/faq">FAQs</a></nav>
-        </div>
-      </div>
-    </div>
-  </div>
+{{ include('shared/resourceNav.html') }}
+
   <div class="page page-downloads">
     <section class="doclist container"> 
       <div class="row">  
