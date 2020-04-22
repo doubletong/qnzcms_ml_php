@@ -69,3 +69,6 @@ project
   - gregwar/captcha 1.17   【验证码】
   - twig/twig 3.0   【模板引擎】
   - phpfastcache/phpfastcache 7.1   【缓存】
+  - myclabs/php-enum  ^0.1.7  【枚举处理】
+  - mos/cimage ^0.7.21   【图片处理】
+  - samdark/sitemap ^2.2   【站点地图】

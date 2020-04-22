@@ -181,39 +181,11 @@
                        </ul>                        
                     </li>
 
-                    <li class="down-nav emails">
-                        <a href="#">                      
-                            <i class="iconfont icon-mail-fill"></i> 邮件服务<i class="arrow iconfont icon-down"></i>
-                        </a>
-                       <ul class="submenu">
-                            <li class="config_smtp"><a href="/bbi-admin/views/config/config_smtp.php">邮件服务配置</a></li>
-                            <li class="template"><a href="/bbi-admin/views/email_templates/index.php">邮件模板</a></li>
-                        </ul>
-                    </li>     
-
                    
+                    <li class="links"><a href="/bbi-admin/views/links/index.php"><i class="iconfont icon-link"></i> 链接</a></li> 
+           
 
-                    <li class="down-nav plugins">
-                        <a href="#">                           
-                            <i class="iconfont icon-api"></i> 组件<i class="arrow iconfont icon-down"></i>
-                        </a>
-                       <ul class="submenu">                           
-                            <li class="menus"><a href="/bbi-admin/views/menus/index.php"><i class="iconfont icon-menu"></i>栏目</a></li>              
-                            <li class="links"><a href="/bbi-admin/views/links/index.php"><i class="iconfont icon-link"></i> 链接</a></li>                   
-                        </ul>
-                    </li>
-
-                    <li class="down-nav system">
-                        <a href="#">                     
-                            <i class="iconfont icon-setting"></i> 系统<i class="arrow iconfont icon-down"></i></a>
-                           <ul class="submenu">
-                            <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i> 基本设置</a></li>
-                            <li class="language"><a href="/bbi-admin/views/languages/index.php"><i class="iconfont icon-language"></i> 语言设置</a></li>
-                            <li class="resource"><a href="/bbi-admin/views/resources/index.php"><i class="iconfont icon-language"></i> 语言资源</a></li>
-                            <li class="users"><a href="/bbi-admin/views/users/index.php"><i class="iconfont icon-team"></i> 帐号</a></li>                                               
-                            <li class="backup"><a href="/bbi-admin/views/backup/index.php"><i class="iconfont icon-database"></i> 备份数据库</a></li>
-                        </ul>
-                    </li>
+                 
                 </ul>
 
 

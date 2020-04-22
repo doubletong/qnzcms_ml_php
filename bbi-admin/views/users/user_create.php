@@ -25,7 +25,7 @@ $action = "create";
 <body>
 <div class="wrapper" id="wrapper">
         <!-- nav start -->
-        <?php require_once('../../includes/nav.php'); ?>
+        <?php require_once('../../includes/nav_system.php'); ?>
         <!-- /nav end -->
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>

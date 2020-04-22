@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ <url>
+  <loc>http://example.com/mylink1</loc>
+ </url>
+ <url>
+  <loc>http://example.com/mylink2</loc>
+  <lastmod>2020-04-22T04:39:19+08:00</lastmod>
+ </url>
+ <url>
+  <loc>http://example.com/mylink3</loc>
+  <lastmod>2020-04-22T04:39:19+08:00</lastmod>
+  <changefreq>hourly</changefreq>
+ </url>
+ <url>
+  <loc>http://example.com/mylink4</loc>
+  <lastmod>2020-04-22T04:39:19+08:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.3</priority>
+ </url>
+</urlset>

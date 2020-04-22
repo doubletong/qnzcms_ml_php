@@ -16,6 +16,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
     );
 
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'samdark\\sitemap\\' => 16,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -79,6 +83,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
     );
 
     public static $prefixDirsPsr4 = array (
+        'samdark\\sitemap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/samdark/sitemap',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',

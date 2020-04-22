@@ -55,7 +55,7 @@ $menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orde
 <body>
     <div class="wrapper">
         <!-- nav start -->
-        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
+        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav_system.php'); ?>
         <!-- /nav end -->
         <section class="rightcol">
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>

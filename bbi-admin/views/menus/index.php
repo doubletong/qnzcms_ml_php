@@ -80,7 +80,7 @@ function build_menu($rows, $parent = 0)
 <body>
     <div class="wrapper">
         <!-- nav start -->
-        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php'); ?>
+        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav_system.php'); ?>
         <!-- /nav end -->
         <section class="rightcol">
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>

@@ -20,7 +20,7 @@ require_once '../../includes/common.php';
 <body>
     <div class="wrapper" id="wrapper">
     <!-- nav start -->
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php';?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav_system.php';?>
     <!-- /nav end -->
     <section class="rightcol" id="rightcol">
         <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php';?>

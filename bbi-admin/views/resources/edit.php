@@ -27,7 +27,7 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
 <body>
     <div class="wrapper">
         <!-- nav start -->
-        <?php require_once('../../includes/nav.php'); ?>
+        <?php require_once('../../includes/nav_system.php'); ?>
         <!-- /nav end -->
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
