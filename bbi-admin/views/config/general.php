@@ -303,6 +303,7 @@ require_once '../../includes/common.php';
 
         $(document).ready(function() {
             //当前菜单
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
             $(".mainmenu>li.system").addClass("nav-open").find("ul>li.general a").addClass("active");
 
             $("#setLogo").on("click", function() {

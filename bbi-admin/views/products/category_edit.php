@@ -114,7 +114,7 @@ function recursive($items, $level, $parent){
 
         $(document).ready(function() {
             //当前菜单                
-            $(".mainmenu>li.products_v1").addClass("nav-open").find("ul>li.category a").addClass("active");
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
 
             $("form").validate({
 

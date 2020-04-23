@@ -12,8 +12,8 @@
                             <i class="iconfont icon-language"></i> 语言<i class="arrow iconfont icon-down"></i>
                         </a>
                        <ul class="submenu">
-                            <li class="config_smtp"><a href="/bbi-admin/views/languages/index.php">语言设置</a></li>
-                            <li class="template"><a href="/bbi-admin/views/resources/index.php">语言资源</a></li>
+                            <li class="config"><a href="/bbi-admin/views/languages/index.php">语言设置</a></li>
+                            <li class="resource"><a href="/bbi-admin/views/resources/index.php">语言资源</a></li>
                         </ul>
                     </li>     
                     

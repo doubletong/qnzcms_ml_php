@@ -229,7 +229,7 @@ $pages = $query->orderBy('id', 'DESC')->skip(($currentPage-1)*$itemsPerPage)
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li.pages").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+        $(".mainmenu>li.pages a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

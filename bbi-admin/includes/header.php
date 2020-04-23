@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-primary"><a class="navbar-brand" id="openav" href="javascript:void(0);"><i class="iconfont icon-menu"></i></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active"><a class="nav-link" href="/bbi-admin">内容 <span class="sr-only">(current)</span></a></li>      
+    <ul id="module_nav" class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="/bbi-admin">内容 <span class="sr-only">(current)</span></a></li>      
         <li class="nav-item"><a class="nav-link" href="/bbi-admin/views/config/general.php">系统</a></li> 
         <li class="nav-item"><a class="nav-link" href="/bbi-admin/views/tpl/index.php">模版</a></li>       
     </ul>

@@ -118,7 +118,8 @@ $data  = json_decode($option->config_values,true);
 
    
     $(document).ready(function () {
-        //当前菜单        
+        //当前菜单   
+        $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');      
         $(".mainmenu>li.emails").addClass("nav-open").find("ul>li.config_smtp a").addClass("active");
 
         $("form").validate({

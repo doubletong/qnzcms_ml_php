@@ -69,8 +69,9 @@ require_once('../../includes/common.php');
     <script type="text/javascript">
 
         $(document).ready(function() {
-            //当前菜单        
-            $(".mainmenu>li.sitemap").addClass("nav-open").find("ul>li.general a").addClass("active");
+            //当前菜单   
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');       
+            $(".mainmenu>li.sitemap a").addClass("active");
 
 
             $('#submit').click(function(e){         

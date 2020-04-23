@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Str.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/Str.php');
 
 use Models\DownloadCategory;
 use Models\Download;

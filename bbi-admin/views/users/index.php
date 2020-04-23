@@ -227,7 +227,8 @@ $pages = $query->skip(($currentUser-1)*$itemsPerUser)
 <script>
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu>li.system").addClass("nav-open").find("ul>li.users a").addClass("active");
+        $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
+        $(".mainmenu>li.users a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 
 use Models\NewsCategory;
-
+use Models\News;
 
 if( isset($_POST['action']) && isset($_POST['id'])){
 
@@ -76,6 +76,14 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'删除失败'));  
+            }   
+            break;  
+        case "exist": 
+            $newsCount = News::where('category_id',$id)->count();            
+            if($newsCount==0){
+                echo json_encode(array ('status'=>1,'message'=>''));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'此分类下还存在新闻，是否确定删除？'));  
             }   
             break;   
         case "active":

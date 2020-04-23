@@ -132,7 +132,7 @@ function recursive($items, $level){
         $(document).ready(function () {
             //当前菜单
 
-            $(".mainmenu>li.products_v1").addClass("nav-open").find("ul>li.category a").addClass("active");
+            $(".mainmenu>li.products").addClass("nav-open").find("ul>li.category a").addClass("active");
 
 
             //确认框默认语言
@@ -171,36 +171,66 @@ function recursive($items, $level){
                 var $that = $(this);
                 bootbox.confirm("删除后分类将无法恢复，您确定要删除吗？", function (result) {
                     if (result) {
-                        var productId = $that.attr("data-id");
+                        var cId = $that.attr("data-id");
 
                         $.ajax({
                             url: 'category_post.php',
                             type: 'POST',
                             data: {
-                                id: productId,
-                                action:"delete"
+                                id: cId,
+                                action:"exist"
                             },
                             success: function (res) {
 
                                 var myobj = JSON.parse(res);
                                 //console.log(myobj.status);
                                 if (myobj.status === 1) {
-                                    toastr.success(myobj.message);
-                                    $that.closest("tr").remove();
+                                    delete_category(cId,$that);
                                 }
                                 if (myobj.status === 2) {
-                                    toastr.error(myobj.message)
+                                    bootbox.confirm(myobj.message, function (result1) {
+                                        if (result1) {
+                                            delete_category(cId,$that);
+                                        }
+
+                                    });
+                                  
                                 }
-                                if (myobj.status === 3) {
-                                    toastr.info(myobj.message)
-                                }
+                              
                             }
                         });
+                        
                     }
 
                 });
 
             });
+
+            function delete_category(category_id,$that){
+                $.ajax({
+                    url: 'category_post.php',
+                    type: 'POST',
+                    data: {
+                        id: category_id,
+                        action:"delete"
+                    },
+                    success: function (res) {
+
+                        var myobj = JSON.parse(res);
+                        //console.log(myobj.status);
+                        if (myobj.status === 1) {
+                            toastr.success(myobj.message);
+                            $that.closest("tr").remove();
+                        }
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
+                    }
+                });
+            }
 
         });
     </script>

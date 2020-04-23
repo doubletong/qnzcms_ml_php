@@ -1,6 +1,6 @@
 <?php
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
 use Models\User;
 

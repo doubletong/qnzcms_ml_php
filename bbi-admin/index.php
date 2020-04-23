@@ -1,6 +1,6 @@
 <?php
 require_once('includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/environment.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/environment.php');
 require_once('data/link.php');
 require_once('data/topics.php');
 require_once('data/chronicle.php');
@@ -258,7 +258,8 @@ $topicsClass = new Topics();
         
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li:nth-of-type(1)").addClass("nav-open");
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
+            $(".mainmenu>li:nth-of-type(1) a").addClass("active");
             
         });
     </script>

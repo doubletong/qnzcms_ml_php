@@ -1,6 +1,6 @@
 <?php
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
 use Models\Menu;
 use Models\Metadata;
@@ -194,7 +194,7 @@ $menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orde
 
         $(document).ready(function() {
             //当前菜单
-           
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active'); 
             $(".mainmenu>li.plugins").addClass("nav-open").find("ul>li.menus a").addClass("active");
      
 

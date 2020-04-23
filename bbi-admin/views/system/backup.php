@@ -177,7 +177,8 @@ function backupsData()
 
         $(document).ready(function() {
             //当前菜单        
-            $(".mainmenu>li.backup").addClass("nav-open").find("ul>li.general a").addClass("active");
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
+            $(".mainmenu>li.backup a").addClass("active");
 
 
             $('#submit').click(function(){         

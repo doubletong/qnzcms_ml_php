@@ -4,16 +4,23 @@ require_once '../includes/common.php';
 use Models\User;
 session_start();
 
+
+$logger = new Katzgrau\KLogger\Logger($_SERVER['DOCUMENT_ROOT'].'/logs');
+
+
 if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password']; 
     
+    $userinfo = ['username'=>$username];
 
     if ($_POST['captcha'] != $_SESSION['phrase']) {
         $error = "验证码不正确";
+        $logger->error('验证码不正确',$userinfo);
     } else {
         if (empty($username) or empty($password)) {
             $error = '请输入用户名与密码！';
+            $logger->error('请输入用户名与密码！',$userinfo);
         } else {
 
             $user = User::where('active',1)->where('username',$username)->first();
@@ -23,10 +30,12 @@ if (isset($_POST['username'], $_POST['password'])) {
             if ($result) {
                 $_SESSION['logged_in'] = true;
                 $_SESSION['valid_user'] = $username;
+                $logger->info('登录成功！',$userinfo);
                 header('Location: index.php');
                 exit();
             } else {
                 $error = '无效的帐号！';
+                $logger->error('无效的帐号！',$userinfo);
             }
         }
     }

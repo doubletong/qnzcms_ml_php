@@ -11,7 +11,7 @@
              
 
                  <!--  常规产品模块  -->
-                 <li class="down-nav products_v1">
+                 <li class="down-nav products">
                         <a href="#">                                                       
                             <i class="iconfont icon-appstore"></i> 产品 <i class="arrow iconfont icon-down"></i>
                         </a>

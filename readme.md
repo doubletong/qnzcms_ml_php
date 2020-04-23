@@ -72,3 +72,4 @@ project
   - myclabs/php-enum  ^0.1.7  【枚举处理】
   - mos/cimage ^0.7.21   【图片处理】
   - samdark/sitemap ^2.2   【站点地图】
+  - katzgrau/klogger : dev-master  【日志模块】

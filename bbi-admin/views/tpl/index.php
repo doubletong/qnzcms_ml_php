@@ -127,8 +127,8 @@ $file_default_path = $_SERVER['DOCUMENT_ROOT'].'/assets/templates/index.html';
                 
             );
            
-                          //当前菜单        
-            $(".mainmenu>li.sitemap").addClass("nav-open").find("ul>li.general a").addClass("active");
+            //当前菜单        
+            $("#module_nav>li:nth-of-type(3)").addClass("active").siblings().removeClass('active');
 
             $('.file_list li.dir>a').click(function(e){
                 $(this).find("i").toggleClass('icon-folder-open');

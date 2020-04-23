@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
 
 use Models\ServiceItem;
@@ -225,8 +225,7 @@ $action = isset($_GET['id'])?"update":"create";
 
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li.services").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass(
-                "active");
+            $(".mainmenu>li.services a").addClass("active");
 
             $("#btnBrowser").on("click", function () {
                 singleEelFinder.selectActionFunction = SetThumbnail;

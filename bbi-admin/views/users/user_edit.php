@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Utils/Enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
 
 use Models\User;
@@ -149,7 +149,8 @@ $action = "update";
 
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li.system").addClass("nav-open").find("ul>li.users a").addClass("active");
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
+            $(".mainmenu>li.users a").addClass("active");
 
             $("#btnBrowser").on("click", function () {
                 singleEelFinder.selectActionFunction = SetThumbnail;

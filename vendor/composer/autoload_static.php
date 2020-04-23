@@ -52,6 +52,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         array (
             'MyCLabs\\Enum\\' => 13,
         ),
+        'K' => 
+        array (
+            'Katzgrau\\KLogger\\' => 17,
+        ),
         'J' => 
         array (
             'JsonSchema\\' => 11,
@@ -167,6 +171,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
+        'Katzgrau\\KLogger\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/katzgrau/klogger/src',
+        ),
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
@@ -240,6 +248,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'CRemoteImage' => __DIR__ . '/..' . '/mos/cimage/CRemoteImage.php',
         'CWhitelist' => __DIR__ . '/..' . '/mos/cimage/CWhitelist.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Katzgrau\\KLogger\\Logger' => __DIR__ . '/..' . '/katzgrau/klogger/src/Logger.php',
         'Models\\Advertisement' => __DIR__ . '/../..' . '/src/Models/Advertisement.php',
         'Models\\AdvertisingSpace' => __DIR__ . '/../..' . '/src/Models/AdvertisingSpace.php',
         'Models\\Album' => __DIR__ . '/../..' . '/src/Models/Album.php',

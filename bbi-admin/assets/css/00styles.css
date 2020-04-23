@@ -9812,16 +9812,6 @@ img {
   }
 }
 
-.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
-  color: #fff;
-  background-color: #1d829a;
-  border-radius: 1.8rem;
-}
-
-.navbar-expand-lg .navbar-nav .nav-link {
-  padding: .3rem 1.3rem;
-}
-
 .page-home .box {
   background-color: #1d829a;
   display: block;
