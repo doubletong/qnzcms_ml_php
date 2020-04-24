@@ -6,7 +6,15 @@
                   
                     <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i><span class="nav-text">基本设置</span></a></li>
                     <li class="menus"><a href="/bbi-admin/views/menus/index.php"><i class="iconfont icon-menu"></i> <span class="nav-text">栏目</span></a></li>     
-
+                    <li class="down-nav socials">
+                        <a href="#">                      
+                            <i class="iconfont icon-weibo"></i> 社交帐号<i class="arrow iconfont icon-down"></i>
+                        </a>
+                       <ul class="submenu">
+                            <li class="config"><a href="/bbi-admin/views/socials/softwares.php">社交类型</a></li>
+                            <li class="accounts"><a href="/bbi-admin/views/socials/index.php">社交帐号</a></li>
+                        </ul>
+                    </li>     
                     <li class="down-nav language">
                         <a href="#">                      
                             <i class="iconfont icon-language"></i> 语言<i class="arrow iconfont icon-down"></i>
@@ -26,7 +34,7 @@
                             <li class="template"><a href="/bbi-admin/views/email_templates/index.php">邮件模板</a></li>
                         </ul>
                     </li>     
-                    <li class="users"><a href="/bbi-admin/views/users/index.php"><i class="iconfont icon-team"></i> <span class="nav-text">帐号</span></a></li>                                               
+                    <li class="users"><a href="/bbi-admin/views/users/index.php"><i class="iconfont icon-team"></i> <span class="nav-text">用户</span></a></li>                                               
                     <li class="sitemap"><a href="/bbi-admin/views/system/sitemap.php"><i class="iconfont icon-apartment"></i> <span class="nav-text">生成sitemap</span></a></li>
 
                     <li class="backup"><a href="/bbi-admin/views/system/backup.php"><i class="iconfont icon-database"></i> <span class="nav-text">备份数据库</span></a></li>

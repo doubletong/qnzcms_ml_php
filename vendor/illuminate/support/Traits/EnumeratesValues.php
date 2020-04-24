@@ -10,6 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Illuminate\Support\HigherOrderCollectionProxy;
+use Illuminate\Support\HigherOrderWhenProxy;
 use JsonSerializable;
 use Symfony\Component\VarDumper\VarDumper;
 use Traversable;
@@ -30,10 +31,12 @@ use Traversable;
  * @property-read HigherOrderCollectionProxy $min
  * @property-read HigherOrderCollectionProxy $partition
  * @property-read HigherOrderCollectionProxy $reject
+ * @property-read HigherOrderCollectionProxy $some
  * @property-read HigherOrderCollectionProxy $sortBy
  * @property-read HigherOrderCollectionProxy $sortByDesc
  * @property-read HigherOrderCollectionProxy $sum
  * @property-read HigherOrderCollectionProxy $unique
+ * @property-read HigherOrderCollectionProxy $until
  */
 trait EnumeratesValues
 {
@@ -43,9 +46,27 @@ trait EnumeratesValues
      * @var array
      */
     protected static $proxies = [
-        'average', 'avg', 'contains', 'each', 'every', 'filter', 'first',
-        'flatMap', 'groupBy', 'keyBy', 'map', 'max', 'min', 'partition',
-        'reject', 'some', 'sortBy', 'sortByDesc', 'sum', 'unique',
+        'average',
+        'avg',
+        'contains',
+        'each',
+        'every',
+        'filter',
+        'first',
+        'flatMap',
+        'groupBy',
+        'keyBy',
+        'map',
+        'max',
+        'min',
+        'partition',
+        'reject',
+        'some',
+        'sortBy',
+        'sortByDesc',
+        'sum',
+        'unique',
+        'until',
     ];
 
     /**
@@ -403,12 +424,16 @@ trait EnumeratesValues
      * Apply the callback if the value is truthy.
      *
      * @param  bool|mixed  $value
-     * @param  callable  $callback
-     * @param  callable  $default
+     * @param  callable|null  $callback
+     * @param  callable|null  $default
      * @return static|mixed
      */
-    public function when($value, callable $callback, callable $default = null)
+    public function when($value, callable $callback = null, callable $default = null)
     {
+        if (! $callback) {
+            return new HigherOrderWhenProxy($this, $value);
+        }
+
         if ($value) {
             return $callback($this, $value);
         } elseif ($default) {
@@ -422,7 +447,7 @@ trait EnumeratesValues
      * Apply the callback if the collection is empty.
      *
      * @param  callable  $callback
-     * @param  callable  $default
+     * @param  callable|null  $default
      * @return static|mixed
      */
     public function whenEmpty(callable $callback, callable $default = null)
@@ -434,7 +459,7 @@ trait EnumeratesValues
      * Apply the callback if the collection is not empty.
      *
      * @param  callable  $callback
-     * @param  callable  $default
+     * @param  callable|null  $default
      * @return static|mixed
      */
     public function whenNotEmpty(callable $callback, callable $default = null)
@@ -447,7 +472,7 @@ trait EnumeratesValues
      *
      * @param  bool  $value
      * @param  callable  $callback
-     * @param  callable  $default
+     * @param  callable|null  $default
      * @return static|mixed
      */
     public function unless($value, callable $callback, callable $default = null)
@@ -459,7 +484,7 @@ trait EnumeratesValues
      * Apply the callback unless the collection is empty.
      *
      * @param  callable  $callback
-     * @param  callable  $default
+     * @param  callable|null  $default
      * @return static|mixed
      */
     public function unlessEmpty(callable $callback, callable $default = null)
@@ -471,7 +496,7 @@ trait EnumeratesValues
      * Apply the callback unless the collection is not empty.
      *
      * @param  callable  $callback
-     * @param  callable  $default
+     * @param  callable|null  $default
      * @return static|mixed
      */
     public function unlessNotEmpty(callable $callback, callable $default = null)
@@ -490,6 +515,28 @@ trait EnumeratesValues
     public function where($key, $operator = null, $value = null)
     {
         return $this->filter($this->operatorForWhere(...func_get_args()));
+    }
+
+    /**
+     * Filter items where the given key is not null.
+     *
+     * @param  string|null  $key
+     * @return static
+     */
+    public function whereNull($key = null)
+    {
+        return $this->whereStrict($key, null);
+    }
+
+    /**
+     * Filter items where the given key is null.
+     *
+     * @param  string|null  $key
+     * @return static
+     */
+    public function whereNotNull($key = null)
+    {
+        return $this->where($key, '!==', null);
     }
 
     /**
@@ -676,6 +723,31 @@ trait EnumeratesValues
     }
 
     /**
+     * Take items in the collection until condition is met.
+     *
+     * @param  mixed  $key
+     * @return static
+     */
+    public function until($value)
+    {
+        $passed = [];
+
+        $callback = $this->useAsCallable($value) ? $value : function ($item) use ($value) {
+            return $item === $value;
+        };
+
+        foreach ($this as $key => $item) {
+            if ($callback($item, $key)) {
+                break;
+            }
+
+            $passed[$key] = $item;
+        }
+
+        return new static($passed);
+    }
+
+    /**
      * Collect the values into a collection.
      *
      * @return \Illuminate\Support\Collection
@@ -825,7 +897,7 @@ trait EnumeratesValues
      * Get an operator checker callback.
      *
      * @param  string  $key
-     * @param  string  $operator
+     * @param  string|null  $operator
      * @param  mixed  $value
      * @return \Closure
      */

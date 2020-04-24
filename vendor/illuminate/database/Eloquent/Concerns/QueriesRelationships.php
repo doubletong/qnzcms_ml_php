@@ -22,6 +22,8 @@ trait QueriesRelationships
      * @param  string  $boolean
      * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Builder|static
+     *
+     * @throws \RuntimeException
      */
     public function has($relation, $operator = '>=', $count = 1, $boolean = 'and', Closure $callback = null)
     {
@@ -150,7 +152,7 @@ trait QueriesRelationships
      * Add a relationship count / exists condition to the query with where clauses and an "or".
      *
      * @param  string  $relation
-     * @param  \Closure  $callback
+     * @param  \Closure|null  $callback
      * @param  string  $operator
      * @param  int  $count
      * @return \Illuminate\Database\Eloquent\Builder|static
@@ -176,7 +178,7 @@ trait QueriesRelationships
      * Add a relationship count / exists condition to the query with where clauses and an "or".
      *
      * @param  string  $relation
-     * @param  \Closure  $callback
+     * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function orWhereDoesntHave($relation, Closure $callback = null)
@@ -220,8 +222,8 @@ trait QueriesRelationships
                         };
                     }
 
-                    $query->where($relation->getMorphType(), '=', (new $type)->getMorphClass())
-                        ->whereHas($belongsTo, $callback, $operator, $count);
+                    $query->where($this->query->from.'.'.$relation->getMorphType(), '=', (new $type)->getMorphClass())
+                                ->whereHas($belongsTo, $callback, $operator, $count);
                 });
             }
         }, null, null, $boolean);
@@ -309,7 +311,7 @@ trait QueriesRelationships
      *
      * @param  string  $relation
      * @param  string|array  $types
-     * @param  \Closure  $callback
+     * @param  \Closure|null  $callback
      * @param  string  $operator
      * @param  int  $count
      * @return \Illuminate\Database\Eloquent\Builder|static
@@ -337,7 +339,7 @@ trait QueriesRelationships
      *
      * @param  string  $relation
      * @param  string|array  $types
-     * @param  \Closure  $callback
+     * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function orWhereDoesntHaveMorph($relation, $types, Closure $callback = null)
@@ -388,8 +390,14 @@ trait QueriesRelationships
 
             $query = $query->mergeConstraintsFrom($relation->getQuery())->toBase();
 
+            $query->orders = null;
+
+            $query->setBindings([], 'order');
+
             if (count($query->columns) > 1) {
                 $query->columns = [$query->columns[0]];
+
+                $query->bindings['select'] = [];
             }
 
             // Finally we will add the proper result column alias to the query and run the subselect

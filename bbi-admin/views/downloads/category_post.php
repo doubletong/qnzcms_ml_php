@@ -2,7 +2,9 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
+
 use Models\DownloadCategory;
+use Models\Download;
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -99,6 +101,14 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 echo json_encode(array ('status'=>2,'message'=>'拷贝失败'));  
             }   
             break;
+        case "exist": 
+            $downloadCount = Download::where('category_id',$id)->count();            
+            if($downloadCount==0){
+                echo json_encode(array ('status'=>1,'message'=>''));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'此分类下还存在下载文档，是否确定删除？'));  
+            }   
+            break;   
     }
     
 }else{

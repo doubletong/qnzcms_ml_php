@@ -45,6 +45,8 @@ return array(
     'Models\\Reseller' => $baseDir . '/src/Models/reseller.php',
     'Models\\Resource' => $baseDir . '/src/Models/resource.php',
     'Models\\ServiceItem' => $baseDir . '/src/Models/ServiceItem.php',
+    'Models\\SocialAccount' => $baseDir . '/src/Models/SocialAccount.php',
+    'Models\\SocialSoftware' => $baseDir . '/src/Models/SocialSoftware.php',
     'Models\\Team' => $baseDir . '/src/Models/Team.php',
     'Models\\TeamCategory' => $baseDir . '/src/Models/TeamCategory.php',
     'Models\\User' => $baseDir . '/src/Models/User.php',

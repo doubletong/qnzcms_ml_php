@@ -74,11 +74,6 @@
                             <li class="category"><a href="/bbi-admin/views/schools/countries.php">国家</a></li>
                         </ul>
                     </li>     
-                    <li class="offers">
-                        <a href="/bbi-admin/views/offers/index.php">
-                            <i class="iconfont icon-aliwangwang"></i> <span class="nav-text">学员Offer</span>                    
-                        </a>
-                    </li>
                   
                   
                     <li class="down-nav faq">

@@ -260,46 +260,46 @@ function recursive($items, $level, $parent){
                             </div>
                                 </div>
                                 <div class="col-md-auto">
-                                <div style="width:300px;  text-align:center;" class="mb-3">
+                                    <div style="width:300px;  text-align:center;" class="mb-3">
                                         <div class="card">
-                                        <div class="card-header">缩略图</div>
-                                            <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/240x120?text=280X142像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x120?text=280X142像素" : $data['thumbnail']; ?>" class="img-fluid" />
-                                          
-                                            </div>
-                                            <div class="card-footer">
-                                                <button type="button" id="btnThumbnail" class="btn btn-info"><i class="fa fa-picture-o"></i> 浏览...</button>
-                                                <?php if(!empty($data['thumbnail'])){ ?>
-                                                <button type="button" id="btnImgDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
-                                            <?php } ?>
-                                                <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header">SEO</div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <label for="title">SEO标题</label>
-                                                <input type="text" class="form-control" id="seotitle" name="seotitle" placeholder="" value="<?php echo isset($metadata['title'])?$metadata['title']:''; ?>">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="description">SEO描述</label>
-                                                <textarea class="form-control" id="seodescription" name="seodescription" rows="6" placeholder=""><?php echo isset($metadata['description'])?$metadata['description']:''; ?></textarea>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="keywords">关键字</label>
-
-                                                <input type="text" class="form-control" id="seokeywords" name="seokeywords" placeholder="" value="<?php echo isset($metadata['keywords'])?$metadata['keywords']:'';  ?>">
-
+                                            <div class="card-header">缩略图</div>
+                                                <div class="card-body">                                       
+                                                    <img ID="iLogo" data-default-src="holder.js/240x120?text=280X142像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x120?text=280X142像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                            
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button type="button" id="btnThumbnail" class="btn btn-info"><i class="fa fa-picture-o"></i> 浏览...</button>
+                                                    <?php if(!empty($data['thumbnail'])){ ?>
+                                                    <button type="button" id="btnImgDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
+                                                <?php } ?>
+                                                    <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-header">SEO</div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="title">SEO标题</label>
+                                                    <input type="text" class="form-control" id="seotitle" name="seotitle" placeholder="" value="<?php echo isset($metadata['title'])?$metadata['title']:''; ?>">
+                                                </div>
 
+                                                <div class="form-group">
+                                                    <label for="description">SEO描述</label>
+                                                    <textarea class="form-control" id="seodescription" name="seodescription" rows="6" placeholder=""><?php echo isset($metadata['description'])?$metadata['description']:''; ?></textarea>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="keywords">关键字</label>
+
+                                                    <input type="text" class="form-control" id="seokeywords" name="seokeywords" placeholder="" value="<?php echo isset($metadata['keywords'])?$metadata['keywords']:'';  ?>">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             
                         </div>
                         <div class="card-footer text-center">

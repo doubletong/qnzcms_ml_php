@@ -229,37 +229,37 @@ $categorys = $query->orderBy('id', 'DESC')
                 locale: "zh_CN"
             });
 
-            $(".btn-delete").click(function(){
-                var $that = $(this);
-                bootbox.confirm("删除后将无法恢复，您确定要删除吗？", function (result) {
-                    if (result) {
-                        var id = $that.attr("data-id");
+            // $(".btn-delete").click(function(){
+            //     var $that = $(this);
+            //     bootbox.confirm("删除后将无法恢复，您确定要删除吗？", function (result) {
+            //         if (result) {
+            //             var id = $that.attr("data-id");
 
-                        $.ajax({
-                            url : 'category_post.php',
-                            type : 'POST',
-                            data : {id:id,action:"delete"},
-                            success : function(res) {
+            //             $.ajax({
+            //                 url : 'category_post.php',
+            //                 type : 'POST',
+            //                 data : {id:id,action:"delete"},
+            //                 success : function(res) {
 
-                                var myobj = JSON.parse(res);                    
-                                //console.log(myobj.status);
-                                if (myobj.status === 1) {
-                                    toastr.success(myobj.message);  
-                                    $that.closest("tr").remove();                                   
-                                } 
-                                if (myobj.status === 2) {
-                                    toastr.error(myobj.message)
-                                }
-                                if (myobj.status === 3) {
-                                    toastr.info(myobj.message)
-                                }
-                            }
-                        });
-                    }
+            //                     var myobj = JSON.parse(res);                    
+            //                     //console.log(myobj.status);
+            //                     if (myobj.status === 1) {
+            //                         toastr.success(myobj.message);  
+            //                         $that.closest("tr").remove();                                   
+            //                     } 
+            //                     if (myobj.status === 2) {
+            //                         toastr.error(myobj.message)
+            //                     }
+            //                     if (myobj.status === 3) {
+            //                         toastr.info(myobj.message)
+            //                     }
+            //                 }
+            //             });
+            //         }
 
-                });
+            //     });
 
-            });
+            // });
 
          
 
@@ -293,30 +293,96 @@ $categorys = $query->orderBy('id', 'DESC')
             });
 
             $(".btn-copy").click(function(){
-            var $that = $(this);           
-            var id = $that.attr("data-id");
+                var $that = $(this);           
+                var id = $that.attr("data-id");
 
-            $.ajax({
-                url : 'category_post.php',
-                type : 'POST',
-                data : {id:id,action:"copy"},
-                success : function(res) {                                                   
-                    var myobj = JSON.parse(res);                    
-                  
-                    if (myobj.status === 1) {                                            
-                        location.reload();                                  
-                    } 
-                    if (myobj.status === 2) {
-                        toastr.error(myobj.message)
+                $.ajax({
+                    url : 'category_post.php',
+                    type : 'POST',
+                    data : {id:id,action:"copy"},
+                    success : function(res) {                                                   
+                        var myobj = JSON.parse(res);                    
+                    
+                        if (myobj.status === 1) {                                            
+                            location.reload();                                  
+                        } 
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
                     }
-                    if (myobj.status === 3) {
-                        toastr.info(myobj.message)
-                    }
-                }
-            });          
+                });          
 
-        });
+            });
+           
             
+
+            $(".btn-delete").click(function () {
+                var $that = $(this);
+                bootbox.confirm("删除后分类将无法恢复，您确定要删除吗？", function (result) {
+                    if (result) {
+                        var cId = $that.attr("data-id");
+
+                        $.ajax({
+                            url: 'category_post.php',
+                            type: 'POST',
+                            data: {
+                                id: cId,
+                                action:"exist"
+                            },
+                            success: function (res) {
+
+                                var myobj = JSON.parse(res);
+                                //console.log(myobj.status);
+                                if (myobj.status === 1) {
+                                    delete_category(cId,$that);
+                                }
+                                if (myobj.status === 2) {
+                                    bootbox.confirm(myobj.message, function (result1) {
+                                        if (result1) {
+                                            delete_category(cId,$that);
+                                        }
+
+                                    });
+                                  
+                                }
+                              
+                            }
+                        });
+                        
+                    }
+
+                });
+
+            });
+
+            function delete_category(category_id,$that){
+                $.ajax({
+                    url: 'category_post.php',
+                    type: 'POST',
+                    data: {
+                        id: category_id,
+                        action:"delete"
+                    },
+                    success: function (res) {
+
+                        var myobj = JSON.parse(res);
+                        //console.log(myobj.status);
+                        if (myobj.status === 1) {
+                            toastr.success(myobj.message);
+                            $that.closest("tr").remove();
+                        }
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
+                    }
+                });
+            }
 
         });
     </script>
