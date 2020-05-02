@@ -9,168 +9,47 @@
 {% endblock %}
 {% block content %}
 
- <div class="page page-home"> 
-      <div class="s1">
-        <div class="container">
-          <div class="txt"> 
-            <h2>At premium parts, </h2>
-            <p>we ensure customer to receive, accurate, fast, on time, sufficient support and services</p>
-            <div class="row actions align-items-center">
-              <div class="col-auto"><a href="#"> <i class="iconfont icon-play"></i></a></div>
-              <div class="col"><a class="quote" href="javascript:void(0);">Request A Quote</a></div>
-            </div>
-          </div>
+<section class="sliders swiper-container wow fadeInUp">
+  <div class="swiper-wrapper">
+  {% for item in carousels %}
+    <div class="swiper-slide" style="background-image:url({{item.image_url}});"></div>
+  {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</section>
+ <div class="page-home">        
+      <section class="s1">           
+        <div class="title"> 
+          <h2 class="wow fadeInLeft">非我产品</h2>
+          <h3 class="wow fadeInRight">PRODUCTS</h3>
         </div>
-      </div>
-      <section class="s2">           
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-auto">
-              <div class="pic wow fadeInLeft"><img src="/assets/img/about_01.jpg" alt=""></div>
-            </div>
-            <div class="col-md">
-              <div class="intro">
-                <div class="title-section wow fadeInUp">
-                  <h2>ABOUT US</h2>
-                </div>
-                <p>At  Premium Part, our core competencies and focus revolves around quality service delivery. We strive to provide each and every client with a truly rapid manufacturing process that will yield premium, functional parts through the most cost-effective approach.</p>
-                <p>Premium Parts specializes in a wide array of services for both low-volume and mass production quantities. Our array of services include rapid prototyping, low-volume manufacturing, CNC Machining, 3D Printing, Urethane ...</p>
-                <div class="more"><a class="btn btn-primary-outline" href="/about">MORE</a></div>
-              </div>
-            </div>
-          </div>
+        <div class="pic01 wow slideInLeft"><img src="/assets/img/home_s1_01.jpg" alt="">
+          <p>JVE 001</p>
+        </div>
+        <div class="pic02 wow slideInRight"><img src="/assets/img/home_s1_03.png" alt="">
+          <p>JVE 002</p>
+        </div>
+        <div class="pic03 wow fadeInUp"><img src="/assets/img/home_s1_02.jpg" alt="">
+          <p>JVE 003</p>
+        </div>
+        <div class="pic04 wow slideInLeft"><img src="/assets/img/home_logo.png" alt=""></div>
+      </section>
+      <section class="s2">
+        <div class="pic wow fadeInRight"><img src="/assets/img/s2_01.png" alt=""></div>
+        <div class="txt wow fadeInLeft">在别人眼中也许毫无意义，<br>但每次尝试都更激发我的动力，<br>why not？
+          <h3>just love！</h3>
         </div>
       </section>
-      <section class="s3">
-        <div class="title-section wow fadeInUp">
-          <h2 class="text-center">What we can do?</h2>
-        </div>
-        <div class="row no-gutters">   
-
-          {% for item in serviceItems  %}
-            <div class="col-md-6 col-lg-4"><a class="item wow fadeInUp" href="/services/detail-{{item.id}}">
-                <div class="pic"><img src="{{item.thumbnail}}"></div>
-                <div class="des">     
-                  <h3 class="title">{{item.title}}</h3>
-                  <p>{{item.summary}}</p>
-                  <div class="btn btn-default-outline">MORE</div>
-                </div></a></div>
-          {% endfor %}              
-          
+      <section class="s2_odd">
+        <div class="pic wow fadeInLeft"><img src="/assets/img/s2_02.jpg" alt=""></div>
+        <div class="txt wow fadeInRight">在无数被质疑的路上特立独行，<br>但没有喝彩的时候头脑更加清晰，<br>why not？
+          <h3>just love！</h3>
         </div>
       </section>
-      <div class="section s4">
-        <div class="container">
-          <div class="title-section-v2 wow fadeInUp">
-            <h2 class="text-center">Why choose premium parts?</h2>
-            <p class="text-center">Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.</p>
-          </div>
-          <div class="tab-header wow fadeInUp">
-            <div class="row">
-              <div class="col-4 col-md-2"><a class="item active" href="#sl01">
-                  <div class="icon"><img src="/assets/img/icon-01.png" srcset="/assets/img/icon-01.png, img/icon-01@2x.png 2x" alt="Manufacturing capabilities"></div>
-                  <div class="txt">Manufacturing <br>capabilities</div></a></div>
-              <div class="col-4 col-md-2"><a class="item" href="#sl02">
-                  <div class="icon"><img src="/assets/img/icon-02.png" srcset="/assets/img/icon-02.png, img/icon-02@2x.png 2x" alt="Manufacturing capabilities"></div>
-                  <div class="txt">Garanteed on time <br>delivery</div></a></div>
-              <div class="col-4 col-md-2"><a class="item" href="#sl03">
-                  <div class="icon"><img src="/assets/img/icon-03.png" srcset="/assets/img/icon-03.png, img/icon-03@2x.png 2x" alt="Manufacturing capabilities"></div>
-                  <div class="txt">Outstanding <br>team</div></a></div>
-              <div class="col-4 col-md-2"><a class="item" href="#sl04">
-                  <div class="icon"><img src="/assets/img/icon-04.png" srcset="/assets/img/icon-04.png, img/icon-04@2x.png 2x" alt="Manufacturing capabilities"></div>
-                  <div class="txt">Money back quality<br>garantee</div></a></div>
-              <div class="col-4 col-md-2"><a class="item" href="#sl05">
-                  <div class="icon"><img src="/assets/img/icon-05.png" srcset="/assets/img/icon-05.png, img/icon-05@2x.png 2x" alt="Manufacturing capabilities"></div>
-                  <div class="txt">One Stop <br>Service</div></a></div>
-              <div class="col-4 col-md-2"><a class="item" href="#sl06">
-                  <div class="icon"><img src="/assets/img/icon-06.png" srcset="/assets/img/icon-06.png, img/icon-06@2x.png 2x" alt="Manufacturing capabilities"></div>
-                  <div class="txt">Affordable <br>price</div></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiperel wow fadeInUp">
-          <div class="container">
-            <div class="swiper01 swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" data-hash="sl01">
-                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
-                    <div class="txt">
-                      <div class="txtwrap">
-                        <h3>Quick Turnaround</h3>
-                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" data-hash="sl02">
-                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
-                    <div class="txt">
-                      <div class="txtwrap">
-                        <h3>Quick Turnaround</h3>
-                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" data-hash="sl03">
-                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
-                    <div class="txt">
-                      <div class="txtwrap">
-                        <h3>Quick Turnaround</h3>
-                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" data-hash="sl04">
-                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
-                    <div class="txt">
-                      <div class="txtwrap">
-                        <h3>Quick Turnaround</h3>
-                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" data-hash="sl05">
-                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
-                    <div class="txt">
-                      <div class="txtwrap">
-                        <h3>Quick Turnaround</h3>
-                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" data-hash="sl06">
-                  <div class="item" style="background-image:url(/assets/img/bg_02.jpg);">
-                    <div class="txt">
-                      <div class="txtwrap">
-                        <h3>Quick Turnaround</h3>
-                        <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain long-term cooperation.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </div>
-      <section class="s5">
-        <div class="row no-gutters">
-          <div class="col-6 col-md-3 col-xl-2"><a class="item material wow fadeInUp" href="/material"> 
-              <div class="module">Select the material</div></a></div>
-          <div class="col-6 col-md-3 col-xl-2"><a class="item blog wow fadeInUp" href="/resource/blog"> 
-              <div class="module">BLOG</div></a></div>
-          <div class="col-md-6 col-xl-8"><a class="item faq wow fadeInUp" href="/resource/faq"> 
-              <div class="des"> 
-                <h3>FAQs</h3>
-                <p>Premium parts has the best team, which brings us good profits and attracts a large number of people Loyal customers,We will maintain </p>
-                <div class="more">more</div>
-              </div></a></div>
+      <section class="s2">
+        <div class="pic wow fadeInRight"><img src="/assets/img/s2_01.png" alt=""></div>
+        <div class="txt wow fadeInLeft">圆滑世故或许永远学不会，<br>但攻克专业难题我从不喊累，<br>why not？
+          <h3>just love！</h3>
         </div>
       </section>
     </div>
@@ -184,23 +63,24 @@
 <script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
 
     <script>
-        var galleryTop = new Swiper('.swiper01', {
-          spaceBetween: 0,
-          navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
+        var swiper = new Swiper('.sliders', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true
           },
-          hashNavigation: {
-              watchState: true,
-          }
-         
+          autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+          },
+          //- navigation: {
+          //-     nextEl: '.swiper-button-next',
+          //-     prevEl: '.swiper-button-prev',
+          //- },
       });
       
-      $(".tab-header .item").eq(galleryTop.activeIndex).addClass("active");
-      galleryTop.on('slideChange', function () {
-        
-          $(".tab-header .active").removeClass("active");
-          $(".tab-header .item").eq(this.activeIndex).addClass("active");
-      });
+      
+ 
+    
+    
     </script>
     {% endblock %}

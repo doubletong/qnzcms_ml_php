@@ -5,7 +5,7 @@
           <ul class="mainmenu" id="mainmenu">
                     <li>
                         <a href="/bbi-admin/index.php">
-                            <i class="iconfont icon-dashboard"></i> <span class="nav-text">控制面板</span>                        
+                            <i class="iconfont icon-dashboard"></i> 控制面板                 
                         </a>
                     </li>
              

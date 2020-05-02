@@ -9915,7 +9915,12 @@ img {
 .leftcol .logo a img {
   display: block;
   margin: 0 auto;
-  height: 60px;
+}
+
+@media (min-width: 768px) {
+  .leftcol .logo a img {
+    max-width: 80%;
+  }
 }
 
 .leftcol .mainmenu {

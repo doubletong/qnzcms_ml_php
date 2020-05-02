@@ -49,7 +49,7 @@ switch ($config_type) {
         $config_name = 'site_info';
         $logo = $_POST['logo'];
         $logo2 = $_POST['logo2'];
-        $qrcode = $_POST['qrcode'];
+     
         $company = $_POST['company'];
         $webnumber = $_POST['webnumber'];
         $hotPhone = $_POST['hotPhone'];
@@ -57,23 +57,21 @@ switch ($config_type) {
         $email = $_POST['email'];
        
         $address = $_POST['address'];
-        $theme = $_POST['theme'];
-        $wechat = $_POST['wechat'];
+        $theme = $_POST['theme'];  
 
         $hremail = $_POST['hremail'];          
         $hrcontact = $_POST['hrcontact'];
         $hrphone = $_POST['hrphone'];
 
-        $qq = $_POST['qq'];
-        $weibo = $_POST['weibo'];
+     
 
       
         $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
         $config_values = array(
-            "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2, "wechat" =>  $wechat,
-            "qrcode" =>  $qrcode, "webnumber" =>  $webnumber, "company"=>$company,
+            "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2,
+            "webnumber" =>  $webnumber, "company"=>$company,
             "email" =>  $email, "hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
-            "hremail" =>  $hremail, "qq" => $qq, "weibo" =>  $weibo,
+            "hremail" =>  $hremail,
             "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone, "enableCaching" => $enableCaching
         );
 

@@ -1,52 +1,56 @@
 {% extends "shared/layout.html" %}
-{% block title %}新闻资讯{% endblock %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{article.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+
+
 {% block content %}
-    <div class="banner">
-        <img src="/assets/img/banners/news.png" alt="">
-        <div class="title-page title-page-news">
-            <div class="txt">
-           <h2>NEWS</h2>
-           <h3>新闻中心</h3>
-        </div>
-        </div>
+     
+
+<div class="page-news-detail">
+    <div class="top_pic wow fadeInUp" style="background-image:url('/assets/img/temp/banner-news.jpg')">
+      <header>
+        <h1 class="title-news wow fadeInUp">{{article.title}}</h1>
+        <time class="wow fadeInUp">{{article.pubdate}}</time>
+      </header>
     </div>
-    <div class="page page-about page-news-detail">
-        <aside class="leftcol">
-            <nav>
-                <ul class="leftnav">
-                    <li><a href="/news" class="active">新闻中心</a></li>                
-                </ul>
-            </nav>
-        </aside>
-        <section class="maincontent">
-            <div class="wrap about ">
-              
-                <h1 class="title">{{article.title}}</h1>
-                <h2 class="title-sub">
-                    {{article.pubdate|date('Y.m.d')}}
-                </h2>
-                
-                <article class="newsdetail">
-                    {{article.content|raw}}
-                </article>
-              
-                <div class="prevnext">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row no-gutters">
-                                <div class="col-auto"><div class="icon"><i class="iconfont icon-left"></i></div></div>
-                                <div class="col lc"><a href="/news/detail-{{prevArticle.id}}">{{prevArticle.title}}</a></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row no-gutters">                             
-                                <div class="col rc"><a href="/news/detail-{{nextArticle.id}}">{{nextArticle.title}}</a></div>
-                                <div class="col-auto"><div class="icon"><i class="iconfont icon-right"></i></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
+    <article class="container">
+      <main class="content wow fadeInUp">
+        {{article.content|raw}}
+      </main>
+      <div class="nav-page wow fadeInUp">
+        <div class="row no-gutters">
+          <div class="col prev">
+              {% if prevArticle %}
+              <a id="hlPrevious" href="/news/detail-{{prevArticle.id}}"><span class="t1">{{prevArticle.title}}</span><span class="t2">上一篇</span></a>
+              {% endif %}
             </div>
-        </section>
-    </div>
+          <div class="col-auto back"><a href="/news"><i class="iconfont icon-close1line"></i></a></div>
+          <div class="col next">
+            {% if nextArticle %}
+              <a id="hlNext" href="/news/detail-{{nextArticle.id}}"><span class="t1">{{nextArticle.title}}</span><span class="t2">下一篇</span></a>
+              {% endif %}
+            </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+    
 {% endblock %}

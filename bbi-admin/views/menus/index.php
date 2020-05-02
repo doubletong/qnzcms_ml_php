@@ -157,7 +157,7 @@ function build_menu($rows, $parent = 0)
         $(document).ready(function() {
             //当前菜单
             $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active'); 
-            $(".mainmenu>li.plugins").addClass("nav-open").find("ul>li.menus a").addClass("active");
+            $(".mainmenu>li.menus a").addClass("active");
 
             //确认框默认语言
             bootbox.setDefaults({

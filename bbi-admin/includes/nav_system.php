@@ -4,8 +4,8 @@
     <nav id="menu">
           <ul class="mainmenu" id="mainmenu">
                   
-                    <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i><span class="nav-text">基本设置</span></a></li>
-                    <li class="menus"><a href="/bbi-admin/views/menus/index.php"><i class="iconfont icon-menu"></i> <span class="nav-text">栏目</span></a></li>     
+                    <li class="general"><a href="/bbi-admin/views/config/general.php"><i class="iconfont icon-wrench"></i> 基本设置</a></li>
+                    <li class="menus"><a href="/bbi-admin/views/menus/index.php"><i class="iconfont icon-menu"></i> 栏目</a></li>     
                     <li class="down-nav socials">
                         <a href="#">                      
                             <i class="iconfont icon-weibo"></i> 社交帐号<i class="arrow iconfont icon-down"></i>

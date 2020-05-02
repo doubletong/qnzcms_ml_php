@@ -1,68 +1,97 @@
 {% extends "shared/layout.html" %}
-{% block title %}新闻资讯{% endblock %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    新闻动态
+  {% endif %}
+   
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">  
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
 {% block content %}
-    <div class="banner">
-        <img src="/assets/img/banners/news.png" alt="">
-        <div class="title-page title-page-news">
-            <div class="txt">
-           <h2>NEWS</h2>
-           <h3>新闻中心</h3>
-        </div>
-        </div>
+  
+<section class="sliders sliders-news swiper-container wow fadeInUp">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(/assets/img/temp/slider_n01.jpg);">
+        <div class="container txt-news">             <img src="/assets/img/temp/slider_n01_1.png" alt=""></div>
+      </div>
+      <div class="swiper-slide" style="background-image:url(/assets/img/temp/slider_n01.jpg);">
+        <div class="container txt-news">                <img src="/assets/img/temp/slider_n01_1.png" alt=""></div>
+      </div>
+      <div class="swiper-slide" style="background-image:url(/assets/img/temp/slider_n01.jpg);">
+        <div class="container txt-news">               <img src="/assets/img/temp/slider_n01_1.png" alt=""></div>
+      </div>
     </div>
-    <div class="page page-about page-news">
-        <aside class="leftcol">
-            <nav>
-                <ul class="leftnav">
-                    <li><a href="/news" class="active">新闻中心</a></li>                
-                </ul>
-            </nav>
-        </aside>
-        <section class="maincontent">
-            <div class="wrap about newslist">
-              
-                <h1 class="title">NEWS</h1>
-                <h2 class="title-sub">
-                    新闻中心
-                </h2>
-                
-                <div class="list-container">
-                    <div class="row">
-                        {% for article in articles %}
-                        <div class="col-lg-6 col-xl-4">                            
-                            <div class="item">
-                                <time>{{article.pubdate|date('j. F Y')}}</time>
-                                <h3>{{article.title}}</h3>
-                                <p>{{article.summary}}</p>
-                                <a href="/news/detail-{{article.id}}" class="btn btn-primary">了解更多</a>
-                            </div>                         
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="pagination-container">
-                    {% if paginator.numPages > 1 %}
-                        <ul class="pagination">
-                            {% if paginator.prevUrl %}
-                                <li><a href="{{ paginator.prevUrl }}">&laquo; Previous</a></li>
-                            {% endif %}
+    <div class="swiper-pagination"></div>
+  </section>
 
-                            {% for page in paginator.pages %}
-                                {% if page.url %}
-                                    <li {{ page.isCurrent ? 'class="active"' : '' }}><a href="{{ page.url }}">{{ page.num }}</a></li>
-                                {% else %}
-                                    <li class="disabled"><span>{{ page.num }}</span></li>
-                                {% endif %}
-                            {% endfor %}
 
-                            {% if paginator.nextUrl %}
-                                <li><a href="{{ paginator.nextUrl }}">Next &raquo;</a></li>
-                            {% endif %}
-                        </ul>
-                    {% endif %}
+  <div class="page page-news">    
+    <section class="s1 container">
+      <div class="row newslist">
+
+        {% for item in news %}            
+            <div class="col-4">
+                <div class="item"><a class="pic wow fadeInUp" href="/news/detail-{{item.id}}"><img src="{{item.thumbnail}}"></a>
+                  <time class="wow fadeInUp">
+                    {{item.pubdate|date('j. F Y')}}</time>
+                  <h3 class="title wow fadeInUp"><a href="/news/detail-{{item.id}}">{{item.title}}</a></h3>
+                  <p class="des wow fadeInUp">{{item.summary}}</p>
                 </div>
-              
-            </div>
-        </section>
-    </div>
+              </div>
+        {% endfor %}   
+
+       
+      </div>
+    </section>
+    <footer class="blog-footer">      
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination">
+            {% if paginator.prevUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">&laquo;</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    </footer>
+  </div>
+
+  
+{% endblock %}
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+    <script>
+      var swiper = new Swiper('.sliders', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+          },
+          autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+          },
+          //- navigation: {
+          //-     nextEl: '.swiper-button-next',
+          //-     prevEl: '.swiper-button-prev',
+          //- },
+      });
+    </script>
 {% endblock %}

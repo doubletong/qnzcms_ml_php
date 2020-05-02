@@ -1,51 +1,49 @@
 <header class="site-header" id="site-header">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-auto"><a class="logo" href="/"><img id="logo" src="/assets/img/logo.png" alt="{{ site.sitename }}"></a></div>
-        <div class="col">
-          <ul class="mainav">
-                {% for menu in menus %}
-                <li>
-                    <a href="{{ menu.url }}" class="{{ menu.children ? 'down' : '' }} {{ (menu.url != "/" and  uri starts with menu.url) ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
-                    <!-- {% if(menu.children) %}
-                    <ul class="subnav">
-                        {% for subnav in menu.children %}
-                            <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %} -->
-                </li>
-                {% endfor %}           
-          </ul>
-        </div>
-        <div class="col-auto booking"><a class="btnBook" href="/quote">
-             Request A Quote</a></div>
-        <div class="col-auto mobilemenu">
-          <div class="menu-toggle">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-          </div>
+  <div class="topcol"><img src="/assets/img/warning.png" alt="本产品含有尼古丁，未成年人禁止购买及使用"></div>
+  <div class="mainavlogo">
+    <div class="row align-items-center">
+      <div class="col-auto"><a class="logo" href="/"><img id="logo" src="/assets/img/logo.png" alt="{{ site.sitename }}"></a></div>
+      <div class="col">
+        <ul class="mainav">
+          {% for menu in menus %}
+          <li class="{{ menu.children ? 'hasnav' : '' }} ">
+              <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
+              {% if(menu.children) %}
+              <ul class="subnav">
+                  {% for subnav in menu.children %}
+                      <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
+                  {% endfor %}
+                  </ul>
+              {% endif %}
+          </li>
+          {% endfor %}          
+        </ul>
+      </div>
+      <div class="col-auto mobilemenu">
+        <div class="menu-toggle">
+          <div class="one"></div>
+          <div class="two"></div>
+          <div class="three"></div>
         </div>
       </div>
     </div>
-    <div class="menu-over" id="overmenu">
-      <ul class="mobilenav">
-        {% for menu in menus %}
-        <li>
-            <a href="{{ menu.url }}" class="{{ menu.children ? 'down' : '' }} {{ (menu.url != "/" and  uri starts with menu.url) ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
-            <!-- {% if(menu.children) %}
-            <ul class="subnav">
-                {% for subnav in menu.children %}
-                    <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
-                {% endfor %}
-                </ul>
-            {% endif %} -->
-        </li>
-        {% endfor %}
-        
-      </ul>
-    </div>
-  </header>
+  </div>
+  <div class="menu-over" id="overmenu">
+    <ul class="mobilenav">
+      {% for menu in menus %}
+          <li class="{{ menu.children ? 'hasnav' : '' }} ">
+              <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}} </a>
+              {% if(menu.children) %}
+              <ul class="subnav">
+                  {% for subnav in menu.children %}
+                      <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
+                  {% endfor %}
+                  </ul>
+              {% endif %}
+          </li>
+          {% endfor %}  
+    </ul>
+  </div>
+</header>
 
 

@@ -1,12 +1,12 @@
 <?php
-require_once(__DIR__ . "/includes/common.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
-
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
 use Models\AdvertisingSpace;
-use Models\ServiceItem;
+use Models\Metadata;
 
-
+$metaKey = "/";
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('assets/templates'));
@@ -24,13 +24,9 @@ if($site_info['enableCaching']=="1"){
 
    
 
-    if (!$CachedString->isHit()) {
+    if (!$CachedString->isHit()) {       
 
-        $carousels = AdvertisingSpace::with("advertisements")->where('code','=','A001')->first()->advertisements;
-        $serviceItems = ServiceItem::select('id','title','thumbnail','summary')
-                ->where('active',1)->where('active',1)->orderBy('importance','DESC')->get();
-
-        $home_data = ['carousels' => $carousels,'serviceItems' => $serviceItems];
+        $home_data = loadDate($metaKey);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -44,12 +40,23 @@ if($site_info['enableCaching']=="1"){
 
 }else{
     $twig = new \Twig\Environment($loader);  
+    $result = loadDate($metaKey);
+}
 
-    $carousels = AdvertisingSpace::with("advertisements")->where('code','=','A001')->first()->advertisements;
-    $serviceItems = ServiceItem::select('id','title','thumbnail','summary')
-                ->where('active',1)->where('active',1)->orderBy('importance','DESC')->get();
 
-    $result = ['carousels' => $carousels,'serviceItems' => $serviceItems];
+//load data
+function loadDate($metaKey){
+
+    $carousels = AdvertisingSpace::with(array('advertisements' => function ($query) {
+        $query->where('active',1)->orderBy('importance', 'DESC')->get();
+    }))->where('code','=','A001')->first()->advertisements;
+
+    // $serviceItems = ServiceItem::select('id','title','thumbnail','summary')
+    //             ->where('active',1)->where('active',1)->orderBy('importance','DESC')->get();
+
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();       
+
+    return  ['carousels' => $carousels, 'metadata'=>$metadata];
 }
 
 

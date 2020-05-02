@@ -1,0 +1,34 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{product.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+
+
+{% block content %}
+     
+
+<div class="page-product-detail">
+  <section class="s1 container">
+    {{product.content|raw}}
+  </section>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  <script>
+    $(".mainav li:nth-of-type(2) a,.mobilenav li:nth-of-type(2) a").addClass("active");
+  </script>
+{% endblock %}

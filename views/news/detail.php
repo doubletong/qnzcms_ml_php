@@ -1,11 +1,11 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
-require_once($_SERVER['DOCUMENT_ROOT'] ."/data/article.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
+use Models\News;
+use Models\Metadata;
 
-$articleClass = new TZGCMS\Article();
-$did = 1;
 if (!isset($_GET['id'])) {
     header('Location: /news');
     exit;
@@ -26,16 +26,23 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
     
-    $key = "about";
+    $key = "/news/detail-$id";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
 
-        $data = $articleClass->fetch_data($id);
-        $prev = $articleClass->fetch_prev_data($id, $did);
-        $next = $articleClass->fetch_next_data($id, $did);
-        
-        $news_detail_data = ['article' => $data,'prevArticle' => $prev, 'nextArticle' => $next];
+        $data = News::find($id); 
+        $next = News::where('id','>',$id)->orderBy('id','ASC')->first();
+        $prev = News::where('id','<',$id)->orderBy('id','DESC')->first();
+
+        if(isset($data)){
+            $data->view_count=$data->view_count + 1;
+            $data->save();
+        }
+
+        $metadata = Metadata::where('module_type',ModuleType::NEWS())->where('key_value',$id)->first();       
+
+        $news_detail_data = ['article' => $data, 'prevArticle' => $prev, 'nextArticle' => $next, 'metadata' => $metadata];
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -48,18 +55,29 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $data = $articleClass->fetch_data($id);
-        $prev = $articleClass->fetch_prev_data($id, $did);
-        $next = $articleClass->fetch_next_data($id, $did);
- 
-    $result =  ['article' => $data,'prevArticle' => $prev, 'nextArticle' => $next];
+    $data = News::find($id); 
+    $next = News::where('id','>',$id)->orderBy('id','ASC')->first();
+    $prev = News::where('id','<',$id)->orderBy('id','DESC')->first();
+
+    if(isset($data)){
+        $data->view_count=$data->view_count + 1;
+        $data->save();
+    }
+
+    $metadata = Metadata::where('module_type',ModuleType::NEWS())->where('key_value',$id)->first();       
+
+    $result =  ['article' => $data, 'prevArticle' => $prev, 'nextArticle' => $next, 'metadata' => $metadata];
+
+  
 }
 
 
 $twig->addGlobal('site', $site_info);
-$twig->addGlobal('menus', $menutree);
+$twig->addGlobal('menus', $menutree['mainav']);
+$twig->addGlobal('breadcrumb', $menutree['breadcrumb']);
 $twig->addGlobal('navbot', $menus_bot);
 $twig->addGlobal('uri', $uri);
+
 
 echo $twig->render('news/detail.html', $result);
 

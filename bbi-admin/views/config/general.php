@@ -167,75 +167,8 @@ require_once '../../includes/common.php';
                             </div>
 
 
-
-                            <div class="row align-items-center mb-4">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="wechat">微信号</label>
-                                        <input type="text" class="form-control" id="wechat" name="wechat" placeholder="" value="<?php echo !empty($site_info['wechat']) ? $site_info['wechat'] : ""; ?>">
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label for="title">微信二维码</label>
-                                        <div class="input-group">
-                                            <input id="qrcode" name="qrcode" class="form-control" value="<?php echo !empty($site_info['qrcode']) ? $site_info['qrcode'] : ""; ?>" aria-describedby="setQrcode">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="setQrcode" type="button">浏览…</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php if (!empty($site_info['qrcode'])) {?>
-                                    <div class="col--md-1">
-                                        <img src="<?php echo $site_info['qrcode']; ?>" id="img_qrcode" style="max-height:100px;" />
-                                    </div>
-                                <?php }?>
-                            </div>
-                            <!--
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="title">微信二维码二</label>
-                                        <div class="input-group">
-                                            <input id="qrcode2" name="qrcode2" class="form-control" value="<?php echo !empty($site_info['qrcode2']) ? $site_info['qrcode2'] : ""; ?>" aria-describedby="setQrcode2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="setQrcode2" type="button">浏览…</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php if (!empty($site_info['qrcode2'])) {?>
-                                    <div class="col-auto">
-                                        <img src="<?php echo $site_info['qrcode2']; ?>" id="img_qrcode2" style="max-height:100px;" />
-                                    </div>
-                                <?php }?>
-                            </div> -->
-
-                            <h3 class="text-center">社交帐号</h3>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="qq">QQ</label>
-                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="" value="<?php echo !empty($site_info['qq']) ? $site_info['qq'] : ""; ?>">
-                                    </div>
-                                </div>
-                                <!-- <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="bilibili">哔哩哔哩</label>
-                                        <input type="text" class="form-control" id="bilibili" name="bilibili" placeholder="" value="<?php echo !empty($site_info['bilibili']) ? $site_info['bilibili'] : ""; ?>">
-                                    </div>
-                                </div> -->
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="weibo">微博</label>
-                                        <input type="text" class="form-control" id="weibo" name="weibo" placeholder="" value="<?php echo !empty($site_info['weibo']) ? $site_info['weibo'] : ""; ?>">
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="hidden">
+                            
+                            <div>
                             <h3 class="title">
                                 招聘设置
                             </h3>
@@ -304,7 +237,7 @@ require_once '../../includes/common.php';
         $(document).ready(function() {
             //当前菜单
             $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
-            $(".mainmenu>li.system").addClass("nav-open").find("ul>li.general a").addClass("active");
+            $(".mainmenu>li.general a").addClass("active");
 
             $("#setLogo").on("click", function() {
                 singleEelFinder.selectActionFunction = SetLogoUrl;

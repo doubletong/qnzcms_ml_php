@@ -1,8 +1,0 @@
-.page-support{
-    .about{
-      @include respond-above (md) {
-        min-height: 800px;
-      }
-     
-    }
-}

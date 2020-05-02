@@ -44,7 +44,9 @@ if($site_info['enableCaching']=="1"){
     $Cached_botnav = $InstanceCache->getItem($keyBotnav);
     if (!$Cached_botnav->isHit()) {
 
-        $menus_bot = Menu::with('children')->where('active',2)->where('group_id',1)->orderBy('importance', 'DESC')->get();
+        $menus_bot = Menu::with(array('children' => function ($query) {
+            $query->orderBy('importance', 'DESC')->get();
+        }))->where('active',1)->where('group_id',2)->where('parent',0)->orderBy('importance', 'DESC')->get();
 
         $Cached_botnav->set($menus_bot)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($Cached_botnav);    // Save the cache item just like you do with doctrine and entities       
@@ -64,7 +66,9 @@ if($site_info['enableCaching']=="1"){
 
     $menutree =  ['mainav' => $menutree,'breadcrumb'=>$breadcrumb];
 
-    $menus_bot = Menu::with('children')->where('active',1)->where('group_id',2)->orderBy('importance', 'DESC')->get();
+    $menus_bot = Menu::with(array('children' => function ($query) {
+        $query->orderBy('importance', 'DESC')->get();
+    }))->where('active',1)->where('group_id',2)->where('parent',0)->orderBy('importance', 'DESC')->get();
 }
 
 function loadCommonDate(){
