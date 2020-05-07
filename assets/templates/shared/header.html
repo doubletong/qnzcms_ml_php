@@ -6,9 +6,9 @@
       <div class="col">
         <ul class="mainav">
           {% for menu in menus %}
-          <li class="{{ menu.children ? 'hasnav' : '' }} ">
+          <li class="{{ menu.children is not empty ? 'hasnav' : '' }} ">
               <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
-              {% if(menu.children) %}
+              {% if(menu.children is not empty) %}
               <ul class="subnav">
                   {% for subnav in menu.children %}
                       <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
@@ -31,9 +31,9 @@
   <div class="menu-over" id="overmenu">
     <ul class="mobilenav">
       {% for menu in menus %}
-          <li class="{{ menu.children ? 'hasnav' : '' }} ">
+          <li class="{{ menu.children is not empty ? 'hasnav' : '' }} ">
               <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}} </a>
-              {% if(menu.children) %}
+              {% if(menu.children is not empty) %}
               <ul class="subnav">
                   {% for subnav in menu.children %}
                       <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>

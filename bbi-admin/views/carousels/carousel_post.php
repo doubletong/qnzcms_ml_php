@@ -1,8 +1,17 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
+
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 use Models\Advertisement;
 
+
+CacheManager::setDefaultConfig(new ConfigurationOption([
+    'path' => $_SERVER['DOCUMENT_ROOT'].'/assets/caches/tmp',    // 缓存路径 or in windows "C:/tmp/"
+]));
+
+$InstanceCache = CacheManager::getInstance('files');
 
 if(isset($_POST['action']) && isset($_POST['id'])){
 
@@ -94,7 +103,13 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $reseller = Advertisement::find($id);           
             $result = $reseller->delete();
             if($result==true){
+               
+
+                
+                $InstanceCache->clear();
+          
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
+               
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'删除失败'));  
             }   

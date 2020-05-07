@@ -3,10 +3,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 use Models\AdvertisingSpace;
 use Models\Metadata;
 
+
+
+
 $metaKey = "/";
+
+// 缓存路径 or in windows "C:/tmp/"
+CacheManager::setDefaultConfig(new ConfigurationOption([
+    'path' => $_SERVER['DOCUMENT_ROOT'].'/assets/caches/tmp',    
+]));
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('assets/templates'));
@@ -17,7 +27,7 @@ if($site_info['enableCaching']=="1"){
         'cache' => 'assets/caches',
     ]);
     // In your class, function, you can call the Cache
-    $InstanceCache = CacheManager::getInstance('files');
+    //$InstanceCache = CacheManager::getInstance('files');
 
     $key = "home";
     $CachedString = $InstanceCache->getItem($key);
@@ -51,8 +61,6 @@ function loadDate($metaKey){
         $query->where('active',1)->orderBy('importance', 'DESC')->get();
     }))->where('code','=','A001')->first()->advertisements;
 
-    // $serviceItems = ServiceItem::select('id','title','thumbnail','summary')
-    //             ->where('active',1)->where('active',1)->orderBy('importance','DESC')->get();
 
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();       
 
@@ -61,9 +69,9 @@ function loadDate($metaKey){
 
 
 $twig->addGlobal('site', $site_info);
-$twig->addGlobal('menus', $menutree['mainav']);
-$twig->addGlobal('breadcrumb', $menutree['breadcrumb']);
-$twig->addGlobal('navbot', $menus_bot);
+$twig->addGlobal('menus', $commonData['mainav']);
+$twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
+$twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('uri', $uri);
 
 

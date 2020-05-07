@@ -73,3 +73,4 @@ project
   - mos/cimage ^0.7.21   【图片处理】
   - samdark/sitemap ^2.2   【站点地图】
   - katzgrau/klogger : dev-master  【日志模块】
+  - mobiledetect/mobiledetectlib 【移动适配】

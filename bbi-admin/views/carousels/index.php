@@ -243,6 +243,7 @@ $carousels =  $query->orderBy('importance', 'DESC')
 <script>
     $(document).ready(function () {
         //当前菜单
+        $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
         $(".mainmenu>li.carousels").addClass("nav-open").find("ul>li.ads a").addClass("active");
 
         //确认框默认语言
@@ -309,9 +310,9 @@ $carousels =  $query->orderBy('importance', 'DESC')
                     var productId = $that.attr("data-id");
 
                     $.ajax({
-                        url : 'carousel_delete.php',
+                        url : 'carousel_post.php',
                         type : 'POST',
-                        data : {id:productId},
+                        data : {id:productId,action:"delete"},
                         success : function(res) {
 
                             //  $('#resultreturn').prepend(res);

@@ -15,6 +15,7 @@ return array(
     'CWhitelist' => $vendorDir . '/mos/cimage/CWhitelist.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Katzgrau\\KLogger\\Logger' => $vendorDir . '/katzgrau/klogger/src/Logger.php',
+    'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
     'Models\\Advertisement' => $baseDir . '/src/Models/Advertisement.php',
     'Models\\AdvertisingSpace' => $baseDir . '/src/Models/AdvertisingSpace.php',
     'Models\\Album' => $baseDir . '/src/Models/Album.php',

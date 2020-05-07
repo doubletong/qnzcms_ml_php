@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'JasonGrimes' => array($vendorDir . '/jasongrimes/paginator/src'),
+    'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
 );

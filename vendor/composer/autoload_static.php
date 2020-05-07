@@ -250,6 +250,13 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
                 0 => __DIR__ . '/..' . '/jasongrimes/paginator/src',
             ),
         ),
+        'D' => 
+        array (
+            'Detection' => 
+            array (
+                0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -262,6 +269,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'CWhitelist' => __DIR__ . '/..' . '/mos/cimage/CWhitelist.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Katzgrau\\KLogger\\Logger' => __DIR__ . '/..' . '/katzgrau/klogger/src/Logger.php',
+        'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
         'Models\\Advertisement' => __DIR__ . '/../..' . '/src/Models/Advertisement.php',
         'Models\\AdvertisingSpace' => __DIR__ . '/../..' . '/src/Models/AdvertisingSpace.php',
         'Models\\Album' => __DIR__ . '/../..' . '/src/Models/Album.php',
