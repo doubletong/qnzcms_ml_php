@@ -90,6 +90,7 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
     <script type="text/javascript">
         $(document).ready(function() {
             //当前菜单
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
             $(".mainmenu>li.language").addClass("nav-open").find("ul>li.resource a").addClass("active");
 
 

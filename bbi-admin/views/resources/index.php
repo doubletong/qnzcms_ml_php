@@ -158,6 +158,7 @@ $resources = $query->orderBy('created_at', 'DESC')
     <script>
         $(document).ready(function() {
             //当前菜单
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
             $(".mainmenu>li.language").addClass("nav-open").find("ul>li.resource a").addClass("active");
 
             //确认框默认语言

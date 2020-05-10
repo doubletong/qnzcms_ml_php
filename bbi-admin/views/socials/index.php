@@ -255,6 +255,7 @@ $categories = SocialSoftware::orderby('importance','desc')->get();
 
         $(document).ready(function() {
             //当前菜单        
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
             $(".mainmenu>li.socials").addClass("nav-open").find("ul>li.accounts a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({

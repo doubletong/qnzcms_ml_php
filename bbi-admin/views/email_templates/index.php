@@ -170,6 +170,7 @@ $pages =  $query->orderBy('importance', 'DESC')
 <script>
     $(document).ready(function () {
         //当前菜单
+        $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
         $(".mainmenu>li.emails").addClass("nav-open").find("ul>li.template a").addClass("active");
         //确认框默认语言
         bootbox.setDefaults({
