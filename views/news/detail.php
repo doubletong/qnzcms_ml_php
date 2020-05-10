@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\News;
 use Models\Metadata;
@@ -26,7 +26,7 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
     
-    $key = "/news/detail-$id";
+    $key = "news_detail_$id";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
@@ -73,9 +73,9 @@ if($site_info['enableCaching']=="1"){
 
 
 $twig->addGlobal('site', $site_info);
-$twig->addGlobal('menus', $menutree['mainav']);
-$twig->addGlobal('breadcrumb', $menutree['breadcrumb']);
-$twig->addGlobal('navbot', $menus_bot);
+$twig->addGlobal('menus', $commonData['mainav']);
+$twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
+$twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('uri', $uri);
 
 

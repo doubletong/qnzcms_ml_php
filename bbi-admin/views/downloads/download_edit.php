@@ -183,7 +183,8 @@ function recursive($items, $level, $parent){
         $(document).ready(function() {
 
             //当前菜单        
-            $(".mainmenu>li.agent").addClass("nav-open").find("ul>li.regions a").addClass("active");     
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
+            $(".mainmenu>li.agent").addClass("nav-open").find("ul>li.list a").addClass("active");     
 
 
             $("#btnThumbnail").on("click", function () {

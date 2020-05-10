@@ -34,13 +34,24 @@
                             <li class="category"><a href="/bbi-admin/views/news/categories.php?did=1">分类</a></li>
                         </ul>
                     </li>
+
+                    <li class="down-nav events">
+                        <a href="#">
+                        
+                            <i class="iconfont icon-gift"></i> 活动事件<i class="arrow iconfont icon-down"></i>
+                        </a>
+                       <ul class="submenu">
+                            <li class="list"><a href="/bbi-admin/views/events/index.php?did=1">活动列表</a></li>
+                            <li class="category"><a href="/bbi-admin/views/events/categories.php?did=1">分类</a></li>
+                        </ul>
+                    </li>
                     <!-- 
                     <li hidden>
                         <a href="orders.php">
                             <i class="iconfont icon-reconciliation"></i> <span class="nav-text">订单管理</span>                    
                         </a>
                     </li> -->
-                    <li class="down-nav cases">
+                    <!-- <li class="down-nav cases">
                         <a href="#">
                            
                             <i class="iconfont icon-percentage"></i> 应用案例<i class="arrow iconfont icon-down"></i>
@@ -49,13 +60,13 @@
                             <li><a href="/bbi-admin/views/cases/index.php">案例管理</a></li>
                             <li><a href="/bbi-admin/views/cases/case_categories.php">案例分类</a></li>
                         </ul>
-                    </li>    
+                    </li>     -->
                
                  
 
                     <li class="applications">
                         <a href="/bbi-admin/views/applications/index.php">
-                            <i class="iconfont icon-deploymentunit"></i> <span class="nav-text">应用领域</span>                    
+                            <i class="iconfont icon-deploymentunit"></i> 应用领域                 
                         </a>
                     </li>
 
@@ -65,17 +76,7 @@
                         </a>
                     </li>
                     
-                    <li class="down-nav schools">
-                        <a href="#">                             
-                            <i class="iconfont icon-school"></i> 院校管理<i class="arrow iconfont icon-down"></i>
-                        </a>
-                       <ul class="submenu">
-                            <li><a href="/bbi-admin/views/schools/index.php">院校列表</a></li>
-                            <li class="category"><a href="/bbi-admin/views/schools/countries.php">国家</a></li>
-                        </ul>
-                    </li>     
-                  
-                  
+
                     <li class="down-nav faq">
                         <a href="#">                         
                             <i class="iconfont icon-question-circle-fill"></i> 常见问题<i class="arrow iconfont icon-down"></i>

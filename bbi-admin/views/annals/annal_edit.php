@@ -135,7 +135,8 @@ $pageTitle = isset($_GET['id'])?"编辑事件":"创建事件";
 
         $(document).ready(function() {
             //当前菜单      
-            $(".mainmenu>li.annals").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
+            $(".mainmenu>li.annals a").addClass("active");
            
             $("#btnImgDelete").on("click", function() {
                 $('#image_url').val("");

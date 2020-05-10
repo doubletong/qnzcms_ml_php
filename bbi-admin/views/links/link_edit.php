@@ -143,7 +143,8 @@ $pageTitle = isset($_GET['id'])?"编辑链接":"创建链接";
 
     $(document).ready(function () {
         //当前菜单
-        $(".mainmenu li.plugins").addClass("nav-open").find("ul li.links a").addClass("active");
+        $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
+        $(".mainmenu li.links a").addClass("active");
 
        
         $("#btnBrowser").on("click", function () {         

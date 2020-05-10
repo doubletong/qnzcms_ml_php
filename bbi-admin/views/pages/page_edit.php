@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 
 use Models\Page;
@@ -188,7 +188,9 @@ $action = isset($_GET['id'])?"update":"create";
 
         $(document).ready(function () {
             //当前菜单
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
             $(".mainmenu>li.pages a").addClass("active");
+ 
 
             $("#btnBrowser").on("click", function () {
                 singleEelFinder.selectActionFunction = SetThumbnail;

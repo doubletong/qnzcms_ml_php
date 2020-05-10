@@ -120,7 +120,8 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
     <script type="text/javascript">
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu>li.jobs").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
+            $(".mainmenu>li.jobs a").addClass("active");
 
 
             $("form").validate({

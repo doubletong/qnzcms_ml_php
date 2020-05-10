@@ -36,6 +36,7 @@ return array(
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
     'Gregwar\\' => array($vendorDir . '/gregwar/captcha/src/Gregwar'),
+    'Doctrine\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Inflector'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Common/Inflector'),
     'Composer\\XdebugHandler\\' => array($vendorDir . '/composer/xdebug-handler/src'),
     'Composer\\Spdx\\' => array($vendorDir . '/composer/spdx-licenses/src'),

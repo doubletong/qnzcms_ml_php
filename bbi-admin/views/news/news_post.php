@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\News;
 

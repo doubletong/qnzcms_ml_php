@@ -74,3 +74,4 @@ project
   - samdark/sitemap ^2.2   【站点地图】
   - katzgrau/klogger : dev-master  【日志模块】
   - mobiledetect/mobiledetectlib 【移动适配】
+  - teamtnt/tntsearch: "^2.3"  【全站搜索】

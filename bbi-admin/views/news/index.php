@@ -179,7 +179,7 @@ function recursive($items, $level, $cid){
                                     <?php } ?>
                                 </th>
                                 <th>
-                                    <?php if($orderby=='created_at'){ ?>
+                                    <?php if($orderby=='pubdate'){ ?>
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=pubdate&sort=<?php echo $sort=='asc'?'desc':'asc';?>">发布日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
                                     <?php }else{ ?>
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=pubdate&sort=asc">发布日期<i class="iconfont icon-orderby"></i></a>

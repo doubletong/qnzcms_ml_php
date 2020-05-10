@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/utils/common.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/utils/common.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 use Phpfastcache\CacheManager;

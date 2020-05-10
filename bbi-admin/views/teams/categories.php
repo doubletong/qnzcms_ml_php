@@ -216,6 +216,7 @@ $categorys = $query->orderBy('importance', 'DESC')
     <script>
         $(document).ready(function() {
             //当前菜单
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
             $(".mainmenu>li.teams").addClass("nav-open").find("ul>li.categories a").addClass("active");
 
             //确认框默认语言

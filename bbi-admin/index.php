@@ -1,6 +1,6 @@
 <?php
 require_once('includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/environment.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/environment.php');
 require_once('data/link.php');
 require_once('data/topics.php');
 require_once('data/chronicle.php');

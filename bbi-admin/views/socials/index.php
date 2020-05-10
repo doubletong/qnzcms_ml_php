@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/Str.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/Str.php');
 
 use Models\SocialSoftware;
 use Models\SocialAccount;

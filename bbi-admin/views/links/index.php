@@ -158,7 +158,8 @@ $links = $linkClass->get_paged_links($did, $keyword, $currentPage, $itemsPerPage
     <script>
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu li.plugins").addClass("nav-open").find("ul li.links a").addClass("active");
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
+            $(".mainmenu li.links a").addClass("active");
 
             //确认框默认语言
             bootbox.setDefaults({

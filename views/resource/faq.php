@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\QuestionCategory;
 use Models\Metadata;

@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/Str.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/Str.php');
 
 use Models\Album;
 use Models\Photo;
@@ -240,6 +240,7 @@ $categories = Album::orderby('importance','desc')->get();
 
         $(document).ready(function() {
             //当前菜单        
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
             $(".mainmenu>li.albums").addClass("nav-open").find("ul>li.photos a").addClass("active");    
 
              $('[data-toggle="tooltip"]').tooltip(); 

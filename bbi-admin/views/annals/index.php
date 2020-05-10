@@ -134,8 +134,9 @@ $annals = $annalClass->get_paged_annals($did, $keyword, $currentPage, $itemsPerP
     <script>
         $(document).ready(function() {
             //当前菜单
-            $(".mainmenu>li.annals").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
-
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
+            $(".mainmenu>li.annals a").addClass("active");
+            
             //确认框默认语言
             bootbox.setDefaults({
                 locale: "zh_CN"

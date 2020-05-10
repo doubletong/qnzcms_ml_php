@@ -140,7 +140,8 @@ $chronicles = $chronicleClass->get_paged_chronicles($did, $keyword, $currentPage
     <script>
         $(document).ready(function () {
             //当前菜单
-            $(".mainmenu>li.chronicles").addClass("nav-open").find("ul>li:nth-of-type(1) a").addClass("active");
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
+            $(".mainmenu>li.chronicles a").addClass("active");
 
             //确认框默认语言
             bootbox.setDefaults({

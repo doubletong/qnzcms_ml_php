@@ -120,6 +120,7 @@ $action = isset($_GET['id'])?"update":"create";
 
         $(document).ready(function () {
             //当前菜单
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
             $(".mainmenu>li.carousels").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass(
                 "active");
 

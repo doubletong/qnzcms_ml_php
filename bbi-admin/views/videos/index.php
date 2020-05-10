@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/Str.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/Str.php');
 
 use Models\VideoCategory;
 use Models\Video;
@@ -246,7 +246,8 @@ $categories = VideoCategory::orderby('importance','desc')->get();
     
 
         $(document).ready(function() {
-            //当前菜单        
+            //当前菜单     
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');           
             $(".mainmenu>li.videos").addClass("nav-open").find("ul>li.list a").addClass("active");     
             //确认框默认语言
             bootbox.setDefaults({
