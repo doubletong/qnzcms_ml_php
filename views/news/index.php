@@ -17,7 +17,7 @@ $newsQuery = new News;
  //搜索条件判断
 $query = $newsQuery->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'thumbnail','summary','pubdate','category_id');
+}])->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));

@@ -1,0 +1,52 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    Team
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+{% block content %}
+    
+    <div class="banner banner-contact" style="background-image:url(/assets/img/temp/banner-team.jpg)">
+        <h1>Team Introduce</h1>
+    </div>
+    {# {{page.content|raw }}         #}
+    <div class="page page-team">       
+        <div class="container">          
+          <div class="row">
+            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
+                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t1.jpg" alt=""></div>
+                <div class="txt wow fadeInLeft">
+                  <h3>Shuguang Yuan</h3>
+                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
+                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t2.jpg" alt=""></div>
+                <div class="txt wow fadeInLeft">
+                  <h3>Shuguang Yuan</h3>
+                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
+                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t3.jpg" alt=""></div>
+                <div class="txt wow fadeInLeft">
+                  <h3>Shuguang Yuan</h3>
+                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
+                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t4.jpg" alt=""></div>
+                <div class="txt wow fadeInLeft">
+                  <h3>Shuguang Yuan</h3>
+                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
+                </div></a></div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

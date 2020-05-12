@@ -9,50 +9,172 @@
 {% endblock %}
 {% block content %}
 
+
 <section class="sliders swiper-container wow fadeInUp">
   <div class="swiper-wrapper">
-  {% for item in carousels %}
-    <div class="swiper-slide" style="background-image:url({{item.image_url}});"></div>
-  {% endfor %}
-  </div>
-  <div class="swiper-pagination"></div>
-</section>
- <div class="page-home">        
-      <section class="s1">           
-        <div class="title"> 
-          <h2 class="wow fadeInLeft">非我产品</h2>
-          <h3 class="wow fadeInRight">PRODUCTS</h3>
-        </div>
-        <div class="pic01 wow slideInLeft"><img src="/assets/img/home_s1_01.jpg" alt="">
-          <p>JVE 001</p>
-        </div>
-        <div class="pic02 wow slideInRight"><img src="/assets/img/home_s1_03.png" alt="">
-          <p>JVE 002</p>
-        </div>
-        <div class="pic03 wow fadeInUp"><img src="/assets/img/home_s1_02.jpg" alt="">
-          <p>JVE 003</p>
-        </div>
-        <div class="pic04 wow slideInLeft"><img src="/assets/img/home_logo.png" alt=""></div>
-      </section>
-      <section class="s2">
-        <div class="pic wow fadeInRight"><img src="/assets/img/s2_01.png" alt=""></div>
-        <div class="txt wow fadeInLeft">在别人眼中也许毫无意义，<br>但每次尝试都更激发我的动力，<br>why not？
-          <h3>just love！</h3>
-        </div>
-      </section>
-      <section class="s2_odd">
-        <div class="pic wow fadeInLeft"><img src="/assets/img/s2_02.jpg" alt=""></div>
-        <div class="txt wow fadeInRight">在无数被质疑的路上特立独行，<br>但没有喝彩的时候头脑更加清晰，<br>why not？
-          <h3>just love！</h3>
-        </div>
-      </section>
-      <section class="s2">
-        <div class="pic wow fadeInRight"><img src="/assets/img/s2_01.png" alt=""></div>
-        <div class="txt wow fadeInLeft">圆滑世故或许永远学不会，<br>但攻克专业难题我从不喊累，<br>why not？
-          <h3>just love！</h3>
-        </div>
-      </section>
+    {% for item in carousels %}
+    <div class="swiper-slide">
+      <img src="{{item.image_url}}" alt="{{item.title}}">
     </div>
+  {% endfor %}
+  
+  </div>
+  <div class="dots">
+    <div class="container">
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  <div class="swiper-next"><i class="iconfont icon-next"></i></div>
+  <div class="swiper-prev"><i class="iconfont icon-prev"></i></div>
+</section>
+
+
+
+<div class="page page-home"> 
+  <section class="s1 container">
+    <div class="row">
+      <div class="col-lg-5 order-lg-last">
+        <div class="title-section">
+          <h2>Latest <br>News   <a class="more" href="news.html">more</a></h2>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <nav class="categores wow fadeInLeft"><a class="active" href="#sl01">Industry</a><a href="#sl02">Scientific research</a><a href="#sl03">Academic report</a><a href="#sl04">Achievements transformation</a></nav>
+      </div>
+    </div>
+    <div class="news-sliders">
+      <div class="swiper-container gallery-top">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" data-hash="sl01">
+            <div class="row">                 
+              <div class="col-6 col-lg-7"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n1.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+              <div class="col-6 col-lg-5"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n2.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-hash="sl02">
+            <div class="row">                 
+              <div class="col-6 col-lg-7"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n1.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+              <div class="col-6 col-lg-5"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n2.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-hash="sl03">
+            <div class="row">                 
+              <div class="col-6 col-lg-7"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n1.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+              <div class="col-6 col-lg-5"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n2.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-hash="sl04">
+            <div class="row">                 
+              <div class="col-6 col-lg-7"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n1.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+              <div class="col-6 col-lg-5"><a class="item" href="news_detail.html"><img src="/assets/img/temp/n2.jpg">
+                  <h3 class="title">Scientists Design Novel Algorithmic...</h3></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-next2"><i class="iconfont icon-right"></i></div>
+        <div class="swiper-prev2"><i class="iconfont icon-left"></i></div>
+      </div>
+    </div>
+  </section>
+  <section class="s2">           
+    <div class="container">
+      <div class="title-section">
+        <h2>Research <br>Center</h2>
+      </div>
+      <div class="researchlist">
+        <div class="swiper-container research-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_01.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_02.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_03.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_01.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_02.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_03.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_01.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_02.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+            <div class="swiper-slide"><a class="item" href="research_detail.html"><img src="/assets/img/temp/re_03.jpg" alt="">
+                <div class="txt">
+                  <div class="rateYo" data-rateyo-rating="3.5" data-rateyo-rated-fill="#fff" data-rateyo-normal-fill="#8dbbe1" data-rateyo-star-width="20px"></div>
+                  <h3>Talents Wanted at Hefei Institutes of Physical Science...</h3>
+                  <p>Biotechnology, also known as biotechnology, refers to the use of living organisms (cells containing animals, plants and microorganisms) to produce useful substances or improve processes, improve biological characteristics, reduce costs and create new species. Depending on the tools and applications, it often overlaps with the fields of bioengineering and biomedical engineering.</p>
+                  <div class="more">MORE</div>
+                </div></a></div>
+          </div>
+          <div class="dots">
+            <div class="container">
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-next1"><i class="iconfont icon-right"></i></div>
+        <div class="swiper-prev1"><i class="iconfont icon-left"></i></div>
+      </div>
+    </div>
+  </section>
+  <section class="s3 container">
+    <div class="title-section">
+      <h2>About <br>Center</h2>
+    </div>
+    <video src="/assets/img/ZPX_BG.mp4" poster="/assets/img/ZPX_BG.jpg" controls="controls"></video>
+  </section>
+</div>
+
 
 
   
@@ -63,24 +185,75 @@
 <script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
 
     <script>
-        var swiper = new Swiper('.sliders', {
-          pagination: {
-              el: '.swiper-pagination',
-              clickable: true
-          },
-          autoplay: {
-              delay: 2500,
-              disableOnInteraction: false,
-          },
-          //- navigation: {
-          //-     nextEl: '.swiper-button-next',
-          //-     prevEl: '.swiper-button-prev',
-          //- },
-      });
-      
-      
- 
+        //Make sure that the dom is ready
+      var swiper = new Swiper('.sliders', {
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-next',
+            prevEl: '.swiper-prev',
+        },
+    });
     
+    $(function () {
+        $('body').addClass('home-body')
+        $(".rateYo").rateYo();
     
+    });
+    var swiper = new Swiper('.research-container', {
+        slidesPerView: 3,
+        spaceBetween: 20,
+          navigation: {
+            nextEl: '.swiper-next1',
+            prevEl: '.swiper-prev1',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+         breakpoints: {
+            640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            },
+            768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            },
+            1024: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            },
+        }
+    });
+    
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 0,
+        navigation: {
+            nextEl: '.swiper-next2',
+            prevEl: '.swiper-prev2',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        hashNavigation: {
+            watchState: true,
+        }
+       
+    });
+    
+    $(".tab-header a").eq(galleryTop.activeIndex).addClass("active");
+    galleryTop.on('slideChange', function () {
+      
+        $(".categores .active").removeClass("active");
+        $(".categores a").eq(this.activeIndex).addClass("active");
+    });
     </script>
     {% endblock %}

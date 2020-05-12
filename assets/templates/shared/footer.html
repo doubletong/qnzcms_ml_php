@@ -1,40 +1,50 @@
-<footer class="site-footer" id="pagefooter">
-  <div class="footer_top">
-    <div class="row no-gutters align-items-center wow fadeInUp">
-      <div class="col-xl-auto">
-        <div class="item company_name">
-          <h3>{{site.company}}</h3>
-          <p>ShenZhen JVE Technology Co.,Ltd</p>
-        </div>
+<div class="site-contact wow fadeInUp">
+  <div class="container">
+    <div class="contact">
+      <div class="row align-items-center">
+        <div class="col-auto"><img class="logo1" src="/assets/img/logo_siat.png" alt=""></div>
+        <div class="col"><img class="logo2" src="/assets/img/logo_xcadd.png" alt=""></div>
       </div>
-      <div class="col-xl">
-        <div class="row no-gutters contact">
-          <div class="col-md">
-            <div class="item">
-              <div class="icon" style="background-image:url('/assets/img/phone.png')"></div>
-              <p>{{site.phone}}</p>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="item add">
-              <div class="icon" style="background-image:url('/assets/img/marker.png')">                     </div>
-              <p>{{site.address}}</p>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="item">
-              <div class="icon" style="background-image:url('/assets/img/email.png')">                   </div>
-              <p>{{site.email}}</p>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="item"> 
-              <nav class="social"><a href="#"><i class="iconfont icon-wechat"></i></a><a href="#"><i class="iconfont icon-sina"></i></a><a href="#"><i class="iconfont icon-user"></i></a></nav>
-            </div>
-          </div>
+      <ul class="list">
+        <li class="add">{{site.address}}</li>
+        <li class="email">{{site.email}}</li>
+        <li class="phone">{{site.phone}}</li>
+      </ul>
+      <div class="qrcode">
+        <div class="pic"><img src="/assets/img/qrcode.jpg" alt=""></div>
+        <div class="txt">扫描关注我们</div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site-footer" id="pagefooter">
+  <div class="container">
+    <div class="navsoc">
+      <div class="row align-items-center">
+        <div class="col-lg">
+          <ul class="botnav">
+            {% for nav in navbot %}
+            <li><a href="{{ nav.url }}">{{ nav.title }}</a></li>
+            {% endfor %}            
+          </ul>
+        </div>
+        <div class="col-lg-auto">
+          <div class="social"><a href="#"> <i class="iconfont icon-google"></i></a><a href="#"> <i class="iconfont icon-sina"></i></a><a href="#"> <i class="iconfont icon-twitter-fill"></i></a><a href="#"> <i class="iconfont icon-ID"></i></a></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="copyright wow fadeInUp">Copyright &copy; 2019 JVE All rights reserved.  <a href="http://www.beian.miit.gov.cn/">{{site.webnumber}}</a></div>
 </footer>
+<div class="bot wow fadeInUp">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-auto">
+        <div class="copyright">Copyright &copy;  {{site.company}}  <a href="http://www.beian.miit.gov.cn" target="_blank">{{site.webnumber}}</a></div>
+      </div>
+      <div class="col-md">网站链接：www.gpcrm.org</div>
+    </div>
+  </div>
+</div>
+
+
+

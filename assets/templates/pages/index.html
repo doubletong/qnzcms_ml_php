@@ -8,30 +8,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="banner">
-        <img src="/assets/img/banners/about.png" alt="">
-        <div class="title-page">
-            <div class="txt">         
-                <h3>{{page.title}}</h3>
-            </div>
-        </div>
-    </div>
-    <div class="page page-about">
-        <aside class="leftcol">
-            <nav>
-                <ul class="leftnav">
-                    <li><a href="/about" class="active">企业简介</a></li>
-                    <li><a href="/about/history">发展历程</a></li>
-                    <li><a href="/about/honor">企业荣誉</a></li>
-                    <li><a href="/about/contact">联系我们</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <section class="maincontent">
-            <div class="wrap about">
-                {{page.content|raw }}
-              
-            </div>
-        </section>
-    </div>
+
+
+    {{page.content|raw }}
+ 
 {% endblock %}

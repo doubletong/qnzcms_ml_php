@@ -24,10 +24,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $data = Page::where('alias',$alias)->where('active',1)->first();
-        $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();          
-
-        $home_data = ['metadata' => $metadata,'page' => $data];
+        $home_data = loadDate($alias);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -40,16 +37,25 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $data = Page::where('alias',$alias)->where('active',1)->first();
-    $data->view_count = $data->view_count + 1;
-    $data->save();
-    
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
-
-    $result = ['metadata' => $metadata,'page' => $data];
+    $result = loadDate($alias);
 
     //echo $metadata;
 }
+
+//load data
+function loadDate($alias){
+
+    $data = Page::where('alias',$alias)->where('active',1)->first();
+    if(isset($data)){
+        $data->view_count = $data->view_count + 1;
+        $data->save();
+    }
+
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
+
+    return  ['page' => $data, 'metadata'=>$metadata];
+}
+
 
 //print_r($menutree);
 

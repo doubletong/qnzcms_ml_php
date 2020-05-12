@@ -24,15 +24,13 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
     
-    $key = '/pages/'.$alias;
+    $key = 'pages_'.$alias;
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
 
-        $data = Page::where('alias',$alias)->where('active',1)->first();
-        $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();       
-        
-        $news_detail_data = ['metadata' => $metadata,'page' => $data];
+      
+        $news_detail_data = loadDate($alias);
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -45,18 +43,29 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
+    $result =  loadDate($alias);
+}
+
+//load data
+function loadDate($alias){
+
     $data = Page::where('alias',$alias)->where('active',1)->first();
+    if(isset($data)){
+        $data->view_count = $data->view_count + 1;
+        $data->save();
+    }
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();   
-   
-    $result =  ['metadata' => $metadata,'page' => $data];
+
+    return  ['page' => $data, 'metadata'=>$metadata];
 }
 
 
 $twig->addGlobal('site', $site_info);
-$twig->addGlobal('menus', $menutree['mainav']);
-$twig->addGlobal('breadcrumb', $menutree['breadcrumb']);
-$twig->addGlobal('navbot', $menus_bot);
+$twig->addGlobal('menus', $commonData['mainav']);
+$twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
+$twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('uri', $uri);
+
 
 
 echo $twig->render('pages/index.html', $result);

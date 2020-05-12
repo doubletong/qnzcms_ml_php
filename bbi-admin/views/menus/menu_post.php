@@ -3,7 +3,15 @@
 require_once('../../includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 use Models\Menu;
+
+CacheManager::setDefaultConfig(new ConfigurationOption([
+    'path' => $_SERVER['DOCUMENT_ROOT'].'/assets/caches/tmp',    // 缓存路径 or in windows "C:/tmp/"
+]));
+
+$InstanceCache = CacheManager::getInstance('files');
 
 
 if(isset($_POST['action']) && isset($_POST['id'])){
@@ -16,6 +24,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $region = Menu::find($id);
             $result = $region->delete();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'删除失败'));  
@@ -56,6 +65,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
             $result = $item->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
@@ -95,6 +105,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
             $result = $item->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
 
                 $module = ModuleType::URL();
@@ -111,6 +122,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $region->active = ($region->active)==1?"0":1;
             $result = $region->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
