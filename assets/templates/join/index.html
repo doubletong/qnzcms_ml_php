@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    Join Us
  {% endif %}
 
 {% endblock %}
@@ -13,7 +13,46 @@
     <meta name="description" content="{{metadata.description}}">
 {% endblock %}
 {% block content %}
-    <div class="banner banner-about wow fadeInUp" style="background-image:url('/assets/img/temp/banner-join.jpg')"> </div>
-    {{page.content|raw }}        
+    <div class="banner banner-join wow fadeInUp" style="background-image:url('/assets/img/temp/banner-join.jpg')">
+        <h1>Join Us</h1>
+    </div>
+    
+    <div class="page page-join">
+        <section class="s1 container">  
+            {% for item in jobs %}    
+                <div class="item">
+                <h3 class="title wow fadeInUp">{{item.title}}</h3>
+                <p class="wow fadeInUp">{{item.summary}}</p>
+                <time class="wow fadeInUp">{{item.pubdate|date('j. F Y')}}</time>
+                <div class="more wow fadeInUp"><a class="btn btn-default-outline" href="/join/detail-{{item.id}}">View More</a></div>
+              </div>
+
+            {% endfor %}  
+      
+          <footer class="blog-footer">      
+            {% if paginator.numPages > 1 %}
+              <ul class="pagination">
+                  {% if paginator.prevUrl %}
+                      <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">&laquo;</a></li>
+                  {% endif %}
+        
+                  {% for page in paginator.pages %}
+                      {% if page.url %}
+                          <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                      {% else %}
+                          <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                      {% endif %}
+                  {% endfor %}
+        
+                  {% if paginator.nextUrl %}
+                      <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">&raquo;</a></li>
+                  {% endif %}
+              </ul>
+          {% endif %}
+        </footer>
+        </section>
+
+      </div>
+   
 
 {% endblock %}

@@ -19,37 +19,28 @@
 {% block content %}
      
 
-<div class="page-news-detail">
-    <div class="top_pic wow fadeInUp" style="background-image:url('/assets/img/temp/banner-news.jpg')">
-      <header>
-        <h1 class="title-news wow fadeInUp">{{article.title}}</h1>
-        <time class="wow fadeInUp">{{article.pubdate}}</time>
-      </header>
-    </div>
-    <article class="container">
-      <main class="content wow fadeInUp">
-        {{article.content|raw}}
-      </main>
-      <div class="nav-page wow fadeInUp">
-        <div class="row no-gutters">
-          <div class="col prev">
-              {% if prevArticle %}
-              <a id="hlPrevious" href="/news/detail-{{prevArticle.id}}"><span class="t1">{{prevArticle.title}}</span><span class="t2">上一篇</span></a>
-              {% endif %}
-            </div>
-          <div class="col-auto back"><a href="/news"><i class="iconfont icon-close1line"></i></a></div>
-          <div class="col next">
-            {% if nextArticle %}
-              <a id="hlNext" href="/news/detail-{{nextArticle.id}}"><span class="t1">{{nextArticle.title}}</span><span class="t2">下一篇</span></a>
-              {% endif %}
-            </div>
-        </div>
+<div class="page page-news-detail">
+  <article class="container">
+    <header>
+      <h1 class="title-news wow fadeInUp">{{article.title}}</h1>
+      <div class="row note wow fadeInUp">
+        <div class="col-auto">{{item.pubdate|date('j. F Y')}}</div>
+        <div class="col">{{article.author}}</div>
       </div>
-    </article>
-  </div>
-
-
-
+    </header>
+    <main class="wow fadeInUp">
+      {{article.content|raw}}
+    </main>
+    <div class="pagenav">
+      {% if prevArticle %}
+        <a id="hlPrevious" href="/news/detail-{{prevArticle.id}}">←</a>
+      {% endif %}
+      {% if nextArticle %}
+      <a id="hlNext" href="/news/detail-{{nextArticle.id}}">→</a>
+      {% endif %}    
+    </div>
+  </article>
+</div>
 
 
     

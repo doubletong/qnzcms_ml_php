@@ -54,7 +54,7 @@ function recursive($items, $level, $parent)
 </head>
 
 <body>
-<div class="wrapper" id="wrapper">
+    <div class="wrapper">
         <!-- nav start -->
         <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav.php';?>
         <!-- /nav end -->
@@ -105,13 +105,18 @@ function recursive($items, $level, $parent)
 
 
 
-
-
-
                             <div class="form-group">
                                 <label for="intro">答案</label>
                                 <textarea class="form-control" id="answer" name="answer" placeholder=""><?php echo isset($data['answer']) ? stripslashes($data['answer']) : ''; ?></textarea>
+                                <script>
+                                    var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php'; 
+                                    CKEDITOR.replace( 'answer', {                                      
+                                        filebrowserBrowseUrl: elFinder,
+                                        filebrowserImageBrowseUrl: elFinder,     
+                                        allowedContent: true                                              
+                                    });
 
+                                </script>
                             </div>
 
 
@@ -145,8 +150,6 @@ function recursive($items, $level, $parent)
 
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php';?>
 
-    <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
-    <script src="/assets/js/vendor/toastr/toastr.min.js"></script>
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript">
      
@@ -154,12 +157,7 @@ function recursive($items, $level, $parent)
         $(document).ready(function() {
 
             //当前菜单
-            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
             $(".mainmenu>li.faq").addClass("nav-open").find("ul>li.regions a").addClass("active");
-
-
-          
-
 
 
             $("form").validate({
@@ -211,12 +209,20 @@ function recursive($items, $level, $parent)
                     $(element).addClass('is-valid');
                 },
                 submitHandler: function(form) {
-                   
+                    var values = {};
+                    var fields = {};
+                    for (var instanceName in CKEDITOR.instances) {
+                        CKEDITOR.instances[instanceName].updateElement();
+                    }
+
+                    $.each($(form).serializeArray(), function (i, field) {
+                        values[field.name] = field.value;
+                    });
 
                     $.ajax({
                         url: 'question_post.php',
                         type: 'POST',
-                        data: $(form).serialize(),
+                        data: values,
                         success: function(res) {
                             var myobj = JSON.parse(res);
                             //console.log(myobj.status);

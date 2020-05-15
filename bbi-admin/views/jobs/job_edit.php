@@ -30,7 +30,23 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
 
-            <div class="container-fluid maincontent">
+            <div class="main-content">         
+                <div class="breadcrumb-container">
+                    <div class="row">
+                    <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/views/jobs/index.php">招聘岗位</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $pageTitle; ?></li>
+                        </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                    </div>
+                </div>
 
                 <form novalidate="novalidate">
                     <div class="card">
@@ -90,6 +106,21 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
 
                                     });
                                 </script>
+                            </div>
+                            <div class="form-group">
+                                <label for="intro">摘要</label>
+                                <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo isset($data['summary'])?$data['summary']:''; ?></textarea>
+                            
+                            </div>    
+
+                            <div class="form-group">
+                                <label for="title">作者</label>
+                                <input type="text" class="form-control" id="author" name="author" value="<?php echo isset($data['author'])?$data['author']:''; ?>">
+                            </div>   
+
+                            <div class="form-group">
+                                <label for="pubdate">发布日期</label>
+                                <input class="form-control" id="pubdate" name="pubdate" value="<?php echo isset($data['pubdate'])?date_format(date_create($data['pubdate']),"Y-m-d"):date("Y-m-d"); ?>" placeholder="" type="date" />
                             </div>
                             <div class="form-group">
                                 <div class="form-check">

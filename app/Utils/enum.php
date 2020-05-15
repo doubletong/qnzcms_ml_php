@@ -10,6 +10,7 @@ class ModuleType extends Enum {
     private const EXHIBITION = 4;   //展会
     private const NEWS = 5; //新闻资讯
     private const SERVICE = 6; //新闻资讯
+    private const JOB = 7; //招聘
   }
 
 ?>

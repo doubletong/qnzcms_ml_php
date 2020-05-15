@@ -2,7 +2,16 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
+
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 use Models\Job;
+
+CacheManager::setDefaultConfig(new ConfigurationOption([
+    'path' => $_SERVER['DOCUMENT_ROOT'].'/assets/caches/tmp',    // 缓存路径 or in windows "C:/tmp/"
+]));
+
+$InstanceCache = CacheManager::getInstance('files');
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -27,6 +36,9 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->responsibilities = stripslashes($_POST['responsibilities']);
             $item->requirement = stripslashes($_POST['requirement']);
             $item->population = $_POST['population'];
+            $item->summary = $_POST['summary'];
+            $item->author = $_POST['author'];
+            $item->pubdate = $_POST['pubdate'];
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             $item->added_by = $username;
@@ -34,6 +46,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
      
             $result = $item->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
@@ -56,11 +69,15 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->responsibilities = stripslashes($_POST['responsibilities']);
             $item->requirement = stripslashes($_POST['requirement']);
             $item->population = $_POST['population'];
+            $item->summary = $_POST['summary'];
+            $item->author = $_POST['author'];
+            $item->pubdate = $_POST['pubdate'];
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             
             $result = $item->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
@@ -71,6 +88,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item = Job::find($id);
             $result = $item->delete();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'删除失败'));  
@@ -81,6 +99,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->active = ($item->active)==1?0:1;
             $result = $item->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
@@ -91,6 +110,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->recommend = ($item->recommend)==1?0:1;
             $result = $item->save();
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
@@ -102,6 +122,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $new_item->title = $new_item->title."【拷贝】";
             $result = $new_item->push(); //save model before you recreate relations (so it has an id)
             if($result==true){
+                $InstanceCache->clear();
                 echo json_encode(array ('status'=>1,'message'=>'拷贝成功'));  
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'拷贝失败'));  

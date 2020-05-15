@@ -1,7 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
+// require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/enum.php');
 
 use Models\Question;
 
@@ -23,7 +23,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
           
             $item = new Question();
             $item->title = $_POST['title'];
-            $item->answer = $_POST['answer'];       
+            $item->answer = stripslashes($_POST['answer']);  
             $item->category_id = $_POST['category_id'];
           
             $item->importance = $_POST['importance'];
@@ -42,7 +42,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
         case "update": 
             if (!isset($_POST['title'], $_POST['answer'])) {   
 
-                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+                $result = array ('status'=>2,'message'=>'主题与答案不能为空！');
                 echo json_encode($result);  
                 return;
             }
@@ -50,7 +50,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
         
             $item = Question::find($id);
             $item->title = $_POST['title'];
-            $item->answer = $_POST['answer'];
+            $item->answer = stripslashes($_POST['answer']);
             $item->category_id = $_POST['category_id'];
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       

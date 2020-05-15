@@ -57,87 +57,129 @@ $jobs = $query->orderBy('importance', 'DESC')
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
 
-            <div class="container-fluid maincontent">
+            <div class="main-content"> 
+                <div class="breadcrumb-container">
+                    <div class="row">
+                        <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/jobs/index.php">招聘岗位</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">列表</li>
+                            </ol>
+                        </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
+                        </div>
+                    </div>
+                </div> 
 
-                <div class="row">
-                    <div class="col">
-                        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto">
-                                    <label class="sr-only" for="inlineFormInput">搜索</label>
-                                    <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
+                <div class="card">
+                    <header class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-title-v1"> <i class="iconfont icon-file-copy"></i>岗位列表</div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                            </div>
+                        </div>
+                    </header>
+                    <section class="card-body">
+                        <div class="card-toolbar mb-3">
+
+                            <div class="row">
+                                <div class="col">
+                                    <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-auto">
+                                                <label class="sr-only" for="inlineFormInput">搜索</label>
+                                                <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                    <a href="job_edit.php" class="btn btn-primary">
+                                        <i class="iconfont icon-plus"></i> 添加
+                                    </a>
                                 </div>
                             </div>
-                        </form>
+
+                        </div>
+                        <div class="table-responsive">    
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>职位</th>
+                                        <th>工作地点</th>
+                                        <th>部门</th>
+                                        <th>显示?</th>
+                                        <th style="min-width:120px;">创建日期</th>
+                                        <th style="min-width:120px;">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($jobs as $row) {
+
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $row['importance']; ?></td>
+                                            <td><?php echo $row['title']; ?></td>
+                                            <td><?php echo $row['city']; ?></td>
+                                            <td><?php echo $row['department']; ?></td>
+                                            <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
+                                            <td>
+                                                <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>
+                                            </td>
+                                            <td>
+                                                <a href='job_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm' title="编辑">
+                                                    <i class="iconfont icon-edit"></i>
+                                                </a>
+                                                <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-copy' title="复制">
+                                                    <i class="iconfont icon-file-copy"></i>
+                                                </button>
+                                                <?php if ($row['active'] == 1) { ?>
+                                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                                        <i class="iconfont icon-eye-close"></i>
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                                        <i class="iconfont icon-eye"></i>
+                                                    </button>
+                                                <?php } ?>
+                                                <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-danger btn-sm btn-delete' title="删除">
+                                                    <i class="iconfont icon-delete"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <footer class="card-footer">
+                    <div class="row table-pager">
+                        <div class="col-sm">
+                            <nav aria-label="Page navigation">                
+                                <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                            </nav>
+                        </div>
+                        <div class="col-sm-auto">
+                        <p class="pagecount"> 总记<strong><?php echo $totalItems; ?></strong>条记录</p>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <a href="job_edit.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i> 添加
-                        </a>
-                    </div>
+                </footer>
+               
                 </div>
-
-
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>职位</th>
-                            <th>工作地点</th>
-                            <th>部门</th>
-                            <th>显示?</th>
-                            <th style="min-width:120px;">创建日期</th>
-                            <th style="min-width:120px;">操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($jobs as $row) {
-
-                            ?>
-                            <tr>
-                                <td><?php echo $row['importance']; ?></td>
-                                <td><?php echo $row['title']; ?></td>
-                                <td><?php echo $row['city']; ?></td>
-                                <td><?php echo $row['department']; ?></td>
-                                <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
-                                <td>
-                                    <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>
-                                </td>
-                                <td>
-                                    <a href='job_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm' title="编辑">
-                                        <i class="iconfont icon-edit"></i>
-                                    </a>
-                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-copy' title="复制">
-                                        <i class="iconfont icon-file-copy"></i>
-                                    </button>
-                                    <?php if ($row['active'] == 1) { ?>
-                                        <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
-                                            <i class="iconfont icon-eye-close"></i>
-                                        </button>
-                                    <?php } else { ?>
-                                        <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
-                                            <i class="iconfont icon-eye"></i>
-                                        </button>
-                                    <?php } ?>
-                                    <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-danger btn-sm btn-delete' title="删除">
-                                        <i class="iconfont icon-delete"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
-
-
-                <nav aria-label="Page navigation">
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>
-                </nav>
             </div>
             <?php require_once('../../includes/footer.php'); ?>
         </section>

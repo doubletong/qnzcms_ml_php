@@ -48,7 +48,7 @@ switch ($config_type) {
     case 'site_info':
         $config_name = 'site_info';
         $logo = $_POST['logo'];
-        $logo2 = $_POST['logo2'];
+     
      
         $company = $_POST['company'];
         $webnumber = $_POST['webnumber'];
@@ -68,7 +68,7 @@ switch ($config_type) {
       
         $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
         $config_values = array(
-            "sitename" => $_POST['sitename'], "logo" => $logo, "logo2" => $logo2,
+            "sitename" => $_POST['sitename'], "logo" => $logo,
             "webnumber" =>  $webnumber, "company"=>$company,
             "email" =>  $email, "hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
             "hremail" =>  $hremail,

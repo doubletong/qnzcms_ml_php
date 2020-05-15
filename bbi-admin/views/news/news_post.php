@@ -116,9 +116,16 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
             }   
             break;
-        // // case "recommend":
-        // //     echo $distributorClass->recommend_distributor($id);  
-        // //     break;
+        case "recommend":
+            $news = News::find($id);
+            $news->recommend = ($news->recommend)==1?"0":1;
+            $result = $news->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'操作失败'));  
+            }   
+            break;
         case "copy":
             $item = News::find($id);
             $new_item = $item->replicate(); //copy attributes

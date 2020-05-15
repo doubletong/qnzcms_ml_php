@@ -12,7 +12,7 @@ $urlPattern = "index.php?page=(:num)";
  //搜索条件判断
  $query = $news->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'thumbnail', 'category_id','importance','active','created_at');
+}])->select('id','title', 'thumbnail', 'category_id','importance','active','recommend','created_at');
 
 $keyword = null;
 $cid = null;
@@ -207,6 +207,18 @@ function recursive($items, $level, $cid){
                                     <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
                                 <i class="iconfont icon-file-copy"></i>
                             </button>
+
+                            <?php if ($row['recommend'] == 1) { ?>
+                                <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-recommend' title="撤消推荐">
+                                    <i class="iconfont icon-sketch"></i>
+                                </button>
+                            <?php } else { ?>
+                                <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-info btn-sm btn-recommend' title="推荐">
+                                    <i class="iconfont icon-sketch"></i>
+                                </button>
+                            <?php } ?>
+
+
                             <?php if ($row['active'] == 1) { ?>
                                 <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
                                     <i class="iconfont icon-eye-close"></i>
@@ -276,6 +288,32 @@ function recursive($items, $level, $cid){
                 url : 'news_post.php',
                 type : 'POST',
                 data : {id:articleId,action:"active"},
+                success : function(res) {                                                   
+                    var myobj = JSON.parse(res);                    
+                    //console.log(myobj.status);
+                    if (myobj.status === 1) {
+                        //toastr.success(myobj.message);                                
+                        location.reload();                                  
+                    } 
+                    if (myobj.status === 2) {
+                        toastr.error(myobj.message)
+                    }
+                    if (myobj.status === 3) {
+                        toastr.info(myobj.message)
+                    }
+                }
+            });          
+
+        });
+
+        $(".btn-recommend").click(function(){
+            var $that = $(this);           
+            var articleId = $that.attr("data-id");
+
+            $.ajax({
+                url : 'news_post.php',
+                type : 'POST',
+                data : {id:articleId,action:"recommend"},
                 success : function(res) {                                                   
                     var myobj = JSON.parse(res);                    
                     //console.log(myobj.status);

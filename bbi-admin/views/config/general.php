@@ -142,28 +142,7 @@ require_once '../../includes/common.php';
                                         <?php }?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="title">Logo2</label>
-                                                <div class="input-group">
-                                                    <input id="logo2" name="logo2" class="form-control" value="<?php echo !empty($site_info['logo2']) ? $site_info['logo2'] : ""; ?>" aria-describedby="setLogo2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" id="setLogo2" type="button">浏览…</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php if (!empty($site_info['logo2'])) {?>
-                                            <div class="col-auto">
-                                                <div style="background-color:#ccc;padding:5px;">
-                                                    <img src="<?php echo $site_info['logo2']; ?>" id="img_logo2" style="max-height:80px;" />
-                                                </div>
-                                            </div>
-                                        <?php }?>
-                                    </div>
-                                </div>
+                         
                             </div>
 
 
@@ -218,10 +197,6 @@ require_once '../../includes/common.php';
             $("#img_logo").attr("src", fileUrl);
         }
 
-        function SetLogoUrl2(fileUrl) {
-            $('#logo2').val(fileUrl);
-            $("#img_logo2").attr("src", fileUrl);
-        }
 
 
         function SetQrcodeUrl(fileUrl) {
@@ -229,10 +204,7 @@ require_once '../../includes/common.php';
             $("#img_qrcode").attr("src", fileUrl);
         }
 
-        function SetQrcodeUrl2(fileUrl) {
-            $('#qrcode2').val(fileUrl);
-            $("#img_qrcode2").attr("src", fileUrl);
-        }
+      
 
         $(document).ready(function() {
             //当前菜单

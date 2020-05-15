@@ -1,0 +1,38 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{job.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+
+
+{% block content %}
+     
+<div class="page page-news-detail page-join-detail">
+  <article class="container">
+    <header>
+      <h1 class="title-news wow fadeInUp">{{job.title}}</h1>
+      <div class="row note wow fadeInUp">
+        <div class="col-auto">By {{job.author}} </div>
+        <div class="col">{{job.pubdate|date('j. F Y')}}</div>
+      </div>
+    </header>
+    <main class="content">
+      <h2 class="title wow fadeInUp">Position Description</h2>
+      {{job.responsibilities|raw}}
+    </main>
+  </article>
+</div>
+
+    
+{% endblock %}

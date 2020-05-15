@@ -147,7 +147,7 @@ function recursive($items, $level, $parent){
 
                                                 </div>
                                                 <div class="card-footer">
-                                                    <button type="button" id="btnPhoto" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 缩略图...</button>
+                                                    <button type="button" id="btnPhoto" class="btn btn-info"><i class="iconfont icon-image"></i> 缩略图...</button>
                                                     <?php if(!empty($data['photo'])){ ?>
                                                         <button type="button" id="btnPhotoDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
                                                     <?php } ?>
@@ -163,7 +163,7 @@ function recursive($items, $level, $parent){
 
                                                 </div>
                                                 <div class="card-footer">
-                                                    <button type="button" id="btnFullPhoto" class="btn btn-info btn-block"><i class="iconfont icon-image"></i> 大图...</button>
+                                                    <button type="button" id="btnFullPhoto" class="btn btn-info"><i class="iconfont icon-image"></i> 大图...</button>
                                                     <?php if(!empty($data['fullphoto'])){ ?>
                                                         <button type="button" id="btnFullPhotoDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
                                                     <?php } ?>

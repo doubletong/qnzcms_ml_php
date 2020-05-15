@@ -5757,6 +5757,56 @@ img {
   padding: .5rem 2rem;
 }
 
+.page-join-detail .title {
+  font-size: 1.25rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .page-join-detail .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .page-join-detail .title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1201px) {
+  .page-join-detail .title {
+    font-size: 2rem;
+  }
+}
+
+.page-join-detail .title2 {
+  font-size: 1.125rem;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .page-join-detail .title2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .page-join-detail .title2 {
+    font-size: 1.375rem;
+  }
+}
+
+@media (min-width: 1201px) {
+  .page-join-detail .title2 {
+    font-size: 1.5rem;
+  }
+}
+
 .page-team .item {
   display: block;
   margin-bottom: 3rem;

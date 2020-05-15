@@ -139,7 +139,7 @@ function recursive($items, $level, $parent){
                             </div>                           
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  <?php echo isset($data['recommend']) ? ($data['recommend']?"checked":"") : "checked"; ?> id="chkRecommend" name="recommend">
+                                    <input type="checkbox" class="form-check-input"  <?php echo isset($data['recommend']) ? ($data['recommend']?"checked":"") : ""; ?> id="chkRecommend" name="recommend">
                                     <label class="form-check-label" for="chkRecommend">推荐</label>
                                 </div>
                             </div>

@@ -3,10 +3,17 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
-use Models\Page;
+use Models\Job;
 use Models\Metadata;
 
-$alias = 'about';  // $_GET['alias'];
+if (!isset($_GET['id'])) {
+    header('Location: /join');
+    exit;
+} 
+
+$id = $_GET['id'];
+
+
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -18,15 +25,15 @@ if($site_info['enableCaching']=="1"){
     ]);
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
-
-    $key = "pages_about";
+    
+    $key = "news_detail_$id";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($alias);
+        $news_detail_data = loadDate($id);
 
-        $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
+        $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
  
         //echo $CachedString->get();
@@ -37,23 +44,16 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($alias);
-
-    //echo $metadata;
+    $result =  loadDate($id);  
 }
 
-//load data
-function loadDate($alias){
 
-    $data = Page::where('alias',$alias)->where('active',1)->first();
-    if(isset($data)){
-        $data->view_count = $data->view_count + 1;
-        $data->save();
-    }
+function loadDate($id){
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
+    $data = Job::find($id);   
+    $metadata = Metadata::where('module_type',ModuleType::JOB())->where('key_value',$id)->first();     
 
-    return  ['page' => $data, 'metadata'=>$metadata];
+    return  ['job' => $data, 'metadata'=>$metadata];
 }
 
 
@@ -65,6 +65,6 @@ $twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('uri', $uri);
 
 
-echo $twig->render('about/index.html', $result);
+echo $twig->render('join/detail.html', $result);
 
 ?>
