@@ -17,37 +17,36 @@
 {% endblock %}
 {% block content %}
   
-<div class="banner banner-news" style="background-image:url(/assets/img/temp/banner-news.jpg)">
-  <h1>News</h1>
+<div class="banner banner-fellows" style="background-image:url('{{carousel.image_url}}');">      
+  <h1 class="title">{{carousel.title}}</h1>
 </div>
 
-<div class="page page-news">         
-  <nav class="s1 container"> <a class="active" href="news.html">industry</a><a href="news.html">scientific research</a><a href="news.html">academic report</a><a href="news.html">Achievements transformation</a></nav>
+
+<div class="page page-news">  
+  <section class="s1 container">
+    <div class="categories">
+      <a class="{{ categoryId is empty ? 'active':''}}" href="/news">Total</a>
+      {% for row in categories %}
+        <a class="{{ categoryId == row.id ? 'active':''}}" href="/news?cid={{row.id}}">{{row.title}}</a>
+      {% endfor %}   
+  </section>
   <section class="s2 container">
-    <div class="newslist">
+    <div class="row newslist">
+
       {% for item in news %}    
-            <div class="item">
-              <div class="row justify-content-between align-items-center">
-                <div class="col-md-4 col-lg-4 {{ loop.index % 2 == 0 ? '' : 'order-lg-last' }}"><a class="pic wow {{ loop.index % 2 == 0 ? 'fadeInLeft' : 'fadeInRight' }} " href="/news/detail-{{item.id}}"><img src="{{item.thumbnail}}"></a></div>
-                <div class="col-md-7 col-lg-7"><a class="txt wow {{ loop.index % 2 == 0 ? 'fadeInRight' : 'fadeInLeft' }}  " href="/news/detail-{{item.id}}"> 
-                    <h3 class="title">{{item.title}}</h3>
-                    <div class="row note">
-                      <div class="col-auto">{{item.pubdate|date('j. F Y')}}</div>
-                      <div class="col">{{item.author}}</div>
-                    </div>
-                    <p class="des">{{item.summary}}</p><span class="btn btn-default-outline">MORE</span></a></div>
-              </div>
-            </div>
-      {% endfor %}  
-     
-      
-     
+      <div class="col-md-6 col-lg-4">
+        <div class="item">       <a class="pic wow fadeInUp" href="/news/detail-{{item.id}}"><img src="{{item.thumbnail}}"></a>
+          <div class="txt wow fadeInUp" href="/news/detail-{{item.id}}"> 
+            <h3 class="title">{{item.title}}</h3>
+            <time>{{item.pubdate|date('F j, Y')}}</time>
+          </div>
+        </div>
+      </div>
+    {% endfor %}  
+
     </div>
   </section>
-  <!-- <footer class="news-footer"> 
-    <button class="btn btn-default-outline">view more</button>
-  </footer> -->
-  <footer class="blog-footer">      
+  <footer class="news-footer"> 
     {% if paginator.numPages > 1 %}
       <ul class="pagination">
           {% if paginator.prevUrl %}
@@ -67,8 +66,10 @@
           {% endif %}
       </ul>
   {% endif %}
-</footer>
+    
+  </footer>
 </div>
+
 
 
   

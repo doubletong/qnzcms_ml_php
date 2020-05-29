@@ -5,6 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\Page;
 use Models\Metadata;
+use Models\TeamCategory;
 
 $alias = 'about';  // $_GET['alias'];
 
@@ -51,9 +52,13 @@ function loadDate($alias){
         $data->save();
     }
 
+    $teams = TeamCategory::with(array('teams' => function ($query) {
+        $query->where('active',1)->orderBy('importance', 'DESC')->get();
+    }))->where('active',1)->orderBy('importance', 'DESC')->get();  
+
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
 
-    return  ['page' => $data, 'metadata'=>$metadata];
+    return  ['page' => $data, 'metadata'=>$metadata,'teams'=>$teams];
 }
 
 

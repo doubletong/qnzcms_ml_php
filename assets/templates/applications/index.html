@@ -1,0 +1,63 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+
+<div class="banner banner-fellows wow fadeInUp" style="background-image:url('{{page.background_image}}');">      
+  <h1 class="title">{{page.title}}</h1>
+</div> 
+    
+<div class="page page-app">
+  {{page.content|raw }}    
+
+  <section class="s2">
+    <div class="container">
+      <div class="videolist swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="" poster="/assets/img/poser.png"></video>
+          </div>
+          <div class="swiper-slide">
+            <video src="" poster="/assets/img/poser.png"></video>
+          </div>
+          <div class="swiper-slide">
+            <video src="" poster="/assets/img/poser.png"></video>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+    
+    
+{% endblock %}
+
+
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+    <script>
+      $(function(){
+         var swiper = new Swiper('.swiper-container', {
+          pagination: {
+              el: '.swiper-pagination',
+          },
+          });
+      })
+    </script>
+
+    {% endblock %}

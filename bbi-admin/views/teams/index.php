@@ -50,7 +50,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$countries = $query->orderBy('importance', 'DESC')
+$countries = $query->orderBy('id', 'DESC')
             ->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();

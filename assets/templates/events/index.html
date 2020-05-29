@@ -1,0 +1,106 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+  News
+  {% endif %}
+   
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">  
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+  
+<div class="banner banner-fellows" style="background-image:url('{{carousel.image_url}}');">      
+  <h1 class="title">{{carousel.title}}</h1>
+</div>
+
+
+<div class="page page-events">
+  <section class="s1 container">
+    <div class="categories">
+      <a class="{{ categoryId is empty ? 'active':''}}" href="/events">Total</a>
+      {% for row in categories %}
+        <a class="{{ categoryId == row.id ? 'active':''}}" href="/events?cid={{row.id}}">{{row.title}}</a>
+      {% endfor %}   
+  </section>
+  <section class="s2 container">
+    <div class="row eventslist">
+
+      {% for item in news %}   
+      <div class="col-md-6 col-lg-4">
+        <div class="item">       <a class="pic wow fadeInUp" href="/events/detail-{{item.id}}"><img src="{{item.thumbnail}}"></a>
+          <div class="txt wow fadeInUp" href="/events/detail-{{item.id}}"> 
+            <h3 class="title">{{item.title}}</h3>
+            <ul>
+              <li class="user">
+                <div class="iconfont icon-iconfont-user"></div>{{item.compere}}
+              </li>
+              <li class="time">
+                <div class="iconfont icon-ios-shijian"></div>{{item.datestart|date(' F  j, Y H:i')}}
+              </li>
+              <li class="add"> 
+                <div class="iconfont icon-marker"></div>{{item.address}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    {% endfor %}  
+
+    </div>
+  </section>
+  <footer class="news-footer"> 
+    {% if paginator.numPages > 1 %}
+      <ul class="pagination">
+          {% if paginator.prevUrl %}
+              <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">&laquo;</a></li>
+          {% endif %}
+
+          {% for page in paginator.pages %}
+              {% if page.url %}
+                  <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+              {% else %}
+                  <li class="page-item disabled"><span>{{ page.num }}</span></li>
+              {% endif %}
+          {% endfor %}
+
+          {% if paginator.nextUrl %}
+              <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">&raquo;</a></li>
+          {% endif %}
+      </ul>
+  {% endif %}
+    
+  </footer>
+</div>
+
+
+
+  
+{% endblock %}
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+    <script>
+      var swiper = new Swiper('.sliders', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+          },
+          autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+          },
+          //- navigation: {
+          //-     nextEl: '.swiper-button-next',
+          //-     prevEl: '.swiper-button-prev',
+          //- },
+      });
+    </script>
+{% endblock %}

@@ -6,10 +6,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\News;
 use Models\Metadata;
 use JasonGrimes\Paginator;
+use Models\NewsCategory;
+use Models\AdvertisingSpace;
 
 $metaKey = "/news";
-
-$urlPattern = "/resource/blog?page=(:num)";
+$cid = null;
+$urlPattern = "/news?page=(:num)";
 $itemsPerPage = 12;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
  //文章表实例化
@@ -18,6 +20,14 @@ $newsQuery = new News;
 $query = $newsQuery->with(['category' => function ($query) {
     $query->select('id', 'title');
 }])->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
+
+if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
+    $cid = htmlspecialchars($_REQUEST["cid"],ENT_QUOTES);
+    $querycateogries = NewsCategory::where('parent','=',$cid)->orwhere('id','=',$cid)->select('id')->get();
+    $query = $query->whereIn('category_id',$querycateogries);         
+      
+    $urlPattern = $urlPattern . "&cid=$cid";
+}
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -35,7 +45,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {          
         
-        $news_detail_data = loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern);
+        $news_detail_data = loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern,$cid);
 
         $CachedString->set($news_detail_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -49,14 +59,14 @@ if($site_info['enableCaching']=="1"){
     $twig = new \Twig\Environment($loader);  
 
    
-    $result =  loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern);
+    $result =  loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern,$cid);
 
 }
 
 
 
 //load data
-function loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern){
+function loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern,$cid){
 
     $totalItems = $query->count();  //总记录数      
     $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
@@ -67,9 +77,18 @@ function loadDate($metaKey,$query,$itemsPerPage,$currentPage,$urlPattern){
                 ->take($itemsPerPage)
                 ->get();
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();       
+    $categories = NewsCategory::where('active',1)->orderBy('importance', 'DESC')->get();
 
-    return  ['paginator' => $paginator,'news' => $news,'metadata'=>$metadata];
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();      
+
+    $as = AdvertisingSpace::with(array('advertisements' => function ($query) {
+        $query->where('active',1)->orderBy('importance', 'DESC')->get();
+    }))->where('code','=','A003')->first();
+    
+    $carousel = isset($as) ? $as->advertisements->first() :null;
+
+
+    return  ['paginator' => $paginator,'news' => $news,'metadata'=>$metadata,'categories'=>$categories,'categoryId' => $cid,'carousel'=>$carousel];
 }
 
 

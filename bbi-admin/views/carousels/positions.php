@@ -201,6 +201,9 @@ $pages =  $query->orderBy('importance', 'DESC')
             locale: "zh_CN"
         });
 
+
+       
+
         $(".btn-delete").click(function(){
             var $that = $(this);
             bootbox.confirm("删除后页面将无法恢复，您确定要删除吗？", function (result) {
@@ -208,9 +211,9 @@ $pages =  $query->orderBy('importance', 'DESC')
                     var pageId = $that.attr("data-id");
 
                     $.ajax({
-                        url : 'position_delete.php',
+                        url : 'position_post.php',
                         type : 'POST',
-                        data : {id:pageId},
+                        data : {id:pageId,action:"delete"},
                         success : function(res) {
 
                             var myobj = JSON.parse(res);                    

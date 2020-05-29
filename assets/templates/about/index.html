@@ -13,10 +13,103 @@
     <meta name="description" content="{{metadata.description}}">
 {% endblock %}
 {% block content %}
+    <div class="banner banner-about" style="background-image:url('{{page.background_image}}');">      
+        <h1 class="title">{{page.title}}</h1>
+    </div>  
     
-    <div class="banner banner-about" style="background-image:url({{page.background_image}})">
-        <h1>{{page.title}}</h1>
-    </div>
-    {{page.content|raw }}        
+    
+    <div class="page page-about">
+        <section class="container">
+          <div class="intro">
+            {{page.content|raw }}    
+          </div>
+
+          {% for item in teams %}
+            <div class="title-section">
+                <h2 class="text-center">{{item.title}}</h2>
+            </div>
+            {% if loop.index==1 %}
+                <div class="team">
+                <div class="row">
+                    {% for po in item.teams %}
+                    <div class="col-md-6">
+                        <div class="item">
+                          <div class="row align-items-center">
+                            <div class="col-auto"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
+                            <div class="col">
+                              <div class="txt">
+                                <h3 class="name">{{po.name}}</h3>
+                                <p>{{po.post}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}                 
+                </div>
+              </div>
+            {% endif %}
+
+            {% if loop.index==2 %}
+            <div class="team team2">
+                <div class="row">
+                    {% for po in item.teams %}
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item">                          
+                          <div class="pic"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
+                          <div class="txt">
+                            <h3 class="name">{{po.name}}</h3>
+                            <p>{{po.post}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  
+                </div>
+              </div>
+            {% endif %}
+           
+            {% if loop.index==3 %}
+            <div class="team team2 mult">
+                <div class="row">
+                    {% for po in item.teams %}
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item">                          
+                          <div class="pic"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
+                          <div class="txt">
+                            <h3 class="name">{{po.name}}</h3>
+                            <p>{{po.post}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}                 
+                
+                </div>
+              </div>
+            {% endif %}
+
+            {% if loop.index==4 %}
+            <div class="team team2 last">
+                <div class="row">
+                    {% for po in item.teams %}
+                    <div class="col-md-6">
+                        <div class="item">                          
+                          <div class="pic"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
+                          <div class="txt">
+                            <h3 class="name">{{po.name}}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                 
+      
+                </div>
+              </div>
+            {% endif %}
+
+          {% endfor %}
+     
+        </section>
+      </div>
 
 {% endblock %}

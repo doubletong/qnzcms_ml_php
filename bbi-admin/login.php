@@ -66,7 +66,7 @@ if (isset($_POST['username'], $_POST['password'])) {
         <div class="container">
           <div class="row align-items-center">
             <div class="col-auto">
-              <div class="logo"><img src="assets/img/logo.svg" alt=""></div>
+              <div class="logo"><img src="<?php echo $site_info['logo'];?>" alt=""></div>
             </div>
             <div class="col">
               <h1 class="title">用户登录</h1>

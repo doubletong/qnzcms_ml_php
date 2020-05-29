@@ -1,0 +1,47 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{article.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+
+
+{% block content %}
+     
+
+<div class="page page-news-detail">
+  <article class="container">
+    <header>
+      <h1 class="title-news wow fadeInUp">{{article.title}}</h1>
+      <div class="row note wow fadeInUp">
+        <div class="col-auto">{{item.pubdate|date('j. F Y')}}</div>
+        <div class="col">{{article.author}}</div>
+      </div>
+    </header>
+    <main class="wow fadeInUp">
+      {{article.content|raw}}
+    </main>
+    <div class="pagenav">
+      {% if prevArticle %}
+        <a id="hlPrevious" href="/news/detail-{{prevArticle.id}}">←</a>
+      {% endif %}
+      {% if nextArticle %}
+      <a id="hlNext" href="/news/detail-{{nextArticle.id}}">→</a>
+      {% endif %}    
+    </div>
+  </article>
+</div>
+
+
+    
+{% endblock %}

@@ -74,7 +74,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             // echo json_encode($result);  
             break;   
         case "delete": 
-            $region = Country::find($id);
+            $region = AdvertisingSpace::find($id);
             $result = $region->delete();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'删除成功'));  

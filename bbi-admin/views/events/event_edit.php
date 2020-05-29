@@ -102,7 +102,8 @@ function recursive($items, $level, $parent){
 
                             <div class="form-group">
                                 <label for="datestart">开始日期</label>
-                                <input class="form-control" id="datestart" name="datestart" value="<?php echo isset($data['datestart'])?date_format(date_create($data['datestart']),"Y-m-d"):date("Y-m-d"); ?>" placeholder="" type="date" />
+
+                                <input class="form-control" id="datestart" name="datestart" value="<?php echo isset($data['datestart'])?date_format(date_create($data['datestart']),"Y-m-d\TH:i"):date("Y-m-d\TH:i"); ?>" placeholder="" type="datetime-local" />
                             </div>
 
                             <div class="form-group">
