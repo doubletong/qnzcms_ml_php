@@ -179,7 +179,7 @@ $carousels =  $query->orderBy('importance', 'DESC')
                             {
                                 echo "<tr>";
                                 ?>
-                                <td><img src="<?php echo $row['image_url'];?>" class="img-rounded" style="height:35px;"/></td>
+                                <td><img src="/img.php?src=<?php echo $row['image_url'];?>&h=50" class="img-rounded" /></td>
                                 <?php
 
                                 echo "<td>".$row['title']."</td>";

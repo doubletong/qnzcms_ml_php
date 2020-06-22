@@ -205,9 +205,7 @@ $positions = AdvertisingSpace::All();
                 title: {
                     required: true
                 },
-                link: {
-                    url: true
-                },
+         
                 importance: {
                     required: true,
                     digits:true
@@ -218,9 +216,7 @@ $positions = AdvertisingSpace::All();
                 title: {
                     required:"请输入主标题"
                 },
-                link: {
-                    url: "链接格式不正确"
-                },
+            
                 importance: {
                     required: "请输入序号",
                     digits:"请输入有效的整数"

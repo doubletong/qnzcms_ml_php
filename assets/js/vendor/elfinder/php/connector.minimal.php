@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if (!isset($_SESSION['valid_user'])){
+	echo '您没有查看权限！';
+	exit();
+}
+
 error_reporting(0); // Set E_ALL for debuging
 
 // // To Enable(true) handling of PostScript files by ImageMagick
@@ -146,6 +152,7 @@ $opts = array(
 		)
 	)
 );
+
 
 // run elFinder
 $connector = new elFinderConnector(new elFinder($opts));

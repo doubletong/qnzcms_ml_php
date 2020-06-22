@@ -45,6 +45,8 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
 
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
+}else{
+    $query = $query->orderBy('importance', 'DESC');
 }
 
 $totalItems = $query->count();  //总记录数

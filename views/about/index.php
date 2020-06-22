@@ -5,9 +5,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\Page;
 use Models\Metadata;
-use Models\TeamCategory;
+use Models\AdvertisingSpace;
 
-$alias = 'about';  // $_GET['alias'];
+
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -25,7 +25,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($alias);
+        $home_data = loadDate();
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -38,13 +38,16 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($alias);
+    $result = loadDate();
 
     //echo $metadata;
 }
 
 //load data
-function loadDate($alias){
+function loadDate(){
+
+    $alias = 'about';
+    $alias1 = 'about_contact';
 
     $data = Page::where('alias',$alias)->where('active',1)->first();
     if(isset($data)){
@@ -52,13 +55,19 @@ function loadDate($alias){
         $data->save();
     }
 
-    $teams = TeamCategory::with(array('teams' => function ($query) {
+    $data1 = Page::where('alias',$alias1)->where('active',1)->first();
+    if(isset($data1)){
+        $data1->view_count = $data1->view_count + 1;
+        $data1->save();
+    }
+
+    $carousels = AdvertisingSpace::with(array('advertisements' => function ($query) {
         $query->where('active',1)->orderBy('importance', 'DESC')->get();
-    }))->where('active',1)->orderBy('importance', 'DESC')->get();  
+    }))->where('code','=','A003')->first()->advertisements;
 
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
 
-    return  ['page' => $data, 'metadata'=>$metadata,'teams'=>$teams];
+    return  ['page' => $data,'page1' => $data1, 'metadata'=>$metadata,'carousels'=>$carousels];
 }
 
 

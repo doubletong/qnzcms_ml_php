@@ -1,0 +1,186 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+    <link href="/assets/js/vendor/fullpage/fullpage.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+
+<ul class="senav" id="senav">
+    <li class="active" data-menuanchor="introduction"><a href="#introduction">01 <span>项目概况</span></a></li>
+    <li data-menuanchor="choose"><a href="#choose">02<span>Why Choose </span></a></li>
+    <li data-menuanchor="advantage"><a href="#advantage">03<span>升学优势</span></a></li>
+    <li data-menuanchor="master"><a href="#master">04<span>大师课</span></a></li>
+    <li data-menuanchor="courses"><a href="#courses">05<span>课程项目</span></a></li>
+  </ul>
+
+    
+  <div class="page-project" id="fullpage">
+    {{page.content|raw }}   
+
+   
+        <section class="section">
+        <div class="s2 container">
+        <div class="title-section">
+        <h2>WHY CHOOSE SINGAPORE</h2>
+        
+        <h3>留学新加坡是全球最优选择</h3>
+        </div>
+        
+        <div class="schools">
+        <div class="row no-gutters">
+            {% for row in photos %}
+            <div class="col-6 col-lg">
+                <div class="item"><img alt="" src="{{row.image_url}}" />
+                <h3 class="title">{{row.title}}</h3>
+                
+                <div class="des">{{row.description}}</div>
+                </div>
+                </div>
+            {% endfor %}
+ 
+        
+ 
+        </div>
+        </div>
+        </div>
+        </section>
+        
+        {{page1.content|raw }}   
+        
+    
+<section class="section">
+    <div class="s4 container">
+    <div class="title-section">
+    <h2>MASTER CLASS</h2>
+    
+    <h3>新加坡莱福士音乐学院大师课</h3>
+    </div>
+    
+    <div class="masters">
+    <div class="row justify-content-between">
+
+        {% for row in teams %}
+            <div class="col-lg-auto">
+                <div class="item">
+                    <img alt="{{row.name}}" src="{{row.photo}}" />
+                    <div class="des">
+                        <h3>{{row.name}}</h3>            
+                        <p>{{row.post}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="s5 container">
+        <div class="title-section">
+            <h2>COURSE PROJECT</h2>            
+            <h3>课程项目</h3>
+        </div>
+    
+        <div class="courses row">
+            {% for row in carousels %}
+            <div class="col-md-6 col-lg"><a class="item" href="{{row.link}}"><img src="{{row.image_url}}" alt="{{row.title}}">
+                <div class="overly">
+                <div class="des"> 
+                    <div class="icon"> <i class="iconfont icon-next"></i></div>
+                    <p>了解详情</p>
+                </div>
+                </div></a></div>
+            {% endfor %}
+        </div>
+    </div>
+    </section>
+  </div>
+
+   
+
+
+{% endblock %}
+
+{% block footer %}
+<script src="/assets/js/vendor/fullpage/vendors/easings.min.js"></script>
+<script src="/assets/js/vendor/fullpage/vendors/scrolloverflow.min.js"></script>
+<script src="/assets/js/vendor/fullpage/fullpage.min.js"></script>
+<script src="/assets/js/vendor/fullpage/fullpage.extensions.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#fullpage').fullpage({
+            menu: '#senav',
+            //options here
+            anchors: ['introduction', 'choose', 'advantage', 'master', 'courses'],            
+    
+            licenseKey: "750A6298-E6DA42F7-9B37E662-7341082F",
+            navigationTooltips: ['项目概况', 'WHY CHOOSE', '升学优势', '大师课', '课程项目'],
+       
+            autoScrolling: true,
+            scrollHorizontally: true,
+           // navigation: true,
+            slidesNavigation: true,
+            scrollOverflow: true,
+            afterLoad: function(origin, destination, direction) {
+                var loadedSection = this;
+                console.log($('.section')[destination.index]);
+                //console.log(origin);
+                //console.log(destination);
+                //console.log(direction);
+                //使用 index
+                var els = $($('.section')[destination.index]).find(".animated");
+                let list = Array.prototype.slice.call(els);
+                addAnimate(list)
+    
+                var oels = $($('.section')[origin.index]).find(".animated");
+                let olist = Array.prototype.slice.call(oels);
+                removeAnimate(olist);
+    
+                //  alert(destination.index);
+                //- if (destination.index > 0) {
+                //-     $("#site-header").addClass("fixheader");
+                //-     $("#logo").attr("src", "/assets/img/logo_color.png");
+                //- } else {
+                //-     $("#site-header").removeClass("fixheader");
+                //-     $("#logo").attr("src", "/assets/img/logo.png");
+                //- }
+    
+            }
+        });
+    
+        //methods
+        $.fn.fullpage.setAllowScrolling(true);
+    
+        function addAnimate(list) {
+            list.forEach(function(item, index, arr) {
+                var ani = $(item).attr("data-animate");
+                $(item).addClass(ani);
+            });
+        }
+    
+        function removeAnimate(list) {
+            list.forEach(function(item, index, arr) {
+                var ani = $(item).attr("data-animate");
+                $(item).removeClass(ani);
+            });
+        }
+    
+    
+    
+    });
+  </script>
+    {% endblock %}

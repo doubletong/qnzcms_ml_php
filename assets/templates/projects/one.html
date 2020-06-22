@@ -1,0 +1,44 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+
+<div class="banner banner-about" style="background-image:url('{{page.background_image}}')"></div>
+    
+
+    {{page.content|raw }}   
+
+
+{% endblock %}
+
+{% block footer %}
+
+
+    <script>
+      
+      $(function () {
+      
+        $("#tab-header li a").click(function(e){
+            var tabid = $(this).attr("data-id");
+            $("#tab-header li a.active").removeClass('active');
+            $(this).addClass("active").siblings();
+            $(tabid).addClass("active").siblings().removeClass('active');
+        })
+      
+      });
+      
+    </script>
+    {% endblock %}

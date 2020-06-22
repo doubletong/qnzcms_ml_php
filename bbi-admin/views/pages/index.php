@@ -38,6 +38,8 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
+}else{
+    $query = $query->orderBy('importance', 'DESC');
 }
 
 
@@ -48,7 +50,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$pages = $query->orderBy('id', 'DESC')->skip(($currentPage-1)*$itemsPerPage)
+$pages = $query->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();
 

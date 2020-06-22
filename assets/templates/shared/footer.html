@@ -1,26 +1,44 @@
 <footer class="site-footer" id="pagefooter">
-  <div class="row">
-    <div class="col-xl-4">
-      <div class="fellows wow fadeInUp"> SOCIETY OF FELLOWS IN THE LIBERAL ARTS</div>
-    </div>
-    <div class="col-xl-8">
-      <nav class="botnav wow fadeInUp">
-        {% for nav in navbot %}
-          <a href="{{ nav.url }}">{{ nav.title }}</a>
-        {% endfor %}      
-       </nav>
-      <div class="row align-items-center">
-        <div class="col-md">
-          <div class="copyright wow fadeInUp">Copyright &copy; 2020 {{site.company}}  All Rights Reserved.   <a href="http://www.beian.miit.gov.cn" target="_blank">{{site.webnumber}}</a></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <div class="logo wow fadeInUp"><img src="/assets/img/logo_bot.png" alt=""></div>
+      </div>
+      <div class="col">
+        <div class="row conlist">
+          <div class="col-lg-auto col-xl">
+            <ul class="wow fadeInUp">
+              <li> <a href="http://www.beian.miit.gov.cn/">{{site.webnumber}}</a></li>
+              <li>版权所有© {{site.company}}      </li>
+            </ul>
+          </div>
+          <div class="col-lg">
+            <ul class="wow fadeInUp">                          
+              <li>咨询热线：{{site.phone}}</li>
+              <li>地址：{{site.address}}</li>
+            </ul>
+          </div>
         </div>
-        <div class="col-md-auto">
-          <div class="sejiao  wow fadeInUp"><a href><i class="iconfont icon-twitter"></i></a><a href><i class="iconfont icon-facebook"></i></a><a href><i class="iconfont icon-wechat"></i></a><a href><i class="iconfont icon-sina"></i></a></div>
+      </div>
+      <div class="col-md-auto"> 
+        <div class="qrcode">
+          <div class="row">
+            <div class="col col-md">
+              <div class="qr wow fadeInUp"><img src="/assets/img/qrcode_wechat.png" alt="">
+                <div class="name">官方微信</div>
+              </div>
+            </div>
+            <div class="col col-md">
+              <div class="qr wow fadeInUp"><img src="/assets/img/qrcode_gzh.png" alt="">
+                <div class="name">公众号</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</footer><a class="toTop" id="toTop" href="javascript:void(0);"><img src="img/top.png" alt=""></a>
-
+</footer>
 
 
 

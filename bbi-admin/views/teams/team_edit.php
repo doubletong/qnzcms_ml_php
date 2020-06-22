@@ -251,14 +251,15 @@ function recursive($items, $level, $parent){
             $("form").validate({
 
                 rules: {
-                    title: {
-                        required: true
+                    name: {
+                        required: true,
+                        maxlength: 150
                     },
                     category_id: {
                         required: true
                     },
-                    file_url: {
-                        required: true
+                    post: {
+                        maxlength: 100
                     },
                     importance: {
                         required: true,
@@ -267,14 +268,15 @@ function recursive($items, $level, $parent){
 
                 },
                 messages:{
-                    title: {
-                        required:"请输入主题"
+                    name: {
+                        required:"请输入主题",
+                        maxlength: "不能超过100个字符"
                     },
                     category_id: {
                         required: "请选择分类"
                     },
-                    file_url: {
-                        required: "请选择文档"
+                    post: {
+                        maxlength: "不能超过100个字符"
                     },
                     importance: {
                         required: "请输入排序",
@@ -282,7 +284,6 @@ function recursive($items, $level, $parent){
                     }
 
                 },
-
                 errorClass: "invalid-feedback",
                 errorElement: "div",
                 highlight: function(element, errorClass, validClass) {

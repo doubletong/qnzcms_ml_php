@@ -11,105 +11,79 @@
     {{ parent() }}  
     <meta name="keywords" content="{{metadata.keywords}}">
     <meta name="description" content="{{metadata.description}}">
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
 {% endblock %}
 {% block content %}
-    <div class="banner banner-about" style="background-image:url('{{page.background_image}}');">      
-        <h1 class="title">{{page.title}}</h1>
-    </div>  
-    
-    
-    <div class="page page-about">
-        <section class="container">
-          <div class="intro">
-            {{page.content|raw }}    
-          </div>
 
-          {% for item in teams %}
-            <div class="title-section">
-                <h2 class="text-center">{{item.title}}</h2>
-            </div>
-            {% if loop.index==1 %}
-                <div class="team">
-                <div class="row">
-                    {% for po in item.teams %}
-                    <div class="col-md-6">
-                        <div class="item">
-                          <div class="row align-items-center">
-                            <div class="col-auto"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
-                            <div class="col">
-                              <div class="txt">
-                                <h3 class="name">{{po.name}}</h3>
-                                <p>{{po.post}}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    {% endfor %}                 
-                </div>
-              </div>
-            {% endif %}
+<div class="banner banner-about wow fadeInUp" style="background-image:url('{{page.background_image}}')"></div>
 
-            {% if loop.index==2 %}
-            <div class="team team2">
-                <div class="row">
-                    {% for po in item.teams %}
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item">                          
-                          <div class="pic"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
-                          <div class="txt">
-                            <h3 class="name">{{po.name}}</h3>
-                            <p>{{po.post}}</p>
-                          </div>
-                        </div>
-                      </div>
-                    {% endfor %}
-                  
-                </div>
-              </div>
+<div class="page page-about">
+    {{page.content|raw }}   
+
+
+    <section class="section container">
+    <div class="title-section wow fadeInUp">
+    <h2>CAMPUS ENVIRONMENT</h2>
+    
+    <h3>学校环境</h3>
+    </div>
+    
+    <div class="envlist wow fadeInUp">
+    <div class="swiper-container envlist-container">
+    <div class="swiper-wrapper">
+        {% for row in carousels %}
+            {% if row.link is not empty %}
+            <div class="swiper-slide"><a class="item" href="{{row.link}}"><img alt="{{row.title}}" src="{{row.image_url}}" /></a></div>
+            {% else %}
+            <div class="swiper-slide"><img alt="{{row.title}}" src="{{row.image_url}}" /></div>
             {% endif %}
            
-            {% if loop.index==3 %}
-            <div class="team team2 mult">
-                <div class="row">
-                    {% for po in item.teams %}
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item">                          
-                          <div class="pic"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
-                          <div class="txt">
-                            <h3 class="name">{{po.name}}</h3>
-                            <p>{{po.post}}</p>
-                          </div>
-                        </div>
-                      </div>
-                    {% endfor %}                 
-                
-                </div>
-              </div>
-            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <div class="swiper-pagination">&nbsp;</div>
+    </div>
+    </div>
+    </section>
+    
+    {{page1.content|raw }}   
+    </div>
+    
 
-            {% if loop.index==4 %}
-            <div class="team team2 last">
-                <div class="row">
-                    {% for po in item.teams %}
-                    <div class="col-md-6">
-                        <div class="item">                          
-                          <div class="pic"><img class="member" src="{{po.photo}}" alt="{{po.name}}"></div>
-                          <div class="txt">
-                            <h3 class="name">{{po.name}}</h3>
-                          </div>
-                        </div>
-                      </div>
-                    {% endfor %}
-                 
-      
-                </div>
-              </div>
-            {% endif %}
 
-          {% endfor %}
-     
-        </section>
-      </div>
+
 
 {% endblock %}
+
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+<script src="http://api.map.baidu.com/api?v=3.0&amp;ak=OBGqtysX9tHecbODIsmZO8UwmbqeFeAG" type="text/javascript"></script>
+    <script>
+      var map = new BMap.Map("baidumap");          
+      map.addControl(new BMap.NavigationControl());    
+      map.addControl(new BMap.ScaleControl());    
+      map.addControl(new BMap.OverviewMapControl());    
+      map.enableScrollWheelZoom(true);
+      var point = new BMap.Point(113.934382,22.579212);  
+      map.centerAndZoom(point, 16);                
+      var marker = new BMap.Marker(point);        // 创建标注    
+      map.addOverlay(marker);  
+      
+      $(function () {
+      
+      
+      
+      });
+      var swiper = new Swiper('.envlist-container', {
+          autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+          },
+      
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+          },
+      });
+    </script>
+    {% endblock %}

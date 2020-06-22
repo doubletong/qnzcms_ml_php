@@ -2,6 +2,8 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="robots" content="all">
 <meta name="viewport" content="width=device-width,user-scalable=1,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <link rel="manifest" href="/site.webmanifest">

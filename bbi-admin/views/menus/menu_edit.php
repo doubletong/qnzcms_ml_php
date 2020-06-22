@@ -133,8 +133,8 @@ $menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orde
 
                                     <div class="form-group">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" <?php echo isset($data['new_window']) ? ($data['new_window']?"checked":"") : ""; ?> id="chkActive" name="new_window">
-                                            <label class="form-check-label" for="chkActive">新窗口打开</label>
+                                            <input type="checkbox" class="form-check-input" <?php echo isset($data['new_window']) ? ($data['new_window']?"checked":"") : ""; ?> id="chkRecommend" name="new_window">
+                                            <label class="form-check-label" for="chkRecommend">新窗口打开</label>
                                         </div>
                                     </div>
 

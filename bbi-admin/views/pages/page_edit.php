@@ -211,10 +211,12 @@ $action = isset($_GET['id'])?"update":"create";
 
                 rules: {
                     title: {
-                        required: true
+                        required: true,
+                        maxlength: 150
                     },
                     alias: {
                         required: true,
+                        maxlength: 100,
                         regex:"^[a-z0-9_-]+$",
                         remote: {
                             url: "page_post.php",
@@ -248,11 +250,12 @@ $action = isset($_GET['id'])?"update":"create";
                 },
                 messages: {
                     title: {
-                        required: "请输入主标题"
+                        required: "请输入主标题",
+                        maxlength: "不能超过150个字符"
                     },
                     alias: {
-                        required: "请输入别名"
-
+                        required: "请输入别名",
+                        maxlength: "不能超过100个字符"
                     }
 
                 },

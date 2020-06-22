@@ -1,6 +1,6 @@
 <script src="/assets/js/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/assets/js/vendor/jquery.easing.min.js"></script>
-<script src="/assets/js/vendor/popper.min.js"></script>
+<script src="/assets/js/lib/jquery.easing.min.js"></script>
+<script src="/assets/js/lib/popper.min.js"></script>
 <script src="/assets/js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/assets/js/vendor/toastr/toastr.min.js"></script>
 <script src="/assets/js/vendor/bootbox.js/bootbox.js"></script>

@@ -1,0 +1,71 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+
+
+<div class="banner banner-about" style="background-image:url('{{page.background_image}}')"></div>
+    
+
+    {{page.content|raw }}   
+
+
+{% endblock %}
+
+{% block footer %}
+
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+    <script>
+      
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 30,
+            slidesPerView: 5,
+            freeMode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 15,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    spaceBetween: 30,
+                },
+            }
+        });
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 0,
+            
+        thumbs: {
+            swiper: galleryThumbs
+        }
+        });
+        
+        $(function () {
+        
+        
+        
+        });
+    </script>
+    {% endblock %}

@@ -245,7 +245,8 @@ function recursive($items, $level, $parent){
 
                 rules: {
                     title: {
-                        required: true
+                        required: true,
+                        maxlength: 150
                     },
                     content: {
                         required: true
@@ -253,15 +254,31 @@ function recursive($items, $level, $parent){
                     category_id: {
                         required: true
                     },
+                    summary: {
+                        maxlength: 500
+                    },
+                    author: {
+                        maxlength: 50
+                    },
                     importance: {
                         required: true,
                         digits:true
+                    },
+                    seotitle: {
+                        maxlength: 150
+                    },
+                    seokeywords: {
+                        maxlength: 250
+                    },
+                    seodescription: {
+                        maxlength: 500
                     }
 
                 },
                 messages:{
                     title: {
-                        required:"请输入主题"
+                        required:"请输入主题",
+                        maxlength: "不能超过150个字符"
                     },
                     content: {
                         required: "请输入新闻内容"
@@ -269,13 +286,26 @@ function recursive($items, $level, $parent){
                     category_id: {
                         required: "请选择分类"
                     },
+                    summary: {
+                        maxlength: "不能超过500个字符"
+                    },
+                    author: {
+                        maxlength: "不能超过50个字符"
+                    },
                     importance: {
                         required: "请输入排序",
                         digits:"请输入有效的整数"
+                    },
+                    seotitle: {
+                        maxlength: "不能超过150个字符"
+                    },
+                    seokeywords: {
+                        maxlength: "不能超过250个字符"
+                    },
+                    seodescription: {
+                        maxlength: "不能超过500个字符"
                     }
-
                 },
-
                 errorClass: "invalid-feedback",
                 errorElement: "div",
                 highlight: function(element, errorClass, validClass) {

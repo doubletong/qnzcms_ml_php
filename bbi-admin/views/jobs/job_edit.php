@@ -159,9 +159,21 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
 
                 rules: {
                     title: {
-                        required: true
+                        required: true,
+                        maxlength: 150
                     },
-
+                    city: {                    
+                        maxlength: 100
+                    },
+                    department: {                    
+                        maxlength: 150
+                    },
+                    author: {                    
+                        maxlength: 50
+                    },
+                    summary: {                    
+                        maxlength: 500
+                    },
                     population: {
                         required: true,
                         digits: true
@@ -174,9 +186,21 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                 },
                 messages: {
                     title: {
-                        required: "请输入招聘岗位"
+                        required: "请输入招聘岗位",
+                        maxlength: "不能超过150个字符"
                     },
-
+                    city: {                    
+                        maxlength: "不能超过100个字符"
+                    },
+                    department: {                    
+                        maxlength: "不能超过150个字符"
+                    },
+                    author: {                    
+                        maxlength: "不能超过50个字符"
+                    },
+                    summary: {                    
+                        maxlength: "不能超过500个字符"
+                    },
                  
                     population: {
                         required: "请输入招聘人数",
