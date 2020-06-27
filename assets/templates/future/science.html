@@ -1,0 +1,65 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <div class="page page-science container">     
+    <div class="articlelist">
+      <div class="box">
+        <div class="row align-items-center">
+          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
+          <div class="col-md"><a class="title" href="science_detail.html">
+              <h3>美味，如何让我们快速获得满足感？</h3>
+              <p>作者：李栩琳 杨青宁</p></a></div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="row align-items-center">
+          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
+          <div class="col-md"><a class="title" href="science_detail.html">
+              <h3>美味，如何让我们快速获得满足感？</h3>
+              <p>作者：李栩琳 杨青宁</p></a></div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="row align-items-center">
+          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
+          <div class="col-md"><a class="title" href="science_detail.html">
+              <h3>美味，如何让我们快速获得满足感？</h3>
+              <p>作者：李栩琳 杨青宁</p></a></div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="row align-items-center">
+          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
+          <div class="col-md"><a class="title" href="science_detail.html">
+              <h3>美味，如何让我们快速获得满足感？</h3>
+              <p>作者：李栩琳 杨青宁</p></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

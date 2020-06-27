@@ -1,0 +1,75 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <div class="page page-projects page-evolve">
+    {{page.content|raw }}  
+
+    <div class="s2">
+      <div class="container">
+        <div class="title-section wow fadeInUp">            
+          <h2 class="text-center">相关新闻</h2>
+        </div>
+        <div class="projectlist">
+          <div class="row">
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html"><img src="/assets/img/temp/pro_01.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html"><img src="/assets/img/temp/pro_02.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html"><img src="/assets/img/temp/pro_03.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html"><img src="/assets/img/temp/pro_03.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html"><img src="/assets/img/temp/pro_01.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html"><img src="/assets/img/temp/pro_02.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

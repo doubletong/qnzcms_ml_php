@@ -1,23 +1,26 @@
 <header class="site-header" id="site-header">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-auto"><a class="logo" href="/"><img src="/assets/img/logo.png" alt="{{ site.sitename }}"></a></div>
+      <div class="col-auto"><a class="logo" href="/"></a></div>
       <div class="col">
-        <ul class="mainav">         
-          {% for menu in menus %}
-          <li class="{{ menu.children is not empty ? 'hasnav' : '' }} ">
-              <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>
-              {% if(menu.children is not empty) %}
-              <ul class="subnav">
-                  {% for subnav in menu.children %}
-                      <li><a href="{{subnav.url}}">{{subnav.title}}</a></li>
-                  {% endfor %}
-                  </ul>
-              {% endif %}
+        <ul class="topnav">
+          {% for menu in navtop %}
+          <li class="{{ menu.children is not empty ? 'hasnav' : '' }}">
+              <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>           
           </li>
-          {% endfor %}   
+          {% endfor %}    
+        
+        </ul>
+        <ul class="mainav">
+          {% for menu in menus %}
+          <li class="{{ menu.children is not empty ? 'hasnav' : '' }}">
+              <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>           
+          </li>
+          {% endfor %}           
         </ul>
       </div>
+      <div class="col-auto search"><a href="/search"> <i class="iconfont icon-chakan"></i></a></div>
+      <div class="col-auto lang"><a href="#"> <i class="iconfont icon-zhongyingwen"></i></a></div>
       <div class="col-auto mobilemenu">
         <div class="menu-toggle">
           <div class="one"></div>
@@ -28,35 +31,15 @@
     </div>
     <div class="menu-over" id="overmenu">
       <ul class="mobilenav">
-  
-
-          {% for menu in navbot %}
-          <li class="{{ menu.children is not empty ? 'down' : '' }} {{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}">
-              <a href="{{ menu.url }}"  data-id="nav{{menu.id}}">{{menu.title}}</a>
-              {% if(menu.children is not empty) %}
-              <ul class="subnav">
-                  {% for subnav in menu.children %}
-                      <li><a class="{{subnav.url == uri ? 'active' : '' }}" href="{{subnav.url}}">{{subnav.title}}</a></li>
-                  {% endfor %}
-                  </ul>
-              {% endif %}
+        {% for menu in menus %}
+          <li class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}">
+              <a href="{{ menu.url }}"  data-id="nav{{menu.id}}">{{menu.title}}</a>           
           </li>
-          {% endfor %}   
-        <!-- <li class="active"><a href="index.html">首页</a></li>
-        <li class="down"> <a href="singapore_projects.html">新加坡项目 </a>
-          <ul class="subnav">
-            <li><a href="/projects/one">本科及硕士学历</a></li>
-            <li><a href="/projects/two">大专学历</a></li>
-            <li><a href="/projects/three">深圳本科预科班</a></li>
-          </ul>
-        </li>
-        <li><a href="/education/high">高中学历                       </a></li>
-        <li><a href="/news">动态资讯                     </a></li>
-        <li><a href="/about">关于璞森    </a></li> -->
+          {% endfor %}     
+       
       </ul>
-      <p class="copyright">版权所有©push art 璞森国际艺术教育</p>
+      <p class="copyright">&copy;2020 {{site.sitename}} 版权所有</p>
     </div>
   </div>
 </header>
-
 

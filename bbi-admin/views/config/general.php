@@ -101,10 +101,16 @@ require_once '../../includes/common.php';
                                 </div>
 
 
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="address">联系地址</label>
                                         <input type="text" class="form-control" id="address" name="address" placeholder="" value="<?php echo !empty($site_info['address']) ? $site_info['address'] : ""; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="postcode">邮编</label>
+                                        <input type="text" class="form-control" id="postcode" name="postcode" placeholder="" value="<?php echo !empty($site_info['postcode']) ? $site_info['postcode'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

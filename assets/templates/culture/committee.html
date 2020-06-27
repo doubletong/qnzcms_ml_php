@@ -1,0 +1,44 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+  <div class="banner banner-about wow fadeInUp" style="background-image:url('{{carousel is not empty ?  carousel.image_url :''}}')">
+    <div class="container">
+      <h1 class="title-page">党建文化</h1>
+     
+        {% if(subnavs is not empty) %}
+        <nav class="submenus">
+            {% for subnav in subnavs %}
+                <a class="{{subnav.url == uri or subnav.url == uri ~ '/index'  ? 'active' : '' }}" href="{{subnav.url}}">{{subnav.title}}</a>
+            {% endfor %}
+        </nav>
+        {% endif %}       
+        
+    </div>
+  </div>
+
+  {{page.content|raw }}  
+  
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

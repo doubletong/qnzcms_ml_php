@@ -1,0 +1,63 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+
+  <div class="page page-admissions">
+    <section class="s1 container">
+
+      {{page.content|raw }}
+
+      <ul class="newlist">
+        <li>
+          <div class="row">
+            <div class="col-md"><a href="ann-detail.html">关于报考深圳先进院2020年博士和硕士研究生有关招考复试等事项公告</a></div>
+            <div class="col-md-auto">
+              <time>2020-02-08</time>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-md"><a href="ann-detail.html">关于2020年秋季博士生入学考试初试的补充通知</a></div>
+            <div class="col-md-auto">
+              <time>2020-02-08</time>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-md"><a href="ann-detail.html">关于2020年秋季博士生入学考试初试的补充通知</a></div>
+            <div class="col-md-auto">
+              <time>2020-02-08</time>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+  
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

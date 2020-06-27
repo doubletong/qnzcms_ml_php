@@ -4,12 +4,12 @@ require_once('../../includes/common.php');
 
 $group_id = 1;
 $group_id2 = 2;
-
+$group_id3 = 3;
 
 use Models\Menu;
 $menus = Menu::with('children')->where('group_id',$group_id)->orderBy('importance', 'DESC')->get();
 $menus2 = Menu::with('children')->where('group_id',$group_id2)->orderBy('importance', 'DESC')->get();
-
+$menus3 = Menu::with('children')->where('group_id',$group_id3)->orderBy('importance', 'DESC')->get();
 
 
 
@@ -104,7 +104,7 @@ function build_menu($rows, $parent = 0)
             </div> 
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row align-items-center">
@@ -124,7 +124,7 @@ function build_menu($rows, $parent = 0)
                         </div>
                     </div>
                     
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row align-items-center">
@@ -140,6 +140,27 @@ function build_menu($rows, $parent = 0)
                             </div>
                             <div class="card-body">
                                 <?php echo build_menu($menus2); ?>
+                            </div>
+                        </div>                  
+                        
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h4 style="margin:0;">顶部导航</h4>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="menu_edit.php?gid=<?php echo $group_id3; ?>" class="btn btn-primary">
+                                            <i class="iconfont icon-plus"></i> 添加栏目
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <?php echo build_menu($menus3); ?>
                             </div>
                         </div>                  
                         

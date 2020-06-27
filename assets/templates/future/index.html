@@ -1,0 +1,67 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <div class="page page-future">
+    <section class="s1 container">
+      <div class="videolist">
+        <div class="row">
+          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
+              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_01.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+              <div class="title"> 
+                <h3>视频标题1</h3>
+              </div></a></div>
+          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
+              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_02.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+              <div class="title"> 
+                <h3>视频标题1</h3>
+              </div></a></div>
+          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
+              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+              <div class="title"> 
+                <h3>视频标题1</h3>
+              </div></a></div>
+          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
+              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+              <div class="title"> 
+                <h3>视频标题1</h3>
+              </div></a></div>
+          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
+              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+              <div class="title"> 
+                <h3>视频标题1</h3>
+              </div></a></div>
+          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
+              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+              <div class="title"> 
+                <h3>视频标题1</h3>
+              </div></a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

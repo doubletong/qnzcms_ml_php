@@ -4,7 +4,7 @@ require_once('../../includes/common.php');
 use Models\AdvertisingSpace;
 use JasonGrimes\Paginator;
 
-$urlPattern = "index.php?page=(:num)";
+$urlPattern = "positions.php?page=(:num)";
  //文章表实例化
  $position = new AdvertisingSpace;
  //搜索条件判断

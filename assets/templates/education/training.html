@@ -1,0 +1,71 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <!-- {{page.content|raw }}  -->
+  <div class="page page-admissions page-training">
+    <section class="s1 container">
+      <div class="title-section wow fadeInUp">
+        <h2 class="text-center">联合培养</h2>
+      </div>
+      <p>依托先进院，脑所积极拓展教育资源，目前已与加拿大不列颠哥伦比亚大学、香港科技大学、香港城市大学、中国科学技术大学等高校建立了共同招生、联合培养研究生计划。</p>
+      <ol>
+        <li>申请中科院深圳先进院／香港科技大学研究生项目（神经科学方向）,入围后，在香港科技大学接受研究生课程教育；根据研究方向的实际需要，在深圳BCBDI和／或MIT或其他国际合作实验室接受科研训练，授予香港科技大学学位。</li>
+        <li>申请中国科学院深圳先进院/澳门大学联合培养博士生计划，授予澳门大学学位。</li>
+        <li>申请中科院深圳先进院脑所与加拿大哥伦比亚大学（UBC）联合培养学生计划，授予UBC学位。</li>
+        <li>申请报考中国科学院大学（国科大）研究生：深圳先进技术研究院神经生物学专业，生物化学与分子生物学专业等；脑所导师均可以在上述学科招生。学生于国科大（北京）接受研究生课程教育；根据研究方向的实际需要，在深圳BCBDI和／或MIT或其他国际合作实验室接受科研训练。</li>
+        <li>申请中国科技大学生命科学院，我们每一年可以在中科大招收数量有限的研究生。在中科大上学位课，根据研究方向的实际需要，在深圳BCBDI和／或MIT或其他国际合作实验室接受科研训练，授予中科大学位。</li>
+      </ol>
+      <ul class="newlist">
+        <li>
+          <div class="row">
+            <div class="col-md"><a href="ann-detail.html">关于报考深圳先进院2020年博士和硕士研究生有关招考复试等事项公告</a></div>
+            <div class="col-md-auto">
+              <time>2020-02-08</time>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-md"><a href="ann-detail.html">关于2020年秋季博士生入学考试初试的补充通知</a></div>
+            <div class="col-md-auto">
+              <time>2020-02-08</time>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-md"><a href="ann-detail.html">关于2020年秋季博士生入学考试初试的补充通知</a></div>
+            <div class="col-md-auto">
+              <time>2020-02-08</time>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+  
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

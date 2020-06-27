@@ -13,10 +13,36 @@
     <meta name="description" content="{{metadata.description}}">
 {% endblock %}
 {% block content %}
-    <div class="banner banner-contact" style="background-image:url({{page.background_image}})">
-        <h1>{{page.title}}</h1>
+<div class="banner banner-about wow fadeInUp" style="background-image:url('{{carousel is not empty ?  carousel.image_url :''}}')">
+        <div class="container">
+            <h1 class="title-page" style="padding-bottom:3rem;">{{carousel is not empty ?  carousel.title :''}}</h1>
+
+        </div>
     </div>
  
-    {{page.content|raw }}        
+    {{page.content|raw }}  
+    
 
 {% endblock %}
+
+
+{% block footer %}
+<script src="http://api.map.baidu.com/api?v=3.0&amp;ak=OBGqtysX9tHecbODIsmZO8UwmbqeFeAG" type="text/javascript"></script>
+<script>
+  var map = new BMap.Map("baidumap");          
+  map.addControl(new BMap.NavigationControl());    
+  map.addControl(new BMap.ScaleControl());    
+  map.addControl(new BMap.OverviewMapControl());    
+  map.enableScrollWheelZoom(true);
+  var point = new BMap.Point(113.934382,22.579212);  
+  map.centerAndZoom(point, 16);                
+  var marker = new BMap.Marker(point);        // 创建标注    
+  map.addOverlay(marker);  
+  
+  $(function () {
+  
+  
+  
+  });
+</script>
+    {% endblock %}

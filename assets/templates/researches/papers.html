@@ -1,0 +1,110 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    论文
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <div class="page page-papers container">
+    <div class="s1 section">
+      <nav class="years">           <a class="active" href="pagers.html">2019</a><a href="pagers.html">2018</a><a href="pagers.html">2017</a><a href="pagers.html">2016</a><a href="pagers.html">2015</a><a href="pagers.html">2014</a></nav>
+    </div>
+    <div class="s2">
+      <div class="pagerlist">
+        <div class="item wow fadeInUp">
+          <div class="row">
+            <div class="col-auto">            
+              <div class="pic"><img src="/assets/img/pager_01.png"></div>
+            </div>
+            <div class="col">
+              <div class="txt">
+                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item wow fadeInUp">
+          <div class="row">
+            <div class="col-md-auto">            
+              <div class="pic"><img src="/assets/img/pager_01.png"></div>
+            </div>
+            <div class="col-md">
+              <div class="txt">
+                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a><a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item wow fadeInUp">
+          <div class="row">
+            <div class="col-md-auto">            
+              <div class="pic"><img src="/assets/img/pager_01.png"></div>
+            </div>
+            <div class="col-md">
+              <div class="txt">
+                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item wow fadeInUp">
+          <div class="row">
+            <div class="col-md-auto">            
+              <div class="pic"><img src="/assets/img/pager_01.png"></div>
+            </div>
+            <div class="col-md">
+              <div class="txt">
+                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item wow fadeInUp">
+          <div class="row">
+            <div class="col-md-auto">            
+              <div class="pic"><img src="/assets/img/pager_01.png"></div>
+            </div>
+            <div class="col-md">
+              <div class="txt">
+                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a><a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="pager-footer">      
+          <ul class="pagination text-center">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">2                          </a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+          </ul>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}
+
+

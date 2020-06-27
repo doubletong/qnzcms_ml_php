@@ -1,44 +1,53 @@
 <footer class="site-footer" id="pagefooter">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-auto">
-        <div class="logo wow fadeInUp"><img src="/assets/img/logo_bot.png" alt=""></div>
-      </div>
-      <div class="col">
-        <div class="row conlist">
-          <div class="col-lg-auto col-xl">
-            <ul class="wow fadeInUp">
-              <li> <a href="http://www.beian.miit.gov.cn/">{{site.webnumber}}</a></li>
-              <li>版权所有© {{site.company}}      </li>
-            </ul>
-          </div>
-          <div class="col-lg">
-            <ul class="wow fadeInUp">                          
-              <li>咨询热线：{{site.phone}}</li>
-              <li>地址：{{site.address}}</li>
-            </ul>
-          </div>
+  <div class="botbar">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md">
+          <div class="logo"><img src="/assets/img/logo_bot.png" alt="{{site.company}}"></div>
+        </div>
+        <div class="col-md-auto">
+          <ul class="contact">
+            <li><i class="iconfont icon-marker"></i>{{site.address}}</li>
+            <li><i class="iconfont icon-youbian"></i>{{site.postcode}}</li>
+            <li><i class="iconfont icon-email"></i>{{site.email}}</li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-auto"> 
-        <div class="qrcode">
-          <div class="row">
-            <div class="col col-md">
-              <div class="qr wow fadeInUp"><img src="/assets/img/qrcode_wechat.png" alt="">
-                <div class="name">官方微信</div>
-              </div>
-            </div>
-            <div class="col col-md">
-              <div class="qr wow fadeInUp"><img src="/assets/img/qrcode_gzh.png" alt="">
-                <div class="name">公众号</div>
-              </div>
-            </div>
-          </div>
+    </div>
+  </div>
+  <div class="botnav container">
+    <div class="row">
+      {% for nav in navbot %}
+      <div class="col">
+        <div class="item">
+          <h4>{{ nav.title }}</h4>
+            {% if(nav.children is not empty) %}
+                <ul>
+                  {% for subnav in nav.children %}
+                      <li><a class="{{subnav.url == uri ? 'active' : '' }}" href="{{subnav.url}}">{{subnav.title}}</a></li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+        
+        </div>
+      </div>
+    
+      {% endfor %} 
+ 
+    </div>
+  </div>
+  <div class="container">
+    <div class="bot">
+      <div class="row">
+        <div class="col-lg">
+          <div class="links"><a href="#">中国科学院深圳先进技术研究院</a><a href="#">中国科学院</a><a href="#">深圳先进技术研究院</a></div>
+        </div>
+        <div class="col-lg-auto">
+          <div class="copyright">&copy; 2020 {{site.company}}  版权所有 <a href="//beian.miit.gov.cn/"> {{site.webnumber}}</a></div>
         </div>
       </div>
     </div>
   </div>
 </footer>
-
 
 

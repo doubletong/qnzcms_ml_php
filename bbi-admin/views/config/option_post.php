@@ -63,13 +63,13 @@ switch ($config_type) {
         $hrcontact = $_POST['hrcontact'];
         $hrphone = $_POST['hrphone'];
 
-     
+        $postcode = $_POST['postcode'];
 
       
         $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
         $config_values = array(
             "sitename" => $_POST['sitename'], "logo" => $logo,
-            "webnumber" =>  $webnumber, "company"=>$company,
+            "webnumber" =>  $webnumber, "company"=>$company, "postcode" => $postcode,
             "email" =>  $email, "hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
             "hremail" =>  $hremail,
             "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone, "enableCaching" => $enableCaching

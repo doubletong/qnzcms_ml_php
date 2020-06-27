@@ -1,0 +1,47 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+  <!-- {{page.content|raw }}   -->
+  <div class="page page-support">
+    <div class="container">
+      <div class="title-section wow fadeInUp">
+        <h2 class="text-center">科研支撑</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 科研管理与支撑处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

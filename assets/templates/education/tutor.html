@@ -1,0 +1,186 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <!-- {{page.content|raw }}  -->
+  <div class="page page-tutor">
+    <section class="s1 container">
+      <nav class="categories wow fadeInUp"><a class="active" href="tutor.html">脑功能图谱与行为</a><a href="tutor.html">脑认知与类脑智能</a><a href="tutor.html">神经发育与退行性脑疾病</a><a href="tutor.html">基因编辑脑疾病动物模型</a><a href="tutor.html">内尔神经可塑性</a></nav>
+      <select class="slcategories wow fadeInUp">
+        <option value="tutor.html">脑功能图谱与行为</option>
+        <option value="tutor.html">脑认知与类脑智能</option>
+        <option value="tutor.html">神经发育与退行性脑疾病</option>
+        <option value="tutor.html">基因编辑脑疾病动物模型</option>
+        <option value="tutor.html">内尔神经可塑性</option>
+      </select>
+    </section>
+    <section class="s2 container">
+      <div class="des">
+        <div class="row align-items-center no-gutters">
+          <div class="col-md-auto">
+            <div class="icon"><img src="/assets/img/e_04.png" alt=""></div>
+          </div>
+          <div class="col-md">
+            <div class="txt">
+              <h3 class="title">脑功能图谱与行为研究中心</h3>
+              <p>研究方向：本能情绪的脑连接图谱解析；脑疾病的脑图谱变异基础研究；功能连接图谱解析技术开发。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="s3">
+      <div class="container">
+        <div class="title-section">
+          <h3 class="text-center">导师介绍</h3>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt=""></div>
+                </div>
+                <div class="col">
+                  <div class="txt">
+                    <div class="name">徐富强</div>
+                    <p>神经环路结构和功能的新技术新方法研发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

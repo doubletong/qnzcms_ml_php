@@ -1,0 +1,57 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    获奖
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <div class="page page-awards container">
+    <div class="s1 section">
+      <div class="pic text-center  wow fadeInUp"><img src="/assets/img/award_01.png" alt="深港脑科学创新研究院"></div>
+      <div class="title-section  wow fadeInUp">
+        <h2 class="text-center">深港脑科学创新研究院荣获</h2>
+      </div>
+    </div>
+    <div class="s2 row">
+      <div class="col-md">
+        <figure class="wow fadeInUp"><img src="/assets/img/temp/aw_01.jpg" alt="">
+          <figcaption>广东省自然科学奖 一等奖（2018）</figcaption>
+        </figure>
+      </div>
+      <div class="col-md">
+        <figure class="wow fadeInUp"><img src="/assets/img/temp/aw_02.jpg" alt="">
+          <figcaption>广东省自然科学奖 一等奖（2018）</figcaption>
+        </figure>
+      </div>
+      <div class="col-md">
+        <figure class="wow fadeInUp"><img src="/assets/img/temp/aw_03.jpg" alt="">
+          <figcaption>广东省自然科学奖 一等奖（2018）</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}
+
+

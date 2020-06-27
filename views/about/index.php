@@ -5,8 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\Page;
 use Models\Metadata;
-use Models\AdvertisingSpace;
-
+use Models\Advertisement;
 
 
 //twig 模板设置
@@ -25,7 +24,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate();
+        $home_data = loadDate($commonData['mainav']);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -38,16 +37,15 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate();
+    $result = loadDate($commonData['mainav']);
 
     //echo $metadata;
 }
 
 //load data
-function loadDate(){
+function loadDate($menus){
 
-    $alias = 'about';
-    $alias1 = 'about_contact';
+    $alias = 'about';  
 
     $data = Page::where('alias',$alias)->where('active',1)->first();
     if(isset($data)){
@@ -55,19 +53,17 @@ function loadDate(){
         $data->save();
     }
 
-    $data1 = Page::where('alias',$alias1)->where('active',1)->first();
-    if(isset($data1)){
-        $data1->view_count = $data1->view_count + 1;
-        $data1->save();
-    }
+    $subnavs = $menus->where('url','/about')->first()->children;
+  
 
-    $carousels = AdvertisingSpace::with(array('advertisements' => function ($query) {
-        $query->where('active',1)->orderBy('importance', 'DESC')->get();
-    }))->where('code','=','A003')->first()->advertisements;
+    $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
+        ->where('advertisements.active',1)
+        ->where('advertising_spaces.code','=','A003')->first();
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
 
-    return  ['page' => $data,'page1' => $data1, 'metadata'=>$metadata,'carousels'=>$carousels];
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
+
+    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
 
 
@@ -76,6 +72,7 @@ $twig->addGlobal('site', $site_info);
 $twig->addGlobal('menus', $commonData['mainav']);
 $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
+$twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
 
 

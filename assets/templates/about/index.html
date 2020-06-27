@@ -11,79 +11,21 @@
     {{ parent() }}  
     <meta name="keywords" content="{{metadata.keywords}}">
     <meta name="description" content="{{metadata.description}}">
-    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+
 {% endblock %}
 {% block content %}
 
-<div class="banner banner-about wow fadeInUp" style="background-image:url('{{page.background_image}}')"></div>
+  {{ include('shared/_subMenus.html') }}
 
-<div class="page page-about">
-    {{page.content|raw }}   
-
-
-    <section class="section container">
-    <div class="title-section wow fadeInUp">
-    <h2>CAMPUS ENVIRONMENT</h2>
-    
-    <h3>学校环境</h3>
-    </div>
-    
-    <div class="envlist wow fadeInUp">
-    <div class="swiper-container envlist-container">
-    <div class="swiper-wrapper">
-        {% for row in carousels %}
-            {% if row.link is not empty %}
-            <div class="swiper-slide"><a class="item" href="{{row.link}}"><img alt="{{row.title}}" src="{{row.image_url}}" /></a></div>
-            {% else %}
-            <div class="swiper-slide"><img alt="{{row.title}}" src="{{row.image_url}}" /></div>
-            {% endif %}
-           
-        {% endfor %}
-    </div>
-    
-    <div class="swiper-pagination">&nbsp;</div>
-    </div>
-    </div>
-    </section>
-    
-    {{page1.content|raw }}   
-    </div>
-    
-
-
+  {{page.content|raw }}  
 
 
 {% endblock %}
 
 {% block footer %}
-<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
-<script src="http://api.map.baidu.com/api?v=3.0&amp;ak=OBGqtysX9tHecbODIsmZO8UwmbqeFeAG" type="text/javascript"></script>
-    <script>
-      var map = new BMap.Map("baidumap");          
-      map.addControl(new BMap.NavigationControl());    
-      map.addControl(new BMap.ScaleControl());    
-      map.addControl(new BMap.OverviewMapControl());    
-      map.enableScrollWheelZoom(true);
-      var point = new BMap.Point(113.934382,22.579212);  
-      map.centerAndZoom(point, 16);                
-      var marker = new BMap.Marker(point);        // 创建标注    
-      map.addOverlay(marker);  
-      
+    <script>         
       $(function () {
       
-      
-      
-      });
-      var swiper = new Swiper('.envlist-container', {
-          autoplay: {
-              delay: 2500,
-              disableOnInteraction: false,
-          },
-      
-          pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-          },
       });
     </script>
-    {% endblock %}
+{% endblock %}

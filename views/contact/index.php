@@ -5,6 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\Page;
 use Models\Metadata;
+use Models\Advertisement;
 
 $alias = 'contact';  // $_GET['alias'];
 
@@ -51,9 +52,14 @@ function loadDate($alias){
         $data->save();
     }
 
+    $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
+    ->where('advertisements.active',1)
+    ->where('advertising_spaces.code','=','A012')->first();
+    
+
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();     
 
-    return  ['page' => $data, 'metadata'=>$metadata];
+    return  ['page' => $data, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
 
 
@@ -61,6 +67,7 @@ $twig->addGlobal('site', $site_info);
 $twig->addGlobal('menus', $commonData['mainav']);
 $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
+$twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
 
 

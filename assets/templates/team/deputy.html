@@ -1,0 +1,111 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <!-- {{page.content|raw }}   -->
+  <div class="page page-higher container">
+    <div class="s1 section">           
+      <div class="title-section">
+        <h2 class="text-center">副高级序列</h2>
+      </div>
+      <div class="eng"><a class="active" href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a><a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a><a href="#">P</a><a href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a><a href="#">U</a><a href="#">V</a><a href="#">W</a><a href="#">X</a><a href="#">Y</a><a href="#">Z</a></div>
+      <div class="memberlist">
+        <div class="row">
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">香港科技大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">香港科技大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">浙江大学</div></a></div>
+          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
+              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
+              <h4>陈培华</h4>
+              <div class="post">副研究员</div>
+              <div class="school">香港科技大学</div></a></div>
+        </div>
+      </div>
+      <footer class="pager-footer">      
+        <ul class="pagination text-center">
+          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page"><a class="page-link" href="#">2                          </a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+        </ul>
+      </footer>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

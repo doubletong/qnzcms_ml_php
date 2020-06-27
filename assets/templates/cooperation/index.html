@@ -1,0 +1,63 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+  <!-- {{page.content|raw }}   -->
+  <div class="page page-cooperation">
+    <section class="s1 container">
+      <div class="title-section">
+        <h2 class="text-center">国际合作</h2>
+      </div>
+      <div class="articlelist"> 
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
+            <div class="col-md"><a href="coo_detail.html">国际合作基因—MIT麦戈文脑研究所建设发展历程</a></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
+            <div class="col-md"><a href="coo_detail.html">积极吸引国际创新资源汇聚深圳：与Broad研究所签署合作备忘录，双方将在脑科学等领域建立深入合作</a></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
+            <div class="col-md"><a href="coo_detail.html">国际合作基因—MIT麦戈文脑研究所建设发展历程</a></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
+            <div class="col-md"><a href="coo_detail.html">国际合作基因—MIT麦戈文脑研究所建设发展历程</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

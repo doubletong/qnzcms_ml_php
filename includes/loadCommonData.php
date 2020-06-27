@@ -21,9 +21,7 @@ $uri = $_SERVER['REQUEST_URI'];
 //缓存设置
 if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
-    $InstanceCache = CacheManager::getInstance('files');
-
-    
+    $InstanceCache = CacheManager::getInstance('files');    
 
     $keyCommonData = "common_data";  //主导航
     $Cached_common_data = $InstanceCache->getItem($keyCommonData);
@@ -46,24 +44,24 @@ if($site_info['enableCaching']=="1"){
 }
 
 function loadCommonDate($commonClass,$uri){
-    $menus = Menu::with(array('children' => function ($query) {
+    $navs = Menu::with(array('children' => function ($query) {
         $query->orderBy('importance', 'DESC')->get();
-    }))->where('active',1)->where('group_id',1)->where('parent',0)->orderBy('importance', 'DESC')->get();
-    // $menutree = $commonClass->buildMenuTree($menus->toArray(),0);
+    }))->where('active',1)->where('parent',0)->orderBy('importance', 'DESC')->get();
+
+    $menus = $navs->where('group_id',1);  
    
     $currentMenu =  $menus->where('url',$uri)->first();
     $breadcrumb =  isset($currentMenu) ? $commonClass->breadcrumb($menus->toArray(),$currentMenu->id) : null;
 
-    $menus_bot = Menu::with(array('children' => function ($query) {
-        $query->orderBy('importance', 'DESC')->get();
-    }))->where('active',1)->where('group_id',2)->where('parent',0)->orderBy('importance', 'DESC')->get();
+    $menus_bot = $navs->where('group_id',2);
+    $menus_top = $navs->where('group_id',3);
 
     $socials = SocialAccount::with(['socialSoftware' => function ($query) {
         $query->select('id', 'iconfont');
     }])->select('id','username', 'qrcode', 'url', 'social_id')->where('active',1)->orderBy('importance', 'DESC')->get();
     
 
-    return  ['mainav' => $menus,'breadcrumb'=>$breadcrumb,'menus_bot'=>$menus_bot,'socials'=>$socials];
+    return  ['mainav' => $menus,'breadcrumb'=>$breadcrumb,'menus_bot'=>$menus_bot, 'menus_top'=>$menus_top, 'socials'=>$socials];
 }
 
 

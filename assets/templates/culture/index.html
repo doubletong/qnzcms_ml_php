@@ -1,0 +1,91 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+  <div class="banner banner-about wow fadeInUp" style="background-image:url('{{carousel is not empty ?  carousel.image_url :''}}')">
+    <div class="container">
+      <h1 class="title-page">党建文化</h1>
+     
+        {% if(subnavs is not empty) %}
+        <nav class="submenus">
+            {% for subnav in subnavs %}
+                <a class="{{subnav.url == uri or subnav.url == uri ~ '/index'  ? 'active' : '' }}" href="{{subnav.url}}">{{subnav.title}}</a>
+            {% endfor %}
+        </nav>
+        {% endif %}       
+        
+    </div>
+  </div>
+
+  <!-- {{page.content|raw }}   -->
+  <div class="page page-projects page-culture">
+    <div class="s1 section container">          
+      <div class="title-section">
+        <h2 class="text-center">脑所党支部</h2>
+      </div>
+      <p>2016年4月19日，脑所党支部在联系委员许建国院长的见证下正式成立，成立之初有正式党员12人，选举产生第一届支委：书记王立平、宣传委员刘雪梅、组织纪律委员孟珍。</p>
+      <p>脑所是先进院2014年11月筹建的第6个研究所，2016年11月正式去筹，2018年作为牵头单位获批建设深港脑科学创新研究院以及“脑解析与脑模拟”重大科技基础设施。当前，脑所面临新的机遇与新的挑战，为了进一步促进党建工作和科研工作的有机结合，充分发挥脑所党组织的战斗堡垒和党员的先锋模范带头作用，保障脑所的各项工作在党的领导下高效、科学、均衡的发展，脑所根据先进院党委的部署要求，在原党支部的基础上成立脑所党总支。总支书记王立平、总支宣传委员刘雪梅、总支组织纪律委员邓春山。</p>
+      <p>脑所截止2019年12月共有党员77名，其中副研以上党员17人，根据部门分成2个支部，脑所第一党支部，由脑图谱中心与院办组成，共45人，一支部书记李翔、宣传委员任真、组织纪律委员刘畅；脑所第二党支部由脑智能中心、脑疾病中心、脑编辑中心以及诺奖实验室组成，共30人，二支部书记邓春山、宣传委员陈攀、组织纪律委员柏艳阳。</p>
+    </div>
+    <div class="s2">
+      <div class="container">           
+        <div class="projectlist">
+          <div class="row">
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInLeft" href="culture_detail.html"><img src="/assets/img/temp/pro_01.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInLeft" href="culture_detail.html"><img src="/assets/img/temp/pro_02.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInLeft" href="culture_detail.html"><img src="/assets/img/temp/pro_03.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInLeft" href="culture_detail.html"><img src="/assets/img/temp/pro_03.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInLeft" href="culture_detail.html"><img src="/assets/img/temp/pro_01.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+            <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInLeft" href="culture_detail.html"><img src="/assets/img/temp/pro_02.jpg">
+                <div class="title"> 
+                  <h3>诺奖、院士双双助阵 50余顶尖脑科学专家齐聚深圳</h3>
+                  <time>2019-03-24</time>
+                </div></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}
