@@ -1,9 +1,12 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
+require_once('../../../app/utils/PYInitials.php');
+
 
 use Models\Team;
+
+$py = new QNZ\Utils\PYInitials();
 
 
 if( isset($_POST['action']) && isset($_POST['id'])){
@@ -20,9 +23,12 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 return;
             }
             
+
+            $frist = mb_substr($_POST['name'], 0, 1 );
           
             $item = new Team();
-            $item->name = $_POST['name'];
+            $item->name = $_POST['name'];           
+            $item->first_letter = $py->getInitials($frist);
             $item->post = $_POST['post'];
             $item->fullphoto = $_POST['fullphoto'];
             $item->content = stripslashes($_POST['content']);
@@ -50,9 +56,11 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 return;
             }
           
+            $frist = mb_substr($_POST['name'], 0, 1);
         
             $item = Team::find($id);
             $item->name = $_POST['name'];
+            $item->first_letter = $py->getInitials($frist);
             $item->post = $_POST['post'];
             $item->fullphoto = $_POST['fullphoto'];
             $item->content = stripslashes($_POST['content']);

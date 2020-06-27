@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+     视频
  {% endif %}
 
 {% endblock %}
@@ -21,38 +21,39 @@
     <section class="s1 container">
       <div class="videolist">
         <div class="row">
-          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
-              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_01.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
-              <div class="title"> 
-                <h3>视频标题1</h3>
-              </div></a></div>
-          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
-              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_02.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
-              <div class="title"> 
-                <h3>视频标题1</h3>
-              </div></a></div>
-          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
-              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
-              <div class="title"> 
-                <h3>视频标题1</h3>
-              </div></a></div>
-          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
-              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
-              <div class="title"> 
-                <h3>视频标题1</h3>
-              </div></a></div>
-          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
-              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
-              <div class="title"> 
-                <h3>视频标题1</h3>
-              </div></a></div>
-          <div class="col-md-6 col-lg-4">                      <a class="item wow fadeInUp" href="project_detail.html">
-              <div class="pic"><img class="thumb" src="/assets/img/temp/pro_03.jpg"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
-              <div class="title"> 
-                <h3>视频标题1</h3>
-              </div></a></div>
+          {% for row in videos %}
+          <div class="col-md-6 col-lg-4">
+            <a class="item wow fadeInUp" href="/future/detail-{{row.id}}">
+            <div class="pic"><img class="thumb" src="{{row.poster}}"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
+            <div class="title"> 
+              <h3>{{row.title}}</h3>
+            </div></a></div>
+          {% endfor %}
+        
         </div>
       </div>
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination  text-center">
+            {% if paginator.prevUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">上一页</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">下一页</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+        
+      </footer>
     </section>
   </div>
   

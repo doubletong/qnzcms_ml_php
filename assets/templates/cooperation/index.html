@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    {{category.title}}
  {% endif %}
 
 {% endblock %}
@@ -21,34 +21,43 @@
   <div class="page page-cooperation">
     <section class="s1 container">
       <div class="title-section">
-        <h2 class="text-center">国际合作</h2>
+        <h2 class="text-center">{{category.title}}</h2>
       </div>
       <div class="articlelist"> 
+        {% for row in articles %}
         <div class="item">
           <div class="row align-items-center">
-            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
-            <div class="col-md"><a href="coo_detail.html">国际合作基因—MIT麦戈文脑研究所建设发展历程</a></div>
+            <div class="col-md-auto"><a class="pic" href="/cooperation/detail-{{row.id}}">
+              <img src="/img.php?src={{row.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit" alt=""></a></div>
+            <div class="col-md"><a href="/cooperation/detail-{{row.id}}">{{row.title}}</a></div>
           </div>
         </div>
-        <div class="item">
-          <div class="row align-items-center">
-            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
-            <div class="col-md"><a href="coo_detail.html">积极吸引国际创新资源汇聚深圳：与Broad研究所签署合作备忘录，双方将在脑科学等领域建立深入合作</a></div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="row align-items-center">
-            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
-            <div class="col-md"><a href="coo_detail.html">国际合作基因—MIT麦戈文脑研究所建设发展历程</a></div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="row align-items-center">
-            <div class="col-md-auto"><a class="pic" href="coo_detail.html"><img src="/assets/img/temp/coo_01.jpg" alt=""></a></div>
-            <div class="col-md"><a href="coo_detail.html">国际合作基因—MIT麦戈文脑研究所建设发展历程</a></div>
-          </div>
-        </div>
+        {% endfor %}
+        
       </div>
+
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination  text-center">
+            {% if paginator.prevUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">上一页</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">下一页</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+        
+      </footer>
     </section>
   </div>
 

@@ -3,9 +3,21 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
-use Models\Page;
 use Models\Metadata;
 use Models\Advertisement;
+use Models\News;
+use JasonGrimes\Paginator;
+
+
+$urlPattern = "/future/science?page=(:num)";
+$itemsPerPage = 12;  // 每页显示数
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
+ //文章表实例化
+$newsQuery = new News;
+ //搜索条件判断
+$query = $newsQuery->with(['category' => function ($query) {
+    $query->select('id', 'title');
+}])->where('active',1)->where('category_id',2)->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
 
 
 //twig 模板设置
@@ -24,7 +36,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($commonData['menus_top']);
+        $home_data = loadDate($commonData['menus_top'],$query,$itemsPerPage,$currentPage,$urlPattern);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -37,21 +49,15 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($commonData['menus_top']);
+    $result = loadDate($commonData['menus_top'],$query,$itemsPerPage,$currentPage,$urlPattern);
 
     //echo $metadata;
 }
 
 //load data
-function loadDate($menus){
+function loadDate($menus,$query,$itemsPerPage,$currentPage,$urlPattern){
 
-    $alias = 'orientation';  
-
-    $data = Page::where('alias',$alias)->where('active',1)->first();
-    if(isset($data)){
-        $data->view_count = $data->view_count + 1;
-        $data->save();
-    }
+    $metaKey = "/future/science";
 
     $subnavs = $menus->where('url','/future')->first()->children;
   
@@ -60,10 +66,18 @@ function loadDate($menus){
     ->where('advertising_spaces.code','=','A010')->first();
     
 
+    $totalItems = $query->count();  //总记录数      
+    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+    $paginator->setMaxPagesToShow(6);
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
+    $articles = $query->orderBy('importance', 'DESC')->orderBy('pubdate', 'DESC')
+                ->skip(($currentPage-1)*$itemsPerPage)
+                ->take($itemsPerPage)
+                ->get();
 
-    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();
+
+    return  ['subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel,'paginator' => $paginator,'articles' => $articles];
 }
 
 

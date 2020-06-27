@@ -6,6 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\Page;
 use Models\Metadata;
 use Models\Advertisement;
+use Models\Team;
 
 
 //twig 模板设置
@@ -45,13 +46,8 @@ if($site_info['enableCaching']=="1"){
 //load data
 function loadDate($menus){
 
-    $alias = 'institutions';  
-
-    $data = Page::where('alias',$alias)->where('active',1)->first();
-    if(isset($data)){
-        $data->view_count = $data->view_count + 1;
-        $data->save();
-    }
+    $metakey = '/about/leadership';  
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();    
 
     $subnavs = $menus->where('url','/about')->first()->children;
   
@@ -60,10 +56,10 @@ function loadDate($menus){
         ->where('advertisements.active',1)
         ->where('advertising_spaces.code','=','A003')->first();
 
+    $teams = Team::where('active',1)->where('category_id',4)->orderby('importance','DESC')->get();
+    
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
-
-    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
+    return  ['teams' => $teams,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
 
 

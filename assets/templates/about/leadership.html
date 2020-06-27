@@ -18,120 +18,25 @@
   {{ include('shared/_subMenus.html') }}
 
   <div class="page-leadership">
-    <div class="item">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-auto">
-            <div class="pic"><img src="/assets/img/leadership/wangliping.jpg" alt="王立平"></div>
-          </div>
-          <div class="col-md">
-            <div class="intro">
-              <h3 class="title">王立平 <small>院长 </small></h3>
-              <div class="box">
-                <h4>个人简介</h4>
-                <p>中国科学院深圳先进技术研究院脑认知与脑疾病研究所所长、广东省脑连接图谱重点实验室主任、深圳神经精神调控重点实验室主任，博士生导师。国家基金委杰出青年基金（2014）获得者、教育部长江学者特聘教授（2017）、万人计划科技创新领军人才（2016）、科技部中青年科技创新领军人才（2014）、中科院百人计划（2010）入选者。担任中国神经科学学会中国认知科学学会理事，中国神经科学学会神经科学技术研究分会主任委员。</p>
-              </div>
-              <div class="box">
-                <h4>主要研究方向</h4>
-                <p>精神疾病病理生理机制的研究，着重于本能恐惧情绪神经环路生理机制的跨物种解析，以及精神疾病发生的神经环路病理机制和干预策略。已经发表SCI论文53篇（其中第一作者/通讯作者Nature及其子刊论文7篇），被他人引用2500余次，单篇最高被引用超过840次。公开国家发明专利60余件，其中授权近40件。承担的科研项目主要包括基金委杰出青年基金项目、科学院脑科学战略先导专项、国际大科学合作等21项。曾担任中美科学前沿论坛中方组委（2011）、共同主席（2012）、中德科学前沿论坛中方主席（2014）、组委（2015）。</p>
+    {% for row in teams %}
+      <div class="item">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-auto">
+              <div class="pic"><img src="/img.php?src={{row.photo}}&amp;w=400&amp;h=600&amp;crop-to-fit" alt="{{row.name}}"></div>
+            </div>
+            <div class="col-md">
+              <div class="intro">
+                <h3 class="title">{{row.name}} <small>{{row.post}} </small></h3>
+                {{row.content|raw}}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-auto">
-            <div class="pic"><img src="/assets/img/leadership/zhouhuihui.jpg" alt="周晖晖"></div>
-          </div>
-          <div class="col-md">
-            <div class="intro">
-              <h3 class="title">周晖晖 <small>副院长 </small></h3>
-              <div class="box">
-                <h4>个人简介</h4>
-                <p>中国科学院深圳先进技术研究院脑认知与脑疾病研究所副所长、脑智能研究中心主任，博士生导师。国家中科院百人计划（2015）入选者。担任中国认知科学学会认知计算与人工智能工作委员会委员。</p>
-              </div>
-              <div class="box">
-                <h4>主要研究方向</h4>
-                <p>非人灵长类视觉认知、认知障碍、神经网络模型与类脑计算等。以通讯/共同通讯作者在国际顶级期刊Nature, Neuron (IF 14.3) 发表论文3篇，论文总他引900余次，成果被Neuron、F1000等推荐多次。主持国家科技部、自然科学基金委、中科院等国家和省部级项目7项，作为核心骨干参与4项。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-auto">
-            <div class="pic"><img src="/assets/img/leadership/chenyu.jpg" alt="陈宇"></div>
-          </div>
-          <div class="col-md">
-            <div class="intro">
-              <h3 class="title">陈宇 <small>院长助理 </small></h3>
-              <div class="box">
-                <h4>个人简介</h4>
-                <p>中国科学院深圳先进技术研究院研究员，脑疾病中心主任。申报人专注于神经发育和可塑性的分子机理，以及阿尔茨海默症等神经退行性疾病的病理生理学等方面的研究。他发现了多种细胞表面受体酪氨酸激酶（RTK）在树突和突触发育过程中的关键作用，提示了神经信号传递的新分子机制及其病变条件下的异常调控方式；他也通过首个针对中国阿尔茨海默症（AD）患者的全基因组测序研究揭示了新的风险基因和信号网络，为疾病的诊断和治疗提供了重要线索。</p>
-              </div>
-              <div class="box">
-                <h4>主要研究方向</h4>
-                <p>他在Nature Neuroscience、PNAS、Journal of Cell Biology、Pharmacology &amp; Therapeutics等优秀学术期刊上发表 19篇论文，并申请了1项国际专利。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-auto">
-            <div class="pic"><img src="/assets/img/leadership/tujie.jpg" alt="屠洁"></div>
-          </div>
-          <div class="col-md">
-            <div class="intro">
-              <h3 class="title">屠洁 <small>院长助理</small></h3>
-              <div class="box">
-                <h4>个人简介</h4>
-                <p>中国科学院深圳先进技术研究院脑认知与脑疾病研究所所所长助理，博士生导师，深圳市海外高层次人才(B类)，深圳市地方级领军人才。加入先进院后，致力于：脑疾病的神经环路和细胞机制；胶质细胞对受损神经环路的修复和调控机制等方向研究。</p>
-              </div>
-              <div class="box">
-                <h4>最主要贡献</h4>
-                <p>作为团队核心成员，搭建了国内最为完善的高时空精准细胞调控技术平台，并将该技术体系广泛地用于各类脑疾病动物模型干预的应用基础研究。这一系列的工作分别获得了广东省自然科学奖一等奖（2018）、深圳市自然科学奖一等奖（2017）和二等奖（2013）。现主持国家自然科学基金委面上项目、国际（地区）合作项目（NSFC-RGC）、中科院国际合作局重点项目等；以课题核心骨干身份参与科技部973课题、科技部先导专项（B类）、广东省重点领域研发计划项目等。已发表SCI期刊论文12篇，他引311次，单篇他引最高达184次；其中第一（含共同一作）/通讯作者论文8篇；研究成果发表于包括Nature、Cell子刊Nature Communications，Cell Reports等。</p>
-              </div>
-              <div class="box">
-                <h4>获得发明专利</h4>
-                <p>申请人已获授权国家发明专利16项，申请专利11项。现任国际期刊Frontiers in Molecular Neuroscience的Review Editor。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-auto">
-            <div class="pic"><img src="/assets/img/leadership/wangfeng.jpg" alt="王枫"></div>
-          </div>
-          <div class="col-md">
-            <div class="intro">
-              <h3 class="title">王枫 <small>院长助理</small></h3>
-              <div class="box">
-                <h4>个人简介</h4>
-                <p>中国科学院深圳先进技术研究院脑认知与脑疾病研究所副研究员，2006年本科毕业于第四军医大学临床医学专业，2012年于第四军医大学获博士学位，2013年赴加拿大渥太华大学精神健康研究所开展博士后研究。</p>
-              </div>
-              <div class="box">
-                <h4>主要研究方向</h4>
-                <p>内源性大麻素系统对负性情绪的神经环路调控机制。主持1项国防科技青年创新培育课题、主持完成1项国家自然科学基金青年项目，发表SCI收录论文24篇，其中第一/通讯作者10篇（JCR一区5篇）。作为申报材料撰写及答辩工作主要负责人，曾帮助团队先后获得教育部创新团队（2011）、 “973”项目（2013）、国家自然科学基金重大国际合作项目（2014）、国家科技进步一等奖（2011）、陕西省科学技术进步一等奖（2016）等。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
+    
+  
   </div>
 
 

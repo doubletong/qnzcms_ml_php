@@ -19,15 +19,9 @@ $newsQuery = new News;
  //搜索条件判断
 $query = $newsQuery->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
+}])->where('active',1)->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
 
-if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
-    $cid = htmlspecialchars($_REQUEST["cid"],ENT_QUOTES);
-    $querycateogries = NewsCategory::where('parent','=',$cid)->orwhere('id','=',$cid)->select('id')->get();
-    $query = $query->whereIn('category_id',$querycateogries);         
-      
-    $urlPattern = $urlPattern . "&cid=$cid";
-}
+
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -68,6 +62,28 @@ if($site_info['enableCaching']=="1"){
 //load data
 function loadDate($menus, $metaKey,$query,$itemsPerPage,$currentPage,$urlPattern,$cid){
 
+    $categories = NewsCategory::where('active',1)->where('parent',1)->orderBy('importance', 'DESC')->get();
+    
+    if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
+        $cid = htmlspecialchars($_REQUEST["cid"],ENT_QUOTES);
+    
+       // $querycateogries = NewsCategory::where('parent','=',$cid)->orwhere('id','=',$cid)->select('id')->get();    
+       // $query = $query->whereIn('category_id',$querycateogries);         
+          
+       $query = $query->where('category_id',$cid);
+      
+    }else{
+        $c = $categories->first();
+        
+        if(!empty($c)){
+            $cid = $c->id;
+            $query = $query->where('category_id',$cid);
+        }
+
+    }
+    
+    $urlPattern = $urlPattern . "&cid=$cid";
+    
     $subnavs = $menus->where('url','/news')->first()->children;
 
 
@@ -80,7 +96,7 @@ function loadDate($menus, $metaKey,$query,$itemsPerPage,$currentPage,$urlPattern
                 ->take($itemsPerPage)
                 ->get();
 
-    $categories = NewsCategory::where('active',1)->orderBy('importance', 'DESC')->get();
+
 
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();      
 

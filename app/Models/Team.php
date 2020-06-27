@@ -16,7 +16,7 @@ class Team extends Model
    * @var array
    */
    protected $fillable = [
-       'name','post','content', 'photo', 'fullphoto','category_id','importance','active','added_by'
+       'name','first_letter','post','content', 'photo', 'fullphoto','category_id','importance','active','added_by'
    ];
 
     public function category()

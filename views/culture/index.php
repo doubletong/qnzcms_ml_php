@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\Page;
 use Models\Metadata;
 use Models\Advertisement;
-
+use Models\News;
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -59,12 +59,14 @@ function loadDate($menus){
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
     ->where('advertisements.active',1)
     ->where('advertising_spaces.code','=','A011')->first();
-    
+
+
+    $articles = News::where('active',1)->where('category_id',8)->orderby('pubdate','DESC')->get();
 
 
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
 
-    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
+    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel,'articles'=>$articles];
 }
 
 

@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    科普
  {% endif %}
 
 {% endblock %}
@@ -19,39 +19,44 @@
 
   <div class="page page-science container">     
     <div class="articlelist">
+      {% for row in articles %}
       <div class="box">
         <div class="row align-items-center">
-          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
-          <div class="col-md"><a class="title" href="science_detail.html">
-              <h3>美味，如何让我们快速获得满足感？</h3>
-              <p>作者：李栩琳 杨青宁</p></a></div>
+          <div class="col-md-auto">
+            <a class="item wow fadeInUp" href="/future/science/detail-{{row.id}}">                           
+            <img class="thumb" src="/img.php?src={{row.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit"></a>
+          </div>
+          <div class="col-md">
+            <a class="title wow fadeInUp" href="/future/science/detail-{{row.id}}">
+              <h3>{{row.title}}</h3>
+              <p>作者：{{row.author}}</p></a></div>
         </div>
       </div>
-      <div class="box">
-        <div class="row align-items-center">
-          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
-          <div class="col-md"><a class="title" href="science_detail.html">
-              <h3>美味，如何让我们快速获得满足感？</h3>
-              <p>作者：李栩琳 杨青宁</p></a></div>
-        </div>
-      </div>
-      <div class="box">
-        <div class="row align-items-center">
-          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
-          <div class="col-md"><a class="title" href="science_detail.html">
-              <h3>美味，如何让我们快速获得满足感？</h3>
-              <p>作者：李栩琳 杨青宁</p></a></div>
-        </div>
-      </div>
-      <div class="box">
-        <div class="row align-items-center">
-          <div class="col-md-auto">                   <a class="item wow fadeInUp" href="science_detail.html">                           <img class="thumb" src="/assets/img/temp/se_01.jpg"></a></div>
-          <div class="col-md"><a class="title" href="science_detail.html">
-              <h3>美味，如何让我们快速获得满足感？</h3>
-              <p>作者：李栩琳 杨青宁</p></a></div>
-        </div>
-      </div>
+      {% endfor %}
+  
     </div>
+    <footer class="news-footer wow fadeInUp">
+      {% if paginator.numPages > 1 %}
+      <ul class="pagination  text-center">
+          {% if paginator.prevUrl %}
+              <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">上一页</a></li>
+          {% endif %}
+
+          {% for page in paginator.pages %}
+              {% if page.url %}
+                  <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+              {% else %}
+                  <li class="page-item disabled"><span>{{ page.num }}</span></li>
+              {% endif %}
+          {% endfor %}
+
+          {% if paginator.nextUrl %}
+              <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">下一页</a></li>
+          {% endif %}
+      </ul>
+  {% endif %}
+      
+    </footer>
   </div>
   
 {% endblock %}

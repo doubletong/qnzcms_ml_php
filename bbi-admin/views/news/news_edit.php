@@ -156,7 +156,7 @@ function recursive($items, $level, $parent){
                                         <div class="card">
                                         <div class="card-header">缩略图</div>
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=380X250像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=380X250像素" : $data['thumbnail']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=720X480像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=720X480像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">

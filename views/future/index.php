@@ -3,9 +3,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/common.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/loadCommonData.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
-use Models\Page;
+
 use Models\Metadata;
 use Models\Advertisement;
+use Models\Video;
+use JasonGrimes\Paginator;
+
+
+$urlPattern = "/future?page=(:num)";
+$itemsPerPage = 12;  // 每页显示数
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
+ //文章表实例化
+$newsQuery = new Video;
+ //搜索条件判断
+$query = $newsQuery->where('active',1)->select('id','title', 'poster','file_url','category_id');
 
 
 //twig 模板设置
@@ -24,7 +35,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($commonData['menus_top']);
+        $home_data = loadDate($commonData['menus_top'],$query,$itemsPerPage,$currentPage,$urlPattern);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -37,34 +48,35 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($commonData['menus_top']);
+    $result = loadDate($commonData['menus_top'],$query,$itemsPerPage,$currentPage,$urlPattern);
 
     //echo $metadata;
 }
 
 //load data
-function loadDate($menus){
+function loadDate($menus,$query,$itemsPerPage,$currentPage,$urlPattern){
 
-    $alias = 'orientation';  
-
-    $data = Page::where('alias',$alias)->where('active',1)->first();
-    if(isset($data)){
-        $data->view_count = $data->view_count + 1;
-        $data->save();
-    }
+    $metaKey = "/future";
 
     $subnavs = $menus->where('url','/future')->first()->children;
   
-
-
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
     ->where('advertisements.active',1)
     ->where('advertising_spaces.code','=','A010')->first();
+
+    $totalItems = $query->count();  //总记录数      
+    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+    $paginator->setMaxPagesToShow(6);
+
+    $videos = $query->orderBy('importance', 'DESC')->orderBy('id', 'DESC')
+                ->skip(($currentPage-1)*$itemsPerPage)
+                ->take($itemsPerPage)
+                ->get();
     
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metaKey)->first();
 
-    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
+    return  ['videos' => $videos,'paginator' => $paginator,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
 
 
