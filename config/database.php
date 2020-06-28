@@ -11,7 +11,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     "driver" => "mysql",
     "host" =>"localhost",
     "port" => 3306,
-    "database" => "qnzcms_php",
+    "database" => "qnzcms_ml",
     "username" => "root",
     "password" => "root",
     'charset'   => 'utf8',
