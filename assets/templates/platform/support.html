@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    {{resources['科研支撑']}}
  {% endif %}
 
 {% endblock %}
@@ -16,22 +16,16 @@
 {% block content %}
 
 {{ include('shared/_subMenus.html') }}
-  <!-- {{page.content|raw }}   -->
+ 
   <div class="page page-support">
     <div class="container">
       <div class="title-section wow fadeInUp">
-        <h2 class="text-center">科研支撑</h2>
+        <h2 class="text-center">{{resources['科研支撑']}}</h2>
       </div>
       <div class="row">
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 科研管理与支撑处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
-        <div class="col-md-6 col-lg-4"><a class="item" href="support-detail.html"> 公共事务与财务资产处</a></div>
+        {% for row in articles %}
+        <div class="col-md-6 col-lg-4"><a class="item" href="{{row.lang=='zh-CN'?'': '/'~row.lang}}/platform/support/detail-{{row.id}}"> {{row.title}}</a></div>
+        {% endfor %}        
       </div>
     </div>
   </div>

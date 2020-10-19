@@ -23,14 +23,22 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 return;
             }
             
-
+           
             $frist = mb_substr($_POST['name'], 0, 1 );
           
             $item = new Team();
             $item->name = $_POST['name'];           
             $item->first_letter = $py->getInitials($frist);
             $item->post = $_POST['post'];
+            $item->lang = $_POST['lang'];           
+            $item->interests = $_POST['interests'];           
+            $item->education = $_POST['education'];           
+            $item->school = $_POST['school'];           
+            $item->homepage = $_POST['homepage'];           
+            $item->office_phone = $_POST['office_phone'];           
+            $item->email = $_POST['email'];           
             $item->fullphoto = $_POST['fullphoto'];
+            $item->introduction = $_POST['introduction'];
             $item->content = stripslashes($_POST['content']);
             $item->category_id = stripslashes($_POST['category_id']);
             $item->photo = $_POST['photo'];
@@ -62,7 +70,15 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->name = $_POST['name'];
             $item->first_letter = $py->getInitials($frist);
             $item->post = $_POST['post'];
+            $item->lang = $_POST['lang'];
+            $item->interests = $_POST['interests'];
+            $item->education = $_POST['education'];
+            $item->school = $_POST['school'];
+            $item->homepage = $_POST['homepage'];
+            $item->office_phone = $_POST['office_phone'];
+            $item->email = $_POST['email'];
             $item->fullphoto = $_POST['fullphoto'];
+            $item->introduction = $_POST['introduction'];
             $item->content = stripslashes($_POST['content']);
             $item->category_id = stripslashes($_POST['category_id']);
             $item->photo = $_POST['photo'];

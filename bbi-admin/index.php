@@ -1,9 +1,7 @@
 <?php
 require_once('includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/environment.php');
-require_once('data/link.php');
-require_once('data/topics.php');
-require_once('data/chronicle.php');
+
 
 //实例化操作系统与浏览器信息
 $obj = new QNZ\Utils\OS_BROWSER();
@@ -16,19 +14,26 @@ use Models\Product;
 use Models\Team;
 use Models\News;
 use Models\ServiceItem;
+use Models\Link;
+use Models\Event;
+use Models\Paper;
+use Models\Research;
+use Models\Lab;
 
 $adsCount = Advertisement::count();
 $pageCount = Page::count();
 $exhCount = Exhibition::count();
 $jobCount = Job::count();
 $productCount = Product::count();
-$teamtCount = Team::count();
+$teamCount = Team::count();
 $newsCount = News::count();
 $serviceCount = ServiceItem::count();
+$linkCount = Link::count();
+$eventCount = Event::count();
+$paperCount = Paper::count();
+$labCount = Lab::count();
+$researchCount = Research::count();
 
-$linkClass = new TZGCMS\Admin\LinkRepository();
-$chronicleClass = new TZGCMS\Admin\Chronicle();
-$topicsClass = new Topics();
 
 ?>
 <!DOCTYPE html>
@@ -58,8 +63,7 @@ $topicsClass = new Topics();
                             <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Data</li>
+                              
                             </ol>
                             </nav>
                         </div>
@@ -105,16 +109,7 @@ $topicsClass = new Topics();
                                 <p>服务项目</p><i class="iconfont icon-file-copy"></i>                                   
                             </a>
                         </div>
-                        <div class="col">
-                          
-                            <a href="/bbi-admin/views/chronicles/index.php"  class="box">
-                                <h3 class="title">                                       
-                                    <?php echo $chronicleClass->get_chronicles_count(null,null);?> <small>pcs</small>
-                                </h3>
-                                <p>发展历程</p><i class="iconfont icon-file-copy"></i>                            
-                            </a>
-                            
-                        </div>
+                  
 
                         <div class="col">
                           
@@ -126,6 +121,15 @@ $topicsClass = new Topics();
                             </a>
                         
                         </div>
+
+                        <div class="col">
+                            <a href="/bbi-admin/views/events/index.php" class="box b3">
+                            <h3 class="title"><?php echo $eventCount;?> <small>pcs</small></h3>
+                            <p>会议预告</p><i class="iconfont icon-windows"></i>
+                            </a>
+                        </div>
+
+<!--
                        <div class="col">
                             <a href="/bbi-admin/views/exhitions/index.php" class="box b3">
                                 <h3 class="title">                                       
@@ -134,30 +138,43 @@ $topicsClass = new Topics();
                                 <p>展会信息</p><i class="iconfont icon-deploymentunit"></i>                                
                             </a>                            
                         </div> 
-
+-->
                        
+                        <div class="col">
+                            <a href="/bbi-admin/views/teams/index.php" class="box b1">
+                                <h3 class="title">                                       
+                                    <?php echo $teamCount; ?> <small>pcs</small>
+                                </h3>
+                                <p>团队人员</p><i class="iconfont icon-team"></i>                                
+                            </a>                            
+                        </div> 
 
-                        <!-- <div class="col">
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <div class="icon text-center"><i class="iconfont icon-team"></i></div>
-                                    </div>
-                                    <div class="col">
-                                        <small>团队人员</small>
-                                        <div class="num"><?php echo $teamCount;?> <span>pcs</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  -->
+                     
 
                         <div class="w-100"></div>
                       
-                      
+                        <div class="col">
+                            <a href="/bbi-admin/views/pages/index.php" class="box b2">
+                            <h3 class="title"><?php echo $paperCount;?> <small>个</small></h3>
+                            <p>论文</p><i class="iconfont icon-file-text"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                        <a href="/bbi-admin/views/products/index.php" class="box b3">
+                            <h3 class="title"><?php echo $labCount;?> <small>个</small></h3>
+                            <p>实验室</p><i class="iconfont icon-experiment"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="/bbi-admin/views/carousels/index.php" class="box b4">
+                            <h3 class="title"><?php echo $researchCount;?> <small>个</small></h3>
+                            <p>研究中心</p><i class="iconfont icon-bank"></i>
+                            </a>
+                        </div>
                         <div class="col-3">
                             <a href="/bbi-admin/views/links/index.php" class="box b3">
                                 <h3 class="title">                                       
-                                    <?php echo $linkClass->link_count(); ?> <small>pcs</small>
+                                    <?php echo $linkCount; ?> <small>pcs</small>
                                 </h3>
                                 <p>链接</p><i class="iconfont icon-link"></i>                                
                             </a>   

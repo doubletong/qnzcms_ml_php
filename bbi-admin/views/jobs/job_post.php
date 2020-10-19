@@ -21,7 +21,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
     switch ($_POST['action']) {
         case "create": 
-            if (!isset($_POST['title'], $_POST['responsibilities'])) {   
+            if (!isset($_POST['title'], $_POST['requirement'])) {   
 
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
@@ -31,14 +31,18 @@ if( isset($_POST['action']) && isset($_POST['id'])){
           
             $item = new Job();
             $item->title = $_POST['title'];
-            $item->city = $_POST['city'];
-            $item->department = $_POST['department'];
-            $item->responsibilities = stripslashes($_POST['responsibilities']);
+            $item->address = $_POST['address'];
+            $item->post = $_POST['post'];
+            $item->homepage = stripslashes($_POST['homepage']);
             $item->requirement = stripslashes($_POST['requirement']);
+            $item->research = $_POST['research'];
+            $item->education = $_POST['education'];
+            $item->other = $_POST['other'];
             $item->population = $_POST['population'];
-            $item->summary = $_POST['summary'];
-            $item->author = $_POST['author'];
-            $item->pubdate = $_POST['pubdate'];
+            $item->application = $_POST['application'];
+            $item->lang = $_POST['lang'];
+            $item->intro = stripslashes($_POST['intro']);
+            $item->team_id = $_POST['team_id'];
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             $item->added_by = $username;
@@ -54,7 +58,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['title'], $_POST['responsibilities'])) {   
+            if (!isset($_POST['title'], $_POST['requirement'])) {   
 
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
@@ -64,14 +68,18 @@ if( isset($_POST['action']) && isset($_POST['id'])){
         
             $item = Job::find($id);
             $item->title = $_POST['title'];
-            $item->city = $_POST['city'];
-            $item->department = $_POST['department'];
-            $item->responsibilities = stripslashes($_POST['responsibilities']);
+            $item->address = $_POST['address'];
+            $item->post = $_POST['post'];
+            $item->homepage = stripslashes($_POST['homepage']);
             $item->requirement = stripslashes($_POST['requirement']);
+            $item->research = $_POST['research'];
+            $item->education = $_POST['education'];
+            $item->other = $_POST['other'];
             $item->population = $_POST['population'];
-            $item->summary = $_POST['summary'];
-            $item->author = $_POST['author'];
-            $item->pubdate = $_POST['pubdate'];
+            $item->application = $_POST['application'];
+            $item->lang = $_POST['lang'];
+            $item->intro = stripslashes($_POST['intro']);
+            $item->team_id = $_POST['team_id'];
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             

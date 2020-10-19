@@ -23,6 +23,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
           
             $item = new Photo();
             $item->title = $_POST['title'];
+            $item->lang = $_POST['lang'];
             $item->description = $_POST['description'];
             $item->image_url = $_POST['image_url'];         
             $item->album_id = stripslashes($_POST['album_id']);
@@ -52,6 +53,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
         
             $item = Photo::find($id);
             $item->title = $_POST['title'];
+            $item->lang = $_POST['lang'];
             $item->description = $_POST['description'];
             $item->image_url = $_POST['image_url'];         
             $item->album_id = stripslashes($_POST['album_id']);

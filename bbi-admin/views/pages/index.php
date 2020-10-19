@@ -3,13 +3,13 @@ require_once('../../includes/common.php');
 
 use JasonGrimes\Paginator;
 use Models\Page;
-
+use Models\Language;
 
 $urlPattern = "index.php?page=(:num)";
  //文章表实例化
 $pageClass = new Page;
  //搜索条件判断
-$query = $pageClass->select('id','title','alias','view_count','importance','active','created_at');
+$query = $pageClass->select('id','title','alias','lang','view_count','importance','active','created_at');
 
 $keyword = null;
 $orderby = null;
@@ -36,6 +36,15 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
+if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&lang=$lang";
+}
+
+
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
 }else{
@@ -55,6 +64,7 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
             ->get();
 
 
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 ?>
 <!DOCTYPE html>
@@ -107,10 +117,21 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                             <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto">
-                                    <label class="sr-only" for="keyword">搜索</label>
-                                    <input type="text" name="keyword" class="form-control" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
+                                        <label class="sr-only" for="keyword">搜索</label>
+                                        <input type="text" name="keyword" class="form-control" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
                                     </div>
+                                    <div class="col-auto">
+                                            <label class="sr-only" for="lang">语言</label>
+                                            <select class="form-control" id="lang" name="lang">
+                                                <option value="">--请选择语言--</option>
+                                                <?php foreach($langs as $item ) {
+                                                
+                                                    ?>                                  
+                                                    <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
 
+                                                <?php }  ?>
+                                            </select>
+                                        </div>
                                     <div class="col-auto">
                                     <button type="submit" class="btn btn-primary">搜索</button>
                                     </div>
@@ -159,6 +180,7 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                         <?php } ?>
                     
                     </th>
+                    <th>语言</th>
                     <th>
                         <?php if($orderby=='created_at'){ ?>
                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
@@ -166,6 +188,7 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=asc">创建日期<i class="iconfont icon-orderby"></i></a>
                         <?php } ?>
                     </th>
+                 
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -182,7 +205,9 @@ $pages = $query->skip(($currentPage-1)*$itemsPerPage)
                     echo "<td>".$row['importance']."</td>";
                     echo "<td>".$row['view_count']."</td>";
                     ?>
+                     <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                     <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
+                   
                     <td><a href='page_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>

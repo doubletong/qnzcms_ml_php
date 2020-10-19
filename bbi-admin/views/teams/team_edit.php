@@ -1,6 +1,8 @@
 <?php
 use Models\TeamCategory;
 use Models\Team;
+use Models\Language;
+
 require_once('../../includes/common.php');
 
 $pagetitle = isset($_GET['id'])?"编辑成员":"创建成员";
@@ -15,18 +17,19 @@ if (isset($_GET['id'])) {
 
 
 $categories = TeamCategory::orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 $level = 0;
 function recursive($items, $level, $parent){
     $level++;
     foreach ($items as $row) {
+        $titles = json_decode($row['title'],true);
         $select = (isset($parent) && $row["id"]==$parent)?"selected":"";
         echo '<option value="'.$row["id"].'"  '.$select.' >';
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $row["title"].'</option>';                   
+        echo $titles["zh-CN"].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.
@@ -91,6 +94,20 @@ function recursive($items, $level, $parent){
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             <div class="row">
                                 <div class="col-md">
+
+                            <div class="form-group">
+                                <label for="parent_id">语言</label> 
+                                <select class="form-control" id="lang" name="lang">
+                                    <option value="">--请选择语言--</option>
+                                    <?php foreach($langs as $item ) {
+                                     
+                                        ?>                                  
+                                        <option value="<?php echo $item->code;?>" <?php echo (isset($data['lang']) && $data["lang"]==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                    <?php }  ?>                      
+                                </select>                              
+                            </div>    
+
                                 <div class="form-group">
                                 <label for="name">姓名</label>
                                 <input type="text" class="form-control" id="name" name="name" value="<?php echo isset($data['name'])?$data['name']:''; ?>">
@@ -98,8 +115,8 @@ function recursive($items, $level, $parent){
 
                             <div class="form-group">
                                 <label for="parent_id">分类</label> 
-                                <select class="form-control" id="category_id" name="category_id" placeholder="" >
-                                    <option value="">--请选择父类--</option>
+                                <select class="form-control" id="category_id" name="category_id" >
+                                    <option value="">--请选择分类--</option>
                                     <?php recursive($categories, $level, $data['category_id']); ?>                                                    
                                 </select>                              
                             </div>    
@@ -108,8 +125,37 @@ function recursive($items, $level, $parent){
                                 <label for="post">职位</label>
                                 <input class="form-control" id="post" name="post" value="<?php echo isset($data['post'])?$data['post']:''; ?>" type="text" />
                             </div>
+                            <div class="form-group">
+                                <label for="name">学历</label>
+                                <input type="text" class="form-control" id="education" name="education" value="<?php echo isset($data['education'])?$data['education']:''; ?>">
+                            </div>   
+
+                            <div class="form-group">
+                                <label for="name">学校</label>
+                                <input type="text" class="form-control" id="school" name="school" value="<?php echo isset($data['school'])?$data['school']:''; ?>">
+                            </div>   
+                            <div class="form-group">
+                                <label for="name">办公室电话</label>
+                                <input type="text" class="form-control" id="office_phone" name="office_phone" value="<?php echo isset($data['office_phone'])?$data['office_phone']:''; ?>">
+                            </div>   
+                            <div class="form-group">
+                                <label for="name">邮箱</label>
+                                <input type="text" class="form-control" id="email" name="email" value="<?php echo isset($data['email'])?$data['email']:''; ?>">
+                            </div>   
+                            <div class="form-group">
+                                <label for="name">个人主页</label>
+                                <input type="text" class="form-control" id="homepage" name="homepage" value="<?php echo isset($data['homepage'])?$data['homepage']:''; ?>">
+                            </div>   
+
+                            <div class="form-group">
+                                <label for="name">主要研究方向</label>                            
+                                <textarea class="form-control" id="interests" name="interests" placeholder="" rows="3"><?php echo isset($data['interests'])?stripslashes($data['interests']):''; ?></textarea>
+                            </div> 
                             
-                           
+                            <div class="form-group">
+                                <label for="name">简介</label>                            
+                                <textarea class="form-control" id="introduction" name="introduction" placeholder="" rows="5"><?php echo isset($data['introduction'])?stripslashes($data['introduction']):''; ?></textarea>
+                            </div> 
 
                             <div class="form-group">
                                 <label for="intro">内容</label>
@@ -143,11 +189,11 @@ function recursive($items, $level, $parent){
                                         <div style="width:300px; text-align:center;" class="mb-3">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <img ID="imgPhoto" data-default-src="holder.js/250x250?text=350X350像素" src="<?php echo empty($data['photo']) ? "holder.js/250x250?text=350X350像素" : $data['photo']; ?>" class="img-fluid" />
+                                                    <img ID="imgPhoto" data-default-src="holder.js/250x250?text=图片一" src="<?php echo empty($data['photo']) ? "holder.js/250x250?text=图片一" : $data['photo']; ?>" class="img-fluid" />
 
                                                 </div>
                                                 <div class="card-footer">
-                                                    <button type="button" id="btnPhoto" class="btn btn-info"><i class="iconfont icon-image"></i> 缩略图...</button>
+                                                    <button type="button" id="btnPhoto" class="btn btn-info"><i class="iconfont icon-image"></i> 浏览...</button>
                                                     <?php if(!empty($data['photo'])){ ?>
                                                         <button type="button" id="btnPhotoDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
                                                     <?php } ?>
@@ -159,11 +205,11 @@ function recursive($items, $level, $parent){
                                         <div style="width:300px; text-align:center;" class="mb-3">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <img ID="imgFullPhoto" src="<?php echo empty($data['fullphoto']) ? "holder.js/250x200?text=569X457像素" : $data['fullphoto']; ?>" class="img-fluid" />
+                                                    <img ID="imgFullPhoto" data-default-src="holder.js/250x250?text=图片二" src="<?php echo empty($data['fullphoto']) ? "holder.js/250x200?text=图片二" : $data['fullphoto']; ?>" class="img-fluid" />
 
                                                 </div>
                                                 <div class="card-footer">
-                                                    <button type="button" id="btnFullPhoto" class="btn btn-info"><i class="iconfont icon-image"></i> 大图...</button>
+                                                    <button type="button" id="btnFullPhoto" class="btn btn-info"><i class="iconfont icon-image"></i> 浏览...</button>
                                                     <?php if(!empty($data['fullphoto'])){ ?>
                                                         <button type="button" id="btnFullPhotoDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
                                                     <?php } ?>
@@ -261,6 +307,24 @@ function recursive($items, $level, $parent){
                     post: {
                         maxlength: 100
                     },
+                    interests: {
+                        maxlength: 250
+                    },
+                    education: {
+                        maxlength: 100
+                    },
+                    email: {
+                        maxlength: 150
+                    },
+                    office_phone: {
+                        maxlength: 50
+                    },
+                    school: {
+                        maxlength: 100
+                    },
+                    homepage: {
+                        maxlength: 150
+                    },
                     importance: {
                         required: true,
                         digits:true
@@ -277,6 +341,24 @@ function recursive($items, $level, $parent){
                     },
                     post: {
                         maxlength: "不能超过100个字符"
+                    },
+                    interests: {
+                        maxlength:  "不能超过250个字符"
+                    },
+                    education: {
+                        maxlength:  "不能超过100个字符"
+                    },
+                    email: {
+                        maxlength: "不能超过150个字符"
+                    },
+                    office_phone: {
+                        maxlength: "不能超过50个字符"
+                    },
+                    school: {
+                        maxlength:  "不能超过100个字符"
+                    },
+                    homepage: {
+                        maxlength:  "不能超过150个字符"
                     },
                     importance: {
                         required: "请输入排序",

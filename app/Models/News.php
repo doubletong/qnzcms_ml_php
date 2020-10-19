@@ -16,7 +16,7 @@ class News extends Model
    * @var array
    */
    protected $fillable = [
-       'title','summary','content','thumbnail','image_url', 'importance','pubdate','author','view_count', 'recommend','active','added_by','category_id'
+       'title','summary','content','thumbnail','image_url','lang', 'importance','pubdate','author','author_ext','view_count', 'recommend','active','added_by','category_id'
    ];
 
     public function category()

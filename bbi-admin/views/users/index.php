@@ -176,6 +176,9 @@ $pages = $query->skip(($currentUser-1)*$itemsPerUser)
                     <td><a href='user_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                             <i class="iconfont icon-edit"></i>
                         </a>
+                        <a href='user_set_roles.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm' title="设置角色">
+                                <span class="iconfont icon-team"></span>
+                            </a>
                         <a href='user_updatepwd.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm' title="修改密码">
                                 <span class="iconfont icon-lock"></span>
                             </a>
@@ -227,8 +230,8 @@ $pages = $query->skip(($currentUser-1)*$itemsPerUser)
 <script>
     $(document).ready(function () {
         //当前菜单
-        $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');  
-        $(".mainmenu>li.users a").addClass("active");
+        $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');       
+        $(".mainmenu>li.security").addClass("nav-open").find("ul>li.users a").addClass("active");     
         //确认框默认语言
         bootbox.setDefaults({
             locale: "zh_CN"

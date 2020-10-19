@@ -13,9 +13,6 @@
     <filter>
         <whitelist>
             <directory>src/Carbon</directory>
-            <exclude>
-                <directory suffix=".php">src/Carbon/Doctrine</directory>
-            </exclude>
         </whitelist>
     </filter>
 
@@ -42,6 +39,9 @@
         <testsuite name="laravel">
             <directory>tests/Laravel</directory>
         </testsuite>
+        <testsuite name="doctrine">
+            <directory>tests/Doctrine</directory>
+        </testsuite>
         <testsuite name="factory">
             <directory>tests/Factory</directory>
         </testsuite>
@@ -53,6 +53,9 @@
         </testsuite>
         <testsuite name="cli">
             <directory>tests/Cli</directory>
+        </testsuite>
+        <testsuite name="phpstan">
+            <directory>tests/PHPStan</directory>
         </testsuite>
     </testsuites>
 </phpunit>

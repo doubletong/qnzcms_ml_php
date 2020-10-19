@@ -3,7 +3,7 @@
 require_once('../../includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
-
+use Models\Language;
 use Models\Page;
 use Models\Metadata;
 
@@ -18,6 +18,8 @@ if(isset($_GET['id'])){
 }
 $pageTitle = isset($_GET['id'])?"编辑页面":"创建页面";
 $action = isset($_GET['id'])?"update":"create";
+
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 ?>
 <!DOCTYPE html>
@@ -66,6 +68,19 @@ $action = isset($_GET['id'])?"update":"create";
                                 <div class="col">
                             <input id="id" type="hidden" id='id' name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
                             <input type="hidden" id="action" name="action" value="<?php echo $action; ?>" />
+                           
+                            <div class="form-group">
+                                <label for="parent_id">语言</label> 
+                                <select class="form-control" id="lang" name="lang">
+                                    <option value="">--请选择语言--</option>
+                                    <?php foreach($langs as $item ) {                                    
+                                        ?>                                  
+                                        <option value="<?php echo $item->code;?>" <?php echo (isset($data['lang']) && $data["lang"]==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                    <?php }  ?>
+                                </select>
+                            </div>    
+                           
                             <div class="form-group">
                                 <label for="title">标题</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
@@ -210,6 +225,9 @@ $action = isset($_GET['id'])?"update":"create";
             $("#editform").validate({
 
                 rules: {
+                    lang: {
+                        required: true                     
+                    },
                     title: {
                         required: true,
                         maxlength: 150
@@ -225,6 +243,9 @@ $action = isset($_GET['id'])?"update":"create";
                             data: {
                                 id: function () {
                                     return $("#id").val();
+                                },
+                                lang: function () {
+                                    return $("#lang").val();
                                 },
                                 alias: function () {
                                     return $("#alias").val();
@@ -249,6 +270,9 @@ $action = isset($_GET['id'])?"update":"create";
                     }
                 },
                 messages: {
+                    lang: {
+                        required:"请选择语言",          
+                    },
                     title: {
                         required: "请输入主标题",
                         maxlength: "不能超过150个字符"

@@ -19,11 +19,21 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 return;
             }
             
-                     
 
             $news = new Event();
             $news->title = $_POST['title'];
             $news->category_id = $_POST['category_id'];
+
+            $news->organizer = $_POST['organizer'];  
+            $news->organizer_en = $_POST['organizer_en'];
+            $news->issue = $_POST['issue'];
+            $news->meet_id = $_POST['meet_id'];
+            $news->link = $_POST['link'];
+            $news->pro_name = $_POST['pro_name'];
+            $news->pro_company = $_POST['pro_company'];
+            $news->pro_intro = $_POST['pro_intro'];
+            $news->footer_note = $_POST['footer_note'];   
+
             $news->content = stripslashes($_POST['content']);
             $news->summary = $_POST['summary'];
             $news->address = $_POST['address'];
@@ -45,7 +55,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
 
-                $module = ModuleType::NEWS();
+                $module = ModuleType::EVENT();
                 $url = $news->id;
                 metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
 
@@ -62,13 +72,22 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 return;
             }
 
-          
-            
-                     
+             
 
             $news = Event::find($id);
             $news->title = $_POST['title'];
             $news->category_id = $_POST['category_id'];
+
+            $news->organizer = $_POST['organizer'];  
+            $news->organizer_en = $_POST['organizer_en'];
+            $news->issue = $_POST['issue'];
+            $news->meet_id = $_POST['meet_id'];
+            $news->link = $_POST['link'];
+            $news->pro_name = $_POST['pro_name'];
+            $news->pro_company = $_POST['pro_company'];
+            $news->pro_intro = $_POST['pro_intro'];
+            $news->footer_note = $_POST['footer_note'];   
+
             $news->content = stripslashes($_POST['content']);
             $news->summary = $_POST['summary'];
             $news->address = $_POST['address'];
@@ -89,7 +108,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $result = $news->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
-                $module = ModuleType::NEWS();
+                $module = ModuleType::EVENT();
                 $url = $news->id;
                 metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
 

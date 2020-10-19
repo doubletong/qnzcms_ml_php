@@ -19,14 +19,14 @@ if( isset($_POST['action']) && isset($_POST['id'])){
                 return;
             }
             
-                     
-
             $news = new News();
+            $news->lang = $_POST['lang'];
             $news->title = $_POST['title'];
             $news->category_id = $_POST['category_id'];
             $news->content = stripslashes($_POST['content']);
             $news->summary = $_POST['summary'];
             $news->author = $_POST['author'];
+            $news->author_ext = isset($_POST['authorExt']) ? implode("|",$_POST['authorExt']):null;
             $news->pubdate = $_POST['pubdate'];
             $news->importance = $_POST['importance'];
             $news->thumbnail = $_POST['thumbnail'];
@@ -62,15 +62,14 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }
 
           
-            
-                     
-
             $news = News::find($id);
             $news->title = $_POST['title'];
+            $news->lang = $_POST['lang'];
             $news->category_id = $_POST['category_id'];
             $news->content = stripslashes($_POST['content']);
             $news->summary = $_POST['summary'];
             $news->author = $_POST['author'];
+            $news->author_ext = isset($_POST['authorExt']) ? implode("|",$_POST['authorExt']):null;
             $news->pubdate = $_POST['pubdate'];
             $news->importance = $_POST['importance'];
             $news->thumbnail = $_POST['thumbnail'];

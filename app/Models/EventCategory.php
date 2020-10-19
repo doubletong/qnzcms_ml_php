@@ -24,15 +24,15 @@ class EventCategory extends Model
     */
     public function events()
     {
-        return $this->hasMany(News::class, 'category_id');
+        return $this->hasMany(Event::class, 'category_id');
     }
 
     public function children(){
-        return $this->hasMany(NewsCategory::class, 'parent', 'id' );
+        return $this->hasMany(EventCategory::class, 'parent', 'id' );
     }
     
     public function parent(){
-        return $this->hasOne(NewsCategory::class, 'id', 'parent' );
+        return $this->hasOne(EventCategory::class, 'id', 'parent' );
     }
 }
 

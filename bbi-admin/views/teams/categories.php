@@ -129,7 +129,7 @@ $categorys = $query->orderBy('importance', 'DESC')
                                                 <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
                                             <?php } ?> 
                                         </th>
-                                        <th>描述</th>                        
+                                                   
                                         <th>
                                             <?php if($orderby=='importance'){ ?>
                                                 <a href="categories.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
@@ -151,12 +151,12 @@ $categorys = $query->orderBy('importance', 'DESC')
                                 <tbody>
                                     <?php
                                     foreach ($categorys as $row) {
-
+                                        $titles = json_decode($row['title'],true);
                                         ?>
                                         <tr>
                                         
-                                            <td><?php echo $row['title']; ?></td>
-                                            <td><?php echo $row['description']; ?></td>                              
+                                            <td><?php echo $titles['zh-CN']; ?></td>
+                                                          
                                             <td><?php echo $row['importance']; ?></td>
                                             <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
                                             <td>

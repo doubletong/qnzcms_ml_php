@@ -1,0 +1,74 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{lab.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+
+<div class="page page-lab-detail">
+  
+
+  {{lab.content|raw }} 
+
+
+
+  <section class="s3">
+    <div class="memberlist container">
+      <div class="title-section">
+        <h3 class="text-center">{{resources['本科学重点实验室人员结构']}}</h3>
+      </div>
+
+
+      <div class="col-6 col-md-4 col-lg-3"><a class="item" href="/team/detail-{{row.id}}">
+        <div class="avatar"><img src="/img.php?src={{row.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.name}}"></div>
+        <h4>{{row.name}}</h4>
+        <div class="post">{{row.post}}</div>
+        <div class="school">{{row.school}}</div></a>
+      </div>
+
+      <div class="row">
+        {% for row in structures %}
+          <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="/team/detail-{{row.id}}">
+            <div class="avatar"><img src="/img.php?src={{row.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.name}}"></div>
+            <h4>{{row.name}}</h4>
+            <div class="post">{{row.post}}</div></a></div>
+        {% endfor %}
+      
+      </div>
+      <div class="title-section">
+        <h3 class="text-center">{{resources['学术委员会成员']}}</h3>
+      </div>
+      <div class="row">
+        {% for row in committees %}
+        <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="/team/detail-{{row.id}}">
+          <div class="avatar"><img src="/img.php?src={{row.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.name}}"></div>
+          <h4>{{row.name}}</h4>
+          <div class="post">{{row.post}}</div></a></div>
+      {% endfor %}
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+      
+      });
+    </script>
+{% endblock %}

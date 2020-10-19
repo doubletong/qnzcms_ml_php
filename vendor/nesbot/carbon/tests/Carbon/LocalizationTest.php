@@ -729,6 +729,13 @@ class LocalizationTest extends AbstractTestCase
         $this->assertSame('3 კვირაში', $diff);
     }
 
+    public function testSinhaleseSpecialAfterTranslation()
+    {
+        $diff = Carbon::now()->locale('si')->addDays(3)->diffForHumans(Carbon::now());
+
+        $this->assertSame('දින 3 න්', $diff);
+    }
+
     public function testWeekDayMultipleForms()
     {
         $date = Carbon::parse('2018-10-10')->locale('ru');
@@ -750,13 +757,15 @@ class LocalizationTest extends AbstractTestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage(
             'Translator does not implement Symfony\Component\Translation\TranslatorInterface '.
-            'and Symfony\Component\Translation\TranslatorBagInterface.'
+            'and Symfony\Component\Translation\TranslatorBagInterface. '.
+            'Symfony\Component\Translation\IdentityTranslator has been given.'
         );
 
         $date = Carbon::create(2018, 1, 1, 0, 0, 0);
-        $date->setLocalTranslator(class_exists(MessageSelector::class)
-            ? new IdentityTranslator(new MessageSelector())
-            : new IdentityTranslator()
+        $date->setLocalTranslator(
+            class_exists(MessageSelector::class)
+                ? new IdentityTranslator(new MessageSelector())
+                : new IdentityTranslator()
         );
 
         $date->getTranslationMessage('foo');

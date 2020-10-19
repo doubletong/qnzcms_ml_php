@@ -22,9 +22,9 @@ class User extends Model
     *
     * @var array
     */
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
+    protected $hidden = [
+        'password', 
+    ];
    /*
     * 给 User 类添加方法
     *
@@ -33,4 +33,8 @@ class User extends Model
     // {
     //     return $this->hasMany(Post::class, 'created_by');
     // }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
 }

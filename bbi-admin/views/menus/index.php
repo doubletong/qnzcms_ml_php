@@ -7,9 +7,16 @@ $group_id2 = 2;
 $group_id3 = 3;
 
 use Models\Menu;
-$menus = Menu::with('children')->where('group_id',$group_id)->orderBy('importance', 'DESC')->get();
-$menus2 = Menu::with('children')->where('group_id',$group_id2)->orderBy('importance', 'DESC')->get();
-$menus3 = Menu::with('children')->where('group_id',$group_id3)->orderBy('importance', 'DESC')->get();
+use Models\Language;
+
+$langs = Language::where('active', 1)->orderby('importance', 'DESC')->get();
+$defaultLang = $langs->where('default', 1)->first();
+
+$lang = isset($_GET['lang']) ? $_GET['lang'] : $defaultLang->code;
+
+$menus = Menu::with('children')->where('group_id', $group_id)->where('lang', $lang)->orderBy('importance', 'DESC')->get();
+$menus2 = Menu::with('children')->where('group_id', $group_id2)->where('lang', $lang)->orderBy('importance', 'DESC')->get();
+$menus3 = Menu::with('children')->where('group_id', $group_id3)->where('lang', $lang)->orderBy('importance', 'DESC')->get();
 
 
 
@@ -19,34 +26,34 @@ function build_menu($rows, $parent = 0)
     foreach ($rows as $row) {
         if ($row['parent'] == $parent) {
             $result .= "<li><div class='row align-items-center'><div class='col'>";
-            if($row['active']==1){
+            if ($row['active'] == 1) {
                 $result .= $row['title'];
-            }else{
+            } else {
                 $result .= "<del>{$row['title']}</del>";
             }
-            
-            
+
+
             $result .= "</div>";
-           
-           if($row['active']==1){
-            $result .= "<button type='button' data-id='{$row['id']}' class='btn btn-warning btn-sm btn-active' title='隐藏'>
+
+            if ($row['active'] == 1) {
+                $result .= "<button type='button' data-id='{$row['id']}' class='btn btn-warning btn-sm btn-active' title='隐藏'>
                     <i class='iconfont icon-eye-close'></i>
                 </button>";
-           }else{ 
-            $result .= "<button type='button' data-id='{$row['id']}' class='btn btn-info btn-sm btn-active' title='显示'>
+            } else {
+                $result .= "<button type='button' data-id='{$row['id']}' class='btn btn-info btn-sm btn-active' title='显示'>
                     <i class='iconfont icon-eye'></i>
                 </button>";
-           } 
+            }
 
             $result .= "<div class='col-auto'>
-      <a href='menu_edit.php?id={$row['id']}&gid={$row['group_id']}' class='btn btn-primary btn-sm'><i class='iconfont icon-edit'></i></a>
+      <a href='menu_edit.php?id={$row['id']}&gid={$row['group_id']}&lang={$row['lang']}' class='btn btn-primary btn-sm'><i class='iconfont icon-edit'></i></a>
       <button type='button' data-id='{$row['id']}' class='btn btn-danger btn-sm btn-delete'>
       <i class='iconfont icon-delete'></i></button></div></div>";
 
-            if (isset($row['children'])){
+            if (isset($row['children'])) {
                 $result .= build_menu($rows, $row['id']);
             }
-                
+
             $result .= "</li>";
         }
     }
@@ -83,26 +90,47 @@ function build_menu($rows, $parent = 0)
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/nav_system.php'); ?>
         <!-- /nav end -->
         <section class="rightcol">
-        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
+            <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
 
-        <div class="main-content"> 
-            <div class="breadcrumb-container">
-                <div class="row">
-                    <div class="col-md">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                          
-                            <li class="breadcrumb-item active" aria-current="page">栏目</li>
-                        </ol>
-                    </nav>
-                    </div>
-                    <div class="col-md-auto">
-                        <time id="sitetime"></time>
+            <div class="main-content">
+                <div class="breadcrumb-container">
+                    <div class="row">
+                        <div class="col-md">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">栏目</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
+                        </div>
                     </div>
                 </div>
-            </div> 
+                <div class="mb-3 text-center">
+                    <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                        <div class="form-row align-items-center">
 
+                            <div class="col-auto">
+                                <label class="sr-only" for="lang">语言</label>
+                                <select class="form-control" id="lang" name="lang">
+                                    <option value="">--请选择语言--</option>
+                                    <?php foreach ($langs as $item) {
+
+                                    ?>
+                                        <option value="<?php echo $item->code; ?>" <?php echo (isset($lang) && $lang == $item->code) ? "selected" : ""; ?>><?php echo $item->name; ?></option>
+
+                                    <?php }  ?>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
@@ -112,18 +140,18 @@ function build_menu($rows, $parent = 0)
                                         <h4 style="margin:0;">主导航</h4>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="menu_edit.php?gid=<?php echo $group_id; ?>" class="btn btn-primary">
+                                        <a href="menu_edit.php?gid=<?php echo $group_id; ?>&lang=<?php echo $lang; ?>" class="btn btn-primary">
                                             <i class="iconfont icon-plus"></i> 添加栏目
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">  
+                            <div class="card-body">
                                 <?php echo build_menu($menus); ?>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">
@@ -132,7 +160,7 @@ function build_menu($rows, $parent = 0)
                                         <h4 style="margin:0;">页底导航</h4>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="menu_edit.php?gid=<?php echo $group_id2; ?>" class="btn btn-primary">
+                                        <a href="menu_edit.php?gid=<?php echo $group_id2; ?>&lang=<?php echo $lang; ?>" class="btn btn-primary">
                                             <i class="iconfont icon-plus"></i> 添加栏目
                                         </a>
                                     </div>
@@ -141,8 +169,8 @@ function build_menu($rows, $parent = 0)
                             <div class="card-body">
                                 <?php echo build_menu($menus2); ?>
                             </div>
-                        </div>                  
-                        
+                        </div>
+
                     </div>
 
                     <div class="col-md-4">
@@ -153,7 +181,7 @@ function build_menu($rows, $parent = 0)
                                         <h4 style="margin:0;">顶部导航</h4>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="menu_edit.php?gid=<?php echo $group_id3; ?>" class="btn btn-primary">
+                                        <a href="menu_edit.php?gid=<?php echo $group_id3; ?>&lang=<?php echo $lang; ?>" class="btn btn-primary">
                                             <i class="iconfont icon-plus"></i> 添加栏目
                                         </a>
                                     </div>
@@ -162,8 +190,8 @@ function build_menu($rows, $parent = 0)
                             <div class="card-body">
                                 <?php echo build_menu($menus3); ?>
                             </div>
-                        </div>                  
-                        
+                        </div>
+
                     </div>
                 </div>
 
@@ -177,7 +205,7 @@ function build_menu($rows, $parent = 0)
     <script>
         $(document).ready(function() {
             //当前菜单
-            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active'); 
+            $("#module_nav>li:nth-of-type(2)").addClass("active").siblings().removeClass('active');
             $(".mainmenu>li.menus a").addClass("active");
 
             //确认框默认语言
@@ -185,31 +213,34 @@ function build_menu($rows, $parent = 0)
                 locale: "zh_CN"
             });
 
-            $(".btn-active").click(function(){
-            var $that = $(this);           
-            var id = $that.attr("data-id");
+            $(".btn-active").click(function() {
+                var $that = $(this);
+                var id = $that.attr("data-id");
 
-            $.ajax({
-                url : 'menu_post.php',
-                type : 'POST',
-                data : {id:id,action:"active"},
-                success : function(res) {                                                   
-                    var myobj = JSON.parse(res);                    
-                    //console.log(myobj.status);
-                    if (myobj.status === 1) {
-                        // toastr.success(myobj.message);                                
-                        location.reload();                                  
-                    } 
-                    if (myobj.status === 2) {
-                        toastr.error(myobj.message)
+                $.ajax({
+                    url: 'menu_post.php',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        action: "active"
+                    },
+                    success: function(res) {
+                        var myobj = JSON.parse(res);
+                        //console.log(myobj.status);
+                        if (myobj.status === 1) {
+                            // toastr.success(myobj.message);                                
+                            location.reload();
+                        }
+                        if (myobj.status === 2) {
+                            toastr.error(myobj.message)
+                        }
+                        if (myobj.status === 3) {
+                            toastr.info(myobj.message)
+                        }
                     }
-                    if (myobj.status === 3) {
-                        toastr.info(myobj.message)
-                    }
-                }
-            });          
+                });
 
-        });
+            });
 
             $(".btn-delete").click(function() {
                 var $that = $(this);
@@ -222,16 +253,16 @@ function build_menu($rows, $parent = 0)
                             type: 'POST',
                             data: {
                                 id: articleId,
-                                action:"delete"
+                                action: "delete"
                             },
                             success: function(res) {
 
-                                var myobj = JSON.parse(res);                   
-                         
+                                var myobj = JSON.parse(res);
+
                                 if (myobj.status === 1) {
-                                    toastr.success(myobj.message);  
-                                    $that.closest("li").remove();                                   
-                                } 
+                                    toastr.success(myobj.message);
+                                    $that.closest("li").remove();
+                                }
                                 if (myobj.status === 2) {
                                     toastr.error(myobj.message)
                                 }

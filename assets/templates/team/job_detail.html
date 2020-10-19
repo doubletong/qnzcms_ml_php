@@ -1,0 +1,111 @@
+{% extends "shared/layout.html" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+  {{job.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+{% block content %}
+    
+  {{ include('shared/_subMenus.html') }}
+
+  <div class="page page-academician page-job-detail container">
+    <div class="title-section">
+      <h2 class="text-center">{{job.title}}</h2>
+    </div>
+    <div class="s1">     
+      <div class="row">
+        <div class="col-lg-auto">
+          <div class="pic"><img src="/img.php?src={{job.team.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{job.team.name}}"></div>
+        </div>
+        <div class="col-lg">
+          <div class="txt">                     
+            <h3 class="title">{{job.team.name}}</h3>
+            <div class="research">{{job.team.introduction}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg"><img src="img/team_03.png" alt=""></div>
+    </div>
+    {% if job.homepage is not empty %}
+    <section class="box">
+        <h3 class="title1">实验室主页</h3>
+        {{job.homepage|raw}}
+      </section>
+    {% endif %}
+    
+    {% if job.post is not empty %}
+    <section class="box">
+        <h3 class="title1">招聘岗位</h3>
+        <p>{{job.post}}</p>
+      </section>
+    {% endif %}
+
+    {% if job.population is not empty %}
+    <section class="box">
+        <h3 class="title1">招聘人数</h3>
+        <p>{{job.population}}</p>
+      </section>
+    {% endif %}
+
+    {% if job.education is not empty %}
+    <section class="box">
+        <h3 class="title1">学历要求</h3>
+        <p>{{job.education}}</p>
+      </section>
+    {% endif %}
+  
+
+
+    {% if job.requirement is not empty %}
+    <section class="box">
+        <h3 class="title1">招聘条件</h3>
+        {{job.requirement|raw}}
+      </section>
+    {% endif %}
+
+    {% if job.research is not empty %}
+    <section class="box">
+        <h3 class="title1">研究方向</h3>
+        {{job.research|raw}}
+      </section>
+    {% endif %}
+    
+    {% if job.address is not empty %}
+    <section class="box">
+        <h3 class="title1">工作地址</h3>
+        <p>{{job.address}}</p>
+      </section>
+    {% endif %}
+
+    {% if job.other is not empty %}
+    <section class="box">
+        <h3 class="title1">其它说明</h3>
+        <p>{{job.other}}</p>
+      </section>
+    {% endif %}
+
+    {% if job.application is not empty %}
+    <section class="box">
+        <h3 class="title1">申请方式</h3>
+        <p>{{job.application}}</p>
+      </section>
+    {% endif %}
+
+    {% if job.intro is not empty %}
+    <section class="box">
+        <h3 class="title1">脑所简介</h3>
+        {{job.intro|raw}}
+      </section>
+    {% endif %}
+    
+  </div>
+
+{% endblock %}

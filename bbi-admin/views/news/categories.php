@@ -10,11 +10,13 @@ $level = 0;
 function recursive($items, $level){
     $level++;
     foreach ($items as $row) {
+        $titles = json_decode($row['title'],true);
+
         echo "<tr><td>";
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $row['title'].'</td>';
+        echo $titles['zh-CN'].'</td>';
         echo '<td>'.$row['importance'].'</td>';
         $active = $row['active']==1?"是":"否";
         echo "<td>$active</td>";   

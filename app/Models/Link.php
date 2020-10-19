@@ -16,7 +16,13 @@ class Link extends Model
    * @var array
    */
    protected $fillable = [
-       'title', 'url', 'image_url', 'importance', 'dictionary_id','active',	'created_by'
+       'title', 'url', 'image_url', 'lang', 'description', 'importance', 'category_id','active',	'created_by'
    ];
+
+   public function category()
+   {
+       return $this->belongsTo(LinkCategory::class,'category_id');
+   }
+
  }
 

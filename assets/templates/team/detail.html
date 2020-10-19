@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    Team
+  {{team.name}}
  {% endif %}
 
 {% endblock %}
@@ -14,39 +14,41 @@
 {% endblock %}
 {% block content %}
     
-    <div class="banner banner-contact" style="background-image:url(/assets/img/temp/banner-team.jpg)">
-        <h1>Team Introduce</h1>
-    </div>
-    {# {{page.content|raw }}         #}
-    <div class="page page-team">       
-        <div class="container">          
-          <div class="row">
-            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
-                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t1.jpg" alt=""></div>
-                <div class="txt wow fadeInLeft">
-                  <h3>Shuguang Yuan</h3>
-                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
-                </div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
-                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t2.jpg" alt=""></div>
-                <div class="txt wow fadeInLeft">
-                  <h3>Shuguang Yuan</h3>
-                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
-                </div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
-                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t3.jpg" alt=""></div>
-                <div class="txt wow fadeInLeft">
-                  <h3>Shuguang Yuan</h3>
-                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
-                </div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="item" href="team_detail.html">
-                <div class="pic wow fadeInLeft"><img src="/assets/img/temp/t4.jpg" alt=""></div>
-                <div class="txt wow fadeInLeft">
-                  <h3>Shuguang Yuan</h3>
-                  <p>Center director -AI drug molecular design, new drug development, artificial intelligence</p><span class="btn btn-default-outline">MORE</span>
-                </div></a></div>
+  {{ include('shared/_subMenus.html') }}
+
+  <div class="page page-academician page-team-detail container">
+    <div class="s1">     
+      <div class="row align-items-center">
+        <div class="col-md-auto">
+          <div class="pic"><img src="{{team.photo}}" alt="{{team.name}}"></div>
+        </div>
+        <div class="col-md">
+          <div class="txt">
+            <div class="row align-items-center">
+              <div class="col-md">
+                <h3 class="title">{{team.name}}</h3>
+              </div>
+              <div class="col-md-auto">
+                <div class="post">{{team.post}}</div>
+              </div>
+            </div>
+            <div class="research"> <strong>主要研究方向：</strong>{{team.interests}}</div>
+            <div class="row">
+              <div class="col-md"> <strong>学历：</strong>{{team.education}}</div>
+              <div class="col-md"> <strong>办公室电话：</strong>{{team.office_phone}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md"> <strong>邮箱：</strong>{{team.email}}</div>
+              <div class="col-md"> <strong>个人主页：</strong>{{team.homepage}}</div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="bg"><img src="img/team_03.png" alt=""></div>
+    </div>
+
+    {{team.content|raw}}
+    
+  </div>
 
 {% endblock %}

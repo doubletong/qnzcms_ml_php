@@ -1,61 +1,77 @@
 {% extends "shared/layout.html" %}
-{% block title %}搜索{% endblock %}
+{% block title %}
+{{resources['搜索']}}
+{% endblock %}
 {% block content %}
-    <div class="banner">
-        <img src="/assets/img/banners/search.png" alt="">
-        <div class="title-page title-page-search">
-            <div class="txt">
-           <h2>SEARCH</h2>
-           <h3>搜索</h3>
-        </div>
-        </div>
-    </div>
-    <div class="page page-about page-search">
-        <aside class="leftcol" style="background-color:transparent;">
-            <!-- <nav>
-                <ul class="leftnav">
-                    <li><a href="/news" class="active">新闻中心</a></li>                
-                </ul>
-            </nav> -->
-        </aside>
-        <section class="maincontent">
-            <div class="wrap about search">
-              
-                <div id="searchbox2" class="searchbox">
-                    <form action="/search" method="get">
-                        <div class="row no-gutters">
-                            <div class="col">                                                         
-                                <input type="search" name="keyword" id="keyword" value="{{keyword}}" placeholder="搜索关键词" />  
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit">搜索</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                
-                {% if (articles) %}
-                <div class="total">
-                    总计找到<strong>{{articleCount}}</strong>条记录
-                </div>
-                <ul class="list-search">            
-                    {% for article in articles %}
-                    <li>                            
-                        <div class="row">
-                            <div class="col-md"><a href="/news/detail-{{article.id}}">{{article.title}}</a> </div>
-                            <div class="col-md-auto"><time>{{article.pubdate|date('Y年m月d日')}}</time></div>                                   
-                        </div>                         
-                    </li>
-                    {% endfor %}
-                
-                </ul>           
-                    
-                {% endif %}
 
-               
-        
-              
+<div class="page page-search container"> 
+    <div class="searchbox wow fadeInUp">
+        <form action="{{lang=='zh-CN'?'':'/'~lang}}/search" method="get">
+          <div class="row align-items-center">
+            <div class="col">
+              <input id="keyword" type="search" name="keyword" value="{{keyword}}" placeholder="请输入您要搜索的内容" required="required">
             </div>
-        </section>
+            <div class="col-auto">
+              <button id="btnSearch" class="btn btn-primary" type="submit">{{resources['搜索']}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <p class="count text-center wow fadeInUp">{{ resources['搜索结果']|format(articleCount) | raw }}</p>
+
+      <div class="results">
+        <ul>
+            {% for row in news %}
+            <li class="wow fadeInUp"><a href="{{lang=='zh-CN'?'':'/'~lang}}/news/detail-{{row.id}}">
+                <div class="row">
+                  <div class="col-md">{{row.title}}</div>
+                  <div class="col-md-auto">
+                    <time>{{row.pubdate|date('Y-m-d')}}</time>
+                  </div>
+                </div></a>
+            </li>                
+            {% endfor %}          
+        </ul>
+      </div>
+
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination  text-center">
+            {% if paginator.prevUrl %}
+              <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+        
+      </footer>
+       
     </div>
 {% endblock %}
+
+{% block footer %}
+    <script>
+        $("#btnSearch").click(function(e){
+            e.preventDefault();
+            var url = $('form').attr("action");
+            var keyword = $("#keyword").val();
+            if(keyword.length>0){
+                location.href = url+"/"+keyword;
+            }
+        })
+
+    </script>    
+{% endblock footer %}

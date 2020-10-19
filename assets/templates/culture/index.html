@@ -39,7 +39,7 @@
           <div class="row">
             {% for row in articles %}
               <div class="col-md-6 col-lg-4">
-                <a class="item wow fadeInUp" href="/culture/detail-{{row.id}}">
+                <a class="item wow fadeInUp" href="{{lang=='zh-CN'?'':'/'~lang}}/culture/detail-{{row.id}}">
                   <img src="/img.php?src={{row.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit" alt="{{row.title}}">
                   <div class="title"> 
                     <h3>{{row.title}}</h3>

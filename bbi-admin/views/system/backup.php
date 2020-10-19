@@ -21,7 +21,7 @@ function backupsData()
     $names = array();
     //    print_r($names);exit;
     foreach($object as $k => $v){
-        $names[] = $v['Tables_in_qnzcms_php'];
+        $names[] = $v['Tables_in_qnzcms_shibs'];
     }
 
     echo "运行中，请耐心等待...<br/>";

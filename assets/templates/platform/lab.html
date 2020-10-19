@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    {{resources['重点实验室']}}
  {% endif %}
 
 {% endblock %}
@@ -20,12 +20,12 @@
   <div class="page page-labs">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 col-lg-4"><a class="item wow fadeInUp" href="lab_1.html">
-            <div class="pic"><img src="/assets/img/platform_04.jpg" alt="中国科学院脑联结解析与调控重点实验室"></div>
-            <h4>中国科学院脑联结解析与调控重点实验室</h4></a></div>
-        <div class="col-md-6 col-lg-4"><a class="item wow fadeInUp" href="lab_2.html">
-            <div class="pic"><img src="/assets/img/platform_05.jpg" alt="广东省脑连接图谱重点实验室"></div>
-            <h4>广东省脑连接图谱重点实验室</h4></a></div>
+        {% for row in labs %}
+        <div class="col-md-6 col-lg-4"><a class="item wow fadeInUp" href="{{lang=='zh-CN'?'':'/'~lang}}/platform/lab/detail-{{row.id}}">
+          <div class="pic"><img src="{{row.thumbnail}}" alt="{{row.title}}"></div>
+          <h4>{{row.title}}</h4></a></div>
+        {% endfor %}
+     
       </div>
     </div>
   </div>

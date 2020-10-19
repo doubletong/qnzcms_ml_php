@@ -5,7 +5,7 @@
       {% if(subnavs is not empty) %}
       <nav class="submenus">
           {% for subnav in subnavs %}
-              <a class="{{subnav.url == uri or subnav.url == uri ~ '/index'  ? 'active' : '' }}" href="{{subnav.url}}">{{subnav.title}}</a>
+              <a class="{{subnav.url == uri or subnav.url == uri ~ '/index' or uri starts with subnav.url ? 'active' : '' }}" href="{{subnav.url}}">{{subnav.title}}</a>
           {% endfor %}
       </nav>
       {% endif %}      

@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-     视频
+     {{resources['视频']}}
  {% endif %}
 
 {% endblock %}
@@ -23,7 +23,7 @@
         <div class="row">
           {% for row in videos %}
           <div class="col-md-6 col-lg-4">
-            <a class="item wow fadeInUp" href="/future/detail-{{row.id}}">
+            <a class="item wow fadeInUp" href="/future/detail-{{row.id}}" data-video-src="{{row.file_url}}" data-title="{{row.title}}">
             <div class="pic"><img class="thumb" src="{{row.poster}}"><img class="btnplay" src="/assets/img/play.png" alt=""></div>
             <div class="title"> 
               <h3>{{row.title}}</h3>
@@ -36,7 +36,7 @@
         {% if paginator.numPages > 1 %}
         <ul class="pagination  text-center">
             {% if paginator.prevUrl %}
-                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">上一页</a></li>
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
             {% endif %}
 
             {% for page in paginator.pages %}
@@ -48,7 +48,7 @@
             {% endfor %}
 
             {% if paginator.nextUrl %}
-                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">下一页</a></li>
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
             {% endif %}
         </ul>
     {% endif %}
@@ -56,13 +56,46 @@
       </footer>
     </section>
   </div>
+
+  <div class="overly">
+    <div class="video-container">
+      <div class="video-header">
+        <h4 class="video-title" id="video-title">视频播放</h4><a class="btnClose" href="javascript:void(0);"> <i class="iconfont icon-close"></i></a>
+      </div>
+      <div class="video_wrap" id="youkuplayer">
+        <video id="playvideo" src="" controls></video>
+      </div>
+    </div>
+  </div>
   
 {% endblock %}
 
 {% block footer %}
     <script>         
       $(function () {
-      
+          $('.videolist .item').click(function(e){
+            e.preventDefault();
+            var videoSrc=$(this).attr('data-video-src');
+            var title=$(this).attr('data-title');
+            $('.overly').fadeIn(200);
+              $('#playvideo').attr('src',videoSrc);
+              $('#playvideo')[0].play();
+    
+              $('#video-title').text(title);
+            //- $("#videoshow").text(title);
+            //-     var player = new YKU.Player('youkuplayer',{
+            //-     styleid: '0',
+            //-     client_id: '6c97f129b630ded7',
+            //-     vid: videoSrc,
+            //-     newPlayer: true
+            //- });
+    
+    
+        });
+        $('.btnClose').click(function(){
+            $('.overly').fadeOut(100);
+            $('#playvideo')[0].pause()
+        });
       });
     </script>
 {% endblock %}

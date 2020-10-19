@@ -16,7 +16,7 @@ class Page extends Model
    * @var array
    */
    protected $fillable = [
-       'title', 'alias', 'content','background_image','view_count',
+       'title', 'alias','lang', 'content','background_image','view_count',
        'importance', 'active','created_by'
    ];
  }

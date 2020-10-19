@@ -3,7 +3,7 @@ use Models\EventCategory;
 use Models\Event;
 require_once('../../includes/common.php');
 
-$pagetitle = isset($_GET['id'])?"编辑活动":"创建活动";
+$pagetitle = isset($_GET['id'])?"编辑会议":"创建会议";
 $action = isset($_GET['id'])?"update":"create";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -70,7 +70,7 @@ function recursive($items, $level, $parent){
                         <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
-                            <li class="breadcrumb-item"><a href="/bbi-admin/views/events/index.php">活动事件</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/views/events/index.php">会议预告</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><?php echo $pagetitle; ?></li>
                         </ol>
                         </nav>
@@ -96,30 +96,50 @@ function recursive($items, $level, $parent){
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                             </div>   
                             <div class="form-group">
-                                <label for="title">主办人</label>
+                                <label for="parent_id">分类</label> 
+                                <select class="form-control" id="category_id" name="category_id" placeholder="" >
+                                    <option value="">--请选择分类--</option>
+                                    <?php recursive($categories, $level, $data['category_id']); ?>                                                    
+                                </select>                              
+                            </div>    
+                            <div class="form-group">
+                                <label for="issue">第几期</label>
+                                <input type="number" class="form-control" id="issue" name="issue" value="<?php echo isset($data['issue'])?$data['issue']:'0'; ?>">
+                            </div> 
+                            <div class="form-group">
+                                <label for="meet_id">会议ID</label>
+                                <input type="text" class="form-control" id="meet_id" name="meet_id" value="<?php echo isset($data['meet_id'])?$data['meet_id']:''; ?>">
+                            </div> 
+                            <div class="form-group">
+                                <label for="link">会议链接</label>
+                                <input type="text" class="form-control" id="link" name="link" value="<?php echo isset($data['link'])?$data['link']:''; ?>">
+                            </div> 
+                            <div class="form-group">
+                                <label for="title">主持人</label>
                                 <input type="text" class="form-control" id="compere" name="compere" value="<?php echo isset($data['compere'])?$data['compere']:''; ?>">
-                            </div>   
+                            </div>  
 
                             <div class="form-group">
-                                <label for="datestart">开始日期</label>
-
+                                <label for="datestart">时间</label>
                                 <input class="form-control" id="datestart" name="datestart" value="<?php echo isset($data['datestart'])?date_format(date_create($data['datestart']),"Y-m-d\TH:i"):date("Y-m-d\TH:i"); ?>" placeholder="" type="datetime-local" />
                             </div>
 
                             <div class="form-group">
-                                <label for="title">活动地址</label>
+                                <label for="title">地址</label>
                                 <input type="text" class="form-control" id="address" name="address" value="<?php echo isset($data['address'])?$data['address']:''; ?>">
                             </div>   
 
-                         
+                            <div class="form-group">
+                                <label for="organizer">主办单位（中文）</label>
+                                <textarea class="form-control" id="organizer" name="organizer" placeholder="一行输入一个单位" rows="5"><?php echo isset($data['organizer'])?stripslashes($data['organizer']):''; ?></textarea>
+                            
+                            </div>    
 
                             <div class="form-group">
-                                <label for="parent_id">分类</label> 
-                                <select class="form-control" id="category_id" name="category_id" placeholder="" >
-                                    <option value="">--请选择父类--</option>
-                                    <?php recursive($categories, $level, $data['category_id']); ?>                                                    
-                                </select>                              
-                            </div>    
+                                <label for="organizer_en">主办单位（英文）</label>
+                                <textarea class="form-control" id="organizer_en" name="organizer_en" placeholder="一行输入一个单位" rows="5"><?php echo isset($data['organizer_en'])?stripslashes($data['organizer_en']):''; ?></textarea>
+                            
+                            </div>  
                             
 
                             <div class="form-group">
@@ -139,7 +159,11 @@ function recursive($items, $level, $parent){
                                 <textarea class="form-control" id="summary" name="summary" placeholder=""><?php echo isset($data['summary'])?stripslashes($data['summary']):''; ?></textarea>
                             
                             </div>    
-
+                            <div class="form-group">
+                                <label for="footer_note">脚注</label>
+                                <textarea class="form-control" id="footer_note" name="footer_note" placeholder=""><?php echo isset($data['footer_note'])?stripslashes($data['footer_note']):''; ?></textarea>
+                            
+                            </div>   
                            
                             <div class="form-group">
                                 <label for="importance">排序</label>
@@ -162,7 +186,7 @@ function recursive($items, $level, $parent){
                                 <div class="col-md-auto">
                                 <div style="width:300px;  text-align:center;" class="mb-3">
                                         <div class="card">
-                                        <div class="card-header">缩略图</div>
+                                        <div class="card-header">专家照片</div>
                                             <div class="card-body">                                       
                                                 <img ID="iLogo" data-default-src="holder.js/240x180?text=380X250像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=380X250像素" : $data['thumbnail']; ?>" class="img-fluid" />
                                           
@@ -175,6 +199,26 @@ function recursive($items, $level, $parent){
                                                 <input id="thumbnail" type="hidden" name="thumbnail" value="<?php echo isset($data['thumbnail'])?$data['thumbnail']:''; ?>" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">专家资料</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="pro_name">姓名</label>
+                                                <input type="text" class="form-control" id="pro_name" name="pro_name" placeholder="" value="<?php echo isset($data['pro_name'])?$data['pro_name']:''; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pro_company">所属单位</label>
+                                                <input type="text" class="form-control" id="pro_company" name="pro_company" placeholder="" value="<?php echo isset($data['pro_company'])?$data['pro_company']:''; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pro_intro">专家简介</label>
+                                                <textarea class="form-control" id="pro_intro" name="pro_intro" rows="6" placeholder=""><?php echo isset($data['pro_intro'])?$data['pro_intro']:''; ?></textarea>
+
+                                            </div>
+                                         
+                                        </div>
+
                                     </div>
                                     <div class="card">
                                         <div class="card-header">SEO</div>
@@ -253,8 +297,33 @@ function recursive($items, $level, $parent){
 
                 rules: {
                     title: {
-                        required: true
+                        required: true,
+                        maxlength: 150
                     },
+                    meet_id: {                   
+                        maxlength: 150
+                    },
+                    link: {               
+                        maxlength: 150
+                    },
+                    pro_name: {
+                       
+                        maxlength: 50
+                    },
+                    pro_company: {
+                      
+                        maxlength: 100
+                    },
+                    footer_note: {
+                    
+                        maxlength: 250
+                    },
+                    pro_intro: {                    
+                        maxlength:500
+                    },
+                    address: {                    
+                        maxlength:150
+                    },                    
                     content: {
                         required: true
                     },
@@ -269,8 +338,33 @@ function recursive($items, $level, $parent){
                 },
                 messages:{
                     title: {
-                        required:"请输入主题"
+                        required:"请输入主题",
+                        maxlength: "不能超过150个字符"
                     },
+                    meet_id: {                   
+                        maxlength: "不能超过50个字符"
+                    },
+                    link: {               
+                        maxlength: "不能超过150个字符"
+                    },
+                    pro_name: {
+                       
+                        maxlength: "不能超过50个字符"
+                    },
+                    pro_company: {
+                      
+                        maxlength: "不能超过100个字符"
+                    },
+                    footer_note: {
+                    
+                        maxlength: "不能超过250个字符"
+                    },
+                    pro_intro: {                    
+                        maxlength: "不能超过500个字符"
+                    },
+                    address: {                    
+                        maxlength: "不能超过150个字符"
+                    },  
                     content: {
                         required: "请输入新闻内容"
                     },

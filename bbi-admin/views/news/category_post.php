@@ -3,6 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 
 use Models\NewsCategory;
 use Models\News;
+use Models\Language;
 
 if( isset($_POST['action']) && isset($_POST['id'])){
 
@@ -11,20 +12,31 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
     switch ($_POST['action']) {
         case "create": 
-            if (!isset($_POST['title'], $_POST['importance'])) {   
 
-                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+            $langs = Language::where('active',1)->orderby('importance','DESC')->get();
+
+            $items = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $items[$lang]  =  $_POST['title_'.$lang];    
+            }
+
+            if (!isset($items, $_POST['importance'])) {   
+
+                $result = array ('status'=>2,'message'=>'主题不能为空！');
                 echo json_encode($result);  
                 return;
             }
+
+           
                      
-            $title = $_POST['title'];
+            $title = $items;
             $importance = $_POST['importance'];
             $parent = isset($_POST['parent']) && $_POST['parent']?$_POST['parent']:null;
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
             $region = new NewsCategory();
-            $region->title = $title;
+            $region->title = json_encode($title);
             $region->parent = $parent;
             $region->importance = $importance;
             $region->active = $active;
@@ -39,22 +51,30 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['title'], $_POST['importance'])) {   
 
-                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+            $langs = Language::where('active',1)->orderby('importance','DESC')->get();
+
+            $items = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $items[$lang]  =  $_POST['title_'.$lang];    
+            }
+
+            if (!isset($items, $_POST['importance'])) {   
+                $result = array ('status'=>2,'message'=>'主题不能为空！');
                 echo json_encode($result);  
                 return;
             }
 
           
-            $title = $_POST['title'];
+            $title =  $items;
             $importance = $_POST['importance'];
             $parent = isset($_POST['parent']) && $_POST['parent']?$_POST['parent']:null;
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
 
             $region = NewsCategory::find($id);
-            $region->title = $title;
+            $region->title = json_encode($title);
             $region->parent = $parent;
             $region->importance = $importance;
             $region->active = $active;

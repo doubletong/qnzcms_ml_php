@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{category.title}}
+    {{category_title}}
  {% endif %}
 
 {% endblock %}
@@ -21,15 +21,15 @@
   <div class="page page-cooperation">
     <section class="s1 container">
       <div class="title-section">
-        <h2 class="text-center">{{category.title}}</h2>
+        <h2 class="text-center">{{category_title}}</h2>
       </div>
       <div class="articlelist"> 
         {% for row in articles %}
         <div class="item">
           <div class="row align-items-center">
-            <div class="col-md-auto"><a class="pic" href="/cooperation/detail-{{row.id}}">
+            <div class="col-md-auto"><a class="pic" href="{{lang=='zh-CN'?'':'/'~lang}}/cooperation/detail-{{row.id}}">
               <img src="/img.php?src={{row.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit" alt=""></a></div>
-            <div class="col-md"><a href="/cooperation/detail-{{row.id}}">{{row.title}}</a></div>
+            <div class="col-md"><a href="{{lang=='zh-CN'?'':'/'~lang}}/cooperation/detail-{{row.id}}">{{row.title}}</a></div>
           </div>
         </div>
         {% endfor %}

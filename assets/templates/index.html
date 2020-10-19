@@ -1,7 +1,13 @@
 
 {% extends "shared/layout.html" %}
 
-{% block title %}首页{% endblock %}
+{% block title %}
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{resources['首页']}}
+  {% endif %}
+{% endblock %}
 {% block head %}
     {{ parent() }}
  
@@ -25,26 +31,20 @@
 <div class="page-home"> 
   <section class="s1 container">         
     <div class="ann-title"><img src="assets/img/logo.png" alt="logo">
-      <h3 class="wow fadeInUp">通知公告 <i class="iconfont icon-right"></i></h3>
+      <h3 class="wow fadeInUp"> {{resources['通知公告']}} <i class="iconfont icon-right"></i></h3>
     </div>
     <div class="ann-last">
       <div class="ann-sliders swiper-container wow fadeInUp">
         <div class="swiper-wrapper">
+          {% for row in notices %}
           <div class="swiper-slide">
             <div class="item">
-              <time>2020-01-07</time><a href="ann_detail.html">中科院深圳先进技术研究院实验室净化空调及通风系统维保服务项目中标公示</a>
+              <time>{{item.pubdate|date('Y-m-d')}}</time><a href="{{lang=='zh-CN'?'':'/'~lang}}/news/notice/detail-{{row.id}}">{{row.title}}</a>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="item">
-              <time>2020-01-07</time><a href="ann_detail.html">中科院深圳先进技术研究院实验室净化空调及通风系统维保服务项目中标公示</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="item">
-              <time>2020-01-07</time><a href="ann_detail.html">中科院深圳先进技术研究院实验室净化空调及通风系统维保服务项目中标公示</a>
-            </div>
-          </div>
+          {% endfor %}         
+
+        
         </div>
       </div>
       <div class="swiper-button-next"><i class="iconfont icon-next"></i></div>
@@ -55,7 +55,7 @@
   <section class="s2">
     <div class="container">
       <div class="title-section wow fadeInUp">
-        <h2 class="text-center">热点新闻</h2><a class="more" href="/news">了解更多</a>
+        <h2 class="text-center">{{resources['热点新闻']}}</h2><a class="more" href="/news">{{resources['了解更多']}}</a>
       </div>
       <div class="laster swiper-container wow fadeInUp">
         <div class="swiper-wrapper">
@@ -110,17 +110,12 @@
   </section>
   <section class="s4">
     <div class="researches swiper-container wow fadeInUp">
-      <div class="swiper-wrapper">      
-        <div class="swiper-slide"><a class="item" href="platform.html" style="background-image:url('assets/img/home_bg1.jpg');"><img src="assets/img/icon_naogongneng.png" alt="">
-            <h4 class="title">脑功能图谱与行为<br>研究中心</h4></a></div>
-        <div class="swiper-slide"><a class="item" href="platform.html" style="background-image:url('assets/img/home_bg2.jpg');"><img src="assets/img/icon_naorenzhi.png" alt="">
-            <h4 class="title">脑认知与类脑智能<br>研究中心</h4></a></div>
-        <div class="swiper-slide"><a class="item" href="platform.html" style="background-image:url('assets/img/home_bg3.jpg');"><img src="assets/img/icon_shenjingfayu.png" alt="">
-            <h4 class="title">神经发育与退行性脑疾病<br>研究中心</h4></a></div>
-        <div class="swiper-slide"><a class="item" href="platform.html" style="background-image:url('assets/img/home_bg4.jpg');"><img src="assets/img/icon_jiyinbianji_.png" alt="">
-            <h4 class="title">基因编辑脑疾病动物模型<br>研究中心</h4></a></div>
-        <div class="swiper-slide"><a class="item" href="platform.html" style="background-image:url('assets/img/home_bg5.jpg');"><img src="assets/img/icon_neiershenjing.png" alt="">
-            <h4 class="title">内尔神经可塑性<br>诺奖实验室</h4></a></div>
+      <div class="swiper-wrapper">  
+        {% for row in researches %}
+          <div class="swiper-slide"><a class="item" href="/platform" style="background-image:url('{{row.thumbnail}}');"><img src="{{row.icon}}" alt="">
+          <h4 class="title">{{row.title_short}}<br>{{row.lab}}</h4></a></div>
+        {% endfor %}    
+        
       </div>
       <div class="swiper-button-next"><i class="iconfont icon-next"></i></div>
       <div class="swiper-button-prev"><i class="iconfont icon-prev"></i></div>

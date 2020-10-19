@@ -3,7 +3,7 @@ require_once('../../includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\User;
-
+use Models\UserRole;
 
 if(isset($_POST['action']) && isset($_POST['id'])){
 
@@ -107,6 +107,31 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
             break;
 
+        case "setRoles":
+            $item = User::find($id);            
+  
+            $role_ids = $_POST['role_id'];
+
+            $old = UserRole::where('user_id','$id')->whereNotIn('role_id',$role_ids)->delete();
+
+            foreach($role_ids as $role_id){
+                $role_user = UserRole::where('user_id','$id')->where('role_id',$role_id)->count();
+                if($role_user==0){
+                    $item = New UserRole();
+                    $item->user_id = $id;
+                    $item->role_id = $role_id; 
+                    $item->save();      
+                }
+            }
+
+            echo json_encode(array ('status'=>1,'message'=>'角色设置成功'));  
+            
+            // if($result==true){
+            //     echo json_encode(array ('status'=>1,'message'=>'拷贝成功'));  
+            // }else{
+            //     echo json_encode(array ('status'=>2,'message'=>'拷贝失败'));  
+            // }   
+            break;
     
             
         

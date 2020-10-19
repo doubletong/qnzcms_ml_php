@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    {{resources['人才招聘']}}
  {% endif %}
 
 {% endblock %}
@@ -17,76 +17,51 @@
 
 {{ include('shared/_subMenus.html') }}
 
-  <!-- {{page.content|raw }}   -->
+ 
   <div class="page page-job container">
     <div class="s1 section">           
       <div class="title-section">
-        <h2 class="text-center">人才招聘</h2>
+        <h2 class="text-center">{{resources['人才招聘']}}</h2>
       </div>
-      <div class="joblist"><a class="item" href="job_detail.html">
+      <div class="joblist">
+        {% for row in jobs %}
+        <a class="item" href="{{lang=='zh-CN'?'':'/'~lang}}/team/jobs/detail-{{row.id}}">
           <div class="row align-items-center">
             <div class="col-auto">
-              <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt="徐富强"></div>
+              <div class="pic"><img src="/img.php?src={{row.team.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.team.name}}"></div>
             </div>
             <div class="col">
               <div class="txt">
-                <h3>招聘博士后&amp;助理研究员&amp;科研助理 - 徐富强课题组</h3>
-                <time>2020-03-08</time>
+                <h3>{{row.title}}</h3>
+                <time>{{row.created_at|date('Y-m-d')}}</time>
               </div>
             </div>
-          </div></a><a class="item" href="job_detail.html">
-          <div class="row align-items-center">
-            <div class="col-auto">
-              <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt="徐富强"></div>
-            </div>
-            <div class="col">
-              <div class="txt">
-                <h3>招聘博士后&amp;助理研究员&amp;科研助理 - 徐富强课题组</h3>
-                <time>2020-03-08</time>
-              </div>
-            </div>
-          </div></a><a class="item" href="job_detail.html">
-          <div class="row align-items-center">
-            <div class="col-auto">
-              <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt="徐富强"></div>
-            </div>
-            <div class="col">
-              <div class="txt">
-                <h3>招聘博士后&amp;助理研究员&amp;科研助理 - 徐富强课题组</h3>
-                <time>2020-03-08</time>
-              </div>
-            </div>
-          </div></a><a class="item" href="job_detail.html">
-          <div class="row align-items-center">
-            <div class="col-auto">
-              <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt="徐富强"></div>
-            </div>
-            <div class="col">
-              <div class="txt">
-                <h3>招聘博士后&amp;助理研究员&amp;科研助理 - 徐富强课题组</h3>
-                <time>2020-03-08</time>
-              </div>
-            </div>
-          </div></a><a class="item" href="job_detail.html">
-          <div class="row align-items-center">
-            <div class="col-auto">
-              <div class="pic"><img src="/assets/img/temp/xufuqiang.jpg" alt="徐富强"></div>
-            </div>
-            <div class="col">
-              <div class="txt">
-                <h3>招聘博士后&amp;助理研究员&amp;科研助理 - 徐富强课题组</h3>
-                <time>2020-03-08</time>
-              </div>
-            </div>
-          </div></a></div>
-      <footer class="pager-footer">      
-        <ul class="pagination text-center">
-          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page"><a class="page-link" href="#">2                          </a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+          </div>
+        </a>
+        {% endfor %}
+        
+      </div>
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination  text-center">
+            {% if paginator.prevUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
+            {% endif %}
         </ul>
+    {% endif %}
+        
       </footer>
     </div>
   </div>

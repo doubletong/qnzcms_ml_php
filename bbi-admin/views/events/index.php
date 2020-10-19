@@ -207,6 +207,9 @@ function recursive($items, $level, $cid){
                                     <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-copy' title="拷贝">
                                 <i class="iconfont icon-file-copy"></i>
                             </button>
+                            <a href='/news/poster-<?php echo $row['id'];?>' title="生成海报" target="_blank" class='btn btn-warning btn-sm'>
+                                <i class="iconfont icon-image"></i>
+                            </a>
                             <?php if ($row['active'] == 1) { ?>
                                 <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
                                     <i class="iconfont icon-eye-close"></i>

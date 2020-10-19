@@ -12,7 +12,7 @@ if(isset($_GET['id'])){
 }
 $pageTitle = isset($_GET['id'])?"编辑广告":"创建广告";
 $action = isset($_GET['id'])?"update":"create";
-$positions = AdvertisingSpace::All();
+$positions = AdvertisingSpace::orderBy('importance','DESC')->get();
 
 ?>
 <!DOCTYPE html>
@@ -82,7 +82,7 @@ $positions = AdvertisingSpace::All();
                             <button class="btn btn-outline-secondary" id="setImageUrl" type="button" >浏览…</button>                                 
                         </div>
                     </div>                      
-                    <small id="emailHelp" class="form-text text-muted">图片尺寸：1920*500像素</small>   
+      
                 </div>
                 <div class="form-group">
                     <label for="image_url_mobile">图片(移动)</label>   
@@ -97,7 +97,7 @@ $positions = AdvertisingSpace::All();
                                 <button class="btn btn-outline-secondary" id="setImageUrlMobile" type="button" >浏览…</button>                                 
                             </div>
                         </div>
-                        <small id="emailHelp" class="form-text text-muted">图片尺寸：750*1334像素</small>                   
+               
                 </div>
                 <div class="form-group">
                     <label for="importance">排序</label>

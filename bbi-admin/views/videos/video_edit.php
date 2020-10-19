@@ -1,9 +1,10 @@
 <?php
 use Models\VideoCategory;
 use Models\Video;
+use Models\Language;
 require_once('../../includes/common.php');
 
-$pagetitle = isset($_GET['id'])?"编辑文档":"创建文档";
+$pagetitle = isset($_GET['id'])?"编辑":"创建";
 $action = isset($_GET['id'])?"update":"create";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -15,7 +16,7 @@ if (isset($_GET['id'])) {
 
 
 $categories = VideoCategory::orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 $level = 0;
 function recursive($items, $level, $parent){
@@ -63,8 +64,23 @@ function recursive($items, $level, $parent){
         <!-- /nav end -->
         <section class="rightcol">
             <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
-            <div class="container-fluid maincontent">
-
+            <div class="main-content"> 
+                <div class="breadcrumb-container">
+                    <div class="row">
+                        <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/videos/index.php">视频</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><?php echo $pagetitle; ?></li>
+                            </ol>
+                        </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
+                        </div>
+                    </div>
+                </div> 
                 <form novalidate="novalidate">
                     <div class="card">
                         <div class="card-header">
@@ -75,6 +91,20 @@ function recursive($items, $level, $parent){
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             <div class="row">
                                 <div class="col-md">
+
+
+                            <div class="form-group">
+                                <label for="parent_id">语言</label> 
+                                <select class="form-control" id="lang" name="lang">
+                                    <option value="">--请选择语言--</option>
+                                    <?php foreach($langs as $item ) {                                    
+                                        ?>                                  
+                                        <option value="<?php echo $item->code;?>" <?php echo (isset($data['lang']) && $data["lang"]==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                    <?php }  ?>
+                                </select>
+                            </div>    
+
                                 <div class="form-group">
                                 <label for="title">主题</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
@@ -126,7 +156,7 @@ function recursive($items, $level, $parent){
                                         <div class="card">
                                         <div class="card-header">封面</div>
                                             <div class="card-body">                                       
-                                                <img ID="iLogo" data-default-src="holder.js/180x240?text=280X380像素" src="<?php echo empty($data['poster']) ? "holder.js/180x240?text=280X380像素" : $data['poster']; ?>" class="img-fluid" />
+                                                <img ID="iLogo" data-default-src="holder.js/240x180?text=封面" src="<?php echo empty($data['poster']) ? "holder.js/240x180?text=封面" : $data['poster']; ?>" class="img-fluid" />
                                           
                                             </div>
                                             <div class="card-footer">
@@ -171,9 +201,10 @@ function recursive($items, $level, $parent){
 
         $(document).ready(function() {
 
-            //当前菜单    
-            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');            
-            $(".mainmenu>li.agent").addClass("nav-open").find("ul>li.regions a").addClass("active");     
+       
+            //当前菜单     
+            $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');           
+            $(".mainmenu>li.videos").addClass("nav-open").find("ul>li.list a").addClass("active");     
 
 
             $("#btnPoster").on("click", function () {
@@ -203,6 +234,9 @@ function recursive($items, $level, $parent){
             $("form").validate({
 
                 rules: {
+                    lang: {
+                        required: true
+                    },
                     title: {
                         required: true
                     },
@@ -219,6 +253,9 @@ function recursive($items, $level, $parent){
 
                 },
                 messages:{
+                    lang: {
+                        required:"请选择语言"
+                    },
                     title: {
                         required:"请输入主题"
                     },

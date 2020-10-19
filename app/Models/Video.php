@@ -16,7 +16,7 @@ class Video extends Model
    * @var array
    */
    protected $fillable = [
-       'title','description', 'importance', 'file_url', 'file_size','poster','category_id','active','added_by'
+       'title','description', 'lang','importance', 'file_url', 'file_size','poster','category_id','active','added_by'
    ];
 
     public function category()

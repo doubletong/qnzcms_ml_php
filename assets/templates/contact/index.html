@@ -20,7 +20,44 @@
         </div>
     </div>
  
-    {{page.content|raw }}  
+   
+    <div class="page page-contact">
+        {{page.content|raw }}
+        
+    
+        <section class="s3 container">
+            <div class="links">
+                <div class="title-section">
+                    <h3 class="text-center">{{resources['友情链接']}}</h3>
+                </div>
+    
+                <div class="row">
+                    {% for row in friendlyLinks %}
+                        <div class="col-lg">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="logo">
+                                        <a href="{{row.url}}">
+                                            <img alt="{{row.title}}" src="{{row.image_url}}" />
+                                        </a>
+                                    </div>
+                                </div>
+        
+                                <div class="col">
+                                    <div class="txt">
+                                        <h4><a href="{{row.url}}">{{row.title}}</a></h4>        
+                                        <p>{{row.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                   
+                </div>
+            </div>
+        </section>
+    </div>
+        
     
 
 {% endblock %}

@@ -24,7 +24,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($commonData['menus_bot']);
+        $home_data = loadDate($lang,$commonData['menus_bot']);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -37,31 +37,36 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($commonData['menus_bot']);
+    $result = loadDate($lang,$commonData['menus_bot']);
 
     //echo $metadata;
 }
 
 //load data
-function loadDate($menus){
+function loadDate($lang,$menus){
+
+    if($lang == 'zh-CN'){   
+        $subnavs = $menus->where('url','/culture')->first()->children;
+      
+    }else{     
+        $subnavs = $menus->where('url','/'.$lang.'/culture')->first()->children;
+    }
 
     $alias = 'committee';  
 
-    $data = Page::where('alias',$alias)->where('active',1)->first();
+    $data = Page::where('alias',$alias)->where('lang',$lang)->where('active',1)->first();
     if(isset($data)){
         $data->view_count = $data->view_count + 1;
         $data->save();
     }
-
-    $subnavs = $menus->where('url','/culture')->first()->children;
   
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
     ->where('advertisements.active',1)
     ->where('advertising_spaces.code','=','A011')->first();
     
 
-
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
+    $metakey = $alias."_".$lang;
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();
 
     return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
@@ -74,7 +79,9 @@ $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
-
+$twig->addGlobal('lang', $lang);
+$twig->addGlobal('resources', $GLOBALS['siteLang']);
+$twig->addGlobal('links', $commonData['links']);
 
 echo $twig->render('culture/committee.html', $result);
 

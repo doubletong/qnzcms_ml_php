@@ -16,7 +16,9 @@ class Event extends Model
    * @var array
    */
    protected $fillable = [
-       'title','summary','content','thumbnail', 'importance','datestart','compere','address','view_count', 'recommend','active','added_by','category_id'
+       'title','summary','content','thumbnail', 'importance','datestart','compere','organizer','organizer_en',
+       'issue','meet_id','link','address','view_count', 'pro_name','pro_company', 'pro_intro',  'footer_note',
+       'recommend','active','added_by','category_id'
    ];
 
     public function category()

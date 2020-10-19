@@ -6,6 +6,7 @@ use Phpfastcache\CacheManager;
 use Phpfastcache\Config\ConfigurationOption;
 use Models\Menu;
 use Models\SocialAccount;
+use Models\Link;
 
 $commonClass = new QNZ\Utils\Common();
 
@@ -37,16 +38,17 @@ if($site_info['enableCaching']=="1"){
 
     $commonData = $Cached_common_data->get();
 
-}else{
-     
+}else{     
     
     $commonData = loadCommonDate($commonClass,$uri);
 }
 
 function loadCommonDate($commonClass,$uri){
+
+    $lang = isset($_GET['lang'])?$_GET['lang']:'zh-CN';    
     $navs = Menu::with(array('children' => function ($query) {
         $query->orderBy('importance', 'DESC')->get();
-    }))->where('active',1)->where('parent',0)->orderBy('importance', 'DESC')->get();
+    }))->where('active',1)->where('parent',0)->where('lang',$lang)->orderBy('importance', 'DESC')->get();
 
     $menus = $navs->where('group_id',1);  
    
@@ -59,9 +61,11 @@ function loadCommonDate($commonClass,$uri){
     $socials = SocialAccount::with(['socialSoftware' => function ($query) {
         $query->select('id', 'iconfont');
     }])->select('id','username', 'qrcode', 'url', 'social_id')->where('active',1)->orderBy('importance', 'DESC')->get();
+
+    $links = Link::where("active",1)->where("category_id",1)->where('lang',$lang)->orderBy('importance', 'DESC')->get();
     
 
-    return  ['mainav' => $menus,'breadcrumb'=>$breadcrumb,'menus_bot'=>$menus_bot, 'menus_top'=>$menus_top, 'socials'=>$socials];
+    return  ['mainav' => $menus,'breadcrumb'=>$breadcrumb,'menus_bot'=>$menus_bot, 'menus_top'=>$menus_top, 'socials'=>$socials, 'links'=>$links];
 }
 
 

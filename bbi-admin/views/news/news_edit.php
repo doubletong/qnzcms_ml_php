@@ -1,32 +1,38 @@
 <?php
 use Models\NewsCategory;
 use Models\News;
+use Models\Language;
+use Models\Team;
+
 require_once('../../includes/common.php');
 
 $pagetitle = isset($_GET['id'])?"编辑文章":"创建文章";
 $action = isset($_GET['id'])?"update":"create";
+
+$authors = [];
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = News::find($id);
     //$data = $cateModel->fetch_data($id);
-
-    $imageUrl = explode('|', $data['image_url']);
+    $authors = explode('|', $data->author_ext);
+    // $imageUrl = explode('|', $data['image_url']);
 }
 
 
 $categories = NewsCategory::with("children")->where(["parent" => null])->orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 $level = 0;
 function recursive($items, $level, $parent){
     $level++;
     foreach ($items as $row) {
+        $titles = json_decode($row['title'],true);
         $select = (isset($parent) && $row["id"]==$parent)?"selected":"";
         echo '<option value="'.$row["id"].'"  '.$select.' >';
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $row["title"].'</option>';                   
+        echo $titles["zh-CN"].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.
@@ -36,7 +42,7 @@ function recursive($items, $level, $parent){
     }
 }
  
-
+$teams = Team::all();
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +51,7 @@ function recursive($items, $level, $parent){
 <head>
     <title><?php echo $pagetitle."_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/js/vendor/select2/dist/css/select2.min.css">
     <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
     <style>
         .img_max{
@@ -91,6 +97,20 @@ function recursive($items, $level, $parent){
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             <div class="row">
                                 <div class="col-md">
+
+                                <div class="form-group">
+                                    <label for="parent_id">语言</label> 
+                                    <select class="form-control" id="lang" name="lang">
+                                        <option value="">--请选择语言--</option>
+                                        <?php foreach($langs as $item ) {
+                                        
+                                            ?>                                  
+                                            <option value="<?php echo $item->code;?>" <?php echo (isset($data['lang']) && $data["lang"]==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                        <?php }  ?>
+                                    </select>
+                                </div>    
+
                             <div class="form-group">
                                 <label for="title">主题</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
@@ -129,6 +149,15 @@ function recursive($items, $level, $parent){
                             </div>   
 
                             <div class="form-group">
+                                <label for="group">作者（科普模块）</label>
+                                <select multiple id="authorExt" name="authorExt[]" class="form-control">
+                                    <?php foreach ($teams as $item) { ?>
+                                        <option value="<?php echo $item->id; ?>" <?php echo in_array($item->id, $authors)?"selected":"";?>  ><?php echo $item->name . '【'.$item->lang.'】'; ?></option>
+                                    <?php } ?>
+                                </select>                         
+                            </div>
+
+                            <div class="form-group">
                                 <label for="pubdate">发布日期</label>
                                 <input class="form-control" id="pubdate" name="pubdate" value="<?php echo isset($data['pubdate'])?date_format(date_create($data['pubdate']),"Y-m-d"):date("Y-m-d"); ?>" placeholder="" type="date" />
                             </div>
@@ -157,7 +186,6 @@ function recursive($items, $level, $parent){
                                         <div class="card-header">缩略图</div>
                                             <div class="card-body">                                       
                                                 <img ID="iLogo" data-default-src="holder.js/240x180?text=720X480像素" src="<?php echo empty($data['thumbnail']) ? "holder.js/240x180?text=720X480像素" : $data['thumbnail']; ?>" class="img-fluid" />
-                                          
                                             </div>
                                             <div class="card-footer">
                                                 <button type="button" id="btnThumbnail" class="btn btn-info"><i class="fa fa-picture-o"></i> 浏览...</button>
@@ -209,8 +237,8 @@ function recursive($items, $level, $parent){
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/scripts.php'); ?>
 
     <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
-    <script src="/assets/js/vendor/toastr/toastr.min.js"></script>
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/js/vendor/select2/dist/js/select2.full.min.js"></script>
     <script type="text/javascript">
         function SetThumbnail(fileUrl) {
             $('#thumbnail').val(fileUrl);
@@ -222,7 +250,6 @@ function recursive($items, $level, $parent){
             //当前菜单        
             $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');
             $(".mainmenu>li.news").addClass("nav-open").find("ul>li.list a").addClass("active");     
-
 
             $("#btnThumbnail").on("click", function () {
                 singleEelFinder.selectActionFunction = SetThumbnail;
@@ -238,11 +265,10 @@ function recursive($items, $level, $parent){
                 });
             });
 
-
+            $("#authorExt").select2();
    
 
             $("form").validate({
-
                 rules: {
                     title: {
                         required: true,
@@ -317,20 +343,20 @@ function recursive($items, $level, $parent){
                     $(element).addClass('is-valid');
                 },
                 submitHandler: function(form) {
-                    var values = {};
-                    var fields = {};
+                    // var values = {};
+                    // var fields = {};
                     for (var instanceName in CKEDITOR.instances) {
                         CKEDITOR.instances[instanceName].updateElement();
                     }
 
-                    $.each($(form).serializeArray(), function(i, field) {
-                        values[field.name] = field.value;
-                    });
+                    // $.each($(form).serializeArray(), function(i, field) {
+                    //     values[field.name] = field.value;
+                    // });
 
                     $.ajax({
                         url: 'news_post.php',
                         type: 'POST',
-                        data: values,
+                        data: $(form).serialize(),
                         success: function(res) {
                             var myobj = JSON.parse(res);                    
                             //console.log(myobj.status);

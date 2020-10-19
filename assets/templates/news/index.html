@@ -4,7 +4,7 @@
   {% if metadata.title %}
     {{metadata.title}}
   {% else %}
-    新闻动态
+    {{resources['新闻动态']}}
   {% endif %}
    
 {% endblock %}
@@ -23,7 +23,7 @@
   <section class="s1 container">
     <nav class="categories wow fadeInUp">
       {% for row in categories %}
-        <a class="{{categoryId==row.id?'active':''}}" href="/news?cid={{row.id}}">{{row.title}}</a>
+        <a class="{{categoryId==row.id?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/news/c{{row.id}}">{{row.title}}</a>
       {% endfor %}    
     </nav>
   </section>
@@ -32,26 +32,27 @@
       <div class="row">
         {% for item in news %}   
           <div class="col-md-6 col-lg-4">                      
-            <div class="item wow fadeInUp"><a href="/news/detail-{{item.id}}"><img src="/img.php?src={{item.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit" alt="{{item.title}}"></a>
+            <div class="item wow fadeInUp"><a href="{{lang=='zh-CN'?'':'/'~lang}}/news/detail-{{item.id}}">
+              <img src="/img.php?src={{item.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit" alt="{{item.title}}"></a>
               <div class="txt"> 
-                <h3> <a href="/news/detail-{{item.id}}">{{item.title}}</a></h3>
+                <h3> <a href="{{lang=='zh-CN'?'':'/'~lang}}/news/detail-{{item.id}}">{{item.title}}</a></h3>
                 <div class="row">
                   <div class="col">
                     <time>{{item.pubdate|date('Y-m-d')}}</time>
                   </div>
-                  <div class="col-auto"><a href="news?cid={{item.category_id}}">{{item.category.title}}</a></div>
+                  <div class="col-auto"><a href="{{lang=='zh-CN'?'':'/'~lang}}/news/c{{item.category_id}}">{{item.category_title}}</a></div>
                 </div>
               </div>
             </div>
           </div>
-      {% endfor %}  
+        {% endfor %}  
 
       </div>
       <footer class="news-footer wow fadeInUp">
         {% if paginator.numPages > 1 %}
         <ul class="pagination  text-center">
             {% if paginator.prevUrl %}
-                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">上一页</a></li>
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
             {% endif %}
 
             {% for page in paginator.pages %}
@@ -63,7 +64,7 @@
             {% endfor %}
 
             {% if paginator.nextUrl %}
-                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">下一页</a></li>
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
             {% endif %}
         </ul>
     {% endif %}

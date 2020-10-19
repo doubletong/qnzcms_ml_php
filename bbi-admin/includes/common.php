@@ -1,8 +1,9 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/common.php');
-
 $GLOBALS['Lang'] = include $_SERVER['DOCUMENT_ROOT'] .'/resources/admin.php';
+
+use Models\Permission;
 
 //print_r($GLOBALS['Lang']);
  // 多语言函数
@@ -30,6 +31,16 @@ if (!isset($_SESSION['valid_user'])){
 	exit();
 }
 
+
+$uri = $_SERVER['REQUEST_URI'];
+$current_per = $_SESSION['my_permissions']->where('url', $uri)->first();
+// print_r($current_per);
+// 权限跳转
+if(!isset($current_per) && $uri!="/bbi-admin/noaccess.php"){
+	$url = "/bbi-admin/noaccess.php";
+	header("Location: $url");
+	exit();
+}
 
 // SEO set
 

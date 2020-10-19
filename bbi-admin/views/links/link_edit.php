@@ -1,17 +1,45 @@
 <?php
+use Models\LinkCategory;
+use Models\Link;
+use Models\Language;
+
 require_once('../../includes/common.php');
-require_once('../../data/link.php');
-require_once('../../data/dictionary.php');
-$dictionaryClass = new TZGCMS\Admin\Dictionary();
-$dictionaries = $dictionaryClass->get_dictionaries_byid(11);
 
-$linkClass = new TZGCMS\Admin\LinkRepository();
-
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-    $data = $linkClass->get_by_id($id);
-}
 $pageTitle = isset($_GET['id'])?"编辑链接":"创建链接";
+$action = isset($_GET['id'])?"update":"create";
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $data = Link::find($id);
+    //$data = $cateModel->fetch_data($id);
+    //$imageUrl = explode('|', $data['image_url']);
+}
+
+
+$categories = LinkCategory::orderby('importance','desc')->get();
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
+
+$level = 0;
+function recursive($items, $level, $parent){
+    $level++;
+    foreach ($items as $row) {
+        $titles = json_decode($row['title'],true);
+
+        $select = (isset($parent) && $row["id"]==$parent)?"selected":"";
+        echo '<option value="'.$row["id"].'"  '.$select.' >';
+        for($i=1;$i<$level;$i++){
+            echo "—";
+        }
+        echo $titles["zh-CN"].'</option>';                   
+        $children = $row['children'];          
+        if(!empty($children)){
+            //Call the function again. Increment number by one.
+            recursive($children,$level,$parent);
+        }
+   
+    }
+}
+ 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +56,26 @@ $pageTitle = isset($_GET['id'])?"编辑链接":"创建链接";
         <!-- /nav end -->
         <section class="rightcol">
             <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/header.php'); ?>
-        <div class="container-fluid maincontent">
+            <div class="main-content">    
+
+                <div class="breadcrumb-container">
+                    <div class="row">
+                    <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/views/links/index.php">链接</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $pageTitle; ?></li>
+                        </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-auto">
+                        <time id="sitetime"></time>
+                    </div>
+                    </div>
+                </div>
+
+
 
         <form   novalidate="novalidate">
     <div class="card">
@@ -38,43 +85,47 @@ $pageTitle = isset($_GET['id'])?"编辑链接":"创建链接";
         <div class="card-body">
         <div class="row">
             <div class="col-md">
-            <input id="linkId" type="hidden" name="linkId" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+            <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
+            <input type="hidden" name="action" value="<?php echo $action; ?>" />
 
+            <div class="form-group">
+                <label for="parent_id">语言</label> 
+                <select class="form-control" id="lang" name="lang">
+                    <option value="">--请选择语言--</option>
+                    <?php foreach($langs as $item ) {
+                        
+                        ?>                                  
+                        <option value="<?php echo $item->code;?>" <?php echo (isset($data['lang']) && $data["lang"]==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
 
+                    <?php }  ?>                      
+                </select>                              
+            </div>   
+            
                 <div class="form-group">
                     <label for="title">主题</label>                 
                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                   
                 </div>
                 <div class="form-group">
-                    <label for="dictionary_id">类别</label>
-                    <select class="form-control" id="dictionary_id" name="dictionary_id">
-                        <option value="">--请选择类别--</option>
-                        <?php foreach ($dictionaries as $model) {
-                            if ($data['dictionary_id'] == $model["id"]) {
-                                ?>
-                                <option value="<?php echo $model["id"]; ?>" selected><?php echo $model["title"]; ?></option>
+                                <label for="parent_id">分类</label> 
+                                <select class="form-control" id="category_id" name="category_id" >
+                                    <option value="">--请选择分类--</option>
+                                    <?php recursive($categories, $level, $data['category_id']); ?>                                                    
+                                </select>                              
+                            </div>   
 
-                            <?php } else { ?>
-                                <option value="<?php echo $model["id"]; ?>"><?php echo $model["title"]; ?></option>
-                            <?php
-                        }
-                    } ?>
-
-                    </select>
-                </div>
                 <div class="form-group">
                     <label for="url" >链接</label>                  
                     <input type="text" class="form-control" id="url" name="url" placeholder="" value="<?php echo isset($data['url'])?$data['url']:''; ?>">
                 
                 </div>
 
-        
+      
                 <div class="form-group">
                     <label for="description">描述</label>
                     <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
                 </div>
-       
+                
 
                 <div class="form-group">
                     <label for="importance">排序</label>
@@ -90,12 +141,7 @@ $pageTitle = isset($_GET['id'])?"编辑链接":"创建链接";
                         <label class="form-check-label" for="chkActive">发布</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" <?php echo (isset($data['recommend']) && $data['recommend']) ? "checked" : ""; ?> id="chkRecommend" name="recommend">
-                        <label class="form-check-label" for="chkRecommend">推荐</label>
-                    </div>
-                </div>
+          
             </div>
             <div class="col-md-auto">
                 <div style="width:300px;  text-align:center;" class="mb-3">

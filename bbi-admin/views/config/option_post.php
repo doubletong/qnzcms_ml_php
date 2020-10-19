@@ -3,6 +3,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/common.php');
 
 use Models\Option;
 
+$username = $_SESSION['valid_user'];
+
 $config_type = $_POST['config_type'];
 
 
@@ -32,8 +34,9 @@ switch ($config_type) {
             
         } else {
             $option = new Option();
-            $option -> config_name = $config_name;
+            $option->config_name = $config_name;
             $option->config_values = $config_values;
+            $option->added_by = $username;
             $result = $option->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
@@ -46,7 +49,7 @@ switch ($config_type) {
 
         break;
     case 'site_info':
-        $config_name = 'site_info';
+        $config_name = $_POST['config_name'];
         $logo = $_POST['logo'];
      
      
@@ -77,6 +80,7 @@ switch ($config_type) {
 
         $data = Option::find($config_name);
         //$optionClass->get_config($config_name);
+        // print_r($config_values);
 
         if (isset($data)) {
             $data->config_values = $config_values;         
@@ -88,9 +92,12 @@ switch ($config_type) {
             }   
             
         } else {
+
             $option = new Option();
-            $option -> config_name = $config_name;
-            $option->config_values = $config_values;
+            $option->config_name = $config_name;
+            $option->config_values = json_encode($config_values);
+            $option->added_by = $username;
+            
             $result = $option->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  

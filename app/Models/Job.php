@@ -16,7 +16,13 @@ class Job extends Model
    * @var array
    */
    protected $fillable = [
-       'title', 'city', 'department','responsibilities','requirement', 'population','summary','pubdate','author','importance', 'active','created_by'
+       'title', 'address', 'homepage','post','research','education','requirement', 'population','other','application','intro','lang','team_id','importance', 'active','created_by'
    ];
+
+   public function team()
+   {
+       return $this->belongsTo(Team::class,'team_id');
+   }
+
  }
 

@@ -2,6 +2,9 @@
 require_once '../includes/common.php';
 
 use Models\User;
+use Models\Permission;
+use Models\PermissionRole;
+
 session_start();
 
 
@@ -28,8 +31,16 @@ if (isset($_POST['username'], $_POST['password'])) {
           
 
             if ($result) {
+                $role_ids = $user->roles->pluck('id');               
+                $per_ids = PermissionRole::whereIn('role_id',$role_ids)->pluck('permission_id');
+                $my_permissions = Permission::whereIn('id',$per_ids)                       
+                        ->orderBy('importance', 'DESC')->get();                
+
+
+                $_SESSION['my_permissions'] = $my_permissions;
                 $_SESSION['logged_in'] = true;
                 $_SESSION['valid_user'] = $username;
+                $_SESSION['user_id'] = $user->id;
                 $logger->info('登录成功！',$userinfo);
                 header('Location: index.php');
                 exit();

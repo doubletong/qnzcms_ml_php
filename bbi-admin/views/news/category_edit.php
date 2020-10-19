@@ -1,6 +1,8 @@
 <?php
 
 use Models\NewsCategory;
+use Models\Language;
+
 require_once('../../includes/common.php');
 
 $pagetitle = isset($_GET['id'])?"编辑分类":"创建分类";
@@ -9,21 +11,24 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = NewsCategory::find($id);
     //$data = $cateModel->fetch_data($id);
+    $titles = json_decode($data->title,true);
+
 }
 
 $categories = NewsCategory::with("children")->where(["parent" => null])->orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 $level = 0;
 function recursive($items, $level, $parent){
     $level++;
     foreach ($items as $row) {
+        $titles = json_decode($row['title'],true);
         $select = (isset($parent) && $row["id"]==$parent)?"selected":"";
         echo '<option value="'.$row["id"].'"  '.$select.' >';
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $row["title"].'</option>';                   
+        echo $titles['zh-CN'].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.
@@ -61,11 +66,27 @@ function recursive($items, $level, $parent){
                         <div class="card-body">
                             <input type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
-
-                            <div class="form-group">
+                            <div class="card">
+                                <div class="card-header">主题</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php foreach($langs as $item ) {  
+                                            $lang = $item->code;
+                                                ?>                                  
+                                                <div class="col-md">
+                                                <div class="form-group">
+                                                    <label for="title"><?php echo $item->name;?></label>
+                                                    <input type="text" class="form-control"  name="title_<?php echo $lang;?>" value="<?php echo isset($titles[$lang])?$titles[$lang]:''; ?>">
+                                                </div>
+                                                </div>
+                                        <?php }  ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
                                 <label for="title">主题</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                     <label for="parent_id">分类</label>                           

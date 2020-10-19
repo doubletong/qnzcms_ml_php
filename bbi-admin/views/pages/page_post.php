@@ -28,8 +28,9 @@ if(isset($_POST['action']) && isset($_POST['id'])){
                 echo json_encode($result);  
                 return;
             }
-                     
+          
             $title = $_POST['title'];
+            $lang = $_POST['lang'];   
             $content = stripslashes($_POST['content']);        
             $alias = $_POST['alias'];   
             $importance = $_POST['importance'];
@@ -41,11 +42,9 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $seodescription = $_POST['seodescription'];
           
 
-            
-           
-
             $item = new Page();
-            $item->title = $title;        
+            $item->title = $title;
+            $item->lang = $lang;
             $item->content = $content;
             $item->alias = $alias;
             $item->importance = $importance;            
@@ -57,7 +56,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
                 $module = ModuleType::URL();
-                $url = $alias;
+                $url = $alias.'_'.$lang;
                 metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
@@ -75,6 +74,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             }
                         
             $title = $_POST['title'];
+            $lang = $_POST['lang'];   
             $content = stripslashes($_POST['content']);        
             $alias = $_POST['alias'];   
             $importance = $_POST['importance'];
@@ -87,10 +87,9 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             
 
           
-            
-
             $item = Page::find($id);
-            $item->title = $title;        
+            $item->title = $title;       
+            $item->lang = $lang;   
             $item->content = $content;
             $item->alias = $alias;
             $item->importance = $importance;            
@@ -102,7 +101,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
                 $module = ModuleType::URL();
-                $url = $alias;
+                $url = $alias.'_'.$lang;
                 metadataSave($seotitle,$seokeywords,$seodescription,$module,$url);
             }else{
                 echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
@@ -120,10 +119,12 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;
         case "checkcode":
-            if(isset($_POST['id'],$_POST['alias'])){
+            if(isset($_POST['id'],$_POST['lang'],$_POST['alias'])){
                 $id=$_POST['id'];
+                $lang=$_POST['lang'];
                 $alias=$_POST['alias'];
                 echo Page::where('alias', $alias)
+                ->where('lang', $lang)
                 ->where('id','<>', $id)
                 ->count();
                 

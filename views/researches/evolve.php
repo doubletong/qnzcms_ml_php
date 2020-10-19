@@ -6,7 +6,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\Page;
 use Models\Metadata;
 use Models\Advertisement;
+use Models\News;
 
+$lang = isset($_GET['lang'])?$_GET['lang']:'zh-CN';  
 
 //twig 模板设置
 $loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
@@ -19,7 +21,7 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
 
-    $key = "pages_about";
+    $key =  $lang."_researches_evolve";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
@@ -45,6 +47,15 @@ if($site_info['enableCaching']=="1"){
 //load data
 function loadDate($menus){
 
+    $lang = isset($_GET['lang'])?$_GET['lang']:'zh-CN';  
+
+    if($lang == 'zh-CN'){      
+        $subnavs = $menus->where('url','/researches')->first()->children;
+    }else{   
+        $subnavs = $menus->where('url','/'.$lang.'/researches')->first()->children;
+    }
+
+
     $alias = 'evolve';  
 
     $data = Page::where('alias',$alias)->where('active',1)->first();
@@ -53,17 +64,19 @@ function loadDate($menus){
         $data->save();
     }
 
-    $subnavs = $menus->where('url','/researches')->first()->children;
-  
+    $metakey = $alias.'_'.$lang;  
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();
 
+    $code = $lang == 'zh-CN'?'A004': 'A004_'.$lang;
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
         ->where('advertisements.active',1)
-        ->where('advertising_spaces.code','=','A004')->first();
+        ->where('advertising_spaces.code','=', $code)->first();
 
+    $articles = News::where('lang',$lang)->where('active',1)->where('category_id',4)
+        ->select('id','thumbnail','title','lang','pubdate')->orderby('pubdate','DESC')->get();
+ 
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
-
-    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
+    return  ['page' => $data,'articles'=>$articles, 'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
 
 
@@ -74,7 +87,9 @@ $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
-
+$twig->addGlobal('lang', $lang);
+$twig->addGlobal('resources', $GLOBALS['siteLang']);
+$twig->addGlobal('links', $commonData['links']);
 
 echo $twig->render('researches/evolve.html', $result);
 

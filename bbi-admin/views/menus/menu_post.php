@@ -52,6 +52,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
 
             $item = new Menu();
+            $item->lang = $_POST['lang'];
             $item->title = $_POST['title'];
             $item->description = isset($_POST['description']) ? $_POST['description']:"";
             $item->url = $_POST['url'];
@@ -92,6 +93,7 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
 
             $item = Menu::find($id);
+            $item->lang = $_POST['lang'];
             $item->title = $_POST['title'];
             $item->description = isset($_POST['description']) ? $_POST['description']:"";
             $item->url = $_POST['url'];

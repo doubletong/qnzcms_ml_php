@@ -25,7 +25,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->title = $_POST['title'];
             $item->description = $_POST['description'];
             $item->file_url = $_POST['file_url'];
-      
+            $item->lang = $_POST['lang'];
             $item->category_id = stripslashes($_POST['category_id']);
             $item->poster = $_POST['poster'];
             $item->importance = $_POST['importance'];
@@ -60,7 +60,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             $item->title = $_POST['title'];
             $item->description = $_POST['description'];
             $item->file_url = $_POST['file_url'];
-      
+            $item->lang = $_POST['lang'];
             $item->category_id = stripslashes($_POST['category_id']);
             $item->poster = $_POST['poster'];
             $item->importance = $_POST['importance'];

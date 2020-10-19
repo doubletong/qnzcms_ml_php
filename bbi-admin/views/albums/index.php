@@ -10,7 +10,7 @@ $albumClass = new Album;
 //搜索条件判断
 $query = $albumClass->select('id','title','description','importance','active','created_at');
 
-$urlPattern = "categories.php?page=(:num)";
+$urlPattern = "index.php?page=(:num)";
 
 $keyword = null;
 $orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
@@ -20,8 +20,7 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
     $query = $query->where('title','like','%'.$keyword.'%')
-            ->orWhere('responsibilities','like','%'.$keyword.'%')
-            ->orWhere('requirement','like','%'.$keyword.'%');
+            ->orWhere('description','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 

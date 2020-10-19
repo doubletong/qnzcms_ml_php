@@ -2,7 +2,7 @@
 require_once('../../includes/common.php');
 require_once('../../data/link.php');
 
-$linkClass = new TZGCMS\Admin\Link();
+$linkClass = new TZGCMS\Admin\LinkRepository();
 
 //   echo $content.$productId;
 if(isset($_POST['id'])){
@@ -12,5 +12,4 @@ if(isset($_POST['id'])){
     $result = array ('status'=>2,'message'=>'未传递Id');
     echo json_encode($result);  
 }
-
 

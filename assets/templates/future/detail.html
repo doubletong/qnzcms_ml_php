@@ -1,0 +1,78 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{article.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+
+
+{% block content %}
+     
+{{ include('shared/_subMenus.html') }}
+
+<div class="page page-culture-detail page-science-detail">
+  <section class="s1 container">
+    <div class="title-section">
+      <h3 class="text-center">{{article.title}}</h3>
+      <div class="author">{{resources['作者']}} {{article.author}}</div>
+    </div>
+    <div class="article">
+      {{article.content|raw}}
+    </div>
+  </section>
+
+
+  <div class="container">
+    {% for row in authors %}
+    <div class="s2">
+      <div class="row align-items-center">
+        <div class="col-md-auto">
+          <div class="pic">
+            <a href="{{lang=='zh-CN'?'':'/'~lang}}/team/detail-{{row.id}}">
+              <img src="/img.php?src={{row.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.name}}">
+            </a>
+            </div>
+        </div>
+        <div class="col-md">
+          <div class="txt">                     
+            <h3 class="title">{{row.name}}</h3>
+            <div class="research">{{row.introduction}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg"><img src="img/team_03.png" alt=""></div>
+    </div>
+    {% endfor %}
+    
+  
+  </div>
+
+
+</div>
+
+
+    {# <div class="pagenav">
+      {% if prevArticle %}
+        <a id="hlPrevious" href="/news/detail-{{prevArticle.id}}">←</a>
+      {% endif %}
+      {% if nextArticle %}
+      <a id="hlNext" href="/news/detail-{{nextArticle.id}}">→</a>
+      {% endif %}    
+    </div> #}
+
+
+
+
+
+    
+{% endblock %}

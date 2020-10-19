@@ -1,13 +1,92 @@
 RewriteEngine on                       //on为打开,off为关闭
 
+RewriteRule ^en/?$ /index.php?lang=en 
+
 RewriteRule ^pages/(.*)$ /views/pages/index.php?alias=$1 
+
+RewriteRule ^en/news/c([a-z|_|0-9]+)$ /views/news/index.php?lang=en&cid=$1 [L]
+RewriteRule ^en/news/c([0-9]+)/page-([0-9]+)$ /views/news/index.php?lang=en&cid=$1&page=$2 [L]
+RewriteRule ^en/news/detail-([0-9]+)$ /views/news/detail.php?lang=en&id=$1 
+
+RewriteRule ^en/cooperation/c([a-z|_|0-9]+)$ /views/cooperation/index.php?lang=en&cid=$1 [L]
+RewriteRule ^en/cooperation/c([0-9]+)/page-([0-9]+)$ /views/cooperation/index.php?lang=en&cid=$1&page=$2 [L]
+RewriteRule ^en/cooperation/detail-([0-9]+)$ /views/cooperation/detail.php?lang=en&id=$1 
+
+RewriteRule ^en/news/notice/c([a-z|_|0-9]+)$ /views/news/notice.php?lang=en&cid=$1 [L]
+RewriteRule ^en/news/notice/c([0-9]+)/page-([0-9]+)$ /views/news/notice.php?lang=en&cid=$1&page=$2 [L]
+RewriteRule ^en/news/notice/detail-([0-9]+)$ /views/news/detail_notice.php?lang=en&id=$1 
+
+RewriteRule ^en/news/meeting/page-([0-9]+)$ /views/news/meeting.php?lang=en&page=$1 [L]
+RewriteRule ^en/news/meeting/detail-([0-9]+)$ /views/news/detail_meeting.php?lang=en&id=$1 
+
+RewriteRule ^en/future/science/page-([0-9]+)$ /views/future/science.php?lang=en&page=$1 [L]
+
+RewriteRule ^en/team/higher/([A-Z]+)/page-([0-9]+)$ /views/team/higher.php?lang=en&fl=$1&page=$2 [L]
+RewriteRule ^en/team/higher/([A-Z]+)$ /views/team/higher.php?lang=en&fl=$1 [L]
+RewriteRule ^en/team/deputy/([A-Z]+)/page-([0-9]+)$ /views/team/deputy.php?lang=en&fl=$1&page=$2 [L]
+RewriteRule ^en/team/deputy/([A-Z]+)$ /views/team/deputy.php?lang=en&fl=$1 [L]
+
+RewriteRule ^en/team/jobs/page-([0-9]+)$ /views/team/jobs.php?lang=en&page=$1 [L]
+RewriteRule ^en/team/jobs/detail-([0-9]+)$ /views/team/job_detail.php?lang=en&id=$1 
+
+RewriteRule ^en/platform/index-([0-9]+)$ /views/platform/index.php?lang=en&id=$1 
+RewriteRule ^en/platform/support/detail-([0-9]+)$ /views/platform/support_detail.php?id=$1&lang=en 
+RewriteRule ^en/platform/lab/detail-([0-9]+)$ /views/platform/detail_lab.php?lang=en&id=$1 
+RewriteRule ^en/education/tutor-([0-9]+)$ /views/education/tutor.php?lang=en&id=$1 
+
+
+RewriteRule ^news/c([a-z|_|0-9]+)$ /views/news/index.php?cid=$1 [L]
+RewriteRule ^news/c([0-9]+)/page-([0-9]+)$ /views/news/index.php?cid=$1&page=$2 [L]
+RewriteRule ^news/detail-([0-9]+)$ /views/news/detail.php?id=$1 
+
+RewriteRule ^cooperation/c([a-z|_|0-9]+)$ /views/cooperation/index.php?cid=$1 [L]
+RewriteRule ^cooperation/c([0-9]+)/page-([0-9]+)$ /views/cooperation/index.php?cid=$1&page=$2 [L]
+RewriteRule ^cooperation/detail-([0-9]+)$ /views/cooperation/detail.php?id=$1 
+
+RewriteRule ^news/notice/c([a-z|_|0-9]+)$ /views/news/notice.php?cid=$1 [L]
+RewriteRule ^news/notice/c([0-9]+)/page-([0-9]+)$ /views/news/notice.php?cid=$1&page=$2 [L]
+RewriteRule ^news/notice/detail-([0-9]+)$ /views/news/detail_notice.php?id=$1 
+
+RewriteRule ^news/meeting/page-([0-9]+)$ /views/news/meeting.php?page=$1 [L]
+RewriteRule ^news/meeting/detail-([0-9]+)$ /views/news/detail_meeting.php?id=$1 
+RewriteRule ^news/poster-([0-9]+)$ /views/news/poster.php?id=$1 
+
+RewriteRule ^future/science/page-([0-9]+)$ /views/future/science.php?page=$1 [L]
+
+RewriteRule ^team/higher/([A-Z]+)/page-([0-9]+)$ /views/team/higher.php?fl=$1&page=$2 [L]
+RewriteRule ^team/higher/([A-Z]+)$ /views/team/higher.php?fl=$1 [L]
+RewriteRule ^team/deputy/([A-Z]+)/page-([0-9]+)$ /views/team/deputy.php?fl=$1&page=$2 [L]
+RewriteRule ^team/deputy/([A-Z]+)$ /views/team/deputy.php?fl=$1 [L]
+
+RewriteRule ^team/detail-(.*)$ /views/team/detail.php?id=$1 
+
+RewriteRule ^team/jobs/page-([0-9]+)$ /views/team/jobs.php?page=$1 [L]
+RewriteRule ^team/jobs/detail-([0-9]+)$ /views/team/job_detail.php?id=$1 
+
+RewriteRule ^platform/index-([0-9]+)$ /views/platform/index.php?id=$1 
+RewriteRule ^platform/support/detail-([0-9]+)$ /views/platform/support_detail.php?id=$1 
+RewriteRule ^platform/lab/detail-([0-9]+)$ /views/platform/detail_lab.php?id=$1 
+
+RewriteRule ^education/tutor-([0-9]+)$ /views/education/tutor.php?id=$1 
+
+
+RewriteRule ^en/([a-z|_|0-9]+)$ /views/$1/index.php?lang=en 
+RewriteRule ^en/([a-z|_|0-9]+)/([a-z|_|0-9]+)$ /views/$1/$2.php?lang=en 
 
 RewriteRule ^/?([a-z|_|0-9]+)$ /views/$1/index.php [L]
 RewriteRule ^([a-z|_|0-9]+)/([a-z|_|0-9]+)$ /views/$1/$2.php [L]
 
+
+
+
+
+
+
+
+
 RewriteRule ^services/detail-([0-9]+)$ /views/services/detail.php?id=$1 
 RewriteRule ^products/detail-([0-9]+)$ /views/products/detail.php?id=$1 
-RewriteRule ^news/detail-([0-9]+)$ /views/news/detail.php?id=$1 
+
 RewriteRule ^join/detail-([0-9]+)$ /views/join/detail.php?id=$1 
 
 RewriteRule ^technology/list/([0-9]+)$ /views/technology/list.php?cid=$1 
@@ -17,7 +96,8 @@ RewriteRule ^technology/detail/([0-9]+)$ /views/technology/detail.php?id=$1
 
 RewriteRule ^contact/?([a-z|_|0-9]+)$ /views/contact/$1.php [L]
 
-RewriteRule ^/?([a-z|_|0-9]+)$ $1.php [L]
+
+
 RewriteRule ^career/salary_and_welfare/detail-([0-9]+)$ /views/career/detail.php?id=$1 
 RewriteRule ^cases/detail/(.*)$ /views/cases/detail.php?id=$1 
 RewriteRule ^service/projects/([0-9]+)$ /views/service/projects.php?cid=$1 
@@ -31,7 +111,7 @@ RewriteRule ^media-detail-(.*)$ /media_detail.php?id=$1
 RewriteRule ^events-detail-(.*)$ /event_detail.php?id=$1 
 RewriteRule ^creative-detail-(.*)$ /creative_detail.php?id=$1 
 RewriteRule ^branch-detail-(.*)$ /branch_detail.php?id=$1 
-RewriteRule ^team-detail-(.*)$ /team_detail.php?id=$1 
+
 
 
 

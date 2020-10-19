@@ -2,15 +2,19 @@
 require_once('../../includes/common.php');
 
 use Models\TeamCategory;
-
+use Models\Language;
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = $_GET['id'];    
     $data = TeamCategory::find($id);    
+
+    $titles = json_decode($data->title,true);
 }
 
 $action = isset($_GET['id'])?"update":"create";
 $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
+
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 ?>
 <!DOCTYPE html>
@@ -40,21 +44,36 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                         <div class="card-body">
                             <input id="id" type="hidden" name="id" value="<?php echo isset($data['id']) ? $data['id'] : 0; ?>" />
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
-                            <div class="form-group">
-                                <label for="title">分类名称</label>
-                                <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title']) ? $data['title'] : ''; ?>" placeholder="">
+                            
+                            <div class="card">
+                                <div class="card-header">分类名称</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php foreach($langs as $item ) {  
+                                            $lang = $item->code;
+                                                ?>                                  
+                                                <div class="col-md">
+                                                <div class="form-group">
+                                                    <label for="title"><?php echo $item->name;?></label>
+                                                    <input type="text" class="form-control"  name="title_<?php echo $lang;?>" value="<?php echo isset($titles[$lang])?$titles[$lang]:''; ?>">
+                                                </div>
+                                                </div>
+                                        <?php }  ?>
+                                    </div>
+                                </div>
                             </div>
 
-
+                        
                             <div class="form-group">
                                 <label for="importance">排序</label>
                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance']) ? $data['importance'] : '0'; ?>" placeholder="">
                             </div>
+                            <!--   
                             <div class="form-group">
                                 <label for="description">描述</label>
                                 <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description']) ? $data['description'] : ''; ?></textarea>
-                               
                             </div>
+                            -->
                        
                             <div class="form-group">
                                 <div class="form-check">

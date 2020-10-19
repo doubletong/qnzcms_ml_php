@@ -64,9 +64,11 @@ $twig->addGlobal('site', $site_info);
 $twig->addGlobal('menus', $commonData['mainav']);
 $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
+$twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
-
-
+$twig->addGlobal('lang', $lang);
+$twig->addGlobal('resources', $GLOBALS['siteLang']);
+$twig->addGlobal('links', $commonData['links']);
 
 echo $twig->render('pages/index.html', $result);
 

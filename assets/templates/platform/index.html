@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    {{resources['研究中心']}}  
  {% endif %}
 
 {% endblock %}
@@ -20,25 +20,30 @@
   <!-- {{page.content|raw }}   -->
   <div class="page page-platform">
     <section class="s1 container">
-      <nav class="categories wow fadeInUp"><a class="active" href="platform.html">脑功能图谱与行为</a><a href="platform.html">脑认知与类脑智能</a><a href="platform.html">神经发育与退行性脑疾病</a><a href="platform.html">基因编辑脑疾病动物模型</a><a href="platform.html">内尔神经可塑性</a></nav>
+      <nav class="categories wow fadeInUp">
+        {% for row in researches %}
+          <a class="{{research.id == row.id ? 'active':""}}" href="{{lang=='zh-CN'?'':'/'~lang}}/platform/index-{{row.id}}">{{row.title_short}}</a>
+        {% endfor %}    
+      </nav>
       <select class="slcategories wow fadeInUp">
-        <option value="platform.html">脑功能图谱与行为</option>
-        <option value="platform.html">脑认知与类脑智能</option>
-        <option value="platform.html">神经发育与退行性脑疾病</option>
-        <option value="platform.html">基因编辑脑疾病动物模型</option>
-        <option value="platform.html">内尔神经可塑性</option>
+        {% for row in researches %}
+          {% if research.id == row.id %}
+            <option value="{{row.id}}" selected>{{row.title_short}}</option>
+          {% else %}
+            <option value="{{row.id}}">{{row.title_short}}</option>
+          {% endif %}
+        {% endfor %}      
       </select>
     </section>
     <section class="s2 container">
       <div class="row">
         <div class="col-md-auto">
-          <div class="pic wow fadeInUp"><img src="/assets/img/platform_01.jpg" alt=""></div>
+          <div class="pic wow fadeInUp" style="background-image:url({{research.thumbnail}})"><img src="{{research.icon}}" alt=""></div>
         </div>
         <div class="col-md">
           <div class="txt wow fadeInUp">
-            <h2 class="title">脑功能图谱与行为研究中心</h2>
-            <p>研究方向：本能情绪的脑连接图谱解析；脑疾病的脑图谱变异基础研究；功能连接图谱解析技术开发。</p>
-            <p>脑功能图谱与行为研究中心团队领导的光遗传技术研发及应用研究是深圳脑科学研究的优势方向，连续7年在深圳举办“全国光遗传技术培训班”，技术辐射到境内外460家实验室。应用光遗传等技术，在本能恐惧行为、情绪情感等脑基本功能的研究中均取得了原创性的重大科学发现，研究成果发表在Neuron、Nature Communications等杂志，处于世界前沿地位。</p>
+            <h2 class="title">{{research.title}}</h2>
+            {{research.content|raw}}
           </div>
         </div>
       </div>
@@ -46,30 +51,19 @@
     <section class="s3">
       <div class="container">
         <div class="title-section">
-          <h2 class="text-center wow fadeInUp">课题组</h2>
+          <h2 class="text-center wow fadeInUp">{{resources['课题组']}}</h2>
         </div>
         <div class="row">
-          <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div>
-              <p>杰青、长江、万人</p></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
+          {% for row in groups %}
+            <div class="col-6 col-md-4 col-lg-3"><a class="item wow fadeInUp" href="{{lang=='zh-CN'?'':'/'~lang}}/team/detail-{{row.id}}">
+              <div class="avatar"><img src="/img.php?src={{row.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.name}}"></div>
+              <h4>{{row.name}}</h4>
+              <div class="post">{{row.post}}</div>
+              <div class="school">{{row.school}}</div>
+            </a></div>
+          {% endfor %}
+
+     
         </div>
       </div>
     </section>

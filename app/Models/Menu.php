@@ -16,7 +16,7 @@ class Menu extends Model
    * @var array
    */
    protected $fillable = [
-       'title', 'url', 'description', 'icon' ,'parent','group_id', 'importance','new_window', 'active','created_by'
+       'title', 'url', 'description','lang', 'icon' ,'parent','group_id', 'importance','new_window', 'active','created_by'
    ];
 
    public function children(){

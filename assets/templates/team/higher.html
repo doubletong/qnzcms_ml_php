@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    {{page.title}}
+    {{category}}
  {% endif %}
 
 {% endblock %}
@@ -17,86 +17,80 @@
 
 {{ include('shared/_subMenus.html') }}
 
-  <!-- {{page.content|raw }}   -->
+
   <div class="page page-higher container">
     <div class="s1 section">           
       <div class="title-section">
-        <h2 class="text-center">正高级序列</h2>
+        <h2 class="text-center">{{category}}</h2>
       </div>
-      <div class="eng"><a class="active" href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a><a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a><a href="#">P</a><a href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a><a href="#">U</a><a href="#">V</a><a href="#">W</a><a href="#">X</a><a href="#">Y</a><a href="#">Z</a></div>
+      <div class="eng">
+        <a class="{{fl=='A'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/A">A</a>
+        <a class="{{fl=='B'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/B">B</a>
+        <a class="{{fl=='C'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/C">C</a>
+        <a class="{{fl=='D'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/D">D</a>
+        <a class="{{fl=='E'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/E">E</a>
+        <a class="{{fl=='F'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/F">F</a>
+        <a class="{{fl=='G'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/G">G</a>
+        <a class="{{fl=='H'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/H">H</a>
+       
+        <a class="{{fl=='I'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/I">I</a>
+        <a class="{{fl=='J'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/J">J</a>
+        <a class="{{fl=='K'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/K">K</a>
+        <a class="{{fl=='L'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/L">L</a>
+        <a class="{{fl=='M'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/M">M</a>
+        <a class="{{fl=='N'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/N">N</a>
+        <a class="{{fl=='O'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/O">O</a>
+        <a class="{{fl=='P'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/P">P</a>
+        <a class="{{fl=='Q'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/Q">Q</a>
+        <a class="{{fl=='R'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/R">R</a>      
+     
+        <a class="{{fl=='S'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/S">S</a>
+        <a class="{{fl=='T'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/T">T</a>
+        <a class="{{fl=='U'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/U">U</a>
+        <a class="{{fl=='V'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/V">V</a>
+        <a class="{{fl=='W'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/W">W</a>
+        <a class="{{fl=='X'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/X">X</a>
+        <a class="{{fl=='Y'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/Y">Y</a>
+        <a class="{{fl=='Z'?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/team/higher/Z">Z</a>
+
+      </div>
       <div class="memberlist">
         <div class="row">
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">香港科技大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">香港科技大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">浙江大学</div></a></div>
-          <div class="col-6 col-md-4 col-lg-3"><a class="item" href="team_detail.html">
-              <div class="avatar"><img src="/assets/img/team/chenpeihua.jpg" alt="陈培华"></div>
-              <h4>陈培华</h4>
-              <div class="post">副研究员</div>
-              <div class="school">香港科技大学</div></a></div>
+          {% for row in teams %}
+            <div class="col-6 col-md-4 col-lg-3"><a class="item" href="/team/detail-{{row.id}}">
+              <div class="avatar"><img src="/img.php?src={{row.photo}}&amp;w=500&amp;h=500&amp;crop-to-fit" alt="{{row.name}}"></div>
+              <h4>{{row.name}}</h4>
+              <div class="post">{{row.post}}</div>
+              <div class="school">{{row.school}}</div></a>
+            </div>
+          {% endfor %}
+          
+
         </div>
       </div>
-      <footer class="pager-footer">      
-        <ul class="pagination text-center">
-          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page"><a class="page-link" href="#">2                          </a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">下一页</a></li>
-        </ul>
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+            <ul class="pagination  text-center">
+                {% if paginator.prevUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
+                {% endif %}
+
+                {% for page in paginator.pages %}
+                    {% if page.url %}
+                        <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.nextUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+            
       </footer>
+
     </div>
   </div>
 

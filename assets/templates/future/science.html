@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    科普
+    {{resources['科普']}}
  {% endif %}
 
 {% endblock %}
@@ -23,13 +23,13 @@
       <div class="box">
         <div class="row align-items-center">
           <div class="col-md-auto">
-            <a class="item wow fadeInUp" href="/future/science/detail-{{row.id}}">                           
+            <a class="item wow fadeInUp" href="{{lang=='zh-CN'?'':'/'~lang}}/future/science/detail-{{row.id}}">                           
             <img class="thumb" src="/img.php?src={{row.thumbnail}}&amp;w=720&amp;h=480&amp;crop-to-fit"></a>
           </div>
           <div class="col-md">
-            <a class="title wow fadeInUp" href="/future/science/detail-{{row.id}}">
+            <a class="title wow fadeInUp" href="{{lang=='zh-CN'?'':'/'~lang}}/future/science/detail-{{row.id}}">
               <h3>{{row.title}}</h3>
-              <p>作者：{{row.author}}</p></a></div>
+              <p>{{resources['作者']}}{{row.author}}</p></a></div>
         </div>
       </div>
       {% endfor %}
@@ -39,7 +39,7 @@
       {% if paginator.numPages > 1 %}
       <ul class="pagination  text-center">
           {% if paginator.prevUrl %}
-              <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">上一页</a></li>
+              <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
           {% endif %}
 
           {% for page in paginator.pages %}
@@ -51,7 +51,7 @@
           {% endfor %}
 
           {% if paginator.nextUrl %}
-              <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">下一页</a></li>
+              <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
           {% endif %}
       </ul>
   {% endif %}

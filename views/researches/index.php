@@ -46,23 +46,33 @@ if($site_info['enableCaching']=="1"){
 //load data
 function loadDate($menus){
 
+
+    $lang = isset($_GET['lang'])?$_GET['lang']:'zh-CN';    
     $alias = 'research';  
 
-    $data = Page::where('alias',$alias)->where('active',1)->first();
+    $metakey = "research_$lang";
+
+    $data = Page::where('alias',$alias)->where('lang',$lang)->where('active',1)->first();
     if(isset($data)){
         $data->view_count = $data->view_count + 1;
         $data->save();
     }
 
-    $subnavs = $menus->where('url','/researches')->first()->children;
-  
+    if($lang=='zh-CN'){
+        $subnavs = $menus->where('url','/researches')->first()->children;
+    }else{
+        $subnavs = $menus->where('url', '/'.$lang.'/researches')->first()->children;
+    }
 
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();    
+
+
+  
+    $code = $lang == 'zh-CN'?'A004': 'A004_'.$lang;
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
         ->where('advertisements.active',1)
-        ->where('advertising_spaces.code','=','A004')->first();
+        ->where('advertising_spaces.code','=', $code)->first();
 
-
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
 
     return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
@@ -75,7 +85,9 @@ $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
-
+$twig->addGlobal('lang', $lang);
+$twig->addGlobal('resources', $GLOBALS['siteLang']);
+$twig->addGlobal('links', $commonData['links']);
 
 echo $twig->render('researches/index.html', $result);
 

@@ -1,0 +1,99 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+  {{resources['通知公告']}}
+  {% endif %}
+   
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">  
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+  
+<div class="page page-news page-notice">
+
+  <section class="s1 container">
+    <nav class="categories wow fadeInUp">
+      {% for row in categories %}
+        <a class="{{categoryId==row.id?'active':''}}" href="{{lang=='zh-CN'?'':'/'~lang}}/news/notice/c{{row.id}}">{{row.title}}</a>
+      {% endfor %}    
+    </nav>
+  </section>
+
+
+  <section class="s2 container">
+   <div class="noticelist">
+     
+        {% for item in news %}  
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-auto"><a class="cate" href="{{lang=='zh-CN'?'':'/'~lang}}/news/notice/c{{item.category_id}}">{{item.category_title}}</a></div>
+            <div class="col-md">                           
+              <h3> <a href="{{lang=='zh-CN'?'':'/'~lang}}/news/notice/detail-{{item.id}}">{{item.title}}</a></h3>
+            </div>
+            <div class="col-md-auto">
+              <time>{{item.pubdate|date('Y-m-d')}}</time>
+            </div>
+          </div>
+        </div>
+        
+      {% endfor %}  
+
+     
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination  text-center">
+            {% if paginator.prevUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+        
+      </footer>
+    </div>
+  </section>
+</div>
+
+
+  
+{% endblock %}
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+    <script>
+      var swiper = new Swiper('.sliders', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+          },
+          autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+          },
+          //- navigation: {
+          //-     nextEl: '.swiper-button-next',
+          //-     prevEl: '.swiper-button-prev',
+          //- },
+      });
+    </script>
+{% endblock %}

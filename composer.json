@@ -10,7 +10,8 @@
         "samdark/sitemap": "^2.2",
         "katzgrau/klogger": "dev-master",
         "illuminate/database": "^7.7",
-        "mobiledetect/mobiledetectlib": "^2.8"
+        "mobiledetect/mobiledetectlib": "^2.8",
+        "apache/log4php": "2.3.0"
 
     },
     "autoload": {

@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    获奖
+    {{resources['获奖']}}
  {% endif %}
 
 {% endblock %}
@@ -19,27 +19,20 @@
 
   <div class="page page-awards container">
     <div class="s1 section">
-      <div class="pic text-center  wow fadeInUp"><img src="/assets/img/award_01.png" alt="深港脑科学创新研究院"></div>
+      <div class="pic text-center  wow fadeInUp"><img src="/assets/img/award_01.png" alt="{{resources['深港脑科学创新研究院荣获']}}"></div>
       <div class="title-section  wow fadeInUp">
-        <h2 class="text-center">深港脑科学创新研究院荣获</h2>
+        <h2 class="text-center">{{resources['深港脑科学创新研究院荣获']}}</h2>
       </div>
     </div>
     <div class="s2 row">
-      <div class="col-md">
-        <figure class="wow fadeInUp"><img src="/assets/img/temp/aw_01.jpg" alt="">
-          <figcaption>广东省自然科学奖 一等奖（2018）</figcaption>
+      {% for row in photos %}
+      <div class="col-md-6 col-lg-4">
+        <figure class="wow fadeInUp"><img src="{{row.image_url}}" alt="{{row.title}}">
+          <figcaption>{{row.title}}</figcaption>
         </figure>
       </div>
-      <div class="col-md">
-        <figure class="wow fadeInUp"><img src="/assets/img/temp/aw_02.jpg" alt="">
-          <figcaption>广东省自然科学奖 一等奖（2018）</figcaption>
-        </figure>
-      </div>
-      <div class="col-md">
-        <figure class="wow fadeInUp"><img src="/assets/img/temp/aw_03.jpg" alt="">
-          <figcaption>广东省自然科学奖 一等奖（2018）</figcaption>
-        </figure>
-      </div>
+      {% endfor %}    
+
     </div>
   </div>
 

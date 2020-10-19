@@ -24,7 +24,7 @@ if($site_info['enableCaching']=="1"){
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($commonData['mainav']);
+        $home_data = loadDate($lang,$commonData['mainav']);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -37,31 +37,39 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($commonData['mainav']);
+    $result = loadDate($lang,$commonData['mainav']);
 
     //echo $metadata;
 }
 
 //load data
-function loadDate($menus){
+function loadDate($lang,$menus){
 
     $alias = 'facilities';  
 
-    $data = Page::where('alias',$alias)->where('active',1)->first();
+    $data = Page::where('alias',$alias)->where('lang',$lang)->where('active',1)->first();
     if(isset($data)){
         $data->view_count = $data->view_count + 1;
         $data->save();
     }
+ 
+    $metakey = "facilities_$lang";
 
-    $subnavs = $menus->where('url','/platform')->first()->children;
+ 
+    if($lang == 'zh-CN'){   
+        $subnavs = $menus->where('url','/platform')->first()->children;     
+    }else{     
+        $subnavs = $menus->where('url','/'.$lang.'/platform')->first()->children;       
+    }
   
 
+    $code = $lang == 'zh-CN'?'A006': 'A006_'.$lang;
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
-    ->where('advertisements.active',1)
-    ->where('advertising_spaces.code','=','A006')->first();
+        ->where('advertisements.active',1)
+        ->where('advertising_spaces.code','=', $code)->first();
 
 
-    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$alias)->first();
+    $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();
 
     return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
@@ -74,7 +82,9 @@ $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
-
+$twig->addGlobal('lang', $lang);
+$twig->addGlobal('resources', $GLOBALS['siteLang']);
+$twig->addGlobal('links', $commonData['links']);
 
 echo $twig->render('platform/facilities.html', $result);
 

@@ -16,7 +16,7 @@ class Photo extends Model
    * @var array
    */
    protected $fillable = [
-       'title','description', 'importance', 'image_url', 'album_id','active','added_by'
+       'title','lang','description', 'importance', 'image_url', 'album_id','active','added_by'
    ];
 
     public function album()

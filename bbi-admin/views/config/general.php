@@ -1,12 +1,15 @@
 <?php
-
 require_once '../../includes/common.php';
-//require_once('../../data/option.php');
 
-//$optionClass = new \TZGCMS\Admin\SiteOption();
-//$model = $optionClass->get_config("site_info");
 
-//$site_info  = json_decode($model['config_values'], true);
+use Models\Option;
+
+$lang = isset($_GET['lang'])?$_GET['lang']:'';
+
+$configkey = empty($lang)? 'site_info' : 'site_info_'.$lang;
+$option = Option::find($configkey);
+
+$data  = isset($option) ? json_decode($option->config_values,true) : null;
 
 ?>
 <!DOCTYPE html>
@@ -51,52 +54,64 @@ require_once '../../includes/common.php';
                         </div>
                         </div>
                     </header>
-
+                        
                         <section class="card-body">
+
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo $lang == ''?'active':'';?>" href="general.php">中文</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo $lang == 'en'?'active':'';?>" href="general.php?lang=en">English</a>
+                                </li>                 
+                            </ul>
+                            <hr>
+
                             <input type="hidden" name='config_type' value="site_info" />
+                            <input type="hidden" name='config_name' value="<?php echo $configkey;?>" />
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="sitename">网站名称</label>
-                                        <input type="text" class="form-control" id="sitename" name="sitename" placeholder="" value="<?php echo !empty($site_info['sitename']) ? $site_info['sitename'] : ""; ?>">
+                                        <input type="text" class="form-control" id="sitename" name="sitename" placeholder="" value="<?php echo !empty($data['sitename']) ? $data['sitename'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="company">公司名称</label>
-                                        <input type="text" class="form-control" id="company" name="company" placeholder="" value="<?php echo !empty($site_info['company']) ? $site_info['company'] : ""; ?>">
+                                        <input type="text" class="form-control" id="company" name="company" placeholder="" value="<?php echo !empty($data['company']) ? $data['company'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="username">备案号</label>
-                                        <input type="text" class="form-control" id="webnumber" name="webnumber" placeholder="" value="<?php echo !empty($site_info['webnumber']) ? $site_info['webnumber'] : ""; ?>">
+                                        <input type="text" class="form-control" id="webnumber" name="webnumber" placeholder="" value="<?php echo !empty($data['webnumber']) ? $data['webnumber'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="email_contact">控制台主题</label>
                                         <select class="form-control" id="theme" name="theme">
-                                            <option value="black" <?php echo (!empty($site_info['theme']) && $site_info['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
+                                            <option value="black" <?php echo (!empty($data['theme']) && $data['theme'] == "black") ? "selected" : ""; ?>>黑色主题</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="hotPhone">400热线</label>
-                                        <input type="text" class="form-control" id="hotPhone" name="hotPhone" placeholder="" value="<?php echo !empty($site_info['hotPhone']) ? $site_info['hotPhone'] : ""; ?>">
+                                        <input type="text" class="form-control" id="hotPhone" name="hotPhone" placeholder="" value="<?php echo !empty($data['hotPhone']) ? $data['hotPhone'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="phone">联系电话</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="<?php echo !empty($site_info['phone']) ? $site_info['phone'] : ""; ?>">
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="<?php echo !empty($data['phone']) ? $data['phone'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="email">企业邮箱</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?php echo !empty($site_info['email']) ? $site_info['email'] : ""; ?>">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?php echo !empty($data['email']) ? $data['email'] : ""; ?>">
                                     </div>
                                 </div>
 
@@ -104,19 +119,19 @@ require_once '../../includes/common.php';
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="address">联系地址</label>
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="" value="<?php echo !empty($site_info['address']) ? $site_info['address'] : ""; ?>">
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="" value="<?php echo !empty($data['address']) ? $data['address'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="postcode">邮编</label>
-                                        <input type="text" class="form-control" id="postcode" name="postcode" placeholder="" value="<?php echo !empty($site_info['postcode']) ? $site_info['postcode'] : ""; ?>">
+                                        <input type="text" class="form-control" id="postcode" name="postcode" placeholder="" value="<?php echo !empty($data['postcode']) ? $data['postcode'] : ""; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input"  <?php echo isset($site_info['enableCaching']) ? ($site_info['enableCaching'] ? "checked" : "") : "checked"; ?> id="enableCaching" name="enableCaching">
+                                            <input type="checkbox" class="form-check-input"  <?php echo isset($data['enableCaching']) ? ($data['enableCaching'] ? "checked" : "") : "checked"; ?> id="enableCaching" name="enableCaching">
                                             <label class="form-check-label" for="enableCaching">开启缓存</label>
                                         </div>
                                     </div>
@@ -132,17 +147,17 @@ require_once '../../includes/common.php';
                                             <div class="form-group">
                                                 <label for="title">Logo</label>
                                                 <div class="input-group">
-                                                    <input id="logo" name="logo" class="form-control" value="<?php echo !empty($site_info['logo']) ? $site_info['logo'] : ""; ?>" aria-describedby="setLogo">
+                                                    <input id="logo" name="logo" class="form-control" value="<?php echo !empty($data['logo']) ? $data['logo'] : ""; ?>" aria-describedby="setLogo">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-secondary" id="setLogo" type="button">浏览…</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php if (!empty($site_info['logo'])) {?>
+                                        <?php if (!empty($data['logo'])) {?>
                                             <div class="col-auto">
                                                 <div style="background-color:#ccc;padding:5px;">
-                                                    <img src="<?php echo $site_info['logo']; ?>" id="img_logo" style="max-height:80px;" />
+                                                    <img src="<?php echo $data['logo']; ?>" id="img_logo" style="max-height:80px;" />
                                                 </div>
                                             </div>
                                         <?php }?>
@@ -162,19 +177,19 @@ require_once '../../includes/common.php';
                                 <div class="col-md">
                                 <div class="form-group">
                                 <label for="username">招聘邮箱</label>
-                                <input type="text" class="form-control" id="hremail" name="hremail" placeholder="" value="<?php echo !empty($site_info['hremail']) ? $site_info['hremail'] : ""; ?>">
+                                <input type="text" class="form-control" id="hremail" name="hremail" placeholder="" value="<?php echo !empty($data['hremail']) ? $data['hremail'] : ""; ?>">
                             </div>
                                 </div>
                                 <div class="col-md">
                                 <div class="form-group">
                                 <label for="username">联系人</label>
-                                <input type="text" class="form-control" id="hrcontact" name="hrcontact" placeholder="" value="<?php echo !empty($site_info['hrcontact']) ? $site_info['hrcontact'] : ""; ?>">
+                                <input type="text" class="form-control" id="hrcontact" name="hrcontact" placeholder="" value="<?php echo !empty($data['hrcontact']) ? $data['hrcontact'] : ""; ?>">
                             </div>
                                 </div>
                                 <div class="col-md">
                                 <div class="form-group">
                                 <label for="username">联系电话</label>
-                                <input type="text" class="form-control" id="hrphone" name="hrphone" placeholder="" value="<?php echo !empty($site_info['hrphone']) ? $site_info['hrphone'] : ""; ?>">
+                                <input type="text" class="form-control" id="hrphone" name="hrphone" placeholder="" value="<?php echo !empty($data['hrphone']) ? $data['hrphone'] : ""; ?>">
                             </div>
                                 </div>
                             </div>

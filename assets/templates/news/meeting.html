@@ -1,0 +1,113 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{resources['会议预告']}}
+  
+  {% endif %}
+   
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">  
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+
+{{ include('shared/_subMenus.html') }}
+  
+<div class="page page-meetings"> 
+    <section class="s1 container">
+        <div class="meetlist">
+     
+        {% for item in events %}   
+            <div class="item">
+                <div class="row align-items-center">
+                    <div class="col-md-auto">                  
+                        <div class="photo wow fadeInUp">
+                            <a href="{{lang=='zh-CN'?'':'/'~lang}}/news/meeting/detail-{{item.id}}">
+                                <img src="/img.php?src={{item.thumbnail}}&amp;w=210&amp;h=210&amp;crop-to-fit" alt="{{item.title}}">                              
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="txt"> 
+                        <h3 class="wow fadeInUp"> <a href="{{lang=='zh-CN'?'':'/'~lang}}/news/meeting/detail-{{item.id}}">{{item.title}}</a></h3>
+                        <div class="note wow fadeInUp">
+                            <div class="row">
+                            <div class="col-md">
+                                <div class="time">{{resources['时间']}} {{item.datestart}}</div>
+                            </div>
+                            <div class="col-md">
+                                <div class="add">{{resources['地点']}} {{item.address}}</div>
+                            </div>
+                            <div class="col-md">
+                                <div class="zhuci">{{resources['主持']}} {{item.compere}}</div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="summary  wow fadeInUp">
+                            {{item.summary}}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+      {% endfor %}  
+
+  
+      <footer class="news-footer wow fadeInUp">
+        {% if paginator.numPages > 1 %}
+        <ul class="pagination  text-center">
+            {% if paginator.prevUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+        
+      </footer>
+    </div>
+  </section>
+</div>
+
+
+  
+{% endblock %}
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper.min.js"></script>
+    <script>
+      var swiper = new Swiper('.sliders', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+          },
+          autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+          },
+          //- navigation: {
+          //-     nextEl: '.swiper-button-next',
+          //-     prevEl: '.swiper-button-prev',
+          //- },
+      });
+    </script>
+{% endblock %}

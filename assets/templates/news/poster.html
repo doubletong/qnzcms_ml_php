@@ -1,0 +1,97 @@
+{% extends "shared/layoutNoHeaderFooter.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{event.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+    <style>
+      body{
+        padding: 0;
+        margin: 0;     
+      }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+     
+
+<div class="page-meeting-detail">
+  <div  id="meeting">
+    <div class="meeting">
+      <div class="meet_logo"><img src="/assets/img/meeting/logo.png" alt=""></div>
+      <header class="company">
+        <h3 class="text36">{{event.organizer|replace({'\n': '<br/>'})|raw }}</h3>    
+      </header>
+      <div class="qinum">
+        <h3 class="cn">第{{event.issue}}期学术讲座</h3>
+        <h3 class="en">{{event.issue}}nd Academic Seminar</h3>
+      </div>
+      <div class="companyen">
+        <h3>{{event.organizer_en|replace({'\n': '<br/>'})|raw }}</h3>    
+      </div>
+      <div class="address">会议地点：{{event.address}}</div>
+      <div class="time">
+        <div class="row">
+          <div class="col-md"><i class="iconfont icon-time"></i>时间：{{event.datestart}}</div>
+          <div class="col-md-auto"><i class="iconfont icon-user"></i>主持：{{event.compere}}</div>
+        </div>
+      </div>
+      <div class="title">{{event.title}}</div>
+      <div class="profile">
+        <div class="row align-items-center">
+          <div class="col-md-auto">
+            <div class="photo"><img src="/img.php?src={{event.thumbnail}}&amp;w=210&amp;h=210&amp;crop-to-fit" alt=""></div>
+          </div>
+          <div class="col-md">
+            <div class="txt">
+              <div class="name text36">{{event.pro_name}}</div>
+              <div class="office">{{event.pro_company}}</div>
+              <div class="des">{{event.pro_intro}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="bot">
+          <div class="row">
+            <div class="col-md">会议 ID：{{event.meet_id}}</div>
+            <div class="col-md-auto">会议链接：{{event.link}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="summary">
+        <h3>摘要：</h3>
+        {{event.content|raw}}
+      </div>
+      <div class="footer">{{event.footer_note}}</div>
+    </div>
+  </div>
+
+</div>
+
+    
+{% endblock %}
+
+{% block footer %}
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+  html2canvas(document.body).then(function(canvas) {             
+         
+    var a = document.createElement('a');
+     // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+     a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+     a.download = '{{event.issue}}.jpg';
+     a.click();
+ });
+
+</script>
+  
+{% endblock footer %}

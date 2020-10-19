@@ -8,7 +8,7 @@ use JasonGrimes\Paginator;
 //文章表实例化
 $jobClass = new Job;
 //搜索条件判断
-$query = $jobClass->select('id','title','city','department','importance','active','created_at');
+$query = $jobClass->select('id','title','lang','post','importance','active','created_at');
 
 $urlPattern = "index.php?page=(:num)";
 
@@ -79,7 +79,7 @@ $jobs = $query->orderBy('importance', 'DESC')
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-file-copy"></i>岗位列表</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-user"></i>岗位列表</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -116,9 +116,8 @@ $jobs = $query->orderBy('importance', 'DESC')
                                 <thead>
                                     <tr>
                                         <th>序号</th>
-                                        <th>职位</th>
-                                        <th>工作地点</th>
-                                        <th>部门</th>
+                                        <th>主题</th>                                
+                                        <th>语言</th>
                                         <th>显示?</th>
                                         <th style="min-width:120px;">创建日期</th>
                                         <th style="min-width:120px;">操作</th>
@@ -132,8 +131,8 @@ $jobs = $query->orderBy('importance', 'DESC')
                                         <tr>
                                             <td><?php echo $row['importance']; ?></td>
                                             <td><?php echo $row['title']; ?></td>
-                                            <td><?php echo $row['city']; ?></td>
-                                            <td><?php echo $row['department']; ?></td>
+                                         
+                                            <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                                             <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
                                             <td>
                                                 <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>

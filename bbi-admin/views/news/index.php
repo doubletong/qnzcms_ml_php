@@ -5,6 +5,7 @@ require_once('../../includes/common.php');
 use Models\NewsCategory;
 use Models\News;
 use JasonGrimes\Paginator;
+use Models\Language;
 
 $urlPattern = "index.php?page=(:num)";
  //文章表实例化
@@ -12,10 +13,11 @@ $urlPattern = "index.php?page=(:num)";
  //搜索条件判断
  $query = $news->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'thumbnail', 'category_id','importance','active','recommend','created_at');
+}])->select('id','title', 'thumbnail','lang', 'category_id','importance','active','recommend','pubdate');
 
 $keyword = null;
 $cid = null;
+$lang = null;
 $orderby = null;
 $sort= null;
 if(isset($_GET['orderby'])){
@@ -35,6 +37,7 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
       
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
+
 if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
     $cid = htmlspecialchars($_REQUEST["cid"],ENT_QUOTES);
     $querycateogries = NewsCategory::where('parent','=',$cid)->orwhere('id','=',$cid)->select('id')->get();
@@ -42,6 +45,15 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
       
     $urlPattern = $urlPattern . "&cid=$cid";
 }
+
+if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&lang=$lang";
+}
+
 
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
@@ -63,18 +75,19 @@ $countries = $query->orderBy('id', 'DESC')
 
 
 $categories = NewsCategory::with("children")->where(["parent" => null])->orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 $level = 0;
 function recursive($items, $level, $cid){
     $level++;
     foreach ($items as $row) {
+        $titles = json_decode($row['title'],true);
         $select = (isset($cid) && $row["id"]==$cid)?"selected":"";
         echo '<option value="'.$row["id"].'"  '.$select.' >';
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $row["title"].'</option>';                   
+        echo $titles['zh-CN'].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.
@@ -141,12 +154,25 @@ function recursive($items, $level, $cid){
                                         <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
                                         </div>
                                         <div class="col-auto">
-                                        <label class="sr-only" for="inlineFormInput">分类</label>
-                                        <select class="form-control" id="category_id" name="cid" placeholder="" >
-                                            <option value="">--分类过滤--</option>
-                                            <?php recursive($categories, $level, $cid); ?>                                                    
-                                        </select>     
+                                            <label class="sr-only" for="lang">语言</label>
+                                            <select class="form-control" id="lang" name="lang">
+                                                <option value="">--请选择语言--</option>
+                                                <?php foreach($langs as $item ) {
+                                                
+                                                    ?>                                  
+                                                    <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                                <?php }  ?>
+                                            </select>
                                         </div>
+                                        <div class="col-auto">
+                                            <label class="sr-only" for="category_id">分类</label>
+                                            <select class="form-control" id="category_id" name="cid" placeholder="" >
+                                                <option value="">--分类过滤--</option>
+                                                <?php recursive($categories, $level, $cid); ?>                                                    
+                                            </select>     
+                                        </div>
+
                                         <div class="col-auto">
                                         <button type="submit" class="btn btn-primary">搜索</button>
                                         </div>
@@ -187,6 +213,7 @@ function recursive($items, $level, $cid){
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&cid=<?php echo $cid; ?>&orderby=pubdate&sort=asc">发布日期<i class="iconfont icon-orderby"></i></a>
                                     <?php } ?>
                                 </th>
+                                <th>语言</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -195,13 +222,15 @@ function recursive($items, $level, $cid){
                             <?php
                             foreach($countries as $row)
                             {
+                                $titles = json_decode($row['category']['title'],true);
                                 echo "<tr>";
                             ?>
                             <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
                                 <td><?php echo $row['title'] ;?></td> 
-                                <td><?php echo $row['category']['title'] ;?></td> 
+                                <td><?php echo $titles['zh-CN'];?></td> 
                                 <td><?php echo $row['importance'] ;?></td>         
                                 <td><?php echo date_format(date_create($row['pubdate']),"Y-m-d");?></td>
+                                <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                                 <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
                                 <td><a href='news_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                                         <i class="iconfont icon-edit"></i>

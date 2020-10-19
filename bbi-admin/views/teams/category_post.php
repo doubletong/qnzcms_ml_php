@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\TeamCategory;
-
+use Models\Language;
 
 if( isset($_POST['action']) && isset($_POST['id'])){
 
@@ -12,17 +12,28 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
     switch ($_POST['action']) {
         case "create": 
-            if (!isset($_POST['title'], $_POST['importance'])) {   
+
+            $langs = Language::where('active',1)->orderby('importance','DESC')->get();
+
+            $items = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $items[$lang]  =  $_POST['title_'.$lang];    
+            }
+
+            if (!isset($items, $_POST['importance'])) {   
 
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
             
+
+            $title = $items;
           
             $item = new TeamCategory();
-            $item->title = $_POST['title'];
-            $item->description = $_POST['description'];       
+            $item->title = $title;
+            // $item->description = $_POST['description'];       
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             $item->added_by = $username;
@@ -37,17 +48,27 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['title'], $_POST['importance'])) {   
+
+            $langs = Language::where('active',1)->orderby('importance','DESC')->get();
+
+            $items = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $items[$lang]  =  $_POST['title_'.$lang];    
+            }
+
+            if (!isset($items, $_POST['importance'])) {   
 
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
           
-        
+            $title = $items;
+
             $item = TeamCategory::find($id);
-            $item->title = $_POST['title'];
-            $item->description = $_POST['description'];           
+            $item->title = $title;
+            // $item->description = $_POST['description'];           
             $item->importance = $_POST['importance'];
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
             

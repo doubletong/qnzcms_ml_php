@@ -100,7 +100,7 @@ $languages = $query->orderBy('importance', 'DESC')
 
                             ?>
                             <tr>   
-                                <td><img src="../../content/img/langs/<?php echo $row['code']; ?>.svg" alt="<?php echo $row['code']; ?>" style="height:30px;"></td>                           
+                                <td><img src="../../assets/img/langs/<?php echo $row['code']; ?>.svg" alt="<?php echo $row['code']; ?>" style="height:30px;"></td>                           
                                 <td><?php echo $row['code']; ?></td>
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo ($row['default']==1)?"默认":"" ;?></td> 

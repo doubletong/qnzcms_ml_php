@@ -40,7 +40,11 @@
     <div class="bot">
       <div class="row">
         <div class="col-lg">
-          <div class="links"><a href="#">中国科学院深圳先进技术研究院</a><a href="#">中国科学院</a><a href="#">深圳先进技术研究院</a></div>
+          <div class="links">
+            {% for row in links %}
+              <a href="{{row.url}}">{{row.title}}</a>
+            {% endfor %}
+          </div>
         </div>
         <div class="col-lg-auto">
           <div class="copyright">&copy; 2020 {{site.company}}  版权所有 <a href="//beian.miit.gov.cn/"> {{site.webnumber}}</a></div>

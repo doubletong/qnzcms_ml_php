@@ -6,6 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/Str.php');
 use Models\Album;
 use Models\Photo;
 use JasonGrimes\Paginator;
+use Models\Language;
 
 $strClass = new QNZ\Utils\Str;
 
@@ -15,7 +16,7 @@ $urlPattern = "index.php?page=(:num)";
  //搜索条件判断
  $query = $photo->with(['album' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'description','image_url', 'album_id','importance','active','created_at');
+}])->select('id','title', 'lang','image_url', 'album_id','importance','active','created_at');
 
 $keyword = null;
 
@@ -35,6 +36,14 @@ if(isset($_REQUEST["aid"]) && $_REQUEST["aid"] != ""){
     $query = $query->where('album_id',$aid);         
       
     $urlPattern = $urlPattern . "&aid=$aid";
+}
+
+if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&lang=$lang";
 }
 
 if(!empty($orderby) && !empty($sort)){
@@ -58,7 +67,7 @@ $countries = $query->orderBy('importance', 'DESC')
 
 
 $categories = Album::orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 
 ?>
@@ -66,7 +75,7 @@ $categories = Album::orderby('importance','desc')->get();
 <html>
 
 <head>
-    <title><?php echo "产品_后台管理_" . $site_info['sitename']; ?></title>
+    <title><?php echo "图片_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
     <style>
@@ -146,6 +155,20 @@ $categories = Album::orderby('importance','desc')->get();
                                             <label class="sr-only" for="inlineFormInput">关键字</label>
                                             <input type="text" name="keyword" class="form-control" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
                                             </div>
+
+                                            <div class="col-auto">
+                                            <label class="sr-only" for="lang">语言</label>
+                                            <select class="form-control" id="lang" name="lang">
+                                                <option value="">--请选择语言--</option>
+                                                <?php foreach($langs as $item ) {
+                                                
+                                                    ?>                                  
+                                                    <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                                <?php }  ?>
+                                            </select>
+                                        </div>
+
                                             <div class="col-auto">
                                             <label class="sr-only" for="inlineFormInput">相册</label>
                                             <select class="form-control" id="album_id" name="cid" placeholder="" >
@@ -181,9 +204,9 @@ $categories = Album::orderby('importance','desc')->get();
                             <div class="col-md-6 col-lg-4 col-xl-auto">
                                 <div class="card item">
                                 <div class="card-header">
-                                    <input type="checkbox" value=""> <?php echo $row['title'] ;?> [<?php echo $row['album']['title'] ;?>]
+                                    <input type="checkbox" value=""> <?php echo $row['title'] ;?>    <img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;">
                                 </div>
-                                <div class="card-body"><img src="/img.php?src=<?php echo $row['image_url'];?>&w=240&h=240&crop-to-fit" alt=""></div>
+                                <div class="card-body"><img src="/img.php?src=<?php echo $row['image_url'];?>&w=240&h=240&ff=eeeeee" alt=""></div>
                                 <div class="card-footer">
                                     <button class="btn btn-info btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="<?php echo $row['description'];?>"><i class="iconfont icon-ellipsis"></i></button>
                                     <a href='photo_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>

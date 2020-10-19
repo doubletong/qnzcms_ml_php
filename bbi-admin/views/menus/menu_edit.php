@@ -5,7 +5,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\Menu;
 use Models\Metadata;
 
-$did = isset($_GET['gid']) ? $_GET['gid'] : "";
+
+
+if(!isset($_GET['gid']) || !isset($_GET['lang'])){
+    header('Location: /bbi-admin/menus');
+    exit;
+}
+
+$did = $_GET['gid'];
+$lang = $_GET['lang'];
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -19,7 +27,7 @@ if (isset($_GET['id'])) {
 $pageTitle = isset($_GET['id'])?"编辑栏目":"创建栏目";
 $action = isset($_GET['id'])?"update":"create";
 
-$menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orderBy('importance', 'DESC')->get();
+$menus = Menu::with('children')->where('group_id',$did)->where('lang',$lang)->where('parent',0)->orderBy('importance', 'DESC')->get();
 
 // function buildTree(array $elements, $parentId = 0) {
 //     $branch = array();
@@ -71,6 +79,7 @@ $menus = Menu::with('children')->where('group_id',$did)->where('parent',0)->orde
                         <div class="card-body">
                             <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0;?>" />
                             <input id="group_id" type="hidden" name="group_id" value="<?php echo $did; ?>" />
+                            <input type="hidden" id="lang" name="lang" value="<?php echo $lang; ?>" />
                             <input type="hidden" id="action" name="action" value="<?php echo $action; ?>" />
                             <div class="row">
                                 <div class="col">

@@ -15,7 +15,7 @@ $urlPattern = "index.php?page=(:num)";
  //搜索条件判断
  $query = $team->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','name', 'post', 'photo', 'fullphoto', 'category_id','importance','active','created_at');
+}])->select('id','name', 'post', 'photo', 'lang', 'category_id','importance','active','created_at');
 
 $keyword = null;
 $orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
@@ -40,7 +40,7 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
 }else{
-    $query = $query->orderBy('importance', 'DESC');
+    $query = $query->orderBy('id', 'DESC');
 }
 
 $totalItems = $query->count();  //总记录数
@@ -50,8 +50,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator->setMaxPagesToShow(6);
 
-$countries = $query->orderBy('id', 'DESC')
-            ->skip(($currentPage-1)*$itemsPerPage)
+$countries = $query->skip(($currentPage-1)*$itemsPerPage)
             ->take($itemsPerPage)
             ->get();
 
@@ -65,7 +64,7 @@ $categories = TeamCategory::orderby('importance','desc')->get();
 <html>
 
 <head>
-    <title><?php echo "产品_后台管理_" . $site_info['sitename']; ?></title>
+    <title><?php echo "成员_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link href="/assets/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
 </head>
@@ -164,6 +163,7 @@ $categories = TeamCategory::orderby('importance','desc')->get();
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
                                     <?php } ?>
                                     </th>
+                                    <th>语言</th>
                                     <th>
                                         <?php if($orderby=='created_at'){ ?>
                                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
@@ -179,13 +179,15 @@ $categories = TeamCategory::orderby('importance','desc')->get();
                                 <?php
                                 foreach($countries as $row)
                                 {
+                                    $titles = json_decode($row['category']['title'],true);
                                     echo "<tr>";
                                 ?>
                                 <td><img src="<?php echo $row['photo'];?>" class="img-rounded" style="height:35px;"/></td>
                                     <td><?php echo $row['name'] ;?></td> 
-                                    <td><?php echo $row['category']['title'] ;?></td>                                
+                                    <td><?php echo $titles['zh-CN'] ;?></td>                                
                                     <td><?php echo $row['post'] ;?></td>         
                                     <td><?php echo $row['importance'] ;?></td>         
+                                    <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                                     <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
                                     <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
                                     <td><a href='team_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>

@@ -1,6 +1,8 @@
 <?php
 use Models\Album;
 use Models\Photo;
+use Models\Language;
+
 require_once('../../includes/common.php');
 
 $pagetitle = isset($_GET['id'])?"编辑图片":"创建图片";
@@ -15,7 +17,7 @@ if (isset($_GET['id'])) {
 
 
 $categories = Album::orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 $level = 0;
 function recursive($items, $level, $parent){
@@ -75,6 +77,20 @@ function recursive($items, $level, $parent){
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             <div class="row">
                                 <div class="col-md">
+
+                                <div class="form-group">
+                                    <label for="parent_id">语言</label> 
+                                    <select class="form-control" id="lang" name="lang">
+                                        <option value="">--请选择语言--</option>
+                                        <?php foreach($langs as $item ) {
+                                        
+                                            ?>                                  
+                                            <option value="<?php echo $item->code;?>" <?php echo (isset($data['lang']) && $data["lang"]==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                        <?php }  ?>
+                                    </select>
+                                </div>  
+
                                 <div class="form-group">
                                 <label for="title">主题</label>
                                 <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
@@ -187,6 +203,9 @@ function recursive($items, $level, $parent){
             $("form").validate({
 
                 rules: {
+                    lang: {
+                        required: true
+                    },
                     title: {
                         required: true
                     },
@@ -203,6 +222,9 @@ function recursive($items, $level, $parent){
 
                 },
                 messages:{
+                    lang: {
+                        required:"请选择语言"
+                    },
                     title: {
                         required:"请输入主题"
                     },

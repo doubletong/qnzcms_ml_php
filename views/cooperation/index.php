@@ -10,9 +10,9 @@ use Models\News;
 use Models\NewsCategory;
 use JasonGrimes\Paginator;
 
-$cid = null;
+$cid = isset($_GET['cid']) ? $_GET['cid'] : 10;
 $category = null;
-$urlPattern = "/cooperation?page=(:num)";
+$urlPattern = $lang=='zh-CN'? '/cooperation/page-(:num)' : '/'.$lang.'/cooperation/page-(:num)';
 $itemsPerPage = 12;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
  //文章表实例化
@@ -20,7 +20,7 @@ $newsQuery = new News;
  //搜索条件判断
 $query = $newsQuery->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->where('active',1)->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
+}])->where('active',1)->where('lang',$lang)->where('category_id',$cid)->select('id','title', 'thumbnail','summary','author','pubdate','category_id');
 
 
 //twig 模板设置
@@ -34,12 +34,12 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
 
-    $key = "pages_about";
+    $key = $lang."_cooperation_index";
     $CachedString = $InstanceCache->getItem($key);   
 
     if (!$CachedString->isHit()) {
 
-        $home_data = loadDate($commonData['mainav'],$query,$itemsPerPage,$currentPage,$urlPattern,$cid);
+        $home_data = loadDate($lang,$commonData['mainav'],$query,$itemsPerPage,$currentPage,$urlPattern,$cid);
 
         $CachedString->set($home_data)->expiresAfter(5000);//in seconds, also accepts Datetime
         $InstanceCache->save($CachedString); // Save the cache item just like you do with doctrine and entities
@@ -52,41 +52,32 @@ if($site_info['enableCaching']=="1"){
 }else{
     $twig = new \Twig\Environment($loader);  
 
-    $result = loadDate($commonData['mainav'],$query,$itemsPerPage,$currentPage,$urlPattern,$cid);
+    $result = loadDate($lang,$commonData['mainav'],$query,$itemsPerPage,$currentPage,$urlPattern,$cid);
 
     //echo $metadata;
 }
 
 //load data
-function loadDate($menus, $query,$itemsPerPage,$currentPage,$urlPattern,$cid){
+function loadDate($lang,$menus, $query,$itemsPerPage,$currentPage,$urlPattern,$cid){
 
-    $metakey = '/cooperation';  
+    if($lang == 'zh-CN'){   
+        $subnavs = $menus->where('url','/cooperation')->first()->children;
+        $metakey = '/cooperation';  
+      
+    }else{     
+        $subnavs = $menus->where('url','/'.$lang.'/cooperation')->first()->children;        
+        $metakey = '/'.$lang.'/cooperation'; 
+    }
 
-    $subnavs = $menus->where('url','/cooperation')->first()->children;
-  
-
+    $code = $lang == 'zh-CN'?'A008': 'A008_'.$lang;
     $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
         ->where('advertisements.active',1)
-        ->where('advertising_spaces.code','=','A008')->first();
+        ->where('advertising_spaces.code','=', $code)->first();
 
 
-    $categories = NewsCategory::where('active',1)->where('parent',9)->orderBy('importance', 'DESC')->get();
+    $category = NewsCategory::find($cid);
+    $titles = json_decode($category->title,true);
 
-    if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
-        $cid = htmlspecialchars($_REQUEST["cid"],ENT_QUOTES);   
-        $category = $categories->where('id',$cid)->first();
-        $query = $query->where('category_id',$cid);
-        
-    }else{
-        $category = $categories->first();
-        
-        if(!empty($category)){
-            $cid = $category->id;
-            $query = $query->where('category_id',$cid);
-        }
-    }
-    
-    $urlPattern = $urlPattern . "&cid=$cid";
         
     $totalItems = $query->count();  //总记录数      
     $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
@@ -101,9 +92,8 @@ function loadDate($menus, $query,$itemsPerPage,$currentPage,$urlPattern,$cid){
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();
 
     return  ['subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel, 'paginator' => $paginator,
-    'articles' => $articles,'metadata'=>$metadata,'category'=>$category,'categoryId' => $cid];
+    'articles' => $articles,'metadata'=>$metadata,'category_title'=>$titles[$lang],'categoryId' => $cid];
 }
-
 
 
 $twig->addGlobal('site', $site_info);
@@ -112,7 +102,9 @@ $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
 $twig->addGlobal('navbot', $commonData['menus_bot']);
 $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
-
+$twig->addGlobal('lang', $lang);
+$twig->addGlobal('resources', $GLOBALS['siteLang']);
+$twig->addGlobal('links', $commonData['links']);
 
 echo $twig->render('cooperation/index.html', $result);
 

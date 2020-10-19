@@ -3,7 +3,7 @@
  {% if metadata.title %}
      {{metadata.title}}
  {% else %}
-    论文
+    {{resources['论文']}} 
  {% endif %}
 
 {% endblock %}
@@ -19,79 +19,54 @@
 
   <div class="page page-papers container">
     <div class="s1 section">
-      <nav class="years">           <a class="active" href="pagers.html">2019</a><a href="pagers.html">2018</a><a href="pagers.html">2017</a><a href="pagers.html">2016</a><a href="pagers.html">2015</a><a href="pagers.html">2014</a></nav>
+      <nav class="years">
+        {% for row in years %}
+          <a class="{{year==row.year?'active':''}}" href="papers?year={{row.year}}">{{row.year}}</a>
+        {% endfor %}           
+      
+      </nav>
     </div>
     <div class="s2">
       <div class="pagerlist">
+        {% for row in papers %}
         <div class="item wow fadeInUp">
           <div class="row">
             <div class="col-auto">            
-              <div class="pic"><img src="/assets/img/pager_01.png"></div>
+              <div class="pic"><img src="/img.php?src={{row.thumbnail}}&amp;w=560&amp;h=520&amp;crop-to-fit"></div>
             </div>
             <div class="col">
               <div class="txt">
-                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
+                {{row.content|raw}}                
               </div>
             </div>
           </div>
         </div>
-        <div class="item wow fadeInUp">
-          <div class="row">
-            <div class="col-md-auto">            
-              <div class="pic"><img src="/assets/img/pager_01.png"></div>
-            </div>
-            <div class="col-md">
-              <div class="txt">
-                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a><a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item wow fadeInUp">
-          <div class="row">
-            <div class="col-md-auto">            
-              <div class="pic"><img src="/assets/img/pager_01.png"></div>
-            </div>
-            <div class="col-md">
-              <div class="txt">
-                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item wow fadeInUp">
-          <div class="row">
-            <div class="col-md-auto">            
-              <div class="pic"><img src="/assets/img/pager_01.png"></div>
-            </div>
-            <div class="col-md">
-              <div class="txt">
-                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item wow fadeInUp">
-          <div class="row">
-            <div class="col-md-auto">            
-              <div class="pic"><img src="/assets/img/pager_01.png"></div>
-            </div>
-            <div class="col-md">
-              <div class="txt">
-                <p>Kuikui Zhou, Yingjie Zhu*. The paraventricular thalamic nucleus: <a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a><a href="#">A key hub of neural</a>circuits underlying drug addiction. Pharmacological Research. 2019,142:70-76.<a href="#">[PDF]</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <footer class="pager-footer">      
-          <ul class="pagination text-center">
-            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page"><a class="page-link" href="#">2                          </a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
-          </ul>
+        {% endfor %}
+        
+               
+        <footer class="news-footer wow fadeInUp">
+          {% if paginator.numPages > 1 %}
+            <ul class="pagination  text-center">
+                {% if paginator.prevUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.prevUrl }}">{{resources['上一页']}}</a></li>
+                {% endif %}
+    
+                {% for page in paginator.pages %}
+                    {% if page.url %}
+                        <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                    {% endif %}
+                {% endfor %}
+    
+                {% if paginator.nextUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ paginator.nextUrl }}">{{resources['下一页']}}</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+          
         </footer>
+
       </div>
     </div>
   </div>
