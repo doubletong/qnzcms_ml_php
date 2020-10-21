@@ -7,11 +7,16 @@ require_once(dirname(__FILE__). '/../config/database.php');
 
 use Models\Option;
 
-$lang = isset($_GET['lang'])?$_GET['lang']:'zh-CN';
+$site_info = null;
+
+$lang = isset($_GET['lang']) && !empty($_GET['lang']) ? $_GET['lang']:'zh-CN';
 $configkey = $lang=='zh-CN'? 'site_info' : 'site_info_'.$lang;
 
 $siteOption = Option::find($configkey);
-$site_info  =  json_decode($siteOption->config_values,true);  //获取站点信息
+if(isset($siteOption )){
+	$site_info  =  json_decode($siteOption->config_values,true);  //获取站点信息
+}
+
 
 date_default_timezone_set('Asia/Shanghai');   //设置时区
 

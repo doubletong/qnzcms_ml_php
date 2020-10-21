@@ -4,7 +4,7 @@ require_once '../../includes/common.php';
 
 use Models\Option;
 
-$lang = isset($_GET['lang'])?$_GET['lang']:'';
+$lang = isset($_GET['elang'])?$_GET['elang']:'';
 
 $configkey = empty($lang)? 'site_info' : 'site_info_'.$lang;
 $option = Option::find($configkey);
@@ -33,7 +33,7 @@ $data  = isset($option) ? json_decode($option->config_values,true) : null;
                     <div class="col-md">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                            <li class="breadcrumb-item"><a href="/bbi-admin/index.php">控制面板</a></li>
                             <li class="breadcrumb-item"><a href="#">系统</a></li>
                             <li class="breadcrumb-item active" aria-current="page">基本信息</li>
                         </ol>
@@ -62,8 +62,11 @@ $data  = isset($option) ? json_decode($option->config_values,true) : null;
                                     <a class="nav-link <?php echo $lang == ''?'active':'';?>" href="general.php">中文</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <?php echo $lang == 'en'?'active':'';?>" href="general.php?lang=en">English</a>
-                                </li>                 
+                                    <a class="nav-link <?php echo $lang == 'en'?'active':'';?>" href="general.php?elang=en">English</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo $lang == 'zh-TW'?'active':'';?>" href="general.php?elang=zh-TW">繁体中文</a>
+                                </li>        
                             </ul>
                             <hr>
 

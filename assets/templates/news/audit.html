@@ -1,0 +1,39 @@
+{% extends "shared/layout.html" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{article.title}}
+  {% endif %}
+   
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}    
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+{% endblock %}
+
+
+{% block content %}
+     
+{{ include('shared/_subMenus.html') }}
+
+<div class="page page-news-detail">
+  <article class="container">
+    <header>
+      <h1 class="title-news wow fadeInUp">{{article.title}}</h1>
+      <div class="row note justify-content-md-center">
+        <div class="col-auto">{{article.pubdate|date('Y-m-d')}}</div>
+        <div class="col-auto">by {{article.author}}</div>
+      </div>
+    </header>
+    <main class="wow fadeInUp">
+      {{article.content|raw}}
+    </main>
+  </article>
+</div>
+
+    
+{% endblock %}

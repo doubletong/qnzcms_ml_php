@@ -32,15 +32,22 @@ if (!isset($_SESSION['valid_user'])){
 }
 
 
-$uri = $_SERVER['REQUEST_URI'];
-$current_per = $_SESSION['my_permissions']->where('url', $uri)->first();
-// print_r($current_per);
 // 权限跳转
-if(!isset($current_per) && $uri!="/bbi-admin/noaccess.php"){
-	$url = "/bbi-admin/noaccess.php";
-	header("Location: $url");
-	exit();
+/* not AJAX check  */
+if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+    /* special ajax here */
+
+    $uri = $_SERVER['PHP_SELF'];
+    $current_per = $_SESSION['my_permissions']->where('url', $uri)->first();
+
+    // if(!isset($current_per) && $uri!="/bbi-admin/noaccess.php"){
+    //     $url = "/bbi-admin/noaccess.php";
+    //     header("Location: $url");
+    //     //print_r(123);
+    //     exit();
+    // }
 }
+
 
 // SEO set
 

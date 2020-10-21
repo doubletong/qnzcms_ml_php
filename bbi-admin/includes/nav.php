@@ -22,7 +22,6 @@ $perm_for_nav = $_SESSION['my_permissions']->where('group_id', $group_id)->where
 
 
 
-
 ?>
 <aside class="leftcol" id="leftcol">
     <div class="logo"><a href="index.html"><img src="<?php echo $site_info['logo'] ?>" alt="logo"></a></div>
