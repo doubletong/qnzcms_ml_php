@@ -105,7 +105,7 @@ $pages =  $query->orderBy('importance', 'DESC')
                             </div>
                             <div class="col-auto">
                                     <a href="position_edit.php" class="btn btn-primary">
-                                        <i class="iconfont icon-plus"></i>  添加页面
+                                        <i class="iconfont icon-plus"></i>  添加
                                     </a>
                             </div>
                         </div>

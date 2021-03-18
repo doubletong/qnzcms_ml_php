@@ -51,6 +51,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
         ),
+        'R' => 
+        array (
+            'Rakit\\Validation\\' => 17,
+        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
@@ -174,6 +178,10 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Seld\\JsonLint\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
+        ),
+        'Rakit\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rakit/validation/src',
         ),
         'Psr\\SimpleCache\\' => 
         array (
@@ -375,6 +383,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Announcements' => __DIR__ . '/../..' . '/app/Models/Announcement.php',
         'Models\\ApplicationArea' => __DIR__ . '/../..' . '/app/Models/ApplicationArea.php',
         'Models\\Carousel' => __DIR__ . '/../..' . '/app/Models/Carousel.php',
+        'Models\\Chronicle' => __DIR__ . '/../..' . '/app/Models/Chronicle.php',
         'Models\\Country' => __DIR__ . '/../..' . '/app/Models/country.php',
         'Models\\Download' => __DIR__ . '/../..' . '/app/Models/Download.php',
         'Models\\DownloadCategory' => __DIR__ . '/../..' . '/app/Models/DownloadCategory.php',
@@ -384,7 +393,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\Exhibition' => __DIR__ . '/../..' . '/app/Models/Exhibition.php',
         'Models\\Job' => __DIR__ . '/../..' . '/app/Models/Job.php',
         'Models\\Lab' => __DIR__ . '/../..' . '/app/Models/Lab.php',
-        'Models\\Language' => __DIR__ . '/../..' . '/app/Models/language.php',
+        'Models\\Language' => __DIR__ . '/../..' . '/app/Models/Language.php',
         'Models\\Link' => __DIR__ . '/../..' . '/app/Models/Link.php',
         'Models\\LinkCategory' => __DIR__ . '/../..' . '/app/Models/LinkCategory.php',
         'Models\\Menu' => __DIR__ . '/../..' . '/app/Models/Menu.php',
@@ -412,6 +421,8 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\ServiceItem' => __DIR__ . '/../..' . '/app/Models/ServiceItem.php',
         'Models\\SocialAccount' => __DIR__ . '/../..' . '/app/Models/SocialAccount.php',
         'Models\\SocialSoftware' => __DIR__ . '/../..' . '/app/Models/SocialSoftware.php',
+        'Models\\Subsidiary' => __DIR__ . '/../..' . '/app/Models/Subsidiary.php',
+        'Models\\SubsidiaryCategory' => __DIR__ . '/../..' . '/app/Models/SubsidiaryCategory.php',
         'Models\\Team' => __DIR__ . '/../..' . '/app/Models/Team.php',
         'Models\\TeamCategory' => __DIR__ . '/../..' . '/app/Models/TeamCategory.php',
         'Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

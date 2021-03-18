@@ -1,4 +1,5 @@
 <?php
+
 define("ADMINPATH","{$_SERVER['DOCUMENT_ROOT']}/bbi_admin/");
 
 $config = include dirname(__FILE__).'/settings.php';

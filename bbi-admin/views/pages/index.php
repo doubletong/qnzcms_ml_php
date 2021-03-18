@@ -121,19 +121,19 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                         <input type="text" name="keyword" class="form-control" id="keyword" value="<?php echo $keyword ?>" placeholder="关键字">
                                     </div>
                                     <div class="col-auto">
-                                            <label class="sr-only" for="lang">语言</label>
-                                            <select class="form-control" id="lang" name="lang">
-                                                <option value="">--请选择语言--</option>
-                                                <?php foreach($langs as $item ) {
-                                                
-                                                    ?>                                  
-                                                    <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+                                        <label class="sr-only" for="lang">语言</label>
+                                        <select class="form-control" id="lang" name="lang">
+                                            <option value="">--请选择语言--</option>
+                                            <?php foreach($langs as $item ) {
+                                            
+                                                ?>                                  
+                                                <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
 
-                                                <?php }  ?>
-                                            </select>
-                                        </div>
+                                            <?php }  ?>
+                                        </select>
+                                    </div>
                                     <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary">搜索</button>
+                                        <button type="submit" class="btn btn-primary">搜索</button>
                                     </div>
                                 </div>
                             </form>

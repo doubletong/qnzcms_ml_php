@@ -34,18 +34,35 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
 
-            <div class="container-fluid maincontent">
+            <div class="main-content"> 
+                <div class="breadcrumb-container">
+                    <div class="row">
+                        <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">团队</a></li>
+                                <li class="breadcrumb-item"><a href="categories.php">职能类别</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><?php echo $pageTitle; ?></li>
+                            </ol>
+                        </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
+                        </div>
+                    </div>
+                </div> 
 
-                <form novalidate="novalidate">
+                <form>
                     <div class="card">
                         <div class="card-header">
-                            <?php echo $pageTitle . "分类"; ?>
+                            <div class="card-title-v1"><i class="iconfont icon-edit"></i> <?php echo $pageTitle . "分类"; ?></div>
                         </div>
                         <div class="card-body">
                             <input id="id" type="hidden" name="id" value="<?php echo isset($data['id']) ? $data['id'] : 0; ?>" />
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
                             
-                            <div class="card">
+                            <div class="card mb-3">
                                 <div class="card-header">分类名称</div>
                                 <div class="card-body">
                                     <div class="row">
@@ -54,8 +71,8 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                                 ?>                                  
                                                 <div class="col-md">
                                                 <div class="form-group">
-                                                    <label for="title"><?php echo $item->name;?></label>
-                                                    <input type="text" class="form-control"  name="title_<?php echo $lang;?>" value="<?php echo isset($titles[$lang])?$titles[$lang]:''; ?>">
+                                                    <label for="title"><?php echo $item->name;?></label>                                                  
+                                                    <input type="text" class="form-control"  name="title_<?php echo $lang;?>" value="<?php echo isset($titles[$lang])?$titles[$lang]:''; ?>" required>
                                                 </div>
                                                 </div>
                                         <?php }  ?>
@@ -107,13 +124,12 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
             $("#module_nav>li:nth-of-type(1)").addClass("active").siblings().removeClass('active');        
             $(".mainmenu>li.categorys").addClass("nav-open").find("ul>li:nth-of-type(2) a").addClass("active");
 
+            $.validator.messages.required = "必填项目不可为空！";
 
             $("form").validate({
 
                 rules: {
-                    title: {
-                        required: true
-                    },                 
+                               
                     importance: {
                         required: true,
                         digits: true
@@ -121,10 +137,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
                 },
                 messages: {
-                    title: {
-                        required: "请输入招聘岗位"
-                    },                 
-             
+                 
                     importance: {
                         required: "请输入序号",
                         digits: "请输入有效的整数"

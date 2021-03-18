@@ -6,7 +6,7 @@ require_once('../../includes/common.php');
 use Models\TeamCategory;
 use Models\Team;
 use JasonGrimes\Paginator;
-
+use Models\Language;
 
 
 $urlPattern = "index.php?page=(:num)";
@@ -43,6 +43,15 @@ if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy('id', 'DESC');
 }
 
+if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&lang=$lang";
+}
+
+
 $totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
@@ -57,7 +66,7 @@ $countries = $query->skip(($currentPage-1)*$itemsPerPage)
 
 $categories = TeamCategory::orderby('importance','desc')->get();
 
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 ?>
 <!DOCTYPE html>
@@ -120,14 +129,27 @@ $categories = TeamCategory::orderby('importance','desc')->get();
                                             <select class="form-control" id="category_id" name="cid" placeholder="" >
                                                 <option value="">--分类过滤--</option>
                                                 <?php foreach($categories as $category){ ?>
+                                                    <?php $titles = json_decode($category->title,true); ?>
                                                     <?php if($category->id == $_REQUEST["cid"]){ ?>
-                                                        <option value="<?php echo $category->id; ?>" selected><?php echo $category->title; ?></option>
-                                                    <?php }else{   ?>
-                                                        <option value="<?php echo $category->id; ?>"><?php echo $category->title; ?></option>
+                                                        <option value="<?php echo $category->id; ?>" selected><?php echo $titles['zh-CN']; ?></option>
+                                                    <?php }else{ ?>
+                                                        <option value="<?php echo $category->id; ?>"><?php echo $titles['zh-CN']; ?></option>
                                                     <?php } ?>
                             
                                                 <?php } ?>
                                             </select>     
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="sr-only" for="lang">语言</label>
+                                                <select class="form-control" id="lang" name="lang">
+                                                    <option value="">--请选择语言--</option>
+                                                    <?php foreach($langs as $item ) {
+                                                    
+                                                        ?>                                  
+                                                        <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                                    <?php }  ?>
+                                                </select>
                                             </div>
                                             <div class="col-auto">
                                             <button type="submit" class="btn btn-primary">搜索</button>
@@ -184,7 +206,7 @@ $categories = TeamCategory::orderby('importance','desc')->get();
                                 ?>
                                 <td><img src="<?php echo $row['photo'];?>" class="img-rounded" style="height:35px;"/></td>
                                     <td><?php echo $row['name'] ;?></td> 
-                                    <td><?php echo $titles['zh-CN'] ;?></td>                                
+                                    <td><?php echo $titles[$row['lang']] ;?></td>                                
                                     <td><?php echo $row['post'] ;?></td>         
                                     <td><?php echo $row['importance'] ;?></td>         
                                     <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>

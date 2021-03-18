@@ -3,7 +3,7 @@ require_once('../../includes/common.php');
 
 use Models\TeamCategory;
 use JasonGrimes\Paginator;
-
+use Models\Language;
 
 //文章表实例化
 $categoryClass = new TeamCategory;
@@ -43,7 +43,7 @@ $categorys = $query->orderBy('importance', 'DESC')
             ->take($itemsPerPage)
             ->get();
 
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 ?>
 <!DOCTYPE html>
 <html>
@@ -71,8 +71,8 @@ $categorys = $query->orderBy('importance', 'DESC')
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">控制面板</a></li>
-                                <li class="breadcrumb-item"><a href="#">页面</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">列表</li>
+                                <li class="breadcrumb-item"><a href="index.php">团队</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">职能类别</li>
                             </ol>
                         </nav>
                         </div>
@@ -86,7 +86,7 @@ $categorys = $query->orderBy('importance', 'DESC')
                     <header class="card-header">
                         <div class="row">
                             <div class="col">
-                                <div class="card-title-v1"> <i class="iconfont icon-link"></i>成员分类</div>
+                                <div class="card-title-v1"> <i class="iconfont icon-appstore-fill"></i>成员分类</div>
                             </div>
                             <div class="col-auto">
                                 <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
@@ -152,10 +152,22 @@ $categorys = $query->orderBy('importance', 'DESC')
                                     <?php
                                     foreach ($categorys as $row) {
                                         $titles = json_decode($row['title'],true);
+                                        //print_r($titles);
                                         ?>
                                         <tr>
                                         
-                                            <td><?php echo $titles['zh-CN']; ?></td>
+                                            <td>
+                                                <ul style="list-style: none; margin:0;padding:0;">
+                                                <?php foreach($langs as $item ) : ?>
+                                                    <?php if(isset($titles[$item->code])) : ?>
+                                                        <li>
+                                                        <?php echo '<label style="color:#ccc;">'.$item->name.'：</label>'.$titles[$item->code]; ?> 
+                                                        </li>
+                                                    <?php endif; ?>
+                                                <?php endforeach;  ?>
+                                                </ul>
+                                            
+                                            </td>
                                                           
                                             <td><?php echo $row['importance']; ?></td>
                                             <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              

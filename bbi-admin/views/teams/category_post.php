@@ -2,8 +2,10 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
+
 use Models\TeamCategory;
 use Models\Language;
+
 
 if( isset($_POST['action']) && isset($_POST['id'])){
 
@@ -22,15 +24,13 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             }
 
             if (!isset($items, $_POST['importance'])) {   
-
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
-            
 
-            $title = $items;
-          
+
+            $title = $items;          
             $item = new TeamCategory();
             $item->title = $title;
             // $item->description = $_POST['description'];       

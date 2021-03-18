@@ -160,7 +160,7 @@ $data  = isset($option) ? json_decode($option->config_values,true) : null;
                                         <?php if (!empty($data['logo'])) {?>
                                             <div class="col-auto">
                                                 <div style="background-color:#ccc;padding:5px;">
-                                                    <img src="<?php echo $data['logo']; ?>" id="img_logo" style="max-height:80px;" />
+                                                    <img src="<?php echo $data['logo']; ?>" id="img_logo" style="height:60px;" />
                                                 </div>
                                             </div>
                                         <?php }?>
