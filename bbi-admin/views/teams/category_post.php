@@ -6,7 +6,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 use Models\TeamCategory;
 use Models\Language;
 
-
 if( isset($_POST['action']) && isset($_POST['id'])){
 
     $id=$_POST['id'];

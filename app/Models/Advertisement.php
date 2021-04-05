@@ -16,14 +16,13 @@ class Advertisement extends Model
    * @var array
    */
    protected $fillable = [
-       'title','description', 'importance', 'link', 'image_url','image_url_mobile','active','added_by','space_id'
+       'title','description', 'importance', 'link', 'lang','image_url','image_url_mobile','active','added_by','space_id'
    ];
 
     public function advertising_space()
     {
         return $this->belongsTo(AdvertisingSpace::class,'space_id');
-    }
- 
+    } 
  }
 
 

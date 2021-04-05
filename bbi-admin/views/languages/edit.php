@@ -7,6 +7,7 @@ use Models\Language;
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = Language::find($id);    
+
 }
 
 $langs = array(
@@ -20,7 +21,8 @@ $langs = array(
     'ru'=>'俄语',
     'zh'=>'中文',
     'zh-CN'=>'中文(简体)',
-    'zh-TW'=>'中文(繁体)'
+    'zh-HK'=>'中文(香港繁体)',
+    'zh-TW'=>'中文(台湾繁体)'
 );
 
 $action = isset($_GET['id'])?"update":"create";
@@ -51,10 +53,10 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                         <div class="card-header">
                             <?php echo $pageTitle . "岗位"; ?>
                         </div>
-                        <div class="card-body">
-                          
+                        <div class="card-body">                            
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
-                            <div class="form-group">
+                           <?php if($action=='create'):?>
+                                <div class="form-group">
                                 <label for="title">语言代码</label>                              
                                 <select name="code" id="code" class="form-control">
                                     <option value="">--选择语言--</option>
@@ -67,12 +69,27 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                                     <?php } ?>
                                 </select>
                             </div>
-
+                            <?php else : ?>
+                                <input type="hidden" name="code" value="<?php echo $data['code']; ?>" />
+                                <div class="form-group">
+                                    <label for="title">语言代码</label>     
+                                   
+                                    <?php foreach($langs as $x=>$x_value) { ?>
+                                        <?php if(isset($data['code']) && $data['code'] == $x){?>
+                                            <p><?php echo $x_value;?></p>  
+                                        <?php } ?>                    
+                                    <?php } ?>
+                                   
+                                </div>
+                            <?php endif; ?>
                             <div class="form-group">
                                 <label for="name">语言名称</label>
                                 <input type="text" class="form-control" id="name" name="name" value="<?php echo isset($data['name']) ? $data['name'] : ''; ?>" placeholder="">
                             </div>
-
+                            <div class="form-group">
+                                <label for="name">别名</label>
+                                <input type="text" class="form-control"  name="show_label" value="<?php echo isset($data['show_label']) ? $data['show_label'] : ''; ?>" >
+                            </div>
                          
                             <div class="form-group">
                                 <label for="importance">排序</label>
@@ -123,7 +140,9 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
                     code: {
                         required: true
                     },
-
+                    show_label: {
+                        required: true
+                    },
                     name: {
                         required: true
                        
@@ -135,11 +154,12 @@ $pageTitle = isset($_GET['id']) ? "编辑" : "创建";
 
                 },
                 messages: {
-                    title: {
+                    code: {
                         required: "请输入语言代码"
                     },
-
-                 
+                    show_label: {
+                        required: "请输入语言别名"
+                    },                 
                     name: {
                         required: "请输入语言名称"                      
                     },

@@ -52,7 +52,9 @@ $teams = Team::all();
     <title><?php echo $pagetitle."_后台管理_" . $site_info['sitename']; ?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
     <link rel="stylesheet" href="/assets/js/vendor/select2/dist/css/select2.min.css">
-    <script src="/assets/js/vendor/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/elFinder/css/elfinder.min.css"/>
+
     <style>
         .img_max{
             object-fit: contain;
@@ -119,7 +121,7 @@ $teams = Team::all();
                             <div class="form-group">
                                 <label for="parent_id">分类</label> 
                                 <select class="form-control" id="category_id" name="category_id" placeholder="" >
-                                    <option value="">--请选择父类--</option>
+                                    <option value="">--请选择分类--</option>
                                     <?php recursive($categories, $level, $data['category_id']); ?>                                                    
                                 </select>                              
                             </div>    
@@ -128,14 +130,7 @@ $teams = Team::all();
                             <div class="form-group">
                                 <label for="intro">内容</label>
                                 <textarea class="form-control" id="content" name="content" placeholder=""><?php echo isset($data['content'])?stripslashes($data['content']):''; ?></textarea>
-                                <script>
-                                    var elFinder = '/assets/js/vendor/elfinder/elfinder-cke.php';
-                                    CKEDITOR.replace('content', {
-                                        filebrowserBrowseUrl: elFinder,
-                                        filebrowserImageBrowseUrl: elFinder,                                  
-                                        allowedContent: true                  
-                                    });
-                                </script>
+                                
                             </div>    
                             <div class="form-group">
                                 <label for="intro">摘要</label>
@@ -224,7 +219,7 @@ $teams = Team::all();
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
-                            <a href="JavaScript:window.history.back()" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
+                            <a href="index.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>
                         </div>
                     </div>
                 </form>
@@ -239,12 +234,78 @@ $teams = Team::all();
     <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
     <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="/assets/js/vendor/select2/dist/js/select2.full.min.js"></script>
+
+    <script type="text/javascript" src="/assets/js/vendor/jquery-ui/jquery-ui.min.js"></script>    
+
+    <script src="/assets/js/vendor/elFinder/js/elfinder.min.js"></script>
+    <script src="/assets/js/vendor/elFinder/js/i18n/elfinder.zh_CN.js"></script>
+    <script src="/assets/js/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/assets/js/tinymceElfinder.js"></script>
+
     <script type="text/javascript">
-        function SetThumbnail(fileUrl) {
-            $('#thumbnail').val(fileUrl);
-            $('#iLogo').attr('src', fileUrl);
-        }
-  
+        const mceElf = new tinymceElfinder({
+            // connector URL (Set your connector)
+            url: '/assets/js/vendor/elFinder/php/connector.minimal.php',
+            lang: 'zh_CN',
+            // upload target folder hash for this tinyMCE
+            uploadTargetHash: 'l1_lw', // Hash value on elFinder of writable folder
+            // elFinder dialog node id
+            nodeId: 'elfinder' // Any ID you decide
+        });
+
+        var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        tinymce.init({
+            selector: '#content',
+            language:'zh_CN',
+            plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+            imagetools_cors_hosts: ['picsum.photos'],
+            menubar: 'file edit view insert format tools table help',
+            toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+            toolbar_sticky: true,
+            autosave_ask_before_unload: true,
+            autosave_interval: '30s',
+            autosave_prefix: '{path}{query}-{id}-',
+            autosave_restore_when_empty: false,
+            autosave_retention: '2m',
+            image_advtab: true,
+            link_list: [
+                { title: 'My page 1', value: 'https://www.tiny.cloud' },
+                { title: 'My page 2', value: 'http://www.moxiecode.com' }
+            ],
+            image_list: [
+                { title: 'My page 1', value: 'https://www.tiny.cloud' },
+                { title: 'My page 2', value: 'http://www.moxiecode.com' }
+            ],
+            image_class_list: [
+                { title: 'None', value: '' },
+                { title: 'Some class', value: 'class-name' }
+            ],
+            importcss_append: true,
+            file_picker_callback : mceElf.browser,
+            images_upload_handler: mceElf.uploadHandler,
+
+            templates: [
+                { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+                { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+                { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+            ],
+            template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+            template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+            height: 400,
+            image_caption: true,
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+            noneditable_noneditable_class: 'mceNonEditable',
+            toolbar_mode: 'sliding',
+            contextmenu: 'link image imagetools table',
+            skin: useDarkMode ? 'oxide-dark' : 'oxide',
+            content_css: useDarkMode ? 'dark' : 'default',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            relative_urls: false, 
+            convert_urls: false, 
+            remove_script_host: false
+        });
+
+    
         $(document).ready(function() {
 
             //当前菜单        
@@ -252,8 +313,28 @@ $teams = Team::all();
             $(".mainmenu>li.news").addClass("nav-open").find("ul>li.list a").addClass("active");     
 
             $("#btnThumbnail").on("click", function () {
-                singleEelFinder.selectActionFunction = SetThumbnail;
-                singleEelFinder.open();
+           
+                $('<div \>').dialog({modal: true, width: "80%", title: "选择文件", zIndex: 99999,
+                    create: function(event, ui) {
+                        $(this).elfinder({
+                            resizable: false,
+                            url: '/assets/js/vendor/elFinder/php/connector.minimal.php',
+                            lang: 'zh_CN',
+                            commandsOptions: {
+                            getfile: {
+                                oncomplete: 'destroy' 
+                            }
+                            },                            
+                            getFileCallback: function(file) {
+                                //document.getElementById('fileurl').value = file; 
+                                var fileUrl = '/'+file.path.replace(/\\/g,"/");
+                                $('#thumbnail').val(fileUrl);
+                                $('#iLogo').attr('src', fileUrl);                         
+                                jQuery('.ui-dialog-titlebar-close[type="button"]').click();
+                            }
+                        }).elfinder('instance')
+                    }
+                });
             });
 
             $("#btnImgDelete").on("click", function() {
@@ -343,15 +424,7 @@ $teams = Team::all();
                     $(element).addClass('is-valid');
                 },
                 submitHandler: function(form) {
-                    // var values = {};
-                    // var fields = {};
-                    for (var instanceName in CKEDITOR.instances) {
-                        CKEDITOR.instances[instanceName].updateElement();
-                    }
-
-                    // $.each($(form).serializeArray(), function(i, field) {
-                    //     values[field.name] = field.value;
-                    // });
+                    
 
                     $.ajax({
                         url: 'news_post.php',

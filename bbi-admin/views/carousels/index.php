@@ -2,19 +2,18 @@
 require_once('../../includes/common.php');
 //require_once('../../data/carousel.php');
 
-
-
 use Models\Advertisement;
 use Models\AdvertisingSpace;
 use JasonGrimes\Paginator;
+use Models\Language;
 
 //$carouselClass = new TZGCMS\Admin\Carousel();
 //$pid = isset($_GET['pid']) ? $_GET['pid'] : null;
 //$positionClass = new TZGCMS\Admin\Position();
-
-$positions = AdvertisingSpace::all();
-
 $urlPattern = "index.php?page=(:num)";
+
+
+
  //文章表实例化
  $ads = new Advertisement;
  //搜索条件判断
@@ -23,8 +22,9 @@ $urlPattern = "index.php?page=(:num)";
 
  $keyword = null;
  $space = null;
+ $lang = null;
 
- $orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
+$orderby = isset($_GET['orderby'])?$_GET['orderby']:null;
 $sort= isset($_GET['sort'])?$_GET['sort']:null;
 
  if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
@@ -48,6 +48,14 @@ $sort= isset($_GET['sort'])?$_GET['sort']:null;
     $query = $query->orderBy('importance', 'DESC');
 }
 
+if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&lang=$lang";
+}
+
 $totalItems = $query->count();  //总记录数
 $itemsPerPage = 10;  // 每页显示数
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // 当前所在页数
@@ -60,7 +68,9 @@ $carousels =  $query->orderBy('importance', 'DESC')
             ->take($itemsPerPage)
             ->get();
 
-//print_r($carousels);
+$positions = AdvertisingSpace::orderby('importance','desc')->get();
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -121,13 +131,32 @@ $carousels =  $query->orderBy('importance', 'DESC')
                                     <label class="sr-only" for="inlineFormInput">广告位</label>
                                         <select class="form-control" id="space" name="space">
                                         <option value="">--广告位过滤--</option>
-                                        <?php foreach ($positions as $position) {
-                                            ?>                                                       
-                                                <option value="<?php echo $position["id"]; ?>" <?php echo  $position["id"] == $space  ? "selected" : ""; ?>><?php echo $position["title"]; ?></option>
+                                        <?php foreach ($positions as $position) :    ?>      
+                                                <?php $titles = json_decode($position->title, true); ?>
 
-                                        <?php } ?>     
+                                                <?php if ($position->id == $_REQUEST["cid"]) { ?>
+                                                    <option value="<?php echo $position->id; ?>" selected><?php echo isset($titles['zh-CN']) ?$titles['zh-CN'] :""; ?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?php echo $position->id; ?>"><?php echo isset($titles['zh-CN']) ?$titles['zh-CN'] :""; ?></option>
+                                                <?php } ?>                  
+
+                                        <?php endforeach; ?>
+
                                     </select>
                                 </div>
+
+                                <div class="col-auto">
+                                    <label class="sr-only" for="lang">语言</label>
+                                    <select class="form-control" id="lang" name="lang">
+                                        <option value="">--请选择语言--</option>
+                                        <?php foreach($langs as $item ) {                                        
+                                            ?>                                  
+                                            <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                        <?php }  ?>
+                                    </select>
+                                </div>
+                                
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary">搜索</button>
                                     </div>
@@ -136,7 +165,7 @@ $carousels =  $query->orderBy('importance', 'DESC')
                             </div>
                             <div class="col-auto">
                             <a href="carousel_edit.php" class="btn btn-primary">
-                                <i class="iconfont icon-plus"></i>  添加轮播图
+                                <i class="iconfont icon-plus"></i>  添加
                             </a>
                             </div>
                         </div>
@@ -154,7 +183,7 @@ $carousels =  $query->orderBy('importance', 'DESC')
                                     <?php } ?>      
                                 </th>
                                 <th>广告位</th>
-                                <th>链接</th>
+                           
                                 <th>
                                     <?php if($orderby=='importance'){ ?>
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&space=<?php echo $space; ?>&orderby=importance&sort=<?php echo $sort=='asc'?'desc':'asc';?>">排序<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
@@ -162,7 +191,7 @@ $carousels =  $query->orderBy('importance', 'DESC')
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&space=<?php echo $space; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
                                     <?php } ?>
                                 </th>
-                            
+                                <th>语言</th>
                                 <th>
                                     <?php if($orderby=='created_at'){ ?>
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&space=<?php echo $space; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
@@ -177,17 +206,21 @@ $carousels =  $query->orderBy('importance', 'DESC')
                             <?php
                             foreach($carousels as $row)
                             {
-                                echo "<tr>";
+                                $titles = json_decode($row['advertising_space']['title'],true);     
+                               
                                 ?>
+                                <tr>
                                 <td><img src="/img.php?src=<?php echo $row['image_url'];?>&h=50" class="img-rounded" /></td>
-                                <?php
-
-                                echo "<td>".$row['title']."</td>";
-                                echo "<td>".$row['advertising_space']['title']."</td>";            
-                                echo "<td>".$row['link']."</td>";
-                                ?>
+                                <td>
+                                    <?php echo $row['title'] ?>
+                                    <?php if(!empty($row['link'])) :?>
+                                        <div class="link"><i class="iconfont icon-link"></i> <small><?php echo $row['link'];?></small></div>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?php echo $titles['zh-CN']??''; ?></td>
+                                                            
                                 <td><?php echo $row['importance'];?></td>
-                            
+                                <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                                 <td><?php  echo date('Y-m-d',strtotime($row['created_at'])) ;?></td>
                                 <td><a href='carousel_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
                                         <i class="iconfont icon-edit"></i>
@@ -208,10 +241,8 @@ $carousels =  $query->orderBy('importance', 'DESC')
                                         <i class="iconfont icon-delete"></i>
                                     </button>
                                 </td>
-                                <?php
-                                echo "</tr>";
-                            }
-                            ?>
+                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

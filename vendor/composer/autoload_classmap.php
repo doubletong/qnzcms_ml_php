@@ -101,6 +101,7 @@ return array(
     'Models\\AnnCategory' => $baseDir . '/app/Models/AnnCategory.php',
     'Models\\Announcements' => $baseDir . '/app/Models/Announcement.php',
     'Models\\ApplicationArea' => $baseDir . '/app/Models/ApplicationArea.php',
+    'Models\\Business' => $baseDir . '/app/Models/Business.php',
     'Models\\Carousel' => $baseDir . '/app/Models/Carousel.php',
     'Models\\Chronicle' => $baseDir . '/app/Models/Chronicle.php',
     'Models\\Country' => $baseDir . '/app/Models/country.php',

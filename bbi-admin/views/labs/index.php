@@ -67,7 +67,6 @@ $exhibitions = $query->orderBy('id', 'DESC')
 
 
 $langs = Language::where('active',1)->orderby('importance','DESC')->get();
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -213,17 +212,16 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                 </div>
                 </section>
                 <footer class="card-footer">
-                <div class="row">
-                    <div class="col-md">
-                        <nav aria-label="Page navigation">                
-                            <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
-                        </nav>
+                    <div class="row">
+                        <div class="col-md">
+                            <nav aria-label="Page navigation">                
+                                <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                            </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            总记<strong><?php echo $totalItems; ?></strong>条记录
+                        </div>                    
                     </div>
-                    <div class="col-md-auto">
-                        总记<strong><?php echo $totalItems; ?></strong>条记录
-                    </div>
-                   
-                </div>
                 </footer>
                 </div>
         </div>

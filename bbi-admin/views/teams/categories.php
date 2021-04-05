@@ -157,7 +157,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                         <tr>
                                         
                                             <td>
-                                                <ul style="list-style: none; margin:0;padding:0;">
+                                                <ul class="list-unstyled">
                                                 <?php foreach($langs as $item ) : ?>
                                                     <?php if(isset($titles[$item->code])) : ?>
                                                         <li>

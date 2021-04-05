@@ -23,7 +23,7 @@ if( isset($_POST['action']) && isset($_POST['code'])){
             $item = new Language();
             $item->code = $_POST['code'];
             $item->name = $_POST['name'];
-    
+            $item->show_label = $_POST['show_label'];
             $item->importance = $_POST['importance'];
             $item->issys = "0";       
             $item->default = isset($_POST['default']) && $_POST['default']  ? 1 : 0;       
@@ -50,16 +50,17 @@ if( isset($_POST['action']) && isset($_POST['code'])){
             }
                       
         
-            $item = Language::find($id);
-            $item->code = $_POST['code'];
+            $code = $_POST['code'];
+            $item = Language::find($code);
+            $item->code = $code;
             $item->name = $_POST['name'];
-    
+            $item->show_label = $_POST['show_label'];
             $item->importance = $_POST['importance'];   
             $item->default = isset($_POST['default']) && $_POST['default']  ? "1" : "0";       
             $item->active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";       
     
             if($item->default == 1){
-                Language::where('default',1)->where('code','!=',$id)->update(['default' => 0]);
+                Language::where('default',1)->where('code','!=',$code)->update(['default' => 0]);
             }
 
             

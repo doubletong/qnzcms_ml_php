@@ -16,7 +16,7 @@ class Download extends Model
    * @var array
    */
    protected $fillable = [
-       'title','description','content', 'importance', 'file_url', 'file_size','thumbnail','category_id','down_count','active','added_by'
+       'title','description','content', 'importance', 'lang','file_url', 'file_size','thumbnail','category_id','down_count','active','added_by'
    ];
 
     public function category()

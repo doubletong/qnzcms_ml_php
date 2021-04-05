@@ -1,20 +1,22 @@
 <?php
 
 require_once('../../includes/common.php');
-//require_once('../../data/position.php');
-require_once('../../../config/database.php');
 
 use Models\AdvertisingSpace;
-
+use Models\Language;
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = AdvertisingSpace::find($id);
+
+    $titles = json_decode($data->title, true);
+    $descriptions = json_decode($data->description, true);
 }
 
 $pageTitle = isset($_GET['id'])?"编辑文告位":"创建文告位";
 $action = isset($_GET['id'])?"update":"create";
 
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,24 +49,53 @@ $action = isset($_GET['id'])?"update":"create";
                             <input id="id" type="hidden" name="id" value="<?php echo isset($data['id'])?$data['id']:0; ?>" />
                             <input type="hidden" name="action" value="<?php echo $action; ?>" />
 
-                            <div class="form-group">
-                                <label for="title">标题</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
-                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header">标题</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php foreach($langs as $item ) {  
+                                            $lang = $item->code;
+                                                ?>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label for="title"><?php echo $item->name;?></label>
+                                                <input type="text" class="form-control" name="title_<?php echo $lang;?>"
+                                                    value="<?php echo isset($titles[$lang])?$titles[$lang]:''; ?>"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <?php }  ?>
+                                    </div>
+                                </div>
+                            </div>                         
 
                             <div class="form-group">
-                                <label for="title">代码</label>
+                                <label for="title">代码 <i class="iconfont icon-info-circle-fill text-info" title="作为前端引用嵌入标记"></i></label>
                                 <input type="text" class="form-control" id="code" name="code" value="<?php echo isset($data['code'])?$data['code']:''; ?>"
                                     placeholder="必填">
+                            </div>                          
+                           
+                            <div class="card mb-3">
+                                <div class="card-header">描述</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php foreach($langs as $item ) {  
+                                            $lang = $item->code;
+                                                ?>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label for="description"><?php echo $item->name;?></label>
+                                                <textarea class="form-control" name="description_<?php echo $lang;?>"><?php echo isset($descriptions[$lang])?$descriptions[$lang]:''; ?></textarea>
+                                            </div>
+                                        </div>
+                                        <?php }  ?>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="importance">排序</label>
                                 <input type="number" class="form-control" id="importance" name="importance" value="<?php echo isset($data['importance'])?$data['importance']:'0'; ?>" placeholder="值越大越排前">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">描述</label>
-                                <textarea class="form-control" id="description" name="description" placeholder=""><?php echo isset($data['description'])?$data['description']:''; ?></textarea>
                             </div>
 
                        
@@ -75,11 +106,8 @@ $action = isset($_GET['id'])?"update":"create";
                                     <label class="form-check-label" for="chkActive">发布</label>
                                 </div>
                             </div>
-
+                            </div>                          
                             </div>
-                          
-                            </div>
-
 
                         </div>
                         <div class="card-footer text-center">
@@ -129,14 +157,15 @@ $action = isset($_GET['id'])?"update":"create";
                 singleEelFinder.open();
             });
 
-        
+            $.validator.messages.required = "必填项目不可为空！";
 
 
             $("#editform").validate({
 
                 rules: {
-                    title: {
-                        required: true
+                    importance: {
+                        required: true,
+                        digits: true
                     },
                     code: {
                         required: true,
@@ -169,8 +198,9 @@ $action = isset($_GET['id'])?"update":"create";
                     }
                 },
                 messages: {
-                    title: {
-                        required: "请输入主标题"
+                    importance: {
+                        required: "请输入序号",
+                        digits: "请输入有效的整数"
                     },
                     code: {
                         required: "请输入别名"

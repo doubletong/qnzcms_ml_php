@@ -6,6 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/Str.php');
 use Models\DownloadCategory;
 use Models\Download;
 use JasonGrimes\Paginator;
+use Models\Language;
 
 $strClass = new QNZ\Utils\Str;
 
@@ -15,7 +16,7 @@ $urlPattern = "index.php?page=(:num)";
  //搜索条件判断
  $query = $download->with(['category' => function ($query) {
     $query->select('id', 'title');
-}])->select('id','title', 'thumbnail', 'file_url', 'file_size','down_count', 'category_id','importance','active','created_at');
+}])->select('id','title', 'thumbnail', 'file_url', 'file_size','down_count', 'category_id','lang','importance','active','created_at');
 
 $keyword = null;
 $orderby = null;
@@ -45,6 +46,15 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
     $urlPattern = $urlPattern . "&cid=$cid";
 }
 
+if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&lang=$lang";
+}
+
+
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
 }
@@ -64,8 +74,7 @@ $countries = $query->orderBy('id', 'DESC')
 
 
 $categories = DownloadCategory::orderby('importance','desc')->get();
-
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 ?>
 <!DOCTYPE html>
@@ -138,6 +147,18 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                                             </select>     
                                             </div>
                                             <div class="col-auto">
+                                                <label class="sr-only" for="lang">语言</label>
+                                                <select class="form-control" id="lang" name="lang">
+                                                    <option value="">--请选择语言--</option>
+                                                    <?php foreach($langs as $item ) {
+                                                    
+                                                        ?>                                  
+                                                        <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                                    <?php }  ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-auto">
                                             <button type="submit" class="btn btn-primary">搜索</button>
                                             </div>
                                         </div>
@@ -162,7 +183,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                                         <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=title&sort=asc">标题<i class="iconfont icon-orderby"></i></a>
                                     <?php } ?>     
                                     </th>
-                                    <th>分类</th>
+                                   
                                     <th>文件大小</th>
                                     <th>下载次数</th>
                                     <th>
@@ -172,6 +193,7 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=importance&sort=asc">排序<i class="iconfont icon-orderby"></i></a>
                                         <?php } ?>
                                     </th>
+                                    <th>语言</th>
                                     <th>
                                         <?php if($orderby=='created_at'){ ?>
                                             <a href="index.php?keyword=<?php echo $keyword; ?>&orderby=created_at&sort=<?php echo $sort=='asc'?'desc':'asc';?>">创建日期<i class="iconfont icon-order-<?php echo $sort=='asc'?'up':'down';?>"></i></a>
@@ -190,11 +212,14 @@ $categories = DownloadCategory::orderby('importance','desc')->get();
                                     echo "<tr>";
                                 ?>
                                 <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:50px;"/></td>
-                                    <td><?php echo $row['title'] ;?></td> 
-                                    <td><?php echo $row['category']['title'] ;?></td> 
+                                    <td>
+                                        <?php echo $row['title'] ;?>
+                                        <div><small>分类：<?php echo $row['category']['title'] ;?></small></div>
+                                    </td>                                 
                                     <td><?php echo $strClass->formatSizeUnits($row['file_size']);?></td>
                                     <td><?php echo $row['down_count'] ;?></td>         
                                     <td><?php echo $row['importance'] ;?></td>         
+                                    <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                                     <td><?php echo date_format($row['created_at'],"Y-m-d");?></td>
                                     <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>
                                     <td><a href='download_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>

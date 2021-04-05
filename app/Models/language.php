@@ -18,7 +18,7 @@ class Language extends Model
    * @var array
    */
    protected $fillable = [
-       'code', 'name','issys','default','importance','active'
+       'code', 'name','show_label','issys','default','importance','active'
    ];
  }
 

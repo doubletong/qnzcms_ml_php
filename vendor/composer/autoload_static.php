@@ -382,6 +382,7 @@ class ComposerStaticInitab11d57b8138a2850cb7e32841b5f883
         'Models\\AnnCategory' => __DIR__ . '/../..' . '/app/Models/AnnCategory.php',
         'Models\\Announcements' => __DIR__ . '/../..' . '/app/Models/Announcement.php',
         'Models\\ApplicationArea' => __DIR__ . '/../..' . '/app/Models/ApplicationArea.php',
+        'Models\\Business' => __DIR__ . '/../..' . '/app/Models/Business.php',
         'Models\\Carousel' => __DIR__ . '/../..' . '/app/Models/Carousel.php',
         'Models\\Chronicle' => __DIR__ . '/../..' . '/app/Models/Chronicle.php',
         'Models\\Country' => __DIR__ . '/../..' . '/app/Models/country.php',

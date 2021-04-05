@@ -24,7 +24,7 @@ if($site_info['enableCaching']=="1"){
     // In your class, function, you can call the Cache
     $InstanceCache = CacheManager::getInstance('files');    
 
-    $keyCommonData = "common_data";  //主导航
+    $keyCommonData = "COMMON_DATA_$lang";  //主导航
     $Cached_common_data = $InstanceCache->getItem($keyCommonData);
   
     if (!$Cached_common_data->isHit()) {   

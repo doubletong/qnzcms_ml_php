@@ -16,11 +16,11 @@ function recursive($items, $level){
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $titles['zh-CN'].'</td>';
+        echo $titles['zh-cn'].'</td>';
         echo '<td>'.$row['importance'].'</td>';
         $active = $row['active']==1?"是":"否";
         echo "<td>$active</td>";   
-        $created_date = date_format($row['created_at'],"Y-m-d");
+        $created_date = date_format($row['updated_at'],"Y-m-d");
         echo "<td>$created_date</td>";
         echo '<td><a href="category_edit.php?id='.$row['id'].'" class="btn btn-primary btn-sm"><i class="iconfont icon-edit"></i></a> ';
         if($row['active']==1){

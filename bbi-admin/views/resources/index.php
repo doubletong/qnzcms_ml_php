@@ -47,7 +47,7 @@ if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
 }else{
-    $query = $query->orderBy('key', 'ASC');
+    $query = $query->orderBy('key', 'ASC')->orderBy('lang_code', 'ASC');
 }
 
 
@@ -104,7 +104,18 @@ $resources = $query->orderBy('created_at', 'DESC')
 
                 <div class="card">
                     <header class="card-header">
-                        <div class="row">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-title-v1"> <i class="iconfont icon-reddit"></i>语言资源</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                        </div>
+                    </div>
+                </header>
+                    <section class="card-body">
+                    <div class="card-toolbar mb-3">
+                    <div class="row">
                             <div class="col">
                                 <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                                     <div class="form-row align-items-center">
@@ -137,9 +148,7 @@ $resources = $query->orderBy('created_at', 'DESC')
                                 </a>
                             </div>
                         </div>
-                </header>
-                    <section class="card-body">
-
+                        </div>
 
                         <table class="table table-hover table-bordered">
                             <thead>
@@ -161,7 +170,7 @@ $resources = $query->orderBy('created_at', 'DESC')
                                         <?php } ?>
                                     </th>
                                     <th>值</th>  
-                                    <th style="min-width:120px;">创建日期</th>
+                               
                                     <th style="min-width:120px;">操作</th>
                                 </tr>
                             </thead>
@@ -174,11 +183,7 @@ $resources = $query->orderBy('created_at', 'DESC')
                                     <td><img src="../../assets/img/langs/<?php echo $row['lang_code']; ?>.svg" alt="<?php echo $row['lang_code']; ?>" style="height:20px;"></td>                           
                                         <td><?php echo $row['lang_code']; ?></td>               
                                         <td><?php echo $row['key']; ?></td>
-                                        <td><?php echo $row['value']; ?></td>
-                                                
-                                        <td>
-                                            <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>
-                                        </td>
+                                        <td><?php echo $row['value']; ?></td>                                  
                                         <td>
                                             <a href='edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm' title="编辑">
                                                 <i class="iconfont icon-edit"></i>

@@ -3,7 +3,7 @@
 define("ADMINPATH","{$_SERVER['DOCUMENT_ROOT']}/bbi_admin/");
 
 $config = include dirname(__FILE__).'/settings.php';
-require_once(dirname(__FILE__). '/../config/db.php');
+// require_once(dirname(__FILE__). '/../config/db.php');
 require_once(dirname(__FILE__). '/../config/database.php');
 
 use Models\Option;

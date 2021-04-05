@@ -28,7 +28,7 @@ function recursive($items, $level, $parent){
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $titles['zh-CN'].'</option>';                   
+        echo $titles['zh-cn'].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.
@@ -71,7 +71,7 @@ function recursive($items, $level, $parent){
                                 <div class="card-body">
                                     <div class="row">
                                         <?php foreach($langs as $item ) {  
-                                            $lang = $item->code;
+                                            $lang = strtolower($item->code);
                                                 ?>                                  
                                                 <div class="col-md">
                                                 <div class="form-group">
@@ -89,7 +89,7 @@ function recursive($items, $level, $parent){
                             </div> -->
 
                             <div class="form-group">
-                                    <label for="parent_id">分类</label>                           
+                                    <label for="parent_id">父类</label>                           
                                 
                                     <select class="form-control" id="parent" name="parent" placeholder="" >
                                         <option value="">--请选择分类--</option>

@@ -39,19 +39,20 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $description = $_POST['description'];
  
 
-            $reseller = new Advertisement();          
-            $reseller->title = $title;
-            $reseller->space_id =  $space_id;     
-            $reseller->image_url =  $image_url;
-            $reseller->image_url_mobile =  $image_url_mobile;
-            $reseller->link =  $link;
-            $reseller->active =  $active;
-            $reseller->description =  $description;          
-            $reseller->content =  stripslashes($_POST['content']);;
-            $reseller->importance = $importance;
-            $reseller->added_by = $username;
-            $result = $reseller->save();
-           // print_r($reseller);
+            $item = new Advertisement();          
+            $item->lang = $_POST['lang'];
+            $item->title = $title;
+            $item->space_id =  $space_id;     
+            $item->image_url =  $image_url;
+            $item->image_url_mobile =  $image_url_mobile;
+            $item->link =  $link;
+            $item->active =  $active;
+            $item->description =  $description;          
+            $item->content =  stripslashes($_POST['content']);;
+            $item->importance = $importance;
+            $item->added_by = $username;
+            $result = $item->save();
+           // print_r($item);
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
             }else{
@@ -78,19 +79,20 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             $description = $_POST['description'];
          
 
-            $reseller = Advertisement::find($id);  
-            $reseller->title = $title;
-            $reseller->space_id = $space_id;     
-            $reseller->image_url =  $image_url;
-            $reseller->image_url_mobile =  $image_url_mobile;
-            $reseller->link =  $link;
-            $reseller->active =  $active;
-            $reseller->description =  $description;          
-            $reseller->content = stripslashes($_POST['content']);;
-            $reseller->importance = $importance;
-          //  $reseller->added_by = $username;
+            $item = Advertisement::find($id);
+            $item->lang = $_POST['lang'];
+            $item->title = $title;
+            $item->space_id = $space_id;     
+            $item->image_url =  $image_url;
+            $item->image_url_mobile =  $image_url_mobile;
+            $item->link =  $link;
+            $item->active =  $active;
+            $item->description =  $description;          
+            $item->content = stripslashes($_POST['content']);;
+            $item->importance = $importance;
+          //  $item->added_by = $username;
 
-            $result = $reseller->save();
+            $result = $item->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
             }else{
@@ -100,8 +102,8 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             // echo json_encode($result);  
             break;   
         case "delete": 
-            $reseller = Advertisement::find($id);           
-            $result = $reseller->delete();
+            $item = Advertisement::find($id);           
+            $result = $item->delete();
             if($result==true){
                
 
@@ -115,9 +117,9 @@ if(isset($_POST['action']) && isset($_POST['id'])){
             }   
             break;   
         case "active":
-            $reseller = Advertisement::find($id);
-            $reseller->active =  !($reseller->active);
-            $result = $reseller->save();
+            $item = Advertisement::find($id);
+            $item->active =  !($item->active);
+            $result = $item->save();
             if($result==true){
                 echo json_encode(array ('status'=>1,'message'=>'操作成功'));  
             }else{

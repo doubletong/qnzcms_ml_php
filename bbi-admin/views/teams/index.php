@@ -43,12 +43,12 @@ if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy('id', 'DESC');
 }
 
-if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+if(isset($_REQUEST["slang"]) && $_REQUEST["slang"] != "")
 {    
-    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $lang = htmlspecialchars($_REQUEST["slang"],ENT_QUOTES);
     $query = $query->where('lang', $lang);         
       
-    $urlPattern = $urlPattern . "&lang=$lang";
+    $urlPattern = $urlPattern . "&slang=$lang";
 }
 
 
@@ -141,7 +141,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                             </div>
                                             <div class="col-auto">
                                                 <label class="sr-only" for="lang">语言</label>
-                                                <select class="form-control" id="lang" name="lang">
+                                                <select class="form-control" id="lang" name="slang">
                                                     <option value="">--请选择语言--</option>
                                                     <?php foreach($langs as $item ) {
                                                     

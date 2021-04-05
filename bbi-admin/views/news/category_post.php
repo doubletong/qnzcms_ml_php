@@ -17,7 +17,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             $items = array();
             foreach($langs as $item){
-                $lang = $item->code;            
+                $lang = strtolower($item->code);            
                 $items[$lang]  =  $_POST['title_'.$lang];    
             }
 
@@ -56,7 +56,7 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             $items = array();
             foreach($langs as $item){
-                $lang = $item->code;            
+                $lang = strtolower($item->code);            
                 $items[$lang]  =  $_POST['title_'.$lang];    
             }
 

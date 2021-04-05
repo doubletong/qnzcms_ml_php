@@ -33,7 +33,9 @@ if (isset($_POST['username'], $_POST['password'])) {
             if ($result) {
                 $role_ids = $user->roles->pluck('id');               
                 $per_ids = PermissionRole::whereIn('role_id',$role_ids)->pluck('permission_id');
-                $my_permissions = Permission::whereIn('id',$per_ids)                       
+                $my_permissions = Permission::with(['children' => function($query) {
+                                $query->orderBy('importance', 'DESC');
+                        }])->whereIn('id',$per_ids)                       
                         ->orderBy('importance', 'DESC')->get();                
 
 

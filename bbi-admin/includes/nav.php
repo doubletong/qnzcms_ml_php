@@ -11,6 +11,7 @@ $role_ids = UserRole::where('user_id',$user_id)->pluck('role_id');
 $per_ids = PermissionRole::whereIn('role_id',$role_ids)->pluck('permission_id');
 
 $perm_for_nav = $_SESSION['my_permissions']->where('group_id', $group_id)->where('parent',0);
+
 // Permission::with(array('children' => function ($query) use ($per_ids){
 //     $query->where('active',1)->whereIn('id', $per_ids)->orderBy('importance', 'DESC')->get();
 // }))->where('active',1)->where('group_id', 1)
@@ -28,35 +29,38 @@ $perm_for_nav = $_SESSION['my_permissions']->where('group_id', $group_id)->where
    
     <nav id="menu">
           <ul class="mainmenu" id="mainmenu">
-                    <?php foreach($perm_for_nav as $item){ ?>
-                        <?php if($item->per_type == 1){ ?>
-                            <li>
-                                <a href="<?php echo $item->url;?>">
-                                    <i class="iconfont <?php echo $item->icon;?>"></i> <?php echo $item->title;?>                
-                                </a>
-                            </li>
-                        <?php }  ?>
-                        <?php if($item->per_type == 2){ ?>
-                            <li class="down-nav li<?php echo $item->id;?>  <?php echo (isset($current_per) && $current_per->parent == $item->id) ? 'nav-open':'';?>">
-                                <a href="#">
-                                    <i class="iconfont <?php echo $item->icon;?>  "></i> <?php echo $item->title;?>  <i class="arrow iconfont icon-down"></i>
-                                </a>
-                                <?php if(isset($item->children)){ ?>
-                                    <ul class="submenu">
-                                    <?php foreach($item->children as $sub){ ?>
-                                        <li class="li<?php echo $sub->id;?>">
-                                            <a href="<?php echo $sub->url;?>" class="<?php echo (isset($current_per) && $current_per->id == $sub->id) ? 'active':'';?>">
-                                                <?php echo $sub->title;?>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
-                                    </ul>
-                                <?php }  ?>                               
-                            </li>
-                        <?php }  ?>
-                        
+                <?php foreach($perm_for_nav as $item){ ?>
+                    <?php if($item->per_type == 1){ ?>
+                        <li class="li<?php echo $item->id;?>">
+                            <a href="<?php echo $item->url;?>" class="<?php echo (isset($current_per) && $current_per->id == $item->id) ? 'active':'';?>">
+                                <i class="iconfont <?php echo $item->icon;?>"></i> <?php echo $item->title;?>                
+                            </a>
+                        </li>
+                    <?php }  ?>
+                    <?php if($item->per_type == 2){ ?>
+                        <li class="down-nav li<?php echo $item->id;?>  <?php echo (isset($current_per) && $current_per->parent == $item->id) ? 'nav-open':'';?>">
+                            <a href="#">
+                                <i class="iconfont <?php echo $item->icon;?>  "></i> <?php echo $item->title;?>  <i class="arrow iconfont icon-down"></i>
+                            </a>
+                            <?php if(isset($item->children)){ 
+                                
+                                ?>
+                                <ul class="submenu">
 
-                    <?php } ?>
+                                <?php foreach($item->children as $sub){ ?>
+                                    <li class="li<?php echo $sub->id;?>">
+                                        <a href="<?php echo $sub->url;?>" class="<?php echo (isset($current_per) && $current_per->id == $sub->id) ? 'active':'';?>">
+                                            <?php echo $sub->title;?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                </ul>
+                            <?php }  ?>                               
+                        </li>
+                    <?php }  ?>
+                    
+
+                <?php } ?>
                    
              
 

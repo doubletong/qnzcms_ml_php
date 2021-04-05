@@ -4,12 +4,10 @@ require_once('../../includes/common.php');
 use Models\Language;
 use JasonGrimes\Paginator;
 
-
-
 //文章表实例化
 $languageClass = new Language;
 //搜索条件判断
-$query = $languageClass->select('code','name','issys','default','importance','active','created_at');
+$query = $languageClass->select('code','name','show_label','issys','default','importance','active','created_at');
 
 $urlPattern = "index.php?page=(:num)";
 
@@ -57,100 +55,140 @@ $languages = $query->orderBy('importance', 'DESC')
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
 
-            <div class="container-fluid maincontent">
-
-                <div class="row">
-                    <div class="col">
-                        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto">
-                                    <label class="sr-only" for="inlineFormInput">搜索</label>
-                                    <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-2">搜索</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-auto">
-                        <a href="edit.php" class="btn btn-primary">
-                            <i class="iconfont icon-plus"></i> 添加
-                        </a>
+            <div class="main-content"> 
+                <div class="breadcrumb-container">
+                    <div class="row">
+                        <div class="col-md">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/bbi-admin">控制面板</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/config/general.php">系统</a></li>
+                                <li class="breadcrumb-item"><a href="/bbi-admin/views/pages/index.php">语言</a></li>                                
+                                <li class="breadcrumb-item active" aria-current="page">列表</li>
+                            </ol>
+                        </nav>
+                        </div>
+                        <div class="col-md-auto">
+                            <time id="sitetime"></time>
+                        </div>
                     </div>
                 </div>
 
-
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                        <th>图标</th>
-                            <th>语言代码</th>
-                            <th>语言名称</th>
-                            <th>默认？</th>
-                            <th>排序</th>
-                            <th>显示?</th>
-                            <th style="min-width:120px;">创建日期</th>
-                            <th style="min-width:120px;">操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($languages as $row) {
-
-                            ?>
-                            <tr>   
-                                <td><img src="../../assets/img/langs/<?php echo $row['code']; ?>.svg" alt="<?php echo $row['code']; ?>" style="height:30px;"></td>                           
-                                <td><?php echo $row['code']; ?></td>
-                                <td><?php echo $row['name']; ?></td>
-                                <td><?php echo ($row['default']==1)?"默认":"" ;?></td> 
-                                <td><?php echo $row['importance']; ?></td>
-                                <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
-                                <td>
-                                    <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>
-                                </td>
-                                <td>
-                                    <a href='edit.php?id=<?php echo $row['code']; ?>' class='btn btn-primary btn-sm' title="编辑">
-                                        <i class="iconfont icon-edit"></i>
+                <div class="card">
+                    <header class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-title-v1"> <i class="iconfont icon-reddit"></i>语言</div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="control"><a class="expand" href="#"><i class="iconfont icon-fullscreen"></i></a><a class="compress" href="#"><i class="iconfont icon-shrink"></i></a></div>
+                            </div>
+                        </div>
+                    </header>
+                    <section class="card-body">
+                        <div class="card-toolbar mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <form method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-auto">
+                                                <label class="sr-only" for="inlineFormInput">搜索</label>
+                                                <input type="text" name="keyword" class="form-control mb-2" id="inlineFormInput" value="<?php echo $keyword ?>" placeholder="关键字">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mb-2">搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="edit.php" class="btn btn-primary">
+                                        <i class="iconfont icon-plus"></i> 添加
                                     </a>
-                                    <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-info btn-sm btn-copy' title="复制">
-                                        <i class="iconfont icon-file-copy"></i>
-                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                <th>图标</th>
+                                    <th>语言代码</th>
+                                    <th>语言名称</th>
+                                    <th>语言别名</th>
+                                    <th>默认？</th>
+                                    <th>排序</th>
+                                    <th>显示?</th>
+                                    <th style="min-width:120px;">创建日期</th>
+                                    <th style="min-width:120px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($languages as $row) {
 
-                                    <?php if ($row['default'] == 1) { ?>
-                                        <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-warning btn-sm btn-default' title="取消默认">
-                                            <i class="iconfont icon-check-circle"></i>
-                                        </button>
-                                    <?php } else { ?>
-                                        <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-info btn-sm btn-default' title="默认">
-                                            <i class="iconfont icon-minus-circle"></i>
-                                        </button>
-                                    <?php } ?>
+                                    ?>
+                                    <tr>   
+                                        <td><img src="../../assets/img/langs/<?php echo $row['code']; ?>.svg" alt="<?php echo $row['code']; ?>" style="height:30px;"></td>                           
+                                        <td><?php echo $row['code']; ?></td>
+                                        <td><?php echo $row['name']; ?></td>
+                                        <td><?php echo $row['show_label']; ?></td>
+                                        <td><?php echo ($row['default']==1)?"默认":"" ;?></td> 
+                                        <td><?php echo $row['importance']; ?></td>
+                                        <td><?php echo ($row['active']==1)?"显示":"隐藏" ;?></td>                              
+                                        <td>
+                                            <?php echo date_format(date_create($row['added_date']),"Y-m-d"); ?>
+                                        </td>
+                                        <td>
+                                            <a href='edit.php?id=<?php echo $row['code']; ?>' class='btn btn-primary btn-sm' title="编辑">
+                                                <i class="iconfont icon-edit"></i>
+                                            </a>
+                                            <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-info btn-sm btn-copy' title="复制">
+                                                <i class="iconfont icon-file-copy"></i>
+                                            </button>
 
-                                    <?php if ($row['active'] == 1) { ?>
-                                        <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
-                                            <i class="iconfont icon-eye-close"></i>
-                                        </button>
-                                    <?php } else { ?>
-                                        <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
-                                            <i class="iconfont icon-eye"></i>
-                                        </button>
-                                    <?php } ?>
-                                    <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-danger btn-sm btn-delete' title="删除">
-                                        <i class="iconfont icon-delete"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                                            <?php if ($row['default'] == 1) { ?>
+                                                <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-warning btn-sm btn-default' title="取消默认">
+                                                    <i class="iconfont icon-check-circle"></i>
+                                                </button>
+                                            <?php } else { ?>
+                                                <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-info btn-sm btn-default' title="默认">
+                                                    <i class="iconfont icon-minus-circle"></i>
+                                                </button>
+                                            <?php } ?>
 
-
-                <nav aria-label="Page navigation">
-                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>
-                </nav>
+                                            <?php if ($row['active'] == 1) { ?>
+                                                <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
+                                                    <i class="iconfont icon-eye-close"></i>
+                                                </button>
+                                            <?php } else { ?>
+                                                <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-info btn-sm btn-active' title="显示">
+                                                    <i class="iconfont icon-eye"></i>
+                                                </button>
+                                            <?php } ?>
+                                            <button type="button" data-id="<?php echo $row['code']; ?>" class='btn btn-danger btn-sm btn-delete' title="删除">
+                                                <i class="iconfont icon-delete"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                    <footer class="card-footer">                     
+                        <div class="row">
+                            <div class="col-md">
+                                <nav aria-label="Page navigation">                
+                                    <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            
+                                </nav>
+                            </div>
+                            <div class="col-md-auto">
+                                总记<strong><?php echo $totalItems; ?></strong>条记录
+                            </div>                    
+                        </div>
+                    </footer>
+                </div>
             </div>
             <?php require_once('../../includes/footer.php'); ?>
         </section>

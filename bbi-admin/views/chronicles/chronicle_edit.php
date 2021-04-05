@@ -34,7 +34,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
         <!-- /nav end -->
         <section class="rightcol">
             <?php require_once('../../includes/header.php'); ?>
-            <div class="main-content">         
+            <div class="main-content">
                 <div class="breadcrumb-container">
                     <div class="row">
                     <div class="col-md">

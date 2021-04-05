@@ -142,8 +142,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                                     <option value="<?php echo $category->id; ?>" selected><?php echo $titles['zh-CN']; ?></option>
                                                 <?php }else{ ?>
                                                     <option value="<?php echo $category->id; ?>"><?php echo $titles['zh-CN']; ?></option>
-                                                <?php } ?>
-                        
+                                                <?php } ?>                        
                                             <?php } ?>
                                         </select>
                                     </div>

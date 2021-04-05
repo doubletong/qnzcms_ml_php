@@ -4,7 +4,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
 // require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 use Models\Download;
+use Rakit\Validation\Validator;
 
+$validator = new Validator();
 
 if( isset($_POST['action']) && isset($_POST['id'])){
 
@@ -12,17 +14,41 @@ if( isset($_POST['action']) && isset($_POST['id'])){
     $username = $_SESSION['valid_user'] ;
 
     switch ($_POST['action']) {
-        case "create": 
-            if (!isset($_POST['title'], $_POST['file_url'])) {   
+        case "create":            
 
-                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+            // make it
+            $validation = $validator->make($_POST + $_FILES, [
+                'title'                => 'required',
+                'lang'                 => 'required',   
+                'file_url'             => 'required',           
+                'importance'           => 'required|numeric',             
+                'active'               => 'default:1|required|in:0,1'
+            
+            ]);
+
+            $validation->setMessages([
+                'title:required' => '请输入主题',
+                'file_url:required'  => '请上传文档',
+                'lang:required' => '请选择语言',
+                'importance:required' => '请输入序号',
+            ]);
+
+            // then validate
+            $validation->validate();
+
+            if ($validation->fails()) {
+                // handling errors
+                $errors = $validation->errors();
+
+                $result = array ('status'=>2,'message'=>$errors->all('<li>:message</li>'));
                 echo json_encode($result);  
-                return;
-            }
+                exit;
+            } 
             
           
             $item = new Download();
             $item->title = $_POST['title'];
+            $item->lang = $_POST['lang'];
             $item->description = $_POST['description'];
             $item->file_url = $_POST['file_url'];
             $item->content = stripslashes($_POST['content']);
@@ -48,16 +74,41 @@ if( isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['title'], $_POST['file_url'])) {   
+            
+            // make it
+            $validation = $validator->make($_POST + $_FILES, [
+                'title'                => 'required',
+                'lang'                 => 'required',   
+                'file_url'             => 'required',           
+                'importance'           => 'required|numeric',             
+                'active'               => 'default:1|required|in:0,1'
+            
+            ]);
 
-                $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
+            $validation->setMessages([
+                'title:required' => '请输入主题',
+                'file_url:required'  => '请上传文档',
+                'lang:required' => '请选择语言',
+                'importance:required' => '请输入序号',
+            ]);
+
+            // then validate
+            $validation->validate();
+
+            if ($validation->fails()) {
+                // handling errors
+                $errors = $validation->errors();
+
+                $result = array ('status'=>2,'message'=>$errors->all('<li>:message</li>'));
                 echo json_encode($result);  
-                return;
-            }
+                exit;
+            } 
+            
           
         
             $item = Download::find($id);
             $item->title = $_POST['title'];
+            $item->lang = $_POST['lang'];
             $item->description = $_POST['description'];
             $item->file_url = $_POST['file_url'];
             $item->content = stripslashes($_POST['content']);

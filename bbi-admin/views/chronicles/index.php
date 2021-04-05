@@ -16,32 +16,30 @@ $orderby = null;
 $sort= null;
 
 
-if(isset($_GET['orderby'])){
+if (isset($_GET['orderby'])) {
     $orderby = $_GET['orderby'];
     $urlPattern = $urlPattern . "&orderby=$orderby";
 }
 
-if(isset($_GET['sort'])){
+if (isset($_GET['sort'])) {
     $sort = $_GET['sort'];
     $urlPattern = $urlPattern . "&sort=$sort";
 }
 
 
-if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
-{
-    $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
+if (isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "") {
+    $keyword = htmlspecialchars($_REQUEST["keyword"], ENT_QUOTES);
 
-    $query = $query->where('year','like','%'.$keyword.'%')
-            ->orWhere('content','like','%'.$keyword.'%');
+    $query = $query->where('year', 'like', '%'.$keyword.'%')
+            ->orWhere('content', 'like', '%'.$keyword.'%');
 
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 
 
-if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
-{    
-    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
-    $query = $query->where('lang', $lang);         
+if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "") {
+    $lang = htmlspecialchars($_REQUEST["lang"], ENT_QUOTES);
+    $query = $query->where('lang', $lang);
       
     $urlPattern = $urlPattern . "&lang=$lang";
 }
@@ -166,45 +164,39 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                     </thead>
                     <tbody>
                         <?php
-        foreach($chronicles as $row)
-        {
-            echo "<tr>";
-            ?>            
+        foreach ($chronicles as $row) {
+            echo "<tr>"; ?>            
                             
-                        <td><?php echo $row['year'];?></td>                 
+                        <td><?php echo $row['year']; ?></td>                 
                         <td>
-                            <?php echo $row['created_by'];?>
+                            <?php echo $row['created_by']; ?>
                         </td>
                         <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>
                         <td>
-                            <?php echo $row['created_at'] ;?>
+                            <?php echo $row['created_at'] ; ?>
                         </td>
-                        <td><a href='chronicle_edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary btn-sm'>
+                        <td><a href='chronicle_edit.php?id=<?php echo $row['id']; ?>' class='btn btn-primary btn-sm'>
                                 <i class="iconfont icon-edit"></i>
                             </a>
-                            <?php if($row['active']==1){?>
+                            <?php if ($row['active']==1) {?>
                             <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-warning btn-sm btn-active' title="隐藏">
                                 <i class="iconfont icon-eye-close"></i>
                             </button>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-info btn-sm btn-active' title="显示">
                                     <i class="iconfont icon-eye"></i>
                                 </button>
                             <?php } ?>   
-                            <button type="button" data-id="<?php echo $row['id'];?>" class='btn btn-danger btn-sm btn-delete'>
+                            <button type="button" data-id="<?php echo $row['id']; ?>" class='btn btn-danger btn-sm btn-delete'>
                                 <i class="iconfont icon-delete"></i>
                             </button>
                         </td>
-                        <?php
-
-            echo "</tr>";
-        }
-        ?>
+                        <?php } ?>
+                        </tr>
                     </tbody>
                 </table>
                 </div>
-                </section>
-              
+                </section>              
                     <div class="card-footer">
                         <nav aria-label="Page navigation">                
                             <?php include("../../../vendor/jasongrimes/paginator/examples/pagerBootstrap.phtml") ?>                            

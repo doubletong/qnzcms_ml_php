@@ -1,10 +1,8 @@
 <?php
-// require_once('../../includes/common.php');
-// require_once('../../data/position.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/bbi-admin/includes/common.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
-use Models\AdvertisingSpace;
 
+use Models\AdvertisingSpace;
+use Models\Language;
 
 if(isset($_POST['action']) && isset($_POST['id'])){
 
@@ -12,24 +10,34 @@ if(isset($_POST['action']) && isset($_POST['id'])){
     $username = $_SESSION['valid_user'] ;
     switch ($_POST['action']) {
         case "create": 
-            if (!isset($_POST['title'], $_POST['importance'])) {   
+            $langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
+            $items = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $items[$lang]  =  $_POST['title_'.$lang];    
+            }
+
+            if (!isset($items, $_POST['importance'])) {   
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
-                     
-            $title = $_POST['title'];
-            $code = $_POST['code'];
-            $importance = $_POST['importance'];
-            $description = $_POST['description'];
+
+            $description = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $description[$lang]  =  $_POST['description_'.$lang];    
+            }
+        
+          
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
             $region = new AdvertisingSpace();
-            $region->title = $title;
-            $region->description = $description;
-            $region->importance = $importance;
-            $region->code = $code;
+            $region->title = json_encode($items);
+            $region->description = json_encode($description);
+            $region->importance = $_POST['importance'];
+            $region->code = $_POST['code'];
             $region->active = $active;
             $region->added_by = $username;
             $result = $region->save();
@@ -42,26 +50,35 @@ if(isset($_POST['action']) && isset($_POST['id'])){
 
             break;   
         case "update": 
-            if (!isset($_POST['title'], $_POST['importance'])) {   
+            $langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
+            $items = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $items[$lang]  =  $_POST['title_'.$lang];    
+            }
+
+            if (!isset($items, $_POST['importance'])) {   
                 $result = array ('status'=>2,'message'=>'主题与内容不能为空！');
                 echo json_encode($result);  
                 return;
             }
 
+            $description = array();
+            foreach($langs as $item){
+                $lang = $item->code;            
+                $description[$lang]  =  $_POST['description_'.$lang];    
+            }
+
           
-            $title = $_POST['title'];
-            $code = $_POST['code'];
-            $importance = $_POST['importance'];
-            $description = $_POST['description'];
+          
             $active = isset($_POST['active']) && $_POST['active']  ? "1" : "0";
 
             $region = AdvertisingSpace::find($id);
-            $region->title = $title;
-            $region->description = $description;
-            $region->importance = $importance;
-            $region->importance = $importance;
-            $region->code = $code;
+            $region->title = json_encode($items);
+            $region->description = json_encode($description);
+            $region->importance = $_POST['importance'];
+            $region->code = $_POST['code'];
             $region->active = $active;
             $region->added_by = $username;
             $result = $region->save();

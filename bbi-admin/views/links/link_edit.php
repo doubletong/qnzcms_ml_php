@@ -46,7 +46,8 @@ function recursive($items, $level, $parent){
 <head>
     <title><?php echo $pageTitle."_链接_组件_后台管理_".$site_info['sitename'];?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    
+    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/elFinder/css/elfinder.min.css"/>
 </head>
 
 <body>
@@ -128,9 +129,8 @@ function recursive($items, $level, $parent){
                 
 
                 <div class="form-group">
-                    <label for="importance">排序</label>
-                 
-                        <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['importance'])?"0":$data['importance'];?>" placeholder="">
+                    <label for="importance">排序</label>                 
+                    <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['importance'])?"0":$data['importance'];?>" placeholder="">
                
                 </div>
 
@@ -163,9 +163,9 @@ function recursive($items, $level, $parent){
 
         </div>
         <div class="card-footer text-center">
-        <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
-            <a href="JavaScript:window.history.back()" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>       
-                </div>
+            <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
+            <a href="index.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>       
+        </div>
           
 
     </div>
@@ -179,13 +179,15 @@ function recursive($items, $level, $parent){
 
 <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
 <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/vendor/jquery-ui/jquery-ui.min.js"></script>    
+
+<script src="/assets/js/vendor/elFinder/js/elfinder.min.js"></script>
+<script src="/assets/js/vendor/elFinder/js/i18n/elfinder.zh_CN.js"></script>
+<script src="/assets/js/vendor/tinymce/tinymce.min.js"></script>
+<script src="/assets/js/tinymceElfinder.js"></script>
 <script type="text/javascript">
 
-
-    function SetThumbnail(fileUrl) {
-        $('#image_url').val(fileUrl);
-        $('#iLogo').attr('src', fileUrl);
-    }
 
     $(document).ready(function () {
         //当前菜单
@@ -194,8 +196,28 @@ function recursive($items, $level, $parent){
 
        
         $("#btnBrowser").on("click", function () {         
-            singleEelFinder.selectActionFunction = SetThumbnail;
-            singleEelFinder.open();                
+            
+            $('<div \>').dialog({modal: true, width: "80%", title: "选择文件", zIndex: 99999,
+                    create: function(event, ui) {
+                        $(this).elfinder({
+                            resizable: false,
+                            url: '/assets/js/vendor/elFinder/php/connector.minimal.php',
+                            lang: 'zh_CN',
+                            commandsOptions: {
+                            getfile: {
+                                oncomplete: 'destroy' 
+                            }
+                            },                            
+                            getFileCallback: function(file) {
+                                //document.getElementById('fileurl').value = file; 
+                                var fileUrl = '/'+file.path.replace(/\\/g,"/");
+                                $('#image_url').val(fileUrl);
+                                $('#iLogo').attr('src', fileUrl);         
+                                jQuery('.ui-dialog-titlebar-close[type="button"]').click();
+                            }
+                        }).elfinder('instance')
+                    }
+                });        
         });       
 
 
