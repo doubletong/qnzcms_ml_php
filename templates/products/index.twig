@@ -1,0 +1,33 @@
+{% extends "shared/layout.twig" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+
+{% endblock %}
+{% block content %}
+
+<div class="page page-product">
+  {{page.content|raw }}  
+  <img class="wave" src="/assets/img/wave.svg" alt="">
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    <script>         
+      $(function () {
+          $('.covers .item').hover(function(){
+              $(this).addClass('active').siblings().removeClass('active');
+          });
+      });
+    </script>
+{% endblock %}

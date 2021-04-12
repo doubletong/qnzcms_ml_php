@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+<head>
+  {% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}-{{site.sitename}}</title>
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <meta name="theme-color" content="#fafafa">
+
+  <!-- CSS, you gotta have style -->
+  <link href="/assets/fonts/iconfont.css" rel="stylesheet">  
+  <link rel="stylesheet" href="/assets/js/vendor/wow/css/libs/animate.css">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20190414">
+    <script src="/assets/js/vendor/wow/dist/wow.min.js"></script>
+    <script>
+      new WOW().init(); 
+    </script>
+  {% endblock %}
+</head>
+<body>
+    {{ include('shared/header.twig') }}
+
+    {% block content %}{% endblock %}
+
+    {{ include('shared/footer.twig') }}
+    <script src="/assets/js/lib/modernizr-3.7.1.min.js"></script>
+    <script src="/assets/js/lib/jquery-1.12.4.min.js"></script>
+    <script src="/assets/js/vendor/wow/dist/wow.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    {% block footer %}{% endblock %}
+</body>
+</html>

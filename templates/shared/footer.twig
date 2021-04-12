@@ -1,0 +1,31 @@
+<footer class="site-footer" id="pageFooter">
+  <div class="bot_nav">
+    <div class="container pt-media-3">
+      <div class="navlist">
+        <div class="row align-items-end">
+          <div class="col-md-auto">
+            <div class="logo"><img src="/assets/img/logo.png" alt="{{site.sitename}}"></div>
+          </div>
+          <div class="col-md">
+            <ul class="wow fadeInUp"> 
+            {% for menu in menus %}
+              <li class="{{ menu.children is not empty ? 'hasnav' : '' }}">
+                  <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>           
+              </li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="social"><a href="#"><i class="iconfont icon-wechat"></i></a><a href="#"><i class="iconfont icon-sina"></i></a></div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="container"> 
+      <div class="row">
+        <div class="col-lg">&copy; {{site.sitename}} <a href="https://beian.miit.gov.cn/" target="_blank">{{site.webnumber}}</a></div>
+        <div class="col-lg-auto">地址:{{site.address}} 电话: {{site.phone}} 传真: {{site.postcode}}</div>
+      </div>
+    </div>
+  </div>
+</footer><a class="toTop" id="toTop" href="javascript:void(0);"><i class="iconfont icon-top"></i></a>

@@ -10,22 +10,33 @@ use Models\Option;
 
 $site_info = null;
 
-$lang = isset($_GET['lang']) && !empty($_GET['lang']) ? $_GET['lang']:'zh-CN';
-$configkey = $lang=='zh-CN'? 'site_info' : 'site_info_'.$lang;
+$lang = $_GET['lang']??'zh-cn';
+//$lang = isset($_GET['lang']) && !empty($_GET['lang']) ? $_GET['lang']:'zh-CN';
+$configkey = 'site_info_'.$lang;
 
-$siteOption = Option::find($configkey);
-if(isset($siteOption )){
-	$site_info  =  json_decode($siteOption->config_values,true);  //获取站点信息
+$site_option = Option::find($configkey);
+$site_sys_option = Option::find('sys');
+
+
+if(isset($site_option )){
+	$site_sys = isset($site_sys_option )?json_decode($site_sys_option->config_values,true):null;
+	$site_info  =  json_decode($site_option->config_values,true);  //获取站点信息
+	// 合并系统信息跟基本信息
+	if(isset($site_sys)){
+		$site_info = array_merge($site_sys, $site_info);
+	}
+	
+	// var_dump($site_info);
 }
 
 
 date_default_timezone_set('Asia/Shanghai');   //设置时区
 
-header("X-Frame-Options: DENY");
+// header("X-Frame-Options: DENY");
 header("X-XSS-Protection: 1"); //开启XSS保护
 
 
-$langUrl = $lang=='zh-CN' ? $_SERVER['DOCUMENT_ROOT'] .'/resources/site.php' : $_SERVER['DOCUMENT_ROOT'] .'/resources/site_'.$lang.'.php';
+$langUrl =  $_SERVER['DOCUMENT_ROOT'] .'/resources/site_'.$lang.'.php';
 
 $GLOBALS['siteLang'] = include $langUrl;
 

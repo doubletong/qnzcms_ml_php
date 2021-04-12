@@ -20,8 +20,7 @@ if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
 
-    $query = $query->where('title','like','%'.$keyword.'%')
-            ->orWhere('description','like','%'.$keyword.'%');
+    $query = $query->where('title','like','%'.$keyword.'%');
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
 

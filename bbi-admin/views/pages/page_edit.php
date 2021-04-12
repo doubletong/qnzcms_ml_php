@@ -224,7 +224,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
             ],
             importcss_append: true,
             file_picker_callback : mceElf.browser,
-            images_upload_handler: mceElf.uploadHandler,
+            images_upload_handler: mceElf.uploadHandlerExt,
 
             templates: [
                 { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
@@ -240,11 +240,18 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
             toolbar_mode: 'sliding',
             contextmenu: 'link image imagetools table',
             skin: useDarkMode ? 'oxide-dark' : 'oxide',
-            content_css: useDarkMode ? 'dark' : 'default',
+            content_css:  '/assets/js/vendor/bootstrap/dist/css/bootstrap.min.css', 
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            image_dimensions: false,  //关闭图像尺寸
+            valid_elements : '*[*]',
             relative_urls: false, 
             convert_urls: false, 
-            remove_script_host: false
+            remove_script_host: false,
+            setup: function (editor) {
+            editor.on('change', function () {
+            editor.save();
+                });
+            }
         });
 
       

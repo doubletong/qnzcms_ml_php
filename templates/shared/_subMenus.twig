@@ -1,0 +1,9 @@
+{% if(subnavs is not empty) %}
+<ul>
+  {% for subnav in subnavs %}
+    {% if subnav.active %}
+    <li class="{{subnav.url == uri or subnav.url == uri ~ '/index' or uri starts with subnav.url ? 'active' : '' }}"><a href="{{subnav.url}}" >{{subnav.title}}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}  

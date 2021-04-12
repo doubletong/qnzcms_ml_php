@@ -103,23 +103,20 @@ window.tinymceElfinder = function(opts) {
             const regist = () => {
                 fm.options.getFileCallback = cgf.callback = (file, fm) => {
                     var url, reg, info;
-                    
+
                     // URL normalization
-                    // url = fm.convAbsUrl(file.url);
-                    url = '/'+file.path.replace(/\\/g,"/");
+                    url = fm.convAbsUrl(file.url);
                     
                     // Make file info
                     info = file.name + ' (' + fm.formatSize(file.size) + ')';
 
                     // Provide file and text for the link dialog
                     if (meta.filetype == 'file') {
-                       // console.log(url);
                         callback(url, {text: info, title: info});
                     }
 
                     // Provide image and alt text for the image dialog
                     if (meta.filetype == 'image') {
-                       // console.log(url);
                         callback(url, {alt: info});
                     }
 
@@ -202,10 +199,39 @@ window.tinymceElfinder = function(opts) {
                 reject(fm.i18n(error? (error === 'userabort'? 'errAbort' : error) : 'errUploadNoFiles'));
             });
         }).then((url) => {
-           
             success(url);
         }).catch((err) => {
             failure(err);
         });
+    };
+    this.uploadHandlerExt = function (blobInfo, success, failure) {
+        var xhr, formData;
+      
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST', '/bbi-admin/uploadWithTinymce.php');
+      
+        xhr.onload = function() {
+            var json;
+        
+            if (xhr.status != 200) {
+                failure('HTTP Error: ' + xhr.status);
+                return;
+            }
+        
+            json = JSON.parse(xhr.responseText);
+        
+            if (!json || typeof json.location != 'string') {
+                failure('Invalid JSON: ' + xhr.responseText);
+                return;
+            }
+        
+            success(json.location);
+        };
+      
+        formData = new FormData();
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+      
+        xhr.send(formData);
     };
 };

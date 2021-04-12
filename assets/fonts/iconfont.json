@@ -1,114 +1,135 @@
 {
-  "id": "1853340",
-  "name": "深港脑院",
+  "id": "2318389",
+  "name": "兴嘉",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "13960376",
-      "name": "close",
-      "font_class": "close",
-      "unicode": "e653",
-      "unicode_decimal": 58963
+      "icon_id": "18991596",
+      "name": "double arrow-right",
+      "font_class": "left",
+      "unicode": "e847",
+      "unicode_decimal": 59463
     },
     {
-      "icon_id": "9275287",
-      "name": "time",
-      "font_class": "time",
-      "unicode": "e920",
-      "unicode_decimal": 59680
-    },
-    {
-      "icon_id": "9961608",
-      "name": "see user",
-      "font_class": "user",
-      "unicode": "e600",
-      "unicode_decimal": 58880
-    },
-    {
-      "icon_id": "3668888",
-      "name": "view",
-      "font_class": "view",
-      "unicode": "e747",
-      "unicode_decimal": 59207
-    },
-    {
-      "icon_id": "6700279",
-      "name": "link",
-      "font_class": "link",
-      "unicode": "e785",
-      "unicode_decimal": 59269
-    },
-    {
-      "icon_id": "9620921",
-      "name": "Cloud, download, storage",
-      "font_class": "download",
-      "unicode": "f98b",
-      "unicode_decimal": 63883
-    },
-    {
-      "icon_id": "2347378",
-      "name": "prev",
-      "font_class": "prev",
-      "unicode": "e65d",
-      "unicode_decimal": 58973
-    },
-    {
-      "icon_id": "15167299",
-      "name": "prev",
-      "font_class": "next",
-      "unicode": "e695",
-      "unicode_decimal": 59029
-    },
-    {
-      "icon_id": "7279605",
-      "name": "right",
+      "icon_id": "20293156",
+      "name": "double arrow-right",
       "font_class": "right",
-      "unicode": "e60f",
-      "unicode_decimal": 58895
+      "unicode": "e867",
+      "unicode_decimal": 59495
     },
     {
-      "icon_id": "573381",
+      "icon_id": "20285800",
+      "name": "企业精神",
+      "font_class": "light",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "20289765",
+      "name": "管理理念",
+      "font_class": "hua",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "3050856",
+      "name": "钻石",
+      "font_class": "diamonds",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "3216126",
+      "name": "奖章",
+      "font_class": "honor",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "8223336",
+      "name": "科技",
+      "font_class": "keji",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "20248653",
+      "name": "cl-icon-left",
+      "font_class": "next",
+      "unicode": "e866",
+      "unicode_decimal": 59494
+    },
+    {
+      "icon_id": "12468540",
+      "name": "cl-icon-left",
+      "font_class": "prev",
+      "unicode": "e865",
+      "unicode_decimal": 59493
+    },
+    {
+      "icon_id": "6086368",
+      "name": "down",
+      "font_class": "down",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "13434541",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "20230920",
+      "name": "wendian",
+      "font_class": "wendian",
+      "unicode": "e6e6",
+      "unicode_decimal": 59110
+    },
+    {
+      "icon_id": "20230921",
+      "name": "ok",
+      "font_class": "ok",
+      "unicode": "e6e7",
+      "unicode_decimal": 59111
+    },
+    {
+      "icon_id": "20230922",
+      "name": "green",
+      "font_class": "green",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "20230923",
+      "name": "anchuang",
+      "font_class": "anchuang",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "1018303",
+      "name": "top",
+      "font_class": "top",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "879150",
+      "name": "sina",
+      "font_class": "sina",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "1262361",
       "name": "wechat",
       "font_class": "wechat",
-      "unicode": "e694",
-      "unicode_decimal": 59028
-    },
-    {
-      "icon_id": "7533292",
-      "name": "中英文",
-      "font_class": "zhongyingwen",
-      "unicode": "e605",
-      "unicode_decimal": 58885
-    },
-    {
-      "icon_id": "9098170",
-      "name": "search",
-      "font_class": "chakan",
-      "unicode": "e60c",
-      "unicode_decimal": 58892
-    },
-    {
-      "icon_id": "13655136",
-      "name": "email",
-      "font_class": "email",
-      "unicode": "e616",
-      "unicode_decimal": 58902
-    },
-    {
-      "icon_id": "3217916",
-      "name": "邮编",
-      "font_class": "youbian",
-      "unicode": "e62a",
-      "unicode_decimal": 58922
-    },
-    {
-      "icon_id": "6994954",
-      "name": "marker",
-      "font_class": "marker",
-      "unicode": "e612",
-      "unicode_decimal": 58898
+      "unicode": "e738",
+      "unicode_decimal": 59192
     }
   ]
 }

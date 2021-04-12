@@ -187,6 +187,7 @@ $langs = Language::where('active', 1)->orderby('importance', 'DESC')->get();
                             </div>
 
 
+
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
@@ -253,7 +254,7 @@ $langs = Language::where('active', 1)->orderby('importance', 'DESC')->get();
             ],
             importcss_append: true,
             file_picker_callback : mceElf.browser,
-            images_upload_handler: mceElf.uploadHandler,
+            images_upload_handler: mceElf.uploadHandlerExt,
 
             templates: [
                 { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },

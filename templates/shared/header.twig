@@ -1,0 +1,38 @@
+<header class="site-header" id="site-header">   
+      <div class="container-fluid">
+        <div class="row align-items-center">  
+          <div class="col-auto"> <a class="logo" href="{{'/'~lang}}">
+          <img class="logo_white" src="/assets/img/logo.png" alt="{{site.sitename}}"><img class="logo_color" src="/assets/img/logo_color.png" alt="{{site.sitename}}"></a>
+          </div>
+          <div class="col">              
+            <ul class="mainav">    
+              {% for menu in menus %}
+                <li class="{{ menu.children is not empty ? 'hasnav' : '' }}">
+                    <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>           
+                </li>
+              {% endfor %}
+
+              <li class="search"><a href="#">搜索</a></li>
+              <li class="lang"><a href="#">EN</a></li>
+            </ul>
+          </div>
+          <div class="col-auto mobilemenu">
+            <div class="menu-toggle">
+              <div class="one"></div>
+              <div class="two"></div>
+              <div class="three"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-over" id="overmenu">
+        <ul class="mobilenav">
+          {% for menu in menus %}
+            <li class="{{ menu.children is not empty ? 'hasnav' : '' }}">
+                <a href="{{ menu.url }}" class="{{ (menu.url != "/" and  uri starts with menu.url) or menu.url == uri ? 'active' : '' }}" data-id="nav{{menu.id}}">{{menu.title}}</a>           
+            </li>
+          {% endfor %}   
+        </ul>
+        <div class="quick_link"><a href="#"> <i class="iconfont icon-search"></i></a><a href="#">EN</a></div>
+      </div>
+    </header>

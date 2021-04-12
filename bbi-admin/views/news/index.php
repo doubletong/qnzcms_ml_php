@@ -46,9 +46,9 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
     $urlPattern = $urlPattern . "&cid=$cid";
 }
 
-if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+if(isset($_REQUEST["slang"]) && $_REQUEST["slang"] != "")
 {    
-    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $lang = htmlspecialchars($_REQUEST["slang"],ENT_QUOTES);
     $query = $query->where('lang', $lang);         
       
     $urlPattern = $urlPattern . "&lang=$lang";
@@ -87,7 +87,7 @@ function recursive($items, $level, $cid){
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $titles['zh-CN'].'</option>';                   
+        echo $titles['zh-cn'].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.
@@ -155,7 +155,7 @@ function recursive($items, $level, $cid){
                                         </div>
                                         <div class="col-auto">
                                             <label class="sr-only" for="lang">语言</label>
-                                            <select class="form-control" id="lang" name="lang">
+                                            <select class="form-control" id="lang" name="slang">
                                                 <option value="">--请选择语言--</option>
                                                 <?php foreach($langs as $item ) {
                                                 
@@ -227,7 +227,7 @@ function recursive($items, $level, $cid){
                             ?>
                             <td><img src="<?php echo $row['thumbnail'];?>" class="img-rounded" style="height:35px;"/></td>
                                 <td><?php echo $row['title'] ;?></td> 
-                                <td><?php echo $titles['zh-CN'];?></td> 
+                                <td><?php echo $titles[strtolower($row->lang)];?></td> 
                                 <td><?php echo $row['importance'] ;?></td>         
                                 <td><?php echo date_format(date_create($row['pubdate']),"Y-m-d");?></td>
                                 <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>

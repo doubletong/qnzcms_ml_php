@@ -32,7 +32,7 @@ function recursive($items, $level, $parent){
         for($i=1;$i<$level;$i++){
             echo "—";
         }
-        echo $titles["zh-CN"].'</option>';                   
+        echo $titles["zh-cn"].'</option>';                   
         $children = $row['children'];          
         if(!empty($children)){
             //Call the function again. Increment number by one.

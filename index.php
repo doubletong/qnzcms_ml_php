@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/app/utils/enum.php');
 
 // use Phpfastcache\CacheManager;
 // use Phpfastcache\Config\ConfigurationOption;
-use Models\AdvertisingSpace;
+use Models\Advertisement;
 use Models\Metadata;
 use Models\News;
 use Models\NewsCategory;
@@ -14,12 +14,12 @@ use Models\Research;
 
 
 //twig 模板设置
-$loader = new \Twig\Loader\FilesystemLoader(array('assets/templates'));
+$loader = new \Twig\Loader\FilesystemLoader(array('templates'));
 
 if($site_info['enableCaching']=="1"){
 
     $twig = new \Twig\Environment($loader, [
-        'cache' => 'assets/caches',
+        'cache' => 'caches',
     ]);
     // In your class, function, you can call the Cache
     //$InstanceCache = CacheManager::getInstance('files');
@@ -57,13 +57,11 @@ function loadDate($lang){
         $metakey = '/'.$lang.'/';   
     }
 
-    $code = $lang == 'zh-CN'?'A001': 'A001_'.$lang;
 
-    $space = AdvertisingSpace::with(array('advertisements' => function ($query) {
-        $query->where('active',1)->orderBy('importance', 'DESC')->get();
-    }))->where('code','=',$code)->first();
+    $carousels = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
+    ->where('advertisements.lang', $lang)->where('advertisements.active',1)
+    ->where('advertising_spaces.code','=','A001')->get();
 
-    $carousels = !empty($space)?$space->advertisements:null;
 
     $ids2 = NewsCategory::where('parent','=',15)->select('id')->get();  
     $notices = News::where('active',1)->where('recommend',1)->whereIn('category_id',$ids2)->orderBy('pubdate', 'DESC')->take(5)->get();
@@ -75,8 +73,6 @@ function loadDate($lang){
 
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();       
 
-
-
     return  ['carousels' => $carousels, 'metadata'=>$metadata,'articles'=>$articles, 'notices'=>$notices, 'researches'=>$researches];
 
 
@@ -86,13 +82,13 @@ function loadDate($lang){
 $twig->addGlobal('site', $site_info);
 $twig->addGlobal('menus', $commonData['mainav']);
 $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
-$twig->addGlobal('navbot', $commonData['menus_bot']);
-$twig->addGlobal('navtop', $commonData['menus_top']);
+// $twig->addGlobal('navbot', $commonData['menus_bot']);
+// $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
 $twig->addGlobal('lang', $lang);
 $twig->addGlobal('resources', $GLOBALS['siteLang']);
-$twig->addGlobal('links', $commonData['links']);
+// $twig->addGlobal('links', $commonData['links']);
 
-echo $twig->render('index.html', $result);
+echo $twig->render('index.twig', $result);
 
 ?>

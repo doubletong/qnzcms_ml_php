@@ -22,7 +22,9 @@ if( isset($_POST['action']) && isset($_POST['id'])){
             
           
             $item = new Link();
-            $item->title = $_POST['title'];   
+            $item->title = $_POST['title'];
+            $item->font_icon = $_POST['font_icon'];
+            $item->link_type = $_POST['link_type'];   
             $item->url = $_POST['url'];
             $item->lang = $_POST['lang'];           
             $item->image_url = $_POST['image_url']; 
@@ -52,7 +54,9 @@ if( isset($_POST['action']) && isset($_POST['id'])){
          
         
             $item = Link::find($id);
-            $item->title = $_POST['title'];   
+            $item->title = $_POST['title'];
+            $item->font_icon = $_POST['font_icon'];
+            $item->link_type = $_POST['link_type'];   
             $item->url = $_POST['url'];
             $item->lang = $_POST['lang'];           
             $item->image_url = $_POST['image_url']; 

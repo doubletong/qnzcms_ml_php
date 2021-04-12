@@ -100,7 +100,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                         <div class="form-row align-items-center">
                                             <div class="col-auto">
                                                 <label class="sr-only" for="inlineFormInput">搜索</label>
-                                                <input type="text" name="search" class="form-control"
+                                                <input type="text" name="keyword" class="form-control"
                                                     id="inlineFormInput" value="<?php echo $keyword ?>"
                                                     placeholder="关键字">
                                             </div>

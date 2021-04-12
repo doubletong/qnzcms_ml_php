@@ -45,15 +45,15 @@ $sort= isset($_GET['sort'])?$_GET['sort']:null;
  if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
 }else{
-    $query = $query->orderBy('importance', 'DESC');
+    $query = $query->orderBy('importance', 'ASC')->orderBy('id', 'DESC');
 }
 
-if(isset($_REQUEST["lang"]) && $_REQUEST["lang"] != "")
+if(isset($_REQUEST["slang"]) && $_REQUEST["slang"] != "")
 {    
-    $lang = htmlspecialchars($_REQUEST["lang"],ENT_QUOTES);
+    $lang = htmlspecialchars($_REQUEST["slang"],ENT_QUOTES);
     $query = $query->where('lang', $lang);         
       
-    $urlPattern = $urlPattern . "&lang=$lang";
+    $urlPattern = $urlPattern . "&slang=$lang";
 }
 
 $totalItems = $query->count();  //总记录数
@@ -133,7 +133,6 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                         <option value="">--广告位过滤--</option>
                                         <?php foreach ($positions as $position) :    ?>      
                                                 <?php $titles = json_decode($position->title, true); ?>
-
                                                 <?php if ($position->id == $_REQUEST["cid"]) { ?>
                                                     <option value="<?php echo $position->id; ?>" selected><?php echo isset($titles['zh-CN']) ?$titles['zh-CN'] :""; ?></option>
                                                 <?php } else { ?>
@@ -147,7 +146,7 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
                                 <div class="col-auto">
                                     <label class="sr-only" for="lang">语言</label>
-                                    <select class="form-control" id="lang" name="lang">
+                                    <select class="form-control" id="lang" name="slang">
                                         <option value="">--请选择语言--</option>
                                         <?php foreach($langs as $item ) {                                        
                                             ?>                                  
@@ -210,14 +209,14 @@ $langs = Language::where('active',1)->orderby('importance','DESC')->get();
                                
                                 ?>
                                 <tr>
-                                <td><img src="/img.php?src=<?php echo $row['image_url'];?>&h=50" class="img-rounded" /></td>
+                                <td><img src="/plugins/thumb/img.php?src=<?php echo $row['image_url'];?>&h=50" class="img-rounded" /></td>
                                 <td>
                                     <?php echo $row['title'] ?>
                                     <?php if(!empty($row['link'])) :?>
                                         <div class="link"><i class="iconfont icon-link"></i> <small><?php echo $row['link'];?></small></div>
                                     <?php endif; ?>
                                 </td>
-                                <td><?php echo $titles['zh-CN']??''; ?></td>
+                                <td><?php echo $titles[$row->lang]??''; ?></td>
                                                             
                                 <td><?php echo $row['importance'];?></td>
                                 <td><img src="../../assets/img/langs/<?php echo $row['lang']; ?>.svg" alt="<?php echo $row['lang']; ?>" style="height:16px;"></td>

@@ -1,0 +1,92 @@
+{% extends "shared/layout.twig" %}
+{% block title %} 
+ {% if metadata.title %}
+     {{metadata.title}}
+ {% else %}
+    {{page.title}}
+ {% endif %}
+
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">
+  <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper-bundle.min.css">
+{% endblock %}
+{% block content %}
+
+{% if carousel is not empty %}
+<div class="banner banner-product wow fadeInUp">
+	<svg width="100%" height="100%" viewbox="0 0 1920 447">
+		<g id="box" transform="matrix(1,0,0,1,0,-108)">
+			<clipPath id="_clip1">
+				<path d="M0,108L1920,108L1920,553C1920,553 1695.13,480.459 1405,478C908.126,473.787 1196.2,564.729 0,553C0,570.278 0,108 0,108Z"/>
+			</clipPath>
+			<g clip-path="url(#_clip1)">
+				<g id="_001image" serif:id="001image" transform="matrix(1,0,0,1,0,108)">
+					<use xlink:href="#_Image2" x="0" y="0" width="1920px" height="447px"/>
+				</g>
+			</g>
+		</g>
+		<defs>
+			<image id="_Image2" width="1920px" height="447px" xlink:href="{{carousel.image_url}}"/>
+		</defs>
+	</svg>
+</div>
+{% endif %}
+
+<div class="page page-about">
+  {{page.content|raw }}  
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    <script src="/assets/js/vendor/swiper/js/swiper-bundle.min.js"></script>
+    <script>         
+     var swiper = new Swiper('.qiye-sliders', {
+          slidesPerView: 1,
+          spaceBetween: 10,
+          loop:true,
+          centeredSlides: true,
+          navigation: {              
+              nextEl: '.swiper-next',
+              prevEl: '.swiper-prev',
+          },
+         
+          breakpoints: {
+              640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+              },
+              768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+              },
+              1024: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+              },
+          },
+         
+      });
+      
+      var swiper = new Swiper('.honor-sliders', {
+          slidesPerView: 1,
+          spaceBetween: 210,
+          loop:true,
+          centeredSlides: true,
+          autoplay: {
+              delay: 4000,
+              disableOnInteraction: false,
+          },
+          pagination: {
+              el: '.swiper-pagination',
+              type: 'progressbar',
+              clickable: true,
+          },
+          
+         
+      });
+    </script>
+{% endblock %}

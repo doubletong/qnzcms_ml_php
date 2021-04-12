@@ -1,0 +1,211 @@
+
+{% extends "shared/layout.twig" %}
+
+{% block title %}
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{resources['首页']}}
+  {% endif %}
+{% endblock %}
+{% block head %}
+    {{ parent() }}
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper-bundle.min.css">
+{% endblock %}
+{% block content %}
+<div class="banner-home">
+  <div class="swiper-container home-sliders">       
+    <div class="swiper-wrapper">
+      {% for item in carousels %}
+      <div class="swiper-slide">            
+        <div class="slide" style="background-image:url({{item.image_url}})">
+          <div class="container">
+            {{item.content|raw}}               
+          </div>
+        </div>
+      </div>
+      {% endfor %}          
+    </div>
+  </div>
+  <img class="wave" src="/assets/img/wave_1.svg" alt="">
+</div>
+
+<div class="page-home"> 
+  <section class="s1 container">         
+    <div class="ann-title"><img src="assets/img/logo.png" alt="logo">
+      <h3 class="wow fadeInUp"> {{resources['通知公告']}} <i class="iconfont icon-right"></i></h3>
+    </div>
+    <div class="ann-last">
+      <div class="ann-sliders swiper-container wow fadeInUp">
+        <div class="swiper-wrapper">
+          {% for row in notices %}
+          <div class="swiper-slide">
+            <div class="item">
+              <time>{{item.pubdate|date('Y-m-d')}}</time><a href="{{lang=='zh-CN'?'':'/'~lang}}/news/notice/detail-{{row.id}}">{{row.title}}</a>
+            </div>
+          </div>
+          {% endfor %}         
+
+        
+        </div>
+      </div>
+      <div class="swiper-button-next"><i class="iconfont icon-next"></i></div>
+      <div class="swiper-button-prev"><i class="iconfont icon-prev"></i></div>
+    </div>
+  </section>
+
+  <section class="s2">
+    <div class="container">
+      <div class="title-section wow fadeInUp">
+        <h2 class="text-center">{{resources['热点新闻']}}</h2><a class="more" href="/news">{{resources['了解更多']}}</a>
+      </div>
+      <div class="laster swiper-container wow fadeInUp">
+        <div class="swiper-wrapper">
+          {% for row in articles %}
+          <div class="swiper-slide"><a class="item" href="/news/detail-{{row.id}}">
+            <div class="pic"><img src="/img.php?src={{row.thumbnail}}&amp;w=720&amp;h=810&amp;crop-to-fit" alt=""></div>
+            <div class="des"> 
+              <h3>{{row.title}}</h3>
+              <time>{{row.pubdate|date('Y-m-d')}}</time>
+            </div></a></div>
+          {% endfor %}         
+          
+        </div>
+        <div class="swiper-pagination">      </div>
+        <div class="swiper-button-next"><i class="iconfont icon-next"></i></div>
+        <div class="swiper-button-prev"><i class="iconfont icon-prev"></i></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="s3">
+    <div class="container"> 
+      <div class="content">        
+        <div class="title-section wow fadeInUp">
+          <h2>汇聚英才    招贤纳士</h2>
+        </div>
+        <p>脑院秉承“近者悦，远者来”：引进比自己学术能力强、威望高、影响力大的人才；帮扶年轻人尽快腾飞。各核心研究方向研究队伍进一步壮大、优化。</p>
+        <div class="row">
+          <div class="col-auto">
+            <div class="val">
+              <div class="num">183</div>
+              <div class="title">脑院员工总人数</div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="val">
+              <div class="num">80</div>
+              <div class="title">正高级序列人数</div>
+              <div class="col"></div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="val">
+              <div class="num">103</div>
+              <div class="title">副高级序列人数</div>
+            </div>
+          </div>
+        </div><a class="more" href="team.html">了解更多</a>
+      </div>
+    </div>
+  </section>
+  <section class="s4">
+    <div class="researches swiper-container wow fadeInUp">
+      <div class="swiper-wrapper">  
+        {% for row in researches %}
+          <div class="swiper-slide"><a class="item" href="/platform" style="background-image:url('{{row.thumbnail}}');"><img src="{{row.icon}}" alt="">
+          <h4 class="title">{{row.title_short}}<br>{{row.lab}}</h4></a></div>
+        {% endfor %}    
+        
+      </div>
+      <div class="swiper-button-next"><i class="iconfont icon-next"></i></div>
+      <div class="swiper-button-prev"><i class="iconfont icon-prev"></i></div>
+    </div>
+  </section>
+  <section class="s5">
+    <div class="container">
+      <div class="content">
+        <div class="title-section wow fadeInUp">
+          <h2>合作交流</h2>
+        </div>
+        <p>吸引国际同行，发出国际声音，站到人类科技命运共同体的高度，共谋脑科学未来发展。    </p><a class="more" href="/cooperation">了解更多</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+  
+{% endblock %}
+
+{% block footer %}
+<script src="/assets/js/vendor/swiper/js/swiper-bundle.min.js"></script>
+
+    <script>
+     var home_swiper = new Swiper('.home-sliders', {
+           loop:true,
+           autoplay: {
+               delay: 4000,
+               disableOnInteraction: false,
+           },
+           pagination: {
+               el: '.swiper-pagination',
+               clickable: true,
+           },
+           //- navigation: {              
+           //-     nextEl: '.swiper-next',
+           //-     prevEl: '.swiper-prev',
+           //- },
+       });
+      
+        var swiper = new Swiper('.news-sliders', {
+           loop:true,
+           //-  autoplay: {
+           //-     delay: 4000,
+           //-     disableOnInteraction: false,
+           //- },
+           spaceBetween: 30,
+           // effect: 'coverflow',
+           grabCursor: true,
+           centeredSlides: true,
+           slidesPerView: 'auto',
+           coverflowEffect: {
+               rotate: 50,
+               stretch: 0,
+               depth: 100,
+               modifier: 1,
+               slideShadows: true,
+           },
+           //- pagination: {
+           //-     el: '.swiper-pagination',
+           //-     clickable: true,
+           //- },
+           navigation: {              
+               nextEl: '.swiper-next',
+               prevEl: '.swiper-prev',
+           },
+       });
+      
+      
+       $(function () {        
+           $('body').addClass('home-body');  
+      
+           $("#btnClose").click(function(e){
+               $("#overly").fadeOut();
+           });
+           $('.btn-play').click(function(){
+               //- var videoSrc=$(this).attr('data-url');
+               //- var poster=$(this).attr('data-poster');
+               $('#overly').fadeIn(200);
+               //- $('.video_wrap video').attr('poster',poster);
+               //- $('.video_wrap video').attr('src',videoSrc);
+               $('.video_wrap video')[0].play();
+               //$("#videoshow").text(title);   
+      
+           });   
+      
+        
+       });
+    </script>
+    {% endblock %}

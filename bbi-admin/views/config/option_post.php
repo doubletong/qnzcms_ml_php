@@ -49,33 +49,79 @@ switch ($config_type) {
 
         break;
     case 'site_info':
-        $config_name = $_POST['config_name'];
-        $logo = $_POST['logo'];
+        $config_name = $_POST['config_name'];      
      
-     
-        $company = $_POST['company'];
-        $webnumber = $_POST['webnumber'];
-        $hotPhone = $_POST['hotPhone'];
+        $company = $_POST['company'];        
         $phone = $_POST['phone'];
-        $email = $_POST['email'];
-       
-        $address = $_POST['address'];
-        $theme = $_POST['theme'];  
-
-        $hremail = $_POST['hremail'];          
-        $hrcontact = $_POST['hrcontact'];
-        $hrphone = $_POST['hrphone'];
-
-        $postcode = $_POST['postcode'];
-
+        $email = $_POST['email'];       
+        $address = $_POST['address'];        
+        $postcode = $_POST['postcode'];      
       
-        $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
         $config_values = array(
-            "sitename" => $_POST['sitename'], "logo" => $logo,
-            "webnumber" =>  $webnumber, "company"=>$company, "postcode" => $postcode,
-            "email" =>  $email, "hotPhone"=>$hotPhone, "phone" =>  $phone, "address" => $address, "theme" => $theme,
-            "hremail" =>  $hremail,
-            "hrcontact" =>  $hrcontact,"hrphone" =>  $hrphone, "enableCaching" => $enableCaching
+            "sitename" => $_POST['sitename'], 
+            "company"=>$company, "postcode" => $postcode,
+            "email" =>  $email,  "phone" =>  $phone, "address" => $address
+            
+        );
+
+        $data = Option::find($config_name);
+        //$optionClass->get_config($config_name);
+        // print_r($config_values);
+
+        if (isset($data)) {
+            $data->config_values = $config_values;         
+            $result = $data->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'更新成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'更新失败'));  
+            }   
+            
+        } else {
+
+            $option = new Option();
+            $option->config_name = $config_name;
+            $option->config_values = json_encode($config_values);
+            $option->added_by = $username;
+            
+            $result = $option->save();
+            if($result==true){
+                echo json_encode(array ('status'=>1,'message'=>'创建成功'));  
+            }else{
+                echo json_encode(array ('status'=>2,'message'=>'创建失败'));  
+            }   
+
+            //echo $optionClass->insert_config($config_name, $config_values);
+        }
+        break;
+
+    case 'sys':
+        $config_name = 'sys';
+        $logo = $_POST['logo'];      
+        $webnumber = $_POST['webnumber'];
+        $homepage = $_POST['homepage'];
+        $app_id = $_POST['app_id'];   
+        $app_secret = $_POST['app_secret'];  
+        $accessKeyId = $_POST['accessKeyId'];
+        $accessKeySecret = $_POST['accessKeySecret'];  
+        $endpoint = $_POST['endpoint'];  
+        $bucket = $_POST['bucket'];  
+        $oss_url = $_POST['oss_url'];  
+       
+        $enableCaching = isset($_POST['enableCaching']) && $_POST['enableCaching']  ? "1" : "0";
+
+        $config_values = array(
+            "logo" => $logo,
+            "webnumber" =>  $webnumber, 
+            "homepage"=>$homepage,
+            "app_id"=>$app_id,
+            "app_secret"=>$app_secret,
+            "accessKeyId"=>$accessKeyId,
+            "accessKeySecret"=>$accessKeySecret,
+            "endpoint"=>$endpoint,
+            "bucket"=>$bucket,
+            "oss_url"=>$oss_url,
+            "enableCaching" => $enableCaching
         );
 
         $data = Option::find($config_name);

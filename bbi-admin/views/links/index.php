@@ -6,7 +6,7 @@ require_once('../../includes/common.php');
 use Models\LinkCategory;
 use Models\Link;
 use JasonGrimes\Paginator;
-
+use Models\Language;
 
 
 $urlPattern = "index.php?page=(:num)";
@@ -24,8 +24,8 @@ $sort= isset($_GET['sort'])?$_GET['sort']:null;
 if(isset($_REQUEST["keyword"]) && $_REQUEST["keyword"] != "")
 {    
     $keyword = htmlspecialchars($_REQUEST["keyword"],ENT_QUOTES);
-    $query = $query->where('name','like','%'.$keyword.'%')
-        ->orWhere('post','like','%'.$keyword.'%');     
+    $query = $query->where('title','like','%'.$keyword.'%')
+        ->orWhere('url','like','%'.$keyword.'%');     
       
     $urlPattern = $urlPattern . "&keyword=$keyword";
 }
@@ -37,10 +37,19 @@ if(isset($_REQUEST["cid"]) && $_REQUEST["cid"] != ""){
     $urlPattern = $urlPattern . "&cid=$cid";
 }
 
+if(isset($_REQUEST["slang"]) && $_REQUEST["slang"] != "")
+{    
+    $lang = htmlspecialchars($_REQUEST["slang"],ENT_QUOTES);
+    $query = $query->where('lang', $lang);         
+      
+    $urlPattern = $urlPattern . "&slang=$lang";
+}
+
+
 if(!empty($orderby) && !empty($sort)){
     $query = $query->orderBy($orderby, $sort);
 }else{
-    $query = $query->orderBy('id', 'DESC');
+    $query = $query->orderBy('importance', 'DESC');
 }
 
 $totalItems = $query->count();  //总记录数
@@ -56,7 +65,7 @@ $countries = $query->skip(($currentPage-1)*$itemsPerPage)
 
 
 $categories = LinkCategory::orderby('importance','desc')->get();
-
+$langs = Language::where('active',1)->orderby('importance','DESC')->get();
 
 
 ?>
@@ -131,6 +140,16 @@ $categories = LinkCategory::orderby('importance','desc')->get();
                             
                                                 <?php } ?>
                                             </select>     
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="sr-only" for="lang">语言</label>
+                                                <select class="form-control" id="lang" name="slang">
+                                                    <option value="">--请选择语言--</option>
+                                                    <?php foreach($langs as $item ) { ?>                                  
+                                                        <option value="<?php echo $item->code;?>" <?php echo (isset($lang) && $lang==$item->code)?"selected":""; ?>><?php echo $item->name; ?></option>
+
+                                                    <?php }  ?>
+                                                </select>
                                             </div>
                                             <div class="col-auto">
                                             <button type="submit" class="btn btn-primary">搜索</button>

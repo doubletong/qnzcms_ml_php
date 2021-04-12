@@ -1,0 +1,110 @@
+{% extends "shared/layout.twig" %}
+{% block title %}
+
+  {% if metadata.title %}
+    {{metadata.title}}
+  {% else %}
+    {{current_menu.title}}
+  {% endif %}
+   
+{% endblock %}
+{% block head %}
+    {{ parent() }}  
+    <meta name="keywords" content="{{metadata.keywords}}">
+    <meta name="description" content="{{metadata.description}}">  
+ 
+    <link rel="stylesheet" href="/assets/js/vendor/swiper/css/swiper.min.css">
+{% endblock %}
+{% block content %}
+
+{% if carousel is not empty %}
+<div class="banner banner-product wow fadeInUp">
+	<svg width="100%" height="100%" viewbox="0 0 1920 447">
+		<g id="box" transform="matrix(1,0,0,1,0,-108)">
+			<clipPath id="_clip1">
+				<path d="M0,108L1920,108L1920,553C1920,553 1695.13,480.459 1405,478C908.126,473.787 1196.2,564.729 0,553C0,570.278 0,108 0,108Z"/>
+			</clipPath>
+			<g clip-path="url(#_clip1)">
+				<g id="_001image" serif:id="001image" transform="matrix(1,0,0,1,0,108)">
+					<use xlink:href="#_Image2" x="0" y="0" width="1920px" height="447px"/>
+				</g>
+			</g>
+		</g>
+		<defs>
+			<image id="_Image2" width="1920px" height="447px" xlink:href="{{carousel.image_url}}"/>
+		</defs>
+	</svg>
+</div>
+{% endif %}
+
+<div class="page page-media pb-media-5">
+      <section class="s1">
+        <div class="container">
+          <div class="page_nav pt-media-6 pb-media-3">
+            {{ include('shared/_subMenus.twig') }}
+          </div>
+        </div>
+      </section>
+      <section class="s2 container mb-media-5"> 
+        <div class="media_list pt-media-5">
+          <div class="row"> 
+            {% for row in articles %}
+              {% if loop.index==1 %}
+                <div class="col-lg-6">
+                  <a class="item" href="/{{~lang}}/news/detail-{{row.id}}"> 
+                    <div class="pic"><img src="{{row.thumbnail}}" alt="{{row.title}}"></div>
+                    <div class="date">{{row.pubdate|date('Y-m-d')}}</div>
+                    <h3 class="text24">{{row.title}}</h3>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+            
+            <div class="col-lg-6"> 
+              <div class="list">
+                {% for row in articles %}
+                  {% if loop.index>1 %}
+                      <a class="item" href="/{{~lang}}/news/detail-{{row.id}}"> 
+                      <div class="date">{{row.pubdate|date('Y-m-d')}}</div>
+                      <h3 class="text24">{{row.title}}</h3>
+                    </a>
+                  {% endif %}
+                
+                {% endfor %}
+                
+               
+                </div>
+            </div>
+          </div>
+        </div>
+        <footer class="quality-footer wow fadeInUp">
+          {% if paginator.numPages > 1 %}
+              <ul class="pagination  text-center">
+                  {% if paginator.prevUrl %}
+                      <li class="page-item"><a class="page-link prev" href="{{ paginator.prevUrl }}"><i class="iconfont icon-prev"></i></a></li>
+                  {% endif %}
+
+                  {% for page in paginator.pages %}
+                      {% if page.url %}
+                          <li {{ page.isCurrent ? 'class="page-item active"' : 'page-item' }}><a class="page-link" href="{{ page.url }}">{{ page.num }}</a></li>
+                      {% else %}
+                          <li class="page-item disabled"><span>{{ page.num }}</span></li>
+                      {% endif %}
+                  {% endfor %}
+
+                  {% if paginator.nextUrl %}
+                      <li class="page-item"><a class="page-link next" href="{{ paginator.nextUrl }}"><i class="iconfont icon-next"></i></a></li>
+                  {% endif %}
+              </ul>
+          {% endif %}          
+        </footer>
+      </section>
+    </div>
+
+
+
+  
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

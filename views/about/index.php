@@ -10,12 +10,12 @@ use Models\Advertisement;
 
 
 //twig 模板设置
-$loader = new \Twig\Loader\FilesystemLoader(array('../../assets/templates'));
+$loader = new \Twig\Loader\FilesystemLoader(array('../../templates'));
 
 if($site_info['enableCaching']=="1"){
 
     $twig = new \Twig\Environment($loader, [
-        'cache' => '../../assets/caches',
+        'cache' => '../../caches',
     ]);
     // In your class, function, you can call the Cache
     // $InstanceCache = CacheManager::getInstance('files');
@@ -57,34 +57,33 @@ function loadDate($menus,$lang){
         $data->save();
     }
 
-    if($lang=='zh-CN'){
-        $subnavs = $menus->where('url','/about')->first()->children;
-    }else{
-        $subnavs = $menus->where('url', '/'.$lang.'/about')->first()->children;
-    }
+    // if($lang=='zh-CN'){
+    //     $subnavs = $menus->where('url','/about')->first()->children;
+    // }else{
+    //     $subnavs = $menus->where('url', '/'.$lang.'/about')->first()->children;
+    // }
    
-    $code = $lang == 'zh-CN'?'A003': 'A003_'.$lang;
-    $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
-        ->where('advertisements.active',1)
-        ->where('advertising_spaces.code','=',$code)->first();
 
+    $carousel = Advertisement::select('advertisements.*')->join('advertising_spaces', 'advertisements.space_id', '=', 'advertising_spaces.id')
+    ->where('advertisements.lang', $lang)->where('advertisements.active',1)
+    ->where('advertising_spaces.code','=','A002')->first();
 
     $metadata = Metadata::where('module_type',ModuleType::URL())->where('key_value',$metakey)->first();
 
-    return  ['page' => $data,'subnavs' => $subnavs, 'metadata'=>$metadata,'carousel'=>$carousel];
+    return  ['page' => $data, 'metadata'=>$metadata,'carousel'=>$carousel];
 }
 
 
 $twig->addGlobal('site', $site_info);
 $twig->addGlobal('menus', $commonData['mainav']);
 $twig->addGlobal('breadcrumb', $commonData['breadcrumb']);
-$twig->addGlobal('navbot', $commonData['menus_bot']);
-$twig->addGlobal('navtop', $commonData['menus_top']);
+// $twig->addGlobal('navbot', $commonData['menus_bot']);
+// $twig->addGlobal('navtop', $commonData['menus_top']);
 $twig->addGlobal('uri', $uri);
 $twig->addGlobal('lang', $lang);
 $twig->addGlobal('resources', $GLOBALS['siteLang']);
-$twig->addGlobal('links', $commonData['links']);
+// $twig->addGlobal('links', $commonData['links']);
 
-echo $twig->render('about/index.html', $result);
+echo $twig->render('about/index.twig', $result);
 
 ?>

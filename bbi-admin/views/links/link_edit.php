@@ -46,8 +46,10 @@ function recursive($items, $level, $parent){
 <head>
     <title><?php echo $pageTitle."_链接_组件_后台管理_".$site_info['sitename'];?></title>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/bbi-admin/includes/meta.php') ?>
-    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/elFinder/css/elfinder.min.css"/>
+
+    <link rel="stylesheet" type="text/css"
+        href="../../../assets/js/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../assets/js/vendor/elFinder/css/elfinder.min.css" />
 </head>
 
 <body>
@@ -107,20 +109,38 @@ function recursive($items, $level, $parent){
                         <input type="text" class="form-control" id="title" name="title" placeholder="" value="<?php echo isset($data['title'])?$data['title']:''; ?>">
                   
                 </div>
+
                 <div class="form-group">
-                                <label for="parent_id">分类</label> 
-                                <select class="form-control" id="category_id" name="category_id" >
-                                    <option value="">--请选择分类--</option>
-                                    <?php recursive($categories, $level, $data['category_id']); ?>                                                    
-                                </select>                              
-                            </div>   
+                    <label for="parent_id">分类</label> 
+                    <select class="form-control" id="category_id" name="category_id" >
+                        <option value="">--请选择分类--</option>
+                        <?php recursive($categories, $level, $data['category_id']); ?>                                                    
+                    </select>                              
+                </div>   
 
                 <div class="form-group">
                     <label for="url" >链接</label>                  
                     <input type="text" class="form-control" id="url" name="url" placeholder="" value="<?php echo isset($data['url'])?$data['url']:''; ?>">
-                
+                </div>
+                <div class="form-group">
+                    <label for="url" >链接形式</label>  
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="link_type" id="inlineRadio1" <?php echo !isset($data['link_type']) || (isset($data['link_type']) && $data['link_type']==1) ?'checked':''; ?>  value="1">
+                            <label class="form-check-label" for="inlineRadio1">链接</label>
+                        </div>                
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="link_type" id="inlineRadio2" value="2" <?php echo isset($data['link_type']) && $data['link_type']==2 ?'checked':''; ?>>
+                            <label class="form-check-label" for="inlineRadio2">二维码</label>
+                        </div>
+                    </div>                
+                    
                 </div>
 
+                <div class="form-group">
+                    <label for="url" >字体图标</label>                  
+                    <input type="text" class="form-control" name="font_icon" placeholder="" value="<?php echo isset($data['font_icon'])?$data['font_icon']:''; ?>">
+                </div>
       
                 <div class="form-group">
                     <label for="description">描述</label>
@@ -129,8 +149,9 @@ function recursive($items, $level, $parent){
                 
 
                 <div class="form-group">
-                    <label for="importance">排序</label>                 
-                    <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['importance'])?"0":$data['importance'];?>" placeholder="">
+                    <label for="importance">排序</label>
+                 
+                        <input type="number" class="form-control" id="importance" name="importance" value="<?php echo empty($data['importance'])?"0":$data['importance'];?>" placeholder="">
                
                 </div>
 
@@ -147,11 +168,15 @@ function recursive($items, $level, $parent){
                 <div style="width:300px;  text-align:center;" class="mb-3">
                     <div class="card">
                         <div class="card-body" style="background-color:#ccc;">                                           
-                            <img ID="iLogo" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=120X120像素" : $data['image_url']; ?>" class="img-fluid" />
+                            <img ID="iLogo" src="<?php echo empty($data['image_url']) ? "holder.js/240x240?text=120X120像素" : $data['image_url']; ?>" 
+                            data-default-src="holder.js/240x240?text=图片" class="img-fluid" />
                             
                         </div>
                         <div class="card-footer">
-                            <button type="button" id="btnBrowser" class="btn btn-info btn-block"><i class="fa fa-picture-o"></i> 图片...</button>
+                            <button type="button" id="btnBrowser" class="btn btn-info"><i class="fa fa-picture-o"></i> 图片...</button>
+                            <?php if(!empty($data['image_url'])){ ?>
+                            <button type="button" id="btnImageDelete" class="btn btn-danger"><i class="iconfont icon-delete"></i> 移除</button>
+                            <?php } ?>
                             <input id="image_url" type="hidden" name="image_url" value="<?php echo isset($data['image_url'])?$data['image_url']:''; ?>" />
                         </div>
                     </div>
@@ -163,9 +188,9 @@ function recursive($items, $level, $parent){
 
         </div>
         <div class="card-footer text-center">
-            <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
-            <a href="index.php" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>       
-        </div>
+        <button type="submit" class="btn btn-primary"><i class="iconfont icon-save"></i> 保存</button>
+            <a href="JavaScript:window.history.back()" class="btn btn-outline-secondary"><i class="iconfont icon-left"></i> 返回</a>       
+                </div>
           
 
     </div>
@@ -180,12 +205,13 @@ function recursive($items, $level, $parent){
 <script src="/assets/js/vendor/holderjs/holder.min.js"></script>
 <script src="/assets/js/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 
-<script type="text/javascript" src="/assets/js/vendor/jquery-ui/jquery-ui.min.js"></script>    
+<script type="text/javascript" src="/assets/js/vendor/jquery-ui/jquery-ui.min.js"></script>
 
 <script src="/assets/js/vendor/elFinder/js/elfinder.min.js"></script>
 <script src="/assets/js/vendor/elFinder/js/i18n/elfinder.zh_CN.js"></script>
 <script src="/assets/js/vendor/tinymce/tinymce.min.js"></script>
 <script src="/assets/js/tinymceElfinder.js"></script>
+
 <script type="text/javascript">
 
 
@@ -196,30 +222,45 @@ function recursive($items, $level, $parent){
 
        
         $("#btnBrowser").on("click", function () {         
-            
-            $('<div \>').dialog({modal: true, width: "80%", title: "选择文件", zIndex: 99999,
-                    create: function(event, ui) {
-                        $(this).elfinder({
-                            resizable: false,
-                            url: '/assets/js/vendor/elFinder/php/connector.minimal.php',
-                            lang: 'zh_CN',
-                            commandsOptions: {
+          
+
+             $('<div \>').dialog({
+                modal: true,
+                width: "80%",
+                title: "选择文件",
+                zIndex: 99999,
+                create: function(event, ui) {
+                    $(this).elfinder({
+                        resizable: false,
+                        url: '/assets/js/vendor/elFinder/php/connector.minimal.php',
+                        lang: 'zh_CN',
+                        commandsOptions: {
                             getfile: {
-                                oncomplete: 'destroy' 
+                                oncomplete: 'destroy'
                             }
-                            },                            
-                            getFileCallback: function(file) {
-                                //document.getElementById('fileurl').value = file; 
-                                var fileUrl = '/'+file.path.replace(/\\/g,"/");
-                                $('#image_url').val(fileUrl);
-                                $('#iLogo').attr('src', fileUrl);         
-                                jQuery('.ui-dialog-titlebar-close[type="button"]').click();
-                            }
-                        }).elfinder('instance')
-                    }
-                });        
+                        },
+                        getFileCallback: function(file) {
+                            //document.getElementById('fileurl').value = file; 
+                            var fileUrl = '/' + file.path.replace(/\\/g, "/");
+                            $('#image_url').val(fileUrl);
+                            $('#iLogo').attr('src', fileUrl);
+                            jQuery('.ui-dialog-titlebar-close[type="button"]')
+                                .click();
+                        }
+                    }).elfinder('instance')
+                }
+            });            
         });       
 
+        $("#btnImageDelete").on("click", function() {
+          
+            $('#image_url').val("");
+            $('#iLogo').attr('src', $('#iLogo').attr('data-default-src'));
+            var myImage = document.getElementById('iLogo');
+            Holder.run({
+                images: myImage
+            });
+        });
 
         $("form").validate({
 
